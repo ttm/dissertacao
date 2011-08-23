@@ -1,0 +1,163 @@
+% 	Estilo para o modelo de Tese/Dissertação segundo as normas da Pós-graduação do IFSC-USP
+% 	Criado por Alexandre de Castro Maciel - Grupo de Polimeros Bernhard Gross
+% 	Este trabalho está licenciado sob uma Licença Creative Commons Atribuição-Uso Não-Comercial-Compartilhamento pela mesma Licença 2.5 Brasil
+% 	Modelo criado e testado em ambiente Linux/Debian
+% 	Software utilizados: Kile,Kbibtex,Kpdf,Gimp
+%
+%-----------------CARREGAR PACOTES------------------
+%	Carregando os pacotes necessários ao padrão IFSC. Você pode acrescentar ou retirar qualquer um, mas não é necessário a priori. É por sua conta.
+\usepackage[brazil]{babel} % PÕE OS NOMES DOS AMBIENTES EM PORTUGUÊS
+\usepackage{setspace} % NECESSÁRIO PARA O ABNTEX
+\usepackage{graphicx,color} % POSSIBILITA O USO DE FIGURAS EM JPG E CORES NOS TEXTOS
+\usepackage{tocloft} % PERMITE FORMATAR AS LISTAS DE FIGURAS E TABELAS E CRIAR NOVAS LISTAS
+\usepackage{multirow} % SERVE PARA MESCLAR CÉLULAS EM TABELAS
+\usepackage{rotating} % UTILIZADO PELO AMBIENTE SIDEWAYTABLE PARA TABELAS GIRADAS DE 90o
+\usepackage{booktabs} % ALTERA O LAYOUT DE TABELAS
+\usepackage{longtable} % CRIA TABELAS EM MAIS DE UMA PÁGINA
+\usepackage{float} % MELHORA O POSICIONAMENTO DE OBJETOS FLOAT COMO FIGURAS E TABELAS
+\usepackage[format=hang,font=it,justification=centerlast,labelfont=bf,labelsep=endash]{caption} % FORMATA A LEGENDA DE TABELAS E FIGURAS
+\usepackage{subfig} % CRIA AMBIENTES DE FIGURA COM VÁRIAS FIGURAS
+\usepackage{amssymb} % PERMITE USO DE SÍMBOLOS MATEMÁTICOS E OUTROS
+\usepackage{amsmath} % PERMITE USO DE ESTRUTURAS MATEMÁTICOS E OUTROS
+\usepackage[bottom,marginal,flushmargin,stable,multiple]{footmisc} % FORMATA AS NOTAS DE RODAPÉ
+\usepackage[utf8x]{inputenc} % SE VOCÊ EXPERIMENTAR DIFICULDADES COM CODIFICAÇÕES (ALGUNS SÍMBOLOS ESTRANHOS APARECENDO) TENTE SUBSTITUIR UTF8 POR LATIN1. VAI DEPENDER DO EDITOR DE TEXTO QUE VOCÊ USA E DA CODIFICAÇÃO ASSINALADA.
+\usepackage[num,recuo=0.5cm,abnt-etal-list=3]{abntcite} % AQUI CARREGAMOS O PACOTE ABNTCITE ONDE EM [NUM] FICA DECLARADO QUE O ESTILO DE CITAÇÃO SERÁ O NUMÉRICO. SE FOR DE SUA PREFERÊNCIA USAR O ESTILO AUTOR-DATA, USE [ALF] NO LUGAR DE [NUM]
+%-----------------CONFIGURA DIRETÓRIO DE FIGURAS----
+%	Path das figuras a partir do diretório onde se encontra esse arquivo (recomendável)
+\graphicspath{{./figuras/}}
+%-----------------CAPA E FOLHA DE ROSTO-------------
+\providecommand{\ABNTareadata}{}
+\newcommand{\area}[1]{\renewcommand{\ABNTareadata}{#1}}
+
+\providecommand{\ABNTopcaodata}{}
+\newcommand{\opcao}[1]{\renewcommand{\ABNTopcaodata}{#1}}
+
+\renewcommand{\capa}{
+\begin{titlepage}
+	\vfill
+	\begin{center}
+		{\Large \textbf{\ABNTinstituicaodata}} \\[5cm]
+		{\large \ABNTautordata}\\[3cm]
+		{\LARGE \textbf{\ABNTtitulodata}}\\[1cm]
+		\vfill
+		{\large \ABNTlocaldata \\ \ABNTdatadata}
+	\end{center}
+\end{titlepage}
+}
+
+\renewcommand{\folhaderosto}{
+\begin{titlepage}
+	\vfill
+	\begin{center}
+		{\large \ABNTautordata}\\[5cm]
+		{\LARGE \textbf{\ABNTtitulodata}}\\[5cm]
+		\hspace{.45\textwidth}
+		\begin{minipage}{.5\textwidth}
+		\begin{espacosimples}
+			\begin{small}
+				\ABNTcomentariodata
+				\\ \\
+				Área de Concentração: \ABNTareadata
+%As duas linhas abaixo devem ser comentadas se não houver necessidade de opção
+				\\
+				Opção: \ABNTopcaodata
+%--------------------------------------------------------------------------------------------
+				\\
+				Orientador: \ABNTorientadordata
+%As duas linhas abaixo devem ser comentadas se não houver necessidade de co-orientador
+				\\
+				Colaborador: \ABNTcoorientadordata
+%--------------------------------------------------------------------------------------------
+			\end{small}
+		\end{espacosimples}
+		\end{minipage}
+		\vfill
+		{\large \ABNTlocaldata \\ \ABNTdatadata}
+	\end{center}
+\end{titlepage}
+}
+%-----------------CONFIGURA EPÍGRAFE-----------------
+%	Essas linhas formatam parte da página da epígrafe (o texto em si). Não é aconselhável alterar aqui. Qualquer alteração de posição ou fonte deve ser feita no arquivo pretextual.tex onde a epígrafe é declarada. Este código cria um novo comando chamado \epigrafe que aceita duas variáveis: a frase e o ''autor''
+\newcommand{\epigrafetop}[2]{
+	\vspace{-1cm}
+	\thispagestyle{empty}
+	\begin{flushright}
+	\begin{spacing}{1}
+	\small\sffamily\slshape ``#1''\\ --- \textsc{#2}
+	\end{spacing}
+	\end{flushright}
+}
+
+\newcommand{\epigrafemid}[2]{
+	\vspace{5cm}
+	\thispagestyle{empty}
+	\begin{flushright}
+	\begin{spacing}{1}
+	\small\sffamily\slshape ``#1''\\ --- \textsc{#2}
+	\end{spacing}
+	\end{flushright}
+}
+
+\newcommand{\epigrafebot}[2]{
+	\vspace{8cm}
+	\thispagestyle{empty}
+	\begin{flushright}
+	\begin{spacing}{1}
+	\small\sffamily\slshape ``#1''\\ --- \textsc{#2}
+	\end{spacing}
+	\end{flushright}
+}
+\newcommand{\resumoeabstract}{
+\input{resumoeabstract}
+}
+%-----------------CRIA LISTA ESPECIAL----------------
+%	Cria o ambiente de lista de símbolos e abreviações. Não há necessidade de editar isso ao menos que você saiba o que está fazendo.
+\newenvironment{listaespecial}[1][R(x)]{
+   \begin{list}{}{
+      \renewcommand\makelabel[1]
+         {\normalsize\ensuremath{##1}}
+      \setlength{\listparindent}{0pt}
+      \settowidth{\labelwidth}{\makelabel{#1}}
+      \setlength{\leftmargin}{\labelwidth}
+      \addtolength{\leftmargin}{\labelsep}
+   }
+}{
+   \end{list}
+}
+%-----------------FORMATA LISTA DE FIGURAS E TABELAS-----------
+\newlength{\mylenf}
+\settowidth{\mylenf}{\bfseries\cftfigpresnum\cftfigaftersnum}
+\addtolength{\cftfignumwidth}{\mylenf}
+\setlength{\mylenf}{0.5in}
+\renewcommand{\cftfigpresnum}{\hfill}
+\renewcommand{\cftfigaftersnum}{\hspace*{\mylenf}}
+\addtolength{\cftfignumwidth}{\mylenf}
+\renewcommand{\cftfigleader}{\cftdotfill{\cftfigdotsep}}
+\renewcommand{\cftfigpresnum}{Figura }
+\renewcommand{\cftfigaftersnum}{ - }
+
+\newlength{\mylent}
+\settowidth{\mylent}{\bfseries\cfttabpresnum\cfttabaftersnum}
+\addtolength{\cfttabnumwidth}{\mylent}
+\setlength{\mylent}{0.5in}
+\renewcommand{\cfttabpresnum}{\hfill}
+\renewcommand{\cfttabaftersnum}{\hspace*{\mylent}}
+\addtolength{\cfttabnumwidth}{\mylent}
+\renewcommand{\cfttableader}{\cftdotfill{\cfttabdotsep}}
+\renewcommand{\cfttabpresnum}{Tabela }
+\renewcommand{\cfttabaftersnum}{ - }
+%-----------------FORMATA LEGENDA DE TABELAS LONGAS--
+\setlength{\LTcapwidth}{6.3in}
+\setlength{\LTpre}{0.1in}
+
+%-----------------FORMATA AS NOTAS DE RODAPÉ----------
+\newlength{\myFootnoteWidth}
+\newlength{\myFootnoteLabel}
+\setlength{\myFootnoteLabel}{0.5em}%  <-- can be changed to any valid value
+\renewcommand{\@makefntext}[1]{%
+  \setlength{\myFootnoteWidth}{\columnwidth}%
+  \addtolength{\myFootnoteWidth}{-\myFootnoteLabel}%
+  \noindent\makebox[\myFootnoteLabel][r]{\@makefnmark\ }%
+  \parbox[t]{\myFootnoteWidth}{#1}%
+}
+\renewcommand\footnoterule{\kern-.\p@\hrule\@width3cm\kern2.6\p@}
