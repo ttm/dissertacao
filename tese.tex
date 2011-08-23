@@ -1,0 +1,65 @@
+% 	Modelo de Tese/Dissertação segundo as normas da Pós-graduação do IFSC-USP
+% 	Criado por Alexandre de Castro Maciel - Grupo de Polimeros Bernhard Gross
+% 	Este trabalho está licenciado sob uma Licença Creative Commons Atribuição-Uso Não-Comercial-Compartilhamento pela mesma Licença 2.5 Brasil
+% 	Modelo criado e testado em ambiente Linux/Debian
+% 	Software utilizados: Kile,Kbibtex,Kpdf,Gimp
+%
+%
+%-----------------TIPO DE DOCUMENTO------------------
+\documentclass[espaco=duplo,twoside,openany,tocpage=plain]{abnt}
+%-----------------NORMAS IFSC------------------------
+\usepackage{estiloifsc}
+%-----------------INICIO DO DOCUMENTO----------------
+\begin{document}
+%-----------------PARTE PRE-TEXTUAL------------------
+%	Preencha os campos abaixo para fornecer as informações necessárias para confecção da capa e folha de rosto
+\autor{RENATO FABBRI}
+
+% \titulo{Código Aberto em áudio, web e cultura digital}
+\titulo{Desenvolvimentos em web e áudio: demandas e contribuições em código Aberto e cultura digital}
+% \titulo{Desenvolvimentos em áudio e web: suprindo demandas em código Aberto e cultura digital}
+
+\instituicao{INSTITUTO DE FÍSICA DE SÃO CARLOS UNIVERSIDADE DE SÃO CARLOS}
+%	Alunos da Física deixem as três linhas abaixo não comentadas
+\comentario{Dissertação apresentada ao Programa de Pós-graduação em Física do Instituto de Física de São Carlos da Universidade de São Paulo, para a obtenção do título de Mestre em Ciência.}
+\area{Física Aplicada} %Física Aplicada ou Básica
+\opcao{Física Computacional} %Usado para quem faz parte da Física Computacional ou Biomolecular
+%	Alunos da Interunidades deixem as duas linhas abaixo descomentadas
+% \comentario{Tese apresentada ao Programa de Pós-graduação Interunidades em Ciência e Engenharia de Materiais da Universidade de São Paulo, para a obtenção do título de Doutor em Ciência e Engenharia de Materiais.}
+% \area{Desenvolvimento, Caracterização e Aplicação dos Materiais} %Física Aplicada ou Básica
+%-------
+\orientador{Prof. Dr. Osvaldo Novais de Oliveira Junior}
+\coorientador{Prof. Dr. Luciano da Fontoura Costa}
+\local{São Carlos}
+\data{2011}
+%	Este comando inclui o arquivo pretextual.tex onde estão todas as informações pretextuais.
+%	Nesse arquivo você poderá alterar as informações e formatação das seguintes paginas:
+%	* Capa e folha de rosto
+%	* Dedicatória
+%	* Agradecimentos
+%	* Epígrafe
+%	* Resumo
+%	* Lista de figuras (automatizada)
+%	* Lista de tabelas (automatizada)
+%	* Lista de abreviaturas (manual)
+%	* Lista de símbolos (manual)
+%	* Sumário (automatizado)
+\input{pretextual}
+%-----------------PARTE TEXTUAL----------------------
+%	Comandos que incluem os elementos textuais. A variável cap[j] é referente ao arquivo cap[j].tex. Pode ser qualquer nome, desde que exista no mesmo diretorio do tese.tex um capítulo referente.
+%	Ex: Se você usa \input{introducao}, deverá existir um arquivo tex com o nome introducao.tex no mesmo diretorio de tese.tex.
+\input{introducao}
+\input{fundamentos}
+\input{devEresultados}
+\input{conclusoes}
+%-----------------PARTE PÓS-TEXTUAL------------------
+%	Comando para incluir o banco de dados de bibliografia. O arquivo é o bibdatabase.bib e deve estar no mesmo diretório deste arquivo (tese.tex).
+
+\apendice
+\input{mapaSitio}
+
+\renewcommand\bibname{Referências}
+\bibliographystyle{abnt-num}
+\bibliography{bibdatabase}
+%-----------------FIM DO DOCUMENTO-------------------
+\end{document}
