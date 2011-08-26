@@ -7,8 +7,20 @@
 \subsection{O som como fenômeno físico}
 
 O som é o fenômeno físico de propagação de ondas mecânicas. Ele pode
-somente ocorrer na presença da matéria, ou seja, o vácuo é um
-isolante acústico perfeito.
+somente ocorrer na presença de matéria, como ar, água, ferro ou madeira.
+São ondas de pressão que se deslocam com velocidade caracterizada principalmente
+pelo meio material e também por condições como a temperatura. O vácuo é um isolante acústico perfeito.
+
+Tipicamente a velocidade do som é de $~340 m/s $ e é
+relativamente estável\footnote{$343.2 m/s$ em ar seco a 20 °C (68 °F)}.
+As modificações de sonoridades com o clima é devido a alterações
+dos materiais que os geram e acústica do ambiente, não devido a alterações
+desta velocidade de propagação do som no meio atmosférico.
+
+Falar de fonons e coisas assim? Quais aspectos do som devemos cobrir?
+
+Pegar um livro bom do Prof. Luciano sobre o assunto pois não estou me animando a ficar
+escrevendo sobre ondas
 
 \subsection{A audição e a psicofísica}
 
@@ -42,17 +54,53 @@ diferença. Outros fenômenos psicoacústicos estudados com fins tecnológicos, 
 relação da percepção de volume com espectro agudo e reverberação, compreensibilidade de sinais de fala, etc.
 
 
-\subsection{Som digitalizado}
+\subsection{Áudio digitalizado}
 
-Ver livros em casa.
+Enquanto estamos interessados, na variação de pressão do ar, podemos de fato utilizar
+um microfone para converter esta variação de pressão e transformar em sinal elétrico
+(geralmente voltagem).
+Convertemos assim o som (fenômeno físico) em áudio (sinal elétrico relacionado).
+É neste momento ponto em que o sinal é amostrado no tempo, geralmente através do uso de
+um conversor A/D\footnote{Conversor Analógico para Digital. Para as aplicações descritas aqui, é tipicamente uma placa som.}. Assim, um evento sônico
+torna-se um sinal digital, usufruindo das facilidades para armazenamento, transmissão e
+processamento da nossa tecnologia digital atual.
 
-Representação digital do som.
+Esta amostragem do sinal de áudio é bastante elaborada e dependente de manejo de hardware. Para
+aprofundar este tema, recomendamos [][][].
 
-Padrões PCM. Padrões compactados.
+A representação digital do som pode ser feita de diversas formas.
+A representação PCM (Pulse Code Modulation) canônica possui amostras
+igualmente espaçadas no tempo e paraa cada uma utiliza precisão com o mesmo
+número de bytes.
+
+[Figura com onda amostrada]
+
+Note que o áudio digital possue também uma velocidade no espaço de amostragem.
+Quantidades como $8kHz$, $44.1kHz$, $48kHz$
+descrevem quantidade de amostras a cada segundo com que o áudio examinado foi feito ou
+está sendo utilizado.
+
+O importante Teorema de Nyquist demonstra que em um sinal digital, só se sonsegue representar
+frequências até metade da taxa de amostragem. Ou seja, em um áudio com $48kHz$ de taxa de amostragem,
+conseguimos representar frequências ate $24kHz$. A frequência de Nyquist é exatamente a metade
+da frequência de amostragem e é a frequência mais aguda que aquele sinal pode representar.
+
+Além da representação PCM, pode-se utilizar outros formatos para o armazenamento do áudio. Alguns
+destes formatos apresentam perda de qualidade e são mais indicados para serem transmitidos via rede ou
+para armazenamento. Abaixo está uma tabela com alguns dos formatos mais importantes que possuímos:
+
+[Tabela de formatos]
+
 
 \subsection{Processamento de áudio}
 
-Ver livros em casa.
+Síntese, processamento ou análise.
+
+\begin{itemize}
+    \item Geral
+    \item Voz
+    \item Música
+\end{itemize}
 
 Procedimentos básicos. Processamento
 espectral. Outros processamentos.
