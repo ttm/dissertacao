@@ -9,7 +9,8 @@
 O som é o fenômeno físico de propagação de ondas mecânicas. Ele pode
 somente ocorrer na presença de matéria, como ar, água, ferro ou madeira.
 São ondas de pressão que se deslocam com velocidade caracterizada principalmente
-pelo meio material e também por condições como a temperatura. O vácuo é um isolante acústico perfeito.
+pelo meio material e também pelas condições como a temperatura e a pressão.
+O vácuo é um isolante acústico perfeito.
 
 Tipicamente a velocidade do som é de $~340 m/s $ e é
 relativamente estável\footnote{$343.2 m/s$ em ar seco a 20 °C (68 °F)}.
@@ -19,9 +20,6 @@ desta velocidade de propagação do som no meio atmosférico.
 
 Falar de fonons e coisas assim? Quais aspectos do som devemos cobrir?
 
-Pegar um livro bom do Prof. Luciano sobre o assunto pois não estou me animando a ficar
-escrevendo sobre ondas
-
 \subsection{A audição e a psicofísica}
 
 A audição é definida com a percepção de vibrações mecânicas com
@@ -30,8 +28,8 @@ seres vivos, encontramos um órgão dedicado a captar e transmitir
 estas vibrações mecânicas (som) para o sistema nervoso.
 
 O ouvido humano cumpre exatamente este papel. Um esquema básico
-do ouvido humano conta com 3 divisões. No ouvido externo tem a orelha.
-No médio, tem os martelinhos e o tímpano. No ouvido interno tem a cóclea
+do ouvido humano conta com 3 divisões. No ouvido externo está a orelha.
+No médio, os martelinhos e o tímpano. No ouvido interno tem a cóclea
 e os cíclios. Uma visualização simplificada do ouvido humano está abaixo.
 
 
@@ -41,60 +39,65 @@ Vale notar que a audição conta em grande parte com o tato e potencialmente
 outros órgãos, como o estômago.
 
 Já a psicofísica busca relacionar características físicas do fenômeno sonoro
-com as percepções individuais causadas\footnote{PsycoPy para escrever experimentos psicofísicos em Python: http://www.psychopy.org/}.
+com as percepções individuais resultantes\footnote{PsycoPy para escrever experimentos psicofísicos em Python: http://www.psychopy.org/}.
 Importantes exemplos destas relações
-é a escala logarítimica que a percepção linear das alturas assumem no
+são a escala logarítimica que a percepção linear das alturas assume no
 domínio da frequência e as curvas iso-audíveis (conhecidas como curvas de Fletcher-Münsen).
+EXPLICAR MELHOR?
 
 Outro importante aspecto da psicofísica do som - e da música - é a resolução da percepção
 e a capacidade de notar características do espectro em contextos específicos. O mascaramento
-de frequências é a base na qual se faz compressores de tamanhos de arquivos de áudio. Sabe-se
+de frequências é a base na qual se faz compactadores de tamanhos de arquivos de áudio. Sabe-se
 que, por exemplo, no extremo grave, não conseguimos distinguir duas senóides a quase um tom de
-diferença. Outros fenômenos psicoacústicos estudados com fins tecnológicos, científicos e artísticos são: espacialidade,
-relação da percepção de volume com espectro agudo e reverberação, compreensibilidade de sinais de fala, etc.
+diferença. Alguns outros importantes fenômenos psicoacústicos estudados com fins tecnológicos, científicos e artísticos são: espacialidade,
+relação da percepção de volume com espectro agudo e reverberação e compreensibilidade de sinais de fala.
 
 
 \subsection{Áudio digitalizado}
-
-Enquanto estamos interessados, na variação de pressão do ar, podemos de fato utilizar
-um microfone para converter esta variação de pressão e transformar em sinal elétrico
-(geralmente voltagem).
+Enquanto estamos interessados na variação de pressão do ar, podemos de fato utilizar
+um microfone para converter esta variação de pressão em sinal elétrico (usualmente voltagem).
 Convertemos assim o som (fenômeno físico) em áudio (sinal elétrico relacionado).
-É neste momento ponto em que o sinal é amostrado no tempo, geralmente através do uso de
-um conversor A/D\footnote{Conversor Analógico para Digital. Para as aplicações descritas aqui, é tipicamente uma placa som.}. Assim, um evento sônico
+Neste processo, o sinal é amostrado no tempo geralmente através do uso de
+um conversor A/D\footnote{Conversor Analógico para Digital. Para as aplicações descritas aqui é tipicamente uma placa som.}. Assim, um evento sônico
 torna-se um sinal digital, usufruindo das facilidades para armazenamento, transmissão e
 processamento da nossa tecnologia digital atual.
 
 Esta amostragem do sinal de áudio é bastante elaborada e dependente de manejo de hardware. Para
-aprofundar este tema, recomendamos [][][].
+aprofundar este tema, recomendamos [][][] e uma representacao esquematica deste processo
+se encontra na figura \figure{fig:AD}.
+
+FIGURA MOSTRANDO UMA ONDA ANALOGICA E ELA REPRESENTADA POR PONTOS.
 
 A representação digital do som pode ser feita de diversas formas.
 A representação PCM (Pulse Code Modulation) canônica possui amostras
-igualmente espaçadas no tempo e paraa cada uma utiliza precisão com o mesmo
+igualmente espaçadas no tempo e para cada uma utiliza precisão com o mesmo
 número de bytes.
 
-[Figura com onda amostrada]
+[Figura com onda amostrada com limites superior inferior e valores das amostras]
 
 Note que o áudio digital possue também uma velocidade no espaço de amostragem.
 Quantidades como $8kHz$, $44.1kHz$, $48kHz$
-descrevem quantidade de amostras a cada segundo com que o áudio examinado foi feito ou
+descrevem quantidade de amostras em cada segundo com que o áudio examinado foi feito ou
 está sendo utilizado.
 
-O importante Teorema de Nyquist demonstra que em um sinal digital, só se sonsegue representar
+O importante Teorema de Nyquist demonstra que em um sinal digital só se consegue representar
 frequências até metade da taxa de amostragem. Ou seja, em um áudio com $48kHz$ de taxa de amostragem,
-conseguimos representar frequências ate $24kHz$. A frequência de Nyquist é exatamente a metade
+conseguimos representar frequências de até $24kHz$. A frequência de Nyquist é exatamente a metade
 da frequência de amostragem e é a frequência mais aguda que aquele sinal pode representar.
+(PROVA ELEGANTE DO TEOREMA DE Nyquist? TAMB REFERENCIAR OS SCRIPTS PARA ESTUDO DO FENOMENO)
 
 Além da representação PCM, pode-se utilizar outros formatos para o armazenamento do áudio. Alguns
 destes formatos apresentam perda de qualidade e são mais indicados para serem transmitidos via rede ou
-para armazenamento. Abaixo está uma tabela com alguns dos formatos mais importantes que possuímos:
+para armazenamento\footnote{Os formatos que apresentam perda de qualidade com relação
+ao PCM são chamados formatos \emph{lossy}, os que não apresentam perda de qualidade
+são chamados \emph{loseless}}. Abaixo está uma tabela com alguns dos formatos mais importantes que possuímos:
 
 [Tabela de formatos]
 
 
 \subsection{Processamento de áudio}
 
-Síntese, processamento ou análise.
+Síntese, alteração ou análise.
 
 \begin{itemize}
     \item Geral
@@ -102,7 +105,7 @@ Síntese, processamento ou análise.
     \item Música
 \end{itemize}
 
-Procedimentos básicos. Processamento
+Procedimentos básicos: Lookuptable, sample. Processamento
 espectral. Outros processamentos.
 
 Vincular a um apêndice com excertos de código.
@@ -117,17 +120,34 @@ de trechos de código.
 
 \subsection{C/C++}
 
+Resumo de:
+The C programming Language
+
+C++?
+
+sndlib, SndObj, libsndfile
+
 \subsection{Python}
 
+Python in a Nutshell
+
+Tutorial padrão do van Rossum.
+
+Python the Hard Way?
+
+Pyo, interfaces para áudio e sinais Pywt, numpy, audiolab
+
 \subsection{Linguagens Dedicadas}
+
+Csound, ChucK, Supercollider, Puredata, Haskore, 
 
 \section{Sistema Operacional e Web}
 
 \subsection{Breve histórico}
 
-O hardware estava ficando mais ambundante, sendo replicado em 
-vários lugares. Modelos eram vendidos com diferenças de hardware 
-de mínimas a discrepantes. Neste contexto, começou-se a
+O hardware estava sendo replicado mais facilmente e
+modelos eram vendidos com diferenças
+muitas vezes mínimas. Neste contexto, começou-se a
 pensar em uma camada de código que abstraísse o hardware, assim
 como a linguagem C se propôs.
 
@@ -136,14 +156,20 @@ Um SO é um software que gerencia os recursos do computador e ajuda
 também em abstrair o hardware. Orientamos a esta excelênte linha do
 tempo da Wikipédia em língua inglesa \cite{solinhadotempo}:
 
-
+No trabalho com tecnologias abertas, ainda é bastante cotidiana
+a utilização de sistemas Unix. O áudio e música não são excessões.
+Assim, faz-se cabivel uma abordagem breve dos sistemas GNU/Linux
+inclusive porque todos os desenvolvimentos desta dissertação se deram
+neste Sistema Operacional e algumas destas contribuições se revestiram
+poéticas específicas desta plataforma, como o ABT e o EKP.
 
 \subsection{Unix e GNU/LINUX}
-
 Resumo de utilização. No apêndice o resumo de:
 The Unix programing envinoment
 e
 Running Linux
+
+sox, dmesg > /dev/dsp, programas dedicados para áudio e para a música
 
 \subsection{Web e Browsers}
 
@@ -156,12 +182,28 @@ Breve Histórico.
 No apêndice resumo de:
 http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
 
+Audiolet, que mais?
 
 \section{Sistemas de Controle de Versão}
+No desenvolvimento e compartilhamento efetivo dos códigos, faz-se
+necessária a utilização de ferramentas de registro dos históricos destes
+códigos. Isso é tão vital - ou mais vital - do que aprodução efetiva de código.
+
+Desta forma, abordaremos de forma bastante resumida o tema, de forma a deixar
+registrado o uso cotidiano que se faz de SCV para áudio e música, que não
+é bastante simples, ao contrário das usuais abordagens que se faz em manuais e livros
+sobre este assunto.
 
 \subsection{Breve histórico}
+Historico Cvs, Svn, Bitbucket, git, mercurial, baazar
 
-\subsection{Funcionamento Básico}
+\subsection{Funcionamento básico}
+
+Usual: Após alterações finalizadas (que não quebrem a execução do código), registra-se conjuntos de alterações, e estas alterações são
+enviadas para um repositório central ou ao menos compartilhadas com outros.
+
+Variações: para manutenção pessoal de código. Conflitos de alterações.
 
 \subsection{Git}
 
+Roteiros básicos. Ver nas páginas do LM e do Automata.
