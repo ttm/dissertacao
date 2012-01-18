@@ -1,58 +1,61 @@
 %% ------------------------------------------------------------------------- %%
 \chapter{Introdução} %Nome do capítulo.
 \label{cap:intro} %Rótulo para futura referência ao capítulo. Em qualquer lugar da tese, você poderá citar este capítulo através de ~\ref{cap:introducao}. Você escolhe o argumento de \label e pode ser qualquer coisa (Ex: \label{Procedimento_Experimental})
+Partindo do som como um fenomeno fíisico, esta dissertação se propõe a ser um guia relativamente 
+completo para uma atuação eficiênte no desenvolvimento
+de software voltado ao áudio e tecnologias livres. Optamos
+realizar este trabalho através da síntese e da simplicidade. 
 
-É um trabalho criterioso definir quais pontos cabem serem abordados em um trabalho como este.
-Como abordar a atuação tecnológica e científica em uma área criativa? Como contemplar
-a cultura de compartilhamento e diversidade em que esta produção tecnológica está inserida?
-Com estas questões em mente, optamos neste trabalho pela síntese e pela simplicidade.
-Além disso, esta dissertação se propõe a ser um guia relativamente completo para uma atuação eficiênte em desenvolvimento
-de software em multimídia, mais especificamente voltados áudio e tecnologias livres.
-
-Estaremos abordando o som, o áudio, o áudio digital. Práticas de programação voltadas para
-áudio e também as plataformas para as quais desenvolvemos código: Sistemas Operacionais e Browsers.
+Estaremos abordando o som, o áudio, o áudio digital e práticas de programação voltadas para
+áudio. Não menos importantes são as plataformas nas quais desenvolvemos e executamos código:
+Sistemas Operacionais e \emph{Browsers}.
 
 Com estas tecnologias em mãos, foram criados diversos aplicativos com fins artísticos,
 técnicos, científicos e sociais. Como consequência, foi criada uma equipe para tratar
 destas questões, o Lab Macambira, e um sistema rico de comunicação e exposição de todos
 os desenvolvimentos aqui expostos.
 
-%% ------------------------------------------------------------------------- %%
+Este trabalho tange algumas questões ainda mais gerais e difíceis.
+Como abordar a atuação tecnológica e científica em uma área criativa? Como contemplar
+a cultura de compartilhamento e diversidade em que esta produção tecnológica está inserida?
+Enfim, é um trabalho criterioso definir quais os pontos a serem abordados em um trabalho como este.
+
 
 \section{O som e o áudio}
-
 O som é tipicamente utilizado para fala, sinais em geral\footnote{p.ex. buzina} e música.
-Caracteriza-se por ser um sentido   O livre fluxo de informação
+Caracteriza-se por ser um sentido (estudar som na wikipedia e talvez helmholtz e zuckerkandl)
 
-\subsection{Breve histórico e práticas atuais}
 
+  \subsection{Breve histórico e práticas atuais}
 As explicações físicas do fenômeno do som no decorrer do tempo. Teorias
-corpusculares, escola de Tales. Helmholtz.
+corpusculares, escola de Tales. Helmholtz. Surgimento do áudio. Áudio digital.
 
-\subsection{Campos de estudo e atuação}
 
-\section{Código aberto, software livre e cultura livre} %Nome da seção.
+  \subsection{Campos de estudo e atuação}
+som: Acúsitica, psicoacúsica, luthearia
+áudio: microfones, caixas de som
+áudio digital: conversores a/d d/a, programação voltada ao áudio e música
 
+
+\section{Código aberto, software livre e cultura livre}
 O código é repetidamente destacado como o bem mais valioso produzido em nosso tempo.
 O código aberto - e sua abordagem politico-filosófica chamada de software livre -
 se propõe a constituir um repertório tecnológico da humanidade, acessível por
 qualquer ser humano. Esta proposta orienta o que é chamado de cultura digital,
 um agregado de práticas e explorações recentes e advindas da popularização do digital.
 É tido como o vetor de transformação de nossa época por excelência.
-Qualquer licença de software livre é também uma licença de código aberto (Open Source), a diferença entre as duas nomenclaturas reside essencialmente na sua apresentação e na filosofia.
+Qualquer licença de software livre é também uma licença de código aberto
+(Open Source), a diferença entre as duas nomenclaturas reside essencialmente
+na sua apresentação e na filosofia.
 
 
+  \subsection{Cultura de compartilhamento}
+  \label{sec:soft_compar}
+Proposta de compartilhamento. Softwares para dar suporte a esta conectividade.
 
 
-\subsection{Cultura de compartilhamento} %Nome da seção.
-\label{sec:soft_compar} %Rótulo para futura referência à seção. Em qualquer lugar da tese, você poderá citar esta seção através de \label{sec:consideracoes_preliminares}. O mesmo vale para todas as próximas seções e capítulos.
-
-Softwares para dar suporte a esta conectividade.
-
-%% ------------------------------------------------------------------------- %%
-\subsection{Licenças livres para software e para outras mídias}
-\label{sec:licencas_livres}
-
+  \subsection{Licenças livres para software e para outras mídias}
+  \label{sec:licencas_livres}
 Principais tipos de licenças
 
 Licenças voltadas para software.
@@ -61,26 +64,27 @@ Licenças voltadas para outras mídias.
 
 Licenças fechadas.
 
-\subsubsection{Principais licenças}
-\label{sec:princ_licencas}
+  \subsubsection{Principais licenças}
+  \label{sec:princ_licencas}
+Licenças uma a uma. GPL, LGPL, BSD, MIT, Beerware, etc
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%
 \section{Estado das coisas}
 \label{sec:context}
+Aqui no Brasil: as redes existentes, carta midias livres, fluxo de informação..
+No mundo: mudança de paradigma com relação a tudo que jah rolou e rolará:
+protestos, modismos, entidades, leis e tentativas de leis.
 
-
-\subsection{A convergência das mídias}
-\label{sec:midiamultimidia}
+  \subsection{A convergência das mídias}
+  \label{sec:midiamultimidia}
 
 Os anos de 1999 e 2000 compreendem o conhecido 'marco inicial da primeira década digital'.
 Embora seja principalmente uma forma de delimitar um processo-chave já em andamento, a este período é atribuído
 a delineação dos contornos da 'sociedade em rede'. Esta mudança paradigmática da nossa
 sociedade é sentida agora em maior intensidade nos negócios, na comunicação e na cultura. Estes dois
 últimos fatores são cruciais para o trabalho aqui apresentado dada a notoriedade do papel do
-fenômeno sonoro para a comunicação e expressões culturais.
+fenômeno sonoro para a comunicação e expressões culturais. Mais recentemente, podemos falar claramente
+do papel do código nestas duas frentes.
 
 O termo 'convergência das mídias' não é utilizado para indicar algum dispositivo ou produto que
 lida com várias mídias. Para isso utiliza-se o termo multimídia, que é tema do próximo tópico.
@@ -89,11 +93,10 @@ sobre um assunto e lidamos com imagens, textos, videos, áudios e até outras fo
 de mídia, como o código de liguagem de programação.
 
 
-
-HTML5 e Javascript deixando interativo. 3D, conexões rápidas que possuem banda para video HD e
+HTML5 CSS3 e Javascript deixando interativo. 3D, conexões rápidas que possuem banda para video HD e
 baixa latência. Popularização de hardware capaz destes processamentos.
 
-Tendência: 
+Tendência:
 \begin{itemize}
     \item intensa utilização de audiovisual em contraposição ao
 anterior predominio de textos simples.
@@ -102,11 +105,10 @@ impressora - ou entrada especializada - p.ex. touch pad.
 \end{itemize}
 
 
-\subsection{Multimídia}
+  \subsection{Multimídia}
 
-\subsubsection{Gargalos na interatividade e no estado do software}
-\label{sec:gargalos}
-
+    \subsubsection{Gargalos na interatividade e no estado do software}
+    \label{sec:gargalos}
 Deficiencias em disponibilização da tecnologia atual: muita
 tecnologia fechada.
 
@@ -114,42 +116,46 @@ Comparação do software proprietário com o livre para áudio:
 
 XXXXXXXXXXXXXXXXXXXXX
 
-Citação da parte de video da thread 'Abrindo o Códifo Fechado'.
+Citação da parte de video da thread 'Abrindo o Código Fechado'.
 
 Para certas utilizações, a latência não permite a interatividade como 
 a obtida em presença do objeto examinado seja ele físico ou apenas um BD.
 A medida do 'agora' é de até 50 ms para humanos [Roads, Microsound] e a latência entre comunicadores é
 quase sempre maior que isso [tabela de latências, média, por distância, etc].
 
-Contribuimos na frente do software.
+Contribuimos na frente do software. Para isso veja [sessao dos resultados]
 
 
-\subsubsection{Dinâmica de desenvolvimento}
-\label{sec:din_dev}
+    \subsubsection{Dinâmica de desenvolvimento}
+    \label{sec:din_dev}
+A modularidade do sistema \emph{Unix type}. Codigo como substancia modular
+e reativa. Colaboratividade, listas de discussão, IRC.
 
-A modularidade do sistema \emph{Unix type} e as compensações: jack,
+No caso do áudio: as compensações: jack,
 facilidades de instalação e segurança, tudo hackeável.
 
-\subsubsection{Compartilhamento}
-\label{sec:comp_tec}
-
-Terreno fértil -> semear
+    \subsubsection{Compartilhamento}
+    \label{sec:comp_tec}
+Terreno fértil -> semear que a primazia do compartilhamento se encarrega de
+desencadear os desenvolvimentos ligitimos.
 
 %%%%%%%%
-\subsection{Identificação de tarefas pouco suportadas}
-\label{sec:tarefas_n_sup}
+    \subsection{Identificação de tarefas pouco suportadas}
+    \label{sec:tarefas_n_sup}
+[ESCREVER NO FINAL]
 
-\subsubsection{Comparacao das soluções em software livre e proprietários}
-\label{sec:sl_prop}
+    \subsubsection{Comparacao das soluções em software livre e proprietários}
+    \label{sec:sl_prop}
+[ESCREVER NO FINAL E ABORDAR BREVEMENTE AS QUESTOES DE VIDEO]
 
 
 \section{Objetivos}
 \label{sec:objetivos}
+Aqui analisamos os objetivos deste trabalho. Eles refletem os objetivos
+dos empreendimentos de SL em geral e tambem das investidas no audiovisual e nas artes.
 
-
-\subsection{Difusão de tecnologias e práticas}
-\label{sec:tutoriais}
-
+  \subsection{Difusão de tecnologias e práticas}
+  \label{sec:tutoriais}
 Descentralização: Fator caminhão e espalhamento de informação. Descentralização
 é uma constante nas estruturas e ferramentas mais relevantes como redes
 sociais, comunicadores que agora funcionam por broadcast e protocolos de
@@ -158,48 +164,46 @@ bem organizadas.
 
 Aumento da conectividade através de avanços em telecomunicações e transportes.
 
-\subsubsection{Tutoriais}
-\label{sec:uso_sl}
+    \subsubsection{Tutoriais}
+    \label{sec:uso_sl}
 
 \begin{itemize}
     \item Tutoriais para programação em python.
-
 Screen casts e texto.
 
     \item Tutoriais para fazer plugins.
 \end{itemize}
 
-\subsubsection{Estudo de caso da difusão de conteúdos livres}
-\label{sec:dif_sl}
-
+    \subsubsection{Estudo de caso da difusão de conteúdos livres}
+    \label{sec:dif_sl}
 Estamos desenvolvendo trabalhos em análise de comparação
 entre sucessões de tendências filosóficas ~\cite{philome} e
 musicais ~\cite{musime} e trabalhos em processamento de escrita
 e fala ~\cite{rede-associacoes, complenet, enfmc, ifsc}.
 
-Os estudos subsequentes a este trabalhos devem desenvolver
+Os estudos subsequentes a estes trabalhos devem desenvolver
 um estudo sobre a dinâmica de geração e propagação de conteúdo na rede.
-Comparando textos e ustilizando medidas de similaridade separa-se
+Comparando textos e utilizando medidas de similaridade separa-se
 o que um texto não contém e o que é semelhante, i.e. servem de propagação
 um do outro. A criatividade será enfocada também como estudos de dinâmicas
 de atributos de redes complexas de palavras, como as redes de associação ~\cite{rede-associacoes}.
 
 
-\subsection{Extensão de recursos em software livre para multimídia}
-\label{sec:extensao}
+  \subsection{Extensão de recursos em software livre para multimídia}
+  \label{sec:extensao}
 
-\subsubsection{Manipulação e tratamento de áudio}
-\label{sec:manip-audio}
+  \subsubsection{Manipulação e tratamento de áudio}
+  \label{sec:manip-audio}
 
 
-\subsubsection{Plugins feitos}
-\label{sec:tutoriais}
+  \subsubsection{Plugins feitos}
+  \label{sec:tutoriais}
 
-\subsubsection{Performance em tempo real}
-\label{sec:perf}
+  \subsubsection{Performance em tempo real}
+  \label{sec:perf}
   
-\subsubsection{Síntese de sons e estruturas musicais}
-\label{sec:sintese}
+  \subsubsection{Síntese de sons e estruturas musicais}
+  \label{sec:sintese}
 
-\subsubsection{Analise}
-\label{sec:analise}
+  \subsubsection{Analise}
+  \label{sec:analise}
