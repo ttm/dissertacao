@@ -1,0 +1,21 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{1.50 }
+
+\bibitem{solinhadotempo}
+\abntrefinfo{Linha\ldots}{LINHA\ldots}{}
+{LINHA do tempo de SO na Wikipedia. Wikipedia Foundation.
+Dispon{\'\i}vel em:
+  $<$http://en.wikipedia.org/wiki/Timeline\_of\_operating\_systems$>$. Acesso
+  em: 22 ago. 2011.}
+
+\bibitem{dmicrotuts}
+\abntrefinfo{12\ldots}{12\ldots}{}
+{12 Microtutoriais para iniciação em Django. Renato Fabbri.
+Dispon{\'\i}vel em: $<$http://wiki.nosdigitais.teia.org.br/Microtutoriais$>$.
+  Acesso em: 22 ago. 2011.}
+
+\end{thebibliography}
