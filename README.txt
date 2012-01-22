@@ -7,6 +7,7 @@ conclusoes.tex
 dedicatoria.tex
 devEresultados.tex
 dissertacao.tex
+dissertacao.bbl
 estiloifsc.sty
 fundamentos.tex
 introducao.tex
