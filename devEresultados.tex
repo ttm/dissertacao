@@ -150,32 +150,161 @@ e o repositório ~\cite{http://sourceforge.net/projects/fdpack/develop fdpsf}.
 
 \section{Áudio e Música}
 
-\subsection{ABeatTracker (ABT)}
+exp abertos
 
-Manual ABT
+Do produção de códigos em tempo real para música, chamado livecoding,
+vamos para ferramentas computacionais para áudio e música, com o minimum-fi
+e FIGGUS. Já fazendo ponte do código com outras interfaces, adentramos AHT e EKP,
+que interfaceiam com o mundo físico e material (AHT) e com o hardware, onde
+nosso entendimento em codigo é efetuado em procedimentos.
 
-Linkar com ABD
+  \subsection{Experimentos abertos}
 
-\subsection{Emotional Kernel Panic (EKP)}
+Todos os desenvolvimentos desta dissertação estão em repositórios abertos\cite{repositorios-tese-dev},
+e alguns foram especialmente importantes como percurso para o que é apresentado neste
+escrito. Ou seja, 
 
-Em 2008, colaborando intensamente com o CDTL
-(Centro de Desenvolvimento de Tecnologias Livres)\footnote{foi uma associação civil formada e desmembrada em 2008 e sediada em Recife, PE}
-foi lançada a ideia de utilizar o estado do sistema operacional - especialmente o kernel linux - para
-geração de sons. Surge o Emotional Kernel Panic (EKP). Desde o inicio, foram definidos três finalidades
-para esta exploração do SO:
+Focaremos no código para a arte sonora,
+incluindo a musical, e portanto fazendo parte da cultura e fazendo cultura.
+\footnote{As chamadas culturas biopunk, ciberpunk, cipherpunk, hacker, digital e outras mais,
+possibilitadas aos recentes desenvolvimentos em telecomunicação, dizem respeito em menor
+ou maior grau ao código.}
 
+A seguir apresentamos alguns bons exemplos dos desenvolvimentos
+desta dissertação que não são de cunho artístico.
+
+      \subsubsection{Plugins LADSPA e lv2}
+      [repos AE, LM, wiki EL, historico CDTL]
+
+
+      \subsubsection{Protocolo de compactação de áudio via wavelets, polinômios e permutações}
+      [achar artigo feec]
+
+
+      \subsubsection{Processamento de voz via redes complexas}
+      [repo do audio experiments. passar para o LM e chamar o TT]
+  
+
+  \subsection{Livecoding e ABeatTracker (ABT)}
+
+  [Apresentar Livecoding.]
+
+  Apenas parte dos conhecedores do assunto reconhecem
+  o ABT como livecoding. Alguns
+  consideram a linguagem por macros mais especializadas e poderosas como
+  sendo um tipo de interface escrita, nao uma linguagem de programação
+  propriamente dita.
+
+
+
+  Argumentar em favor do ABT como livecoding, apresentá-lo e depois
+  faze-lo 
+
+  Manual ABT
+
+  Linkar com ABD
+
+      \subsubsection{Audioexperiments, Estudiolivre e Foobarbaz}
+
+      Audioexperiments. Estúdio livre. LM
+
+
+
+
+  \subsection{Musica em Tempo Diferido}
+
+      \subsubsection{Minimum-fi}
+
+Em Abril de 2011 foi trabalhado um codigo dedicado a materializar o minimo
+para se conseguir expressar ideias musicais em geral. Esta empreitada
+resultou no minimum-fi, codigo em um unico arquivo, que sintetiza
+musicas inteiras. O os algoritmos propriamente ditos somam menos de
+50 linhas e nao mais que 5 funções.
+
+Os princípios são:
 \begin{itemize}
-    \item Didáticos
-    \item Artísticos
-    \item Monitoramento do SO
+  \item Deve-se ter um mecanismo de sintese simples mas que
+permita varios timbres.
+  \item Deve-se ser capaz de construir series de notas e acordes.
 \end{itemize}
 
-http://trac.assembla.com/audioexperiments/browser/ekp-base
+Para o primeiro item, se prestam as funções lookup e lookupcruz. A função
+lookup já foi apresentada na sessão anterior, quando tratado de Python já visando o áudio.
+O lookupcruz ex explicado a seguir.
+
+[codigo do lookupcruz e explicacao]
+
+As sequencias de notas e os acordes foram resolvidos com 2 outras funcoes simples,
+que utilizam lookup e lookupcruz.
+
+[codigo do fazSequencia e explicacao]
+
+[codigo do fazAcorde e explicacao]
+
+A função somador eh para automatizar a soma amostra a amostra e completar com zeros a
+sequencia menor.
+
+[codigo do somador, explicacao e figura de uma sequencia maior/menor que a outra]
+
+Depois disso é usufruir com estruturas criadas. Por exemplo: depois de construidas
+algumas tabelas para serem usadas como diferentes timbres, pode-se criar as
+escalas completamente simetricas assim:
+
+escala\_1=range(12) # cromática ascendente sem inclusão da oitava
+escala\_2=range(0,12,2) # tons inteiros
+escala\_3=range(0,12,3) # diminutão
+escala\_4=range(0,12,4) # terças maiores
+escala\_6=range(0,12,6) # trítonos
+
+Sendo cada unidade um semitom. Assim as triades maiores e menores
+são especificadas com simplicidade:
+
+maior=[0,4,7]
+menor=[0,3,7]
+
+E series podem ser anotadas junto a variacoes:
+
+b1=[0]*4
+b2=[0]*7+[7]
+b3=  [0,7,0,1]
+b3\_2=[0,7,8,7]
+b4=[0,7,7,7]
+b5=[0,7]
+b6=[0,19,7,12]
+b7=[0,-1,0,-1]
+b8=[0,-1,7,-1]
+b9=[0,1,0,-1]
+b10=[0,7,6,7]
+
+Agora eh sintetizar e mixar. A sintese de sequencias e acordes sao feitos tipicamente
+atraves de comandos desta forma:
+
+fazSequencia(nt, f, fator, d, s, senoide, dente)
+fazAcorde([0,7,14,21,28,35,42,49,56,63,70,77,84]
+
+Aqui uns procedimentos basicos utilizados nas montagens:
+
+seq=[1.5*i for i in fazSequencia(nt, f, fator, d, s, senoide, dente)] # amplificacao
+
+seq3=[(i+j) for i,j in zip(seq1,seq2)] # mixagem
+
+Gerando uma serie de acordes:
+
+ac=[]
+for i in xrange(8): # a cada 2 tempos
+    ac+=fazAcorde([0,7,14,21,28,35,42,49,56,63,70,77,84], f, fator, d, s, senoide, dente)
+    ac+=[0]*int((d+s)*44100)
+
+E por fim, mixando quando os comprimentos nao sao os mesmos:
+
+seq2=somador(ac,seq2)
 
 
-\subsection{Finite Groups in Granular and Unit Synthesis (FIGGUS)}
 
-Desenvolvimento iniciado em 2006 com Prof. Adolfo Maia Junior para
+
+\subsubsection{Finite Groups in Granular and Unit Synthesis (FIGGUS)}
+
+Desenvolvimento iniciado em 2006 com o físico-matemático Prof. Adolfo Maia Junior para
 tratar de simetrias na música, com vistas à composição musical atraves
 de métodos matemáticos. Mais especificamente, a proposta resultou em
 um programa voltado para o uso de Grupos Algébricos para síntese
@@ -198,19 +327,27 @@ python RUNME
 
 
 
-\subsection{Plugins LADSPA e lv2}
 
-\subsection{Protocolo de compactação de áudio via wavelets, polinômios e permutações}
+  \subsection{Música na matéria}
+      \subsubsection{Emotional Kernel Panic (EKP)}
 
-\subsection{Processamento de voz via redes complexas}
+Em 2008, colaborando intensamente com o CDTL
+(Centro de Desenvolvimento de Tecnologias Livres)\footnote{foi uma associação civil formada e desmembrada em 2008 e sediada em Recife, PE}
+foi lançada a ideia de utilizar o estado do sistema operacional - especialmente o kernel linux - para
+geração de sons. Surge o Emotional Kernel Panic (EKP). Desde o inicio, foram definidos três finalidades
+para esta exploração do SO:
 
-\subsection{AirHackTable}
+\begin{itemize}
+    \item Didáticos
+    \item Artísticos
+    \item Monitoramento do SO
+\end{itemize}
 
-\subsection{Livecoding}
+http://trac.assembla.com/audioexperiments/browser/ekp-base
 
-\subsection{Experimentos abertos}
 
-Audioexperiments. Estúdio livre.
+      \subsubsection{AirHackTable}
+
 
 \section{Web}
 
