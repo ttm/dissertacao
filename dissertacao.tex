@@ -9,6 +9,43 @@
 \documentclass[espaco=duplo,twoside,openany,tocpage=plain]{abnt}
 %-----------------NORMAS IFSC------------------------
 \usepackage{estiloifsc}
+% \include{pythonlisting}
+% \usepackage{python}
+
+
+%-----------------PARA CODIGO PYTHON------------------------
+% http://stackoverflow.com/questions/741985/latex-source-code-listing-like-in-professional-books
+% http://pedrokroger.com/2011/04/printing-python-code-with-latex/
+% http://tex.stackexchange.com/questions/38046/how-to-typeset-with-lstlisting-package
+
+% \documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{beramono}
+% \renewcommand*\familydefault{\ttdefault}
+\usepackage{listings}
+
+
+\lstset{
+  language=Python,
+  showstringspaces=false,
+  formfeed=\newpage,
+  tabsize=4,
+  commentstyle=\itshape,
+  basicstyle={\small\fontfamily{fvm}\fontseries{m}\selectfont},
+  moredelim=[il][\large\textbf]{\#\# },
+  morekeywords={models},
+  numbers=left,
+  numberstyle=\tiny%\color{blue}\bfseries,
+}
+ 
+\newcommand{\code}[2]{
+\hrulefill
+ \subsection*{#1}
+ \lstinputlisting{#2}
+ \vspace{2em}
+}
+
+
 %-----------------INICIO DO DOCUMENTO----------------
 \begin{document}
 %-----------------PARTE PRE-TEXTUAL------------------

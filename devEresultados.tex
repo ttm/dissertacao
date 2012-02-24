@@ -102,15 +102,24 @@ sequencia menor.
 Depois disso é usufruir com estruturas criadas. Por exemplo: depois de construidas
 algumas tabelas para serem usadas como diferentes timbres, pode-se criar as
 escalas completamente simetricas assim:
+% \begin{python}
 
-escala\_1=range(12) # cromática ascendente sem inclusão da oitava
+
+\code{}{ex.py}
+
+
+asd}{escala\_1=range(12) # cromática ascendente sem inclusão da oitava
 escala\_2=range(0,12,2) # tons inteiros
 escala\_3=range(0,12,3) # diminutão
 escala\_4=range(0,12,4) # terças maiores
-escala\_6=range(0,12,6) # trítonos
+escala\_6=range(0,12,6) # trítonos}
+% \end{python}
+% \input{py}
 
 Sendo cada unidade um semitom. Assim as triades maiores e menores
 são especificadas com simplicidade:
+
+
 
 maior=[0,4,7]
 menor=[0,3,7]
