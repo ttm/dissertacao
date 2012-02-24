@@ -102,64 +102,42 @@ sequencia menor.
 Depois disso é usufruir com estruturas criadas. Por exemplo: depois de construidas
 algumas tabelas para serem usadas como diferentes timbres, pode-se criar as
 escalas completamente simetricas assim:
-% \begin{python}
 
+\code{Escalas Simétricas na grade dos 12 semintos e no âmbito da oitava}{python_snippets/escalas_simetricas.py}
 
-\code{}{ex.py}
-
-
-asd}{escala\_1=range(12) # cromática ascendente sem inclusão da oitava
-escala\_2=range(0,12,2) # tons inteiros
-escala\_3=range(0,12,3) # diminutão
-escala\_4=range(0,12,4) # terças maiores
-escala\_6=range(0,12,6) # trítonos}
+% escala\_1=range(12) # cromática ascendente sem inclusão da oitava
+% escala\_2=range(0,12,2) # tons inteiros
+% escala\_3=range(0,12,3) # diminutão
+% escala\_4=range(0,12,4) # terças maiores
+% escala\_6=range(0,12,6) # trítonos
 % \end{python}
 % \input{py}
 
 Sendo cada unidade um semitom. Assim as triades maiores e menores
-são especificadas com simplicidade:
+são especificadas com simplicidade. Note que aos acordes \emph{diminutão} e
+\emph{aumentado} correspodem as mesmas notas das escalas simetricas de terças menores
+e maiores respectivamente:
 
+\code{Acordes anotados como listas em python}{python_snippets/acordes.py}
 
-
-maior=[0,4,7]
-menor=[0,3,7]
 
 E series podem ser anotadas junto a variacoes:
 
-b1=[0]*4
-b2=[0]*7+[7]
-b3=  [0,7,0,1]
-b3\_2=[0,7,8,7]
-b4=[0,7,7,7]
-b5=[0,7]
-b6=[0,19,7,12]
-b7=[0,-1,0,-1]
-b8=[0,-1,7,-1]
-b9=[0,1,0,-1]
-b10=[0,7,6,7]
+\code{Series diversas}{python_snippets/series.py}
 
 Agora eh sintetizar e mixar. A sintese de sequencias e acordes sao feitos tipicamente
 atraves de comandos desta forma:
 
-fazSequencia(nt, f, fator, d, s, senoide, dente)
-fazAcorde([0,7,14,21,28,35,42,49,56,63,70,77,84]
+\code{Sintetizando sequências e acordes}{python_snippets/seqs_acordes.py}
 
 Aqui uns procedimentos basicos utilizados nas montagens:
 
-seq=[1.5*i for i in fazSequencia(nt, f, fator, d, s, senoide, dente)] # amplificacao
-
-seq3=[(i+j) for i,j in zip(seq1,seq2)] # mixagem
+\code{Amplificação e mixagem}{python_snippets/amp_mix.py}
 
 Gerando uma serie de acordes:
 
-ac=[]
-for i in xrange(8): # a cada 2 tempos
-    ac+=fazAcorde([0,7,14,21,28,35,42,49,56,63,70,77,84], f, fator, d, s, senoide, dente)
-    ac+=[0]*int((d+s)*44100)
+\code{Acordes periódicos}{python_snippets/acordes_periodicos.py}
 
-E por fim, mixando quando os comprimentos nao sao os mesmos:
-
-seq2=somador(ac,seq2)
 
 
 

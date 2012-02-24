@@ -1,0 +1,8 @@
+maior=[0,4,7]
+menor=[0,3,7]
+maior7m=[0,4,7,10]
+maior7M=[0,4,7,11]
+menor7m=[0,3,7,10]
+diminutao=[0,3,6,9]
+# na musica popular se chama de diminutao o [0,3,6,10]
+aumentado=[0,4,8]
