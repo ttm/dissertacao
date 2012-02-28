@@ -40,28 +40,6 @@ desta dissertação especificamente em áudio, sem o envolvimento direto da mús
       [repo do audio experiments. passar para o LM e chamar o TT]
   
 
-  \subsection{Música em Tempo Real: Livecoding e ABeatTracker (ABT)}
-
-  [Apresentar Livecoding.]
-
-  Apenas parte dos conhecedores do assunto reconhecem
-  o ABT como livecoding. Alguns
-  consideram a linguagem por macros mais especializadas e poderosas como
-  sendo um tipo de interface escrita, nao uma linguagem de programação
-  propriamente dita.
-
-      \subsubsection{ABeatTracker}
-
-
-  Manual ABT
-
-  Linkar com ABD
-
-      \subsubsection{Audioexperiments, Estudiolivre e Foobarbaz}
-
-      Audioexperiments. Estúdio livre. LM
-
-
 
 
   \subsection{Musica em Tempo Diferido: Minimum-fi e FIGGUS}
@@ -70,20 +48,42 @@ desta dissertação especificamente em áudio, sem o envolvimento direto da mús
 
 Em Abril de 2011 foi trabalhado um codigo dedicado a materializar o minimo
 para se conseguir expressar ideias musicais em geral. Esta empreitada
-resultou no minimum-fi, codigo em um unico arquivo, que sintetiza
-musicas inteiras. O os algoritmos propriamente ditos somam menos de
+resultou no minimum-fi, código em um único arquivo, que sintetiza
+músicas inteiras. O os algoritmos propriamente ditos somam menos de
 50 linhas e nao mais que 5 funções.
 
 Os princípios são:
 \begin{itemize}
   \item Deve-se ter um mecanismo de sintese simples mas que
 permita varios timbres.
-  \item Deve-se ser capaz de construir series de notas e acordes.
+  \item Deve-se ser capaz de construir unidades e series de unidades (notas e acordes, por exemplo).
 \end{itemize}
 
-Para o primeiro item, se prestam as funções lookup e lookupcruz. A função
+Para o primeiro item, se prestam comumente os procedimentos de busca em tabelas com formas
+de ondas em alta resolução. O procedimento é barato e, como vimos nos fundamentos,
+não acrescentam ruídos relevantes ao sinal.
+
+O segundo item presta-se à discretização do espaço musical. Unidades como batidas e notas
+tornam mais eficiente a comunicação pois a quantidade
+de estruturas sugeridas é maior~\cite{Roederer} no discreto doq eu no contínuo. Roederer
+aponta que as próprias notas dos instrumentos musicais são um reflexo de que é mais eficiente
+o uso do discreto do que do contínuo.
+
+Desta forma, se mostram úteis para fazer sequencias de unidades, concatená-las. Quando as unidades
+são notas, as sequencias sustapostas no tempo de unidades são melodias ou linhas melódicas. As
+sequencias sobrepostas no tempo são comumente pensados como acordes, mas podem ser tidos simplesmente
+como sobreposições circunstanciais de duas linhas melódicas.
+
+As duas construções básicas escolhidas, baseadas na dicotomia melodia/harmonia, são
+as funções fazSequencia e fazAcorde. Vale notar elas são absolutamente equivalentes e dispensáveis
+em uma análise puramente conceitual. Os procedimentos de mixagem e concatenação são
+plenamente capazes de realizar o que estas funções realizam. Aliás, as funções nada
+mais são do que usos típicos e quase caricatos destes procedimentos: no fazAcorde a mixagem
+sobrepõe no tempo todas as unidades, no fazSequencia as unidades são todas juntapostas no tempo.
+
+ A função
 lookup já foi apresentada na sessão anterior, quando tratado de Python já visando o áudio.
-O lookupcruz ex explicado a seguir.
+O lookupcruz é explicado a seguir.
 
 [codigo do lookupcruz e explicacao]
 
@@ -164,6 +164,29 @@ sintetize todo um EP usando somente os comandos:
 git clone
 python setup.py install
 python RUNME
+
+
+  \subsection{Música em Tempo Real: Livecoding e ABeatTracker (ABT)}
+
+  [Apresentar Livecoding.]
+
+  Apenas parte dos conhecedores do assunto reconhecem
+  o ABT como livecoding. Alguns
+  consideram a linguagem por macros mais especializadas e poderosas como
+  sendo um tipo de interface escrita, nao uma linguagem de programação
+  propriamente dita.
+
+      \subsubsection{ABeatTracker}
+
+
+  Manual ABT
+
+  Linkar com ABD
+
+      \subsubsection{Audioexperiments, Estudiolivre e Foobarbaz}
+
+      Audioexperiments. Estúdio livre. LM
+
 
 
 
