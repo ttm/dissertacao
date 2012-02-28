@@ -38,9 +38,42 @@
   numberstyle=\tiny%\color{blue}\bfseries,
 }
  
+
+%% 1
+\usepackage[centering,includeheadfoot,margin=2cm]{geometry}
+\usepackage{txfonts}
+\usepackage{blindtext}
+
+\parindent0em
+%%%
+
+%%% 2
+\usepackage{blindtext}
+\setlength{\parindent}{0pt}
+
+\newcommand*\sepline{%
+  \begin{center}
+    \rule[1ex]{.5\textwidth}{.5pt}
+  \end{center}}
+
+% \newcommand*\sepstars{%
+%   \begin{center}
+%     $\star\star\star$
+%   \end{center}}
+%%%
+
 \newcommand{\code}[2]{
-\hrulefill
- \subsection*{#1}
+% \hrulefill[*]
+%  \bigskip % 1
+%  \centerline{********} % 1
+
+\sepline
+
+
+
+% \sepstars
+
+ \subsubsection*{#1}
  \lstinputlisting{#2}
  \vspace{2em}
 }
