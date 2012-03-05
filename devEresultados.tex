@@ -57,7 +57,7 @@ computer programming may be assembled out of time order, debugged and optimized.
 A realização musical em tempo diferido é o paradigma inicial da música computacional.
 Iniciando com o Music V, a proposta foi depois desenvolvido com o CSound. Pode-se dizer
 que até hoje é a forma como compositores usualmente pensam a música: pensando
-e escrevendo as estruturas, que depois são executadas por instrumentistas.
+e escrevendo as estruturas, que depois são executadas por instrumentistas ou aparelhos eletronicos.
 
 Assim como a composição instrumental permite um trabalho mais minucioso do que
 a improvisação instrumental, a realização musical em tempo diferido usualmente permite um
@@ -75,8 +75,7 @@ permutações e de Teoria de Grupos, para a composição de músicas. Como demon
 das capacidades do FIGGUS, ele gera um EP inteiro com um único comando. Este é o
 \emph{PPEPPS}\footnote{Pure Python EP: Projeto Solvente}, como veremos a seguir.
 
-Desta forma, buscaremos expor nesta sessão, atraves de dois exemplos reais,
-os princípios do uso de código para a síntese \emph{musical}, desde as amostras
+Desta forma, esta sessão exemplifica e explicita - através de dois exemplos reais - os princípios do uso de código para a síntese \emph{musical}, desde as amostras
 relativas a uma nota com dada frequencia, amplitude e timbre, até a confecção
 de uma ferramenta derivada, já incorporando propostas musicais e estruturas
 mais elaboradas.
@@ -88,20 +87,27 @@ de realizar um código dedicado a materializar \emph{o mínimo}
 para se conseguir expressar ideias musicais em geral. Esta empreitada
 resultou no minimum-fi, código em um único arquivo, que sintetiza
 músicas inteiras. Os algorítmos propriamente ditos somam 
-53 linhas em 5 funções. O resto são estruturas musicais utilizadas neles.
+53 linhas em 5 funções. Com estas funções, estruturas musicais podem ser criadas amostra por amostra, resultando em notas, blocos e estruturas hierarquicamente superiores.
 
 Os princípios são:
 \begin{itemize}
   \item Deve-se ter um mecanismo de síntese que
-permita varios timbres e frequência fundamental.
+permita vários timbres e controle sobre a frequência fundamental.
   \item Deve-se ser capaz de construir unidades e séries de unidades (notas e acordes, por exemplo).
 \end{itemize}
 
 Para o primeiro item, se prestam comumente os procedimentos de busca em tabelas com formas
 de ondas em alta resolução (chamado \emph{lookup table}). O procedimento é barato e de qualidade alta
-(não acrescentam ruídos relevantes ao sinal).
+(não acrescentam ruídos relevantes ao sinal). A seguir está o procedimento da lookuptable:
 
 \code{Procedimento de Lookup Table}{python_snippets/lookuptable.py}
+
+O primeiro ponto importante é a tabela em si. É de comum conhecimento que
+tabelas com 1024 são mais que suficientes para os usos musicais e a diferença
+de qualidade (relação sinal/ruido) não muda consideravelmente com a utilização
+de tabelas maiores. A seguir dispomos algumas destas tabelas, mais especificamente, dispomos as tabelas para os formatos de onda mais usuais. 
+
+\code{Formas de Onda Tradicionais}{python_snippets/formasDeOnda.py}
 
 O segundo item presta-se à discretização do espaço musical. Unidades como batidas e notas
 tornam mais eficiente a comunicação pois a quantidade
