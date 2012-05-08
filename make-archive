@@ -1,2 +1,2 @@
 #!/bin/sh
-git archive HEAD --prefix='fabbri-phd/' | gzip -9 > fabbri-phd-`date +%H%Z-%Y%m%d`.tar.gz
+git archive HEAD --prefix='renato-fabbri-masters/' | gzip -9 > renato-fabbri-masters-`date +%H%Z-%Y%m%d`.tar.gz
