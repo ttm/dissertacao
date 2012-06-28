@@ -5,13 +5,17 @@
 
 \section{Áudio e Música}
 
-exp abertos
+Os resultados explicitados nesta dissertação estão focados no processamento de 
+áudio voltado para a música e na síntese de estruturas musicais.
 
-Do produção de códigos em tempo real para música, chamado livecoding,
-vamos para ferramentas computacionais para áudio e música, com o minimum-fi
-e FIGGUS. Já fazendo ponte do código com outras interfaces, adentramos AHT e EKP,
-que interfaceiam com o mundo físico e material (AHT) e com o hardware, onde
-nosso entendimento em codigo é efetuado em procedimentos.
+Por razões didáticas, dividimos este capítulo em 4 partes, a saber: experimentos
+abertos em áudio e música (incluindo plugins LADSPA, Wavelets, Redes Complexas e outros
+scripts experimentais), música em tempo diferido (ou seja, que não é feito em tempo real),
+música em tempo real, e música na matéria (suporte físico em hardware).
+
+Com isso, desejamos percorrer minimamente a prática musical através do código.
+com exemplos reais de aplicação e em uso pelo autor, por membros do LabMacambira.sf.net,
+por parceiros, colaboradores e por usuários eventuais das naturezas mais diversas.
 
   \subsection{Experimentos abertos em áudio: LADSPAs, Wavelets e Redes Complexas}
 
@@ -57,25 +61,27 @@ computer programming may be assembled out of time order, debugged and optimized.
 A realização musical em tempo diferido é o paradigma inicial da música computacional.
 Iniciando com o Music V, a proposta foi depois desenvolvido com o CSound. Pode-se dizer
 que até hoje é a forma como compositores usualmente pensam a música: pensando
-e escrevendo as estruturas, que depois são executadas por instrumentistas ou aparelhos eletronicos.
+e escrevendo as estruturas, que depois são executadas por instrumentistas ou aparelhos eletrônicos.
 
 Assim como a composição instrumental permite um trabalho mais minucioso do que
 a improvisação instrumental, a realização musical em tempo diferido usualmente permite um
 detalhamento maior dos procedimentos do que a realização em tempo real. Por este
-mesmo motivo, trataremos inicialmente de dois trabalhos em tempo diferido,
-aliás paradigmaticos.
+mesmo motivo, trataremos inicialmente de dois trabalhos em tempo diferido.
+Aliás, como veremos a seguir, as abordagens são paradigmáticas para a música
+computacional praticada até os dias de hoje.
 
-O primeiro, chamado de \emph{minimum-fi}\footnote{hi-fi, low-fi, minimum-fi, ou seja,
+O primeiro destes feitos, chamado de \emph{minimum-fi}\footnote{hi-fi, low-fi, minimum-fi, ou seja,
 o mínimo de qualidade para assegurar existência e consistência
 da criação} sintetiza uma música inteira, amostra por amostra, através de princípios
 claros de síntese sonora e organização musical. O segundo, chamado de \emph{FIGGUS} (FInite
 Groups in Granular and Unit Synthesis), utiliza os princípios do minimum-fi e constitui
 um módulo Python completo, cuja proposta é a utilização de simetrias, através de
 permutações e de Teoria de Grupos, para a composição de músicas. Como demonstração
-das capacidades do FIGGUS, ele gera um EP inteiro com um único comando. Este é o
+das capacidades do FIGGUS, ele gera um EP (E... Play, pegar significado dele) inteiro com um único comando. Este é o
 \emph{PPEPPS}\footnote{Pure Python EP: Projeto Solvente}, como veremos a seguir.
 
-Desta forma, esta sessão exemplifica e explicita - através de dois exemplos reais - os princípios do uso de código para a síntese \emph{musical}, desde as amostras
+Desta forma, esta sessão exemplifica e explicita - através de dois exemplos reais - os
+princípios do uso de código para a síntese \emph{musical}, desde as amostras
 relativas a uma nota com dada frequencia, amplitude e timbre, até a confecção
 de uma ferramenta derivada, já incorporando propostas musicais e estruturas
 mais elaboradas.
@@ -84,64 +90,71 @@ mais elaboradas.
 
 Em Abril de 2011 surgiu a necessidade estética e também tecnológica
 de realizar um código dedicado a materializar \emph{o mínimo}
-para se conseguir expressar ideias musicais em geral. Esta empreitada
+para expressar ideias musicais em geral. Esta empreitada
 resultou no minimum-fi, código em um único arquivo, que sintetiza
-músicas inteiras. Os algorítmos propriamente ditos somam 
-53 linhas em 5 funções. Com estas funções, estruturas musicais podem ser criadas amostra por amostra, resultando em notas, blocos e estruturas hierarquicamente superiores.
+músicas inteiras. Os algorítmos propriamente ditos, escritos em Python, somam 
+53 linhas e inclui 5 funções. Com estas funções, estruturas musicais podem 
+ser criadas amostra por amostra, resultando em notas, blocos e estruturas hierarquicamente superiores.
 
-Os princípios são:
+Os princípios, bastante simples, são:
 \begin{itemize}
-  \item Deve-se ter um mecanismo de síntese que
+  \item Deve-se ter um mecanismo de síntese sonora que
 permita vários timbres e controle sobre a frequência fundamental.
   \item Deve-se ser capaz de construir unidades e séries de unidades (notas e acordes, por exemplo).
 \end{itemize}
 
-Para o primeiro item, se prestam comumente os procedimentos de busca em tabelas com formas
+Para o primeiro item, se prestam comumente os procedimentos de busca em tabelas/vetores com formas
 de ondas em alta resolução (chamado \emph{lookup table}). O procedimento é barato e de qualidade alta
 (não acrescentam ruídos relevantes ao sinal). A seguir está o procedimento da lookuptable:
 
 \code{Procedimento de Lookup Table}{python_snippets/lookuptable.py}
 
-O primeiro ponto importante é a tabela em si. É de comum conhecimento que
+O primeiro ponto importante é a tabela em si, usualmente unidimensional. É de comum conhecimento que
 tabelas com 1024 são mais que suficientes para os usos musicais e a diferença
 de qualidade (relação sinal/ruido) não muda consideravelmente com a utilização
-de tabelas maiores. A seguir dispomos algumas destas tabelas, mais especificamente, dispomos as tabelas para os formatos de onda mais usuais. 
+de tabelas maiores. A seguir dispomos algumas destas tabelas, mais 
+especificamente, dispomos as tabelas para os formatos de onda mais usuais. 
 
 \code{Formas de Onda Tradicionais}{python_snippets/formasDeOnda.py}
 
+Através da utilização do lookup sucessivo (procura-se um valor na primeira tabela
+e este valor indica o valor na segunda tabela a ser utilizado), executamos
+um waveshaping. Este procedimento é bastante apreciado pela simplicidade e eficácia
+na síntese de tímbres diversos e ricos em harmônicos e evolução temporal.
+
+[codigo do lookupcruz e explicacao]
+
 O segundo item presta-se à discretização do espaço musical. Unidades como batidas e notas
 tornam mais eficiente a comunicação pois a quantidade
-de estruturas sugeridas é maior~\cite{Roederer} no discreto doq eu no contínuo. Roederer
+de estruturas sugeridas é maior e as estruturas são mais claras~\cite{Roederer} no discreto do que no contínuo. Roederer
 aponta que as próprias notas dos instrumentos musicais são um reflexo de que é mais eficiente
 o uso do discreto do que do contínuo.
 
-Desta forma, se mostram úteis para fazer sequencias de unidades, concatená-las. Quando as unidades
-são notas, as sequencias sustapostas no tempo de unidades são melodias ou linhas melódicas. As
+Desta forma, unidades bem definidas se mostram úteis na prática musical 
+para fazer sequencias de unidades, concatená-las. Quando as unidades
+são notas, as sequencias de unidades justapostas no tempo são melodias ou linhas melódicas. As
 sequencias sobrepostas no tempo são comumente pensados como acordes, mas podem ser tidos simplesmente
-como sobreposições circunstanciais de duas linhas melódicas.
+como sobreposições circunstanciais de duas linhas melódicas. Isso, claro, segundo
+a sistematização clássica e usual da música~\cite{Lacerda}.
 
-As duas construções básicas escolhidas, baseadas na dicotomia melodia/harmonia, são
-as funções fazSequencia e fazAcorde. Vale notar elas são absolutamente equivalentes e dispensáveis
-em uma análise puramente conceitual. Os procedimentos de mixagem e concatenação são
+As duas construções básicas explicitadas, baseadas na dicotomia melodia/harmonia
+(horizontalidade/verticalidade, justaposição/sobreposição), são
+as funções \emph{fazSequencia} e \emph{fazAcorde}. Vale notar elas são absolutamente 
+equivalentes em uma análise puramente conceitual, i.e. uma delas pode ser omitida segundo
+a teoria. Isso fica particularmente óbvio quando se nota que os procedimentos de mixagem e concatenação são
 plenamente capazes de realizar o que estas funções realizam. Aliás, as funções nada
 mais são do que usos típicos e quase caricatos destes procedimentos: no fazAcorde a mixagem
 sobrepõe no tempo todas as unidades, no fazSequencia as unidades são todas juntapostas no tempo.
 
- A função
-lookup já foi apresentada na sessão anterior, quando tratado de Python já visando o áudio.
-O lookupcruz é explicado a seguir.
-
-[codigo do lookupcruz e explicacao]
-
-As sequencias de notas e os acordes foram resolvidos com 2 outras funcoes simples,
-que utilizam lookup e lookupcruz.
+Como pode notar a seguir, as sequencias de notas e os acordes, em última instância, são utilizações específicas
+das 2 funcoes de síntese sonora explicadas anteriormente: lookup e lookupcruz.
 
 [codigo do fazSequencia e explicacao]
 
 [codigo do fazAcorde e explicacao]
 
-A função somador eh para automatizar a soma amostra a amostra e completar com zeros a
-sequencia menor.
+A última das cinco funções utilizadas é uma soma amostra a amostra de dois sons. Para isso,
+é necessário completar com zeros a sequencia com o menor número de amostras:
 
 [codigo do somador, explicacao e figura de uma sequencia maior/menor que a outra]
 
@@ -159,7 +172,18 @@ escalas completamente simetricas assim:
 % \end{python}
 % \input{py}
 
-Sendo cada unidade um semitom. Assim as triades maiores e menores
+Sendo cada unidade um semitom. Claro que podemos também utilizar as usuais
+escalas tonais maior e menor natural, harmônica e melódica:
+
+[codigo das escalas maior e menores]
+
+A utilização de intervalos menores que o semitom\footnote{Prática também conhecida
+como \emph{microtonalidade}} mostra-se trivial em
+nossa implementação:
+
+[escalas com intervalos microtonais]
+
+Da mesma forma, as triades maiores e menores
 são especificadas com simplicidade. Note que aos acordes \emph{diminutão} e
 \emph{aumentado} correspodem as mesmas notas das escalas simetricas de terças menores
 e maiores respectivamente:
@@ -167,42 +191,44 @@ e maiores respectivamente:
 \code{Acordes anotados como listas em python}{python_snippets/acordes.py}
 
 
-E series podem ser anotadas junto a variacoes:
+E séries podem ser anotadas junto a variacoes:
 
-\code{Series diversas}{python_snippets/series.py}
+\code{Séries diversas}{python_snippets/series.py}
 
-Agora eh sintetizar e mixar. A sintese de sequencias e acordes sao feitos tipicamente
-atraves de comandos desta forma:
+Com este arcabouço, o passo seguinte é sintetizar e mixar, resultando
+em sequências musicais. A síntese de sequências e acordes são feitos tipicamente
+através de comandos desta forma:
 
 \code{Sintetizando sequências e acordes}{python_snippets/seqs_acordes.py}
+\code{Acordes periódicos}{python_snippets/acordes_periodicos.py}
 
-Aqui uns procedimentos basicos utilizados nas montagens:
+Em posse destas sequências e acordes, formamos estruturas hierarquicamente superiores
+através da concatenação de estruturas, da mixagem de estruturas, e da amplificação
+(ou atenuação) seletiva das mesmas:
 
 \code{Amplificação e mixagem}{python_snippets/amp_mix.py}
 
-Gerando uma serie de acordes:
-
-\code{Acordes periódicos}{python_snippets/acordes_periodicos.py}
 
 
-
-
-
-\subsubsection{Finite Groups in Granular and Unit Synthesis (FIGGUS)}
+        \subsubsection{Finite Groups in Granular and Unit Synthesis (FIGGUS)}
 
 Desenvolvimento iniciado em 2006 com o físico-matemático Prof. Adolfo Maia Junior para
-tratar de simetrias na música, com vistas à composição musical atraves
+tratar de simetrias na música, com vistas à composição musical através
 de métodos matemáticos. Mais especificamente, a proposta resultou em
 um programa voltado para o uso de Grupos Algébricos para síntese
 granular e síntese de estruturas musicais. O nome dado
-foi FIGGUS, sigla de FInite Groups in Granular and Unit Synthesis.
+foi FIGGUS, sigla de FInite Groups in Granular and Unit Synthesis\footnote{Também utilizamos
+o nome FIGGS (FInite Group in Granular Synthesis) dado que o termo \emph{unit synthesis} não
+é usual na literatura. Posteriormente o principal autor deste trabalho recorreu novamente
+ao FIGGUS pois o maior uso da abordagem é para síntese de estruturas musicais, não para
+síntese de amálgamas sonoros tipicamente resultantes da síntese granular}.
 
 A Síntese Granular é uma área bem estabelecida tanto na acústica quanto
 na Computação Musical. O Físico Gabor, quantum sonoro, phonon, etc..
 [achar artigos feitos com adolfo]
 
-Na atual reescrita, embora ainda bastante atras do FIGGUS original,
-mesmo sem contar a interface grafica, o codigo roda inteiro em python
+Na atual reescrita, embora ainda bastante atrás do FIGGUS original,
+e mesmo sem a interface gráfica, o código roda inteiro em python
 com as biblitecas imbutidas por padrão. Isso permite com que o FIGGUS
 sintetize todo um EP usando somente os comandos:
 
@@ -211,10 +237,74 @@ git clone
 python setup.py install
 python RUNME
 
+[Explicar o conceito de simetria e permutações]
+[Expor sobre uma ou duas músicas feitas com o FIGGUS]
 
   \subsection{Música em Tempo Real: Livecoding e ABeatTracker (ABT)}
 
-  [Apresentar Livecoding.]
+Com os avanços computacionais recentes, tornou-se usual a síntese sonora
+em tempo real. Com isso, surgiram liguagens dedicadas para o áudio e a música
+em sua maioria dedicadas - ou ao menos capacitadas - para o uso 
+em tempo de execussão [citar PD, SC, ChucK]. Em outras palavras, estas linguagens
+possibilitam que o usuário ouça o resultante sonoro do código utilizado e altere
+o código com resultado imediato no processamento e resultado que escuta.
+
+Nesta linha de exploração musical do código, iremos expor a seguir sobre
+nossas investidas em \emph{Livecoding} (escrita de código em tempo real
+com vistas à performance pública) e o ABeatTracker (uma linguagem por macros
+para execussão sonora rítmica em conjunto com instrumentos tradicionais e outras
+fontes sonoras/musicais externas).
+
+
+        \subsubsection{Livecoding}
+
+Recentemente, grupos de ponta em música experimental no mundo todo estão
+desenvolvendo apresentações musicais públicas baseadas na escrita
+de código ao vivo. Usualmente, se projeta o código para que a audiência possa
+ver o que está sendo escrito, no rítmo em que se escreve, e se projeta também
+o resultante sonoro por autofalantes.
+
+As motivações para isso são variadas. Expomos a seguir de forma topificada
+um condensado do que nos orientou a tal prática. Vale ressaltar que são
+motivações igualmente presentes em outros grupos, embora não necessariamente
+em todos ou da mesmícima forma.
+
+\begin{itemize}
+    \item A performance musical por computador carece de recursos performáticos
+    à altura das execussões com instrumentos tradicionais. Os gestos são por demais
+    discretos e a concentração do performer é bastante focada na tela do computador.
+    \item O feedback auditivo do código projetado permite que o espectador infira
+    significados dos códigos. Mesmo que de forma superficial, este recurso do livecoding
+    é em muito capaz de desmistificar a programação de computadores, por muito considerada
+    completamente intangível.;
+    \item O código em si é um recurso poderosíssimo, que permite ao usuário controlar
+    os sons produzidos amostra por amostra ou em escalas maiores, como notas, compassos, fraseados
+    inteiros ou mesmo em escalas maiores de tempo, como minutos, horas, dias e semanas.
+    \item O compartilhamento do código é usual, leve e eficiente como entrega completamente
+    aberta de tecnologia e proposta estética.
+\end{itemize}
+
+Desta forma, iniciamos em 2011 uma linha de atuação com Livecoding que resultou em uma performance
+no \emph{V Festival Contato}. Utilizamos a linguagem ChucK por apresentar os recursos que
+consideramos mais apropriados, embora de forma alguma isso seja consensual na prática atual
+de livecoding.
+
+A apresentação contou com recursos adicionais para agregar interesse, como a utilização
+do \emph{cowsay} (para enviar mensagens enquanto se desenrolava a música) e trajetórias
+de um ponto no fundo do código para sugerir a vertigem do sono REM. Estes recursos
+podem ser vistos em uso claramente nos videos demonstrativos [citar videos do vimeo].
+As linhas do cowsay e o script em processing relacionados estão no Apêndice XX...
+
+Duas pessoas executaram livecoding simultaneamente. A saber, Vilson Vieira executava
+rítmos, batidas bastante marcadas que serviam como base. Renato Fabbri, autor do presente
+trabalho, executava linhas fluídas quasi melódicas que formavam arcos maiores. Nos intervalos
+das investidas no formato citado, havia interlúdios em que ambos se revesavam com músicas
+curtas e inusitadas, como em um duelo[disponibilizar músicas em links e colocar de referencia].
+
+[Colocar os códigos meus e do Vilson e explicar o funcionamento e uso]
+
+
+
 
   Apenas parte dos conhecedores do assunto reconhecem
   o ABT como livecoding. Alguns
