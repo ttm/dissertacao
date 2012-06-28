@@ -306,35 +306,72 @@ curtas e inusitadas, como em um duelo[disponibilizar músicas em links e colocar
 
 
 
-  Apenas parte dos conhecedores do assunto reconhecem
-  o ABT como livecoding. Alguns
-  consideram a linguagem por macros mais especializadas e poderosas como
-  sendo um tipo de interface escrita, nao uma linguagem de programação
-  propriamente dita.
 
-      \subsubsection{ABeatTracker}
+      \subsubsection{ABeatTracker (ABT)}
+O ABT é uma linguagem/ferramenta que dispara linhas rítmicas através de macros que especificam
+as células rítmicas, amostras sonoras que são utilizadas como conteúdo sonoro destas
+linhas, modos de leitura destas amostras sonoras, e variáveis randômicas utilizadas
+para execussão da linha. Além disso, o ABT dispõe de variáveis globais que podem ser alteradas
+a qualquer momento pelo usuário, como BPM, velocidade de leitura das amostras e variáveis
+randômicas globais (que se somam às individuais).
 
+Em pouco explicitaremos a forma de utilização do ABT. De antemão, é pertinente apresentar
+uma pequena discussão a respeito do que o ABT é considerado e sobre os propósitos desta
+ferramenta. Em primeiro lugar, vale manter em mente que o ABT tem um funcionamento específico
+que pode transcender o que se conhece por livecoding. As macros pré-estabelecidas engendram um
+conjunto de recursos pré-estabelecidos bem definido, o que contrasta com a ideia de uma 'linguagem
+de programação' que tenha capacidades mais amplas. De qualquer forma, linguagens com domínios
+específicos não são raras e por vezes o ABT foi descrito como uma linguagem.
 
-  Manual ABT
+Sobre os propósitos do ABT, em primeiro lugar ele se dispõe a ser um instrumento computacional
+essencialmente rítmico. Junto a esta proposta, vem a necessidade da utilização em conjunto com
+outros instrumentos, externos ao ABT, ao computador em que estiver rodando e possivelmente externo
+com relação a qualquer computador. Para isso foi elaborado o ABD (ABeatDetector), no qual o usuário
+tamborila os rítmos que estiver ouvindo ou imaginando para que o ABT sincronize o pulso e utilize
+células rítmicas relacionadas. A análise feita pelo ABD resulta em uma série de rítmos explicitados
+por sequências de compassos que encapsulem durações regulares do rítmo tamborilado. Estes rítmos
+relacionados ao tamborilar do usuário são chamados de harmônicos e podem ser selecionados
+prontamente para o disparo de linhas melódicas.
 
-  Linkar com ABD
+No Apêndice XX está o manual de utilização do ABT e todo o código do ABT (e do ABD) está
+disponivel online (citar repos). Exploramos abaixo detalhes relevantes da implementação,
+em especial a forma de funcionamento do ABD.
 
-      \subsubsection{Audioexperiments, Estudiolivre e Foobarbaz}
-
-      Audioexperiments. Estúdio livre. LM
-
+[códigos-chave e explicações sobre o ABT e o ABD]
 
 
 
 
   \subsection{Música na Matéria: EKP e AHT}
+
+Embora o foco deste trabalho seja na exploração musical através de códigos (abertos!),
+nesta sessão iniciamos uma explicação simples, clara e factual de como estas
+investidas transcendem o código e até mesmo a música em si.
+
+Mais relevantes que os desenvolvimentos em si, são as mobilizações criadas nos
+entornos e os engajamentos. Isso ficará evidente nas próximas - curtas - sessões
+destes desenvolvimentos e resultados.
+
+Aqui apresentamos dois trabalhos que geraram alguma movimentação de pessoas,
+resultando em reuniões, desenvolvimentos, pesquisas e apresentações propriamente
+ditas. O primeiro utiliza o estado do hardware como entrada, o segundo se trata
+de uma mesa escultural para flutuação de origamis que resulta em um instrumento musical
+bastante lúdico.
+
+
       \subsubsection{Emotional Kernel Panic (EKP)}
 
 Em 2008, colaborando intensamente com o CDTL
 (Centro de Desenvolvimento de Tecnologias Livres)\footnote{foi uma associação civil formada e desmembrada em 2008 e sediada em Recife, PE}
 foi lançada a ideia de utilizar o estado do sistema operacional - especialmente o kernel linux - para
-geração de sons. Surge o Emotional Kernel Panic (EKP). Desde o inicio, foram definidos três finalidades
+geração de sons. Surge o Emotional Kernel Panic (EKP) na colaboração excepcional de
+Felipe Machado\footnote{Importantíssimo para o desenvolvimento da Cultura Digital no Brasil [citar fontes e programas governamentais]},
+Ricardo Brazileiro\footnote{Artivista Digital bastante ativo [citar fontes]} e o primeiro autor do presente trabalho.
+
+Desde o inicio, foram definidos três finalidades
 para esta exploração do SO:
+
+[visitar o README do EKP e achar os scripts do Brazileiro sobre o EKP]
 
 \begin{itemize}
     \item Didáticos
@@ -342,19 +379,51 @@ para esta exploração do SO:
     \item Monitoramento do SO
 \end{itemize}
 
-http://trac.assembla.com/audioexperiments/browser/ekp-base
+Toda a base do EKP está aqui: http://trac.assembla.com/audioexperiments/browser/ekp-base
 
+[Patches desenvolvidos por Brazileiro/Machado e rascunho do EKP-Monitor]
 
       \subsubsection{AirHackTable}
 
+A AirHackTable é um instrumento musical eletrônico controlado por origamis (dobraduras de papel), construída na forma de uma mesa. Nela, uma rede de coolers reciclados faz flutuar origamis de geometria e cores variadas. Os movimentos dos origamis são captados por webcam e interpretados em tempo real por software de processamento de imagens, gerando padrões que controlam a transformação sonora da música. Dessa forma, pode-se dizer que os sons gerados refletem o voo dos origamis de acordo com suas geometrias (que geram trajetórias de voo caracteristicas).
+
+Na versão atual da AirHacktable, cada cor (vermelho, amarelo, azul, verde, preto, ou branco) controla uma voz, e a posição do origami na mesa modula aspectos do som. Em outras palavras, se o origami está flutuando mais à esquerda, o som sai no canal à esquerda da mesa, e se o origami está mais próximo da câmera, o volume aumenta, e se está mais afastado do operador, o som se torna mais agudo. 
+
+[imagens da AHT e dos patches em operação]
+
+   \subsection{Música no Espírito: Sabrina Kawahara, Audioexperiments, EstudioLivre.org, CDTL, JuntaDados.org, Devolts.org, MSST, LabMacambira.sf.net}
+
+Esta é uma sessão menor, dedicada a apontar repercussões emergentes destas empreitadas em comunidades diferentes
+e então tornar compreensível o desdobramento que estes códigos dedicados à música tiveram em processos sociais
+e mobilizações civis.
+
+Grupos foram montados em torno destes desenvolvimentos. Como os propósitos de compartilhamento
+e apropriação tecnológica estavam no cerne dos grupos relacionados, as investidas
+naturalmente tomaram teores engajados socialmente. A questão do empoderamento das pontas
+e da criação de um patrimônio tecnológico da humanidade é consequência quase imediata
+das posturas de compartilhamento e apropriação citados.
+
+Discorremos brevemente sobre cada uma das iniciativas citadas:
+
+\begin{itemize}
+    \item Sabrina Kawahara
+    \item Audioexperiments
+    \item Estudiolivre.org
+    \item CDTL
+    \item JuntaDados.org
+    \item Devolts.org
+    \item MSST
+    \item LabMacambira.sf.net
+    \item Outros relacionados: MuSa, Metareciclagem, Submidialogia, Tainã
+\end{itemize}
 
 
-  \section{Web}
+\section{Web}
 
   Difusão de informação com ênfase na facilitação
   da apropriação de tecnologias e de instancias políticas.
 
-      \subsection{Tecnologias sociais de alta demanda: Sitios, Conteúdos e Articulação}
+   \subsection{Tecnologias sociais de alta demanda: Sitios, Conteúdos e Articulação}
 
       \subsubsection{Sítios}
 
