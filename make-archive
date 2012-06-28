@@ -1,0 +1,2 @@
+#!/bin/sh
+git archive HEAD --prefix='renato-fabbri-masters/' | gzip -9 > renato-fabbri-masters-`date +%H%Z-%Y%m%d`.tar.gz
