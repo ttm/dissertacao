@@ -6,47 +6,95 @@
 \section{Áudio e Música}
 
 Os resultados explicitados nesta dissertação estão focados no processamento de 
-áudio voltado para a música e na síntese de estruturas musicais.
+áudio através de códigos em liguagens de programação de computadores e
+voltado para a música e na síntese de estruturas musicais. O tema é amplo
+e pertinente o suficiente para ter gerado ampla bibliografia e um histórico
+que remonta desde a própria história da computação e das linguagens de programação.
+Desta forma, entendemos razoável abordar as empreitadas realizadas pelos autores
+da presente dissertação, com foco nas realizações do primeiro autor. 
 
-Por razões didáticas, dividimos este capítulo em 4 partes, a saber: experimentos
+De forma satisfatória, tais realizações possuem um espectro amplo
+dentro do escopo proposto e constitui um percurso relativamente completo
+pelas possibilidades e decorrências da abordagem da música pelo código computacional\footnote{ao menos dentro do se denomina 'Cultura Livre', veja o primeiro capítulo do presente escrito para maiores informações}.
+Por razões didáticas, dividimos este capítulo em 5 partes, a saber: experimentos
 abertos em áudio e música (incluindo plugins LADSPA, Wavelets, Redes Complexas e outros
 scripts experimentais), música em tempo diferido (ou seja, que não é feito em tempo real),
-música em tempo real, e música na matéria (suporte físico em hardware).
+música em tempo real,  música na matéria (suporte físico em hardware) e música no espírito
+(considerando especialmente as mobilizações humanas relacionadas).
 
-Com isso, desejamos percorrer minimamente a prática musical através do código.
+Com isso desejamos expor a prática musical através do código
 com exemplos reais de aplicação e em uso pelo autor, por membros do LabMacambira.sf.net,
 por parceiros, colaboradores e por usuários eventuais das naturezas mais diversas.
 
   \subsection{Experimentos abertos em áudio: LADSPAs, Wavelets e Redes Complexas}
 
-Todos os desenvolvimentos desta dissertação estão em repositórios abertos\cite{repositorios-tese-dev},
-e alguns foram especialmente importantes como percurso para o que é apresentado neste
-escrito. Ou seja, 
+Todos os desenvolvimentos desta dissertação estão em repositórios abertos\cite{repositorios-tese-dev}.
+Alguns foram especialmente importantes como percurso para o que é apresentado neste
+escrito. Ou seja, são explorações que manifestaram diferentes aspectos
+do trabalho do código voltado para o áudio e a música.
 
-Focaremos no código para a arte sonora,
-incluindo a musical, e portanto fazendo parte da cultura e fazendo cultura.
+O código para a arte sonora, incluindo a musical, manifesta-se como cultura pois é fruto de práticas
+espontâneas, diárias e coletivas.
 \footnote{As chamadas culturas biopunk, ciberpunk, cipherpunk, hacker, digital e outras mais,
 possibilitadas aos recentes desenvolvimentos em telecomunicação, dizem respeito em menor
-ou maior grau ao código.}
+ou maior grau à produção de código como cultura.}
 
 A seguir apresentamos alguns bons exemplos dos desenvolvimentos
-desta dissertação especificamente em áudio, sem o envolvimento direto da música.
+desta dissertação especificamente em áudio, sem o envolvimento direto da música. São
+códigos de necessidade para música, mas de uso mais geral e cuja implementação
+requer muito mais de processamento de sinais e computação do que de música propriamente dito.
 
       \subsubsection{Plugins LADSPA e lv2}
       [repos AE, LM, wiki EL, historico CDTL]
+LADSPA (Linux Audio Developers Simple Plugin API) é a API livre\footnote{Veja o Capítulo 1 para a definição de livre neste contexto.} estabelecida de plugins de áudio até a presente data. A última versão liberada desta API é a 1.1, em uso corrente até hoje e é de 2002 segundo os arquivos de cabeçalho relacionados.
+
+A exploração de APIs específicas foge ao escopo do presente texto e os códigos completos podem ser encontrados pela rede, junto a tutoriais e plugins de exemplo. O código destes desenvolvimentos e pertinente ao áudio são relativos à síntese e remoção de ruídos. Da síntese, exitem abordagens mais puristas, que no caso sintetiza ruído branco e filtra para resultar nos espectros desejados (veja logo abaixo para maiores especificações). Uma abordagem menos purista porém mais eficiente é a de usar uma amostra curta do ruído e reproduzí-la indefinidamente através de \emph{cross-fades}.
+
+Já na remoção de ruídos as abordagens são as mais variadas e extremamente dependentes da aplicação. A complexidade dos algorítmos pode atingir níveis de especialidade em processamento de sinais que merecem um trabalho dedicado. Aqui iremos expor somente sobre remoção de ruído \emph{'Hum'} causado usualmente pela corrente alternada que alimenta os equipamentos utilizados.
+
+Abaixo dispomos explicações breves sobre os diferentes ruídos e os códigos relacionados. Preferimos expor em Python os códigos de síntese
+por questão de clareza e coerência com o resto do texto\footnote{Os códigos em C/C++ e a implementação como plugin lv2 está no repositório git LV2 como pode ser visto em: http://labmacambira.git.sourceforge.net/git/gitweb-index.cgi}.
+
+O procedimento de reprodução do ruído através de uma amostra repetida e em crossfade é a seguinte:
+
+[código da reprodução do ruído em loop e croos-fade ~10 linhas]
+
+Sintetizando diferentes ruídos\footnote{Dado o propósito do texto e da implementação, utilizamos nomenclaturas utilizadas na música para os ruídos, como se pode notar.}:
+\begin{itemize}
+    \item Ruído Branco: 
+    \item Ruído Rosa:
+    \item Ruído Marrom:
+    \item Ruído Violeta:
+    \item Ruído Azul:
+    \item Ruído Violeta:
+    \item Ruído Cinza:
+    (nao oficiais)
+    \item Ruído Vermelho:
+    \item Ruído Laranja:
+    \item Ruído Preto:
+    \item Ruído Branco Ruidoso:
+    \item Ruído Preto Ruidoso:
+    \item Clicks:
+\end{itemize} 
+
+A remoção de ruído Hum é baseada em uma sequência de filtros notch (ver fundamentos) idealmente dispostos nos harmônicos da frequência de oscilação da corrente elétrica. Cada um destes filtros deve permitir ajustes finos no fator de qualidade e também na frequência central pois trata-se de um sistema real passivel dos mais diversos efeitos de distorção do modelo ideal. Abaixo expomos o código em Python para tal \emph{removedor de ruído} como é chamado. O código C/C++ e a implementação como plugin está no mesmo repositório disponibilizado para a síntese de ruídos.
+
+[código e explicação do remodedor de ruído Hum]
 
 
       \subsubsection{Protocolo de compactação de áudio via wavelets, polinômios e permutações}
-      [achar artigo feec]
+Criado por Rafael Santos Mendes em conjunto com o primeiro autor deste trabalho e em decorrência do mestrado de André Luvizotto, este método
+consiste em aproximar cada folha de uma decomposição WaveletPacket por um polinômio e uma permutação. A permutação facilita a aproximação polinomial, pois leva folhas WP de coeficientes ordenados para sucessões melhor comportadas de seus valores\footnote{O método é descrito em um artigo de 2009: Compressão de Áudio via Wavelets, Aproximações Polinomiais e Permutações [Fabbri, Mendes]}.
+Representamos cada permutação por um conjunto ordenado de números inteiros. Já o polinômimo possui poucos coeficientes (usualmente 6 ou 8) e os representamos como um conjunto ordenado de variáveis de tipo ponto flutuante.
 
 
       \subsubsection{Processamento de voz via redes complexas}
-      [repo do audio experiments. passar para o LM e chamar o TT]
-  
+Conversar com Chu e com Luciano e decidir se retiro esta sessão ou mantenho.
+
+      [codigos bem comentados no audio experiments. Apresentação do trabalho "Speech Polarity Detection using Complex Networks Measures: First Explorations no Complenet de 2010"]
 
 
-
-  \subsection{Musica em Tempo Diferido: Minimum-fi e FIGGUS}
+  \subsection{Música em Tempo Diferido: Minimum-fi e FIGGUS}
 
 \begin{quotation}
 \small
@@ -391,7 +439,7 @@ Na versão atual da AirHacktable, cada cor (vermelho, amarelo, azul, verde, pret
 
 [imagens da AHT e dos patches em operação]
 
-   \subsection{Música no Espírito: Sabrina Kawahara, Audioexperiments, EstudioLivre.org, CDTL, JuntaDados.org, Devolts.org, MSST, LabMacambira.sf.net}
+   \subsection{Música no Espírito: Sabrina Kawahara, Audioexperiments, EstudioLivre.org, CDTL, juntaDados.org, Devolts.org, MSST, LabMacambira.sf.net}
 
 Esta é uma sessão menor, dedicada a apontar repercussões emergentes destas empreitadas em comunidades diferentes
 e então tornar compreensível o desdobramento que estes códigos dedicados à música tiveram em processos sociais
