@@ -138,19 +138,33 @@ mais elaboradas.
 
       \subsubsection{Minimum-fi}
 
-Em Abril de 2011 surgiu a necessidade estética e também tecnológica
-de realizar um código dedicado a materializar \emph{o mínimo}
-para expressar ideias musicais em geral. Esta empreitada
-resultou no minimum-fi, código em um único arquivo, que sintetiza
-músicas inteiras. Os algorítmos propriamente ditos, escritos em Python, somam 
+Existe uma perene matiz estética e também tecnológica
+de realizar uma dada tarefa com \emph{o mínimo} necessário.
+Esta matiz é para a música igualmente
+fundamental e reconhecida como
+princípio de unidade e coerência\footnote{Este princípio tanto é fundamental
+que as escolas musicais possuem técnicas específicas, músicas possuem suas
+próprias convenções mantidas por toda a sua duração, os arcos mantém características,
+enfim, podemos até mesmo concluir que a simetria define o escopo.}. Em código computacional
+a empreitada para manifestar este princípio ele próprio de forma mínima
+resultou no \emph{minimum-fi.py}, código Python em um único arquivo curto que sintetiza
+músicas com segundo as estruturas especificadas em linha\footnote{Em música se fala da \emph{bula} (que equivaleria
+às funções em si e das especificações da linguagem) e a partitura ou 'música' propriamente ditas (que equivale à .}.
+Na versão atual, de 2012 mas adiantada em 2011, os algorítmos 
+em Python propriamente ditos somam 
 53 linhas e inclui 5 funções. Com estas funções, estruturas musicais podem 
-ser criadas amostra por amostra, resultando em notas, blocos e estruturas hierarquicamente superiores.
+ser criadas padrão a padrão, nota a nota, amostra por amostra. Na prática e posto em
+linguagem cotidiana, resultam em notas que formam
+blocos e estruturas hierarquicamente superiores.
 
-Os princípios, bastante simples, são:
+
+Os princípios, bastante simples\footnote{Osvaldo Lacerda, em seu livro \emph{Compendio de Teoria Elementar da Musica} fala das propriedades do som musical de forma equivalente.}, são:
 \begin{itemize}
   \item Deve-se ter um mecanismo de síntese sonora que
-permita vários timbres e controle sobre a frequência fundamental.
-  \item Deve-se ser capaz de construir unidades e séries de unidades (notas e acordes, por exemplo).
+possibilite a geração de unidades sonoras com diferentes timbres, controle sobre a frequência fundamental e duração específica\footnote{Também entra aqui o volume, mas como o que controlamos de fato é a intensidade relativa entre as notas, resolvemos por bem omitir
+esta parte até que fiquem claros os códigos relativos a isso, logo abaixo.}.
+  \item Deve-se ser capaz de construir não só unidades sonoras, mas também séries de unidades, sejam sobrepostas (acordes, por exemplo)
+  ou justapostas (melodias, por exemplo).
 \end{itemize}
 
 Para o primeiro item, se prestam comumente os procedimentos de busca em tabelas/vetores com formas
@@ -170,49 +184,53 @@ especificamente, dispomos as tabelas para os formatos de onda mais usuais.
 Através da utilização do lookup sucessivo (procura-se um valor na primeira tabela
 e este valor indica o valor na segunda tabela a ser utilizado), executamos
 um waveshaping. Este procedimento é bastante apreciado pela simplicidade e eficácia
-na síntese de tímbres diversos e ricos em harmônicos e evolução temporal.
+na síntese de tímbres diversos e ricos em harmônicos e evolução temporal. Embora
+uma explicação exaustiva do waveshaping fuja ao escopo deste trabalho, este
+método se caracteriza pela aplicação de uma função não linear ao sinal de entrada.
+Neste caso o sinal de entrada é gerado pelo primeiro lookup, a função não linear aplicada
+é representada pela segunda tabela e aplicada pelo segundo lookup.
 
-[codigo do lookupcruz e explicacao]
+Existem muitas formas de se executar waveshaping, a seguir segue o que usamos no minimum-fi, que se sustenta principalmente por ser leve e simples:
 
-O segundo item presta-se à discretização do espaço musical. Unidades como batidas e notas
+\code{Waveshaping com Lookups sucessivas}{python_snippets/lookup_cruz.py}
+
+O segundo item - dos dois princípios expostos sobre o minimum-fi - presta-se à discretização do espaço musical. Unidades como batidas e notas
 tornam mais eficiente a comunicação pois a quantidade
-de estruturas sugeridas é maior e as estruturas são mais claras~\cite{Roederer} no discreto do que no contínuo. Roederer
-aponta que as próprias notas dos instrumentos musicais são um reflexo de que é mais eficiente
-o uso do discreto do que do contínuo.
+de estruturas sugeridas é maior e as estruturas são mais claras no discreto do que no contínuo~\cite{Roederer}. Roederer chega a
+apontar que as próprias notas dos instrumentos musicais são um reflexo de que é mais eficiente
+o uso do discreto do que do contínuo para a geração de estruturas musicais.
 
-Desta forma, unidades bem definidas se mostram úteis na prática musical 
-para fazer sequencias de unidades, concatená-las. Quando as unidades
-são notas, as sequencias de unidades justapostas no tempo são melodias ou linhas melódicas. As
-sequencias sobrepostas no tempo são comumente pensados como acordes, mas podem ser tidos simplesmente
+De fato, unidades bem definidas se mostram úteis na prática musical 
+para fazer sequências de unidades, concatená-las. Quando as unidades
+são notas, as sequências de unidades justapostas no tempo são melodias ou linhas melódicas. As
+sequências sobrepostas no tempo são comumente pensadas como acordes, mas podem ser tidas simplesmente
 como sobreposições circunstanciais de duas linhas melódicas. Isso, claro, segundo
-a sistematização clássica e usual da música~\cite{Lacerda}.
+a sistematização clássica e usual da música~\cite{Lacerda}\footnote{Vole assinalar aqui que a música do século XX apresentou diversos modelos teóricos que quebram com este entendimento simplificado sobre a música, suas unidades básicas e estruturas relacionadas}.
 
-As duas construções básicas explicitadas, baseadas na dicotomia melodia/harmonia
+As duas construções básicas explicitadas a seguir, baseadas na dicotomia melodia/harmonia
 (horizontalidade/verticalidade, justaposição/sobreposição), são
-as funções \emph{fazSequencia} e \emph{fazAcorde}. Vale notar elas são absolutamente 
-equivalentes em uma análise puramente conceitual, i.e. uma delas pode ser omitida segundo
-a teoria. Isso fica particularmente óbvio quando se nota que os procedimentos de mixagem e concatenação são
+as funções \emph{fazSequencia} e \emph{fazAcorde} no minimum-fi. Vale notar elas são absolutamente 
+equivalentes em uma análise puramente conceitual, i.e. uma delas pode ser omitida segundo algumas teorizações. Isso fica particularmente óbvio quando se nota que os procedimentos de mixagem e concatenação são
 plenamente capazes de realizar o que estas funções realizam. Aliás, as funções nada
 mais são do que usos típicos e quase caricatos destes procedimentos: no fazAcorde a mixagem
 sobrepõe no tempo todas as unidades, no fazSequencia as unidades são todas juntapostas no tempo.
 
-Como pode notar a seguir, as sequencias de notas e os acordes, em última instância, são utilizações específicas
-das 2 funcoes de síntese sonora explicadas anteriormente: lookup e lookupcruz.
+Como pode-se notar a seguir, as sequências de notas e os acordes, em última instância, são utilizações específicas das 2 funções de síntese sonora explicadas anteriormente: lookup e lookupcruz.
 
-[codigo do fazSequencia e explicacao]
+\code{Realização de Sequências de Notas}{python_snippets/fazSequencia.py}
 
-[codigo do fazAcorde e explicacao]
+\code{Realização de Acordes de Notas}{python_snippets/fazAcorde.py}
 
 A última das cinco funções utilizadas é uma soma amostra a amostra de dois sons. Para isso,
-é necessário completar com zeros a sequencia com o menor número de amostras:
+é necessário completar com zeros a sequência com o menor número de amostras para somar rapidamente:
 
-[codigo do somador, explicacao e figura de uma sequencia maior/menor que a outra]
+\code{Somador (função auxiliar)}{python_snippets/somador.py}
 
 Depois disso é usufruir com estruturas criadas. Por exemplo: depois de construidas
 algumas tabelas para serem usadas como diferentes timbres, pode-se criar as
-escalas completamente simetricas assim:
+escalas completamente simétricas na oitava cromática assim:
 
-\code{Escalas Simétricas na grade dos 12 semintos e no âmbito da oitava}{python_snippets/escalas_simetricas.py}
+\code{Escalas Completamente Simétricas (na grade dos 12 semitons e no âmbito da oitava)}{python_snippets/escalas_simetricas.py}
 
 % escala\_1=range(12) # cromática ascendente sem inclusão da oitava
 % escala\_2=range(0,12,2) # tons inteiros
@@ -222,16 +240,19 @@ escalas completamente simetricas assim:
 % \end{python}
 % \input{py}
 
-Sendo cada unidade um semitom. Claro que podemos também utilizar as usuais
+Sendo cada unidade um semitom. Ou seja, cada unidade é o fato que fica presente na conta $f_0 . 2^(1/12) . fator $ e resulta na frequência exata da nota em um sistema temperado ideal.
+
+Claro que podemos também utilizar as usuais
 escalas tonais maior e menor natural, harmônica e melódica:
 
-[codigo das escalas maior e menores]
+\code{Escalas diatônicas tonais (maiores e menores)}{python_snippets/escalas_Mm.py}
 
 A utilização de intervalos menores que o semitom\footnote{Prática também conhecida
 como \emph{microtonalidade}} mostra-se trivial em
-nossa implementação:
+nossa implementação. Basta representar sequências de fracionários
+que são partes proporcionais dos semitons:
 
-[escalas com intervalos microtonais]
+\code{Escalas Microtonais (com quartos e oitavos de tom e intervalos menores)}{python_snippets/escalas_microtonais.py}
 
 Da mesma forma, as triades maiores e menores
 são especificadas com simplicidade. Note que aos acordes \emph{diminutão} e

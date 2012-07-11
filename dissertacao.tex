@@ -26,16 +26,35 @@
 
 
 \lstset{
+  extendedchars=\true,
+  inputencoding=utf8x,
   language=Python,
-  showstringspaces=false,
+  %showstringspaces=false,
   formfeed=\newpage,
   tabsize=4,
-  commentstyle=\itshape,
-  basicstyle={\small\fontfamily{fvm}\fontseries{m}\selectfont},
+  %commentstyle=\itshape,
+  basicstyle=\ttfamily,
+  %basicstyle={\small\fontfamily{fvm}\fontseries{m}\selectfont},
+  commentstyle=\color{Apricot}\bfseries,
+  %commentstyle=\color{red}\itshape,
+  stringstyle=\color{darkgreen},
+  identifierstyle=\color{PineGreen},
+  showstringspaces=false,
+  keywordstyle=\color{blue}\bfseries,
   moredelim=[il][\large\textbf]{\#\# },
   morekeywords={models,range},
   numbers=left,
-  numberstyle=\tiny%\color{blue}\bfseries,
+  numberstyle=\tiny,%\color{blue}\bfseries,
+  literate=%
+  {ã}{{\~a}}1
+  {á}{{\'a}}1
+  {ú}{{\'u}}1
+  {í}{{\'i}}1
+  {é}{{\'e}}1
+  {ó}{{\'o}}1
+  {ô}{{\^o}}1
+  {ê}{{\^e}}1
+  {ç}{{\c{c}}}1
 }
  
 
@@ -67,7 +86,7 @@
 %  \bigskip % 1
 %  \centerline{********} % 1
 
-\sepline
+%\sepline
 
 
 
