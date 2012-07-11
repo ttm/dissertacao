@@ -1,4 +1,9 @@
-ac=[]
-for i in xrange(8): # a cada 2 tempos
-    ac+=fazAcorde([0,7,14,21,28,35,42,49,56,63,70,77,84], f, fator, d, s, senoide, dente)
-    ac+=[0]*int((d+s)*44100)
+# aproveitando a variavel
+# acorde do script anterior
+dur = dur_nota + dur_silencio
+silencio_1_tempo = [0]*int((dur)*taxa_amostragem)
+
+# adicionando o acorde a cada 2 tempos 8 vezes
+# ou seja, por 16 tempos, durante 4 compassos de 4
+# a música terá o acorde sedo tocado a cada 2 tempos:
+ac+=(acorde+silencio_1_tempo)*8

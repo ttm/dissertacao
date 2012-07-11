@@ -1,2 +1,25 @@
-fazSequencia(nt, f, fator, d, s, senoide, dente)
-fazAcorde([0,7,14,21,28,35,42,49,56,63,70,77,84],f, fator, d, s, senoide, dente)
+# inicializamos as variáveis:
+notas=[1,4,5,6,7]
+fundamental=200
+fator=2**(1/12.)
+dur_nota=0.5
+dur_silencio=0.1
+onda1=senoide
+onda2 = dente_de_serra
+
+# fazendo a sequência com senóides:
+sequencia = fazSequencia(    notas,
+                             fundamental, 
+                             fator, 
+                             dur_nota, 
+                             dur_silencio, 
+                             onda1    ) 
+
+# fazendo o acorde com waveshaping
+acorde = fazAcorde( notas
+                    fundamental,
+                    fator,
+                    dur_nota,
+                    dur_silencio,
+                    onda1,
+                    onda2 )

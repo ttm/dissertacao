@@ -240,29 +240,29 @@ escalas completamente simétricas na oitava cromática assim:
 % \end{python}
 % \input{py}
 
-Sendo cada unidade um semitom. Ou seja, cada unidade é o fato que fica presente na conta $f_0 . 2^(1/12) . fator $ e resulta na frequência exata da nota em um sistema temperado ideal.
+Sendo cada unidade um semitom. Ou seja, cada unidade é o fator que fica presente na conta $f_0 . 2^{(1/12)} . fator $ e resulta na frequência exata da nota relativa a $f_0$ em um sistema temperado ideal.
 
-Claro que podemos também utilizar as usuais
+Podemos também utilizar as usuais
 escalas tonais maior e menor natural, harmônica e melódica:
 
 \code{Escalas diatônicas tonais (maiores e menores)}{python_snippets/escalas_Mm.py}
 
 A utilização de intervalos menores que o semitom\footnote{Prática também conhecida
-como \emph{microtonalidade}} mostra-se trivial em
+como \emph{microtonalismo}, que gera/utiliza \emph{microtonalidade}.} mostra-se trivial em
 nossa implementação. Basta representar sequências de fracionários
-que são partes proporcionais dos semitons:
+que são partes linearmente proporcionais dos semitons:
 
 \code{Escalas Microtonais (com quartos e oitavos de tom e intervalos menores)}{python_snippets/escalas_microtonais.py}
 
 Da mesma forma, as triades maiores e menores
 são especificadas com simplicidade. Note que aos acordes \emph{diminutão} e
-\emph{aumentado} correspodem as mesmas notas das escalas simetricas de terças menores
+\emph{aumentado} correspodem as mesmas notas das escalas simétricas de terças menores
 e maiores respectivamente:
 
 \code{Acordes anotados como listas em python}{python_snippets/acordes.py}
 
 
-E séries podem ser anotadas junto a variacoes:
+E séries/sequências podem ser anotadas junto a variacoes:
 
 \code{Séries diversas}{python_snippets/series.py}
 
@@ -271,9 +271,21 @@ em sequências musicais. A síntese de sequências e acordes são feitos tipicam
 através de comandos desta forma:
 
 \code{Sintetizando sequências e acordes}{python_snippets/seqs_acordes.py}
+
+Já a síntese de estruturas compostas (p.ex. sequências de acordes e sobreposição
+de linhas melódicas), são feitas com os recursos usuais da liguagem. Neste caso
+usamos listas em Python e implementações em Numpy (mais eficientes em tempo de
+execussão e também na simplicidade do código) estão no apêndice. Estes mesmos
+procedimentos são praticamente os mesmos em Scilab, C/C++, Javascript, PHP, etc.
+
+A seguir demonstramos para fins didáticos, a construção de acordes periódicos em
+python puro\footnote{A implementação não didática destas três linhas de código
+podem ser agrupadas em uma só linha.}:
+
 \code{Acordes periódicos}{python_snippets/acordes_periodicos.py}
 
-Em posse destas sequências e acordes, formamos estruturas hierarquicamente superiores
+Em posse destas sequências, acordes e recursos da linguagem,
+formamos estruturas hierarquicamente superiores
 através da concatenação de estruturas, da mixagem de estruturas, e da amplificação
 (ou atenuação) seletiva das mesmas:
 
