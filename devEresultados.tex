@@ -291,34 +291,42 @@ através da concatenação de estruturas, da mixagem de estruturas, e da amplifi
 
 \code{Amplificação e mixagem}{python_snippets/amp_mix.py}
 
+Neste ponto, basta criarmos músicas e sequências de interesse estético ou para pesquisa. Dado o ferramental, os encadeamentos dependem de intensões estéticas, entendimentos musicais e estruturas abstratas que mantém a coerência e interesse em uma peça musical. Para o leitor mais interessado, deixamos para o Apêndice X um exemplo de música feita com o minimum-fi.
 
+\vspace{10 mm}
 
-        \subsubsection{Finite Groups in Granular and Unit Synthesis (FIGGUS)}
+        \subsubsection{FIGGUS: FInite Groups in Granular and Unit Synthesis}
 
-Desenvolvimento iniciado em 2006 com o físico-matemático Prof. Adolfo Maia Junior para
+Neste ponto - por razões didáticas e também de coerência com os conhecimentos
+e tecnologias acumuladas nesta exposição - é que introduzimos um foco especial nas estruturas musicais
+desenvolvidas. São elas que constituem uma linguagem musical e músicas propriamente
+ditas\footnote{E especificamos o arcabouço para geração de sons musicais em unidades
+e estruturas compostas logo acima na subsessão sobre o minimum-fi.}.
+
+O ponto alto nesse desenvolvimento foi iniciado em 2006, bem anterior
+ao nascimento do minimum-fi\footnote{Embora este já estivesse sendo concebido.} 
+com o físico-matemático Prof. Adolfo Maia Junior para
 tratar de simetrias na música, com vistas à composição musical através
 de métodos matemáticos. Mais especificamente, a proposta resultou em
-um programa voltado para o uso de Grupos Algébricos para síntese
-granular e síntese de estruturas musicais. O nome dado
+um programa voltado para a síntese
+granular e síntese de estruturas musicais através de Grupos Algébricos. O nome dado
 foi FIGGUS, sigla de FInite Groups in Granular and Unit Synthesis\footnote{Também utilizamos
 o nome FIGGS (FInite Group in Granular Synthesis) dado que o termo \emph{unit synthesis} não
-é usual na literatura. Posteriormente o principal autor deste trabalho recorreu novamente
-ao FIGGUS pois o maior uso da abordagem é para síntese de estruturas musicais, não para
-síntese de amálgamas sonoros tipicamente resultantes da síntese granular}.
+é usual na literatura. Posteriormente o primeiro autor deste trabalho recorreu novamente
+ao uso do nome FIGGUS. Isso foi motivado principalmente pelo fato de que
+o maior uso da técnica é para síntese de estruturas musicais, não para
+síntese de amálgamas sonoros (ou timbres mesmo) tipicamente resultantes da síntese granular}.
 
 A Síntese Granular é uma área bem estabelecida tanto na acústica quanto
 na Computação Musical. O Físico Gabor, quantum sonoro, phonon, etc..
 [achar artigos feitos com adolfo]
 
-Na atual reescrita, embora ainda bastante atrás do FIGGUS original,
-e mesmo sem a interface gráfica, o código roda inteiro em python
+Na atual reescrita, embora ainda bastante atrás do FIGGUS original quanto
+à interface gráfica, a ferramenta opera diretamente em Python puro,
 com as biblitecas imbutidas por padrão. Isso permite com que o FIGGUS
 sintetize todo um EP usando somente os comandos:
 
-[[ARRUMAR A PARADA PARA O CODIGO]]
-git clone
-python setup.py install
-python RUNME
+\code{Utilizando o FIGGUS para Sintetizar um EP}{python_snippets/synth_ep.py}
 
 [Explicar o conceito de simetria e permutações]
 [Expor sobre uma ou duas músicas feitas com o FIGGUS]

@@ -1,11 +1,11 @@
-## De posse das notas, fundamental, fator, durações e ondas...
+#-# De posse das notas, fundamental, fator, durações e ondas #-#
 # sequência do restrogrado das notas com waveshapping:
 sequencia1 = fazSequencia(nt[::-1], f, fator, d, s, senoide, dente)
 # sequência original das notas uma quinta justa acima,
 # com dente de serra:
 sequencia2 = fazSequencia(nt, f*(3/2.), fator, d, s, dente)
 
-## Procedimentos básicos:
+#-# Procedimentos básicos #-#
 # concatenação
 seq = sequencia1+sequencia2 
 # amplificação e concatenação
