@@ -5,15 +5,15 @@ fator=2**(1/12.)
 dur_nota=0.5
 dur_silencio=0.1
 onda1=senoide
-onda2 = dente_de_serra
+onda2=dente_de_serra
 
 # fazendo a sequência com senóides:
-sequencia = fazSequencia(    notas,
-                             fundamental, 
-                             fator, 
-                             dur_nota, 
-                             dur_silencio, 
-                             onda1    ) 
+sequencia = fazSequencia( notas,
+                          fundamental, 
+                          fator, 
+                          dur_nota, 
+                          dur_silencio, 
+                          onda1 ) 
 
 # fazendo o acorde com waveshaping
 acorde = fazAcorde( notas

@@ -297,17 +297,22 @@ Neste ponto, basta criarmos músicas e sequências de interesse estético ou par
 
         \subsubsection{FIGGUS: FInite Groups in Granular and Unit Synthesis}
 
-Neste ponto - por razões didáticas e também de coerência com os conhecimentos
-e tecnologias acumuladas nesta exposição - é que introduzimos um foco especial nas estruturas musicais
-desenvolvidas. São elas - inseridas em um momento histórico e executadas por instrumentos específicos com as técnicas de época - que constituem uma linguagem musical e músicas propriamente
-ditas\footnote{E especificamos o arcabouço para geração de sons musicais em unidades
-e estruturas compostas logo acima na subsessão sobre o minimum-fi.}.
+Em coerência com os conhecimentos
+e tecnologias já apresentados nesta exposição\footnote{Especificamos o arcabouço para geração de sons musicais em unidades
+e estruturas compostas logo acima na subsessão sobre o minimum-fi.}, introduzimos agora
+um foco especial nas estruturas musicais
+desenvolvidas. São elas, inseridas em um momento histórico e
+executadas por instrumentos específicos com as técnicas de época,
+que constituem uma linguagem musical e músicas propriamente
+ditas[ref]. O FIGGUS constitui uma técnica composicional
+manifestada em software como ferramenta de síntese de
+estruturas musicais por estruturas matemáticas específicas
+para representação de simetrias.
 
-O ponto alto nesse desenvolvimento foi iniciado em 2006, bem anterior
-ao nascimento do minimum-fi, 
-com o físico-matemático Prof. Adolfo Maia Junior para
+Este desenvolvimento foi iniciado em 2006 com o físico-matemático Prof. Adolfo Maia Junior - bem anterior
+ao nascimento do minimum-fi - para
 tratar de simetrias na música com vistas à composição musical através
-de métodos matemáticos. Mais especificamente, a proposta resultou em
+de métodos matemáticos\footnote{Duas iniciações científicas trataram do assunto, convenios XXX e YYYY.}. Mais especificamente, a proposta resultou em
 um programa voltado para a síntese
 granular e síntese de estruturas musicais através de Grupos Algébricos. O nome dado
 foi FIGGUS, sigla de FInite Groups in Granular and Unit Synthesis\footnote{Também utilizamos
@@ -317,16 +322,41 @@ ao uso do nome FIGGUS. Isso foi motivado principalmente pelo fato de que
 o maior uso da técnica é para síntese de estruturas musicais, não para
 síntese de amálgamas sonoros (ou timbres mesmo) tipicamente resultantes da síntese granular}.
 
-A Síntese Granular é uma área bem estabelecida tanto na acústica quanto
-na Computação Musical. O Físico Gabor, quantum sonoro, phonon, etc..
-[achar artigos feitos com adolfo]
-
 Na atual reescrita, embora ainda bastante atrás do FIGGUS original quanto
 à interface gráfica, a ferramenta opera diretamente em Python puro,
 com as biblitecas imbutidas por padrão. Isso permite com que o FIGGUS
 sintetize todo um EP usando somente os comandos:
 
 \code{Utilizando o FIGGUS para Sintetizar um EP}{python_snippets/synth_ep.py}
+
+A Síntese Granular é uma área bem estabelecida tanto na acústica quanto
+na Computação Musical e se caracteriza pela geração de sons bastante curtos
+e em quantidade massiva. Tipicamente os sons possuem entre 5 e 40 milissegundos
+e a quantidade destes \emph{microsons}\footnote{Grãos sonoros e microsons são jargões
+típicos da síntese granular usados para indicar sons com as durações especificadas
+no texto.} pode chegar a milhares por segundo. O tratamento específico da
+síntese granular foge ao escopo deste trabalho e indicamos ao leitor interessado
+os artigos produzidos sobre Síntese Granular e Teoria de Grupos[refs AES e SBCM].
+Assim, focamos o texto a seguir em Grupos Finitos e Síntese de Estruturas.
+
+Matematicamente, as \emph{simetrias} são descritas por Grupos. Nas artes é de comum conhecimento o papel absolutamente central
+que as simetrias possuem. Na música, para citar somente alguns exemplos simples,
+temos os numerosos estudos de simetrias na música de J. S. Bach, os jogos
+de dados de Mozart e os usos recorrentes da proporção áurea na música
+de Béla Bártok.
+
+Embora as aplicações de simetrias neste caso possam se desenvolver
+de diversas formas com interesse estético no plano sonoro, em
+nossas pesquisas, uma delas se mostrou particularmente coerente
+e pertinente: as permutações de unidades sonoras. Primeiro,
+através do Teorema de Cayley, todo grupo é isomorfo
+a um grupo de permutação\footnote{Mais especificamente,
+todo grupo é isomorfo a um subgrupo do grupo simétrico agindo
+em G.}, i.e. seus elementos são diretamente relacionados
+a permutações. Além disso, na música as permutações estão
+no núcleo de diversos procedimentos canônicos
+
+
 
 [Explicar o conceito de simetria e permutações]
 [Expor sobre uma ou duas músicas feitas com o FIGGUS]
