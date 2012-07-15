@@ -12,5 +12,5 @@ def fazAcorde(notas, f0, fator, dur_nota, dur_silencio, funcao1, funcao2=0):
         seq=somador(seq,amostras) 
     # normalizaçào em duas linhas:
     smin=min(seq); smax=max(seq)
-    seq= [(-.5+(i-smin)/(smax-smin)) for i in seq]
+    seq=[(-.5+(i-smin)/(smax-smin)) for i in seq]
     return seq
