@@ -355,9 +355,23 @@ que as simetrias possuem. Na música, para citar somente alguns exemplos simples
 temos os numerosos estudos de simetrias na música de J. S. Bach, os jogos
 de dados de Mozart e os usos recorrentes da proporção áurea na música
 de Béla Bártok. Matematicamente, as \emph{simetrias} são descritas por Grupos,
-e estes são definidos da seguinte forma:
+e estes são definidos como sendo um conjunto (chamemos de $G$)
+munido de uma operação (seja $\bullet$), formando um grupo $(G,\bullet)$
+satisfazendo as seguintes propriedades:
 
-[desc dos grupos]
+\begin{enumerate}
+    \item Fechamento: $\forall g_1, g_2  \in G \Rightarrow g_1 \bullet g_2 \in G$
+    \item Associatividade: $(g_1 \bullet g_2) \bullet g_3 = g_1 \bullet (g_2 \bullet g_3), \forall g_1, g_2, g_3 \in G$
+    \item Existência do elemento neutro: $\exists e \in G : g \bullet e = e \bullet g = g$
+    \item Existência dos inversos: $\forall g \in G \exists g^{-1} : g \bullet g^{-1} = g^{-1} \bullet g = e$
+\end{enumerate}
+
+Adicionalmente, vale complementar que se um grupo tiver um número
+finito de elementos, ele é dito finito, caso contrário é chamado
+infinito. Todos os elementos de um grupo finito são cíclicos pois
+operado com si próprio um número suficiente de vezes resulta em si
+mesmo. Um grupo é dito comutativo ou abeliano caso a propriedade
+comutativa seja satisfeita para todos os elementos: $\forall g_1, g_2 \in G \Rightarrow g_1 \bullet g_2 = g_2 \bullet g_1$
 
 Embora as aplicações de simetrias neste caso possam se desenvolver
 de diversas formas com interesse estético no plano sonoro, em
