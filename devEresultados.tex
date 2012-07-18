@@ -360,10 +360,10 @@ munido de uma operação (seja $\bullet$), formando um grupo $(G,\bullet)$
 satisfazendo as seguintes propriedades:
 
 \begin{enumerate}
-    \item Fechamento: $\forall g_1, g_2  \in G \Rightarrow g_1 \bullet g_2 \in G$
-    \item Associatividade: $(g_1 \bullet g_2) \bullet g_3 = g_1 \bullet (g_2 \bullet g_3), \forall g_1, g_2, g_3 \in G$
-    \item Existência do elemento neutro: $\exists e \in G : g \bullet e = e \bullet g = g$
-    \item Existência dos inversos: $\forall g \in G \exists g^{-1} : g \bullet g^{-1} = g^{-1} \bullet g = e$
+    \item Fechamento: $\forall \ g_1, g_2  \in G \Rightarrow g_1 \bullet g_2 \in G$
+    \item Associatividade: $(g_1 \bullet g_2) \bullet g_3 = g_1 \bullet (g_2 \bullet g_3), \forall \ g_1, g_2, g_3 \in G$
+    \item Existência do elemento neutro: $\exists \ e \in G : g \bullet e = e \bullet g = g$
+    \item Existência dos inversos: $\forall \ g \in G \ \exists \ g^{-1} : g \bullet g^{-1} = g^{-1} \bullet g = e$
 \end{enumerate}
 
 Adicionalmente, vale complementar que se um grupo tiver um número
@@ -371,23 +371,46 @@ finito de elementos, ele é dito finito, caso contrário é chamado
 infinito. Todos os elementos de um grupo finito são cíclicos pois
 operado com si próprio um número suficiente de vezes resulta em si
 mesmo. Um grupo é dito comutativo ou abeliano caso a propriedade
-comutativa seja satisfeita para todos os elementos: $\forall g_1, g_2 \in G \Rightarrow g_1 \bullet g_2 = g_2 \bullet g_1$
+comutativa seja satisfeita para todos os elementos:
+$\forall \ g_1, g_2 \in G \Rightarrow g_1 \bullet g_2 = g_2 \bullet g_1$.
 
-Embora as aplicações de simetrias neste caso possam se desenvolver
-de diversas formas com interesse estético no plano sonoro, em
-nossas pesquisas, uma delas se mostrou particularmente coerente
+São numerosas as aplicações de grupos e estes
+usos para as artes possam se desenvolver
+de diversas formas focadas em simetrias
+e com interesse estético, em
+nossas pesquisas uma delas se mostrou particularmente coerente
 e pertinente: as permutações de unidades sonoras. Primeiro,
-através do Teorema de Cayley, todo grupo é isomorfo
+através do Teorema de Cayley, todo grupo finito é isomorfo
 a um grupo de permutação\footnote{Mais especificamente,
 todo grupo é isomorfo a um subgrupo do grupo simétrico agindo
 em G.}, i.e. seus elementos são diretamente relacionados
 a permutações. Além disso, na música as permutações estão
-no núcleo de diversos procedimentos canônicos
+no núcleo de diversos procedimentos canônicos como a
+retrogradação e outras técnicas de variação.
 
-
-
-[Explicar o conceito de simetria e permutações]
 [Expor sobre uma ou duas músicas feitas com o FIGGUS]
+
+No FIGGUS, implementamos o grão sonoro (no caso mais usado
+como unidade) como uma classe que possui apenas
+os seguintes atributos (e não possui funcões): duração (segundos),
+frequência (Hz), timbre (identificador para usar mediante implementações convenientes), intensidade (pico $\in \ [0,1]$), e duração dos fades (in e out em segundos). Aqui a classe:
+
+
+\code{Grão Sonoro Básico}{python_snippets/fgrao.py}
+
+O FIGGUS funciona com base em uma sequência de grãos posta de antemão
+na qual operam as permutações. Além da sequência de grãos,
+é conveniente também manter o número de grãos da sequência e uma
+lista com os índices dos grãos para executar as operações necessárias para gerarmos as músicas (ver abaixo). A classe utilizada para representar as sequências é assim:
+
+\code{Sequência de Grãos}{python_snippets/fsequencia.py}
+
+Aos grãos em sequência neste ponto são aplicadas permutações.
+Para isso é bastante conveniente representar as permutações em classesseparadas e os padrões de aplicação destas permutações para facilitar
+desenvolvimentos com clareza. No caso a classe de permutações só possui os parâmetros da permutação em si e do tamando dela (número de elementos que ela utiliza). É conveniente implementar uma tradução da notação cíclica para a notação direta da permutação e é uma das facilidades da implementação por classe que fizemos. A classe do padrão de permutação possui também um período de aplicação da permutação, ou seja, de quantas em quantas leituras da sequência que aplicamos a permutação. As classes ficaram assim:
+
+\code{Permutações e Padrão de Permutações}{python_snippets/fpermutaçao.py}
+
 
   \subsection{Música em Tempo Real: Livecoding e ABeatTracker (ABT)}
 
