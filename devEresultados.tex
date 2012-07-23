@@ -127,7 +127,7 @@ claros de síntese sonora e organização musical. O segundo, chamado de \emph{F
 Groups in Granular and Unit Synthesis), utiliza os princípios do minimum-fi e constitui
 um módulo Python completo, cuja proposta é a utilização de simetrias, através de
 permutações e de Teoria de Grupos, para a composição de músicas. Como demonstração
-das capacidades do FIGGUS, ele gera um EP (E... Play, pegar significado dele) inteiro com um único comando. Este é o
+das capacidades do FIGGUS, ele gera um EP\footnote{Extended Play, uma album musical maior que um single mas menor que um LP (Long Play) inteiro} com um único comando. Este é o
 \emph{PPEPPS}\footnote{Pure Python EP: Projeto Solvente}, como veremos a seguir.
 
 Desta forma, esta sessão exemplifica e explicita - através de dois exemplos reais - os
@@ -169,7 +169,13 @@ esta parte até que fiquem claros os códigos relativos a isso, logo abaixo.}.
 
 Para o primeiro item, se prestam comumente os procedimentos de busca em tabelas/vetores com formas
 de ondas em alta resolução (chamado \emph{lookup table}). O procedimento é barato e de qualidade alta
-(não acrescentam ruídos relevantes ao sinal). A seguir está o procedimento da lookuptable:
+(não acrescentam ruídos relevantes ao sinal).
+
+Para realizarmos a busca de forma eficiente, precisamos de tabelas que contenham cada uma
+uma forma de onda. As tradicionais são a senóide e as ondas quadrada, triangular e dente de serra.
+Mostramos a seguir estas formas de onda e também uma forma de onda retirada de um som real.
+
+De posse destas formas de onda, A seguir está o procedimento da lookuptable:
 
 \code{Procedimento de Lookup Table}{python_snippets/lookuptable.py}
 
