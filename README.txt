@@ -9,7 +9,10 @@ $ git clone git@git.scribtex.com:refabbri/msc.git
 $ git clone git://labmacambira.git.sourceforge.net/gitroot/labmacambira/dissertacao
 
 
+======================
+contatos:
 
-
-
-
+#labmacambira @ Freenode:
+http://webchat.freenode.net/?channels=#labmacambira
+e
+renato (ponto) fabbri _@_ GMAIL (ponto) com
