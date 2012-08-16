@@ -1,6 +1,10 @@
 Repo dedicado aa dissertação sobre composicao
 procedural.
 
+Branches relevantes:
+* master - versao oficial
+* nocodigo - versao que mantem o código no texto por razões didáticas
+
 $ git clone git@git.scribtex.com:refabbri/msc.git
 $ git clone git://labmacambira.git.sourceforge.net/gitroot/labmacambira/dissertacao
 
