@@ -18,3 +18,10 @@ resumoeabstract.tex
 
 
 $ git clone git@git.scribtex.com:refabbri/msc.git
+$ git clone git://labmacambira.git.sourceforge.net/gitroot/labmacambira/dissertacao
+
+
+
+
+
+
