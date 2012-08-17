@@ -86,7 +86,34 @@ Conversar com Chu e com Luciano e decidir se retiro esta sessão ou mantenho.
 
 
 
-\section{Áudio e Música}
+\section{Música no Áudio Digital}
+
+A música é tradicionalmente pensada através de átomos chamados notas. Em sua concepção
+simples, estas notas possuem ao menos duração, volume, altura e timbre. Embora estas
+sejam características psicofísicas, podemos lidar com elas através de suas características
+fisicamente mensuráveis.
+
+Em primeiro lugar, estamos tratando diretamente da representação digital do som. Isso constitui em uma
+sequência de amostras igualmente espaçadas no tempo. Desta forma, definimos a
+taxa de amostragem $t_a$ como o número de amostras por segundo do áudio digital.
+A sequência $T_i={t_i}$ possui as amostras separadas por $\delta_a=1/t_a$ segundos.
+
+Desta forma, visando uma nota musical de duração $\Delta$,
+teremos uma sequência de $ \Delta . t_a $ amostras:
+
+\begin{equation}
+T_{i}^{\Delta}={\{t_i\}}_{0}^{\Delta . t_a - 1}
+\end{equation}
+
+O volume depende da reverberação e distribuição dos harmônicos - dentre outras medidas psicofísicas~\cite{chowningVolume} - mas num primeiro momento podemos lidar com ele de forma prática e geral através da potência da onda:
+
+\begin{equation}
+pot(T_i^{\Delta})=\frac{\sum_{i=0}^{\Delta t_a -1} t_i^2}{\Delta t_a}
+\end{equation} 
+
+Como o volume final dependerá da amplificação do sinal nos falantes de quem ouvir, o que conta mais é a potência relativa de uma nota em relação às outras ou de um trecho da música em relação ao resto. Lembrando que, devido à nossa percepção logarítmica, a redução para uma mesma fração é sentido como a mesma diminuição do volume.
+
+\section{Áudio e Música (deprecated)}
 
 Por razões didáticas, dividimos este capítulo em 4 partes: música em tempo diferido (ou seja, que não é feito em tempo real),
 música em tempo real,  música na matéria (suporte físico em hardware) e música no tecido social
