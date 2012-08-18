@@ -3,7 +3,8 @@
 # 
 import pylab as p, numpy as n, scikits.audiolab as a
 
-T=1024
+T=100
+#T=1024
 l=n.linspace(0,2*n.pi,T,endpoint=False)
 senoide=n.sin(l)
 dente=n.linspace (-1,1,T, endpoint =False) # dente de serra
@@ -14,12 +15,12 @@ onda=a.wavread("ondaReal.wav")[0] # onda real
 onda=((onda-onda.min())/(onda.max()-onda.min()))*2-1
 
 p.subplot(211)
-p.title("Formas de onda")
-p.plot(senoide,linewidth=3, label=u"senóide")
-p.plot(dente,linewidth=3, label="dente de serra")
-p.plot(triangular,linewidth=3, label="triangular")
-p.plot(quadrada,linewidth=3, label="quadrada")
-p.plot([0],"y",label="som real (abaixo)")
+#p.title("Formas de onda")
+p.plot(senoide,'o',linewidth=3, label=u"senóide")
+p.plot(dente,'o',linewidth=3, label="dente de serra")
+p.plot(triangular,'o',linewidth=3, label="triangular")
+p.plot(quadrada,'o',linewidth=3, label="quadrada")
+p.plot([0],"yo",label="som real (abaixo)")
 p.xlim(0,T)
 p.ylim(-1.1,1.1)
 
@@ -40,11 +41,13 @@ for ll in l.get_lines():
 #p.legend()
 
 p.subplot(212)
+p.plot(onda,"yo",linewidth=3)
 p.plot(onda,"y",linewidth=3)
 p.xlim(0,onda.shape[0])
 p.ylim(-1.1,1.1)
 foo=p.gca()
 foo.axes.get_xaxis().set_ticks([])
 
-p.xlabel(r'amostras ou tempo$\rightarrow$')
+p.xlabel(r'tempo $\Delta$, amostras $\Lambda$ ou $i$$\rightarrow$', fontsize=15)
+#p.xlabel(r'duração $\delta$, amostras $\lambda$ ou $i$ $\rightarrow$')
 p.show()
