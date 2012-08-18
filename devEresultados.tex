@@ -175,10 +175,38 @@ movimento harmônico simples. Seja $S_i^f$ uma sequência cujas amostras
 $s_i^f$ descrevem uma senóide de frequência $f$:
 
 \begin{equation}\label{senoide}
-     S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(\frac{i}{\lambda_f} . 2\pi\bigr)  \Bigr\}
+     S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(2\pi \frac{i}{\lambda_f} \bigr)  \Bigr\} = \Bigl\{ \sin\bigl(2\pi f \frac{i}{f_a}\bigr)  \Bigr\} 
 \end{equation}
 
-Onde $\lambda_f=f_a/f$ é o número de amostras do período.
+Onde $\lambda_f=\frac{f_a}{f}=\frac{\delta_f}{\delta_a} \;$ é o número de amostras do período.
+
+De forma semelhante, outras formas de onda são utilizadas na música por suas qualidades
+espectrais e simplicidade. 
+
+\begin{equation}\label{denteDeSerra}
+     D^f_i=\{ d^f_i \}=\Bigl\{ 2\frac{i\,\%\lambda_f}{\lambda_f} -1 \Bigr\}
+\end{equation}
+
+\begin{equation}\label{triangular}
+     T^f_i=\{ t^f_i \}=\Bigl\{1- \Bigl| 2 - 4\frac{i\,\%\lambda_f}{\lambda_f} \Bigr| \Bigr\}
+\end{equation}
+
+\begin{equation}\label{quadrada}
+     Q^f_i=\{ q^f_i \}= \left\{
+         \begin{array}{l l}
+              1 & \quad \text{para} \; \; (i\,\%\lambda_f)   <  \lambda_f /2  \\
+              -1 & \quad \text{caso contrário}\\
+         \end{array} \right.
+\end{equation}
+
+Qualquer outra forma de onda é composta de proporções únicas dentre as componentes harmônicas.
+As mais utilizadas estão abaixo na figura:
+
+\begin{figure}[h!]
+    \centering
+    \caption{Formas de onda musicais básicas}
+        \includegraphics[width=\textwidth]{figuras/formasDeOnda3b}
+\end{figure}
 
 
 
