@@ -86,32 +86,101 @@ Conversar com Chu e com Luciano e decidir se retiro esta sessão ou mantenho.
 
 
 
-\section{Música no Áudio Digital}
+\section{Música no Som Digitalizado}
 
 A música é tradicionalmente pensada através de átomos chamados notas. Em sua concepção
 simples, estas notas possuem ao menos duração, volume, altura e timbre. Embora estas
 sejam características psicofísicas, podemos lidar com elas através de suas características
 fisicamente mensuráveis.
 
-Em primeiro lugar, estamos tratando diretamente da representação digital do som. Isso constitui em uma
+Em primeiro lugar, estamos tratando diretamente da representação digital do som. Isso em uma
 sequência de amostras igualmente espaçadas no tempo. Desta forma, definimos a
-taxa de amostragem $t_a$ como o número de amostras por segundo do áudio digital.
-A sequência $T_i={t_i}$ possui as amostras separadas por $\delta_a=1/t_a$ segundos.
+frequência (ou taxa) de amostragem $f_a$ como o número de amostras por segundo do áudio digital.
+A sequência $T_i={t_i}$ possui as amostras separadas por $\delta_a=1/f_a$ segundos.
 
 Desta forma, visando uma nota musical de duração $\Delta$,
-teremos uma sequência de $ \Delta . t_a $ amostras:
+teremos uma sequência de $ \Delta . f_a $ amostras\footnote{Observe o abuso de notação:
+o limite superior de uma sequência pertence aos naturais $ \mathbb{N} $, mas $ \Delta . f_a $
+só satisfaz esta condição em casos muito excepcionais. Procederemos assim por simplicidade. 
+Explicitaremos em texto quando for crucial o procedimento relativo à parte fracionária dos índices
+ou de seus limites.}:
 
 \begin{equation}
-T_{i}^{\Delta}={\{t_i\}}_{0}^{\Delta . t_a - 1}
+T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\Delta . f_a - 1}
 \end{equation}
 
 O volume depende da reverberação e distribuição dos harmônicos - dentre outras medidas psicofísicas~\cite{chowningVolume} - mas num primeiro momento podemos lidar com ele de forma prática e geral através da potência da onda:
 
 \begin{equation}
-pot(T_i^{\Delta})=\frac{\sum_{i=0}^{\Delta t_a -1} t_i^2}{\Delta t_a}
+pot(T_i^{\Delta})=\frac{\sum_{i=0}^{\Delta . f_a -1} t_i^2}{\Delta . f_a}
 \end{equation} 
 
-Como o volume final dependerá da amplificação do sinal nos falantes de quem ouvir, o que conta mais é a potência relativa de uma nota em relação às outras ou de um trecho da música em relação ao resto. Lembrando que, devido à nossa percepção logarítmica, a redução para uma mesma fração é sentido como a mesma diminuição do volume.
+Como o volume final dependerá da amplificação do sinal nos falantes, o mais importante é a potência relativa de uma nota em relação às outras ou de um trecho da música em relação ao resto. As diferenças de volume são medidas em decibéis, que são
+calculadas diretamente com as amplitudes, energias ou potências\footnote{Lembrando que, devido à nossa percepção logarítmica,
+em um som de volume $v$ a redução da potência $p$ para uma mesma fração $\nu . p $ 
+com $\nu \in [0,1]$ é sentido como a mesma diminuição do volume $v-\kappa$ com $\kappa \geq 0$.}:
+
+\begin{equation}\label{decibeis}
+V_{dB}=10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)}
+\end{equation}
+
+A quantidade adimensional é denotada pela unidade decibéis ($dB$). A cada 10 $dB$s atribuímos canonicamente
+a sensação de "volume dobrado". Importantes resultados de referência são os equivalente em $dB$s de se dobrar
+a amplitude ou a potência (este último equivale a dobrar a energia do sinal):
+
+\begin{equation*}
+se \quad  t_i^{'}=2 . t_i \quad \Rightarrow \quad pot(T^{'}_i)=4 . pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 4 \quad  \approx \quad 6 dB
+\end{equation*}
+\begin{equation*}
+se \quad pot(T^{'}_i)=2 pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 2 \quad \approx \quad 3 dB
+\end{equation*}
+
+E o quanto se deve amplificar uma sequência para que tenha o volume dobrado ($10dB$s a mais):
+
+\begin{gather}
+10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \quad \sum_{i=0}^{\Delta.f_a-1}t^{'2}_i=10\sum_{i=0}^{\Delta.f_a-1}t_i^2=\sum_{i=0}^{\Delta.f_a-1}(\sqrt{10}.t_i)^2 \\
+\therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3,16t_i
+\end{gather}
+
+Estes valores servem de referência para os aumentos e dominuições dos valores absolutos que compõem as
+sequências de amostras sonoras para atingir efeitos musicais.
+
+Neste ponto, correspondendo a uma partícula musical (uma nota), estabelecemos uma sequência cuja
+duração e intensidade conseguimos controlar\footnote{Basta alterarmos o tamanho da sequência para alterarmos
+a duração ou multiplicarmos as os elementos da sequência por algum valor normalizador}. 
+
+A altura é especificada pela frequência fundamental. A frequência fundamental $f$ especifica uma periodicidade temporal
+com ciclo de duração $\delta_f = 1/f$. Esta, multiplicada pela taxa de amostragem $f_a$ resulta no número de amostras
+do ciclo $\lambda_f=\delta_f . f_a$. Resulta evidente que, sendo $T_i^f$ a sequência sonora de frequência fundamental $f$:
+    
+\begin{equation}\label{periodicidade}
+     T^f_i=\{ t_i^f \}=\{ t^f_{i+\lambda_f}  \}= \{ t^f_{i+\frac{f_a}{f}} \}
+\end{equation}
+
+Enquanto o período da onda corresponde a uma frequência fundamental, o percurso
+da onda sonora dentro do período define um espectro harmônico e portanto
+um timbre\footnote{O timbre é uma característica subjetiva e complexa. Fisicamente,
+o timbre é multidimensional e dado pelo comportamento temporalmente dinâmico
+de energias em componentes harmônicas e ruidosas. Usamos aqui o resultado de que espectros
+sonoros com diferenças mínimas resultam em timbres diferentes. Vale salientar que nem tudo
+o que se atribui ao timbre se acha manifesto em diferenças espectrais. Uma mesma nota
+possui diferentes matizes espectrais, um mesmo instrumento possui diferentes timbres. Mesmo
+assim se fala que uma nota e um instrumento possuem um timbre. Por último, até
+aspectos culturais ou circunstanciais alteram nossa percepção timbrística.
+}.
+
+O caso mais simples é do espectro que consiste somente
+de sua própria fundamental $f$. Este é o caso da senóide, frequência em movimento oscilatório puro chamado
+movimento harmônico simples. Seja $S_i^f$ uma sequência cujas amostras
+$s_i^f$ descrevem uma senóide de frequência $f$:
+
+\begin{equation}\label{senoide}
+     S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(\frac{i}{\lambda_f} . 2\pi\bigr)  \Bigr\}
+\end{equation}
+
+Onde $\lambda_f=f_a/f$ é o número de amostras do período.
+
+
 
 \section{Áudio e Música (deprecated)}
 
