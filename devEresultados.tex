@@ -181,16 +181,21 @@ $s_i^f$ descrevem uma senóide de frequência $f$:
 Onde $\lambda_f=\frac{f_a}{f}=\frac{\delta_f}{\delta_a} \;$ é o número de amostras do período.
 
 De forma semelhante, outras formas de onda são utilizadas na música por suas qualidades
-espectrais e simplicidade. 
+espectrais e simplicidade. A senóide é um ponto isolado no espectro, estas formas
+de onda apresentam cadeias de componentes harmônicos e usos específicos.
 
+A dente de serra apresenta todos os componentes da série
+harmônica com energia decrescente de $-6dB/oitava$:
 \begin{equation}\label{denteDeSerra}
      D^f_i=\{ d^f_i \}=\Bigl\{ 2\frac{i\,\%\lambda_f}{\lambda_f} -1 \Bigr\}
 \end{equation}
 
+A forma de onda triangular apresenta somente os harmonicos ímpares caindo a $-12dB/oitava$:
 \begin{equation}\label{triangular}
      T^f_i=\{ t^f_i \}=\Bigl\{1- \Bigl| 2 - 4\frac{i\,\%\lambda_f}{\lambda_f} \Bigr| \Bigr\}
 \end{equation}
 
+A onda quadrada apresenta os harmônicos ímpares caindo a $-6dB/oitava$:
 \begin{equation}\label{quadrada}
      Q^f_i=\{ q^f_i \}= \left\{
          \begin{array}{l l}
@@ -199,15 +204,52 @@ espectrais e simplicidade.
          \end{array} \right.
 \end{equation}
 
-Qualquer outra forma de onda é composta de proporções únicas dentre as componentes harmônicas.
-As mais utilizadas estão abaixo na figura:
+A dente de serra é um ponto de partida comum para a síntese subtrativa pois possui
+ambos os harmônicos pares e ímpares e em grande quantidade (alguma filtragem atenuante
+é útil nos médios e agudos para que o som ganhe naturalidade e fique mais agradável).
+Por este mesmo motivo, os harmônicos atenuados da onda triangular
+a faz a mais funcional - dentre as citadas - para ser usada sem nenhum tratamento.
+
+Para citar também um uso possível da onda quadrada, ela pode ser usada em uma síntese
+subtrativa que vise imitar um clarinete. Este instrumento também só apresenta os
+componentes ímpares e o espectro da onda quadrada pode convir com sua energia abundante
+nas altas energias.
+
+
 
 \begin{figure}[h!]
     \centering
     \caption{Formas de onda musicais básicas}
         \includegraphics[width=\textwidth]{figuras/formasDeOnda3b}
+        \label{fig:formasDeOnda}
 \end{figure}
 
+
+Qualquer outra forma de onda é composta de proporções específicas de componentes harmônicas.
+Quanto maior a curvatura do trecho na forma de onda, maior a contribuição para a
+concentração de energia nos harmônicos agudos.
+
+A figura ~\ref{fig:formasDeOnda} apresenta
+as formas de onda descritas nas equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada} para $\lambda_f=100$ (período
+de $100$ amostras).
+ Se $t_a=44,1 kHz$, como em padrões PCM e de Compact Disks, a onda possui frequência fundamental $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz $. Um lá\footnote{Um lá 4, logo acima do dó central, no segundo espaço do pentagrama na clave de sol comum.}, seja qual for a forma de onda.
+
+A onda 'som real' é um período extraído de um som real relativamente comportado. Ele possuí $\lambda_f=114$ amostras\footnote{Caso também utilizado diretamente em $f_a=44,1kHz$, é um pouco mais grave que os $441 Hz$ das formas de onda artificiais.}.
+Note que, definindo $ R_i=\{ r_i \}_0^{\lambda_f-1}$ a sequência de amostras do som real da figura ~\ref{fig:formasDeOnda}.
+$R_i$ pode ser tomado como base para um som $T_i^f$ da seguinte forma: 
+
+\begin{equation}\label{sampleandoFormaDeOnda}
+     T^f_i=\{ t_i^f \}=\Bigl\{ r_{i\%\lambda_{f}} \Bigr\}
+\end{equation}
+
+O som resultante possui o espectro momentâneo do som original. Por ser repetido de forma identica,
+seu espectro é perfeitamente harmônico, sem os ruídos e variações típicas do fenômeno natural.
+
+[plot dos espectros]
+
+[resumo das sequencias com duracao, frequencia, forma de onda e intensidade]
+
+[usos musicais]
 
 
 \section{Áudio e Música (deprecated)}
