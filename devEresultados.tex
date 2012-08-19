@@ -239,13 +239,28 @@ Note que, definindo $ R_i=\{ r_i \}_0^{\lambda_f-1}$ a sequência de amostras do
 $R_i$ pode ser tomado como base para um som $T_i^f$ da seguinte forma: 
 
 \begin{equation}\label{sampleandoFormaDeOnda}
-     T^f_i=\{ t_i^f \}=\Bigl\{ r_{i\%\lambda_{f}} \Bigr\}
+     T^f_i=\{ t_i^f \}=\Bigl\{ r_{(i\,\%\lambda_{f})} \Bigr\}
 \end{equation}
 
 O som resultante possui o espectro momentâneo do som original. Por ser repetido de forma identica,
 seu espectro é perfeitamente harmônico, sem os ruídos e variações típicas do fenômeno natural.
 
-[plot dos espectros]
+\begin{figure}[h!]
+    \centering
+    \caption{Espectros das ondas sonoras musicais artificiais básicas}
+        \includegraphics[width=\textwidth]{figuras/espectroDeOndas3}
+        \label{fig:espectroDeOndas}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \caption{Espectros das ondas sonoras do oboé natural e de período amostrado}
+        \includegraphics[width=\textwidth]{figuras/espectroOboeAmostradoNatural2}
+        \label{fig:espectroOboeAmostradoNatural}
+\end{figure}
+
+
 
 [resumo das sequencias com duracao, frequencia, forma de onda e intensidade]
 
