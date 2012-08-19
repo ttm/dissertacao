@@ -8,7 +8,7 @@ T=100
 l=n.linspace(0,2*n.pi,T,endpoint=False)
 senoide=n.sin(l)
 dente=n.linspace (-1,1,T, endpoint =False) # dente de serra
-triangular=n.hstack (( dente [::2] , dente [ -1:0: -2]))
+triangular=n.hstack ((n.linspace(-1,1,T/2,endpoint=False),n.linspace(1,-1,T/2,endpoint=False)))
 quadrada=n.hstack ((n.ones(T/2),n.ones(T/2)* -1))
 
 onda=a.wavread("ondaReal.wav")[0] # onda real
