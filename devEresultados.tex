@@ -245,11 +245,31 @@ Estas formas de onda possuem usos especiais na música e seus espectros estão d
 
 
 O espectro harmônico é formado pelas frequências múltiplas da frequência fundamental $f_n=n.f_0$. Como nossa percepção segue a escala logarítmica, o espectro possui notas diferentes da frequência fundamental. Além disso, o número de harmônicos será limitado pela frequência máxima $t_a/2$. 
-Musicalmente crucial aqui é internalizar que se um sinal real foi decomposto por fourier e possui uma componente em uma frequência $fn$ com alguma energia
+Musicalmente crucial aqui é internalizar que se um sinal real foi decomposto por fourier e possui uma componente em uma frequência $f_n$ com alguma energia
    \footnote{A energia total equivale à soma dos quadrados das amplitudes como as de pressao/voltagem pelo tempo,e.g. ~\ref{fig:formasDeOnda}.
 As componentes espectrais - e.g. ~\ref{fig:espectroDeOndas} e ~\ref{fig:espectroOboe} -
 também podem ser elevadas ao quadrado para resultar em quantificação de energia e somam-se na energia total. As energias se equivalem pelo teorema de Parseval.},
-então existe uma contribuição senoidal, puramente harmônica no som. Esta energia concentrada especificamente na frequência $f_n$ é separado pelo ouvido\footnote{A cognição cerebral se dá basicamente com estas componentes. Muita informação é obtida pelo processamento destes sinais acústicos por diversas diversas formas de vida e se baseia em modulações de frequência e amplitude.}
+então existe uma contribuição senoidal, puramente harmônica no som. Esta energia concentrada especificamente na frequência $f_n$ é separada
+ pelo ouvido para adentrar em um nível cognitivo de processamento\footnote{Esta separação em frequência é realizada por diversas espécies através de mecanismos similares à cóclea humana.}. Estas componentes são geralmente as principais responsáveis pela qualidade chamada timbre e, caso não apresentem proporções harmônicas (relações de pequenos números), são ruídos, i.e. não notas com frequência fundamental como o lá 4 ($440 Hz$) de nossos exemplos. Além disso, nossa noção de altura em um complexo sonoro é baseada na semelhança do espectro com a série harmônica.
+
+Podemos ver abaixo como se dá isso na representação discreta. O mínimo necessário para representar uma oscilação são 2 amostras, resultando na frequência de Nyquist $f_{Ny}=\frac{t_a}{2}$. Todas as sequências fixas de apenas 3 amostras também representam
+somente 1 frequência, pois sua primeira harmônica usaria 1,5 amostras e ultrapassa o limite inferior de 2 amostras mínimas. Com 4 amostras, podemos representar 1 ou 2 frequências em proporções diferentes. A figura ~\ref{fig:amostras4} mostra estas frequências sendo realizadas compondo as formas de onda básicas e se remontando.
+
+A figura ~\ref{fig:amostras8} mostra as decomposições senoidais para o caso de 8 amostras.
+\begin{figure}[h!]
+    \centering
+    \caption{Frequência máxima em qualquer $t_a$}
+        \includegraphics[width=\textwidth]{figuras/amostras2}
+        \label{fig:amostras2}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \caption{Frequência única em quaisquer 3 amostras}
+        \includegraphics[width=\textwidth]{figuras/amostras3}
+        \label{fig:amostras2}
+\end{figure}
+
 
 A onda rotulada como 'som real amostrado' na figura ~\ref{fig:formasDeOnda} é um período extraído de um som real relativamente comportado. Ele possuí $\lambda_f=114$ amostras\footnote{Caso também utilizado diretamente em $f_a=44,1kHz$, é um pouco mais grave que os $441 Hz$ das formas de onda artificiais $\frac{44100}{114}=385,84Hz$.}. A onda de oboé foi amostrada de um lá 4 também em $44,1kHz$. O período escolhido para a amostragem é relativamente curto, com 98 amostras corresponde a $\frac{44100}{98}=450 Hz$. Compararemos abaixo o conteúdo espectral da nota original com o resultante da utilização destas amostras.
 
