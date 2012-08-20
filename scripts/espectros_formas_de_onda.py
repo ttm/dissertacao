@@ -14,7 +14,7 @@ triangular=n.hstack ((n.linspace(-1,1,T/2,endpoint=False),n.linspace(1,-1,T/2,en
 quadrada=n.hstack ((n.ones(T/2),n.ones(T/2)* -1))
 
 
-T2=T*10000
+T2=T*1000
 indices=n.arange(T2)
 
 s_=senoide[indices%T]
@@ -48,14 +48,15 @@ p.plot(i[foo],q_a[foo],"s", label="quadrada")
 p.legend(loc="upper right")
 
 p.yticks((0,20000),(0,"20k"))
-p.xticks((0,T2/2),(0,"150k"))
-#ticks=[r"$f%i$" % (i,) for i in xrange(len(ii))]
-#p.xticks([0] + ii + [17000],[0] + ticks + ["17k"])
+#p.xticks((0,15000),(0,"15k"))
+ticks=[r"$f%i$" % (i,) for i in xrange(len(ii))]
+p.xticks([0] + ii + [16500],[0] + ticks + ["16,5k"])
 
-#p.xlim(0,T2*.6)
-p.ylim(-300,max(q_a))
-p.ylabel(r'valor absoluto $\rightarrow$')
-p.xlabel(r'componente do espectro $\rightarrow$')
+p.xlim(0,16500)
+#p.xlim(0,T2*.56)
+p.ylim(-300,20000)
+p.ylabel(r'valor absoluto $\rightarrow$', fontsize=15)
+p.xlabel(r'componente do espectro $\rightarrow$', fontsize=15)
 
 
 

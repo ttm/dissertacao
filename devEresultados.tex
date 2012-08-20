@@ -220,7 +220,7 @@ nas altas energias.
 \begin{figure}[h!]
     \centering
     \caption{Formas de onda musicais básicas}
-        \includegraphics[width=\textwidth]{figuras/formasDeOnda3b}
+        \includegraphics[width=\textwidth]{figuras/formasDeOnda5}
         \label{fig:formasDeOnda}
 \end{figure}
 
@@ -232,10 +232,28 @@ concentração de energia nos harmônicos agudos.
 A figura ~\ref{fig:formasDeOnda} apresenta
 as formas de onda descritas nas equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada} para $\lambda_f=100$ (período
 de $100$ amostras).
- Se $t_a=44,1 kHz$, como em padrões PCM e de Compact Disks, a onda possui frequência fundamental $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz $. Um lá\footnote{Um lá 4, logo acima do dó central, no segundo espaço do pentagrama na clave de sol comum.}, seja qual for a forma de onda.
+Se $t_a=44,1 kHz$, como em padrões PCM e de Compact Disks, a onda possui frequência fundamental $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz $. Um lá\footnote{Um lá 4, logo acima do dó central, no segundo espaço do pentagrama na clave de sol comum.}, seja qual for a forma de onda dentre as artificiais apresentadas.
 
-A onda 'som real' é um período extraído de um som real relativamente comportado. Ele possuí $\lambda_f=114$ amostras\footnote{Caso também utilizado diretamente em $f_a=44,1kHz$, é um pouco mais grave que os $441 Hz$ das formas de onda artificiais.}.
-Note que, definindo $ R_i=\{ r_i \}_0^{\lambda_f-1}$ a sequência de amostras do som real da figura ~\ref{fig:formasDeOnda}.
+Estas formas de onda possuem usos especiais na música e seus espectros estão dispostos na figura ~\ref{fig:espectroDeOndas}. É importante notar as componentes isoladas e exatamente harmônicas dos espectros. A senóide consiste de um nódulo único no espectro, frequência pura. A dente de serra é a únida com a série harmônica completa (pares e ímpares). Já as ondas triangular e quadrada possuem as mesmas componentes espectrais, mas com decaimentos de $-12dB/oitava$ e $-6dB/oitava$.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Espectros das ondas sonoras musicais artificiais básicas}
+        \includegraphics[width=\textwidth]{figuras/espectroDeOndas5}
+        \label{fig:espectroDeOndas}
+\end{figure}
+
+
+O espectro harmônico é formado pelas frequências múltiplas da frequência fundamental $f_n=n.f_0$. Como nossa percepção segue a escala logarítmica, o espectro possui notas diferentes da frequência fundamental. Além disso, o número de harmônicos será limitado pela frequência máxima $t_a/2$. 
+Musicalmente crucial aqui é internalizar que se um sinal real foi decomposto por fourier e possui uma componente em uma frequência $fn$ com alguma energia
+   \footnote{A energia total equivale à soma dos quadrados das amplitudes como as de pressao/voltagem pelo tempo,e.g. ~\ref{fig:formasDeOnda}.
+As componentes espectrais - e.g. ~\ref{fig:espectroDeOndas} e ~\ref{fig:espectroOboe} -
+também podem ser elevadas ao quadrado para resultar em quantificação de energia e somam-se na energia total. As energias se equivalem pelo teorema de Parseval.},
+então existe uma contribuição senoidal, puramente harmônica no som. Esta energia concentrada especificamente na frequência $f_n$ é separado pelo ouvido\footnote{A cognição cerebral se dá basicamente com estas componentes. Muita informação é obtida pelo processamento destes sinais acústicos por diversas diversas formas de vida e se baseia em modulações de frequência e amplitude.}
+
+A onda rotulada como 'som real amostrado' na figura ~\ref{fig:formasDeOnda} é um período extraído de um som real relativamente comportado. Ele possuí $\lambda_f=114$ amostras\footnote{Caso também utilizado diretamente em $f_a=44,1kHz$, é um pouco mais grave que os $441 Hz$ das formas de onda artificiais $\frac{44100}{114}=385,84Hz$.}. A onda de oboé foi amostrada de um lá 4 também em $44,1kHz$. O período escolhido para a amostragem é relativamente curto, com 98 amostras corresponde a $\frac{44100}{98}=450 Hz$. Compararemos abaixo o conteúdo espectral da nota original com o resultante da utilização destas amostras.
+
+Note que, definindo $ R_i=\{ r_i \}_0^{\lambda_f-1}$ a sequência de amostras do som real da figura ~\ref{fig:formasDeOnda},
 $R_i$ pode ser tomado como base para um som $T_i^f$ da seguinte forma: 
 
 \begin{equation}\label{sampleandoFormaDeOnda}
@@ -243,21 +261,16 @@ $R_i$ pode ser tomado como base para um som $T_i^f$ da seguinte forma:
 \end{equation}
 
 O som resultante possui o espectro momentâneo do som original. Por ser repetido de forma identica,
-seu espectro é perfeitamente harmônico, sem os ruídos e variações típicas do fenômeno natural.
+seu espectro é perfeitamente harmônico, sem os ruídos e variações típicas do fenômeno natural. Isso pode ser visto claramente na figura ~\ref{fig:espectroOboe} onde a nota original do oboé e uma nota 
+artificial - de mesma duração e cujas amostras consistem no mesmo período da figura ~\ref{fig:formasDeOnda} - estão dispostas juntamente. O espectro natural possui variações na frequência dos harmônicos, nas suas intensidades e uma quantidade de ruído. Já a nota cujo período foi amostrado possui espectro perfeitamente harmônico.
 
-\begin{figure}[h!]
-    \centering
-    \caption{Espectros das ondas sonoras musicais artificiais básicas}
-        \includegraphics[width=\textwidth]{figuras/espectroDeOndas3}
-        \label{fig:espectroDeOndas}
-\end{figure}
 
 
 \begin{figure}[h!]
     \centering
     \caption{Espectros das ondas sonoras do oboé natural e de período amostrado}
         \includegraphics[width=\textwidth]{figuras/espectroOboeAmostradoNatural2}
-        \label{fig:espectroOboeAmostradoNatural}
+        \label{fig:espectroOboe}
 \end{figure}
 
 
