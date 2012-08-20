@@ -34,10 +34,8 @@ i=n.arange(oboe.shape[0])
 p.plot(i,o_a,label=u"nota de oboé natural")
 p.legend(loc="upper right")
 
-ticks=[]
-ticks=[r"$f%i$" % (i,) for i in xrange(len(ii))]
-
 p.yticks((0,11000),(0,'11k'))
+ticks=[r"$f%i$" % (i,) for i in xrange(len(ii))]
 p.xticks([0] + ii + [22000],[0] + ticks + ["22k"])
 
 p.xlim(0,22000,)
