@@ -420,7 +420,27 @@ A figura ~\ref{fig:amostras6} mostra as decomposições senoidais para o caso de
         \label{fig:formas6}
 \end{figure}
 
-\subsubsection{A nota caracterizada}
+\subsubsection{A nota básica}
+
+Escolhamos $f$ tal que $f$ divide $f_a$   \footnote{Esta escolha facilita as demonstrações pois os períodos são quantidades inteiras de amostras. Transporemos esta limitação na prática com o uso de uma tabela de amostragem ou com o uso direto de funções periódicas,e.g. $t_i=sen(x.i)$}. Uma sequência $T_i$ de amostras sonoras periódicas separadas por $\delta_a=1/f_a$ descreve uma nota musical de frequência $f$ Herz e duração $\Delta$ segundos se possuir a periodicidade $\lambda_f=f_a/f$ e tamanho $f_a . \Delta$:
+
+\begin{equation}
+T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{f_a . \Delta}=\{t_{i \; \% \left( \frac{f_a}{f} \right) } \}_0^{f_a . \Delta}
+\end{equation}
+
+Note que a nota por si só não especifica um tímbre. Mesmo assim, faz-se necessária a escolha de uma forma de onda para que as amostras $t_i$ tenham um valor estabelecido individualmente. Um único período dentre as ondas básicas pode ser utilizado para a especificação da nota da seguinte forma. 
+
+Seja $f$ a frequência da nota, $\delta_f=1/f$ o seu comprimento de onda e $L_i^{f,\, \delta_f} $ a sequência que descreve um período da onda $L_i^f \in \{S_i^f,Q_i^f,T_i^f,D_i^f,R_i^f \}$ (ver equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada}; $R_i^f$ é uma onda real amostrada),
+
+\begin{equation}
+L_i^{f , \delta_f } = \{ l_i^f \}_0^{\delta_f . f_a -1}=\{ l_i^f \}_0^{\lambda_f-1}
+\end{equation}
+
+Então a sequência $T_i$ consistirá em uma nota de duração $\Delta$ e frequência $f$ se:
+
+\begin{equation}
+T_i^{f,\; \Delta}=\{t_i^f\}_0^{f_a . \Delta}=\{l^f_{i\,\%\left(\frac{f_a}{f}\right)}\}_0^{f_a . \Delta}
+\end{equation}
 
 \subsubsection{Usos musicais}
 
