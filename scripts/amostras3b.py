@@ -4,7 +4,13 @@
 import pylab as p, numpy as n, scikits.audiolab as a
 f=n.fft.fft
 
-n3=n.random.rand(3)*2-1
+#n3=n.random.rand(3)*2-1
+n3=n.array([-0.20356754,  0.91942605,  0.44866268])
+#n3=n.array([-0.40+.3,  0.+.3,  0.4+.3])
+#n3=n.array([-0.40+.3,  0.4+.3,  0.4+.3])
+#n3=n.array([-0.40+.3, - 0.4+.3,  0.4+.3])
+#n3=n.array([+0.40+.3, - 0+.3, - 0.4+.3])
+#n3=n.array([-0.40+.3, + 0.4+.3, - 0.4+.3])
 p.plot(n3,"bo")
 
 ff=f(n3)
@@ -26,8 +32,14 @@ iii=n.linspace(0-fr2,3-fr2,200) # [0,3] == 3 \delta_a, período
 s=(2/3.)*ab1*n.cos(ii+fas)+a0/3
 p.plot(iii,s,"m--")
 
+p.plot((-10,10),(a0/3,)*2,"k--")
+p.plot((-10,10),(a0/3-2*ab1/3,)*2,"k--")
+p.plot((-10,10),(a0/3+2*ab1/3,)*2,"k--")
+p.xticks((-1,0,1,2,3),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$"))
+p.yticks((0,a0/3-2*ab1/3,a0/3,a0/3+2*ab1/3), ('0',r'$\frac{a_0-2|c_1|}{3}$',r'$\frac{a_0}{3}$',r'$\frac{a_0+2|c_1|}{3}$'), color = 'k', size = 20)
+
 p.xlim(-1.2,3.2)
-p.ylim(-1.1,1.1)
+p.ylim(-1.1+.5,1.1)
 
 p.ylabel(r"amplitude $\rightarrow$")
 p.xlabel(r"tempo $\rightarrow$")
