@@ -8,6 +8,13 @@ Branches relevantes:
 $ git clone git@git.scribtex.com:refabbri/msc.git
 $ git clone git://labmacambira.git.sourceforge.net/gitroot/labmacambira/dissertacao
 
+Pastas relevantes:
+scripts: scripts de provas de conceito e figuras
+python_snippets: trechos de código que aplicam
+os conceitos em da dissertação.
+figuras: figuras da dissertação.
+
+
 
 ======================
 contatos:
