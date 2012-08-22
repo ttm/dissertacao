@@ -44,8 +44,9 @@ p.plot(iii,s,"m", linewidth=3, label=r"$\oplus$")
 ss=(1/4.)*ab2*n.cos(2*ii+fas2)
 sss=(2/4.)*ab1*n.cos(ii+fas)
 p.plot(iii,[a0/4]*200,"k:", label=r"$\frac{a_0}{4}$")
-p.plot(iii,sss,"g-.",label=r"$\frac{2}{4}\sqrt{a_1^2+b_1^2}cos\left(\frac{2\pi . 1 }{\Lambda}i - tg^{-1}\left(\frac{b_1}{a_1}\right)\right)$")
-p.plot(iii,ss,"r--", label=r"$\frac{1}{4}\sqrt{a_2^2 + b_2^2}cos\left(\frac{2\pi . 2 }{\Lambda}i - tg^{-1}\left(\frac{b_2}{a_2}\right)\right)$")
+p.plot(iii,sss,"g-.",label=r"$\frac{2}{4}\sqrt{a_1^2+b_1^2}cos\left(\frac{2\pi . 1 }{4}i + tg^{-1}\left(\frac{b_1}{a_1}\right)\right)$")
+#p.plot(iii,ss,"r--", label=r"$\frac{1}{4}\sqrt{a_2^2 + b_2^2}cos\left(\frac{2\pi . 2 }{\Lambda}i - tg^{-1}\left(\frac{b_2}{a_2}\right)\right)$")
+p.plot(iii,ss,"r--", label=r"$\frac{a_2}{4}cos\left(\frac{2\pi . 2 }{4}i \right)$")
 
 p.legend(loc="upper right")
 

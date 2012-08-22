@@ -7,7 +7,7 @@ T=100
 #T=1024
 l=n.linspace(0,2*n.pi,T,endpoint=False)
 senoide=n.sin(l)
-dente=n.linspace (-1,1,T, endpoint =False) # dente de serra
+dente=n.linspace (-1,1,T) # dente de serra
 triangular=n.hstack ((n.linspace(-1,1,T/2,endpoint=False),n.linspace(1,-1,T/2,endpoint=False)))
 quadrada=n.hstack ((n.ones(T/2),n.ones(T/2)* -1))
 
