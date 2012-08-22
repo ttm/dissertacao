@@ -16,3 +16,6 @@ contatos:
 http://webchat.freenode.net/?channels=#labmacambira
 e
 renato (ponto) fabbri _@_ GMAIL (ponto) com
+
+
+anotacoes no gnote MSC e logs de aa +msc
