@@ -364,6 +364,14 @@ e resultam evidentes as equivalências ~\ref{equivalenciasFreqs}, ~\ref{equivale
 f_{k}\equiv f_{\Lambda-k}\;, \;\; w_{k}=-w_{\Lambda-k}\;\;\;, \quad \;\; \forall \quad 1 \leq k \leq \tau  
 \end{equation}
 
+\begin{figure}[h!]
+    \centering
+    \caption{Componentes frequenciais em 4 amostras}
+        \includegraphics[width=\textwidth]{figuras/amostras4__}
+        \label{fig:amostras4}
+\end{figure}
+
+
 Como $a_k = a_{\Lambda -k}\;\;$ e $\;\;b_k = - b_{\Lambda -k}$:
 
 \begin{equation}\label{equivalenciasModulos}
@@ -382,20 +390,6 @@ mostra a combinação em fase das componentes em $w_k$ e $w_{\Lambda-k}$:
 t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]+ \frac{ a_{\Lambda/2+1}}{\Lambda}.(1-\Lambda\% 2)
 \end{equation}
 
-Assim, a exemplo da figura ~\ref{fig:amostras3}, a transformada de Fourier de 3 amostras possui 2 coeficientes imaginários que possuem quantidades iguais de energia na mesma frequência.
-
-Com 4 amostras, podemos representar 1 ou 2 frequências em proporções diferentes. A figura ~\ref{fig:amostras4} mostra uma forma de onda de 4 amostras e suas duas componentes. Note que as contribuições individuais se somam de fato na forma de onda original, e que as curvaturas maiores são fruto da frequência mais aguda.
-
-A figura ~\ref{fig:formas4} explicita os harmônicos em 4 amostras nas formas de onda básicas das equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada} e figura ~\ref{fig:formasDeOnda}. Todas consistem em apenas 1 senóide, com excessão da dente de serra que possui os harmônicos pares.
-
-
-\begin{figure}[h!]
-    \centering
-    \caption{Componentes frequenciais em 4 amostras}
-        \includegraphics[width=\textwidth]{figuras/amostras4__}
-        \label{fig:amostras4}
-\end{figure}
-
 \begin{figure}[h!]
     \centering
     \caption{Formas de onda básicas em 4 amostras}
@@ -404,7 +398,15 @@ A figura ~\ref{fig:formas4} explicita os harmônicos em 4 amostras nas formas de
 \end{figure}
 
 
-A figura ~\ref{fig:amostras6} mostra as decomposições senoidais para o caso de 6 amostras. A figura ~\ref{fig:formas6} decompõe as formas de onda básicas. Note que as ondas se diferenciam espectralmente.
+Assim, a exemplo da figura ~\ref{fig:amostras3}, a transformada de Fourier de 3 amostras possui 2 coeficientes imaginários que possuem quantidades iguais de energia na mesma frequência.
+
+Com 4 amostras, podemos representar 1 ou 2 frequências em proporções diferentes. A figura ~\ref{fig:amostras4} mostra uma forma de onda de 4 amostras e suas duas componentes. Note que as contribuições individuais se somam de fato na forma de onda original, e que as curvaturas maiores são fruto da frequência mais aguda.
+
+A figura ~\ref{fig:formas4} explicita os harmônicos em 4 amostras nas formas de onda básicas das equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada} e figura ~\ref{fig:formasDeOnda}. Todas consistem em apenas 1 senóide, com excessão da dente de serra que possui os harmônicos pares.
+
+
+A figura ~\ref{fig:amostras6} mostra as decomposições senoidais para o caso de 6 amostras. A figura ~\ref{fig:formas6} decompõe as formas de onda básicas para o caso de 6 amostras.
+ Note que neste caso de 6 amostras as ondas se diferenciam espectralmente: as quadrada e triangular possuem as mesmas componentes, mas em proporções diferentes, já a dente de serra possui uma componente a mais.
 
 \begin{figure}[h!]
     \centering
@@ -422,7 +424,8 @@ A figura ~\ref{fig:amostras6} mostra as decomposições senoidais para o caso de
 
 \subsubsection{A nota básica}
 
-Escolhamos $f$ tal que $f$ divida $f_a$   \footnote{Esta escolha facilita as demonstrações pois os períodos são quantidades inteiras de amostras. Transporemos esta limitação na prática com o uso de uma tabela de amostragem ou com o uso direto de funções periódicas,e.g. $t_i=sen(x.i)$}. 
+Escolhamos $f$ tal que $f$ divida $f_a$  
+ \footnote{Esta escolha facilita as demonstrações pois os períodos são quantidades inteiras de amostras. Transporemos esta limitação na prática com o uso de uma tabela de amostragem ou com o uso direto de funções periódicas,e.g. $t_i=sen(x.i)$. Veja próxima sessão.}. 
 Uma sequência $T_i$ de amostras sonoras separadas por $\delta_a=1/f_a$ descreve uma nota musical de frequência $f$ Herz e duração $\Delta$ segundos se, e somente se, possuir a periodicidade $\lambda_f=f_a/f$ e tamanho $f_a . \Delta$:
 
 \begin{equation}
@@ -455,15 +458,18 @@ sequências destas partículas. Caso somemos $N$ sequências ($T_{k,i}=\{t_{k,i}
 
 Pode-se completar com zeros para somar sequências de tamanhos diferentes. O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação.
 
-As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem notas musicais, sua concatenação em $t_i$ resultará em melodias ou sequências musicais mais simples:
+As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem notas musicais, sua concatenação em $t_i$ resultará em sequências musicais simples ou melodias:
 
 \begin{equation}
-\{t_i\}=\{t_{k,i}\}, \;\; k\text{ menor inteiro } : \quad \Lambda_k > i -\sum_{j=0}^{k-1}\Lambda_j
+\{t_i\}_0^{\sum\Delta}=\{t_{k,i}\}_0^{\sum\Delta}, \;\; k\text{ menor inteiro } : \quad \Lambda_k > i -\sum_{j=0}^{k-1}\Lambda_j
 \end{equation}
 
-As montagens musicais \emph{reduced-fi} demonstra este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}. Ambas as peças estão em código Python no APÊNDICE XX e podem ser escutadas e vizualizadas nos links [][][].
+A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python no APÊNDICE XX e podem ser escutadas e vizualizadas nos links [][][].
 
-A seguir desenvolveremos as notas musicais com parâmetros que evoluem no tempo, como glissandos e envoltórias. A filtragem de componentes e os ruídos finalizam sobre as notas musicais. A estruturação musical destas notas é então abordada com vistas ás trajetórias cíclicas ou que convirjam ou diverjam.
+Com isso estabelecemos nossa nota musical básica no som digital. Trabalharemos a seguir estas unidades, a evolução temporal de seus conteúdos e desenvolveremos as notas musicais com parâmetros que evoluem no tempo, como glissandos e envoltórias. 
+A filtragem de componentes e os ruídos finalizam sobre a constituição da nota musical como unidade isolada. A estruturação musical destas notas é então abordada do ponto de vista das estruturas fora do tempo (como as escalas), trajetórias cíclicas ou que convirjam ou divirjam.
+
+\clearpage
 
 \section{Áudio e Música (deprecated)}
 
