@@ -87,7 +87,7 @@ for i in xrange(4):
     #p.legend(loc="upper right")
 
     p.xlim(-1.2,6.2)
-    p.ylim(-1.1,1.1)
+    p.ylim(-1.3,1.3)
 
     p.xticks((-1,0,1,2,3,4,5,6),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$",r"$5\delta_a$",r"$6\delta_a$"))
 

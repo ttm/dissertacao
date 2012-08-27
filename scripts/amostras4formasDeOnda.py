@@ -64,10 +64,18 @@ for i in xrange(4):
     p.plot(iii,ss,"r--", label=r"$\frac{1}{4}\sqrt{a_2^2 + b_2^2}cos\left(\frac{2\pi . 2 }{\Lambda}i - tg^{-1}\left(\frac{b_2}{a_2}\right)\right)$")
 
     #p.legend(loc="upper right")
+    if i ==1:
+        p.xlim(-1.2,4.2)
+        p.ylim(-1.2,1.2)
+    elif i ==3:
+        p.xlim(-1.2,4.2)
+        p.ylim(-1.5,1.5)
+    else:
+        p.xlim(-1.2,4.2)
+        p.ylim(-1.1,1.1)
 
     p.xlim(-1.2,4.2)
-    p.ylim(-1.1,1.1)
-
+    p.ylim(-1.5,1.5)
     p.xticks((-1,0,1,2,3,4),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$"))
 
 #p.ylabel(r"amplitude $\rightarrow$")
