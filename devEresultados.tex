@@ -393,7 +393,7 @@ t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^
 \begin{figure}[h!]
     \centering
     \caption{Formas de onda básicas em 4 amostras}
-        \includegraphics[width=\textwidth]{figuras/amostras4formas_}
+        \includegraphics[width=\textwidth]{figuras/amostras4formas__}
         \label{fig:formas4}
 \end{figure}
 
@@ -418,7 +418,7 @@ A figura ~\ref{fig:amostras6} mostra as decomposições senoidais para o caso de
 \begin{figure}[h!]
     \centering
     \caption{Formas de onda básicas em 6 amostras}
-        \includegraphics[width=\textwidth]{figuras/amostras6formas__}
+        \includegraphics[width=\textwidth]{figuras/amostras6formas___}
         \label{fig:formas6}
 \end{figure}
 
@@ -436,7 +436,7 @@ Note que a nota por si só não especifica um timbre. Mesmo assim, faz-se necess
 
 seja $f$ a frequência da nota, $\delta_f=1/f$ o seu comprimento de onda e $L_i^{f,\, \delta_f} $ a sequência que descreve um período da onda $L_i^f \in \{S_i^f,Q_i^f,T_i^f,D_i^f,R_i^f \}$ (ver equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada}; $R_i^f$ é uma onda real amostrada):
 
-\begin{equation}
+\begin{equation}\label{periodoUnico}
 L_i^{f , \delta_f } = \{ l_i^f \}_0^{\delta_f . f_a -1}=\{ l_i^f \}_0^{\lambda_f-1}
 \end{equation}
 
@@ -471,7 +471,63 @@ A filtragem de componentes e os ruídos finalizam sobre a constituição da nota
 
 \clearpage
 
-\section{Variações da nota musical básica}
+\section{Variações na nota musical básica}
+
+Nossa nota musical digital básica está bem definida com os parâmetros:
+duração, altura, intensidade (volume) e timbre. Esta é uma definição
+útil e paradigmática, mas de forma alguma esgota o que entendemos por
+uma nota musical.
+
+Em primeiro lugar, as características da nota se modificam no decorrer
+da própria nota, i.e. em uma nota real os parâmetros
+não são absolutamente fixos. Por exemplo, em uma nota de piano
+de 3 segundos, a intensidade tem início abrupto e decaimento progressivo
+além de variações do espectro instantâneo, com harmônicos que
+decaem antes dos outros e alguns que aparecem com o tempo.
+Estas variações não necessariamente são levadas
+em conta na síntese sonora, mas constituem-se em guias para a
+síntese de sons com interesses musicais pois é como eles
+se apresentam na natureza. 
+
+Explorar todas as formas pelas quais estas variações ocorrem está fora
+do escopo de qualquer trabalho dada a considerável sensibilidade do ouvido humano
+e a complexidade da nossa cognição. Mesmo assim, podemos apontar
+os recursos primários para estas variações dos parâmetros da nota
+básica.
+
+
+
+\subsection{Tabela de Busca}
+
+
+Mais conhecido pelo termo em inglês, a \emph(Lookup table) (ou simplesmente
+LUT), é um procedimento simples que consiste em criar uma tabela
+de referência e coletar as amostras destas tabelas segundo a 
+necessidade\footnote{Em contraposição ao cálculo das amostras individuais
+para cada caso.}. Em nosso caso, usaremos tabelas de busca para os
+sons criados, as notas. Assim, estas tabelas são unidimensionais e com
+valores reais. 
+
+O procedimento de busca em tabelas é visto geralmente como um
+artifício de otimização. Na música seu uso transcende este
+primeiro, facilitando as operações e permitindo que um único
+período de onda possa ser usado para sintetizar sons em toda a gama
+audível de frequências.
+
+Descrevemos esta busca. Seja $\Lambda_{LUT}$ o tamanho 
+da tabela e $L_i^{LUT}$ a tabela de elementos $l_i$ de um
+período de onda qualquer (veja equação ~\ref{periodoUnico}). Um som
+de duração $T_i^{f,\Delta}$ de frequência $f$ e duração $\Delta$
+pode ser feito a partir de $L_i^{LUT}$ da seguinte forma:
+
+\begin{equation}
+T_i^{f,\Delta}=\{t_i^f\}_0^{f_a . \Delta} = \{ l_{\lfloor i . \gamma \rfloor  \% \Lambda} \}_0^{f_a . \Delta} , \gamma = \frac{f . \Lambda}{f_a}
+\end{equation}
+
+
+
+
+
 
 \section{Organização de notas musicais em música}
 
