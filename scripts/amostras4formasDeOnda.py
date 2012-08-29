@@ -75,7 +75,7 @@ for i in xrange(4):
         p.ylim(-1.1,1.1)
 
     p.xlim(-1.2,4.2)
-    p.ylim(-1.5,1.5)
+    p.ylim(-1.49,1.49)
     p.xticks((-1,0,1,2,3,4),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$"))
 
 #p.ylabel(r"amplitude $\rightarrow$")
