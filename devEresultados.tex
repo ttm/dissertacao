@@ -471,10 +471,10 @@ A filtragem de componentes e os ruídos finalizam sobre a constituição da nota
 
 \clearpage
 
-\section{Variações na nota musical básica}
+\subsection{Variações na nota musical básica}
 
 Nossa nota musical digital básica está bem definida com os parâmetros:
-duração, altura, intensidade (volume) e timbre. Esta é uma definição
+duração, altura, intensidade (volume) e timbre. Esta é uma modelagem
 útil e paradigmática, mas de forma alguma esgota o que entendemos por
 uma nota musical.
 
@@ -486,50 +486,88 @@ além de variações do espectro instantâneo, com harmônicos que
 decaem antes dos outros e alguns que aparecem com o tempo.
 Estas variações não necessariamente são levadas
 em conta na síntese sonora, mas constituem-se em guias para a
-síntese de sons com interesses musicais pois é como eles
-se apresentam na natureza. 
+síntese de sons para usos musicais pois é como eles
+se apresentam na natureza\footnote{A regra de ouro
+aqui é: para que um som isolado disperte interesse
+por si só, faça como que tenha variações internas.}. 
 
 Explorar todas as formas pelas quais estas variações ocorrem está fora
 do escopo de qualquer trabalho dada a considerável sensibilidade do ouvido humano
-e a complexidade da nossa cognição. Mesmo assim, podemos apontar
+e a complexidade da nossa cognição sonora. Mesmo assim, podemos apontar
 os recursos primários para estas variações dos parâmetros da nota
 básica.
 
 
 
-\subsection{Tabela de Busca}
+\subsubsection{Tabela de Busca}
 
 
-Mais conhecido pelo termo em inglês, a \emph(Lookup table) (ou simplesmente
+Mais conhecido pelo termo em inglês, a \emph{Lookup table} (ou simplesmente
 LUT), é um procedimento simples que consiste em criar uma tabela
 de referência e coletar as amostras destas tabelas segundo a 
 necessidade\footnote{Em contraposição ao cálculo das amostras individuais
 para cada caso.}. Em nosso caso, usaremos tabelas de busca para os
 sons criados, as notas. Assim, estas tabelas são unidimensionais e com
-valores reais. 
+valores reais. Além disso, a tabela consiste nas amostras
+de um período de onda, que usamos para sintetizar períodos
+de tamanhos diferentes, resultando em frequências diferentes.
 
 O procedimento de busca em tabelas é visto geralmente como um
 artifício de otimização. Na música seu uso transcende este
 primeiro, facilitando as operações e permitindo que um único
-período de onda possa ser usado para sintetizar sons em toda a gama
-audível de frequências.
+período de onda possa ser usado para sintetizar sons em toda a banda
+de frequências audíveis.
 
-Descrevemos esta busca. Seja $\Lambda_{LUT}$ o tamanho 
-da tabela e $L_i^{LUT}$ a tabela de elementos $l_i$ de um
-período de onda qualquer (veja equação ~\ref{periodoUnico}). Um som
-de duração $T_i^{f,\Delta}$ de frequência $f$ e duração $\Delta$
-pode ser feito a partir de $L_i^{LUT}$ da seguinte forma:
+Descrevemos esta busca. Seja $\widetilde{\Lambda}$ o tamanho 
+da tabela e $\widetilde{L_i} = \{ \widetilde{l}_i \}_0^{\widetilde{\Lambda} -1}$ a tabela de elementos $\widetilde{l_i}$ de um
+período de onda qualquer (veja equação ~\ref{periodoUnico}). Uma sequência
+$T_i^{f,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta$
+pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
 
 \begin{equation}
-T_i^{f,\Delta}=\{t_i^f\}_0^{f_a . \Delta} = \{ l_{\lfloor i . \gamma \rfloor  \% \Lambda} \}_0^{f_a . \Delta} , \gamma = \frac{f . \Lambda}{f_a}
+T_i^{f,\Delta}=\{t_i^f\}_0^{f_a . \Delta-1} = \{ \widetilde{l}_{\lfloor i . \gamma \rfloor  \% \widetilde{\Lambda} } \}_0^{f_a . \Delta-1}\; , \quad \text{onde} \;\; \gamma = \frac{f . \widetilde{\Lambda}}{f_a}
 \end{equation}
 
+Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
+para sintetizar o som. No termo $i . \gamma$ não importa se tomamos o inteiro
+como a parte inteira da multiplicação, como o maior inteiro acima da multiplicação
+ou se arredondamos. Além disso, para fins de síntese em $44,1 kHz$,
+ o padrão é usar $\widetilde{\Lambda} = 1024$ amostras, pois já não gera ruído
+ relevante no espectro audível.
+
+ A expressão que define a variável $\gamma$ pode ser facilmente compreendida da
+ seguinte forma: a variável $i$ é acrescida de $f_a$ em $1$ segundo (pela
+ definição de $f_a$ e $i$, pois temos $f_a$ amostras $i$ em $1$ segundo). Caso a dividamos por $f_a$, teremos $\frac{i}{f_a}$,
+fração esta que é acrescida de $1$ a cada $1$ segundo. Multiplicado pelo comprimento da
+ tabela $\widetilde{\Lambda}$, teremos $\frac{i . \widetilde{\Lambda}}{f_a}$
+ que resulta na varredura completa da tabela $\widetilde{L_i}$ em 
+ 1 segundo com o acrescimo de $\widetilde{\Lambda}$ em $1$ segundo. Por fim,
+ se multiplicarmos pela frequência $f$ que queremos, teremos $\frac{i . f . \widetilde{\Lambda}}{f_a}$
+ que resulta em $f$ varreduras completas da tabela $\widetilde{L_i}$ em $1$ segundo, i.e. a sequência
+ resultante apresenta frequência $f$.
+
+Importantes considerações: $f$ é qualquer, só há limitantes nas frequências
+graves quando $\widetilde{\Lambda}$ não é suficientemente grande para a taxa de amostragem
+$f_a$\footnote{$\widetilde{\Lambda} = 1024$ é suficiente para sintetizar
+sequências $T_i^f$ com qualquer $f$ no espectro.}. O procedimento de busca em tabela
+é bastante barato, substituindo cálculos por buscas simples (por isso geralmente
+é entendido como um processo de otimização). Salvo quando assinalado,
+usaremos este procedimento para todos os casos cabíveis a seguir pois
+simplifica diversas rotinas e é a forma usual de realizar estas sínteses.
 
 
 
+\subsubsection{Variações incrementais de frequência e intensidade}
+
+\subsubsection{Filtros}
+
+\subsubsection{Ruídos}
+
+\subsubsection{Usos musicais}
 
 
-\section{Organização de notas musicais em música}
+
+\subsection{Organização de notas musicais em música}
 
 
 
