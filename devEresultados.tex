@@ -493,10 +493,14 @@ por si só, faça como que tenha variações internas.}.
 
 Explorar todas as formas pelas quais estas variações ocorrem está fora
 do escopo de qualquer trabalho dada a considerável sensibilidade do ouvido humano
-e a complexidade da nossa cognição sonora. Mesmo assim, podemos apontar
-os recursos primários para estas variações dos parâmetros da nota
+e a complexidade da nossa cognição sonora. Desta forma, apontaremos
+recursos primários para estas variações dos parâmetros na nossa nota
 básica.
 
+Iniciaremos com uma técnica que não resulta propriamente
+em variações internas da nota, mas simplificará esta exposição
+sem restringir o escopo, além de ser um notável recurso de otimização
+computacional.
 
 
 \subsubsection{Tabela de Busca}
@@ -525,17 +529,18 @@ $T_i^{f,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta$
 pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
 
 \begin{equation}
-T_i^{f,\Delta}=\{t_i^f\}_0^{f_a . \Delta-1} = \{ \widetilde{l}_{\lfloor i . \gamma \rfloor  \% \widetilde{\Lambda} } \}_0^{f_a . \Delta-1}\; , \quad \text{onde} \;\; \gamma = \frac{f . \widetilde{\Lambda}}{f_a}
+T_i^{f,\Delta}=\{t_i^f\}_0^{f_a . \Delta-1} = \{ \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} } \}_{0}^{f_a . \Delta-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
 \end{equation}
 
 Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
-para sintetizar o som. No termo $i . \gamma$ não importa se tomamos o inteiro
-como a parte inteira da multiplicação, como o maior inteiro acima da multiplicação
+para sintetizar o som. Para o cálculo do inteiro $\gamma_i$, convencionamos
+atribuir a ele o maior inteiro menor que $i.f\frac{\widetilde{\Lambda}}{f_a}$,
+mas  não importa se o tomamos como a parte inteira da multiplicação, como o maior inteiro acima da multiplicação
 ou se arredondamos. Além disso, para fins de síntese em $44,1 kHz$,
  o padrão é usar $\widetilde{\Lambda} = 1024$ amostras, pois já não gera ruído
  relevante no espectro audível.
 
- A expressão que define a variável $\gamma$ pode ser facilmente compreendida da
+ A expressão que define a variável $\gamma_i$ pode ser facilmente compreendida da
  seguinte forma: a variável $i$ é acrescida de $f_a$ em $1$ segundo (pela
  definição de $f_a$ e $i$, pois temos $f_a$ amostras $i$ em $1$ segundo). Caso a dividamos por $f_a$, teremos $\frac{i}{f_a}$,
 fração esta que é acrescida de $1$ a cada $1$ segundo. Multiplicado pelo comprimento da
@@ -544,15 +549,15 @@ fração esta que é acrescida de $1$ a cada $1$ segundo. Multiplicado pelo comp
  1 segundo com o acrescimo de $\widetilde{\Lambda}$ em $1$ segundo. Por fim,
  se multiplicarmos pela frequência $f$ que queremos, teremos $\frac{i . f . \widetilde{\Lambda}}{f_a}$
  que resulta em $f$ varreduras completas da tabela $\widetilde{L_i}$ em $1$ segundo, i.e. a sequência
- resultante apresenta frequência $f$.
+ resultante apresenta a frequência fundamental $f$.
 
 Importantes considerações: $f$ é qualquer, só há limitantes nas frequências
 graves quando $\widetilde{\Lambda}$ não é suficientemente grande para a taxa de amostragem
 $f_a$\footnote{$\widetilde{\Lambda} = 1024$ é suficiente para sintetizar
 sequências $T_i^f$ com qualquer $f$ no espectro.}. O procedimento de busca em tabela
-é bastante barato, substituindo cálculos por buscas simples (por isso geralmente
+é computacionalmente bastante barato, substituindo cálculos por buscas simples (por isso geralmente
 é entendido como um processo de otimização). Salvo quando assinalado,
-usaremos este procedimento para todos os casos cabíveis a seguir pois
+a seguir usaremos este procedimento para todos os casos cabíveis pois
 simplifica diversas rotinas e é a forma usual de realizar estas sínteses.
 
 
