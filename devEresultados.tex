@@ -534,35 +534,66 @@ T_i^{f,\Delta}=\{t_i^f\}_0^{f_a . \Delta-1} = \{ \widetilde{l}_{\gamma_i \% \wid
 
 Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
 para sintetizar o som. Para o cálculo do inteiro $\gamma_i$, convencionamos
-atribuir a ele o maior inteiro menor que $i.f\frac{\widetilde{\Lambda}}{f_a}$,
-mas  não importa se o tomamos como a parte inteira da multiplicação, como o maior inteiro acima da multiplicação
-ou se arredondamos. Além disso, para fins de síntese em $44,1 kHz$,
+atribuir a ele o maior inteiro menor que $i.f\frac{\widetilde{\Lambda}}{f_a}$.
+Esta aproximação introduz um ruído, mas conseguimos que este ruído seja desprezível
+mesmo se o tomarmos como o maior inteiro acima da multiplicação
+ou se arredondarmos por outros métodos. Além disso, para fins de síntese, em $f_a=44,1 kHz$
  o padrão é usar $\widetilde{\Lambda} = 1024$ amostras, pois já não gera ruído
  relevante no espectro audível.
 
  A expressão que define a variável $\gamma_i$ pode ser facilmente compreendida da
  seguinte forma: a variável $i$ é acrescida de $f_a$ em $1$ segundo (pela
- definição de $f_a$ e $i$, pois temos $f_a$ amostras $i$ em $1$ segundo). Caso a dividamos por $f_a$, teremos $\frac{i}{f_a}$,
+ definição de $f_a$ e $i$, pois temos $f_a$ amostras $t_i$ em $1$ segundo). Caso a dividamos por $f_a$, teremos $\frac{i}{f_a}$,
 fração esta que é acrescida de $1$ a cada $1$ segundo. Multiplicado pelo comprimento da
- tabela $\widetilde{\Lambda}$, teremos $\frac{i . \widetilde{\Lambda}}{f_a}$
+ tabela $\widetilde{\Lambda}$, teremos $i \frac{\widetilde{\Lambda}}{f_a}$
  que resulta na varredura completa da tabela $\widetilde{L_i}$ em 
- 1 segundo com o acrescimo de $\widetilde{\Lambda}$ em $1$ segundo. Por fim,
- se multiplicarmos pela frequência $f$ que queremos, teremos $\frac{i . f . \widetilde{\Lambda}}{f_a}$
+ 1 segundo com o acréscimo de $\widetilde{\Lambda}$ em $1$ segundo. Por fim,
+ se multiplicarmos pela frequência $f$ que queremos, teremos $i . f \frac{\widetilde{\Lambda}}{f_a}$
  que resulta em $f$ varreduras completas da tabela $\widetilde{L_i}$ em $1$ segundo, i.e. a sequência
  resultante apresenta a frequência fundamental $f$.
 
 Importantes considerações: $f$ é qualquer, só há limitantes nas frequências
-graves quando $\widetilde{\Lambda}$ não é suficientemente grande para a taxa de amostragem
-$f_a$\footnote{$\widetilde{\Lambda} = 1024$ é suficiente para sintetizar
+graves quando o tamanho da tabela $\widetilde{\Lambda}$ não é suficientemente grande para a taxa de amostragem
+$f_a$\footnote{Como citado acima, $\widetilde{\Lambda} = 1024$ é suficiente para sintetizar
 sequências $T_i^f$ com qualquer $f$ no espectro.}. O procedimento de busca em tabela
 é computacionalmente bastante barato, substituindo cálculos por buscas simples (por isso geralmente
 é entendido como um processo de otimização). Salvo quando assinalado,
 a seguir usaremos este procedimento para todos os casos cabíveis pois
-simplifica diversas rotinas e é a forma usual de realizar estas sínteses.
-
+simplifica diversas rotinas e é computacionalmente coerente.
 
 
 \subsubsection{Variações incrementais de frequência e intensidade}
+
+Nossa percepção segue a lei logarítmica...
+
+Em uma nota de duração $\Delta = \frac{\Lambda}{f_a}$, a frequência $f=f_i$ varia de $f_0$ até $f_{\Lambda -1}$
+linearmente. Podemos então escrever que:
+
+\begin{equation}\label{freqLinear}
+f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \mathbb{N}, \quad i \;\in\; [0,\Lambda-1]
+\end{equation}
+
+\begin{equation}\label{indiceLinear}
+\gamma_i=\left \lfloor i . f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor i  \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right ] \right \rfloor   \quad ,\quad \quad i \;\in\; \mathbb{N}, \quad i \;\in\; [0,\Lambda-1]
+\end{equation}
+
+\begin{equation}\label{serieLinear}
+\{t_i^{\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
+\end{equation}
+
+Desta forma, podemos calcular os elementos $t_i^{\overline{f_0,f_{\Lambda-1}}}$ com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$.
+
+As equações ~\ref{freqLinear}, ~\ref{indiceLinear} e ~\ref{serieLinear} são relativas à progressão linear
+da frequência. Nossa percepção segue a progressão logarítmica, então uma progressão de frequência
+\emph{percebida} como linear segue a progressão logarítmica:
+
+\begin{equation}
+f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
+\end{equation}
+
+\begin{equation}
+f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
+\end{equation}
 
 \subsubsection{Filtros}
 
