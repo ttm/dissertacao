@@ -581,19 +581,29 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 \{t_i^{\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
 \end{equation}
 
-Desta forma, podemos calcular os elementos $t_i^{\overline{f_0,f_{\Lambda-1}}}$ com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$.
+Desta forma, podemos calcular os elementos $t_i^{\overline{f_0,f_{\Lambda-1}}}$
+com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$. Note que na equação
+~\ref{freqLinear}, o termo $f_{\Lambda -1} - f_0$ é o âmbito do contra-domínio de $f_i$
+e que $\Lambda -1$ é âmbito do domínio. Como $i$ varre o domínio $[0,\Lambda-1]$ e
+temos o deslocamento $f_0$ na imagem, $f_i$ varre o contra-domínio enquanto $i$
+na medida em que $i$ varre o domínio\footnote{Estas digressões são importantes
+para entendermos o significado musical do comportamento destas sequências de amostras}.
 
 As equações ~\ref{freqLinear}, ~\ref{indiceLinear} e ~\ref{serieLinear} são relativas à progressão linear
 da frequência. Nossa percepção segue a progressão logarítmica, então uma progressão de frequência
-\emph{percebida} como linear segue a progressão logarítmica:
+\emph{percebida} como linear segue a progressão logarítmica. Fazendo a varredura com $i$
+de $0$ até $\Lambda-1$, podemos dizer que: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ onde 
+$n_8=\log_2\frac{f_{\Lambda-q}}{f_0}$ é o número de oitavas entre $f_0$ e $f_{\Lambda-1}$.
+De forma que $f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
+f_0 . 2^{\log_2\left ( \frac{f_{\Lambda-1}}{f_0} \right )^{\frac{i}{\Lambda-1}}}=
+f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}$. Portanto,
+nossas equações de referência para a síntese de transições de frequência tidas como
+lineares pelo ouvido são:
 
 \begin{equation}
 f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
 \end{equation}
 
-\begin{equation}
-f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
-\end{equation}
 
 \subsubsection{Filtros}
 
