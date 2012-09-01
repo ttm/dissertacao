@@ -117,7 +117,7 @@ T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\Delta . f_a - 1}
 \subsubsection{Volume}
 O volume depende da reverberação e distribuição dos harmônicos - dentre outras medidas psicofísicas~\cite{chowningVolume} - mas num primeiro momento podemos lidar com ele de forma prática e geral através da potência da onda:
 
-\begin{equation}
+\begin{equation}\label{potencia}
 pot(T_i^{\Delta})=\frac{\sum_{i=0}^{\Delta . f_a -1} t_i^2}{\Delta . f_a}
 \end{equation} 
 
@@ -148,8 +148,17 @@ Outro valor de referência é a amplificação necessária para que uma sequênc
 \therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3,16t_i
 \end{gather}
 
+Ou seja, é necessário pouco mais que triplicar a amplitude para que tenhamos volume drobrado.
+
 Estes valores servem de guia para os aumentos e diminuições dos valores absolutos que compõem as
-sequências de amostras sonoras que visam atingir efeitos musicais.
+sequências de amostras sonoras que visam atingir efeitos musicais. A conversão direta de decibeis
+em amplitude se dá da seguinte forma:
+
+\begin{equation}\label{ampDec}
+A = 10^{\frac{V_{dB}}{20}}
+\end{equation}
+
+Onde $A$ é o fator multiplicativo entre as médias dos valores absolutos das amplitudes dos sinais comparados.
 
 Neste ponto, correspondendo a uma partícula musical (uma nota), estabelecemos uma sequência cuja
 duração e intensidade conseguimos controlar\footnote{Basta alterarmos o tamanho da sequência para alterarmos
@@ -577,11 +586,11 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 \gamma_i=\left \lfloor i . f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor i  \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right ] \right \rfloor   \quad ,\quad \quad i \;\in\; \mathbb{N}, \quad i \;\in\; [0,\Lambda-1]
 \end{equation}
 
-\begin{equation}\label{serieLinear}
-\{t_i^{\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
+\begin{equation}\label{serieAmostralLin}
+\{t_i^{\;\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
 \end{equation}
 
-Desta forma, podemos calcular os elementos $t_i^{\overline{f_0,f_{\Lambda-1}}}$
+Desta forma, podemos calcular os elementos $t_i^{\;\overline{f_0,f_{\Lambda-1}}}$
 com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$. Note que na equação
 ~\ref{freqLinear}, o termo $f_{\Lambda -1} - f_0$ é o âmbito do contra-domínio de $f_i$
 e que $\Lambda -1$ é âmbito do domínio. Como $i$ varre o domínio $[0,\Lambda-1]$ e
@@ -589,7 +598,7 @@ temos o deslocamento $f_0$ na imagem, $f_i$ varre o contra-domínio enquanto $i$
 na medida em que $i$ varre o domínio\footnote{Estas digressões são importantes
 para entendermos o significado musical do comportamento destas sequências de amostras}.
 
-As equações ~\ref{freqLinear}, ~\ref{indiceLinear} e ~\ref{serieLinear} são relativas à progressão linear
+As equações ~\ref{freqLinear}, ~\ref{indiceLinear} e ~\ref{serieAmostral} são relativas à progressão linear
 da frequência. Nossa percepção segue a progressão logarítmica, então uma progressão de frequência
 \emph{percebida} como linear segue a progressão logarítmica. Fazendo a varredura com $i$
 de $0$ até $\Lambda-1$, podemos dizer que: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ onde 
@@ -602,6 +611,52 @@ lineares pelo ouvido são:
 
 \begin{equation}
 f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
+\end{equation}
+
+\begin{equation}\label{indiceExponencial}
+\gamma_i=\left \lfloor i . f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor i f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right \rfloor   \;\; ,\quad \quad i \;\in\; \mathbb{N}, \quad i \;\in\; [0,\Lambda-1]
+\end{equation}
+
+\begin{equation}\label{serieAmostralLog}
+\{t_i^{\;\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
+\end{equation}
+
+Onde usamos a equação ~\ref{indiceExponencial} para calcular a sequência $\{\gamma_i\}_0^{\Lambda-1}$ de índices para para
+serem buscados na nossa tabela que contém um único período da forma de onda.
+Isso é explicitado na equação ~\ref{serieAmostralLog}, onde estabelecemos a relação
+ $t_i^{\;\overline{f_0,f_{\Lambda-1}}}=\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}$.
+Note que a equação ~\ref{serieAmostralLog} se mantém (permanece idêntica à equação ~\ref{serieAmostralLin}).
+
+O termo $\frac{i}{\Lambda-1}$ varre o intervalo $[0,1]$ e podemos elevá-lo a uma potência
+para que o início da transição seja mais suave ou mais abrupto (compensado pelo final
+da transição). Este procedimento é mais comum para o caso de variações de volume através da energia
+da onda vibratória\footnote{O aumento do volume pode ocorrer por diversas características, como
+a reverberação e a concentração de harmônicos agudos e a energia. A mais facilmente controlada
+é a energia da onda (veja equação ~\ref{potencia}) e a energia também pode variar de diferentes formas. A forma mais
+simples e conveniente geralmente é a variação de amplitude. A variação de energia sem variação de
+amplitude é comumente chamado de \emph{compressão sonora} e é muito útil e corriqueiro na prática
+de produção musical atual}. Nestes casos, o procedimento comum é multiplicar a sequência original
+(seja ela gerada ou pré-estabelecida) pela sequência $\left ( \frac{i}{\Lambda-1} \right )^\alpha$
+onde alpha é o coeficiente citado.
+
+Assim, para variações de amplitude, aplicamos as seguintes fórmulas:
+
+\begin{equation}
+\{a_i\}_0^{\Lambda-1}=\left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}=\left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ com } a_0=1
+\end{equation}
+
+\begin{equation}
+T_i^{'}=T_i \odot A_i = \{t_i . a_i\}_0^{\Lambda-1}=\left \{ t_i . (a_{\Lambda-1} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
+\end{equation}
+
+Nosso intuito aqui é modificar a amplitude de um sinal original, seja qual for ele. Desta forma, tomamos
+$a_0=1$ de forma a iniciar a nova sequência com a amplitude original e então ir modificando com o tempo.
+Esta restrição faz com que nosso termo $a_{\Lambda-1}$ seja efetivamente a variação da amplitude.
+Aqui pode muito nos auxiliar a conversão de decibeis para amplitude apresentada na equação ~\ref{ampDec},
+resultando em:
+
+\begin{equation}
+T_i^{'}=\left \{ t_i . (10^{\frac{V_{dB}}{20}} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
 \end{equation}
 
 
