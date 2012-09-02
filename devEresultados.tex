@@ -573,9 +573,9 @@ simplifica diversas rotinas e é computacionalmente coerente.
 
 \subsubsection{Variações incrementais de frequência e intensidade}
 
-Segundo a lei de Weber e Fechner, nossa percepção tem uma relação logarítmica com
+Segundo revela a lei de Weber e Fechner, nossa percepção tem uma relação logarítmica com
 o estímulo que a causa. Mesmo assim, dado o uso, explicitaremos também a variação
-linear. Começaremos por ela por razões didáticas.
+linear e começaremos descrevendo esta por razões didáticas.
 
 Em uma nota de duração $\Delta = \frac{\Lambda}{f_a}$, a frequência $f=f_i$ varia de $f_0$ até $f_{\Lambda -1}$
 linearmente. Podemos então escrever que:
@@ -596,13 +596,18 @@ Desta forma, podemos calcular os elementos $t_i^{\;\overline{f_0,f_{\Lambda-1}}}
 com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$. Note que na equação
 ~\ref{freqLinear}, o termo $f_{\Lambda -1} - f_0$ é o âmbito do contra-domínio de $f_i$
 e que $\Lambda -1$ é âmbito do domínio. Como $i$ varre o domínio $[0,\Lambda-1]$ e
-temos o deslocamento $f_0$ na imagem, $f_i$ varre o contra-domínio enquanto $i$
+temos o deslocamento $f_0$ na imagem, $f_i$ varre o contra-domínio 
 na medida em que $i$ varre o domínio\footnote{Estas digressões são importantes
 para entendermos o significado musical do comportamento destas sequências de amostras}.
 
 As equações ~\ref{freqLinear}, ~\ref{indiceLinear} e ~\ref{serieAmostralLin} são relativas à progressão linear
-da frequência. Nossa percepção segue a progressão logarítmica, então uma progressão de frequência
-\emph{percebida} como linear segue a progressão logarítmica. Fazendo a varredura com $i$
+da frequência. Como assinalado, nossa percepção segue a progressão logarítmica:
+uma progressão de frequência
+\emph{percebida} como linear segue uma progressão exponencial\footnote{Ou,
+dito ainda de outra forma, uma progressão geométrica da frequência
+é percebido como uma progressão aritmética de alturas}.
+
+Fazendo a varredura com $i$
 de $0$ até $\Lambda-1$, podemos dizer que: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ onde 
 $n_8=\log_2\frac{f_{\Lambda-1}}{f_0}$ é o número de oitavas entre $f_0$ e $f_{\Lambda-1}$.
 De forma que $f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
@@ -680,52 +685,70 @@ para o caso geral de variações de amplitude segundo a progressão geométrica.
 Enquanto o vibrato é uma variação periódica de altura (frequência),
 o tremolo é uma variação periódica de volume (intensidade).
 
-Para realizarmos o caso mais geral, façamos uma sequência $t_i'$
+Iniciemos pelo vibrato. Para realizarmos o caso mais geral, façamos uma sequência $t_i'$
 de frequência $f'$ com o auxílio
 de uma segunda tabela $\widetilde{M}_i$ de tamanho $\widetilde{\Lambda}_M$ que apresente também
-um período de onda que oscila entre $[-1,1]$. Descrevemos um vibrato da seguinte forma:
+um período de onda que oscila entre $[-1,1]$. Descrevemos uma sequência $t_i^{vbr(f')}$ com
+um vibrato de frequência $f'$ e profundidade  $\mu$ (quantos herz é a oscilação no pico superior)
+ou $\nu$ (quantos semitons) da seguinte forma:
 
 
-\begin{equation}
+\begin{equation}\label{vbrGamma}
 \gamma_i'=\left \lfloor i f' \frac{\widetilde{\Lambda}_M}{f_a} \right \rfloor
 \end{equation}
 
-\begin{equation}
+\begin{equation}\label{vbrAux}
 t_i'=\widetilde{m}_{\gamma_i' \;\% \widetilde{\Lambda}_M}
 \end{equation}
 
-\begin{equation}
-f_i=f \left ( \frac{f + \mu }{f} \right )^{t_i'}
+\begin{equation}\label{vbrF}
+f_i=f \left ( \frac{f + \mu }{f} \right )^{t_i'}=f . 2^{t_i'\frac{\nu}{12}}
 \end{equation}
 
-\begin{equation}
-\gamma_i = \left \lfloor i . f_i \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor i \frac{\widetilde{\Lambda}}{f_a}f \left ( \frac{f + \mu }{f} \right )^{t_i'}  \right \rfloor
+\begin{equation}\label{vbrGamma}
+\gamma_i = \left \lfloor i . f_i \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor i \frac{\widetilde{\Lambda}}{f_a}f \left ( \frac{f + \mu }{f} \right )^{t_i'}  \right \rfloor= \left \lfloor i \frac{\widetilde{\Lambda}}{f_a}f . 2^{t_i'\frac{\nu}{12}}  \right \rfloor
 \end{equation}
 
-\begin{equation}
+\begin{equation}\label{vbrT}
 T_i^{f, vbr(f')}=\{ t_i^{f,vbr(f')} \}_0^{\Lambda-1}=\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \}_0^{\Lambda-1}
 \end{equation}
+
 
 Para a correta realização do vibrato, é importante atenção para as duas tabelas e sequências.
 A tabela $\widetilde{M}_i$ de tamanho $\widetilde{\Lambda}_M$ e a sequência de índices $\gamma_i'$ formam a sequência $t_i'$
  que é o padrão da oscilação da frequência enquanto
 a tabela $\widetilde{L}_i$ de tamanho $\widetilde{\Lambda}$ e a sequência de índices $\gamma_i$ formam $t_i$ que é o som em si.
+As variáveis $\mu$ e $\nu$ quantificam a intensidade do vibrato: $\mu$ é uma medida direta da quantidade
+de Herz envolvidos no limite superior da oscilação e $\nu$ é a medida direta de semitons envolvidos na oscilação.
+Note que $\nu=\log_{2}\frac{f+\mu}{f} $ é conveniente neste caso pois o aumento máximo de frequência
+não equivale à diminuição máxima, mas a variação de semitons se mantém.
 
-O caso do tremolo é semelhante. Dado $f'$, $\gamma_i'$ e $t_i'$ permanecem os mesmos. Calculamos
+O caso do tremolo é semelhante e $f'$, $\gamma_i'$ e $t_i'$ permanecem os mesmos. Calculamos
 a sequência de amplitudes a serem multiplicadas pela sequência original $t_i$ da
 sequinte forma:
 
-\begin{equation}
+\begin{equation}\label{trA}
 a_i=10^{t_i' \frac{V_{dB}}{20}} = a_{\text{máx}}^{t_i'}
 \end{equation}
 
-\begin{equation}
-T_i^{f, tr(f')}=\{ t_i^{f,tr(f')} \}_0^{\Lambda-1}=\{ t_i^{f} . a_i \}_0^{\Lambda-1}=\{t_i^f . a_{\text{máx}}^{t_i'}\}_0^{\Lambda-1}
+\begin{equation}\label{trT}
+T_i^{tr(f')}=\{ t_i^{tr(f')} \}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_i .10^{t_i' \frac{V_{dB}}{20}}    \}_0^{\Lambda-1}=\{t_i . a_{\text{máx}}^{t_i'}\}_0^{\Lambda-1}
 \end{equation}
 
-Onde $V_{dB}$ são os decibeis do tremolo e $a_{\text{máx}}$ é o ganho máximo de amplitude envolvido.
+Onde $V_{dB}$ é profundidade da oscilação em decibeis do tremolo e $a_{\text{máx}}$ é o ganho máximo de amplitude envolvido.
 A medição em decibeis é bastante conveniente neste caso pois o aumento máximo de amplitude
 não equivale à diminuição máxima relacionada, enquanto a diferença em decibeis se mantém.
+
+Com as equações ~\ref{vbrT}, ~\ref{vbrGamma}, ~\ref{vbrF}, ~\ref{vbrAux} e  ~\ref{vbrGamma}
+são utilizadas para síntese de frequência modulada (FM) nos casos em que $f'$ é
+maior que $20Hz$ onde as oscilações de frequência resultam em padrões complexos
+de componentes espectrais harmônicas e não harmônicas. As equações ~\ref{trA}
+e ~\ref{trT} (junto às ~\ref{vbrT} e ~\ref{vbrGamma} para a realização da sequência
+auxiliar $t_i'$) resultam na síntese de amplitude modulada (AM)\footnote{As sínteses
+FM e AM são técnicas com diversas amplicações na música e também em outras áreas,
+principalmente nas telecomunicações para transferência de informações
+via ondas eletromagnéticas. O leitor interessado pode visitar os itens relacionados
+da nossa bibliografia para uma abordagem musical (veja especialmente ~\ref{} e ~\ref{}}.
 
 \subsubsection{Filtros}
 
