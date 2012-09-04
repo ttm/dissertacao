@@ -467,7 +467,7 @@ sequências destas partículas. Caso somemos $N$ sequências ($T_{k,i}=\{t_{k,i}
 
 Pode-se completar com zeros para somar sequências de tamanhos diferentes. O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação.
 
-As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem notas musicais, sua concatenação em $t_i$ resultará em sequências musicais simples ou melodias:
+As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem $k$ notas musicais, sua concatenação em $t_i$ resultará em sequências musicais simples ou melodias:
 
 \begin{equation}
 \{t_i\}_0^{\sum\Delta}=\{t_{k,i}\}_0^{\sum\Delta}, \;\; k\text{ menor inteiro } : \quad \Lambda_k > i -\sum_{j=0}^{k-1}\Lambda_j
@@ -746,11 +746,87 @@ de componentes espectrais harmônicas e não harmônicas. As equações ~\ref{tr
 e ~\ref{trT} (junto às ~\ref{vbrT} e ~\ref{vbrGamma} para a realização da sequência
 auxiliar $t_i'$) resultam na síntese de amplitude modulada (AM)\footnote{As sínteses
 FM e AM são técnicas com diversas amplicações na música e também em outras áreas,
-principalmente nas telecomunicações para transferência de informações
+especialmente conhecidos são os usos telecomunicações para transferência de informações
 via ondas eletromagnéticas. O leitor interessado pode visitar os itens relacionados
-da nossa bibliografia para uma abordagem musical (veja especialmente ~\ref{} e ~\ref{}}.
+da nossa bibliografia para uma abordagem musical (veja especialmente ~\ref{} e ~\ref{})}.
 
 \subsubsection{Filtros}
+O recurso básico para modificar a contribuição das componentees espectrais
+na composição de um som é a filtragem. Os filtros proporcionam
+ganhos e atenuações diferentes para porções diferentes do espectro,
+possibilitando que haja diminuição ou remoção de ruídos e modificações
+de timbres quando desejável. A aplicação de filtros pode
+ser parte constituinte da síntese ou poder ser feita posteriormente
+como parte dos processos tipicamente chamados de tratamento sonoro.
+No estudo de filtros, a concepção usual é a de multiplicação de espectros
+(espectro do som multiplicado pelo espectro do filtro).
+
+É importante frizar que a elaboração de filtros
+constitui uma área reconhecidamente complexa, com literatura
+e pacotes de software dedicados. Desta maneira, o texto a seguir
+é um resumo do que é utilizado na prática e de forma alguma cobre
+todas as possibilidades. Apontaremos utilizações destes filtros junto
+às especificações.
+
+\begin{itemize}
+
+\item Filtros de resposta ao impulso finita (FIR)
+
+Esta classe de filtros é conhecida
+pela sua sigla FIR (do inglês Finite Impulse Response)
+e é caracterizada por possuir uma representação amostral
+finita. Esta representação amostral é chamada
+de 'resposta ao impulso'. Os filtros FIR são aplicados ao som
+digitalizado pela convolucão do som com sua representação
+amostral:
+
+\begin{equation}
+convolucao\;de\;filtro\;fir
+\end{equation}
+
+Importante aqui é notar a vantegem e desvantagem do filtro FIR.
+Podemos especificar a filtragem intensionada através do perfil
+espectral a ser multiplicado pelo espectro que do som. Através da transformada
+de Fourier inversa, obtemos a resposta ao impulso. Assim,
+filtros FIR permitem que apliquemos os filtros exatos
+que desejarmos.
+
+\item Filtros de resposta ao impulso infinita (IIR)
+
+A exemplo dos filtros FIR, esta classe de filtros é
+conhecida pela sigla IIR (do inglês Infinite Impulse Response)
+e é caracterizada por possuir uma representação amostral (resposta
+ao impulso) infinita. Sua aplicação é usualmente feita pela equação
+a diferenças:
+
+\begin{equation}
+equacao\;a\;diferencas\;filtro\;iir
+\end{equation}
+
+Como pode ser notado, os filtros IIR são muito mais requerem
+menos processamento computacional para serem aplicados. Além disso,
+podem ser aplicados com maior localidade. Por este motivo, são os mais usuais
+para aplicações em geral, mas a obtenção de filtros IIR com características
+desejadas muitas vezes revela-se uma tarefa nada trivial\footnote{Encorajamos
+o leitor interessado a visitar nossa bibliografia, em especial os livros
+~\ref{} e ~\ref{}.}.
+
+\end{itemize}
+
+Os fitros possuem ainda uma segunda classificação,
+conforme o perfil espectral que aplicam. A seguir
+apontamos os tipos mais cruciais para a prática musical.
+
+\begin{enumerate}
+\item Passa-baixas
+
+\item Passa-altas
+\item Passa-banda
+\item Rejeita-banda
+\item Nó
+\end{enumerate}
+
+
 
 \subsubsection{Ruídos}
 
@@ -762,6 +838,7 @@ da nossa bibliografia para uma abordagem musical (veja especialmente ~\ref{} e ~
 
 
 
+\clearpage
 
 
 \section{Áudio e Música (deprecated)}
