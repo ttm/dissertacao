@@ -13,9 +13,6 @@
 # rodar normalmente e resulta em figuras e objetos
 # para inspecao
 
-
-
-
 import numpy as n, pylab as p
 ones=n.ones
 ifft=n.fft.ifft
