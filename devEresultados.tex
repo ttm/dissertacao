@@ -750,46 +750,76 @@ especialmente conhecidos são os usos telecomunicações para transferência de 
 via ondas eletromagnéticas. O leitor interessado pode visitar os itens relacionados
 da nossa bibliografia para uma abordagem musical (veja especialmente ~\ref{} e ~\ref{})}.
 
-\subsubsection{Filtros}
-O recurso básico para modificar a contribuição das componentees espectrais
-na composição de um som é a filtragem. Os filtros proporcionam
+\subsubsection{Aplicação de Filtros Digitais}
+Explicitaremos a aplicação de filtros por convolução
+e por equação a diferenças. As possibilidades
+aqui são variadas e a complexidade facilmente
+foge ao escopo deste trabalho\footnote{A elaboração de filtros
+constitui uma área reconhecidamente complexa, com literatura
+e pacotes de software dedicados. 
+Recomendamos ao leitor
+interessado nossa bibliografia, em especial ~\ref{} e ~\ref{}.},
+de forma que focamos em explicitar o que ocorre com as sequências
+de amostras nestes dois casos.
+
+
+
+Os equalizadores proporcionam
 ganhos e atenuações diferentes para porções diferentes do espectro,
 possibilitando que haja diminuição ou remoção de ruídos e modificações
-de timbres quando desejável. A aplicação de filtros pode
+de timbre quando desejável. A aplicação de filtros pode
 ser parte constituinte da síntese ou poder ser feita posteriormente
 como parte dos processos tipicamente chamados de tratamento sonoro.
-No estudo de filtros, a concepção usual é a de multiplicação de espectros
-(espectro do som multiplicado pelo espectro do filtro).
 
-É importante frizar que a elaboração de filtros
-constitui uma área reconhecidamente complexa, com literatura
-e pacotes de software dedicados. Desta maneira, o texto a seguir
-é um resumo do que é utilizado na prática e de forma alguma cobre
-todas as possibilidades. Apontaremos utilizações destes filtros junto
-às especificações.
 
 \begin{itemize}
 
-\item Filtros de resposta ao impulso finita (FIR)
+\item  Convolução e filtros de resposta ao impulso finita (FIR)
 
-Esta classe de filtros é conhecida
+Os filtros aplicados por convolução são conhecidos
 pela sua sigla FIR (do inglês Finite Impulse Response)
-e é caracterizada por possuir uma representação amostral
-finita. Esta representação amostral é chamada
-de 'resposta ao impulso'. Os filtros FIR são aplicados ao som
-digitalizado pela convolucão do som com sua representação
-amostral:
+e são caracterizados por possuirem uma representação amostral
+finita no tempo. Esta representação amostral é chamada
+de 'resposta ao impulso' $h_i$. Os filtros FIR são aplicados ao som
+digitalizado pela convolucão do som com sua 
+resposta ao impulso. Para nossos fins, esta
+convolução fica definida como:
 
 \begin{equation}
-convolucao\;de\;filtro\;fir
+t_i'=(t*h)_i=\sum_{j=0}^{min(\Lambda_h,i)}h_{j} . t_{i-j}=\sum_{j=max(i-\Lambda_h,0)}^{i}t_j . h_{i-j}
 \end{equation}
 
-Importante aqui é notar a vantegem e desvantagem do filtro FIR.
-Podemos especificar a filtragem intensionada através do perfil
-espectral a ser multiplicado pelo espectro que do som. Através da transformada
-de Fourier inversa, obtemos a resposta ao impulso. Assim,
-filtros FIR permitem que apliquemos os filtros exatos
-que desejarmos.
+Ou seja, o som $\{t_i'\}$ resultante da convolução de $\{t_i\}$ com a resposta ao impulso $\{h_i\}$
+tem cada i-ésima amostra $t_i$ substituída pela soma de suas últimas amostras $t_{i-j}$
+multiplicadas pela resposta ao impulso em si ($h_i$). Isso é facilmente
+percebido pela visualização da convolução de sequências arbitrárias e dispomos
+para este fim a figura \ref{}.
+
+Com este procedimento podemos aplicar reverberadores, equalizadores, delays
+e vários outros tipos de filtros para fins de tratamento sonoro ou
+efeitos musicais/artísticos.
+ 
+Para a obtenção da resposta ao impulso, pode-se recorrer a medições
+físicas ou à síntese direta do filtro. Para citar um exemplo
+de medições diretas, uma resposta ao impulso para a aplicação
+de reverberação pode resultar da gravação acústica do ambiente ao disparar
+um estalo (cuja gravação se aproxima da resposta ao impulso diretamente) ou ao disparar uma
+varredura de frequência (cuja gravação se aproxima da resposta em frequência).
+Ambas resultam em respostas ao impulso
+que, convoluídas com a sequência sonora, resultam nela própria
+com uma reverberação que se assemelha ao ambiente de medição.
+
+Como exemplo de respostas ao impulso sintetizadas, pode-se
+descrever um perfil espectral, realizar a transformada inversa
+de fourier e convoluir o resultante com o som, realizando
+uma filtragem cujo perfil é próximo ao especificado inicialmente\footnote{Especialmente
+se for grande o número de amostras utilizado para especificar o perfil espectral
+do filtro.}. Outro exemplo simples é a aplicação de delays através
+da convolução do som com uma resposta ao impulso que possui um impulso
+em cada reincidência do som na linha de delays intensionada. Estes dois exemplos
+estão mostrados na figura ~\ref{}.
+
+
 
 \item Filtros de resposta ao impulso infinita (IIR)
 
