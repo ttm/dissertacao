@@ -762,12 +762,7 @@ interessado nossa bibliografia, em especial ~\ref{} e ~\ref{}.},
 de forma que focamos em explicitar o que ocorre com as sequências
 de amostras nestes dois casos.
 
-
-
-Os equalizadores proporcionam
-ganhos e atenuações diferentes para porções diferentes do espectro,
-possibilitando que haja diminuição ou remoção de ruídos e modificações
-de timbre quando desejável. A aplicação de filtros pode
+A aplicação de filtros pode
 ser parte constituinte da síntese ou poder ser feita posteriormente
 como parte dos processos tipicamente chamados de tratamento sonoro.
 
@@ -817,50 +812,51 @@ se for grande o número de amostras utilizado para especificar o perfil espectra
 do filtro.}. Outro exemplo simples é a aplicação de delays através
 da convolução do som com uma resposta ao impulso que possui um impulso
 em cada reincidência do som na linha de delays intensionada. Estes dois exemplos
-estão mostrados na figura ~\ref{}.
-
+estão mostrados na figura ~\ref{}. Note que, pelo método citado,
+filtros dos tipos citados abaixo em ~\ref{passaBaixas},~\ref{passaAltas} podem ser sintetizados.
 
 
 \item Filtros de resposta ao impulso infinita (IIR)
 
-A exemplo dos filtros FIR, esta classe de filtros é
+Esta classe de filtros é
 conhecida pela sigla IIR (do inglês Infinite Impulse Response)
 e é caracterizada por possuir uma representação amostral (resposta
 ao impulso) infinita. Sua aplicação é usualmente feita pela equação
 a diferenças:
 
 \begin{equation}
-equacao\;a\;diferencas\;filtro\;iir
+t_i' = \frac{1}{a_0}\left ( \sum_{j=0}^Jb_j . t_{i-j} \sum_{k=1}^Ka_k . t_{i-k}' \right )
 \end{equation}
 
-Como pode ser notado, os filtros IIR são muito mais requerem
-menos processamento computacional para serem aplicados. Além disso,
-podem ser aplicados com maior localidade. Por este motivo, são os mais usuais
-para aplicações em geral, mas a obtenção de filtros IIR com características
-desejadas muitas vezes revela-se uma tarefa nada trivial\footnote{Encorajamos
-o leitor interessado a visitar nossa bibliografia, em especial os livros
-~\ref{} e ~\ref{}.}.
+Apontamos filtros IIR paradigmáticos e bastante usuais abaixo. Existem
+diversos métodos e ferraemtas para a elaboração de filtros IIR,
+listamos abaixo uma seleção com fins didáticos e para consulta futura\footnote{Vale também
+apontar que todos os filtros abaixo são utilizados para equalização.}.
+São filtros de primeira ordem e Butterworth.
 
 \end{itemize}
 
-Os fitros possuem ainda uma segunda classificação,
-conforme o perfil espectral que aplicam. A seguir
-apontamos os tipos mais cruciais para a prática musical.
-
 \begin{enumerate}
 \item Passa-baixas
-
 \item Passa-altas
 \item Passa-banda
 \item Rejeita-banda
 \item Nó
+\item Biquad
 \end{enumerate}
 
-
-
 \subsubsection{Ruídos}
+Geração estatística de ruídos, distribuições, nomes, equações de geração.
+
 
 \subsubsection{Usos musicais}
+Oscilacoes, tremolos e vibratos. Variacoes
+progressivas das oscilacoes dos tremolos e vibratos
+como AM e FM.
+ADSR
+Linhas de delays
+Filtragem dependente do tempo
+Músicas: monolitos, minimum-fi
 
 
 
