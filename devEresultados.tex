@@ -828,21 +828,84 @@ a diferenças:
 t_i' = \frac{1}{a_0}\left ( \sum_{j=0}^Jb_j . t_{i-j} \sum_{k=1}^Ka_k . t_{i-k}' \right )
 \end{equation}
 
-Apontamos filtros IIR paradigmáticos e bastante usuais abaixo. Existem
-diversos métodos e ferraemtas para a elaboração de filtros IIR,
+Apontamos filtros IIR paradigmáticos e bastante úteis e usuais abaixo. Existem
+diversos métodos e ferrametas para a elaboração de filtros IIR,
 listamos abaixo uma seleção com fins didáticos e para consulta futura\footnote{Vale também
 apontar que todos os filtros abaixo são utilizados para equalização.}.
-São filtros de primeira ordem e Butterworth.
+São filtros de primeira ordem. Rotinas excelentes para cálculo de coeficientes
+de filtros Chebichev\footnote{Filtros Butterworth e Elípticos podem
+ser considerados como casos específicos dos Filtros do tipo Chebichev.} podem
+ser encontradas nas nossas referências, em especial em ~\ref{JOS} e ~\ref{dspguide}.
+Para uma exposição aprofundada do assunto, recomendamos ~\ref{Openheim}.
 
 \end{itemize}
 
 \begin{enumerate}
-\item Passa-baixas
-\item Passa-altas
-\item Passa-banda
-\item Rejeita-banda
-\item Nó
-\item Biquad
+\item Passa-baixas: polo simples com $a_0=0,15$ e $b_1=0,85$, fórmula geral para $x=e^{-2\pi f_c},\; x \in [0,1]$:
+
+\begin{equation}
+\begin{split}
+a_0 & =  1-x \\
+b_1 & =  x
+\end{split}
+\end{equation}
+
+\item Passa-altas: polo simples com $a_0=0,93$, $a_1=-0.93$ e $b_1=0.86$ para $x=e^{-2\pi f_c},\; x \in [0,1]$.
+
+\begin{equation}
+\begin{split}
+a_0 & =  \frac{1+x}{2} \\
+a_1 & =  -\frac{1+x}{2} \\
+b_1 & =  x
+\end{split}
+\end{equation}
+
+
+%\item Passa-banda
+%\item Rejeita-banda
+\item Nó: dadas a frequência $f$ e a largura de banda $BW$ (medida em 0,707 da amplitude),
+ambos dados como fracoes de $f_a$, portanto $f,BW \in [0,0,5]$,
+e as variáveis auxiliares $K$ e $R$ definidas como\footnote{A menor largura
+de banda que pode ser utilizada com precisão simples é por volta de $BW=0,0003$}:
+
+\begin{equation}
+\begin{split}
+R & = 1 - 3BW \\
+K & = \frac{1-2R\cos(2\pi f) + R^2}{2 - 2 \cos (2 \pi f)}
+\end{split}
+\end{equation}
+
+Temos o filtro nó passa banda:
+
+\begin{equation}
+\begin{split}
+a_0 & =  1 - K \\
+a_1 & =  2(K-R)\cos (2\pi f) \\
+a_2 & =  R^2-K \\
+b_1 & =  2R \cos (2\pi f) \\
+b_2 & =  -R^2
+\end{split}
+\end{equation}
+
+e o nó rejeita banda:
+
+\begin{equation}
+\begin{split}
+a_0 & =  K \\
+a_1 & =  -2K\cos (2\pi f) \\
+a_2 & =  K \\
+b_1 & =  2R \cos (2\pi f) \\
+b_2 & =  -R^2
+\end{split}
+\end{equation}
+
+
+\item Biquad: pela especificação de uma frequência central, da qualidade
+e da intensidade do filtro, este filtro é simples e usual para áudio,
+permitindo ajustes mais finos. Diversas receitas podem ser encontradas
+na literatura, recomendamos especialmente as diferentes especificações
+em ~\ref{musicDSP} e ~\ref{dspguide}.
+
 \end{enumerate}
 
 \subsubsection{Ruídos}
@@ -856,11 +919,150 @@ como AM e FM.
 ADSR
 Linhas de delays
 Filtragem dependente do tempo
+cascatas de filtros
 Músicas: monolitos, minimum-fi
 
 
 
+\clearpage
 \subsection{Organização de notas musicais em música}
+Seja $ S=\{T_{i,1},T_{i,2}...T_{i,N}\} =\bigcup_{j \in [1,N]} T_{i,j} $ uma sequência de $N$ eventos
+musicais. Para simplificar, sejam notas musicais estes eventos musicais.
+Considerando $S$ como uma estrutura musical, existem diversas técnicas
+para tornar estas estruturas interessantes e agradáveis.
+
+\subsubsection{Afinação, escalas e acordes}
+Quando dobramos a frequência, temos uma oitava ascendente $f_2=2f_1$.
+Doze semitons equidistantes para o ouvido formam uma oitava,
+portanto $f_2=2^{\frac{1}{12}}f_1$ forma um semitom ascendente.
+O fator $\varepsilon=2^{\frac{1}{12}}$ forma uma grade de notas
+no espectro audível, em que as frequências fundamentais possíveis
+estão separadas por intervalos múltiplos de $\varepsilon$\footnote{Este
+é um modelo idealizado, os intrumentos reais possuem desvios das frequências
+fundamentais como citadas}.
+
+Esta divisão da oitava em doze notas é o cânone da música ocidental clássica,
+além de usos cerimoniais/religiosos e étnicos. Nesta afinação, chamada cromática
+de temperamento igual, temos 5 divisões perfeitamente simétricas, consideradas
+escalas pela simetria interna e usos fáceis que disso resultam. Descrevamos
+as escalas como sequências de fatores aos quais $\varepsilon$ é elevado para resultar
+no fator a ser multiplicado por $f_0$:
+
+\begin{equation}
+\begin{split}
+\text{cromática} = E_i^c = \{e_i^c\}_0^{11} =  \{0,1,2,3,4,5,6,7,8,9,10,11\} = \{i\}_0^{11}\\
+\text{tons inteiros} = E_i^t = \{e_i^t\}_0^{5} = \{0,2,4,6,8,10\} = \{2.i\}_0^{5} \\
+\text{terças menores} = E_i^{tm} = \{e_i^{tm}\}_0^{3} = \{0,3,6,9\} = \{3.i\}_0^3 \\
+\text{terças maiores} = E_i^{tM} = \{e_i^{tM}\}_0^{2} = \{0,4,8\} = \{4.i\}_0^2\\
+\text{trítonos} = E_i^{tt} = \{e_i^{tt}\}_0^{1} = \{ 0, 6 \} = \{6.i\}_0^1
+\end{split}
+\end{equation}
+
+Assim, a terceira nota da escala em tons inteiros com $f_0=200Hz$
+é $f_3=\varepsilon^{e_3^t} . f_0 = 2^{\frac{6}{12}} . 200 \approxeq 282.843 Hz$. Estas
+'escalas' ou padrões, geram estruturas estáveis pelas simetrias internas, e podem ser
+repetidas de forma eficiênte e sustentada. Discutiremos mais sobre simetrias e voltaremos
+a estas divisões da oitava por igual.
+
+As escalas diatonicas também são facilmente especificadas, assim como
+as escalas tonais maior e menor:
+
+
+\begin{equation}
+\begin{split}
+\text{menor natural} = \text{modo eólico} = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
+\text{menor harmônica} = E_i^{mh} = \{e_i^{mh}\}_0^6 = \{0,2,3,5,7,8,11\} \\
+\text{menor melódica} = E_i^{mm} = \{e_i^{mm}\}_0^{14} = \{0,2,3,5,7,9,11,12,10,8,7,5,3,2,0\} \\
+\text{modo lócrio} = E_i^{mlo} = \{e_i^{mlo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
+\text{maior} = \text{modo jônico} = E_i^M = \{e_i^M\}_0^6 = \{0,2,4,5,7,9,11\} \\
+\text{modo dórico} = E_i^{md} = \{e_i^{md}\}_0^6 = \{0,2,3,5,7,9,10\} \\
+\text{modo frígio} = E_i^{mf} = \{e_i^{mf}\}_0^6 = \{0,1,3,5,7,8,10\} \\
+\text{modo lídio} = E_i^{ml}=\{e_i^{ml}\}_0^6 = \{0,2,4,6,7,9,11\} \\
+\text{modo mixolídio} = E_i^{mmi} = \{e_i^{mmi}\}_0^6 = \{0,2,4,5,7,9,10\}
+\end{split}
+\end{equation}
+
+Todas as escalas diatônicas (salvo as menores harmônica e melódica)
+seguem o padrão de intervalos sucessivos
+tom, tom, semitom, tom, tom, tom, semitom. De forma
+que podemos escrever:
+\begin{equation}
+\begin{split}
+d_i & =\{2,2,1,2,2,2,1\} \\
+e_0 & =0 \\
+e_i & =d_{(i+\kappa)\%7}+e_{i-1} \quad para \;\;  i > 0
+\end{split}
+\end{equation}
+
+Com $\kappa \in \mathbb{N}$. Por exemplo, consideremos o modo lídio. Uma breve
+inspeção revela que $e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}$ com $\kappa=2$. Para cada
+modo, temos um único valor de $\kappa$ em qualquer intervalo $\in [x,x+6], \forall x \in \mathbb{N}$.
+
+Várias outras escalas e sequências são facilmente representadas desta forma. Em especial,
+lembramos aqui das pentatônicas e os modos de transposição limitados de messiaen ~\ref{}.
+
+A ocorrência simultânea de notas é observada musicalmente em grande medida
+através dos acordes. Listamos os acordes triádicos sem inversão e na forma fechada,
+com a fundamental em $0$:
+
+\begin{equation}
+\begin{split}
+\text{tríade maior} = A_i^M= \{a_i^M\}_0^2=\{0,4,7\} \\ 
+\text{tríade menor} = A_i^m = \{a_i^m\}_0^2=\{0,3,7\} \\
+\text{tríade diminuta} = A_i^d = \{a_i^d\}_0^2=\{0,3,6\} \\
+\text{tríade aumentada} = A_i^a = \{a_i^a\}_0^2=\{0,4,8\}
+\end{split}
+\end{equation}
+
+Nestes casos, seguindo as mesmas restrições, basta acrescentar $10$ para ter o acorde
+com sétima menor ou $11$ para resultar em sétima maior. Para realizar inversões e posições abertas,
+basta contar o número de semitons a partir da nota mais grave.
+
+Para a realização de microtonalidade, podemos usar reais não inteiros
+para descrever a sequência de alturas ou modificar o fator $\varepsilon$
+e usar inteiros ainda. Por exemplo, uma afinação muito
+interessante por contemplar a série harmônica quase perfeitamente,
+é proposta na forma da divisão da oitava em $53$ notas, de forma
+que $\varepsilon=2^{\frac{1}{53}}$. As sequências de alturas
+continuam sendo compostas por inteiros com o novo $\varepsilon$.
+Note que se $S_i$ é uma sequência de alturas $s_i$ e mudamos de $\varepsilon_1$ para
+$\varepsilon_2$,
+resultamos em uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}$.
+A música tradicional tailandesa utiliza uma divisão da oitava em sete notas $\varepsilon=2^{\frac{1}{7}}$,
+resultando intervalos que pouco se assemelham às possibilidades da
+divisão de doze notas.
+
+\subsubsection{Rítmo}
+
+
+\subsubsection{Estruturas direcionais}
+Arcos, sequências convergentes ou divergentes.
+
+\subsubsection{Estruturas cíclicas}
+Arcos. permutacoes
+
+
+
+
+
+\subsubsection{Usos Musicais}
+Algumas restrições funcionais possíveis: manter-se em harmonias triádicas e encadear os acordes
+que possuam relações de quintas justas dentre as fundamentais ou dentre uma fundamental
+e a terça do acorde seguinte.
+
+Explorações microtonais, oitava em 5 notas etc
+FIGGUS
+
+
+
+
+
+
+
+
+
+
+
 
 
 
