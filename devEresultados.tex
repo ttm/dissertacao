@@ -1021,7 +1021,7 @@ basta contar o número de semitons a partir da nota mais grave.
 Para a realização de microtonalidade, podemos usar reais não inteiros
 para descrever a sequência de alturas ou modificar o fator $\varepsilon$
 e usar inteiros ainda. Por exemplo, uma afinação muito
-interessante por contemplar a série harmônica quase perfeitamente,
+interessante por contemplar a série harmônica consideravelmente precisa,
 é proposta na forma da divisão da oitava em $53$ notas, de forma
 que $\varepsilon=2^{\frac{1}{53}}$. As sequências de alturas
 continuam sendo compostas por inteiros com o novo $\varepsilon$.
@@ -1033,6 +1033,75 @@ resultando intervalos que pouco se assemelham às possibilidades da
 divisão de doze notas.
 
 \subsubsection{Rítmo}
+A noção rítmica é dependente de eventos separados por durações. Estes eventos são discerníveis se separados
+por ao menos $50-63ms$. Para que a separação entre eles possa ser apreciada, ela deve ser um pouco maior,
+por volta de $100ms$ ($10Hz$)(\ref{microsound}). Podemos sumarizar a transição do domínio da apreciação
+de durações como alturas para a apreciação em rítmo da seguinte forma(~\ref{alfaix, microsound}):
+
+\begin{center}
+{\tiny 
+\begin{tabular}{ l | r r r r   r r r    r r r || r r || r r r r r r }
+\hline
+-           & \multicolumn{10}{c}{$\underleftarrow{\text{\bf zona de percepção temporal em rítmo}}$} & \multicolumn{2}{c}{transição} & \multicolumn{3}{c}{-} \\
+duração (s) & {\bf ...}     & {\bf 32,}     & {\bf 16,}   & {\bf 8,}  & {\bf 4,}   & {\bf 2,}   & {\bf 1,}   & {\bf 1/2,} & {\bf 1/4,} & {\bf 1/8,} & $\frac{1}{16}=62,5ms$ , & $\frac{1}{20}=50ms$ & {\color{Gray} 1/40} & {\color{Gray} 1/80  } & {\color{Gray} 1/160 } & {\color{Gray} 1/320 } & {\color{Gray} 1/640 } & {\color{Gray} ... } \\
+frequência (Hz) & {\color{Gray} ...} & {\color{Gray} 1/32,}   & {\color{Gray} 1/16,} & {\color{Gray} 1/8,} & {\color{Gray} 1/4,} & {\color{Gray} 1/2,} &  {\color{Gray} 1,}  & {\color{Gray} 2,}   & {\color{Gray} 4,}   & {\color{Gray} 8,}    & 16,  & 20   & {\bf 40}   & {\bf 80}   & {\bf 160}   & {\bf 320}   & {\bf 640}   & {\bf ...} \\
+-           & \multicolumn{10}{c}{ - } & \multicolumn{2}{c}{transição} & \multicolumn{6}{c}{$\overrightarrow{\text{\bf zona de percepção temporal em altura}}$} \\
+\hline
+\label{altRit}
+%\ca
+
+\end{tabular}
+}
+\end{center}
+
+A banda de durações marcada como transição está minimizada, pois os limites não são bem definidos
+e são dependentes da pessoa e de características do som como o conteúdo espectral e intensidade.
+
+A métrica rítmica costuma se basear em uma duração básica chamada pulso. O pulso tipicamente
+compreende durações entre $0,25-1,5s$ ($40-240BPM$) que se costuma associar às durações
+entre batidas do coração ou entre os passos ao caminhar.
+
+O pulso é subdividido em partes iguais e também é 
+repetido sequencialmente. Estas relações (de divisão e de concatenação) costumam
+seguir relações de números inteiros de baixa ordem
+\footnote{Em ordem crescente de ocorrência na música
+escrita e étnica, podemos
+dizer que as divisões do pulso musical e seus agrupamentos
+sequenciais no tempo ocorrem com fatores 2, 3, depois seus múltiplos
+4 (2 grupos de 2) e 6 (dois grupos de 3 ou 3 grupos de 2)
+e então 8 (2 grupos de 4), 9 (3 grupos de 3) e por último os primos 5 e 7, completando 1-9 (~\ref{jocelyn}, ~\ref{favre}).}.
+
+As relações duais costumam a ocorrer em rítmos de dança
+e ocasiões festivas e são chamadas imperfeitas. As relações triádicas ocorrem
+mais na música ritualística e relacionada ao sagrado
+e são ditas perfeitas.
+
+Seja $P_i^j$ a $i$-ésimo unidade de pulsos no nivel $j$ de agrupamento. Assim,
+$P^1_{10}$ é o décimo pulso, $P^{2}_3$ é a terceira unidade de agrupamento de pulsos,
+$P^{-1}_2$ é a segunda unidade da subdivisão do pulso. Especial atenção para
+os limites de $j$ pois as divisões do pulso devem resultar em durações apreciáveis
+como rítmo e também as junções do pulso deve resultar algo apreciável como, no máximo
+do nosso escopo música. Dito de outra forma: a duração de $P^{min(j)}_i$, para $\forall \; i$
+é maior que $50ms$ e as durações de $P^{\text{máx}(j)}_i$ \emph{somadas}  em $\forall i$
+devem resultar em uma duração menor do que alguns minutos ou, no máximo poucas horas.
+Sempre que $i$ soma três índices temos uma relação \emph{perfecta}, quando soma dois
+ou quatro índices temos uma relação \emph{imperfecta}.
+
+
+Podemos convencionar $P^{-1,1,3}_{3,2,2}$ como a terceira subdivisão $P^{-1}_3$ do segundo
+pulso $P^1_2$ do terceiro aglomerado $P^3_2$ de aglomerado de pulsos ($P^2_1$ omitido por simplicidade).
+Tipicamente, para um dado $j$, $i$ tende a se manter.
+
+A cada unidade ou conjunto de unidades $P_i^j$ pode ser associada uma sequência de amostras temporais $T_i$
+que formam uma nota musical. A associação de $P^{-1,1}_{ i_{\text{fraco}},x }$ e $P^{-1,1}_{0,x+1}$ é o que
+se chama de síncopa.
+
+Um compasso 4 por 4 possui $P^1_i$ com $i$ tipicamente contando 2, 4 ou 8 subdivisões. E
+em $P^2_i$, $i$ conta 4 unidades.
+
+
+
+
 
 
 \subsubsection{Estruturas direcionais}
