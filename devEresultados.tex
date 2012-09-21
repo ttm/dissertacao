@@ -431,7 +431,7 @@ A figura ~\ref{fig:amostras6} mostra as decomposições senoidais para o caso de
         \label{fig:formas6}
 \end{figure}
 
-\subsubsection{A nota básica}
+\subsubsection{A nota básica}\label{notaBasica}
 
 Escolhamos $f$ tal que $f$ divida $f_a$  
  \footnote{Esta escolha facilita as demonstrações pois os períodos são quantidades inteiras de amostras. Transporemos esta limitação na prática com o uso de uma tabela de amostragem ou com o uso direto de funções periódicas,e.g. $t_i=sen(x.i)$. Veja próxima sessão.}. 
@@ -994,10 +994,13 @@ e_i & =d_{(i+\kappa)\%7}+e_{i-1} \quad para \;\;  i > 0
 \end{split}
 \end{equation}
 
-Com $\kappa \in \mathbb{N}$. Por exemplo, consideremos o modo lídio. Uma breve
-inspeção revela que $e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}$ com $\kappa=2$. Para cada
+Com $\kappa \in \mathbb{N}$. Para cada
 modo, temos um único valor de $\kappa$ em qualquer intervalo $\in [x,x+6], \forall x \in \mathbb{N}$.
 
+
+Por exemplo, consideremos o modo lídio. Uma breve
+inspeção revela que $e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}$. Temos, portanto, $\kappa=2$
+para o modo lídio. 
 Várias outras escalas e sequências são facilmente representadas desta forma. Em especial,
 lembramos aqui das pentatônicas e os modos de transposição limitados de messiaen ~\ref{}.
 
@@ -1015,22 +1018,30 @@ com a fundamental em $0$:
 \end{equation}
 
 Nestes casos, seguindo as mesmas restrições, basta acrescentar $10$ para ter o acorde
-com sétima menor ou $11$ para resultar em sétima maior. Para realizar inversões e posições abertas,
-basta contar o número de semitons a partir da nota mais grave.
+com sétima menor ou $11$ para resultar em sétima maior\footnote{As sétimas
+menor e maior são intervalos de $10$ e $11$ semitons respectivamente.}. Para realizar inversões e posições abertas,
+basta contar o número de semitons de cada nota a partir da nota mais grave.
 
-Para a realização de microtonalidade, podemos usar reais não inteiros
+Para a realização de microtonalidade\footnote{O uso explícito de
+intervalos menores que o semitom é chamado microtonalismo. Isso pode ter usos
+ornamentais ou estruturantes da música em si. A
+divisão da oitava em $12$ notas igualmente espaçadas possui fundamentos físicos mas
+não deixa de ser uma \emph{convenção}
+(reconhecidamente adotada pela música erudita clássica de origem européia). Outras afinações
+são também incidentes na manifestação musical humana, para citar somente um exemplo, a
+música tradicional tailandesa utiliza uma divisão da oitava em sete notas igualmente
+espaçadas ($\varepsilon=2^{\frac{1}{7}}$),
+resultando em intervalos que pouco se assemelham aos intervalos presentes na
+divisão de doze notas.}, podemos usar reais não inteiros
 para descrever a sequência de alturas ou modificar o fator $\varepsilon$
 e usar inteiros ainda. Por exemplo, uma afinação muito
-interessante por contemplar a série harmônica consideravelmente precisa,
+interessante por contemplar a série harmônica de forma consideravelmente precisa,
 é proposta na forma da divisão da oitava em $53$ notas, de forma
 que $\varepsilon=2^{\frac{1}{53}}$. As sequências de alturas
 continuam sendo compostas por inteiros com o novo $\varepsilon$.
 Note que se $S_i$ é uma sequência de alturas $s_i$ e mudamos de $\varepsilon_1$ para
 $\varepsilon_2$,
 resultamos em uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}$.
-A música tradicional tailandesa utiliza uma divisão da oitava em sete notas $\varepsilon=2^{\frac{1}{7}}$,
-resultando intervalos que pouco se assemelham às possibilidades da
-divisão de doze notas.
 
 \subsubsection{Rítmo}
 A noção rítmica é dependente de eventos separados por durações. Estes eventos são discerníveis se separados
@@ -1200,6 +1211,36 @@ resulta na ordenação inicial dos elementos:
 
 O menor valor de $n$ é chamado de \emph{ordem} da permutação $p$. O elemento $e$ é chamado de elemento neutro e é
 a permutação que leva uma ordenação para ela mesma.
+
+A utilização de permutações na música pode ser resumida da seguinte forma:
+seja $L_i$ uma lista de eventos musicais (para simplificar, considere
+estes eventos musicais como sendo notas musicais) e $p$ uma permutação.
+$L_i'=p(L_i)$ consiste nos mesmos elementos de $L_i$ com a ordem entre eles
+modificada.
+
+Importante notar que não é necessário permutar os elementos de $L_i$, mas somente
+alguma ou algumas de suas características. Assim, seja $p^f$ uma permutação agindo
+nas frequências e $L_i$ uma sequência de notas básicas como expostas
+ao final de ~\ref{notaBasica}. A nova sequência $L_i'=p^f(L_i)$ consiste nas mesmas
+notas musicais, na mesma ordem, com as frequências fundamentais permutadas segundo
+o padrão que $p^f$ apresenta.
+
+Por último, duas sutilezas deste procedimento.
+Primeiro, a permutação $p$ não precisa envolver todos os elementos de $L_i$, i.e. ela
+pode operar em subconjuntos de $L_i$. Segundo, nem todos os eventos $L_i$ precisam ser executados a
+cada consulta de estado realizada.
+
+Para simplificar, considere novamente os eventos de $L_i$ 
+como notas musicais. Assim, se $i$ é vai de $0$ a $n>3$, a cada compasso
+de $4$ notas podemos executar somente as primeiras $4$ notas. As outras notas de
+$L_i$ podem ser incidentes nos compassos em que as permutações aloque
+estas notas para as primeiras quatro notas de $L_i$.
+
+Nada impede que tenhamos permutações operando no mesmo conjunto, cada uma destas permutações
+(chamemos de $p_i$)
+pode possui: domínio das notas em que opera (frequência, duração, fades, intensidade, etc),
+modo de incidência (opera em $L_i$ a cada uma ou duas utilizações de $L_i$) e
+
 
 \subsubsection{Usos Musicais}
 Algumas restrições funcionais possíveis: manter-se em harmonias triádicas e encadear os acordes
