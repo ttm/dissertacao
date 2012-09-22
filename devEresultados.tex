@@ -1237,9 +1237,11 @@ $L_i$ podem ser incidentes nos compassos em que as permutações aloque
 estas notas para as primeiras quatro notas de $L_i$.
 
 Nada impede que tenhamos permutações operando no mesmo conjunto, cada uma destas permutações
-(chamemos de $p_i$)
-pode possui: domínio das notas em que opera (frequência, duração, fades, intensidade, etc),
-modo de incidência (opera em $L_i$ a cada uma ou duas utilizações de $L_i$) e
+$p_i$
+possui: dimensões das notas em que opera (frequência, duração, fades, intensidade, etc),
+modo de incidência (opera em $L_i$ a cada uma ou duas utilizações de $L_i$). Na realização das notas de $L_i$, uma solução fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $L_i$ equivale a modificar a permutação e executar as primeiras notas.}.
+
+Esta abordagem resultou em alguns trabalhos ~\ref{figgusOriginal} e implementações computacionais. Descrevemos um uso coerente desta técnica abaixo e apresentamos no APÊNCIDE XX a implementação computacional disponibilizada em ~\ref{repoFiggus}
 
 
 \subsubsection{Usos Musicais}
