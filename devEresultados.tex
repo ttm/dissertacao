@@ -88,31 +88,40 @@ Conversar com Chu e com Luciano e decidir se retiro esta sessão ou mantenho.
 
 \section{Música no Som Digitalizado}
 
-%\subsection{Caracterização da nota musical discretizada}
-\subsection{Caracterização da nota musical digital}
 %\subsection{Caracterização da nota musical digital}
-A música é tradicionalmente pensada através de unidades chamadas notas. Em sua concepção
+\subsection{Caracterização da nota musical discretizada}
+Em diversos contextos, como na teoria musical tradicional européia,
+a música é pensada através de 
+unidades chamadas notas e 
+estas unidades pensadas como "átomos" constituintes da música.
+Atualmente, estas notas
+são tidas como discretizações
+que facilitam e enriquecem o fluxo de informação através da música 
+e como um paradigma de proposta musical (\ref{Roederer, Lacerda}).
+
+Em sua concepção
 simples, as notas possuem ao menos duração, volume, altura e timbre. Embora estas
 sejam características psicofísicas, podemos lidar com elas através de suas características
 fisicamente mensuráveis.
 Em primeiro lugar, estamos tratando diretamente da representação digital do som. Isso em uma
-sequência de amostras igualmente espaçadas no tempo. Desta forma, definimos a
+sequência de amostras igualmente espaçadas no tempo. Definimos a
 frequência (ou taxa) de amostragem $f_a$ como o número de amostras por segundo do áudio digital e
 a sequência $T_i=\{t_i\}$ como um conjunto ordenado de amostras reais separadas por $\delta_a=1/f_a$ segundos.
 
 
 \subsubsection{Duração}
 Desta forma, visando uma nota musical de duração $\Delta$,
-teremos uma sequência de $ \Delta . f_a $ amostras\footnote{Observe o abuso de notação:
-o limite superior de uma sequência é um número natural, mas $ \Delta . f_a $
-só satisfaz esta condição em casos muito excepcionais. Procederemos assim por simplicidade. 
-Explicitaremos em texto quando for crucial o procedimento relativo à parte fracionária dos índices
-ou de seus limites.}:
+teremos uma sequência de $ \lfloor \Delta . f_a \rfloor $ amostras\footnote{O
+limite superior de uma sequência é um número natural mas $ \Delta . f_a $
+só satisfaz esta condição em casos muito excepcionais. É necessário
+escolher um inteiro próximo de $\Delta . f_a$. Por simplicidade,
+escolheremos sempre a parte inteira da fração, descrita por $\lfloor \Delta . f_a \rfloor$.}:
 
 \begin{equation}
-T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\Delta . f_a - 1}
+T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\lfloor \Delta . f_a \rfloor -1}
 \end{equation}
 
+Denotaremos $\Lambda = \lfloor \Delta . f_a \rfloor$ como o número de amostras da sequência, de forma que $T_i=\{t_i\}_0^{\Lambda-1}$.
 
 \subsubsection{Volume}
 O volume depende da reverberação e distribuição dos harmônicos - dentre outras medidas psicofísicas~\cite{chowningVolume} - mas num primeiro momento podemos lidar com ele de forma prática e geral através da potência da onda:
@@ -131,7 +140,7 @@ V_{dB}=10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)}
 \end{equation}
 
 A quantidade adimensional é denotada pela unidade decibeis ($dB$). A cada 10 $dB$s atribuímos canonicamente
-a sensação de "volume dobrado". Importantes resultados de referência são os equivalente em $dB$s de se dobrar
+a sensação de "volume dobrado". Importantes resultados de referência são os equivalentes em $dB$s de se dobrar
 a amplitude ou a potência:
 
 \begin{equation*}
@@ -141,7 +150,8 @@ se \quad  t_i^{'}=2 . t_i \quad \Rightarrow \quad pot(T^{'}_i)=4 . pot(T_i) \qua
 se \quad pot(T^{'}_i)=2 pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 2 \quad \approx \quad 3 dB
 \end{equation*}
 
-Outro valor de referência é a amplificação necessária para que uma sequência tenha o volume dobrado ($10dB$s a mais):
+Outro valor de referência é a amplificação de amplitude
+necessária para que uma sequência tenha o volume dobrado ($10dB$s a mais):
 
 \begin{gather}
 10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \quad \sum_{i=0}^{\Delta.f_a-1}t^{'2}_i=10\sum_{i=0}^{\Delta.f_a-1}t_i^2=\sum_{i=0}^{\Delta.f_a-1}(\sqrt{10}.t_i)^2 \\
@@ -151,32 +161,34 @@ Outro valor de referência é a amplificação necessária para que uma sequênc
 Ou seja, é necessário pouco mais que triplicar a amplitude para que tenhamos volume drobrado.
 
 Estes valores servem de guia para os aumentos e diminuições dos valores absolutos que compõem as
-sequências de amostras sonoras que visam atingir efeitos musicais. A conversão direta de decibeis
-em amplitude se dá da seguinte forma:
+sequências de amostras sonoras com propósitos musicais. A conversão direta de decibeis
+em ganho ou atenuação de amplitude se dá da seguinte forma:
 
 \begin{equation}\label{ampDec}
 A = 10^{\frac{V_{dB}}{20}}
 \end{equation}
 
-Onde $A$ é o fator multiplicativo entre as médias dos valores absolutos das amplitudes dos sinais comparados.
+Onde $A$ é o fator multiplicativo que relaciona as amplitudes do sinal antes e depois da amplificação.
 
-Neste ponto, correspondendo a uma partícula musical (uma nota), estabelecemos uma sequência cuja
+Neste ponto, correspondendo a uma partícula musical (uma nota), estabelecemos uma sequência $T_i$ cuja
 duração e intensidade conseguimos controlar\footnote{Basta alterarmos o tamanho da sequência para alterarmos
-a duração ou multiplicarmos as os elementos da sequência por algum valor normalizador}. 
+a duração ou multiplicarmos as os elementos da sequência por algum valor para resultar em um ganho de intensidade e, portanto, de volume.}. 
 
-\subsubsection{Altura\footnote{Com ganho de simplicidade e sem perda de generalidade, considere o índice $i=a/b$ como o inteiro mais próximo da divisão $a/b$.}}
+\subsubsection{Altura}
 
 A altura é especificada pela frequência fundamental. A frequência fundamental $f_0$ especifica uma periodicidade temporal
 com ciclo de duração $\delta_{f_0} = 1/f_0$. Esta duração multiplicada pela taxa de amostragem $f_a$ resulta no número de amostras
-do ciclo $\lambda_{f_0}=f_a . \delta_{f_0} =f_a/f_0$. Evidente que, sendo $T_i^f$ a sequência sonora de frequência fundamental $f$:
+do ciclo $\lambda_{f_0}=f_a . \delta_{f_0} =f_a/f_0$. É evidente que, sendo $T_i^f$ a sequência sonora de frequência fundamental $f$:
     
 \begin{equation}\label{periodicidade}
      T^f_i=\{ t_i^f \}=\{ t^f_{i+\lambda_{f}}  \}= \{ t^f_{i+\frac{f_a}{f}} \}
 \end{equation}
 
+Considerando $\frac{f_a}{f}$ inteiro. Na sessão seguinte estaremos sintetizando sons cuja frequência $f$ não divide $f_a$, por hora podemos aceitar esta restrição sem perda de generalidade.
+
 \subsubsection{Timbre}
 Enquanto o período da onda corresponde a uma frequência fundamental, o percurso
-da onda sonora dentro do período define um espectro harmônico e portanto
+da onda sonora dentro do período - chamado de forma de onda - define um espectro harmônico e portanto
 um timbre\footnote{O timbre é uma característica subjetiva e complexa. Fisicamente,
 o timbre é multidimensional e dado pelo comportamento temporalmente dinâmico
 de energias em componentes espectrais tanto harmônicas quanto ruidosas.  Vale salientar que nem tudo
@@ -202,9 +214,9 @@ Onde $\lambda_f=\frac{f_a}{f}=\frac{\delta_f}{\delta_a} \;$ é o número de amos
 
 De forma semelhante, outras formas de onda são utilizadas na música por suas qualidades
 espectrais e simplicidade. Enquanto a senóide é um ponto isolado no espectro, estas formas
-de onda apresentam cadeias de componentes harmônicos e usos específicos.
+de onda apresentam cadeias de componentes harmônicas e usos específicos.
 As formas de onda especificadas em ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada} são dispostas graficamente na figura ~\ref{fig:formasDeOnda}. 
-São as formas de onda artificiais tradicionalmente usadas na música para síntese e controle oscilatório de variáveis, apresentam diversos usos também fora da música.
+São as formas de onda artificiais tradicionalmente usadas na música para síntese e controle oscilatório de variáveis, apresentam diversos usos também fora da música(\ref{Openheim}).
 
 A dente de serra apresenta todos os componentes da série
 harmônica com energia decrescente de $-6dB/oitava$. A sequência de amostras temporais pode ser descrita da seguinte forma:
@@ -229,8 +241,8 @@ A onda quadrada apresenta somente os harmônicos ímpares caindo a $-6dB/oitava$
 A dente de serra é um ponto de partida comum para a síntese subtrativa pois possui
 ambos os harmônicos pares e ímpares e em grande quantidade (alguma filtragem atenuante
 é útil nos médios e agudos para que o som ganhe naturalidade e fique mais agradável).
-Por este mesmo motivo, os harmônicos atenuados da onda triangular
-a faz a mais funcional - dentre as citadas - para ser usada sem nenhum tratamento.
+Os harmônicos atenuados da onda triangular
+a faz a mais funcional - dentre as citadas - para ser usada sem nenhum tratamento para síntese de notas musicais.
 
 Para citar também um uso possível da onda quadrada, ela pode ser usada em uma síntese
 subtrativa que vise imitar um clarinete. Este instrumento também só apresenta os
@@ -252,7 +264,8 @@ as formas de onda descritas nas equações ~\ref{senoide}, ~\ref{denteDeSerra}, 
 de $100$ amostras).
 Se $t_a=44,1 kHz$, como em padrões PCM e de Compact Disks, a onda possui frequência fundamental $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz $. Um lá\footnote{Um lá 4, logo acima do dó central, no segundo espaço do pentagrama na clave de sol comum.}, seja qual for a forma de onda dentre as artificiais apresentadas.
 
-Estas formas de onda possuem usos especiais na música e seus espectros estão dispostos na figura ~\ref{fig:espectroDeOndas}. É importante notar as componentes isoladas e exatamente harmônicas dos espectros. A senóide consiste de um nódulo único no espectro, frequência pura. A dente de serra é a única com a série harmônica completa (pares e ímpares). Já as ondas triangular e quadrada possuem as mesmas componentes espectrais, mas com decaimentos de $-12dB/oitava$ e $-6dB/oitava$.
+Estas formas de onda possuem usos especiais na música e seus espectros estão dispostos na figura ~\ref{fig:espectroDeOndas}. É importante notar as componentes isoladas e exatamente harmônicas dos espectros,
+resultado de um período mantido fixo com exatidão. A senóide consiste de um nódulo único no espectro, frequência pura. A dente de serra é a única com a série harmônica completa (pares e ímpares). Já as ondas triangular e quadrada possuem as mesmas componentes espectrais, mas com decaimentos de $-12dB/oitava$ e $-6dB/oitava$.
 
 \begin{figure}[h!]
     \centering
@@ -262,23 +275,24 @@ Estas formas de onda possuem usos especiais na música e seus espectros estão d
 \end{figure}
 
 
-O espectro harmônico é formado pelas frequências múltiplas da frequência fundamental $f_n=(n+1).f_0$. Como nossa percepção segue a escala logarítmica, o espectro possui notas diferentes da frequência fundamental. Além disso, o número de harmônicos será limitado pela frequência máxima $f_a/2$. 
+O espectro harmônico é formado pelas frequências múltiplas da frequência fundamental $f_n=(n+1).f_0$. Como nossa percepção segue a escala logarítmica, o espectro possui notas diferentes da frequência fundamental. Além disso, o número de harmônicos será limitado pela frequência máxima $f_a/2$ (pelo Teorema de Nyquist). 
 
 Musicalmente crucial aqui é internalizar que a presença de
-energia\footnote{A energia total equivale à soma dos quadrados das amplitudes como as de pressao/voltagem pelo tempo, e.g. figura ~\ref{fig:formasDeOnda}.
+energia\footnote{A energia total equivale à soma dos quadrados das amplitudes
+(como as de pressao/voltagem no tempo), e.g. figura ~\ref{fig:formasDeOnda}.
 As componentes espectrais - e.g. ~\ref{fig:espectroDeOndas} e ~\ref{fig:espectroOboe} -
-também podem ser elevadas ao quadrado para resultar em quantificação de energia e somam-se na energia total. As energias se equivalem pelo teorema de Parseval.}
+também podem ser elevadas ao quadrado para resultar em quantificação de energia e somam-se na energia total. As energias se equivalem pelo teorema de Parseval: $\frac{1}{\Lambda} . \sum_{k=0}^{\Lambda -1}c_k^2 = \sum_{i=0}^{\Lambda-1}t_i^2$.}
 em uma componente de frequência $f_n$ na decomposição por fourier 
 implica na presença de uma oscilação senoidal na constituição do som, puramente harmônica no som e naquela frequência $f_n$. Esta energia concentrada especificamente na frequência $f_n$ é separada
- pelo ouvido para adentrar em um nível cognitivo de processamento\footnote{Esta separação em frequência é realizada por diversas espécies através de mecanismos similares à cóclea humana.}.
+ pelo ouvido para adentrar em um nível cognitivo de processamento\footnote{Esta separação em frequência é realizada por diversas espécies através de mecanismos similares à cóclea humana(\ref{musicaEsom}).}.
   As componentes senoidais são geralmente as principais responsáveis pela qualidade chamada timbre e, caso não apresentem proporções harmônicas (relações de pequenos números), são ruídos, i.e. não são notas com frequência fundamental como o lá 4 ($440 Hz$) de nossos exemplos. Além disso, nossa noção de altura absoluta em um complexo sonoro é baseada na semelhança do espectro com a série harmônica.
 
 No caso de uma forma de onda fixa (e de tamanho fixo), o espectro é sempre harmônico e estático. Fixada a frequência fundamental (inverso do comprimento da onda), cada forma de onda é composta de proporções específicas das componentes harmônicas e 
 quanto maior a curvatura do trecho na forma de onda, maior a contribuição do trecho para a
 concentração de energia nos harmônicos agudos.
 
-Podemos ver isso claramente em sons reais. A onda rotulada como 'som real amostrado' na figura ~\ref{fig:formasDeOnda} é um período extraído de um som real relativamente comportado. Ele possuí $\lambda_f=114$ amostras\footnote{Caso também utilizado diretamente em $f_a=44,1kHz$, é um pouco mais grave que os $441 Hz$ das formas de onda artificiais $\frac{44100}{114}=385,84Hz$.}. A onda de oboé foi amostrada de um lá 4 também em $44,1kHz$. O período escolhido para a amostragem é relativamente curto, com 98 amostras corresponde a $\frac{44100}{98}=450 Hz$. Pode-se perceber o espectro rico em frequências do oboé e o espectro mais grave do som real. A figura ~\ref{fig:espectroOboe} 
-expõe em conjunto o conteúdo espectral da nota original e o resultante da utilização destas amostras.
+Podemos ver isso claramente em sons reais. A onda rotulada como 'som real amostrado' na figura ~\ref{fig:formasDeOnda} é um período extraído de um som real relativamente comportado. Ele possuí $\lambda_f=114$ amostras\footnote{Caso também utilizado diretamente em $f_a=44,1kHz$, é um pouco mais grave que os $441 Hz$ das formas de onda artificiais $\frac{44100}{114}=385,84Hz$.}. A onda de oboé foi amostrada de um lá 4 também em $44,1kHz$.
+O período escolhido para a amostragem é relativamente curto, com 98 amostras corresponde a $\frac{44100}{98}=450 Hz$. Pode-se perceber, através das curvaturas, o espectro rico em frequências do oboé e o espectro mais grave do som real.
 
 Note que, definindo $ R_i=\{ r_i \}_0^{\lambda_f-1}$ a sequência de amostras do som real da figura ~\ref{fig:formasDeOnda},
 $R_i$ pode ser tomado como base para um som $T_i^f$ da seguinte forma: 
@@ -288,7 +302,8 @@ $R_i$ pode ser tomado como base para um som $T_i^f$ da seguinte forma:
 \end{equation}
 
 O som resultante possui o espectro momentâneo do som original. Por ser repetido de forma idêntica,
-seu espectro é perfeitamente harmônico, sem os ruídos e variações típicas do fenômeno natural. Isso pode ser visto claramente na figura ~\ref{fig:espectroOboe} onde os espectros da nota original do oboé e de uma nota 
+seu espectro é perfeitamente harmônico, sem os ruídos e variações típicas do fenômeno natural. Isso pode ser 
+visto claramente na figura \ref{fig:espectroOboe} onde os espectros da nota original do oboé e de uma nota 
 artificial - de mesma duração e cujas amostras consistem no mesmo período da figura ~\ref{fig:formasDeOnda} - estão dispostas juntamente. O espectro natural possui variações na frequência dos harmônicos, nas suas intensidades e uma quantidade de ruído. Já a nota cujo período foi amostrado possui espectro perfeitamente harmônico.
 
 
@@ -305,14 +320,14 @@ artificial - de mesma duração e cujas amostras consistem no mesmo período da 
 
 
 \subsubsection{O espectro no som amostrado}
-Além deste papel-chave no timbre e na cognição como um todo, a presença e comportamento destas componentes é peculiar no som discretizado. Considere um sinal $T_i$ e sua decomposição de Fourier $\mathcal{F}\{T_i\}=C_i=\{c_i\}_0^{\Lambda-1}$. Sabemos que a recomposição segue a conversão das componentes frequenciais em amostras temporais\footnote{Lembrando que o fator $\frac{1}{\Lambda}$ pode ser distribuído dentre a transformada e a reconstrução como preferir}:
+Além deste papel-chave no timbre e na cognição como um todo, a presença e comportamento destas componentes senoidais é peculiar no som discretizado. Considere um sinal $T_i$ e sua decomposição de Fourier $\mathcal{F}\{T_i\}=C_i=\{c_i\}_0^{\Lambda-1}$. Sabemos que a recomposição segue a conversão das componentes frequenciais em amostras temporais\footnote{Lembrando que o fator $\frac{1}{\Lambda}$ pode ser distribuído dentre a transformada e a reconstrução como preferir}:
 
  
 \begin{equation}\label{recomposicaoFourier}
 t_i = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}c_ke^{j . \frac{2\pi k}{\Lambda} i } = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}(a_k+ j . b_k)\left[cos(w_k i) +j . sen(w_k i)\right]
 \end{equation}
 
-Onde $c_k = a_k + j . b_k$ pondera a amplitude e fase de cada frequência $w_k=\frac{2\pi k}{\Lambda}$. Nosso som possui amostras $t_i$ reais que resultam das contribuições de cada componente de frequência $w_k$ e cujo $c_k$ regula o módulo e a fase. A parte real da equação ~\ref{recomposicaoFourier} nos fornece a componente de forma mais clara:
+Onde $c_k = a_k + j . b_k$ pondera a amplitude e fase de cada frequência: $w_k=\frac{2\pi k}{\Lambda}$ em radianos ou $f_k=w_k\frac{f_a}{2\pi}=\frac{k.f_a}{\Lambda}$ em Herz. Nosso som possui amostras $t_i$ reais que resultam das contribuições de cada componente de frequência $w_k=\frac{2\pi k}{\Lambda}$ e cujo $c_k$ regula o módulo e a fase. A parte real da equação ~\ref{recomposicaoFourier} nos fornece a componente de forma mais clara:
 
 \begin{equation}\label{moduloEfase}
 \begin{split}
@@ -321,27 +336,29 @@ t_i& = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}\left[a_k cos(w_k i) -b_k sen(w_k 
 \end{split}
 \end{equation}
 
-Podemos notar claramente pela equação ~\ref{moduloEfase} que o termo imaginário apenas acrescenta uma fase à senóide real. Ao mesmo tempo $b_k$ também altera a amplitude mas a informação de amplitude já está em $a_k$, i.e. os termos imaginários da decomposição espectral por Fourier proporcionam a varredura de fase
- $[-\frac{\pi}{2},+\frac{\pi}{2}]$. O sinal de $a_k$ especifica se estamos do lado direito ou esquerdo do circulo trigonométrico, completando a varredura completa de fase (os intervalos $[-\frac{\pi}{2},+\frac{\pi}{2}]$ e $[\frac{\pi}{2},\frac{3\pi}{2}]$ completam $2\pi$).
+Podemos notar claramente pela equação ~\ref{moduloEfase} que o termo imaginário apenas acrescenta uma fase à senóide real. Ao mesmo tempo $b_k$ também altera a amplitude mas a informação de amplitude já está em $a_k$,
+i.e. os termos imaginários $b_k$ da decomposição espectral por Fourier proporcionam a varredura de fase
+ $[-\frac{\pi}{2},+\frac{\pi}{2}]$, basta observar o termo $tg^{-1}\left (\frac{b_k}{a_k}\right )$ que possui este contra-domínio. O sinal de $a_k$ especifica se estamos do lado direito ou esquerdo do circulo trigonométrico, completando a varredura completa de fase (os intervalos $[-\frac{\pi}{2},+\frac{\pi}{2}]$ e $[\frac{\pi}{2},\frac{3\pi}{2}]$ completam $2\pi$).
 
 
 \begin{figure}[h!]
     \centering
-    \caption{Oscilação de 2 amostras (frequência máxima em qualquer $t_a$)}
+    \caption{Oscilação de 2 amostras (frequência máxima em qualquer $f_a$)}
         \includegraphics[width=\textwidth]{figuras/amostras2c_}
         \label{fig:amostras2}
 \end{figure}
 
-A figura ~\ref{fig:amostras2} exibe duas amostras e a componente espectral que contém. A decomposição de Fourier resulta neste caso em somente dois coeficientes $\{c_k=a_k-j.b_k\}_0^{\Lambda-1=1}$. O papel das amplitudes $a_k$ fica bem claro:
- $a_0$ é o deslocamento fixo\footnote{chamado de bias ou offset} e $a_1$ especifica a amplitude da oscilação em si. A frequência que possui a energia\footnote{Lembrando que as energias garantidamente se equivalem pela $\frac{1}{\Lambda} . \sum_{k=0}^{\Lambda -1}c_k^2 = \sum_{i=0}^{\Lambda-1}t_i^2$ (Teorema de Parseval)}
- $e_k=\frac{(c_k)^2}{\Lambda=2}$ é dada pela relação $f_k=k . \frac{f_a}{\Lambda=2} $.  Ou seja, no caso de duas amostras só temos energia nas frequências $f_0=0$ e $f_1=\frac{f_a}{\Lambda=2}=f_{\text{máx}}$.
+A figura ~\ref{fig:amostras2} exibe duas amostras e a componente espectral que contém. A decomposição de Fourier resulta neste caso em somente dois coeficientes $\{c_k=a_k-j.b_k\}_0^{\Lambda-1=1}$ relativos à frequências $\{f_k\}_0^1=\{w_k\frac{f_a}{2\pi}\}_0^1=\{k\frac{f_a}{\Lambda=2}\}_0^1=\{0,\frac{f_a}{2}=f_{\text{máx}}\}$
+com energias $e_k=\frac{(c_k)^2}{\Lambda=2}$. O papel das amplitudes $a_k$ fica bem claro:
+ $\frac{a_0}{2}$ é o deslocamento fixo\footnote{Chamado em vários contextos de bias ou offset.} e $\frac{a_1}{2}$ especifica a amplitude da oscilação em si.
+  é dada pela relação $f_k=k . \frac{f_a}{\Lambda=2}$.
 
 Este caso é de especial importância pois o mínimo necessário para representar uma oscilação são 2 amostras e disso resulta a frequência de Nyquist $f_{\text{máx}}=\frac{f_a}{2}$. Esta é a frequência máxima presente em um som amostrado com $f_a$ amostras por segundo\footnote{Qualquer sinal amostrado possui esta característica, não somente o som digitalizado.}.
 
 Vejamos o que acontece no caso de 3 amostras. Todas as sequências fixas $T_i$ de apenas 3 amostras também apresentam
-somente 1 frequência, pois sua primeira harmônica usaria 1,5 amostras e ultrapassa o limite inferior de 2 amostras mínimas (a frequência da harmônica ultrapassaria a de Nyquist pois:  $\; \frac{f_a}{3}.2 > \frac{f_a}{2} $). Se $\Lambda=3$, 
+somente 1 frequência, pois sua primeira harmônica usaria 1,5 amostras e ultrapassa o limite inferior de 2 amostras mínimas (a frequência da harmônica ultrapassaria a de Nyquist pois:  $\; \frac{2. f_a}{3} > \frac{f_a}{2} $). Se $\Lambda=3$, 
 os coeficiêntes $\{c_k\}_0^{\Lambda-1=2}$ da decomposição por Fourier apresentam-se em 
-3 componentes frequenciais. Uma delas é a frequência zero, as outras duas contribuem de forma igual na reconstrução da senóide com $f=f_a/3$.
+3 componentes frequenciais. Uma delas é relativa à frequência zero ($c_0$), as outras duas ($c_1$ e $c_2$) contribuem de forma igual na reconstrução da senóide com $f=f_a/3$.
 
 \begin{figure}[h!]
     \centering
@@ -352,15 +369,17 @@ os coeficiêntes $\{c_k\}_0^{\Lambda-1=2}$ da decomposição por Fourier apresen
 
 
 
-Partimos de $\Lambda$ amostras reais $t_i$ e temos $\Lambda$ coeficientes complexos $c_k=a_k+j.b_k$. Os coeficientes $c_k$ se equivalem dois a dois\footnote{Módulos iguais e fases com sinais opostos; $a_{k1}=a_{k2}$ e $b_{k1}=-b_{k2}$.} pois correspondem às frequências $f_k = k.\frac{f_a}{\Lambda}, \; k \in \{0...\Lambda-1\} $
- e quando $ f_k > f_{\text{máx}} = \frac{f_a}{2} $ (o que já exclui $f_0=0$ e $f_k=\frac{f_a}{2}$), a frequência $f_k$ é espelhada para $f_l=\frac{f_a}{2} - (f_k-\frac{f_a}{2})=f_a-f_k=f_a - k\frac{f_a}{\Lambda}=(\Lambda-k)\frac{f_a}{\Lambda} \Rightarrow f_k\equiv f_{\Lambda-k}$. 
+Sempre que partimos de $\Lambda$ amostras reais $t_i$ resultamos em $\Lambda$ coeficientes complexos $c_k=a_k+j.b_k$. Os coeficientes $c_k$ se equivalem dois a dois\footnote{Parte real igual e imaginária com sinal trocado: $a_{k1}=a_{k2}$ e $b_{k1}=-b_{k2}$. Como consequência temos módulos iguais e fases com sinais opostos} correspondendo às frequências $f_k = k\frac{f_a}{\Lambda}, \; k \in \{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \} $.
+Quando $k> \frac{\Lambda}{2} $
+a frequência $f_k$ é espelhada em $\frac{f_a}{2}$ da seguinte forma $f_k=\frac{f_a}{2} - (f_k-\frac{f_a}{2})=f_a-f_k=f_a - k\frac{f_a}{\Lambda}=(\Lambda-k)\frac{f_a}{\Lambda} \;\;\;\; \Rightarrow \;\;\;\; f_k\equiv f_{\Lambda-k} \; , \forall \;\; k>\frac{\Lambda}{2}$. 
+
  
  O mesmo pode ser observado com 
  $w_k=f_k.\frac{2\pi}{f_a}$ e lembrando da periodicidade $2\pi$, que resulta em $w_k=-w_{\Lambda-k}$. Como o coseno é uma função par e a tangente inversa é impar, as componentes em $w_k$ e $w_{\Lambda-k}$ se somam na equação de reconstrução das amostras reais mostrada em ~\ref{recomposicaoFourier}.
 
   Dito de outra forma, em uma decomposição de $\Lambda$ amostras, as $\Lambda$ componentes frequenciais $\{c_i\}_0^{\Lambda-1}$ resultantes
    são equivalentes em pares.
-   Excepcional excessão para $f_0$ e, no caso de $\Lambda$ ser par, de $f_{\Lambda/2}=f_{\text{máx}}=\frac{f_a}{2}$. Além disso, estas duas frequências (a frequência zero e a frequência máxima) não são representadas com variação de fase e, portanto, são estritamente reais. Assim, podemos 
+   Excepcional excessão para $f_0$ e, no caso de $\Lambda$ ser par, de $f_{\Lambda/2}=f_{\text{máx}}=\frac{f_a}{2}$ , ambas as componentes são isoladas, i.e. não existe outra componente na frequência além dela mesma. Além disso, estas duas frequências (a frequência zero e a frequência máxima) não são representadas com variação de fase e, portanto, são estritamente reais. Assim, podemos 
    concluir que o número $\tau$ de pares de coeficientes equivalentes é:
 
 \begin{equation}\label{coefsPareados}
@@ -396,7 +415,7 @@ Com $k \in \mathbb{N}$. A observação da equação de reconstrução para o sin
 mostra a combinação em fase das componentes em $w_k$ e $w_{\Lambda-k}$:
 
 \begin{equation}
-t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]+ \frac{ a_{\Lambda/2+1}}{\Lambda}.(1-\Lambda\% 2)
+t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]+ \frac{ a_{\Lambda/2}}{\Lambda}.(1-\Lambda\% 2)
 \end{equation}
 
 \begin{figure}[h!]
@@ -407,9 +426,14 @@ t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^
 \end{figure}
 
 
-Assim, a exemplo da figura ~\ref{fig:amostras3}, a transformada de Fourier de 3 amostras possui 2 coeficientes imaginários que possuem quantidades iguais de energia na mesma frequência.
+Assim, a exemplo da figura ~\ref{fig:amostras3}, a transformada de Fourier de 3 amostras possui 2 coeficientes frequenciais que possuem quantidades iguais de energia na mesma frequência.
 
-Com 4 amostras, podemos representar 1 ou 2 frequências em proporções diferentes. A figura ~\ref{fig:amostras4} mostra uma forma de onda de 4 amostras e suas duas componentes. Note que as contribuições individuais se somam de fato na forma de onda original, e que as curvaturas maiores são fruto da frequência mais aguda.
+Com 4 amostras, podemos representar 1 ou 2 frequências em proporções diferentes. A figura ~\ref{fig:amostras4} mostra uma 
+forma de onda de 4 amostras e suas duas componentes. 
+Note que as contribuições individuais se somam de fato na forma de onda 
+original, e que as curvaturas maiores são fruto da frequência mais aguda
+enquanto um deslocamento fixo da somatória das componentes é fruto
+da componente na frequência zero.
 
 A figura ~\ref{fig:formas4} explicita os harmônicos em 4 amostras nas formas de onda básicas das equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada} e figura ~\ref{fig:formasDeOnda}. Todas consistem em apenas 1 senóide, com excessão da dente de serra que possui os harmônicos pares.
 
@@ -434,11 +458,11 @@ A figura ~\ref{fig:amostras6} mostra as decomposições senoidais para o caso de
 \subsubsection{A nota básica}\label{notaBasica}
 
 Escolhamos $f$ tal que $f$ divida $f_a$  
- \footnote{Esta escolha facilita as demonstrações pois os períodos são quantidades inteiras de amostras. Transporemos esta limitação na prática com o uso de uma tabela de amostragem ou com o uso direto de funções periódicas,e.g. $t_i=sen(x.i)$. Veja próxima sessão.}. 
+ \footnote{Esta escolha facilita as demonstrações pois os períodos resultam em quantidades inteiras de amostras. Transporemos esta limitação na prática com o uso de uma tabela de amostragem ou com o uso direto de funções periódicas, e.g. $t_i=sen(x.i)$. Veja próxima sessão.}. 
 Uma sequência $T_i$ de amostras sonoras separadas por $\delta_a=1/f_a$ descreve uma nota musical de frequência $f$ Herz e duração $\Delta$ segundos se, e somente se, possuir a periodicidade $\lambda_f=f_a/f$ e tamanho $f_a . \Delta$:
 
 \begin{equation}
-T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{f_a . \Delta}=\{t_{i \; \% \left( \frac{f_a}{f} \right) } \}_0^{f_a . \Delta}
+T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{f_a . \Delta-1}=\{t_{i \; \% \left( \frac{f_a}{f} \right) } \}_0^{f_a . \Delta-1}
 \end{equation}
 
 Note que a nota por si só não especifica um timbre. Mesmo assim, faz-se necessária a escolha de uma forma de onda para que as amostras $t_i$ tenham um valor estabelecido individualmente. Um único período dentre as ondas básicas pode ser utilizado para a especificação da nota da seguinte forma:
@@ -452,7 +476,7 @@ L_i^{f , \delta_f } = \{ l_i^f \}_0^{\delta_f . f_a -1}=\{ l_i^f \}_0^{\lambda_f
 Então a sequência $T_i$ consistirá em uma nota de duração $\Delta$ e frequência $f$ se:
 
 \begin{equation}
-T_i^{f,\; \Delta}=\{t_i^f\}_0^{f_a . \Delta}=\{l^f_{i\,\%\left(\frac{f_a}{f}\right)}\}_0^{f_a . \Delta}
+T_i^{f,\; \Delta}=\{t_i^f\}_0^{f_a . \Delta-1}=\{l^f_{i\,\%\left(\frac{f_a}{f}\right)}\}_0^{f_a . \Delta-1}
 \end{equation}
 
 
@@ -467,13 +491,13 @@ sequências destas partículas. Caso somemos $N$ sequências ($T_{k,i}=\{t_{k,i}
 
 Pode-se completar com zeros para somar sequências de tamanhos diferentes. O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação.
 
-As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem $k$ notas musicais, sua concatenação em $t_i$ resultará em sequências musicais simples ou melodias:
+As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem $k$ notas musicais, sua concatenação em uma única sequência $T_i$ resultará em uma sequência musical simples ou melodia:
 
 \begin{equation}
-\{t_i\}_0^{\sum\Delta}=\{t_{k,i}\}_0^{\sum\Delta}, \;\; k\text{ menor inteiro } : \quad \Lambda_k > i -\sum_{j=0}^{k-1}\Lambda_j
+\{t_i\}_0^{\sum\Delta_k-1}=\{t_{l,i}\}_0^{\sum\Delta_k-1}, \;\; l\text{ menor inteiro } : \quad \Lambda_l > i -\sum_{j=0}^{l-1}\Lambda_j
 \end{equation}
 
-A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python no APÊNDICE XX e podem ser escutadas e vizualizadas nos links [][][].
+A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python no APÊNDICE XX e podem ser escutadas e vizualizadas nos links \ref{reducedLink} e \ref{quadrosLink}.
 
 Com isso estabelecemos nossa nota musical básica no som digital. Trabalharemos a seguir estas unidades, a evolução temporal de seus conteúdos e desenvolveremos as notas musicais com parâmetros que evoluem no tempo, como glissandos e envoltórias. 
 A filtragem de componentes e os ruídos finalizam sobre a constituição da nota musical como unidade isolada. A estruturação musical destas notas é então abordada do ponto de vista das estruturas fora do tempo (como as escalas), trajetórias cíclicas ou que convirjam ou divirjam.
@@ -512,14 +536,14 @@ sem restringir o escopo, além de ser um notável recurso de otimização
 computacional.
 
 
-\subsubsection{Tabela de Busca}
 
+\subsubsection{Tabela de Busca}
 
 Mais conhecido pelo termo em inglês, a \emph{Lookup table} (ou simplesmente
 LUT), é um procedimento simples que consiste em criar uma tabela
-de referência e coletar as amostras destas tabelas segundo a 
+de referência e coletar as amostras desta tabela segundo a 
 necessidade\footnote{Em contraposição ao cálculo das amostras individuais
-para cada caso.}. Em nosso caso, usaremos tabelas de busca para os
+de forma analítica.}. Em nosso caso, usaremos tabelas de busca para os
 sons criados, as notas. Assim, estas tabelas são unidimensionais e com
 valores reais. Além disso, a tabela consiste nas amostras
 de um período de onda, que usamos para sintetizar períodos
@@ -542,7 +566,7 @@ T_i^{f,\Delta}=\{t_i^f\}_0^{f_a . \Delta-1} = \{ \widetilde{l}_{\gamma_i \% \wid
 \end{equation}
 
 Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
-para sintetizar o som. Para o cálculo do inteiro $\gamma_i$, convencionamos
+para sintetizar o som em qualquer frequência. Para o cálculo do inteiro $\gamma_i$, convencionamos
 atribuir a ele o maior inteiro menor que $i.f\frac{\widetilde{\Lambda}}{f_a}$.
 Esta aproximação introduz um ruído, mas conseguimos que este ruído seja desprezível
 mesmo se o tomarmos como o maior inteiro acima da multiplicação
@@ -564,10 +588,10 @@ fração esta que é acrescida de $1$ a cada $1$ segundo. Multiplicado pelo comp
 Importantes considerações: $f$ é qualquer, só há limitantes nas frequências
 graves quando o tamanho da tabela $\widetilde{\Lambda}$ não é suficientemente grande para a taxa de amostragem
 $f_a$\footnote{Como citado acima, $\widetilde{\Lambda} = 1024$ é suficiente para sintetizar
-sequências $T_i^f$ com qualquer $f$ no espectro.}. O procedimento de busca em tabela
+sequências $T_i^f$ com qualquer $f$ no espectro audível.}. O procedimento de busca em tabela
 é computacionalmente bastante barato, substituindo cálculos por buscas simples (por isso geralmente
 é entendido como um processo de otimização). Salvo quando assinalado,
-a seguir usaremos este procedimento para todos os casos cabíveis pois
+no texto que segue usaremos este procedimento para todos os casos cabíveis pois
 simplifica diversas rotinas e é computacionalmente coerente.
 
 
@@ -594,13 +618,13 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 
 Desta forma, podemos calcular os elementos $t_i^{\;\overline{f_0,f_{\Lambda-1}}}$
 com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$. Note que na equação
-~\ref{freqLinear}, o termo $f_{\Lambda -1} - f_0$ é o âmbito do contra-domínio de $f_i$
+\ref{freqLinear}, o termo $f_{\Lambda -1} - f_0$ é o âmbito do contra-domínio de $f_i$
 e que $\Lambda -1$ é âmbito do domínio. Como $i$ varre o domínio $[0,\Lambda-1]$ e
 temos o deslocamento $f_0$ na imagem, $f_i$ varre o contra-domínio 
 na medida em que $i$ varre o domínio\footnote{Estas digressões são importantes
 para entendermos o significado musical do comportamento destas sequências de amostras.}.
 
-As equações ~\ref{freqLinear}, ~\ref{indiceLinear} e ~\ref{serieAmostralLin} são relativas à progressão linear
+As equações \ref{freqLinear}, \ref{indiceLinear} e \ref{serieAmostralLin} são relativas à progressão linear
 da frequência. Como assinalado, nossa percepção segue a progressão logarítmica:
 uma progressão de frequência
 \emph{percebida} como linear segue uma progressão exponencial\footnote{Ou,
@@ -628,11 +652,11 @@ f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
 \{t_i^{\;\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
 \end{equation}
 
-Onde usamos a equação ~\ref{indiceExponencial} para calcular a sequência $\{\gamma_i\}_0^{\Lambda-1}$ de índices para para
+Onde usamos a equação \ref{indiceExponencial} para calcular a sequência $\{\gamma_i\}_0^{\Lambda-1}$ de índices para para
 serem buscados na nossa tabela que contém um único período da forma de onda.
 Isso é explicitado na equação ~\ref{serieAmostralLog}, onde estabelecemos a relação
  $t_i^{\;\overline{f_0,f_{\Lambda-1}}}=\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}$.
-Note que a equação ~\ref{serieAmostralLog} se mantém (permanece idêntica à equação ~\ref{serieAmostralLin}).
+Note que a equação \ref{serieAmostralLog} se mantém (permanece idêntica à equação \ref{serieAmostralLin}).
 
 O termo $\frac{i}{\Lambda-1}$ varre o intervalo $[0,1]$ e podemos elevá-lo a uma potência
 para que o início da transição seja mais suave ou mais abrupto (compensado pelo final
@@ -652,7 +676,7 @@ Assim, para variações de amplitude, aplicamos as seguintes fórmulas:
 \{a_i\}_0^{\Lambda-1}=\left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}=\left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ com } a_0=1
 \end{equation}
 
-\begin{equation}
+\begin{equation}\label{transAmp}
 T_i^{'}=T_i \odot A_i = \{t_i . a_i\}_0^{\Lambda-1}=\left \{ t_i . (a_{\Lambda-1} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
 \end{equation}
 
@@ -662,19 +686,21 @@ Esta restrição faz com que nosso termo $a_{\Lambda-1}$ seja efetivamente a var
 Caso $\alpha=1$, a variação de amplitude segue exatamente a progressão geométrica que caracteriza
 a percepção linear.
 
-Para resultar em uma amplificação linear, basta usarmos umas série $\{a_i\}$ diferente:
+Para realizar um \emph{fade out} (diminuição progressiva do volume até o volume zero),
+podemos tomar $a_0=1$ e $a_{\Lambda-1}=0$. Para um \emph{fade in} (acréscimo progressivo de volume a partir do volume zero), podemos
+tomar $a_0=1$, $a_{\Lambda-1}=2$ e subtrair $1$ de toda sequência: $\{a_i'\}_0^{\Lambda-1}=\{a_i-1\}_0^{\Lambda-1}$.
+
+Para resultar em uma amplificação linear, basta usarmos uma sequência $\{a_i\}$ adequada:
 
 \begin{equation}
 a_i=a_0 + (a_{\Lambda-1}-a_0)\frac{i}{\Lambda-1}
 \end{equation}
 
-Com $a_0=1$ para preservar a amplitude inicial original.
-
-Aqui pode muito nos auxiliar a conversão de decibeis para amplitude apresentada na equação ~\ref{ampDec},
-resultando em:
+Aqui pode muito nos auxiliar a conversão de decibeis para amplitude apresentada na equação ~\ref{ampDec}.
+Junto à equação \ref{transAmp}, resulta na sequinte equação para uma transição de $V_{dB}$:
 
 \begin{equation}
-T_i^{'}=\left \{ t_i . (10^{\frac{V_{dB}}{20}} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
+T_i^{'}=\left \{ t_i (10^{\frac{V_{dB}}{20}} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
 \end{equation}
 
 para o caso geral de variações de amplitude segundo a progressão geométrica.
@@ -719,7 +745,7 @@ A tabela $\widetilde{M}_i$ de tamanho $\widetilde{\Lambda}_M$ e a sequência de 
  que é o padrão da oscilação da frequência enquanto
 a tabela $\widetilde{L}_i$ de tamanho $\widetilde{\Lambda}$ e a sequência de índices $\gamma_i$ formam $t_i$ que é o som em si.
 As variáveis $\mu$ e $\nu$ quantificam a intensidade do vibrato: $\mu$ é uma medida direta da quantidade
-de Herz envolvidos no limite superior da oscilação e $\nu$ é a medida direta de semitons envolvidos na oscilação.
+de Herz envolvidos no limite superior da oscilação e $\nu$ é a medida direta de semitons envolvidos na oscilação ($2\nu$ é o número de semitons entre os picos superioes e inferiores da oscilação de frequência do vibrato).
 Note que $\nu=\log_{2}\frac{f+\mu}{f} $ é conveniente neste caso pois o aumento máximo de frequência
 não equivale à diminuição máxima, mas a variação de semitons se mantém.
 
