@@ -761,37 +761,43 @@ a_i=10^{t_i' \frac{V_{dB}}{20}} = a_{\text{máx}}^{t_i'}
 T_i^{tr(f')}=\{ t_i^{tr(f')} \}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_i .10^{t_i' \frac{V_{dB}}{20}}    \}_0^{\Lambda-1}=\{t_i . a_{\text{máx}}^{t_i'}\}_0^{\Lambda-1}
 \end{equation}
 
-Onde $V_{dB}$ é profundidade da oscilação em decibeis do tremolo e $a_{\text{máx}}$ é o ganho máximo de amplitude envolvido.
-A medição em decibeis é bastante conveniente neste caso pois o aumento máximo de amplitude
+Onde $V_{dB}$ é profundidade da oscilação em decibeis do tremolo e $a_{\text{máx}}=10^{\frac{V_{dB}}{20}}$
+ é o ganho máximo de amplitude envolvido.
+A medição em decibeis é bastante pertinente pois o aumento máximo de amplitude
 não equivale à diminuição máxima relacionada, enquanto a diferença em decibeis se mantém.
 
-Com as equações ~\ref{vbrT}, ~\ref{vbrGamma}, ~\ref{vbrF}, ~\ref{vbrAux} e  ~\ref{vbrGamma}
-são utilizadas para síntese de frequência modulada (FM) nos casos em que $f'$ é
-maior que $20Hz$ onde as oscilações de frequência resultam em padrões complexos
-de componentes espectrais harmônicas e não harmônicas. As equações ~\ref{trA}
-e ~\ref{trT} (junto às ~\ref{vbrT} e ~\ref{vbrGamma} para a realização da sequência
-auxiliar $t_i'$) resultam na síntese de amplitude modulada (AM)\footnote{As sínteses
+As equações ~\ref{vbrT}, ~\ref{vbrGamma}, ~\ref{vbrF} e ~\ref{vbrAux}
+são utilizadas para síntese nos casos em que $f'$ é
+maior que $20Hz$ e as oscilações de frequência resultam em padrões complexos
+de componentes espectrais harmônicas e não harmônicas. É a chamada síntese
+por frequência modulada (FM).
+
+As equações ~\ref{trA} e ~\ref{trT}
+(junto às ~\ref{vbrT} e ~\ref{vbrGamma} para a realização da sequência auxiliar $t_i'$) 
+resultam na síntese chamada de amplitude modulada (AM)
+quando $f'$ é maior que $20Hz$\footnote{As sínteses
 FM e AM são técnicas com diversas amplicações na música e também em outras áreas,
 especialmente conhecidos são os usos telecomunicações para transferência de informações
 via ondas eletromagnéticas. O leitor interessado pode visitar os itens relacionados
-da nossa bibliografia para uma abordagem musical (veja especialmente ~\ref{} e ~\ref{})}.
+da nossa bibliografia para uma abordagem musical (veja especialmente ~\ref{} e ~\ref{})
+ou aproveitar nossa abordagem breve sobre o assunto nos usos musicais desta sessão, logo abaixo.}.
 
 \subsubsection{Aplicação de Filtros Digitais}
-Explicitaremos a aplicação de filtros por convolução
-e por equação a diferenças. As possibilidades
+ As possibilidades
 aqui são variadas e a complexidade facilmente
 foge ao escopo deste trabalho\footnote{A elaboração de filtros
 constitui uma área reconhecidamente complexa, com literatura
 e pacotes de software dedicados. 
 Recomendamos ao leitor
-interessado nossa bibliografia, em especial ~\ref{} e ~\ref{}.},
+interessado uma visita à nossa bibliografia, em especial ~\ref{} e ~\ref{}.},
 de forma que focamos em explicitar o que ocorre com as sequências
-de amostras nestes dois casos.
-
+de amostras e em descrever os procedimentos usuais.
 A aplicação de filtros pode
 ser parte constituinte da síntese ou poder ser feita posteriormente
 como parte dos processos tipicamente chamados de tratamento sonoro.
 
+Explicitaremos a aplicação de filtros por convolução
+e por equação a diferenças.
 
 \begin{itemize}
 
@@ -814,7 +820,15 @@ Ou seja, o som $\{t_i'\}$ resultante da convolução de $\{t_i\}$ com a resposta
 tem cada i-ésima amostra $t_i$ substituída pela soma de suas últimas amostras $t_{i-j}$
 multiplicadas pela resposta ao impulso em si ($h_i$). Isso é facilmente
 percebido pela visualização da convolução de sequências arbitrárias e dispomos
-para este fim a figura \ref{}.
+para este fim a figura \ref{fig:conv}.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Convolução (interpretação gráfica)}
+        \includegraphics[width=\textwidth]{figuras/convolucao_}
+        \label{fig:conv}
+\end{figure}
+
 
 Com este procedimento podemos aplicar reverberadores, equalizadores, delays
 e vários outros tipos de filtros para fins de tratamento sonoro ou
