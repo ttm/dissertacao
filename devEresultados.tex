@@ -609,7 +609,7 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 \end{equation}
 
 \begin{equation}\label{indiceLinear}
-\gamma_i=\left \lfloor i . f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor i  \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right ] \right \rfloor   \quad ,\quad \quad i \;\in\; \mathbb{N}, \quad i \;\in\; [0,\Lambda-1]
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i}  \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right ] \right \rfloor 
 \end{equation}
 
 \begin{equation}\label{serieAmostralLin}
@@ -645,7 +645,7 @@ f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
 \end{equation}
 
 \begin{equation}\label{indiceExponencial}
-\gamma_i=\left \lfloor i . f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor i f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right \rfloor   \;\; ,\quad \quad i \;\in\; \mathbb{N}, \quad i \;\in\; [0,\Lambda-1]
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i} f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right \rfloor
 \end{equation}
 
 \begin{equation}\label{serieAmostralLog}
@@ -732,13 +732,20 @@ f_i=f \left ( \frac{f + \mu }{f} \right )^{t_i'}=f . 2^{t_i'\frac{\nu}{12}}
 \end{equation}
 
 \begin{equation}\label{vbrGamma}
-\gamma_i = \left \lfloor i . f_i \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor i \frac{\widetilde{\Lambda}}{f_a}f \left ( \frac{f + \mu }{f} \right )^{t_i'}  \right \rfloor= \left \lfloor i \frac{\widetilde{\Lambda}}{f_a}f . 2^{t_i'\frac{\nu}{12}}  \right \rfloor
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_i \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f \left ( \frac{f + \mu }{f} \right )^{t_i'}  \right \rfloor= \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f . 2^{t_i'\frac{\nu}{12}}  \right \rfloor
 \end{equation}
 
 \begin{equation}\label{vbrT}
 T_i^{f, vbr(f')}=\{ t_i^{f,vbr(f')} \}_0^{\Lambda-1}=\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \}_0^{\Lambda-1}
 \end{equation}
 
+
+\begin{figure}[h!]
+    \centering
+    \caption{Espectrograma de um 'vibrato' senoidal de $3Hz$ e profundidade de uma oitava em uma dente de serra de $1000Hz$}
+        \includegraphics[width=\textwidth]{figuras/vibrato___}
+        \label{fig:vibrato}
+\end{figure}
 
 Para a correta realização do vibrato, é importante atenção para as duas tabelas e sequências.
 A tabela $\widetilde{M}_i$ de tamanho $\widetilde{\Lambda}_M$ e a sequência de índices $\gamma_i'$ formam a sequência $t_i'$
@@ -748,6 +755,15 @@ As variáveis $\mu$ e $\nu$ quantificam a intensidade do vibrato: $\mu$ é uma m
 de Herz envolvidos no limite superior da oscilação e $\nu$ é a medida direta de semitons envolvidos na oscilação ($2\nu$ é o número de semitons entre os picos superioes e inferiores da oscilação de frequência do vibrato).
 Note que $\nu=\log_{2}\frac{f+\mu}{f} $ é conveniente neste caso pois o aumento máximo de frequência
 não equivale à diminuição máxima, mas a variação de semitons se mantém.
+
+A Figura \ref{fig:vibrato} é o espectrograma de um vibrato artificial de uma nota em
+$1000Hz$ (entre um si e um dó) e cujo desvio da frequência atinge uma oitava
+para cima e para baixo. Note o padrão senoidal do vibrato e as compontentes harmônicas
+da dente de serra. Estas qualidades não são praticáveis em instrumentos
+usuais, introduzindo novidade nas possibilidades musicais. Qualquer forma de onda pode
+ser utilizada para gerar o som e o padrão de oscilação do vibrato. Também é crucial a
+frequência de oscilação e o desvido de altura envolvido\footnote{O desvio de altura
+é chamado profundidade e é dado por conveniência em semitons ou cents.}.
 
 O caso do tremolo é semelhante e $f'$, $\gamma_i'$ e $t_i'$ permanecem os mesmos. Calculamos
 a sequência de amplitudes a serem multiplicadas pela sequência original $t_i$ da
@@ -765,6 +781,17 @@ Onde $V_{dB}$ é profundidade da oscilação em decibeis do tremolo e $a_{\text{
  é o ganho máximo de amplitude envolvido.
 A medição em decibeis é bastante pertinente pois o aumento máximo de amplitude
 não equivale à diminuição máxima relacionada, enquanto a diferença em decibeis se mantém.
+
+A figura~\ref{fig:tremolo} mostra a amplitude das sequências $\{a_i\}_0^{\Lambda-1}$ e $\{t_i'\}_0^{\Lambda-1}$
+para três oscilações de um trêmolo com forma da dente de serra. A curvatura é devido à progressão logarítmica de
+intensidade. A frequência do trêmolo é de $1,5Hz$ pois $f_a=44,1kHz \; \Rightarrow \; \text{duração} = \frac{i_{\text{máx}}=82000}{f_a}= 2s \; \Rightarrow \; \frac{3\text{oscilações}}{2s}=1,5$ oscilações por segundo ($Hz$). 
+
+\begin{figure}[h!]
+    \centering
+    \caption{Tremolo de profundidade $12dB$ com padrão oscilatório de uma dente de serra $1,5Hz$ em uma senóide de $40Hz$}
+        \includegraphics[width=\textwidth]{figuras/tremolo}
+        \label{fig:tremolo}
+\end{figure}
 
 As equações ~\ref{vbrT}, ~\ref{vbrGamma}, ~\ref{vbrF} e ~\ref{vbrAux}
 são utilizadas para síntese nos casos em que $f'$ é
@@ -810,7 +837,8 @@ finita no tempo. Esta representação amostral é chamada
 de 'resposta ao impulso' $h_i$. Os filtros FIR são aplicados ao som
 digitalizado pela convolucão do som com sua 
 resposta ao impulso. Para nossos fins, esta
-convolução fica definida como:
+convolução fica definida como\footnote{Convencionamos $t_i=0$ para as
+amostras não definidas de antemão.}:
 
 \begin{equation}
 t_i'=(t*h)_i=\sum_{j=0}^{min(\Lambda_h,i)}h_{j} . t_{i-j}=\sum_{j=max(i-\Lambda_h,0)}^{i}t_j . h_{i-j}
@@ -820,12 +848,15 @@ Ou seja, o som $\{t_i'\}$ resultante da convolução de $\{t_i\}$ com a resposta
 tem cada i-ésima amostra $t_i$ substituída pela soma de suas últimas amostras $t_{i-j}$
 multiplicadas pela resposta ao impulso em si ($h_i$). Isso é facilmente
 percebido pela visualização da convolução de sequências arbitrárias e dispomos
-para este fim a figura \ref{fig:conv}.
+para este fim a figura \ref{fig:conv}. Observe que a resposta ao impulso $\{h_i\}$
+é disposta na forma retrograda e que mostramos na figura os cálculos explícitos
+das amostras $t_{12}'$ e $t_{32}'$ do sinal convoluído. O sinal resultante possui
+sempre o tamanho $\Lambda_t+\Lambda_h -1=\Lambda_{t'}$.
 
 \begin{figure}[h!]
     \centering
-    \caption{Convolução (interpretação gráfica)}
-        \includegraphics[width=\textwidth]{figuras/convolucao_}
+    \caption{Interpretação gráfica da convolução}
+        \includegraphics[width=\textwidth]{figuras/convolucao______}
         \label{fig:conv}
 \end{figure}
 
@@ -842,18 +873,34 @@ um estalo (cuja gravação se aproxima da resposta ao impulso diretamente) ou ao
 varredura de frequência (cuja gravação se aproxima da resposta em frequência).
 Ambas resultam em respostas ao impulso
 que, convoluídas com a sequência sonora, resultam nela própria
-com uma reverberação que se assemelha ao ambiente de medição.
+com uma reverberação que se assemelha à reverberação do ambiente 
+em que ocorreu a medição.
 
 Como exemplo de respostas ao impulso sintetizadas, pode-se
 descrever um perfil espectral, realizar a transformada inversa
 de fourier e convoluir o resultante com o som, realizando
 uma filtragem cujo perfil é próximo ao especificado inicialmente\footnote{Especialmente
 se for grande o número de amostras utilizado para especificar o perfil espectral
-do filtro.}. Outro exemplo simples é a aplicação de delays através
+do filtro. Este procedimento deve ser testado caso a caso pois estes procedimentos
+espectrais não possuem comportamento previsível.}.
+
+Outro exemplo simples é a aplicação de delays através
 da convolução do som com uma resposta ao impulso que possui um impulso
-em cada reincidência do som na linha de delays intensionada. Estes dois exemplos
-estão mostrados na figura ~\ref{}. Note que, pelo método citado,
-filtros dos tipos citados abaixo em ~\ref{passaBaixas},~\ref{passaAltas} podem ser sintetizados.
+em cada reincidência do som na linha de delays intensionada.
+Para ilustrar essa aplicação, dispomos a figura~\ref{fig:delays}
+em que pode-se observar o deslocamento causado pela convolução
+com o impulso. Dependendo da densidade dos impulsos, o resultado
+é de caráter rítmico (20 impulsos por segundo ou menos) ou de amálgama
+sonoro (20-40 impulsos por segundo ou mais). Neste último caso,
+ocorrem processos tipicamente vinculados à síntese granular e às
+equalizações.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Convolução com o impulso e linhas de delays}
+        \includegraphics[width=\textwidth]{figuras/delays_}
+        \label{fig:delays}
+\end{figure}
 
 
 \item Filtros de resposta ao impulso infinita (IIR)
@@ -954,6 +1001,11 @@ Geração estatística de ruídos, distribuições, nomes, equações de geraç�
 
 \subsubsection{Usos musicais}
 Oscilacoes, tremolos e vibratos. Variacoes
+~15Hz tremolo rugoso
+varias possibilidades de combinacao de intensidades, formas de onda e frequencias
+
+
+
 progressivas das oscilacoes dos tremolos e vibratos
 como AM e FM.
 ADSR
