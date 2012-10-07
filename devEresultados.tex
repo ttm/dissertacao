@@ -898,7 +898,7 @@ equalizações.
 \begin{figure}[h!]
     \centering
     \caption{Convolução com o impulso e linhas de delays}
-        \includegraphics[width=\textwidth]{figuras/delays_}
+        \includegraphics[width=\textwidth]{figuras/delays__}
         \label{fig:delays}
 \end{figure}
 
@@ -907,19 +907,49 @@ equalizações.
 
 Esta classe de filtros é
 conhecida pela sigla IIR (do inglês Infinite Impulse Response)
-e é caracterizada por possuir uma representação amostral (resposta
-ao impulso) infinita. Sua aplicação é usualmente feita pela equação
+e é caracterizada por possuir uma representação temporal
+infinita, i.e. a resposta ao impulso não converge para zero. Sua aplicação é usualmente feita pela equação
 a diferenças:
 
 \begin{equation}
-t_i' = \frac{1}{a_0}\left ( \sum_{j=0}^Jb_j . t_{i-j} \sum_{k=1}^Ka_k . t_{i-k}' \right )
+t_i' = \frac{1}{b_0}\left ( \sum_{j=0}^Ja_j . t_{i-j} - \sum_{k=1}^Kb_k . t_{i-k}' \right )
 \end{equation}
 
-Apontamos filtros IIR paradigmáticos e bastante úteis e usuais abaixo. Existem
-diversos métodos e ferrametas para a elaboração de filtros IIR,
-listamos abaixo uma seleção com fins didáticos e para consulta futura\footnote{Vale também
-apontar que todos os filtros abaixo são utilizados para equalização.}.
-São filtros de primeira ordem. Rotinas excelentes para cálculo de coeficientes
+com $b_0=1$ na grande maioria dos casos pois basta normalizarmos as variáveis
+resultando em filtro idêntico: $a_j'=\frac{a_j}{b_0}$ e $b_k'=\frac{b_k}{b_0} \Rightarrow b_0' = 1$.
+
+Apontamos filtros IIR bastante simples, úteis e usuais abaixo. Existem
+diversos métodos e ferrametas para a elaboração de filtros IIR
+e esta é uma seleção com fins didáticos e para consulta futura por
+utilidade.
+São filtros de primeira e segunda ordem bem comportados cujas
+filtragens realizadas dispomos na figura \ref{fig:iir}.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Filtragens realizadas pelos filtros IIR das equações \ref{eq:passa-baixas}, \ref{eq:passa-altas}, \ref{eq:passa-banda} e \ref{eq:rejeita-banda}}
+        \includegraphics[width=\textwidth]{figuras/iir_}
+        \label{fig:iir}
+\end{figure}
+
+No caso dos filtros simples, a frequência de corte $f_c$ é onde 
+o filtro realiza uma atenuação de $-3dB \approx 0.707 $ da energia original.
+No caso dos filtros passa e rejeita banda, esta mesma atenuação é
+resultado de duas especificações: $f_c$ e a largura de banda $bw$
+(em ambas as frequências $f \pm bw$ há uma atenuação de 0.707 da energia original).
+Para concordar com a nossa audição, as energias em cada frequência estão dispostas em escala
+logarítmica.
+
+Para conseguir filtros cujas respostas em frequência possuem formatos específicos,
+o recurso mais em mãos aqui é fazer cascata destes filtros (aplicá-los sucessivamente) ou usar um biquad\footnote{Abreviação
+de 'biquadrado' pois sua função de transferência possue dois polos e dois zeros, i.e. sua
+forma normal consiste em dois polinômios quadráticos formando uma fração com um no numerador e o outro no denominador
+$\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1+ b_1.z^{-1} +b_2 . z^{-2}}$.}.
+
+
+
+
+Rotinas para cálculo de coeficientes
 de filtros Chebichev\footnote{Filtros Butterworth e Elípticos podem
 ser considerados como casos específicos dos Filtros do tipo Chebichev.} podem
 ser encontradas nas nossas referências, em especial em ~\ref{JOS} e ~\ref{dspguide}.
@@ -928,21 +958,33 @@ Para uma exposição aprofundada do assunto, recomendamos ~\ref{Openheim}.
 \end{itemize}
 
 \begin{enumerate}
-\item Passa-baixas: polo simples com $a_0=0,15$ e $b_1=0,85$, fórmula geral para $x=e^{-2\pi f_c},\; x \in [0,1]$:
+\item Passa-baixas de polo simples. Fórmula geral:
+com a referência da frequência de corte $f_c \in (0,\frac{1}{2})$,
+fração da frequência de amostragem $f_a$
+em que se conseque aproximadamente uma atenuação de $-3dB$,
+calculamos os coeficientes do filtro IIR
+$a_0$ e $b_1$ 
+através da variável intermediária: $x \in [0,1]$:
 
-\begin{equation}
+\begin{equation}\label{eq:passa-baixas}
 \begin{split}
+x & =e^{-2\pi f_c} \\
 a_0 & =  1-x \\
 b_1 & =  x
 \end{split}
 \end{equation}
 
-\item Passa-altas: polo simples com $a_0=0,93$, $a_1=-0.93$ e $b_1=0.86$ para $x=e^{-2\pi f_c},\; x \in [0,1]$.
+\item Passa-altas de polo simples. A fórmula geral,
+com frequência de corte $f_c \in (0,\frac{1}{2})$, fração
+de $f_a$ em que conseguimos aproximadamente uma atenuação de $3dB$, calculada através da variável
+intermediária $x \in [0,1]$.
 
-\begin{equation}
+
+\begin{equation}\label{eq:passa-altas}
 \begin{split}
-a_0 & =  \frac{1+x}{2} \\
-a_1 & =  -\frac{1+x}{2} \\
+x & =e^{-2\pi f_c} \\
+a_0 & =  \frac{x+1}{2} \\
+a_1 & =  -\frac{x+1}{2} \\
 b_1 & =  x
 \end{split}
 \end{equation}
@@ -953,7 +995,7 @@ b_1 & =  x
 \item Nó: dadas a frequência $f$ e a largura de banda $BW$ (medida em 0,707 da amplitude),
 ambos dados como fracoes de $f_a$, portanto $f,BW \in [0,0,5]$,
 e as variáveis auxiliares $K$ e $R$ definidas como\footnote{A menor largura
-de banda que pode ser utilizada com precisão simples é por volta de $BW=0,0003$}:
+de banda que pode ser utilizada com precisão simples é por volta de $BW=0,0003$.}:
 
 \begin{equation}
 \begin{split}
@@ -964,7 +1006,7 @@ K & = \frac{1-2R\cos(2\pi f) + R^2}{2 - 2 \cos (2 \pi f)}
 
 Temos o filtro nó passa banda:
 
-\begin{equation}
+\begin{equation}\label{eq:passa-banda}
 \begin{split}
 a_0 & =  1 - K \\
 a_1 & =  2(K-R)\cos (2\pi f) \\
@@ -976,7 +1018,7 @@ b_2 & =  -R^2
 
 e o nó rejeita banda:
 
-\begin{equation}
+\begin{equation}\label{eq:rejeita-banda}
 \begin{split}
 a_0 & =  K \\
 a_1 & =  -2K\cos (2\pi f) \\

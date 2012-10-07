@@ -22,13 +22,14 @@ p.plot(s+6,'bo', label=r"$\{t_i\}_0^{\Lambda-1}$")
 p.plot(hi+3,'ro', label=r"$\{h_i=\delta_{\xi-i}\}_0^{\Lambda_h-1}$")
 p.plot(som,'go', label=r"$\{(t*h)_i\}_0^{\Lambda+\Lambda_h-2}$")
 p.legend(loc="upper right")
-p.xticks((0,ii-1,xi-1,xi+ii-1,ii+iii-2),(r"0",r"$\Lambda-1$",r"$\xi$",r"$\xi + \Lambda-1$", r"$\Lambda+\Lambda_h-2$"),fontsize='16')
+p.xticks((0,ii-1,xi-1,xi+ii-1,ii+iii-2, iii-1),(r"0", r"$\Lambda-1$",r"$\xi$", r"$\xi + \Lambda-1$", r"$\Lambda+\Lambda_h-2$", r"$\Lambda_h$"),fontsize='16')
 p.yticks((),())
 p.ylim(-1.3,7.3)
 p.xlim(-5,ii+iii-2+5)
 p.plot([ii-1,ii-1],[-2,9],"y", linewidth=5,alpha=.4)
+p.plot([len(hi)-1,len(hi)-1],[-2,9],"y", linewidth=5,alpha=.4)
 p.plot([xi -1,xi -1],[-2,9],"y", linewidth=5,alpha=.4)
-p.plot([xi +ii-1,xi +ii-1],[-2,9],"y", linewidth=5,alpha=.4)
+p.plot([xi +ii-1,xi +ii-1],[-2,9],"y-.", linewidth=5,alpha=.4)
 
 p.ylabel(r"deslocamento", fontsize=16, fontweight='bold')
 
@@ -46,8 +47,8 @@ xis=n.array([330, 173, 629, 387,  40, 617, 373, 522, 416, 326, 290, 264,  16, 83
 hi[xis]=n.ones(pulsos)
 som = n.convolve(hi,s)
 
-p.plot(hi+3,'ro', label=r"$\{h_i=\sum_{j=0}^{\Lambda_j-1}\delta_{\xi_j-i}\}_0^{\Lambda_h-1}$")
-p.plot(som,'go', label=r"$\{(t*h)_i\}_0^{\Lambda+\Lambda_h-2}$")
+p.plot(hi+3,'ro', label=r"$\{h_i=\sum_{j=0}^{\Lambda_j-1}\delta_{\xi_j-i}\}_0^{\Lambda_h-1}$", ms=8)
+p.plot(som,'go', label=r"$\{(t*h)_i\}_0^{\Lambda+\Lambda_h-2}$", ms=3)
 p.legend(loc="upper right")
 
 
@@ -71,8 +72,8 @@ xis=n.random.randint(0,iii-iii*3/100,pulsos)
 hi[xis]=n.ones(pulsos)
 som = n.convolve(hi,s)
 
-p.plot(hi+8,'ro', label=r"$\{h_i=\sum_{j=0}^{\Lambda_j-1}\delta_{\xi_j-i}\}_0^{\Lambda_h-1}$")
-p.plot(som,'go', label=r"$\{(t*h)_i\}_0^{\Lambda+\Lambda_h-2}$")
+p.plot(hi+8,'ro', label=r"$\{h_i=\sum_{j=0}^{\Lambda_j-1}\delta_{\xi_j-i}\}_0^{\Lambda_h-1}$", ms=6)
+p.plot(som,'go', label=r"$\{(t*h)_i\}_0^{\Lambda+\Lambda_h-2}$", markersize=2)
 p.legend(loc="upper right")
 
 

@@ -1,29 +1,26 @@
 #-*- coding: utf8 -*-
 import numpy as n, pylab as p
-ifft=n.fft.ifft
-ones=n.ones
-subplot=p.subplot
-plot=p.plot
-show=p.show
 
+N=60000 # N par
 
-N=101
+coeffs=n.random.random((N,2))*200-100
 
-e=ones(N)
-e[0]=0
-sa=[]
-for i in xrange(1,(N-1)/2+1):
-    e[i]=0
-    e[-i]=0
-    s=ifft(e)
-    sa.append(s)
+# Fazer complexos com os primeiros N elementos
+# depois normalizar para norma ==1
 
+j=n.complex(0,1)
 
+coeffs=coeffs[:,0]+coeffs[:,1]*j
+coeffs=coeffs/n.abs(coeffs)
 
+# real par, imaginaria impar
+coeffs[N/2+1:]=n.real(coeffs[1:N/2])[::-1] - j*n.imag(coeffs[1:N/2])[::-1]
 
-#i=0
-#for s in ss:
-    #i+=1
-    #subplot("%i1%i" % (len(ss),i))
-    #plot(s)
-#show()
+coeffs[0]=0.
+coeffs[N/2]=0.9
+
+noise=n.fft.ifft(coeffs)
+
+p.plot(n.real(noise))
+p.show()
+
