@@ -928,26 +928,33 @@ filtragens realizadas dispomos na figura \ref{fig:iir}.
 \begin{figure}[h!]
     \centering
     \caption{Filtragens realizadas pelos filtros IIR das equações \ref{eq:passa-baixas}, \ref{eq:passa-altas}, \ref{eq:passa-banda} e \ref{eq:rejeita-banda}}
-        \includegraphics[width=\textwidth]{figuras/iir_}
+        \includegraphics[width=\textwidth]{figuras/iir___}
         \label{fig:iir}
 \end{figure}
 
-No caso dos filtros simples, a frequência de corte $f_c$ é onde 
+No caso dos filtros de ordem simples, a frequência de corte $f_c$ é onde 
 o filtro realiza uma atenuação de $-3dB \approx 0.707 $ da energia original.
 No caso dos filtros passa e rejeita banda, esta mesma atenuação é
 resultado de duas especificações: $f_c$ e a largura de banda $bw$
-(em ambas as frequências $f \pm bw$ há uma atenuação de 0.707 da energia original).
-Para concordar com a nossa audição, as energias em cada frequência estão dispostas em escala
-logarítmica.
+pois em ambas as frequências $f \pm bw$ há uma atenuação de 0.707 da energia original.
+
+Existe amplificação do som no caso dos filtros passa e rejeita banda, quando a frequência
+de corte é baixa e a largura de banda é larga o suficiente. Nos agudos, quando a largura
+de banda é grande o suficiente, estes filtros apresentam
+somente um desvio do perfil esperado, expandindo a envoltória um pouco mais do lado grave da banda em
+evidência.
 
 Para conseguir filtros cujas respostas em frequência possuem formatos específicos,
-o recurso mais em mãos aqui é fazer cascata destes filtros (aplicá-los sucessivamente) ou usar um biquad\footnote{Abreviação
+o recurso mais simples a esta altura
+é fazer cascata destes filtros (aplicá-los sucessivamente).
+
+Outra possibilidade é usar o último filtro que desta
+coleção: o biquad\footnote{Abreviação
 de 'biquadrado' pois sua função de transferência possue dois polos e dois zeros, i.e. sua
 forma normal consiste em dois polinômios quadráticos formando uma fração com um no numerador e o outro no denominador
 $\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1+ b_1.z^{-1} +b_2 . z^{-2}}$.}.
-
-
-
+Existem diversas receitas para esta classe de filtro e
+recomendamos ~\ref{music-dsp} por possuir as 4 funcionalidades da figura \ref{fig:iir}.
 
 Rotinas para cálculo de coeficientes
 de filtros Chebichev\footnote{Filtros Butterworth e Elípticos podem
