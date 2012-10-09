@@ -948,27 +948,25 @@ Para conseguir filtros cujas respostas em frequência possuem formatos específi
 o recurso mais simples a esta altura
 é fazer cascata destes filtros (aplicá-los sucessivamente).
 
-Outra possibilidade é usar o último filtro que desta
-coleção: o biquad\footnote{Abreviação
+Outra possibilidade é usar alguma receita de filtro
+biquad\footnote{Abreviação
 de 'biquadrado' pois sua função de transferência possue dois polos e dois zeros, i.e. sua
 forma normal consiste em dois polinômios quadráticos formando uma fração com um no numerador e o outro no denominador
-$\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1+ b_1.z^{-1} +b_2 . z^{-2}}$.}.
-Existem diversas receitas para esta classe de filtro e
-recomendamos ~\ref{music-dsp} por possuir as 4 funcionalidades da figura \ref{fig:iir}.
-
-Rotinas para cálculo de coeficientes
+$\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1+ b_1.z^{-1} +b_2 . z^{-2}}$.}
+ou rotinas para cálculo de coeficientes
 de filtros Chebichev\footnote{Filtros Butterworth e Elípticos podem
-ser considerados como casos específicos dos Filtros do tipo Chebichev.} podem
-ser encontradas nas nossas referências, em especial em ~\ref{JOS} e ~\ref{dspguide}.
+ser considerados como casos específicos dos Filtros do tipo Chebichev.}.
+Ambas as possibilidades são exploradas
+por títulos em nossas referências, em especial em ~\ref{JOS} e ~\ref{dspguide} e na coleção de filtros da comunidade \emph{Music DSP}, da Universiade de Columbia \ref{music-dsp}.
 Para uma exposição aprofundada do assunto, recomendamos ~\ref{Openheim}.
 
 \end{itemize}
 
 \begin{enumerate}
-\item Passa-baixas de polo simples. Fórmula geral:
-com a referência da frequência de corte $f_c \in (0,\frac{1}{2})$,
+\item Passa-baixas de polo simples. A fórmula geral tem
+por referência da frequência de corte $f_c \in (0,\frac{1}{2})$,
 fração da frequência de amostragem $f_a$
-em que se conseque aproximadamente uma atenuação de $-3dB$,
+em que há aproximadamente uma atenuação de $3dB$,
 calculamos os coeficientes do filtro IIR
 $a_0$ e $b_1$ 
 através da variável intermediária: $x \in [0,1]$:
@@ -999,10 +997,11 @@ b_1 & =  x
 
 %\item Passa-banda
 %\item Rejeita-banda
-\item Nó: dadas a frequência $f$ e a largura de banda $BW$ (medida em 0,707 da amplitude),
-ambos dados como fracoes de $f_a$, portanto $f,BW \in [0,0,5]$,
-e as variáveis auxiliares $K$ e $R$ definidas como\footnote{A menor largura
-de banda que pode ser utilizada com precisão simples é por volta de $BW=0,0003$.}:
+\item Nó (\emph{notch filter}). Este filtro é parametrizado
+pela frequência central $f$ e a largura de banda $bw$
+(medida em 0,707 da amplitude, i.e. atenuação de $3dB$),
+ambos dados como fracoes de $f_a$, portanto $f,\; bw \in (0,0,5)$.
+Por conveniência definimos as variáveis auxiliares $K$ e $R$ como:
 
 \begin{equation}
 \begin{split}
@@ -1011,7 +1010,7 @@ K & = \frac{1-2R\cos(2\pi f) + R^2}{2 - 2 \cos (2 \pi f)}
 \end{split}
 \end{equation}
 
-Temos o filtro nó passa banda:
+A partir das quais temos dois filtros. O filtro passa banda:
 
 \begin{equation}\label{eq:passa-banda}
 \begin{split}
@@ -1023,7 +1022,7 @@ b_2 & =  -R^2
 \end{split}
 \end{equation}
 
-e o nó rejeita banda:
+e o filtro rejeita banda:
 
 \begin{equation}\label{eq:rejeita-banda}
 \begin{split}
@@ -1036,17 +1035,82 @@ b_2 & =  -R^2
 \end{equation}
 
 
-\item Biquad: pela especificação de uma frequência central, da qualidade
-e da intensidade do filtro, este filtro é simples e usual para áudio,
-permitindo ajustes mais finos. Diversas receitas podem ser encontradas
-na literatura, recomendamos especialmente as diferentes especificações
-em ~\ref{musicDSP} e ~\ref{dspguide}.
+%\item Biquad: pela especificação de uma frequência central, da qualidade
+%e da intensidade do filtro, este filtro é simples e usual para áudio,
+%permitindo ajustes mais finos. Diversas receitas podem ser encontradas
+%na literatura, recomendamos especialmente as diferentes especificações
+%em ~\ref{musicDSP} e ~\ref{dspguide}.
 
 \end{enumerate}
 
 \subsubsection{Ruídos}
-Geração estatística de ruídos, distribuições, nomes, equações de geração.
+De forma geral, os sons sem altura definida 
+são chamados ruídos.
+Estes sons estão presentes como constituintes importantes dos sons musicais de altura definida,
+como os ruídos presentes nas notas do piano, do violino, etc. Além disso, os instrumentos
+de percussão, em grande parte, não possuem altura definida e seus sons
+são muitas vezes compreendidos como ruídos. Na música eletrônica (incluindo
+a eletroacústica), os ruídos possuem usos amplos, diversificados e comumente
+idiomáticos.
 
+A ausência de uma altura definida é fruto da ausência de características
+harmônicas perceptíveis nas componentes do som. Assim, pode-se inferir
+as incontáveis possibilidades de gerar ruídos. A mais imediata é a utilização
+de valores aleatórios para a geração da sequência sonora $T_i$. Este
+é um método atraente, visto a disponibilidade
+das consagradas distribuições de probabilidade em diversas linguagens de programação,
+mas os resultados não são tão uteis, tendendo geralmente ao ruído branco
+e com difíceis previsões do espectro resultante.
+
+A outra possibilidade é a geração de ruído através do espectro desejado. A partir
+dele, executamos a transformada inversa de fourier. Neste caso, é importante
+que realizemos a distribuição espectral com cuidado pois queremos um perfil
+do módulo do espectro, e a fase é aleatória\footnote{Caso utilizemos a mesma fase
+(ou fases com forte correlação) para
+as componentes envolvidas, o som sintetizado possuirá energia bastante concentrada
+em alguns trechos.}.
+
+Abaixo elencamos alguns ruídos chamados \emph{coloridos} por terem
+sido associados a cores. Lidaremos somente com ruídos de espectro estático.
+
+\begin{itemize}
+
+\item O ruído branco possui este nome por possuir energia distribuida
+igualmente por todas as frequências. Podemos obter a realização
+do ruído branco com as transformada inversa dos seguintes coeficientes
+para $\Lambda$:
+
+
+\begin{equation}\label{eq:ruido-branco}
+\begin{split}
+c_0 & =0 \quad \text{pois não queremos bias} \\
+c_i & =e^{j.x}\;,\;\; x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; [1, \, \Lambda/2-1] \\
+c_{\Lambda/2} & = 10^{-\frac{1}{20}} \approx 0.89 \quad \text{se $\Lambda$ par}\\ 
+c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \Lambda/2
+\end{split}
+\end{equation}
+
+O valor de $c_i$ calculado pela exponencial é apenas um artifício para resultar em módulo unitário e fase aleatória. Já $c_{\Lambda/2}$ é sempre puramente real (como vimos na sessão anterior) e possui a queda de $1dB$ pois não é resultande de duas componentes como as outras frequências, que por isso recebem $1dB$ adicional ($1dB$ equivale à intensidade adicionada com uma fonte a mais).
+
+\item O ruído rosa possui uma queda de $3dB$ por oitava. Este ruído é muito usual no teste de equipamentos e montagens de aparelhos além de presença destacada na natureza. 
+
+\begin{equation}
+\begin{split}
+f_i & = i \frac{f_a}{\Lambda} \\
+\alpha_i & = (10^{-\frac{3}{20}})^{log_2 \left ( \frac{f_i}{f_{\text{min}}} \right )} \;\;, \quad f_{\text{min}} \approx 15 Hz \\
+c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \\
+c_i & =e^{j.x} . \alpha_i\;,\;\; x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; [i_0...\Lambda/2-1] \\
+c_{\Lambda/2} & = 10^{-\frac{1}{20}} . \alpha_{\Lambda/2} \quad \text{se $\Lambda$ par}\\ 
+c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \Lambda/2
+\end{split}
+\end{equation}
+
+
+\end{itemize}
+
+
+
+%Geração estatística de ruídos, distribuições, nomes, equações de geração.
 
 \subsubsection{Usos musicais}
 Oscilacoes, tremolos e vibratos. Variacoes

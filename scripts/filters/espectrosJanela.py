@@ -3,7 +3,7 @@ import numpy as n, pylab as p
 
 N=60000 # N par
 
-coeffs=n.random.random((N,2))*200-100
+coeffs=n.random.random((N,2))-1
 
 # Fazer complexos com os primeiros N elementos
 # depois normalizar para norma ==1
