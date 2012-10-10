@@ -1059,7 +1059,7 @@ as incontáveis possibilidades de gerar ruídos. A mais imediata é a utilizaç�
 de valores aleatórios para a geração da sequência sonora $T_i$. Este
 é um método atraente, visto a disponibilidade
 das consagradas distribuições de probabilidade em diversas linguagens de programação,
-mas os resultados não são tão uteis, tendendo geralmente ao ruído branco
+mas os resultados não são tão úteis, tendendo geralmente ao ruído branco
 e com difíceis previsões do espectro resultante.
 
 A outra possibilidade é a geração de ruído através do espectro desejado. A partir
@@ -1077,14 +1077,13 @@ sido associados a cores. Lidaremos somente com ruídos de espectro estático.
 
 \item O ruído branco possui este nome por possuir energia distribuida
 igualmente por todas as frequências. Podemos obter a realização
-do ruído branco com as transformada inversa dos seguintes coeficientes
-para $\Lambda$:
+do ruído branco com a transformada inversa dos seguintes coeficientes:
 
 
 \begin{equation}\label{eq:ruido-branco}
 \begin{split}
 c_0 & =0 \quad \text{pois não queremos bias} \\
-c_i & =e^{j.x}\;,\;\; x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; [1, \, \Lambda/2-1] \\
+c_i & =e^{j.x}\;,\;\; j^2=-1 \;, \;\; x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; [1, \, \frac{\Lambda}{2}-1] \\
 c_{\Lambda/2} & = 10^{-\frac{1}{20}} \approx 0.89 \quad \text{se $\Lambda$ par}\\ 
 c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \Lambda/2
 \end{split}
@@ -1094,20 +1093,72 @@ O valor de $c_i$ calculado pela exponencial é apenas um artifício para resulta
 
 \item O ruído rosa possui uma queda de $3dB$ por oitava. Este ruído é muito usual no teste de equipamentos e montagens de aparelhos além de presença destacada na natureza. 
 
-\begin{equation}
+\begin{equation}\label{eq:rosa}
 \begin{split}
-f_i & = i \frac{f_a}{\Lambda} \\
-\alpha_i & = (10^{-\frac{3}{20}})^{log_2 \left ( \frac{f_i}{f_{\text{min}}} \right )} \;\;, \quad f_{\text{min}} \approx 15 Hz \\
+f_i & = i \frac{f_a}{\Lambda} \;, \;\; \quad i \leq \frac{\Lambda}{2} \\
+\alpha_i & = (10^{-\frac{3}{20}})^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )} \;\;, \quad f_{\text{min}} \approx 15 Hz \\
 c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \\
-c_i & =e^{j.x} . \alpha_i\;,\;\; x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; [i_0...\Lambda/2-1] \\
+c_i & =e^{j.x} . \alpha_i\;,\;\; j^2=-1 \;, \;\;\  x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; [i_0, \frac{\Lambda}{2}-1] \\
 c_{\Lambda/2} & = 10^{-\frac{1}{20}} . \alpha_{\Lambda/2} \quad \text{se $\Lambda$ par}\\ 
 c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \Lambda/2
 \end{split}
 \end{equation}
 
+A frequência mínima $f_{\text{min}}$ pode ser escolhida com base no limite da audição, pois não escutamos frequência absoluta abaixo de $\approx\; 20Hz$ como altura.
+
+O resto dos ruídos podem ser feitos com base neste procedimento descrito para 
+o ruído rosa. Basta que modifiquemos alguns detalhes. Em especial a equação que define $\alpha_i$.
+
+\item O ruído marrom deve seu nome ao Robert Brown, que descobriu o movimento browniano.
+Embora esta origem seja um tanto díspar do que poderiamos considerar uma associação ligítima com a cor marrom, o ruído ficou consagrado com este nome. De qualquer forma, é bastante comum concordarmos que, dados os ruídos branco e rosa, ao ruído marrom, menos estridente,
+é satisfatória a associação com o ruído marrom.
+
+O que caracteriza este ruído é a queda de $6dB$ por oitava. Desta forma, basta modificarmos a equação de $\alpha_i$ 
+no conjunto \ref{eq:rosa} para:
+
+\begin{equation}
+\alpha_i=(10^{-\frac{6}{20}})^{\log _2 \left( \frac{f_i}{f_{\text{min}}} \right )}
+\end{equation}
+
+\item Ruído azul é aquele em que há um ganho de $3dB$ por oitava em uma banda limitada. Para
+a síntese deste ruído, basta estipularmos a frequência mínima $f_{\text{min}}$ e a frequência
+máxima $f_{\text{máx}}$. Assim, também com base no conjunto de equações \ref{eq:rosa}, 
+basta atentarmos para as sequintes identidades:
+
+\begin{equation}\label{eq:azul}
+\begin{split}
+\alpha_i & = (10^{\frac{3}{20}})^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )} \\
+c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \;\; \text{ou} \;\; f_i>f_{\text{máx}} \\
+\end{split}
+\end{equation}
+
+\item O ruído violeta é similar ao ruído azul, mas o ganho é de $6dB$ por oitava:
+
+\begin{equation}\label{eq:violeta}
+\alpha_i = (10^{\frac{6}{20}})^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )} \;\;, \quad f_{\text{min}} \approx 15 Hz \\
+\end{equation}
+
+\item O ruído preto possui perdas de mais de $6dB$ por oitava, assim:
+
+\begin{equation}
+\alpha_i=(10^{-\frac{\beta}{20}})^{\log _2 \left( \frac{f_i}{f_{\text{min}}} \right )}\;\;, \quad \beta > 6
+\end{equation}
+
+
+
+\item Um pouco diferente dos exemplos acima é o ruído cinza, definido como
+um ruído branco sujeito a uma das curvas iso-audíveis. Como estas curvas são resultados
+experimentais, precisamos neste caso da curva para a realização dos fatores multiplicativos
+$\alpha_i$.
 
 \end{itemize}
 
+Com base nestes ruídos expostos podemos prever a infinidade de ruídos utilizados. Importante
+neste momento é entender que foram expostos somente ruídos com espectro estático. Existem classificações
+de ruídos com variações do espectro no decorrer do tempo. Existem também ruídos que
+são fundamentalmente transientes, como os clicks e os chirps. O primeiro é modelado
+facilmente por um impulso relativamente isolado, enquanto o segundo é uma varredura rápida de 
+alguma banda de frequência.
 
 
 %Geração estatística de ruídos, distribuições, nomes, equações de geração.
