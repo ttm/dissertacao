@@ -1080,7 +1080,7 @@ igualmente por todas as frequências. Podemos obter a realização
 do ruído branco com a transformada inversa dos seguintes coeficientes:
 
 
-\begin{equation}\label{eq:ruido-branco}
+\begin{equation}\label{eq:branco}
 \begin{split}
 c_0 & =0 \quad \text{pois não queremos bias} \\
 c_i & =e^{j.x}\;,\;\; j^2=-1 \;, \;\; x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; [1, \, \frac{\Lambda}{2}-1] \\
@@ -1116,7 +1116,7 @@ Embora esta origem seja um tanto díspar do que poderiamos considerar uma associ
 O que caracteriza este ruído é a queda de $6dB$ por oitava. Desta forma, basta modificarmos a equação de $\alpha_i$ 
 no conjunto \ref{eq:rosa} para:
 
-\begin{equation}
+\begin{equation}\label{eq:marrom}
 \alpha_i=(10^{-\frac{6}{20}})^{\log _2 \left( \frac{f_i}{f_{\text{min}}} \right )}
 \end{equation}
 
@@ -1140,7 +1140,7 @@ c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \;\; \text{ou} \;\; f_i>f_{
 
 \item O ruído preto possui perdas de mais de $6dB$ por oitava, assim:
 
-\begin{equation}
+\begin{equation}\label{eq:preto}
 \alpha_i=(10^{-\frac{\beta}{20}})^{\log _2 \left( \frac{f_i}{f_{\text{min}}} \right )}\;\;, \quad \beta > 6
 \end{equation}
 
@@ -1160,6 +1160,21 @@ são fundamentalmente transientes, como os clicks e os chirps. O primeiro é mod
 facilmente por um impulso relativamente isolado, enquanto o segundo é uma varredura rápida de 
 alguma banda de frequência.
 
+Os ruídos das equações \ref{eq:branco}, \ref{eq:rosa}, \ref{eq:marrom},
+\ref{eq:azul}, \ref{eq:violeta} estão na figura \ref{fig:ruidos}. Vale notar
+que os espectros foram feitos com a mesma fase nos coeficientes, de forma que
+pode-se observar a contribuição dos harmônicos agudos no traçado geral dado
+pelas frequências graves e muito explícito no ruído marrom.
+
+
+
+
+\begin{figure}[h!]
+    \centering
+    \caption{Filtragens realizadas pelos filtros IIR das equações \ref{eq:passa-baixas}, \ref{eq:passa-altas}, \ref{eq:passa-banda} e \ref{eq:rejeita-banda}}
+        \includegraphics[width=\textwidth]{figuras/ruidos___}
+        \label{fig:ruidos}
+\end{figure}
 
 %Geração estatística de ruídos, distribuições, nomes, equações de geração.
 
