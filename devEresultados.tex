@@ -1138,7 +1138,7 @@ c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \;\; \text{ou} \;\; f_i>f_{
 \alpha_i = (10^{\frac{6}{20}})^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )} \;\;, \quad f_{\text{min}} \approx 15 Hz \\
 \end{equation}
 
-\item O ruído preto possui perdas de mais de $6dB$ por oitava, assim:
+\item O ruído preto possui perdas maiores que $6dB$ por oitava, assim:
 
 \begin{equation}\label{eq:preto}
 \alpha_i=(10^{-\frac{\beta}{20}})^{\log _2 \left( \frac{f_i}{f_{\text{min}}} \right )}\;\;, \quad \beta > 6
@@ -1179,6 +1179,97 @@ pelas frequências graves e muito explícito no ruído marrom.
 %Geração estatística de ruídos, distribuições, nomes, equações de geração.
 
 \subsubsection{Usos musicais}
+A este ponto as possibilidades musicais explodiram. Possuímos unidades
+musicais com características próprias de altura (dada pela frequência),
+tímbre (dada pela forma de onda),
+volume (dada pela intensidade) e duração (dada pelo número de amostras).
+Em uma nota, estas características podem ser tratadas
+de forma absoluta ou ao longo de sua duração,
+com a única excessão da duração em si.
+
+Desta forma, os usos musicais que apresentamos é uma coleção de possibilidades
+com o objetivo de exemplificar manipulações sonoras que resultem algo
+musical, por razões variadas e abordadas mais a fundo na próxima sessão.
+
+Uma primeira possibilidade interessante é o estabelecimento de vínculos
+entre os parâmetros do trêmolo e do vibrato e algum parâmetro da nota básica,
+digamos a frequência. Assim, podemos estabelecer que quanto mais aguda é a nota,
+mais alta é a frequência do vibrato e do trêmolo mas menor a sua profundidade.
+Desta forma, tomando por base as equações \ref{vbrGamma}, \ref{vbrF} e \ref{trA}
+podemos escrever:
+
+\begin{equation}
+\begin{split}
+f^{vbr} = f^{tr} & = func_a(f) \\
+\nu & = func_b(f) \\
+V_{dB} & = func_c(f)
+\end{split}
+\end{equation}
+
+Com $f^{vbr}$ e $f^{tr}$ sendo $f'$ nas equações de referência, ou seja, a frequência
+de oscilação do vibrato e do tremolo. Já $\nu$ e $V_{dB}$ são as profundidades
+do vibrato e do tremolo, respectivamente. A montagem musical 
+\emph{tremolos, vibratos e a frequência} explora
+recursos como este e variações da forma de onda da oscilação. As possibilidades
+são numerosas e ricas e, aliás, os tremolos e os vibratos naturais ocorrem
+juntos, i.e. quase todo tremolo natural também apresenta oscilação de frequência
+e vice versa.
+
+Estas oscilações são ornamentos muito apreciados e possuem nomes
+específicos. Em linguagem pianística,
+os tremolos são ocorrências em que se alternam rapidamente 2 notas (com
+e casos de expansão), ou seja, seriam mais facilmente associados aos vibratos
+segundo a nomenclatura que estamos usando\footnote{Nossa nomenclatura tem por base
+a teoria musical tradicional, que abarca nomenclaturas de diversos intrumentos e
+tradições, de forma que não conflui com algumas definições de domínios mais específicos.}.
+
+Algo interessante ocorre se aumentarmos progressivamente $f'$.
+Primeiramente o limiar de frequência
+para audição do fenômeno sonoro como
+altura ($\approx 20Hz$) gera rugosidades para
+ambos tremolos e vibratos. A sequência \emph{Rugosidades}
+explora este limiar com concomitâncias de tremolos e vibratos na mesma
+voz, com intensidades e formas de onda diferentes.
+
+Se continuarmos aumentando a frequência, deixamos de ouvir estas oscilações
+como eventos identificáveis. Neste caso, as oscilações se apresentam como espectro
+audível como altura, $f'$ e a forma de onda realizam alterações espectrais no som
+original $T_i$ de formas diferentes para os tremolos e para os vibratos, são as 
+chamadas sínteses AM (Amplitude Modulation) e FM (Frequency Modulation).
+Estas são técnicas muito poderosas e conhecidas, com aplicações em sintetizadores
+históricos como o Yamaha XXX e com aplicações fora da música, como em telecomunicações
+(ex. radios AM e FM).
+
+Para nosso caso, em resumo, podemos entender a síntese FM através do caso entre senóides
+e decompor os sinais em seus espectros de Fourier (i.e. senoidais) para casos mais complexos.
+Assim, a síntese FM realizada com um vibrato de frequência $f'$ em um som $T_i$ de frequência $f$
+gera bandas centradas em $f$ e distantes $f'$ entre si:
+
+\begin{equation}
+\begin{split}
+\{t_i'\}_0^{\Lambda -1} & = \left \{ \cos(f . 2 \pi \frac{i}{\Lambda-1} + \nu . sen( f' . 2 \pi \frac{i}{\Lambda-1} )  ) \right \}_0^{\Lambda-1}  = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\nu) \cos \left ( f . 2 \pi \frac{i}{\Lambda-1} + k . f' . 2 \pi \frac{i}{\Lambda-1} \right )  \right \}_0^{\Lambda-1} = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\nu) \cos \left ( (f+k.f') . 2 \pi \frac{i}{\Lambda-1} \right )  \right \}_0^{\Lambda-1}
+\end{split}
+\end{equation}
+
+onde:
+
+\begin{equation}
+J_k(v) = 
+\end{equation}
+
+
+
+
+
+
+filtro parametrizado auto com fmin fmax min e erro admitido (gera fir)
+som de radio com filtragem q tira o que nao estiver entre 700Hz e 3kHz
+chorus c a soma de varios do mesmo com pequenas variacoes de freq, amp
+e flitragens.
+
+
 Oscilacoes, tremolos e vibratos. Variacoes
 ~15Hz tremolo rugoso
 varias possibilidades de combinacao de intensidades, formas de onda e frequencias
