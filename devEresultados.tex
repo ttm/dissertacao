@@ -1243,21 +1243,35 @@ históricos como o Yamaha XXX e com aplicações fora da música, como em teleco
 Para nosso caso, em resumo, podemos entender a síntese FM através do caso entre senóides
 e decompor os sinais em seus espectros de Fourier (i.e. senoidais) para casos mais complexos.
 Assim, a síntese FM realizada com um vibrato de frequência $f'$ em um som $T_i$ de frequência $f$
+e duração $\Delta$ segundos (assumimos $\Lambda = \Delta . f_a $ amostras)
 gera bandas centradas em $f$ e distantes $f'$ entre si:
 
 \begin{equation}
 \begin{split}
-\{t_i'\}_0^{\Lambda -1} & = \left \{ \cos(f . 2 \pi \frac{i}{\Lambda-1} + \nu . sen( f' . 2 \pi \frac{i}{\Lambda-1} )  ) \right \}_0^{\Lambda-1}  = \\
- & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\nu) \cos \left ( f . 2 \pi \frac{i}{\Lambda-1} + k . f' . 2 \pi \frac{i}{\Lambda-1} \right )  \right \}_0^{\Lambda-1} = \\
- & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\nu) \cos \left ( (f+k.f') . 2 \pi \frac{i}{\Lambda-1} \right )  \right \}_0^{\Lambda-1}
+\{t_i'\}_0^{\Lambda -1} & = \left \{ \cos \left [f . 2 \pi \frac{i}{f_a-1} + \mu . sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right ) \right ] \right \}_0^{\Lambda-1}  = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ f . 2 \pi \frac{i}{f_a-1} + k . f' . 2 \pi \frac{i}{f_a-1} \right ]  \right \}_0^{\Lambda-1} = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ (f+k.f') . 2 \pi \frac{i}{f_a-1} \right ]  \right \}_0^{\Lambda-1}
 \end{split}
 \end{equation}
 
-onde:
+onde 
+\begin{equation}
+J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \quad , \quad \overline{k} = k \% 2 \;\;,\;\; k \in \mathbb{N}
+\end{equation}
+é a função de Bessel \cite{BesselCCRMA,JOSFM}. Note que, nestas equações, a variação de frequência não respeita a progressão geométrica de frequência que acompanha a percepçao de altura. Caso utilizemos as equações \ref{vbrF} teríamos uma distribuição um pouco diferente dos harmônicos:
+
 
 \begin{equation}
-J_k(v) = 
+\begin{split}
+\{t_i'\}_0^{\Lambda -1} & = \left \{ \cos \left [f_i . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  = \left \{ \cos \left [f\left ( \frac{f+\mu}{f} \right )^{sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )} . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  =  \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ f . 2 \pi \frac{i}{f_a-1} + k . f' . 2 \pi \frac{i}{f_a-1} \right ]  \right \}_0^{\Lambda-1} = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ (f+k.f') . 2 \pi \frac{i}{f_a-1} \right ]  \right \}_0^{\Lambda-1}
+\end{split}
 \end{equation}
+
+
+
+
 
 
 
