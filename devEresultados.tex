@@ -485,7 +485,7 @@ T_i^{f,\; \Delta}=\{t_i^f\}_0^{f_a . \Delta-1}=\{l^f_{i\,\%\left(\frac{f_a}{f}\r
 Em posse da nota básica, podemos montar estruturas musicais com
 sequências destas partículas. Caso somemos $N$ sequências ($T_{k,i}=\{t_{k,i}\}, \;\; k \in 0...N-1$) de mesmo tamanho, seus conteúdos espectrais serão sobrepostos e a isso damos o nome de mixagem:
 
-\begin{equation}
+\begin{equation}\label{ex:mixagem}
 \{t_i\}=\left \{ \sum_{k=0}^{N-1}t_{k,i} \right \}
 \end{equation}
 
@@ -1215,13 +1215,11 @@ são numerosas e ricas e, aliás, os tremolos e os vibratos naturais ocorrem
 juntos, i.e. quase todo tremolo natural também apresenta oscilação de frequência
 e vice versa.
 
-Estas oscilações são ornamentos muito apreciados e possuem nomes
+Estas oscilações - aplicadas à amplitude, frequência, posição - são ornamentos muito apreciados e possuem nomes
 específicos. Em linguagem pianística,
 os tremolos são ocorrências em que se alternam rapidamente 2 notas (com
-e casos de expansão), ou seja, seriam mais facilmente associados aos vibratos
-segundo a nomenclatura que estamos usando\footnote{Nossa nomenclatura tem por base
-a teoria musical tradicional, que abarca nomenclaturas de diversos intrumentos e
-tradições, de forma que não conflui com algumas definições de domínios mais específicos.}.
+casos de expansão do conceito), ou seja, seriam mais facilmente associados aos vibratos
+segundo a nomenclatura aqui utilizada\footnote{Veja nosso glossário.}.
 
 Algo interessante ocorre se aumentarmos progressivamente $f'$.
 Primeiramente o limiar de frequência
@@ -1232,7 +1230,7 @@ explora este limiar com concomitâncias de tremolos e vibratos na mesma
 voz, com intensidades e formas de onda diferentes.
 
 Se continuarmos aumentando a frequência, deixamos de ouvir estas oscilações
-como eventos identificáveis. Neste caso, as oscilações se apresentam como espectro
+como eventos identificáveis. Neste caso, as oscilações se apresentam na forma de espectro
 audível como altura, $f'$ e a forma de onda realizam alterações espectrais no som
 original $T_i$ de formas diferentes para os tremolos e para os vibratos, são as 
 chamadas sínteses AM (Amplitude Modulation) e FM (Frequency Modulation).
@@ -1243,7 +1241,7 @@ históricos como o Yamaha XXX e com aplicações fora da música, como em teleco
 Para nosso caso, em resumo, podemos entender a síntese FM através do caso entre senóides
 e decompor os sinais em seus espectros de Fourier (i.e. senoidais) para casos mais complexos.
 Assim, a síntese FM realizada com um vibrato de frequência $f'$ em um som $T_i$ de frequência $f$
-e duração $\Delta$ segundos (assumimos $\Lambda = \Delta . f_a $ amostras)
+e duração $\Delta$ segundos (assumimos $\Lambda = \lfloor \Delta . f_a \rfloor $ amostras)
 gera bandas centradas em $f$ e distantes $f'$ entre si:
 
 \begin{equation}
@@ -1263,40 +1261,79 @@ J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;
 
 \begin{equation}
 \begin{split}
-\{t_i'\}_0^{\Lambda -1} & = \left \{ \cos \left [f_i . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  = \left \{ \cos \left [f\left ( \frac{f+\mu}{f} \right )^{sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )} . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  =  \\
- & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ f . 2 \pi \frac{i}{f_a-1} + k . f' . 2 \pi \frac{i}{f_a-1} \right ]  \right \}_0^{\Lambda-1} = \\
- & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ (f+k.f') . 2 \pi \frac{i}{f_a-1} \right ]  \right \}_0^{\Lambda-1}
+\{t_i'\}_0^{\Lambda -1} &  = \left \{ \cos \left [f_i . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  = \left \{ \cos \left [f\left ( \frac{f+\mu}{f} \right )^{sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )} . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  =  \\
+ & = \left \{ \cos \left [f\left ( 2^{\frac{\nu}{12}} \right )^{sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )} . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1} =\left \{ \cos \left [f\left ( 2^{\frac{\nu}{12} \sin \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )  } \right ) . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1} \Rightarrow \\
+& \Rightarrow \text{usando: } \left ( 2^x=e^{x \ln 2}, \;\; e^x=\sum_0^\infty \frac{x^n}{n!},\;\; \sin^nx=y_1(n)\sum_k y_2(n,k).\sin[y_3(n,k,x)]   \right ) \Rightarrow \\
+\Rightarrow \{t_i'\}_0^{\Lambda -1} & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu,f) \cos \left [ y(f.f', f_a) \right ]  \right \}_0^{\Lambda-1}
 \end{split}
 \end{equation}
 
+Onde, por brevidade, citamos as identidades úteis para resultar na
+forma final do som resultante, que explicita o conteúdo em frequências puras.
+Podemos observar que, para a FM, se utilizada a progressão exponencial de frequência, o resultado
+é menos comportado. A função de Bessel dependerá não somente da profundidade de oscilação,
+mas também da frequência original do som. Além disso, as frequências dependem do produto das frequências
+do som e da oscilação ($f.f'$), o que também - a princípio - não convém por introduzir complexidade.
 
+O caso da modulação de amplitude (AM) é mais simples:
 
+\begin{equation}\label{eq:am}
+\begin{split}
+\{t_i'\}_0^{\Lambda-1} & =\{(1+a_i) . t_i\}_0^{\Lambda-1}= \left \{ \left [ 1+M.\sin \left ( f'.2\pi\frac{i}{f_a -1} \right ) \right] . P .\sin \left ( f.2\pi\frac{i}{f_a -1} \right ) \right \}_0^{\Lambda-1} = \\
+& = P.\sin \left( f.2\pi\frac{i}{f_a -1}  \right ) + \frac{P.M}{2} \left [ \sin \left( (f-f').2\pi\frac{i}{f_a -1}  \right ) + \sin \left( (f+f').2\pi\frac{i}{f_a -1}  \right ) \right ]
+\end{split}
+\end{equation}
 
+Ou seja, o sinal resultante é o sinal original (chamada portadora, com conteúdos harmônicos como a senóide de frequência $f$)
+e a reprodução de seu conteúdo espectral acima e abaixo da frequência
+original, distantes na proporção de cada harmônico ($f'$) da moduladora.
 
+No caso de usarmos a modulação na escala logarítmica como nosso tremolo, temos novamente
+um resultado menos comportado:
+\begin{equation}\label{eq:am}
+\begin{split}
+\{t_i'\}_0^{\Lambda-1} & =\{(a_{\text{máx}})^{ti'} . t_i\}_0^{\Lambda-1}= \left \{ a_{\text{máx}}^{\sin \left ( f'.2\pi\frac{i}{f_a -1} \right )} . P .\sin \left ( f.2\pi\frac{i}{f_a -1} \right ) \right \}_0^{\Lambda-1} 
+\end{split}
+\end{equation}
 
+Que nos leva pelos mesmos recursos a um espectro com diversas bandas de frequência distante
+em proporções múltiplas da frequência da moduladora.
 
+Com relação à convolução, podemos estabelecer um pulso musical (a exemplo de um pulso BPM)
+e distribuir impulsos no decorrer deste pulso, de forma a estabelecer métricas e rítmos\footnote{Lembrando
+que a convolução com o impulso resulta no som deslocado ao instande de ocorrência do impulso}.
+Por exemplo, se escolhemos 2 impulsos igualmente espaçados, estaremos fazendo uma
+divisão binária básica do pulso. Se escolhemos dois sinais, um com 2 pulsos e outro com 3 pulsos,
+ambos com os impulsos igualmente espaçados na duração do pulso, resultamos na manutenção
+do pulso, com uma marcação rítmica usada tanto em divisões binárias quanto ternárias em diversos
+estilos de música étnica e tradicional. 
+Os próprios valores absolutos destes impulsos resultam em proporções entre as amplitudes dos sinais
+convoluídos.
+Exploramos este recurso da métrica
+estabelecida pela convolução com impulsos na peça musical \emph{trem de impulsos caipiras}.
 
+Já com os filtros as possibilidades explodem. Pode-se convoluir um sinal para reverberá-lo, para
+remover algum ruído, para gerar distorções ou tratamento com intuito estético mesmo. Por exemplo,
+aplicando um filtro bassa banda em que deixamos passar somente entre $1kHz$ e $3kHz$, geramos um som
+que parece de telefone ou de televisão antiga. Ao remover com alguma precisão somente
+a frequência de oscilação da rede elétrica (usualmente $50Hz$ ou $60Hz$) e harmônicas, podemos remover
+ruídos introduzidos pelos equipamentos de áudio utilizados. Um uso mais incrementado
+e propriamente musical seria realizar filtragens em bandas específicas e usar estas bandas
+pré estabelecida como um parâmetro adicional das notas.
 
+Um recurso musicalmente forte é a filtragem dependente do tempo, no qual convém os filtros IIR, em que
+os valores do filtro podem ser modificados - com algum cuidado - ao longo de sua aplicação. Cascatas
+destes filtros podem realizar filtragens complexas e mais precisas. A montagem \emph{ruídos e faixas} explora
+este recursos, realizando filtragens em ruídos diversos, com sequênciamento de disposição de bandas
+e ruídos específicos, e filtragens que variam no tempo.
 
-filtro parametrizado auto com fmin fmax min e erro admitido (gera fir)
-som de radio com filtragem q tira o que nao estiver entre 700Hz e 3kHz
-chorus c a soma de varios do mesmo com pequenas variacoes de freq, amp
-e flitragens.
+Um uso incrementado destes recursos todos seria a realização de um efeito chamado \emph{chorus}. Ao
+exemplo do que ocorre com um coro de cantores, neste efeito o som é realizado com diversas pequenas modificações,
+potencialmente aleatórias, em paramêtros como frequência central, presença (ou ausência) de vibrato
+e trêmolo e suas características, equalizações, volume etc. Para o resultado final, estas versões do som
+inicial é então mixado como em \ref{eq:mixagem}. A peça \emph{coro infantil} realiza chorus de formas
+diferentes em sons diferentes.
 
-
-Oscilacoes, tremolos e vibratos. Variacoes
-~15Hz tremolo rugoso
-varias possibilidades de combinacao de intensidades, formas de onda e frequencias
-
-
-
-progressivas das oscilacoes dos tremolos e vibratos
-como AM e FM.
-ADSR
-Linhas de delays
-Filtragem dependente do tempo
-cascatas de filtros
-Músicas: monolitos, minimum-fi
 
 
 
