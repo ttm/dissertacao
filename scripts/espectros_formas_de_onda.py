@@ -36,27 +36,44 @@ q_a=n.abs(q_s)
 
 i=indices
 foo=(s_a>50).nonzero()
-p.plot(i[foo],s_a[foo],"o", label=u"senóide")
+p.plot(i[foo],s_a[foo],"o", label=u"senóide", markersize=9)
 foo=(d_a>50).nonzero()
-p.plot(i[foo],d_a[foo],"*", label=r"dente de serra")
+p.plot(i[foo],d_a[foo],"*", label=r"dente de serra", markersize=9)
 ii=list(i[foo])
 foo=(t_a>50).nonzero()
-p.plot(i[foo],t_a[foo],"^", label=r"triangular")
+p.plot(i[foo],t_a[foo],"^", label=r"triangular", markersize=9)
 #p.plot(i[foo],t_a[foo],"^", label=r"triangular")
 foo=(q_a>50).nonzero()
-p.plot(i[foo],q_a[foo],"s", label="quadrada")
-p.legend(loc="upper right")
+p.plot(i[foo],q_a[foo],"s", label="quadrada", markersize=9)
+l=p.legend(loc="upper right")
+for t in l.get_texts():
+    t.set_fontsize('x-large')
 
-p.yticks((0,20000),(0,"20k"))
+p.yticks((0,20000),(0,"20k"), fontsize=16)
 #p.xticks((0,15000),(0,"15k"))
+# pop untill they leave f15 out of the game
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
+ii.pop()
 ticks=[r"$f%i$" % (i,) for i in xrange(len(ii))]
-p.xticks([0] + ii + [16500],[0] + ticks + ["16,5k"])
+p.xticks([0] + ii + [16500], [0] + ticks + ["16,5k"], fontsize=16)
 
 p.xlim(0,16500)
 #p.xlim(0,T2*.56)
 p.ylim(-300,20000)
-p.ylabel(r'valor absoluto $\rightarrow$', fontsize=15)
-p.xlabel(r'componente do espectro $\rightarrow$', fontsize=15)
+p.ylabel(r'valor absoluto $\rightarrow$', fontsize=19)
+p.xlabel(r'componente do espectro $\rightarrow$', fontsize=19)
 
 
 

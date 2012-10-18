@@ -35,13 +35,13 @@ foo.axes.get_xaxis().set_ticks([])
 l=p.legend(bbox_to_anchor=(0., -.1, 1., .1), loc=1,
        ncol=5, mode="expand", borderaxespad=0.)
 for t in l.get_texts():
-    t.set_fontsize('small')
+    t.set_fontsize('x-large')
 frame  = l.get_frame()
 frame.set_facecolor('0.80')
 for ll in l.get_lines():
         ll.set_linewidth(1.5)  # the legend line width
 #p.legend()
-p.ylabel(r'amplitude sintetizada')
+p.ylabel(r'amplitude sintetizada',fontsize=19)
 
 fig=p.subplot(212)
 i=n.arange(len(onda))
@@ -57,7 +57,7 @@ foo.axes.get_xaxis().set_ticks([])
 l=p.legend(bbox_to_anchor=(0., -.1, 1., .1), loc=1,
        ncol=5, mode="expand", borderaxespad=0.)
 for t in l.get_texts():
-    t.set_fontsize('small')
+    t.set_fontsize('x-large')
 frame  = l.get_frame()
 frame.set_facecolor('0.80')
 for ll in l.get_lines():
@@ -66,14 +66,14 @@ for ll in l.get_lines():
 #p.xlabel(r'\n\ntempo $\Delta$, amostras $\Lambda$ ou $i$$\rightarrow$', fontsize=15, verticalalignment='top')
 #p.text=(10,0,r'tempo $\Delta$, amostras $\Lambda$ ou $i$$\rightarrow$')
 
-left, width = len(onda)*.4, .5
-bottom, height = 1.25, .5
+left, width = len(onda)*.37, .5
+bottom, height = 1.44, .5
 right = left + width
 top = bottom + height
 atext=r'tempo $\Delta$, amostras $\Lambda$ ou $i$$\rightarrow$'
-fig.text(left, bottom, atext, horizontalalignment='left', verticalalignment='top')
+fig.text(left, bottom, atext, horizontalalignment='left', verticalalignment='top', fontsize=19)
 
-p.ylabel(r'amplitude amostrada')
+p.ylabel(r'amplitude amostrada', fontsize=19)
 #p.ylabel(r'amplitude amostrada', verticalalignment='top')
 #p.xlabel(r'duração $\delta$, amostras $\lambda$ ou $i$ $\rightarrow$')
 p.show()

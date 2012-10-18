@@ -31,9 +31,9 @@ iii=n.linspace(-0.5,1.5,200) # domínio temporal das amostras
 s=(ab1/2)*n.cos(ii+fas)+a0/2 # Reconstruindo senóide para o domínio dado
 p.plot(iii,s,"m--") # plotada a senóide passando pelas amostras
 
-p.xticks((-1,0,1,2),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$"))
+p.xticks((-1,0,1,2),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$"), size=20)
 # valores cruciais em y
-p.yticks((0,a0/2-ab1/2,a0/2,a0/2+ab1/2), ('0',r'$\frac{a_0-|a_1|}{2}$',r'$\frac{a_0}{2}$',r'$\frac{a_0+|a_1|}{2}$'), color = 'k', size = 20)
+p.yticks((0,a0/2-ab1/2,a0/2,a0/2+ab1/2), ('0',r'$\frac{a_0-|a_1|}{2}$',r'$\frac{a_0}{2}$',r'$\frac{a_0+|a_1|}{2}$'), color = 'k', size = 23)
 p.plot((-10,10),(a0/2,)*2,"k--")
 p.plot((-10,10),(a0/2-ab1/2,)*2,"k--")
 p.plot((-10,10),(a0/2+ab1/2,)*2,"k--")
@@ -48,13 +48,13 @@ p.plot((-10,10),(a0/2+ab1/2,)*2,"k--")
 #p.text(2.01, a0/2, r"$\frac{a_0}{2}$", {'color' : 'k', 'fontsize' : 20})
 #p.text(2.01,a0/2+ab1/2, r'$\frac{a_0+\sqrt{a_1^2+b_1^2}}{2}$', {'color' : 'k', 'fontsize' : 20})
 
-p.text(0,-.8,r"$t_0<t_1 \Leftrightarrow a_1<0$",fontsize=15)
+p.text(0,-.8,r"$t_0<t_1 \Leftrightarrow a_1<0$",fontsize=17)
 
 p.xlim(-1.2,2)
 #p.xlim(0,T2*.56)
 p.ylim(-1.1,1.1)
 
-p.ylabel(r"amplitude $\rightarrow$")
-p.xlabel(r"tempo $\rightarrow$")
+p.ylabel(r"amplitude $\rightarrow$", fontsize=19)
+p.xlabel(r"tempo $\rightarrow$", fontsize=19)
 p.show()
 
