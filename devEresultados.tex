@@ -457,8 +457,8 @@ da componente na frequência zero.
 A figura ~\ref{fig:formas4} explicita os harmônicos em 4 amostras nas formas de onda básicas das equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada} e figura ~\ref{fig:formasDeOnda}. Todas consistem em apenas 1 senoide, com excessão da dente de serra que possui os harmônicos pares.
 
 
-A figura ~\ref{fig:amostras6} mostra uma decomposição senoidal para o caso de 6 amostras. A figura ~\ref{fig:formas6} decompõe as formas de onda básicas para o caso de 6 amostras.
- Note que neste caso de 6 amostras as ondas se diferenciam espectralmente: as quadrada e triangular possuem as mesmas componentes, mas em proporções diferentes, já a dente de serra possui uma componente a mais.
+A figura ~\ref{fig:amostras6} mostra uma decomposição senoidal para o caso de 6 amostras e a figura ~\ref{fig:formas6} decompõe as formas de onda básicas para o caso de 6 amostras.
+ Note que neste caso de 6 amostras todas as ondas se diferenciam no espectro: as quadrada e triangular possuem as mesmas componentes, mas em proporções diferentes, já a dente de serra possui uma componente a mais.
 
 \begin{figure}[h!]
     \centering
@@ -478,9 +478,9 @@ A figura ~\ref{fig:amostras6} mostra uma decomposição senoidal para o caso de 
 Embora não seja uma das quatro qualidades básicas tradicionalmente elegidas para caracterizar uma nota musical,
 a localização espacial é também importante para um som
 pois este comumente é emitido por uma fonte localizada, como ocorre com um instrumento musical ou uma pessoa. Além disso, a espacialização é atributo bastante valorizado
- especialmente por audiófilos e pela indústria fonográfica~\cite{floEsp}.
+ por audiófilos e pela indústria fonográfica~\cite{floEsp}.
 Segundo a compreensão atual do fenômeno de percepção da localização espacial do som, nosso sistema nervoso utiliza
-três informações: o atraso de chegada do som entre um ouvido e o outro, a diferença de intensidade do som em cada ouvido e, por último mas também crucial, a 
+três informações: o atraso de chegada do som entre um ouvido e o outro, a diferença de intensidade do som direto em cada ouvido e a 
 filtragem realizada pelo corpo, incluindo toráx, cabeça e orelhas~\cite{Roederer, hrtf, Heeger}.
 
 
@@ -516,10 +516,22 @@ e à DII (Diferença de Intensidade Interaural):
 DII=20\log_{10}\left (\frac{d'}{d}\right) \quad dBs
 \end{equation}
 
-Convertendo para amplitude temos $DII_a=\frac{d'}{d}$. A $DDI_a$ pode
-ser utilizada para multipicação da sequência e realizado um sinal estéreo junto à sequência original.
+Convertendo para amplitude temos $DII_a=\frac{d'}{d}$. A $DII_a$ pode
+ser utilizada como constante multiplicativa do canal direito de um sinal sonoro estéreo ($\{t_i\}_0^{\Lambda -1}=\{DII_a . t_i'\}_0^{\Lambda -1}$). Pode-se utilizar a DII junto à DTI como adiantamento no tempo do canal direito com relação ao esquerdo, vínculo crucial para a percepção de localidade em sons graves e em sonoridades percussivas~\cite{Heeger}.
+Considerando $\Lambda_{DTI}=\lfloor DTI . f_a \rfloor $, podemos escrever:
 
-Embora simples até aqui, a localização espacial depende drasticamente de outras pistas. De forma canonica, resolvemos pelas
+\begin{equation}
+\begin{split}
+\Lambda_{DTI} & = \left \lfloor \frac{d'-d}{343,2}  f_a \right \rfloor \\
+DII_a & = \frac{d'}{d} \\
+\{t_{(i+\Lambda_{DTI})}\}_{\Lambda_{DTI}}^{\Lambda+\Lambda_{DTI}-1} & =\{DII_a . t_i'\}_0^{\Lambda-1} \\
+\{t_i\}_0^{\Lambda_{DTI}-1} & = 0
+\end{split}
+\end{equation}
+
+Com $t_i$ o canal direito e $t_i'$ o canal esquerdo. Caso $\Lambda_{DTI} < 0 $, basta trocar $t_i$ por $t_i'$  e utilizar $\Lambda_{DTI}'= | \Lambda_{DTI} | $.
+
+Embora consideravelmente simples até aqui, a localização espacial depende drasticamente de outras pistas. De forma canonica, resolvemos pelas
 DTI e DII somente o ângulo horizontal (azimutal) $\theta$ dado por:
 
 \begin{equation}
@@ -529,9 +541,9 @@ DTI e DII somente o ângulo horizontal (azimutal) $\theta$ dado por:
 Mesmo assim, há dificuldades quando $\theta$ incinde sobre o chamado "cone de confusão" em que um mesmo par de especificações DTI, DII resultam de vários dos pontos 
 do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que das graves~\cite{Heeger,hrtf}. 
 
-A figura~\ref{fig:spac} mostra o cone de confusão e esta sombra do crânio, além da convenção usual da especificação do ângulo azimutal positivo para a direita.
+A figura~\ref{fig:spac} mostra esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não são especificadas na literatura~\cite{confCone}, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.
 
-Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}, bastante pessoal\ref{hrtf}. Exitem bases abertas e conhecidas de HRTF como \emph{CIPIC}~\cite{CIPIC} e podemos aplicar estas funções de transferência em um som por convolução~\ref{eq:conv}.
+Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}~\cite{hrtf}. Exitem bases abertas e conhecidas de HRTF como \emph{CIPIC}~\cite{CIPIC} e podemos aplicar estas funções de transferência em um som por convolução (veja equação~\ref{eq:conv}). Estas funções de transferência mudam de acordo com o corpo do indivíduo e existem diversas técnicas para resultar em funções de transferência que sejam utilizáveis de forma mais universal~\cite{lazaSPA}. 
 
 
 \subsubsection{A nota básica}\label{notaBasica}
