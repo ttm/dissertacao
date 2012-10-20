@@ -586,7 +586,19 @@ sequências destas partículas. Caso somemos $N$ sequências ($T_{k,i}=\{t_{k,i}
 \{t_i\}=\left \{ \sum_{k=0}^{N-1}t_{k,i} \right \}
 \end{equation}
 
-Pode-se completar com zeros para somar sequências de tamanhos diferentes. O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação~\cite{Harmonia}.
+\begin{figure}[h!]
+    \centering
+    \caption{Mixagem de três sequências sonoras}
+        \includegraphics[width=\textwidth]{figuras/mixagem}
+        \label{fig:mixagem}
+\end{figure}
+
+
+Ilustramos na figura~\ref{fig:mixagem} este processo de superposição de ondas sonoras discretizadas\footnote{A figura dispõe 100 amostras, de onde podemos concluir que, se $f_a=44,1kHz$, as frequências da dente de serra, da onda quadrada e da senoide são,
+respectivamente, $\frac{f_a}{50}=882Hz$, $\frac{f_a}{25}=1764Hz$ e $\frac{f_a}{20}=2205Hz$. A duração do trecho é bastante curto $\frac{f_a=44,1kHz}{100} \approx 2 \text{ milisegundos}$.}.
+ As notas mixadas são em grande parte separadas pelo ouvido por leis físicas de ressonância e pelo sistema nervoso~\cite{Roederer}.
+
+Pode-se completar com zeros para somar sequências de tamanhos diferentes. O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação~\cite{Harmonia}. 
 
 As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem $k$ notas musicais, sua concatenação em uma única sequência $T_i$ resultará em uma sequência musical simples ou melodia:
 
@@ -594,7 +606,17 @@ As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t
 \{t_i\}_0^{\sum\Delta_k-1}=\{t_{l,i}\}_0^{\sum\Delta_k-1}, \;\; l\text{ menor inteiro } : \quad \Lambda_l > i -\sum_{j=0}^{l-1}\Lambda_j
 \end{equation}
 
-A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python no APÊNDICE XX e podem ser escutadas e vizualizadas nos links \ref{reducedLink} e \ref{quadrosLink}.
+Este mecanismo é demonstrado de forma ilustrativa na figura~\ref{fig:concatenacao} com as mesmas sequências utilizadas na figura ~\ref{fig:mixagem}.
+ As sequências são curtas para as taxas de amostragem usuais (cerca de $7$ milisegundos ao total se $f_a=44,1kHz$), mas pode-se observar de forma explícita a concatenação de sequências sonoras e o exemplo é real (cada nota tem a duração maior que $100ms$ se $f_a<1kHz$).
+
+\begin{figure}[h!]
+    \centering
+    \caption{Concatenação de três sequências sonoras}
+        \includegraphics[width=\textwidth]{figuras/concatenacao}
+        \label{fig:concatenacao}
+\end{figure}
+
+A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python no APÊNDICE~\ref{cap:codigoPecas} e podem ser escutadas e vizualizadas nos links~\cite{reduced-fi} e~\cite{quadros}.
 
 Com isso estabelecemos nossa nota musical básica no som digital. Trabalharemos a seguir estas unidades, a evolução temporal de seus conteúdos e desenvolveremos as notas musicais com parâmetros que evoluem no tempo, como glissandos e envoltórias. 
 A filtragem de componentes e os ruídos finalizam sobre a constituição da nota musical como unidade isolada. A estruturação musical destas notas é então abordada do ponto de vista das estruturas fora do tempo (como as escalas), trajetórias cíclicas ou que convirjam ou divirjam.
