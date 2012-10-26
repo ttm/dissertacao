@@ -627,26 +627,25 @@ A filtragem de componentes e os ruídos finalizam sobre a constituição da nota
 
 Nossa nota musical digital básica está bem definida com os parâmetros:
 duração, altura, intensidade (volume) e timbre. Esta é uma modelagem
-útil e paradigmática, mas de forma alguma esgota o que entendemos por
+útil e paradigmática, mas não esgota o que entendemos por
 uma nota musical.
 
 Em primeiro lugar, as características da nota se modificam no decorrer
 da própria nota, i.e. em uma nota real os parâmetros
-não são absolutamente fixos. Por exemplo, em uma nota de piano
+não são absolutamente fixos~\cite{Chowning}. Por exemplo, em uma nota de piano
 de 3 segundos, a intensidade tem início abrupto e decaimento progressivo
 além de variações do espectro instantâneo, com harmônicos que
 decaem antes dos outros e alguns que aparecem com o tempo.
-Estas variações não necessariamente são levadas
-em conta na síntese sonora, mas constituem-se em guias de 
+Estas variações não são obrigatórias e sim orientações da
 síntese sonora para usos musicais pois é como os sons
 se apresentam na natureza\footnote{A regra de ouro
 aqui é: para que um som isolado disperte interesse
-por si só, faça como que tenha variações internas.}. 
+por si só, faça como que tenha variações internas~\cite{Roederer}.}. 
 
 Explorar todas as formas pelas quais estas variações ocorrem está fora
 do escopo de qualquer trabalho dada a considerável sensibilidade do ouvido humano
 e a complexidade da nossa cognição sonora. Desta forma, apontaremos
-recursos primários para estas variações dos parâmetros na nossa nota
+recursos primários para estas variações das características na nossa nota
 básica.
 
 Iniciaremos com uma técnica que não resulta propriamente
@@ -658,7 +657,7 @@ computacional.
 
 \subsubsection{Tabela de Busca}
 
-Mais conhecido pelo termo em inglês, a \emph{Lookup table} (ou simplesmente
+Mais conhecido pelo termo em inglês, a \emph{Lookup Table} (ou simplesmente
 LUT), é um procedimento simples que consiste em criar uma tabela
 de referência e coletar as amostras desta tabela segundo a 
 necessidade\footnote{Em contraposição ao cálculo das amostras individuais
@@ -672,16 +671,16 @@ O procedimento de busca em tabelas é visto geralmente como um
 artifício de otimização. Na música seu uso transcende este
 primeiro, facilitando as operações e permitindo que um único
 período de onda possa ser usado para sintetizar sons em toda a banda
-de frequências audíveis.
+de frequências audíveis, qualquer que seja a forma de onda amostrada.
 
 Descrevemos esta busca. Seja $\widetilde{\Lambda}$ o tamanho 
 da tabela e $\widetilde{L_i} = \{ \widetilde{l}_i \}_0^{\widetilde{\Lambda} -1}$ a tabela de elementos $\widetilde{l_i}$ de um
 período de onda qualquer (veja equação ~\ref{periodoUnico}). Uma sequência
-$T_i^{f,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta$
+$T_i^{f,\,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta$
 pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
 
 \begin{equation}
-T_i^{f,\Delta}=\{t_i^f\}_0^{f_a . \Delta-1} = \{ \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} } \}_{0}^{f_a . \Delta-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
+T_i^{f,\,\Delta}=\{t_i^f\}_0^{\lfloor f_a . \Delta \rfloor -1} = \{ \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} } \}_{0}^{\Lambda-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
 \end{equation}
 
 Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
@@ -691,7 +690,7 @@ Esta aproximação introduz um ruído, mas conseguimos que este ruído seja desp
 mesmo se o tomarmos como o maior inteiro acima da multiplicação
 ou se arredondarmos por outros métodos. Além disso, para fins de síntese, em $f_a=44,1 kHz$
  o padrão é usar $\widetilde{\Lambda} = 1024$ amostras, pois já não gera ruído
- relevante no espectro audível.
+ relevante no espectro audível~\cite{Geiger}.
 
  A expressão que define a variável $\gamma_i$ pode ser facilmente compreendida da
  seguinte forma: a variável $i$ é acrescida de $f_a$ em $1$ segundo (pela
@@ -706,18 +705,17 @@ fração esta que é acrescida de $1$ a cada $1$ segundo. Multiplicado pelo comp
 
 Importantes considerações: $f$ é qualquer, só há limitantes nas frequências
 graves quando o tamanho da tabela $\widetilde{\Lambda}$ não é suficientemente grande para a taxa de amostragem
-$f_a$\footnote{Como citado acima, $\widetilde{\Lambda} = 1024$ é suficiente para sintetizar
-sequências $T_i^f$ com qualquer $f$ no espectro audível.}. O procedimento de busca em tabela
+$f_a$. O procedimento de busca em tabela
 é computacionalmente bastante barato, substituindo cálculos por buscas simples (por isso geralmente
 é entendido como um processo de otimização). Salvo quando assinalado,
 no texto que segue usaremos este procedimento para todos os casos cabíveis pois
-simplifica diversas rotinas e é computacionalmente coerente.
+simplifica diversas rotinas e é computacionalmente coerente. Para um uso clássico das LUTs na síntese sonora musical, recomendamos procurar pela chamada \emph{Wavetable Synthesis} que consiste em várias LUTs utilizadas em conjunto através da mixagem para gerar uma nota musical quasi-periódica~\cite{Cook,Wavetable}.
 
 
 \subsubsection{Variações incrementais de frequência e intensidade}
 
 Segundo revela a lei de Weber e Fechner, nossa percepção tem uma relação logarítmica com
-o estímulo que a causa. Mesmo assim, dado o uso, explicitaremos também a variação
+o estímulo que a causa~\cite{Weber-Fechner}. Mesmo assim, dado o uso, explicitaremos também a variação
 linear e começaremos descrevendo esta por razões didáticas.
 
 Em uma nota de duração $\Delta = \frac{\Lambda}{f_a}$, a frequência $f=f_i$ varia de $f_0$ até $f_{\Lambda -1}$
@@ -735,20 +733,17 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 \{t_i^{\;\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
 \end{equation}
 
+Onde $\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a}$ é o incremento da LUT entre duas amostras dada a frequência do som na primeira amostra.
+
 Desta forma, podemos calcular os elementos $t_i^{\;\overline{f_0,f_{\Lambda-1}}}$
-com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$. Note que na equação
-\ref{freqLinear}, o termo $f_{\Lambda -1} - f_0$ é o âmbito do contra-domínio de $f_i$
-e que $\Lambda -1$ é âmbito do domínio. Como $i$ varre o domínio $[0,\Lambda-1]$ e
-temos o deslocamento $f_0$ na imagem, $f_i$ varre o contra-domínio 
-na medida em que $i$ varre o domínio\footnote{Estas digressões são importantes
-para entendermos o significado musical do comportamento destas sequências de amostras.}.
+com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$.
 
 As equações \ref{freqLinear}, \ref{indiceLinear} e \ref{serieAmostralLin} são relativas à progressão linear
 da frequência. Como assinalado, nossa percepção segue a progressão logarítmica:
 uma progressão de frequência
 \emph{percebida} como linear segue uma progressão exponencial\footnote{Ou,
 dito ainda de outra forma, uma progressão geométrica da frequência
-é percebido como uma progressão aritmética de alturas}.
+é percebido como uma progressão aritmética de alturas.}.
 
 Fazendo a varredura com $i$
 de $0$ até $\Lambda-1$, podemos dizer que: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ onde 
