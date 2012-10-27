@@ -730,7 +730,7 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 \end{equation}
 
 \begin{equation}\label{serieAmostralLin}
-\{t_i^{\;\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
+\{t_i^{\;\overline{f_0,\, f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
 \end{equation}
 
 Onde $\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a}$ é o incremento da LUT entre duas amostras dada a frequência do som na primeira amostra.
@@ -763,11 +763,12 @@ f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
 \end{equation}
 
 \begin{equation}\label{serieAmostralLog}
-\{t_i^{\;\overline{f_0,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
+\{t_i^{\;\overline{f_0,\,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
 \end{equation}
 
 Onde usamos a equação \ref{indiceExponencial} para calcular a sequência $\{\gamma_i\}_0^{\Lambda-1}$ de índices para para
-serem buscados na nossa tabela que contém um único período da forma de onda.
+serem buscados na nossa tabela que contém um único período da forma de onda representado em uma sequência de $\widetilde{\Lambda}$
+pontos igualmente espaçados (amostras).
 Isso é explicitado na equação ~\ref{serieAmostralLog}, onde estabelecemos a relação
  $t_i^{\;\overline{f_0,f_{\Lambda-1}}}=\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}$.
 Note que a equação \ref{serieAmostralLog} se mantém (permanece idêntica à equação \ref{serieAmostralLin}).
@@ -811,7 +812,7 @@ a_i=a_0 + (a_{\Lambda-1}-a_0)\frac{i}{\Lambda-1}
 \end{equation}
 
 Aqui pode muito nos auxiliar a conversão de decibels para amplitude apresentada na equação ~\ref{ampDec}.
-Junto à equação \ref{transAmp}, resulta na sequinte equação para uma transição de $V_{dB}$:
+Junto à equação \ref{transAmp}, resulta na sequinte equação para uma transição de $V_{dB}$ decibels:
 
 \begin{equation}
 T_i^{'}=\left \{ t_i (10^{\frac{V_{dB}}{20}} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
