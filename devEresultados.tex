@@ -667,6 +667,13 @@ valores reais. Além disso, a tabela consiste nas amostras
 de um período de onda, que usamos para sintetizar períodos
 de tamanhos diferentes, resultando em frequências diferentes.
 
+\begin{figure}[h!]
+    \centering
+    \caption{Lookup Table}
+        \includegraphics[width=\textwidth]{figuras/lut}
+        \label{fig:lut}
+\end{figure}
+
 O procedimento de busca em tabelas é visto geralmente como um
 artifício de otimização. Na música seu uso transcende este
 primeiro, facilitando as operações e permitindo que um único
@@ -680,15 +687,21 @@ $T_i^{f,\,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta
 pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
 
 \begin{equation}
-T_i^{f,\,\Delta}=\{t_i^f\}_0^{\lfloor f_a . \Delta \rfloor -1} = \{ \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} } \}_{0}^{\Lambda-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
+T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
 \end{equation}
 
 Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
-para sintetizar o som em qualquer frequência. Para o cálculo do inteiro $\gamma_i$, convencionamos
+para sintetizar o som em qualquer frequência. Dispomos graficamente
+o procedimento de LUT na figura~\ref{fig:lut} onde calculamos explicitamente
+também uma amostra de $\{t_i\}$ a partir de $\{\widetilde{l}_i\}$ para uma frequência
+de $f=200Hz$ e $\widetilde{\Lambda}=128$ considerada a taxa de amostragem em $f_a=44.1kHz$.
+
+
+Para o cálculo do inteiro $\gamma_i$, convencionamos
 atribuir a ele o maior inteiro menor que $i.f\frac{\widetilde{\Lambda}}{f_a}$.
 Esta aproximação introduz um ruído, mas conseguimos que este ruído seja desprezível
 mesmo se o tomarmos como o maior inteiro acima da multiplicação
-ou se arredondarmos por outros métodos. Além disso, para fins de síntese, em $f_a=44,1 kHz$
+ou se arredondarmos por outros métodos. Além disso, para fins de síntese, em $f_a=44.1 kHz$
  o padrão é usar $\widetilde{\Lambda} = 1024$ amostras, pois já não gera ruído
  relevante no espectro audível~\cite{Geiger}.
 
@@ -715,7 +728,8 @@ simplifica diversas rotinas e é computacionalmente coerente. Para um uso cláss
 \subsubsection{Variações incrementais de frequência e intensidade}
 
 Segundo revela a lei de Weber e Fechner, nossa percepção tem uma relação logarítmica com
-o estímulo que a causa~\cite{Weber-Fechner}. Mesmo assim, dado o uso, explicitaremos também a variação
+o estímulo que a causa~\cite{Weber-Fechner}, em outras palavras, um estímulo em progressão exponencial
+é percebido como linear. Mesmo assim, dado o uso, explicitaremos também a variação
 linear e começaremos descrevendo esta por razões didáticas.
 
 Em uma nota de duração $\Delta = \frac{\Lambda}{f_a}$, a frequência $f=f_i$ varia de $f_0$ até $f_{\Lambda -1}$
@@ -726,7 +740,7 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 \end{equation}
 
 \begin{equation}\label{indiceLinear}
-\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i}  \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right ] \right \rfloor 
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor i \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right ] \right \rfloor 
 \end{equation}
 
 \begin{equation}\label{serieAmostralLin}
@@ -773,6 +787,14 @@ Isso é explicitado na equação ~\ref{serieAmostralLog}, onde estabelecemos a r
  $t_i^{\;\overline{f_0,f_{\Lambda-1}}}=\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}$.
 Note que a equação \ref{serieAmostralLog} se mantém (permanece idêntica à equação \ref{serieAmostralLin}).
 
+\begin{figure}[h!]
+    \centering
+    \caption{Transições de intensidade para diferentes valores de $\alpha$ (veja equação~\ref{transAmp})}
+        \includegraphics[width=\textwidth]{figuras/transicao}
+        \label{fig:transicao}
+\end{figure}
+
+
 O termo $\frac{i}{\Lambda-1}$ varre o intervalo $[0,1]$ e podemos elevá-lo a uma potência
 para que o início da transição seja mais suave ou mais abrupto (compensado pelo final
 da transição). Este procedimento é mais comum para o caso de variações de volume através da energia
@@ -799,7 +821,9 @@ Nosso intuito aqui é modificar a amplitude de um sinal original, seja qual for 
 $a_0=1$ para iniciar a nova sequência com a amplitude original e então ir modificando com o decorrer das amostras.
 Esta restrição faz com que nosso termo $a_{\Lambda-1}$ seja efetivamente a variação da amplitude.
 Caso $\alpha=1$, a variação de amplitude segue exatamente a progressão geométrica que caracteriza
-a percepção linear.
+a percepção linear. A figura~\ref{fig:transicao} exibe as transições para diferentes valores de $\alpha$.
+
+
 
 Algum cuidado é necessário para lidar com $a=0$. Para realizar um \emph{fade out} (diminuição progressiva do volume até o volume zero),
 podemos tomar $a_0=2$ e $a_{\Lambda-1}=1$ e subtrair $1$ de toda a sequência $\{a_i'\}=\left\{2\left(\frac{1}{2}\right)^{\frac{i}{\Lambda-1}}-1\right\}$. Para um \emph{fade in} (acréscimo progressivo de volume a partir do volume zero), podemos
@@ -845,6 +869,13 @@ e por equação a diferenças.
 
 \item  Convolução e filtros de resposta ao impulso finita (FIR)
 
+\begin{figure}[h!]
+    \centering
+    \caption{Interpretação gráfica da convolução}
+        \includegraphics[width=\textwidth]{figuras/convolucao______}
+        \label{fig:conv}
+\end{figure}
+
 Os filtros aplicados por convolução são conhecidos
 pela sua sigla FIR (do inglês Finite Impulse Response)
 e são caracterizados por possuirem uma representação amostral
@@ -871,12 +902,7 @@ para este fim a figura \ref{fig:conv}. Observe que a resposta ao impulso $\{h_i\
 das amostras $t_{12}'$ e $t_{32}'$ do sinal convoluído. O sinal resultante possui
 sempre o tamanho $\Lambda_t+\Lambda_h -1=\Lambda_{t'}$.
 
-\begin{figure}[h!]
-    \centering
-    \caption{Interpretação gráfica da convolução}
-        \includegraphics[width=\textwidth]{figuras/convolucao______}
-        \label{fig:conv}
-\end{figure}
+
 
 
 Com este procedimento podemos aplicar reverberadores, equalizadores, delays
@@ -940,13 +966,6 @@ utilidade.
 São filtros de primeira e segunda ordem bem comportados cujas
 filtragens realizadas dispomos na figura~\ref{fig:iir}.
 
-\begin{figure}[h!]
-    \centering
-    \caption{Filtragens realizadas pelos filtros IIR das equações \ref{eq:passa-baixas}, \ref{eq:passa-altas}, \ref{eq:passa-banda} e \ref{eq:rejeita-banda}}
-        \includegraphics[width=\textwidth]{figuras/iir___}
-        \label{fig:iir}
-\end{figure}
-
 No caso dos filtros de ordem simples, a frequência de corte $f_c$ é onde 
 o filtro realiza uma atenuação de $-3dB \approx 0.707 $ da amplitude original.
 No caso dos filtros passa e rejeita banda, esta mesma atenuação é
@@ -984,6 +1003,14 @@ em que há aproximadamente uma atenuação de $3dB$.
 Calculamos os coeficientes do filtro IIR
 $a_0$ e $b_1$ 
 através da variável intermediária: $x \in [0,1]$:
+
+\begin{figure}[h!]
+    \centering
+    \caption{Filtragens realizadas pelos filtros IIR das equações \ref{eq:passa-baixas}, \ref{eq:passa-altas}, \ref{eq:passa-banda} e \ref{eq:rejeita-banda}}
+        \includegraphics[width=\textwidth]{figuras/iir___}
+        \label{fig:iir}
+\end{figure}
+
 
 \begin{equation}\label{eq:passa-baixas}
 \begin{split}
@@ -1466,7 +1493,7 @@ Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X$.
 \left\{t_i^{ADSR}\right\}_0^{\Lambda-1} =\{t_i . a_i\}_0^{\Lambda-1}
 \end{equation}
 
-\begin{figure}[h!]
+\begin{figure}[htpq!]
     \centering
     \caption{Envelope ADSR canônico e uma sequência sonora arbitrária sendo submetida ao envelope}
         \includegraphics[width=\textwidth]{figuras/adsr}
