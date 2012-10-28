@@ -801,9 +801,9 @@ Esta restrição faz com que nosso termo $a_{\Lambda-1}$ seja efetivamente a var
 Caso $\alpha=1$, a variação de amplitude segue exatamente a progressão geométrica que caracteriza
 a percepção linear.
 
-Para realizar um \emph{fade out} (diminuição progressiva do volume até o volume zero),
-podemos tomar $a_0=1$ e $a_{\Lambda-1}=0$. Para um \emph{fade in} (acréscimo progressivo de volume a partir do volume zero), podemos
-tomar $a_0=1$, $a_{\Lambda-1}=2$ e subtrair $1$ de toda sequência: $\{a_i'\}_0^{\Lambda-1}=\{a_i-1\}_0^{\Lambda-1}$.
+Algum cuidado é necessário para lidar com $a=0$. Para realizar um \emph{fade out} (diminuição progressiva do volume até o volume zero),
+podemos tomar $a_0=2$ e $a_{\Lambda-1}=1$ e subtrair $1$ de toda a sequência $\{a_i'\}=\left\{2\left(\frac{1}{2}\right)^{\frac{i}{\Lambda-1}}-1\right\}$. Para um \emph{fade in} (acréscimo progressivo de volume a partir do volume zero), podemos
+tomar $a_0'=1$, $a_{\Lambda-1}'=2$ e subtrair $1$ de toda sequência: $\{a_i\}_0^{\Lambda-1}=\left\{2^{\frac{i}{\Lambda-1}}-1\right\}_0^{\Lambda-1}$.
 
 Para resultar em uma amplificação linear, basta usarmos uma sequência $\{a_i\}$ adequada:
 
@@ -1194,7 +1194,7 @@ pelas frequências graves e muito explícito no ruído marrom.
 \subsubsection{Usos musicais parte 1: trêmolo e vibrato, AM e FM}
 
 Enquanto o vibrato é uma variação periódica de altura (frequência),
-o tremolo é uma variação periódica de volume (intensidade).
+o tremolo é uma variação periódica de volume (intensidade).\footnote{Alguns instrumentos e contextos musicais usam nomenclaturas diferentes. Por exemplo, no piano, o chamado trêmolo é um vibrato e um tremolo segundo a classificação aqui utilizada. As definições presentes neste trabalho tem por base uma literatura mais abrangente do que a utilizada para um único instrumento, prática ou tradição musical e comum em contextos de teoria musical e musica eletrônica~\cite{Lacerda,Harmonia}.}
 
 Iniciemos pelo vibrato. Para realizarmos o caso mais geral, façamos uma sequência $t_i'$
 de frequência $f'$ com o auxílio
@@ -1221,7 +1221,7 @@ f_i=f \left ( \frac{f + \mu }{f} \right )^{t_i'}=f . 2^{t_i'\frac{\nu}{12}}
 \end{equation}
 
 \begin{equation}\label{vbrT}
-T_i^{f, vbr(f')}=\{ t_i^{f,vbr(f')} \}_0^{\Lambda-1}=\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \}_0^{\Lambda-1}
+T_i^{f, vbr(f',\,\nu)}=\{ t_i^{f,vbr(f',\,\nu)} \}_0^{\Lambda-1}=\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \}_0^{\Lambda-1}
 \end{equation}
 
 
@@ -1270,56 +1270,39 @@ A figura~\ref{fig:tremolo} mostra a amplitude das sequências $\{a_i\}_0^{\Lambd
 para três oscilações de um trêmolo com forma da dente de serra. A curvatura é devido à progressão logarítmica de
 intensidade. A frequência do trêmolo é de $1,5Hz$ pois $f_a=44,1kHz \; \Rightarrow \; \text{duração} = \frac{i_{\text{máx}}=82000}{f_a}= 2s \; \Rightarrow \; \frac{3\text{oscilações}}{2s}=1,5$ oscilações por segundo ($Hz$). 
 
-A peça \emph{vibra e treme} explora estes recursos dos tremolos e vibratos
+A montagem musical \emph{Vibra e treme} explora estes recursos dos tremolos e vibratos
 com frequências $f'$
-e profundidades ($\nu$ e $V_{dB}$) diferentes. Usadas em associação e isoladamente e com variações progressivas dos parâmetros. A peça desenvolve também uma comparação entre os vibratos e tremolos que se desenvolvem em escala logarítmica e em escala linear.
+e profundidades ($\nu$ e $V_{dB}$) diferentes. Usadas em associação e isoladamente os tremolos e vibratos e com variações progressivas dos parâmetros\footnote{Vale lembrar que os tremolos e vibratos ocorrem muitas vezes juntos em instrumentos tradicionais e na voz.}. A peça desenvolve também uma comparação entre os vibratos e tremolos em escala logarítmica e em escala linear para uma apreciação qualitativa.
 
 
 \begin{figure}[h!]
     \centering
-    \caption{Tremolo de profundidade $12dB$ com padrão oscilatório de uma dente de serra em $1,5Hz$ em uma senoide de $40Hz$ (considerada taxa de amostragem $f_a=44,1kHz$)}
+    \caption{Tremolo de profundidade $V_{dB}=12dB$ com padrão oscilatório de uma dente de serra em $f'=1.5Hz$ em uma senoide de $f=40Hz$ (considerada taxa de amostragem $f_a=44,1kHz$)}
         \includegraphics[width=\textwidth]{figuras/tremolo}
         \label{fig:tremolo}
 \end{figure}
-
-As equações ~\ref{vbrT}, ~\ref{vbrGamma}, ~\ref{vbrF} e ~\ref{vbrAux}
-são utilizadas para síntese nos casos em que $f'$ é
-maior que $20Hz$ e as oscilações de frequência resultam em padrões complexos
-de componentes espectrais harmônicas e não harmônicas. É a chamada síntese
-por frequência modulada (FM).
-
-As equações ~\ref{trA} e ~\ref{trT}
-(junto às ~\ref{vbrT} e ~\ref{vbrGamma} para a realização da sequência auxiliar $t_i'$) 
-resultam na síntese chamada de amplitude modulada (AM)
-quando $f'$ é maior que $20Hz$\footnote{As sínteses
-FM e AM são técnicas com diversas amplicações na música e também em outras áreas,
-especialmente conhecidos são os usos telecomunicações para transferência de informações
-via ondas eletromagnéticas. O leitor interessado pode visitar os itens relacionados
-da nossa bibliografia para uma abordagem musical (veja especialmente ~\ref{} e ~\ref{})
-ou aproveitar nossa abordagem breve sobre o assunto nos usos musicais desta sessão, logo abaixo.}.
-
-----
 
 Algo interessante ocorre se aumentarmos progressivamente $f'$.
 Primeiramente o limiar de frequência
 para audição do fenômeno sonoro como
 altura ($\approx 20Hz$) gera rugosidades para
-ambos tremolos e vibratos. A sequência \emph{Rugosidades}
+ambos tremolos e vibratos. Estas rugosidades são muito apreciadas
+tanto na tradição erudita quanto na música eletrônica atual, especialmente no \emph{Dubstep}~\cite{DubRugoso}.
+A rugosidade também é gerada através de conteúdos espectrais que geram batimentos~\cite{Porres}.  A sequência \emph{Rugosidades}
 explora este limiar com concomitâncias de tremolos e vibratos na mesma
 voz, com intensidades e formas de onda diferentes.
 
 Se continuarmos aumentando a frequência, deixamos de ouvir estas oscilações
 como eventos identificáveis. Neste caso, as oscilações se apresentam na forma de espectro
-audível como altura, $f'$ e a forma de onda realizam alterações espectrais no som
+audível como altura, $f'$, $\mu$ e a forma de onda realizam alterações espectrais no som
 original $T_i$ de formas diferentes para os tremolos e para os vibratos, são as 
-chamadas sínteses AM (Amplitude Modulation) e FM (Frequency Modulation).
-Estas são técnicas muito poderosas e conhecidas, com aplicações em sintetizadores
-históricos como o Yamaha XXX e com aplicações fora da música, como em telecomunicações
-(ex. radios AM e FM).
+chamadas sínteses AM (\emph{Amplitude Modulation}) e FM (\emph{Frequency Modulation}).
+Estas são técnicas muito poderosas e conhecidas, com clássicas aplicações em sintetizadores
+históricos como o Yamaha XXX e com aplicações fora da música, como em telecomunicações para transmissão de informação via ondas eletromagnéticas (ex. radios AM e FM).
 
-Para nosso caso, em resumo, podemos entender a síntese FM através do caso entre senoides
+Para fins musicais e em resumo, podemos entender a síntese FM através do caso entre senoides
 e decompor os sinais em seus espectros de Fourier (i.e. senoidais) para casos mais complexos.
-Assim, a síntese FM realizada com um vibrato de frequência $f'$ em um som $T_i$ de frequência $f$
+Assim, a síntese FM realizada com um 'vibrato' senoidal de frequência $f'$ e profundidade $\mu$ em um som também senoidal $T_i$ de frequência $f$
 e duração $\Delta$ segundos (assumimos $\Lambda = \lfloor \Delta . f_a \rfloor $ amostras)
 gera bandas centradas em $f$ e distantes $f'$ entre si:
 
@@ -1335,7 +1318,7 @@ onde
 \begin{equation}
 J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \quad , \quad \overline{k} = k \% 2 \;\;,\;\; k \in \mathbb{N}
 \end{equation}
-é a função de Bessel~\cite{BesselCCRMA,JOSFM}. Note que, nestas equações, a variação de frequência não respeita a progressão geométrica de frequência que acompanha a percepçao de altura. Caso utilizemos as equações~\ref{vbrF} teríamos uma distribuição diferente dos harmônicos. Para este fim, dispomos o APÊNDICE~\ref{cap:fmam} onde calculamos o conteúdo espectral da síntese FM feita com oscilações na escala logarítmica. De fato, como pode-se notar nos cálculos, o comportamento simples que torna a FM é privilégio das variações lineares utilizadas em~\ref{eq:fmEsp}.
+é a função de Bessel~\cite{BesselCCRMA,JOSFM} que, na FM, especifica as amplitudes de cada componente. Note que, nestas equações, a variação de frequência não respeita a progressão geométrica de frequência que acompanha a percepção de altura. Caso utilizemos as equações~\ref{vbrF} teríamos uma distribuição diferente dos harmônicos. Para este fim, dispomos o APÊNDICE~\ref{cap:fmam} onde calculamos o conteúdo espectral da síntese FM feita com oscilações na escala logarítmica. De fato, como pode-se notar nos cálculos, o comportamento simples que torna a FM atraente é obtido somente com as variações lineares utilizadas em~\ref{eq:fmEsp}.
 
 O caso da modulação de amplitude (AM) é mais simples:
 
@@ -1346,13 +1329,52 @@ O caso da modulação de amplitude (AM) é mais simples:
 \end{split}
 \end{equation}
 
-Ou seja, o sinal resultante é o sinal original (chamada portadora, com conteúdos harmônicos como a senoide de frequência $f$)
+Ou seja, o som resultante é o original
 e a reprodução de seu conteúdo espectral acima e abaixo da frequência
-original, distantes na proporção de cada harmônico ($f'$) da moduladora.
+original, distantes $f'$ de $f$. Observe que utilizamos novamente a variação na escala linear de amplitude. Dispomos no APÊNDICE~\ref{cap:fmam} uma exposição do espectro da AM se realizada na escala logarítmica de amplitude, que também perde o comportamento simples.
 
- Além do comparativo qualitativo que é explorado entre as oscilações nas escalas diferentes, é uma ponte conveniente com as sínteses FM e AM.
+A realização da FM e AM através de LUTs é consideravelmente simples.
+A frequência $f$ a ser modulada, chamada portadora, é modulada pela $f'$, chamada moduladora. No jargão de FM e AM, $\mu$ e $\alpha=10^{\frac{V_{dB}}{20}}$ são chamados índices de modulação. Assim, temos
+para o padrão de vibração da moduladora $\{t_i'\}$ as mesmas equações utilizadas para os tremolos e vibratos:
 
-\subsubsection{Usos musicais livres}
+\begin{equation}\label{fmGamma}
+\gamma_i'=\left \lfloor i f' \frac{\widetilde{\Lambda}_M}{f_a} \right \rfloor
+\end{equation}
+
+\begin{equation}\label{fmAux}
+t_i'=\widetilde{m}_{\gamma_i' \;\% \widetilde{\Lambda}_M}
+\end{equation}
+
+Para aplicação da moduladora $\{t_i'\}$ na portadora $\{t_i\}$,
+temos, para a FM:
+
+\begin{equation}\label{fmF}
+f_i=f + \mu . t_i'
+\end{equation}
+
+\begin{equation}\label{fmGamma}
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_i \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}(f+\mu . t_i') \right\rfloor
+\end{equation}
+
+\begin{equation}\label{fmT}
+T_i^{f,\, FM(f',\,\mu)}=\{ t_i^{f,\,FM(f',\,\mu)} \}_0^{\Lambda-1}=\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \}_0^{\Lambda-1}
+\end{equation}
+
+Onde $\widetilde{l}$ é um período da forma de onda de comprimento $\widetilde{\Lambda}$ da portadora.
+
+Para realizar a AM, basta modular $\{t_i\}$ com $\{t_i'\}$ com as equações (lembrando que $\alpha=10^{\frac{V_{dB}}{20}}$):
+
+\begin{equation}\label{amA}
+a_i=1 + \alpha . t_i'
+\end{equation}
+
+\begin{equation}\label{trT}
+T_i^{f,\,AM(f',\,\alpha)}=\{ t_i^{f,\,AM(f',\,\alpha)} \}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_i . (1 + \alpha . t_i')    \}_0^{\Lambda-1}
+\end{equation}
+
+
+
+\subsubsection{Usos musicais parte 2}
 A este ponto as possibilidades musicais explodiram. Possuímos unidades
 musicais com características próprias de altura (dada pela frequência),
 tímbre (dada pela forma de onda),
@@ -1384,54 +1406,79 @@ Com $f^{vbr}$ e $f^{tr}$ sendo $f'$ nas equações de referência, ou seja, a fr
 de oscilação do vibrato e do tremolo utilizada na equação~\ref{vbrGamma}. Já $\nu$ e $V_{dB}$ são as profundidades
 do vibrato e do tremolo, respectivamente. A montagem musical 
 \emph{tremolos, vibratos e a frequência} explora
-recursos como este e variações da forma de onda da oscilação. As possibilidades
-são numerosas e ricas e, aliás, os tremolos e os vibratos naturais ocorrem
-juntos, i.e. quase todo tremolo natural também apresenta oscilação de frequência
-e vice versa.
+recursos como este e variações da forma de onda da oscilação com vínculos, de modo a formar um \emph{idioma musical}\footnote{Veja na próxima sessão.}.
 
-Estas oscilações - aplicadas à amplitude, frequência, posição espacial - são ornamentos muito apreciados e possuem nomes
-específicos. Em linguagem pianística,
-os tremolos são ocorrências em que se alternam rapidamente 2 notas (com
-casos de expansão do conceito), ou seja, seriam mais facilmente associados aos vibratos
-segundo a nomenclatura aqui utilizada\footnote{Veja nosso glossário.}.
 
----------
-
-Com relação à convolução, podemos estabelecer um pulso musical (a exemplo de um pulso BPM)
+Com relação à convolução, podemos estabelecer uma duração como pulso musical - a exemplo de um pulso BPM - 
 e distribuir impulsos no decorrer deste pulso, de forma a estabelecer métricas e rítmos\footnote{Lembrando
-que a convolução com o impulso resulta no som deslocado ao instande de ocorrência do impulso}.
+que a convolução com o impulso resulta no som deslocado ao instante de ocorrência do impulso.}.
 Por exemplo, se escolhemos 2 impulsos igualmente espaçados, estaremos fazendo uma
 divisão binária básica do pulso. Se escolhemos dois sinais, um com 2 pulsos e outro com 3 pulsos,
 ambos com os impulsos igualmente espaçados na duração do pulso, resultamos na manutenção
 do pulso, com uma marcação rítmica usada tanto em divisões binárias quanto ternárias em diversos
-estilos de música étnica e tradicional. 
+estilos de música étnica e tradicional~\cite{Gramani}. 
 Os próprios valores absolutos destes impulsos resultam em proporções entre as amplitudes dos sinais
 convoluídos.
 Exploramos este recurso da métrica
 estabelecida pela convolução com impulsos na sequência musical \emph{trenzinho de caipiras impulsivos}.
 
 Já com os filtros as possibilidades explodem ainda mais vertiginosamente. Pode-se convoluir um sinal para reverberá-lo, para
-remover algum ruído, para gerar distorções ou tratamento com intuito estético mesmo. Por exemplo,
-aplicando um filtro bassa banda em que deixamos passar somente entre $1kHz$ e $3kHz$, geramos um som
+remover algum ruído, para gerar distorções ou para tratamento com intuito estético mesmo (soa melhor por algum motivo). Por exemplo,
+com a aplicação de um filtro passa banda em que deixamos passar somente entre $1kHz$ e $3kHz$, geramos um som
 que parece de telefone ou de televisão antiga. Ao remover com alguma precisão somente
 a frequência de oscilação da rede elétrica (usualmente $50Hz$ ou $60Hz$) e harmônicas, podemos remover
 ruídos introduzidos pelos equipamentos de áudio utilizados. Um uso mais incrementado
 e propriamente musical seria realizar filtragens em bandas específicas e usar estas bandas
-pré estabelecida como um parâmetro adicional das notas.
+pré-estabelecidas como um parâmetro adicional das notas.
 
-Um recurso musicalmente forte é a filtragem dependente do tempo, no qual convém os filtros IIR, em que
+Um recurso considerado musicalmente forte pelo resultado que se aproxima dos instrumentos tradicionais é a filtragem dependente do tempo~\cite{Roederer}, no qual convém os filtros IIR, em que
 os valores do filtro podem ser modificados - com algum cuidado - ao longo de sua aplicação. Cascatas
 destes filtros podem realizar filtragens complexas e mais precisas. A montagem \emph{ruídos e faixas} explora
-este recursos, realizando filtragens em ruídos diversos, com sequênciamento de disposição de bandas
-e ruídos específicos, e filtragens que variam no tempo.
+este recursos, realizando filtragens em ruídos diversos e síntese de ruídos diversos.
 
-Um uso incrementado destes recursos todos seria a realização de um efeito chamado \emph{chorus}. Ao
+Estes recursos todos utilizados em conjunto podem incindir na realização de um efeito chamado \emph{chorus}. A
 exemplo do que ocorre com um coro de cantores, neste efeito o som é realizado com diversas pequenas modificações,
 potencialmente aleatórias, em paramêtros como frequência central, presença (ou ausência) de vibrato
 e trêmolo e suas características, equalizações, volume etc. Para o resultado final, estas versões do som
-inicial é então mixado (ver equação \ref{eq:mixagem}). A peça \emph{chorus infantil} realiza chorus de formas
+inicial são então mixadas (ver equação \ref{eq:mixagem}). A peça \emph{chorus infantil} realiza chorus de formas
 diferentes em sons diferentes.
 
+Para terminar esta sessão com algo simples, vamos descrever a envoltória de volume chamada ADSR (sigla de \emph{Atack-Decay-Sustain-Release}). A envoltória ADSR possui numerosas implementações em sintetizadores de diversas procedências. Uma implementação pioneira pode ser encontrada no Hammond Novachord de 1938~\cite{ADSR} e algumas variantes são citadas logo abaixo.
+
+A envoltória ADSR canônica é caracterizada por 4 parâmetros: duração do ataque (que o som demora para atingir seu volume máximo), duração do decaimento (segue ao ataque imediatamente), nível de volume de sustentação (em que o volume fica estável após o decaimento) e duração de soltura (após a sustentação, nesta duração o volume decai a zero).
+Observer que o tempo de sustentação não está especificado, isso depende da nota em si. Note que o tempo de sustentação não é especificado, pois é resultante da duração em si menos os tempos de ataque, decaimento e soltura.
+
+A aplicação da envoltória ADSR com durações $\Delta_A$, $\Delta_D$ e $\Delta_R$, duração total $\Delta$ e nível de sustentação $a_S$, dado
+como fração da amplitude máxima, em uma sequência sonora $t_i$ qualquer pode ser feita da seguinte forma:
+
+\begin{equation}
+\begin{split}
+\{a_i\}_0^{\Lambda_A-1} & = \left\{2^{\frac{i}{\Lambda_A-1}}-1\right\}_0^{\Lambda_A-1} \\
+\{a_i\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} & =\left\{a_S^{\frac{i-\Lambda_A}{\Lambda_D-1}}  \right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} \\
+\{ a_i \}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} & =\left\{ a_S \right\}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} \\
+\{ a_i \}_{\Lambda-\Lambda_R}^{\Lambda-1} & =\left\{ (a_S+1)\left(\frac{1}{a_S+1} \right)^{\frac{i+\Lambda_R-\Lambda}{\Lambda-\Lambda_R}} -1 \right\}_{\Lambda-\Lambda_R}^{\Lambda-1}
+\end{split}
+\end{equation}
+
+Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X$.
+
+\begin{equation}
+\left\{t_i^{ADSR}\right\}_0^{\Lambda-1} =\{t_i . a_i\}_0^{\Lambda-1}
+\end{equation}
+
+\begin{figure}[h!]
+    \centering
+    \caption{Envelope ADSR canônico e uma sequência sonora arbitrária sendo submetida ao envelope}
+        \includegraphics[width=\textwidth]{figuras/adsr}
+        \label{fig:adsr}
+\end{figure}
+
+
+Podemos ver esquematicamente esta envoltória na figura~\ref{fig:adsr}. O envelope ADSR descrito é
+uma implementação clássica e paradigmática que comporta variações diversas. Por exemplo,
+entre o ataque e o decaimento, pode-se adicionar uma partição adicional em que a amplitude
+máxima perdura. Outro exemplo comum é a elaboração de traçados mais elaborados para o
+ataque ou para o decaimento.
 
 
 
