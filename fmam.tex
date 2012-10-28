@@ -1,0 +1,33 @@
+\chapter{Síntese FM e AM em escala logarítmica}
+\label{cap:fmam}
+
+\subsection{FM}
+\begin{equation}
+\begin{split}
+\{t_i'\}_0^{\Lambda -1} &  = \left \{ \cos \left [f_i . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  = \left \{ \cos \left [f\left ( \frac{f+\mu}{f} \right )^{sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )} . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  =  \\
+ & = \left \{ \cos \left [f\left ( 2^{\frac{\nu}{12}} \right )^{sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )} . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1} =\left \{ \cos \left [f\left ( 2^{\frac{\nu}{12} \sin \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )  } \right ) . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1} \Rightarrow \\
+& \Rightarrow \text{usando: } \left ( 2^x=e^{x \ln 2}, \;\; e^x=\sum_0^\infty \frac{x^n}{n!},\;\; \sin^nx=y_1(n)\sum_k y_2(n,k).\sin[y_3(n,k,x)]   \right ) \Rightarrow \\
+\Rightarrow \{t_i'\}_0^{\Lambda -1} & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu,f) \cos \left [ y(f.f', f_a) \right ]  \right \}_0^{\Lambda-1}
+\end{split}
+\end{equation}
+
+Onde, por brevidade, citamos as identidades úteis para resultar na
+forma final do som resultante, que explicita o conteúdo em frequências puras.
+Podemos observar que, para a FM, se utilizada a progressão exponencial de frequência, o resultado
+é menos comportado. A função de Bessel dependerá não somente da profundidade de oscilação,
+mas também da frequência original do som. Além disso, as frequências dependem do produto das frequências
+do som e da oscilação ($f.f'$), o que também - a princípio - não convém por introduzir complexidade.
+
+
+\subsection{AM}
+No caso de usarmos a modulação na escala logarítmica como nosso tremolo, temos novamente
+um resultado menos comportado:
+\begin{equation}\label{eq:am}
+\begin{split}
+\{t_i'\}_0^{\Lambda-1} & =\{(a_{\text{máx}})^{ti'} . t_i\}_0^{\Lambda-1}= \left \{ a_{\text{máx}}^{\sin \left ( f'.2\pi\frac{i}{f_a -1} \right )} . P .\sin \left ( f.2\pi\frac{i}{f_a -1} \right ) \right \}_0^{\Lambda-1} 
+\end{split}
+\end{equation}
+
+Que nos leva pelos mesmos recursos a um espectro com diversas bandas de frequência distante
+em proporções múltiplas da frequência da moduladora.
+
