@@ -602,7 +602,7 @@ Pode-se completar com zeros para somar sequências de tamanhos diferentes. O res
 
 As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem $k$ notas musicais, sua concatenação em uma única sequência $T_i$ resultará em uma sequência musical simples ou melodia:
 
-\begin{equation}
+\begin{equation}\label{eq:concatenacao}
 \{t_i\}_0^{\sum\Delta_k-1}=\{t_{l,i}\}_0^{\sum\Delta_k-1}, \;\; l\text{ menor inteiro } : \quad \Lambda_l > i -\sum_{j=0}^{l-1}\Lambda_j
 \end{equation}
 
@@ -1523,10 +1523,12 @@ ataque ou para o decaimento.
 
 \clearpage
 \subsection{Organização de notas musicais em música}
-Seja $ S=\{T_{i,1},T_{i,2}...T_{i,N}\} =\bigcup_{j \in [1,N]} T_{i,j} $ uma sequência de $N$ eventos
+Seja $ S_j=\{T_{i,1},T_{i,2}...T_{i,N}\} =\bigcup_{j \in [1,N]} T_{i,j} $ uma sequência de $N$ eventos
 musicais. Para simplificar, sejam notas musicais estes eventos musicais.
 Considerando $S$ como uma estrutura musical, existem diversas técnicas
-para tornar estas estruturas interessantes e agradáveis.
+para tornar estas estruturas interessantes e agradáveis. 	
+
+Os elementos de $S_j$ podem ser mixados (veja equação~\ref{eq:mixagem} e a figura~\ref{fig:mixagem}) formando acordes ou concatenados (veja equação~\ref{eq:concatenacao} e a figura~\ref{fig:concatenacao}) formando sequências melódicas.
 
 \subsubsection{Afinação, escalas e acordes}
 Quando dobramos a frequência, temos uma oitava ascendente $f_2=2f_1$.
@@ -1534,24 +1536,24 @@ Doze semitons equidistantes para o ouvido formam uma oitava,
 portanto $f_2=2^{\frac{1}{12}}f_1$ forma um semitom ascendente.
 O fator $\varepsilon=2^{\frac{1}{12}}$ forma uma grade de notas
 no espectro audível, em que as frequências fundamentais possíveis
-estão separadas por intervalos múltiplos de $\varepsilon$\footnote{Este
-é um modelo idealizado, os intrumentos reais possuem desvios das frequências
-fundamentais como citadas}.
+estão separadas por intervalos múltiplos de $\varepsilon$.
+Esta precisão absoluta é possível somente em implementações
+computacionais, pois os intrumentos reais possuem desvios destas notas para melhor harmonia entre os harmônicos~\cite{Roederer}.
 
 Esta divisão da oitava em doze notas é o cânone da música ocidental clássica,
 além de usos cerimoniais/religiosos e étnicos. Nesta afinação, chamada cromática
 de temperamento igual, temos 5 divisões perfeitamente simétricas, consideradas
-escalas pela simetria interna e usos fáceis que disso resultam. Descrevamos
-as escalas como sequências de fatores aos quais $\varepsilon$ é elevado para resultar
-no fator a ser multiplicado por $f_0$:
+escalas pelas simetrias internas e usos fáceis que disso resultam. Descrevamos
+as escalas como sequências de fatores aos quais $\varepsilon$ é elevado, resultando
+nos fatores a serem multiplicados por $f_0$ para obtenção dos graus de cada escala:
 
 \begin{equation}
 \begin{split}
-\text{cromática} = E_i^c = \{e_i^c\}_0^{11} =  \{0,1,2,3,4,5,6,7,8,9,10,11\} = \{i\}_0^{11}\\
-\text{tons inteiros} = E_i^t = \{e_i^t\}_0^{5} = \{0,2,4,6,8,10\} = \{2.i\}_0^{5} \\
-\text{terças menores} = E_i^{tm} = \{e_i^{tm}\}_0^{3} = \{0,3,6,9\} = \{3.i\}_0^3 \\
-\text{terças maiores} = E_i^{tM} = \{e_i^{tM}\}_0^{2} = \{0,4,8\} = \{4.i\}_0^2\\
-\text{trítonos} = E_i^{tt} = \{e_i^{tt}\}_0^{1} = \{ 0, 6 \} = \{6.i\}_0^1
+\text{cromática} & = E_i^c = \{e_i^c\}_0^{11} =  \{0,1,2,3,4,5,6,7,8,9,10,11\} = \{i\}_0^{11}\\
+\text{tons inteiros} & = E_i^t = \{e_i^t\}_0^{5} = \{0,2,4,6,8,10\} = \{2.i\}_0^{5} \\
+\text{terças menores} & = E_i^{tm} = \{e_i^{tm}\}_0^{3} = \{0,3,6,9\} = \{3.i\}_0^3 \\
+\text{terças maiores} & = E_i^{tM} = \{e_i^{tM}\}_0^{2} = \{0,4,8\} = \{4.i\}_0^2\\
+\text{trítonos} & = E_i^{tt} = \{e_i^{tt}\}_0^{1} = \{ 0, 6 \} = \{6.i\}_0^1
 \end{split}
 \end{equation}
 
@@ -1567,15 +1569,15 @@ as escalas tonais maior e menor:
 
 \begin{equation}
 \begin{split}
-\text{menor natural} = \text{modo eólico} = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
-\text{menor harmônica} = E_i^{mh} = \{e_i^{mh}\}_0^6 = \{0,2,3,5,7,8,11\} \\
-\text{menor melódica} = E_i^{mm} = \{e_i^{mm}\}_0^{14} = \{0,2,3,5,7,9,11,12,10,8,7,5,3,2,0\} \\
-\text{modo lócrio} = E_i^{mlo} = \{e_i^{mlo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
-\text{maior} = \text{modo jônico} = E_i^M = \{e_i^M\}_0^6 = \{0,2,4,5,7,9,11\} \\
-\text{modo dórico} = E_i^{md} = \{e_i^{md}\}_0^6 = \{0,2,3,5,7,9,10\} \\
-\text{modo frígio} = E_i^{mf} = \{e_i^{mf}\}_0^6 = \{0,1,3,5,7,8,10\} \\
-\text{modo lídio} = E_i^{ml}=\{e_i^{ml}\}_0^6 = \{0,2,4,6,7,9,11\} \\
-\text{modo mixolídio} = E_i^{mmi} = \{e_i^{mmi}\}_0^6 = \{0,2,4,5,7,9,10\}
+\text{menor natural} = \text{modo eólico} & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
+\text{menor harmônica} & = E_i^{mh} = \{e_i^{mh}\}_0^6 = \{0,2,3,5,7,8,11\} \\
+\text{menor melódica} & = E_i^{mm} = \{e_i^{mm}\}_0^{14} = \{0,2,3,5,7,9,11,12,10,8,7,5,3,2,0\} \\
+\text{modo lócrio} & = E_i^{mlo} = \{e_i^{mlo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
+\text{maior}  = \text{modo jônico} & = E_i^M = \{e_i^M\}_0^6 = \{0,2,4,5,7,9,11\} \\
+\text{modo dórico} & = E_i^{md} = \{e_i^{md}\}_0^6 = \{0,2,3,5,7,9,10\} \\
+\text{modo frígio} & = E_i^{mf} = \{e_i^{mf}\}_0^6 = \{0,1,3,5,7,8,10\} \\
+\text{modo lídio} & = E_i^{ml}=\{e_i^{ml}\}_0^6 = \{0,2,4,6,7,9,11\} \\
+\text{modo mixolídio} & = E_i^{mmi} = \{e_i^{mmi}\}_0^6 = \{0,2,4,5,7,9,10\}
 \end{split}
 \end{equation}
 
@@ -1599,7 +1601,7 @@ Por exemplo, consideremos o modo lídio. Uma breve
 inspeção revela que $e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}$. Temos, portanto, $\kappa=2$
 para o modo lídio. 
 Várias outras escalas e sequências são facilmente representadas desta forma. Em especial,
-lembramos aqui das pentatônicas e os modos de transposição limitados de messiaen ~\ref{}.
+lembramos aqui das pentatônicas e os modos de transposição limitados de messiaen~\cite{Messiaen}.
 
 A ocorrência simultânea de notas é observada musicalmente em grande medida
 através dos acordes. Listamos os acordes triádicos sem inversão e na forma fechada,
@@ -1629,7 +1631,8 @@ são também incidentes na manifestação musical humana, para citar somente um 
 música tradicional tailandesa utiliza uma divisão da oitava em sete notas igualmente
 espaçadas ($\varepsilon=2^{\frac{1}{7}}$),
 resultando em intervalos que pouco se assemelham aos intervalos presentes na
-divisão de doze notas.}, podemos usar reais não inteiros
+divisão de doze notas~\cite{Wisnick}.},
+podemos usar reais não inteiros
 para descrever a sequência de alturas ou modificar o fator $\varepsilon$
 e usar inteiros ainda. Por exemplo, uma afinação muito
 interessante por contemplar a série harmônica de forma consideravelmente precisa,
@@ -1643,7 +1646,7 @@ resultamos em uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\var
 \subsubsection{Rítmo}
 A noção rítmica é dependente de eventos separados por durações. Estes eventos são discerníveis se separados
 por ao menos $50-63ms$. Para que a separação entre eles possa ser apreciada, ela deve ser ainda um pouco maior,
-por volta de $100ms$ ($10Hz$)(tem um resumo interessante na página 42 do \ref{microsound}). Podemos sumarizar 
+por volta de $100ms$ ($10Hz$) (tem um resumo interessante na página 42 do \ref{microsound}). Podemos sumarizar 
 a transição do domínio da apreciação
 de durações como alturas para a apreciação em rítmo da seguinte forma (~\ref{alfaix, microsound}):
 
