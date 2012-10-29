@@ -661,7 +661,8 @@ Mais conhecido pelo termo em inglês, a \emph{Lookup Table} (ou simplesmente
 LUT), é um procedimento simples que consiste em criar uma tabela
 de referência e coletar as amostras desta tabela segundo a 
 necessidade\footnote{Em contraposição ao cálculo das amostras individuais
-de forma analítica.}. Em nosso caso, usaremos tabelas de busca para os
+de forma analítica e permitindo o uso de funções sem possibilidade de cálculo direto
+(por serem amostras recolhidas diretamente de algum fenômeno natural, por exemplo).}. Em nosso caso, usaremos tabelas de busca para os
 sons criados, as notas. Assim, estas tabelas são unidimensionais e com
 valores reais. Além disso, a tabela consiste nas amostras
 de um período de onda, que usamos para sintetizar períodos
@@ -694,7 +695,7 @@ Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
 para sintetizar o som em qualquer frequência. Dispomos graficamente
 o procedimento de LUT na figura~\ref{fig:lut} onde calculamos explicitamente
 também uma amostra de $\{t_i\}$ a partir de $\{\widetilde{l}_i\}$ para uma frequência
-de $f=200Hz$ e $\widetilde{\Lambda}=128$ considerada a taxa de amostragem em $f_a=44.1kHz$.
+de $f=200Hz$, $\widetilde{\Lambda}=128$ e considerada a taxa de amostragem em $f_a=44.1kHz$.
 
 
 Para o cálculo do inteiro $\gamma_i$, convencionamos
@@ -722,13 +723,19 @@ $f_a$. O procedimento de busca em tabela
 é computacionalmente bastante barato, substituindo cálculos por buscas simples (por isso geralmente
 é entendido como um processo de otimização). Salvo quando assinalado,
 no texto que segue usaremos este procedimento para todos os casos cabíveis pois
-simplifica diversas rotinas e é computacionalmente coerente. Para um uso clássico das LUTs na síntese sonora musical, recomendamos procurar pela chamada \emph{Wavetable Synthesis} que consiste em várias LUTs utilizadas em conjunto através da mixagem para gerar uma nota musical quasi-periódica~\cite{Cook,Wavetable}.
+simplifica diversas rotinas e é computacionalmente coerente.
+
+O uso de LUTs é bastante difundido nas implementações computacionais
+voltadas para música e para um uso clássico que explora com ênfase
+as LUTs na síntese sonora musical, recomendamos procurar pela chamada 
+\emph{Wavetable Synthesis} que consiste em várias LUTs utilizadas em 
+conjunto através da mixagem para gerar uma nota musical quasi-periódica~\cite{Cook,Wavetable}.
 
 
 \subsubsection{Variações incrementais de frequência e intensidade}
 
 Segundo revela a lei de Weber e Fechner, nossa percepção tem uma relação logarítmica com
-o estímulo que a causa~\cite{Weber-Fechner}, em outras palavras, um estímulo em progressão exponencial
+o estímulo que a causa~\cite{Weber-Fechner}. Em outras palavras, um estímulo em progressão exponencial
 é percebido como linear. Mesmo assim, dado o uso, explicitaremos também a variação
 linear e começaremos descrevendo esta por razões didáticas.
 
@@ -740,11 +747,11 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 \end{equation}
 
 \begin{equation}\label{indiceLinear}
-\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor i \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right ] \right \rfloor 
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{j}{\Lambda-1} \right ] \right \rfloor 
 \end{equation}
 
 \begin{equation}\label{serieAmostralLin}
-\{t_i^{\;\overline{f_0,\, f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
+\left\{t_i^{\;\overline{f_0,\, f_{\Lambda-1}}}\right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\,\right\}_0^{\Lambda-1}
 \end{equation}
 
 Onde $\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a}$ é o incremento da LUT entre duas amostras dada a frequência do som na primeira amostra.
@@ -753,7 +760,7 @@ Desta forma, podemos calcular os elementos $t_i^{\;\overline{f_0,f_{\Lambda-1}}}
 com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$.
 
 As equações \ref{freqLinear}, \ref{indiceLinear} e \ref{serieAmostralLin} são relativas à progressão linear
-da frequência. Como assinalado, nossa percepção segue a progressão logarítmica:
+da frequência. Como assinalado para o caso geral, também aqui
 uma progressão de frequência
 \emph{percebida} como linear segue uma progressão exponencial\footnote{Ou,
 dito ainda de outra forma, uma progressão geométrica da frequência
@@ -773,11 +780,11 @@ f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
 \end{equation}
 
 \begin{equation}\label{indiceExponencial}
-\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_i\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i} f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right \rfloor
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i} f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{j}{\Lambda -1}} \right \rfloor
 \end{equation}
 
 \begin{equation}\label{serieAmostralLog}
-\{t_i^{\;\overline{f_0,\,f_{\Lambda-1}}}\}_0^{\Lambda-1}=\{\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\}_0^{\Lambda-1}
+\left\{t_i^{\;\overline{f_0,\,f_{\Lambda-1}}}\right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\,\right\}_0^{\Lambda-1}
 \end{equation}
 
 Onde usamos a equação \ref{indiceExponencial} para calcular a sequência $\{\gamma_i\}_0^{\Lambda-1}$ de índices para para
@@ -785,11 +792,11 @@ serem buscados na nossa tabela que contém um único período da forma de onda r
 pontos igualmente espaçados (amostras).
 Isso é explicitado na equação ~\ref{serieAmostralLog}, onde estabelecemos a relação
  $t_i^{\;\overline{f_0,f_{\Lambda-1}}}=\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}$.
-Note que a equação \ref{serieAmostralLog} se mantém (permanece idêntica à equação \ref{serieAmostralLin}).
+Note que a equação \ref{serieAmostralLog} se mantém (é idêntica à equação \ref{serieAmostralLin}).
 
 \begin{figure}[h!]
     \centering
-    \caption{Transições de intensidade para diferentes valores de $\alpha$ (veja equação~\ref{transAmp})}
+    \caption{Transições de intensidade para diferentes valores de $\alpha$ (veja equações~\ref{seqAmp} e ~\ref{transAmp})}
         \includegraphics[width=\textwidth]{figuras/transicao}
         \label{fig:transicao}
 \end{figure}
@@ -798,18 +805,19 @@ Note que a equação \ref{serieAmostralLog} se mantém (permanece idêntica à e
 O termo $\frac{i}{\Lambda-1}$ varre o intervalo $[0,1]$ e podemos elevá-lo a uma potência
 para que o início da transição seja mais suave ou mais abrupto (compensado pelo final
 da transição). Este procedimento é mais comum para o caso de variações de volume através da energia
-da onda vibratória\footnote{O aumento do volume pode ocorrer por diversas características, como
-a reverberação e a concentração de harmônicos agudos e a energia. A mais facilmente controlada
-é a energia da onda (veja equação ~\ref{potencia}) e a energia também pode variar de diferentes formas. A forma mais
-simples e conveniente geralmente é a variação de amplitude. A variação de energia sem variação de
-amplitude é comumente chamado de \emph{compressão sonora} e é muito útil e corriqueiro na prática
-de produção musical atual}. Nestes casos, o procedimento comum é multiplicar a sequência original
-(seja ela gerada ou pré-estabelecida) pela sequência $\left ( \frac{i}{\Lambda-1} \right )^\alpha$
-onde alpha é o coeficiente citado.
+da onda vibratória\footnote{O alteração do volume pode ocorrer por diversas características como
+a reverberação, a concentração de harmônicos agudos e a energia. Para nós, neste ponto da exposição,
+a mais facilmente controlada é a energia da onda (veja equação ~\ref{potencia}) e a energia também pode variar de diferentes formas.
+Uma forma mais simples e conveniente é a variar a amplitude pela multiplicação da sequência toda
+por algum número real. A variação de energia sem variação de
+amplitude é comumente chamada de \emph{compressão sonora} e é muito útil e corriqueira na prática
+de produção musical atual~\cite{compressao}.}. Podemos obter este resultado multiplicando a sequência original
+(seja ela gerada ou pré-estabelecida) pela sequência $a_{\Lambda-1}^{\left( \frac{i}{\Lambda-1} \right )^\alpha}$
+onde $\alpha$ é o coeficiente citado e $a_{\Lambda-1}$ é fração da amplitude original que se visa atingir ao final da transição.
 
 Assim, para variações de amplitude, aplicamos as seguintes fórmulas:
 
-\begin{equation}
+\begin{equation}\label{seqAmp}
 \{a_i\}_0^{\Lambda-1}=\left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}=\left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ com } a_0=1
 \end{equation}
 
@@ -821,28 +829,31 @@ Nosso intuito aqui é modificar a amplitude de um sinal original, seja qual for 
 $a_0=1$ para iniciar a nova sequência com a amplitude original e então ir modificando com o decorrer das amostras.
 Esta restrição faz com que nosso termo $a_{\Lambda-1}$ seja efetivamente a variação da amplitude.
 Caso $\alpha=1$, a variação de amplitude segue exatamente a progressão geométrica que caracteriza
-a percepção linear. A figura~\ref{fig:transicao} exibe as transições para diferentes valores de $\alpha$.
+a percepção linear. A figura~\ref{fig:transicao} exibe as transições para diferentes valores de $\alpha$ e para a transição entre os valores $1$ e $2$ (se $1$ e $2$ relacionam amplitudes, há um ganho de $\approx 6dB$).
 
 
 
-Algum cuidado é necessário para lidar com $a=0$. Para realizar um \emph{fade out} (diminuição progressiva do volume até o volume zero),
-podemos tomar $a_0=2$ e $a_{\Lambda-1}=1$ e subtrair $1$ de toda a sequência $\{a_i'\}=\left\{2\left(\frac{1}{2}\right)^{\frac{i}{\Lambda-1}}-1\right\}$. Para um \emph{fade in} (acréscimo progressivo de volume a partir do volume zero), podemos
-tomar $a_0'=1$, $a_{\Lambda-1}'=2$ e subtrair $1$ de toda sequência: $\{a_i\}_0^{\Lambda-1}=\left\{2^{\frac{i}{\Lambda-1}}-1\right\}_0^{\Lambda-1}$.
+Algum cuidado é necessário para lidar com $a=0$. Observe que
+na equação~\ref{seqAmp}, se $a_0=0$ haverá divisão por zero e
+se $a_{\Lambda-1}=0$, há uma multiplicação por zero. Ambos os casos
+tornam o procedimento inútil e provém do fato de que nenhum número diferente de zero pode ser representado como uma proporção com relação ao zero. Podemos resolver isso escolhendo um número suficientemente pequeno. Podemos aceitar $-120dB\;\Rightarrow a=10^{\frac{-120}{20}}=10^{-6}$ ou valores ainda menores como nosso volume mínimo no caso de um
+\emph{fade in} ($a_0=10^{-6}$) ou de um \emph{fade out} ($a_{\Lambda-1}=10^{-6}$).
 
-Para resultar em uma amplificação linear, basta usarmos uma sequência $\{a_i\}$ adequada:
+
+Para resultar em uma amplificação linear, mas não linear para a percepção, basta usarmos uma sequência $\{a_i\}$ adequada:
 
 \begin{equation}
 a_i=a_0 + (a_{\Lambda-1}-a_0)\frac{i}{\Lambda-1}
 \end{equation}
 
 Aqui pode muito nos auxiliar a conversão de decibels para amplitude apresentada na equação ~\ref{ampDec}.
-Junto à equação \ref{transAmp}, resulta na sequinte equação para uma transição de $V_{dB}$ decibels:
+Junto à equação \ref{transAmp}, resulta na seguinte equação para uma transição de $V_{dB}$ decibels:
 
 \begin{equation}
 T_i^{'}=\left \{ t_i (10^{\frac{V_{dB}}{20}} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
 \end{equation}
 
-para o caso geral de variações de amplitude segundo a progressão geométrica.
+para o caso geral de variações de amplitude segundo a progressão geométrica. Notamos que a transição mais natural e percebida como linear acorre com $\alpha=1$ e que quanto maior o valor de $\alpha$ mais suave é a introdução do som. Vale assinalar que $\alpha>1$ resulta em transições de volume muitas vezes chamadas de \emph{slow fade} enquanto $\alpha<1$ resulta em \emph{fast fade}~\cite{fades}.
 
 Veremos adiante a aplicação das transições lineares para as oscilações 
 de amplitude e frequência nas chamadas sínteses AM e FM e a aplicação das transições
@@ -880,11 +891,10 @@ Os filtros aplicados por convolução são conhecidos
 pela sua sigla FIR (do inglês Finite Impulse Response)
 e são caracterizados por possuirem uma representação amostral
 finita no tempo. Esta representação amostral é chamada
-de 'resposta ao impulso' $h_i$. Os filtros FIR são aplicados ao som
-digitalizado pela convolucão do som com sua 
-resposta ao impulso. Para nossos fins, esta
-convolução fica definida como\footnote{Convencionamos $t_i=0$ para as
-amostras não definidas de antemão.}:
+de 'resposta ao impulso' $h_i$. Os filtros FIR são aplicados temporalmente ao som
+digitalizado pela convolucão do som com a 
+resposta ao impulso do filtro\footnote{Pode-se aplicar o filtro do domínio espectral através da multiplicação das transformadas de Fourier de ambos o som e a resposta ao impulso, e então realizada a transformada inversa de Fourier do espectro resultante~\cite{Openheim}.}. Para nossos fins, esta
+convolução fica definida como:
 
 \begin{equation}\label{eq:conv}
 \begin{split}
@@ -893,9 +903,11 @@ amostras não definidas de antemão.}:
 \end{split}
 \end{equation}
 
+Onde consideramos $t_i=0$ para as
+amostras não definidas de antemão.
 Ou seja, o som $\{t_i'\}$ resultante da convolução de $\{t_i\}$ com a resposta ao impulso $\{h_i\}$
 tem cada i-ésima amostra $t_i$ substituída pela soma de suas últimas $\Lambda_h$ amostras $\{t_{i-j}\}_{j=0}^{\Lambda_h-1}$
-multiplicadas pela resposta ao impulso $\{h_i\}_0^{\Lambda_h-1}$ em si. Isso é facilmente
+multiplicadas uma a uma pela resposta ao impulso $\{h_i\}_0^{\Lambda_h-1}$ em si. Isso é facilmente
 percebido pela visualização gráfica da convolução de sequências arbitrárias e dispomos
 para este fim a figura \ref{fig:conv}. Observe que a resposta ao impulso $\{h_i\}$
 é disposta na forma retrograda e que mostramos na figura os cálculos explícitos
@@ -918,9 +930,9 @@ varredura de frequência (cuja gravação se aproxima da resposta em frequência
 Ambas resultam em respostas ao impulso
 que, convoluídas com a sequência sonora, resultam na própria sequência
 com uma reverberação que se assemelha à reverberação do ambiente 
-em que ocorreu a medição.
+em que ocorreu a medição~\cite{Cook}.
 
-Como exemplo de resposta ao impulso sintetizadas, pode-se
+Como exemplo de resposta ao impulso sintetizada, pode-se
 descrever um perfil espectral, realizar a transformada inversa
 de fourier e convoluir o resultante com o som, realizando
 uma filtragem cujo perfil é próximo ao especificado inicialmente. Note que este procedimento funciona particularmente bem se for grande o número de amostras utilizadas para especificar o perfil espectral do filtro\footnote{O que resulta em mais processamento computacional.}.
@@ -990,7 +1002,7 @@ ou rotinas para cálculo de coeficientes
 de filtros Chebichev\footnote{Filtros Butterworth e Elípticos podem
 ser considerados como casos específicos dos Filtros do tipo Chebichev~\cite{Openheim,smith}.}.
 Ambas as possibilidades são exploradas
-por títulos em nossas referências, em especial recomendamos~\cite{JOSFM,smith} e na coleção de filtros da comunidade \emph{Music-DSP}, da Universiade de Columbia~\cite{music-dsp}.
+por títulos em nossas referências, em especial recomendamos~\cite{JOSFM,smith} e a coleção de filtros da comunidade \emph{Music-DSP}, da Universiade de Columbia~\cite{music-dsp}.
 Para uma exposição aprofundada do assunto, recomendamos~\cite{Openheim}.
 
 \end{itemize}
@@ -1002,7 +1014,7 @@ fração da frequência de amostragem $f_a$
 em que há aproximadamente uma atenuação de $3dB$.
 Calculamos os coeficientes do filtro IIR
 $a_0$ e $b_1$ 
-através da variável intermediária: $x \in [0,1]$:
+através da variável intermediária: $x \in [e^{-\pi},1]$:
 
 \begin{figure}[h!]
     \centering
@@ -1022,7 +1034,7 @@ b_1 & =  x
 
 \item Passa-altas de polo simples com gráfico do canto superior direito da figura~\ref{fig:iir}. A fórmula geral,
 com frequência de corte $f_c \in (0,\frac{1}{2})$, é calculada através da variável
-intermediária $x \in [0,1]$:
+intermediária $x \in [e^{-\pi},1]$:
 
 
 \begin{equation}\label{eq:passa-altas}
@@ -1047,7 +1059,7 @@ Por conveniência definimos as variáveis auxiliares $K$ e $R$ como:
 
 \begin{equation}
 \begin{split}
-R & = 1 - 3BW \\
+R & = 1 - 3bw \\
 K & = \frac{1-2R\cos(2\pi f_c) + R^2}{2 - 2 \cos (2 \pi f_c)}
 \end{split}
 \end{equation}
@@ -1057,9 +1069,9 @@ A partir das quais temos dois filtros. O filtro passa banda que dispomos no cant
 \begin{equation}\label{eq:passa-banda}
 \begin{split}
 a_0 & =  1 - K \\
-a_1 & =  2(K-R)\cos (2\pi f) \\
+a_1 & =  2(K-R)\cos (2\pi f_c) \\
 a_2 & =  R^2-K \\
-b_1 & =  2R \cos (2\pi f) \\
+b_1 & =  2R \cos (2\pi f_c) \\
 b_2 & =  -R^2
 \end{split}
 \end{equation}
@@ -1069,9 +1081,9 @@ e o filtro rejeita banda:
 \begin{equation}\label{eq:rejeita-banda}
 \begin{split}
 a_0 & =  K \\
-a_1 & =  -2K\cos (2\pi f) \\
+a_1 & =  -2K\cos (2\pi f_c) \\
 a_2 & =  K \\
-b_1 & =  2R \cos (2\pi f) \\
+b_1 & =  2R \cos (2\pi f_c) \\
 b_2 & =  -R^2
 \end{split}
 \end{equation}
@@ -1093,7 +1105,7 @@ Estes sons estão presentes como constituintes importantes dos sons musicais de 
 como os ruídos presentes nas notas do piano, do violino, etc. Além disso, os instrumentos
 de percussão, em grande parte, não possuem altura definida e seus sons
 são muitas vezes compreendidos como ruídos~\cite{Roederer}. Na música eletrônica (incluindo
-a eletroacústica), os ruídos possuem usos amplos, diversificados e comumente
+a eletroacústica e gêneros de pista de dança), os ruídos possuem usos amplos, diversificados e comumente
 idiomáticos~\cite{Cook}.
 
 A ausência de uma altura definida é fruto da ausência de uma organização harmônica perceptível nas componentes senoidais que formam o som. Assim, pode-se inferir
@@ -1156,13 +1168,13 @@ c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \Lambda/2
 \end{split}
 \end{equation}
 
-A frequência mínima $f_{\text{min}}$ pode ser escolhida com base no limite da audição, pois não escutamos como altura de um som uma frequência absoluta abaixo de $\approx\; 20Hz$.
+A frequência mínima $f_{\text{min}}$ pode ser escolhida com base no limite da audição, pois não escutamos como altura uma componente sonora cuja frequência esteja abaixo de $\approx\; 20Hz$.
 
 O resto dos ruídos podem ser feitos com base neste procedimento descrito para 
 o ruído rosa. Basta que modifiquemos alguns detalhes. Em especial a equação que define $\alpha_i$.
 
 \item O ruído marrom deve seu nome ao Robert Brown, que descreveu o movimento browniano.
-Embora esta origem seja um tanto díspar do que poderiamos considerar motivo para uma associaçãocom a cor marrom, o ruído sonoro ficou consagrado com este nome. De qualquer forma, é bastante comum declarar satisfatória a associação do ruído com a cor marrom, dados os ruídos branco e rosa mais estridentes e relacionados a cores mais intensas~\cite{marrom}.
+Embora esta origem seja um tanto díspar do que poderíamos considerar motivo para uma associação com a cor marrom, o ruído sonoro ficou consagrado com este nome. De qualquer forma, é bastante comum declarar satisfatória a associação do ruído com a cor marrom, dados os ruídos branco e rosa mais estridentes e relacionados a cores mais intensas~\cite{marrom}.
 
 O que caracteriza este ruído é a queda de $6dB$ por oitava. Desta forma, basta modificarmos a equação de $\alpha_i$ 
 no conjunto \ref{eq:rosa} para:
@@ -1244,7 +1256,7 @@ f_i=f \left ( \frac{f + \mu }{f} \right )^{t_i'}=f . 2^{t_i'\frac{\nu}{12}}
 \end{equation}
 
 \begin{equation}\label{vbrGamma}
-\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_i \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f \left ( \frac{f + \mu }{f} \right )^{t_i'}  \right \rfloor= \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f . 2^{t_i'\frac{\nu}{12}}  \right \rfloor
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_j \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f \left ( \frac{f + \mu }{f} \right )^{t_j'}  \right \rfloor= \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f . 2^{t_j'\frac{\nu}{12}}  \right \rfloor
 \end{equation}
 
 \begin{equation}\label{vbrT}
@@ -1254,7 +1266,7 @@ T_i^{f, vbr(f',\,\nu)}=\{ t_i^{f,vbr(f',\,\nu)} \}_0^{\Lambda-1}=\{ \widetilde{l
 
 \begin{figure}[h!]
     \centering
-    \caption{Espectrograma de um som com vibrato senoidal de $3Hz$ e profundidade de uma oitava em uma dente de serra de $1000Hz$}
+    \caption{Espectrograma de um som com vibrato senoidal de $3Hz$ e profundidade de uma oitava em uma dente de serra de $1000Hz$ (considerada $f_a=44.1kHz$)}
         \includegraphics[width=\textwidth]{figuras/vibrato___}
         \label{fig:vibrato}
 \end{figure}
@@ -1264,7 +1276,7 @@ A tabela $\widetilde{M}_i$ de tamanho $\widetilde{\Lambda}_M$ e a sequência de 
  que é o padrão da oscilação da frequência enquanto
 a tabela $\widetilde{L}_i$ de tamanho $\widetilde{\Lambda}$ e a sequência de índices $\gamma_i$ formam $t_i$ que é o som em si.
 As variáveis $\mu$ e $\nu$ quantificam a intensidade do vibrato: $\mu$ é uma medida direta da quantidade
-de Herz envolvidos no limite superior da oscilação e $\nu$ é a medida direta de semitons envolvidos na oscilação ($2\nu$ é o número de semitons entre os picos superioes e inferiores de oscilação da frequência do som $t_i$ causada pelo vibrato).
+de Herz envolvidos no limite superior da oscilação e $\nu$ é a medida direta de semitons envolvidos na oscilação ($2\nu$ é o número de semitons entre os picos superioes e inferiores de oscilação da frequência do som $\{t_i\}$ causada pelo vibrato).
 Note que $\nu=\log_{2}\frac{f+\mu}{f} $ é conveniente neste caso pois o aumento máximo de frequência
 não equivale à diminuição máxima, mas a variação de semitons se mantém.
 
@@ -1273,15 +1285,15 @@ $1000Hz$ (entre um si e um dó) e cujo desvio da frequência atinge uma oitava
 para cima e para baixo. Note o padrão senoidal do vibrato e as compontentes harmônicas
 da dente de serra. Qualquer forma de onda pode
 ser utilizada para gerar o som e o padrão de oscilação do vibrato, o que é tão crucial para os usos musicais quanto a
-frequência de oscilação e o desvido de altura envolvido\footnote{O desvio de altura
-é chamado profundidade do vibrato e é dado por conveniência em semitons ou cents.}. Estas qualidades não são praticáveis em instrumentos musicais tradicionais, introduzindo novidade nas possibilidades musicais.
+frequência de oscilação e o desvio de altura envolvido\footnote{O desvio de altura
+é chamado profundidade do vibrato e é geralmetne dado por conveniência em semitons ou cents.}. Estas qualidades não são praticáveis em instrumentos musicais tradicionais, introduzindo novidade nas possibilidades artísticas.
 
 O caso do tremolo é semelhante e $f'$, $\gamma_i'$ e $t_i'$ permanecem os mesmos. Calculamos
 a sequência de amplitudes a serem multiplicadas pela sequência original $t_i$ da
 sequinte forma:
 
 \begin{equation}\label{trA}
-a_i=10^{t_i' \frac{V_{dB}}{20}} = a_{\text{máx}}^{t_i'}
+a_i=10^{\frac{V_{dB}}{20}t_i' } = a_{\text{máx}}^{t_i'}
 \end{equation}
 
 \begin{equation}\label{trT}
@@ -1299,7 +1311,7 @@ intensidade. A frequência do trêmolo é de $1,5Hz$ pois $f_a=44,1kHz \; \Right
 
 A montagem musical \emph{Vibra e treme} explora estes recursos dos tremolos e vibratos
 com frequências $f'$
-e profundidades ($\nu$ e $V_{dB}$) diferentes. Usadas em associação e isoladamente os tremolos e vibratos e com variações progressivas dos parâmetros\footnote{Vale lembrar que os tremolos e vibratos ocorrem muitas vezes juntos em instrumentos tradicionais e na voz.}. A peça desenvolve também uma comparação entre os vibratos e tremolos em escala logarítmica e em escala linear para uma apreciação qualitativa.
+e profundidades ($\nu$ e $V_{dB}$) diferentes. Usados em associação e isoladamente os tremolos e vibratos e com variações progressivas dos parâmetros\footnote{Vale lembrar que os tremolos e vibratos ocorrem muitas vezes juntos em instrumentos tradicionais e na voz.}. A peça desenvolve também uma comparação entre os vibratos e tremolos em escala logarítmica e em escala linear para uma apreciação qualitativa.
 
 
 \begin{figure}[h!]
@@ -1310,7 +1322,7 @@ e profundidades ($\nu$ e $V_{dB}$) diferentes. Usadas em associação e isoladam
 \end{figure}
 
 Algo interessante ocorre se aumentarmos progressivamente $f'$.
-Primeiramente o limiar de frequência
+Primeiramente a aproximação do limiar de frequência
 para audição do fenômeno sonoro como
 altura ($\approx 20Hz$) gera rugosidades para
 ambos tremolos e vibratos. Estas rugosidades são muito apreciadas
@@ -1323,9 +1335,9 @@ Se continuarmos aumentando a frequência, deixamos de ouvir estas oscilações
 como eventos identificáveis. Neste caso, as oscilações se apresentam na forma de espectro
 audível como altura, $f'$, $\mu$ e a forma de onda realizam alterações espectrais no som
 original $T_i$ de formas diferentes para os tremolos e para os vibratos, são as 
-chamadas sínteses AM (\emph{Amplitude Modulation}) e FM (\emph{Frequency Modulation}).
+chamadas sínteses AM (\emph{Amplitude Modulation}) e FM (\emph{Frequency Modulation}), respectivamente.
 Estas são técnicas muito poderosas e conhecidas, com clássicas aplicações em sintetizadores
-históricos como o Yamaha XXX e com aplicações fora da música, como em telecomunicações para transmissão de informação via ondas eletromagnéticas (ex. radios AM e FM).
+históricos como o \emph{Yamaha DX7} e com aplicações fora da música, como em telecomunicações para transmissão de informação via ondas eletromagnéticas (ex. radios AM e FM).
 
 Para fins musicais e em resumo, podemos entender a síntese FM através do caso entre senoides
 e decompor os sinais em seus espectros de Fourier (i.e. senoidais) para casos mais complexos.
@@ -1345,7 +1357,7 @@ onde
 \begin{equation}
 J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \quad , \quad \overline{k} = k \% 2 \;\;,\;\; k \in \mathbb{N}
 \end{equation}
-é a função de Bessel~\cite{BesselCCRMA,JOSFM} que, na FM, especifica as amplitudes de cada componente. Note que, nestas equações, a variação de frequência não respeita a progressão geométrica de frequência que acompanha a percepção de altura. Caso utilizemos as equações~\ref{vbrF} teríamos uma distribuição diferente dos harmônicos. Para este fim, dispomos o APÊNDICE~\ref{cap:fmam} onde calculamos o conteúdo espectral da síntese FM feita com oscilações na escala logarítmica. De fato, como pode-se notar nos cálculos, o comportamento simples que torna a FM atraente é obtido somente com as variações lineares utilizadas em~\ref{eq:fmEsp}.
+é a função de Bessel~\cite{BesselCCRMA,JOSFM} que, na FM, como podemos notar, especifica a amplitude de cada componente. Note que, nestas equações, a variação de frequência introduzida por $\{t_i'\}$ não respeita a progressão geométrica de frequência que acompanha a percepção de altura. Caso utilizemos as equações~\ref{vbrF} teríamos uma distribuição diferente dos harmônicos. Para este fim, dispomos o APÊNDICE~\ref{cap:fmam} onde calculamos o conteúdo espectral da síntese FM feita com oscilações na escala logarítmica. De fato, como pode-se notar nos cálculos, o comportamento simples que torna a FM atraente é obtido somente com as variações lineares utilizadas em~\ref{eq:fmEsp}.
 
 O caso da modulação de amplitude (AM) é mais simples:
 
@@ -1356,9 +1368,9 @@ O caso da modulação de amplitude (AM) é mais simples:
 \end{split}
 \end{equation}
 
-Ou seja, o som resultante é o original
+Ou seja, o som resultante é o som original
 e a reprodução de seu conteúdo espectral acima e abaixo da frequência
-original, distantes $f'$ de $f$. Observe que utilizamos novamente a variação na escala linear de amplitude. Dispomos no APÊNDICE~\ref{cap:fmam} uma exposição do espectro da AM se realizada na escala logarítmica de amplitude, que também perde o comportamento simples.
+original, distantes $f'$ de $f$. Observe que utilizamos novamente a variação na escala linear de amplitude. Dispomos no APÊNDICE~\ref{cap:fmam} uma exposição do espectro da AM se realizada a oscilação na escala logarítmica de amplitude, que também perde o comportamento simples.
 
 A realização da FM e AM através de LUTs é consideravelmente simples.
 A frequência $f$ a ser modulada, chamada portadora, é modulada pela $f'$, chamada moduladora. No jargão de FM e AM, $\mu$ e $\alpha=10^{\frac{V_{dB}}{20}}$ são chamados índices de modulação. Assim, temos
@@ -1380,23 +1392,23 @@ f_i=f + \mu . t_i'
 \end{equation}
 
 \begin{equation}\label{fmGamma}
-\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_i \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}(f+\mu . t_i') \right\rfloor
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_j \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}(f+\mu . t_j') \right\rfloor
 \end{equation}
 
 \begin{equation}\label{fmT}
-T_i^{f,\, FM(f',\,\mu)}=\{ t_i^{f,\,FM(f',\,\mu)} \}_0^{\Lambda-1}=\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \}_0^{\Lambda-1}
+T_i^{f,\, FM(f',\,\mu)}=\left\{ t_i^{f,\,FM(f',\,\mu)} \right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \,\right\}_0^{\Lambda-1}
 \end{equation}
 
 Onde $\widetilde{l}$ é um período da forma de onda de comprimento $\widetilde{\Lambda}$ da portadora.
 
-Para realizar a AM, basta modular $\{t_i\}$ com $\{t_i'\}$ com as equações (lembrando que $\alpha=10^{\frac{V_{dB}}{20}}$):
+Para realizar a AM, basta modular $\{t_i\}$ com $\{t_i'\}$ através das equações (lembrando que $\alpha=10^{\frac{V_{dB}}{20}}$):
 
 \begin{equation}\label{amA}
 a_i=1 + \alpha . t_i'
 \end{equation}
 
 \begin{equation}\label{trT}
-T_i^{f,\,AM(f',\,\alpha)}=\{ t_i^{f,\,AM(f',\,\alpha)} \}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_i . (1 + \alpha . t_i')    \}_0^{\Lambda-1}
+T_i^{f,\,AM(f',\,\alpha)}=\left\{ t_i^{f,\,AM(f',\,\alpha)} \right\}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_i . (1 + \alpha . t_i')    \}_0^{\Lambda-1}
 \end{equation}
 
 
@@ -1431,8 +1443,9 @@ V_{dB} & = func_c(f)
 
 Com $f^{vbr}$ e $f^{tr}$ sendo $f'$ nas equações de referência, ou seja, a frequência
 de oscilação do vibrato e do tremolo utilizada na equação~\ref{vbrGamma}. Já $\nu$ e $V_{dB}$ são as profundidades
-do vibrato e do tremolo, respectivamente. A montagem musical 
-\emph{tremolos, vibratos e a frequência} explora
+do vibrato e do tremolo, respectivamente. As funções $func_a$,
+$func_b$ e $func_c$ são arbitrárias e dependentes das intensões musicais. A montagem musical 
+\emph{Tremolos, vibratos e a frequência} explora
 recursos como este e variações da forma de onda da oscilação com vínculos, de modo a formar um \emph{idioma musical}\footnote{Veja na próxima sessão.}.
 
 
@@ -1447,7 +1460,7 @@ estilos de música étnica e tradicional~\cite{Gramani}.
 Os próprios valores absolutos destes impulsos resultam em proporções entre as amplitudes dos sinais
 convoluídos.
 Exploramos este recurso da métrica
-estabelecida pela convolução com impulsos na sequência musical \emph{trenzinho de caipiras impulsivos}.
+estabelecida pela convolução com impulsos na sequência musical \emph{trenzinho de caipiras impulsivos}. Os recursos explorados incluem a criação de amálgamas sonoros provenientes da síntese granular e esta montagem é já uma ponte para a próxima sessão. Veja especialmente a figura~\ref{fig:pulsoSubAgl}.
 
 Já com os filtros as possibilidades explodem ainda mais vertiginosamente. Pode-se convoluir um sinal para reverberá-lo, para
 remover algum ruído, para gerar distorções ou para tratamento com intuito estético mesmo (soa melhor por algum motivo). Por exemplo,
@@ -1458,8 +1471,7 @@ ruídos introduzidos pelos equipamentos de áudio utilizados. Um uso mais increm
 e propriamente musical seria realizar filtragens em bandas específicas e usar estas bandas
 pré-estabelecidas como um parâmetro adicional das notas.
 
-Um recurso considerado musicalmente forte pelo resultado que se aproxima dos instrumentos tradicionais é a filtragem dependente do tempo~\cite{Roederer}, no qual convém os filtros IIR, em que
-os valores do filtro podem ser modificados - com algum cuidado - ao longo de sua aplicação. Cascatas
+Um recurso considerado musicalmente forte pelo resultado que se aproxima dos instrumentos tradicionais é a filtragem dependente do tempo~\cite{Roederer}. Cascatas
 destes filtros podem realizar filtragens complexas e mais precisas. A montagem \emph{ruídos e faixas} explora
 este recursos, realizando filtragens em ruídos diversos e síntese de ruídos diversos.
 
@@ -1467,13 +1479,13 @@ Estes recursos todos utilizados em conjunto podem incindir na realização de um
 exemplo do que ocorre com um coro de cantores, neste efeito o som é realizado com diversas pequenas modificações,
 potencialmente aleatórias, em paramêtros como frequência central, presença (ou ausência) de vibrato
 e trêmolo e suas características, equalizações, volume etc. Para o resultado final, estas versões do som
-inicial são então mixadas (ver equação \ref{eq:mixagem}). A peça \emph{chorus infantil} realiza chorus de formas
+inicial são então mixadas (ver equação \ref{eq:mixagem}). A peça \emph{Chorus infantil} realiza chorus de formas
 diferentes em sons diferentes.
 
 Para terminar esta sessão com algo simples, vamos descrever a envoltória de volume chamada ADSR (sigla de \emph{Atack-Decay-Sustain-Release}). A envoltória ADSR possui numerosas implementações em sintetizadores de diversas procedências. Uma implementação pioneira pode ser encontrada no Hammond Novachord de 1938~\cite{ADSR} e algumas variantes são citadas logo abaixo.
 
-A envoltória ADSR canônica é caracterizada por 4 parâmetros: duração do ataque (que o som demora para atingir seu volume máximo), duração do decaimento (segue ao ataque imediatamente), nível de volume de sustentação (em que o volume fica estável após o decaimento) e duração de soltura (após a sustentação, nesta duração o volume decai a zero).
-Observer que o tempo de sustentação não está especificado, isso depende da nota em si. Note que o tempo de sustentação não é especificado, pois é resultante da duração em si menos os tempos de ataque, decaimento e soltura.
+A envoltória ADSR canônica é caracterizada por 4 parâmetros: duração do ataque (tempo que o som demora para atingir seu volume máximo), duração do decaimento (segue ao ataque imediatamente), nível de volume de sustentação (em que o volume fica estável após o decaimento) e duração de soltura (após a sustentação, nesta duração o volume decai a zero).
+Note que o tempo de sustentação não é especificado, pois é resultante da duração em si menos os tempos de ataque, decaimento e soltura.
 
 A aplicação da envoltória ADSR com durações $\Delta_A$, $\Delta_D$ e $\Delta_R$, duração total $\Delta$ e nível de sustentação $a_S$, dado
 como fração da amplitude máxima, em uma sequência sonora $t_i$ qualquer pode ser feita da seguinte forma:
