@@ -1849,22 +1849,28 @@ Na tradição musical a permutação está presente em diversas técnicas~\cite{
 apontamos em especial a técnica \emph{Change Ringing} que consiste essencialmente
 em padrões de permutações dentre um fixado número de notas~\cite{change}.} e a consequente realização de dois trabalhos~\cite{figgusOriginal, figgusEspacializacao}.
 
-Toda permutação pode ser operada com outra permutação, resultando na permutação
-que representa a ordenação que resulta se aplicada uma permutação
-depois a outra:
+Qualquer conjunto de permutações podem ser consideradas geradoras de grupos algébricos. Assim, vale citarmos as propriedades que definem um grupo $G$:
 
 \begin{equation}
-p_1 \bullet p_2 = p_3, \quad \forall \; p_1, p_2 \; \text{permutações finitas}
+\begin{split}
+\forall p_1,p_2 \in G \Rightarrow p_1 \bullet p_2 & = p_3 \in G\quad\text{(propriedade de fechamento)} \\
+\forall p_1,p_2,p_3 \in G \Rightarrow (p_1\bullet p_2)\bullet p_3 & = p_1\bullet (p_2\bullet p_3)\quad\text{(propriedade da associatividade)} \\
+\exists e \in G : p \bullet e & = e \bullet p \forall p \in G\quad\text{(existência do elemento neutro)} \\
+\forall p \in G \exists p^{-1} : p\bullet p^{-1} & =p^{-1}\bullet p = e\quad\text{(existência do inverso)}
+\end{split}
 \end{equation}
 
-Uma permutação finita aplicada sucessivamente um número suficiente de vezes
+
+A primeira destas propriedades nos é de particular importância, pois concluímos que toda permutação pode ser operada com outra permutação. De fato, podemos aplicar uma permutação, depois outra e, se compararmos com a ordenação inicial, temos uma permutação resultante. As outras propriedades resultam triviais para nosso caso.
+
+Alguns teoremas nos são caros. Por exemplo, segue imediatamente que, em um grupo finito, todo elemento operado consigo mesmo um número de vezes resulta no elemento neutro. O menor número de vezes necessário para atingir o elemento neutro é chamado de ordem do elemento. Assim, uma permutação finita aplicada sucessivamente um número suficiente de vezes
 resulta na ordenação inicial dos elementos:
 
 \begin{equation}
 (p)^n = e \quad : \quad \text{se} \; p \; \text{finito} \; \Rightarrow \; \exists \;\; n  \in \mathbb{N} \; \text{e finito}
 \end{equation}
 
-O menor valor de $n$ é chamado de \emph{ordem} da permutação $p$. O elemento $e$ é chamado de elemento neutro e é
+O menor valor de $n$ é chamado de \emph{ordem} da permutação $p$. O elemento $e$ é o elemento neutro e é
 a permutação que leva uma ordenação para ela mesma. Aqui já se pode notar o comportamento cíclico causado pela aplicação sucessiva da mesma permutação.
 
 A utilização de permutações na música pode ser resumida da seguinte forma:
