@@ -1525,26 +1525,60 @@ ataque ou para o decaimento.
 \subsection{Organização de notas musicais em música}
 Seja $ S_j=\{T_{i,1},T_{i,2}...T_{i,N}\} =\bigcup_{j \in [1,N]} T_{i,j} $ uma sequência de $N$ eventos
 musicais. Para simplificar, sejam notas musicais estes eventos musicais.
-Considerando $S$ como uma estrutura musical, existem diversas técnicas
+Considerando $S$ uma estrutura musical, existem diversas técnicas
 para tornar estas estruturas interessantes e agradáveis. 	
 
-Os elementos de $S_j$ podem ser mixados (veja equação~\ref{eq:mixagem} e a figura~\ref{fig:mixagem}) formando acordes ou concatenados (veja equação~\ref{eq:concatenacao} e a figura~\ref{fig:concatenacao}) formando sequências melódicas.
+Os elementos de $S_j$ podem ser mixados (veja equação~\ref{eq:mixagem} e a figura~\ref{fig:mixagem}) formando intervalos e acordes ou concatenados (veja equação~\ref{eq:concatenacao} e a figura~\ref{fig:concatenacao}) formando sequências melódicas.
 
-\subsubsection{Afinação, escalas e acordes}
-Quando dobramos a frequência, temos uma oitava ascendente $f_2=2f_1$.
+\subsubsection{Afinação, escalas, acordes e intervalos}
+Quando dobramos a frequência, temos uma oitava ascendente ($f=2f_0$).
 Doze semitons equidistantes para o ouvido formam uma oitava,
-portanto $f_2=2^{\frac{1}{12}}f_1$ forma um semitom ascendente.
-O fator $\varepsilon=2^{\frac{1}{12}}$ forma uma grade de notas
+portanto, se $f=2^{\frac{1}{12}}f_0$, temos um semitom entre $f_0$
+e $f$.
+O fator $\varepsilon=2^{\frac{1}{12}}$, equivalente a um semitom, forma uma grade de notas
 no espectro audível, em que as frequências fundamentais possíveis
 estão separadas por intervalos múltiplos de $\varepsilon$.
-Esta precisão absoluta é possível somente em implementações
-computacionais, pois os intrumentos reais possuem desvios destas notas para melhor harmonia entre os harmônicos~\cite{Roederer}.
+Esta precisão absoluta é característica de implementações
+computacionais, pois os intrumentos reais possuem desvios destas frequências para melhor compatibilizar os harmônicos
+de suas notas~\cite{Roederer}.
 
 Esta divisão da oitava em doze notas é o cânone da música ocidental clássica,
-além de usos cerimoniais/religiosos e étnicos. Nesta afinação, chamada cromática
+além de usos cerimoniais/religiosos e étnicos~\cite{Wisnick}. Os intervalos entre quaisquer duas notas da escala de 12 notas em que se subdivide a oitava possuem nomes específicos. Notados em proporções de $\varepsilon$ entre as notas (i.e. um semitom), estes intervalos são:
+
+\begin{equation}
+\begin{split}
+\text{uníssono} & = 0 \\
+\text{semitom ou segunda menor} & = 1 \\
+\text{tom, tom inteiro ou segunda maior} & = 2 \\
+\text{terça menor} & = 3 \\
+\text{terça maior} & = 4 \\
+\text{quarta justa} & = 5 \\
+\text{quarta aumentada, quinta diminuta ou trítono} & = 6 \\
+\text{quinta justa} & = 7 \\
+\text{sexta menor} & = 8 \\
+\text{sexta maior} & = 9 \\
+\text{sétima menor} & = 10 \\
+\text{sétima maior} & = 11 \\
+\text{oitava} & = 12
+\end{split}
+\end{equation}
+
+Nesta nomenclatura (padrão no Brasil há algumas décadas),
+um intervalo justo (uníssono, quarta, quinta e oitava), ou um intervalo maior (segunda maior, terça maior, sexta maior ou sétima maior), acrescido de um semitom, resulta em um intervalo aumentado. Um intervalo justo, ou um intervalo menor (segunda menor, terça menor, sexta menor ou sétima menor), decrescido de um semitom, resulta em um intervalo diminuto. Um intervalo maior, descrescido de um semitom,
+resulta em um intervalo menor. Um intervalo menor, acrescido de um semitom, resulta em um intervalo maior. Um intervalo aumentado, acrescido de um semitom, resulta em um intervalo 'mais que aumentado' e um intervalo diminuto, descrescido de um semitom, resulta em um intervalo 'mais que diminuto'\footnote{A
+ necessidade de da nomenclatura, notação e uso de intervalos aumentados/diminutos e mais que aumentados/diminutos é consequência do sistema tonal, em que os graus da escala (veja abaixo) são realmente notas diferentes, com funções e usos específicos. Assim, em uma escala de dó bemol maior, a tônica - primeiro grau - é dó bemol, não si, e a sensível - sétimo grau - é si bemol, não lá sustenido ou dó duplo bemol.}. 
+
+Caso as notas sejam dispostas sequencialmente, a ordem das notas, primeiro a nota mais grave ou a mais aguda, resulta em um intervalo ascendente ou descendente, respectivamente. 
+Passando a nota mais grave para a oitava acima, ou a nota mais aguda uma oitava para baixo, invertemos o intervalo. Um pouco de exploração do sistema revela que um intervalo, somado à sua inversão, resulta 9. Um intervalo maior invertido resulta em um intervalo menor e vice-versa. Um intervalo aumentado invertido resulta diminuto e vice-versa, assim como o mais que aumentado resulta em mais que diminuto e vice-versa. Um intervalo justo invertido resulta igualmente justo.
+
+Um intervalo maior que a oitava é classificado como intervalo composto e leva o nome do intervalo entre as mesmas notas, mas na mesma oitava.
+
+Este arcabouço resume com exatidão a teoria dos intervalos musicais~\cite{Lacerda} e nos será útil adiante. Dispomos esta nomenclatura também por completude desta exposição, não há necessidade alguma de decorar estes nomes ou apreender estes detalhes todos enquanto não há uso efetivo.
+
+Na escala cromática
 de temperamento igual, temos 5 divisões perfeitamente simétricas, consideradas
 escalas pelas simetrias internas e usos fáceis que disso resultam. Descrevamos
-as escalas como sequências de fatores aos quais $\varepsilon$ é elevado, resultando
+as escalas como sequências de inteiros aos quais $\varepsilon$ é elevado, resultando
 nos fatores a serem multiplicados por $f_0$ para obtenção dos graus de cada escala:
 
 \begin{equation}
@@ -1563,15 +1597,13 @@ Assim, a terceira nota da escala em tons inteiros com $f_0=200Hz$
 repetidas de forma eficiênte e sustentada. Discutiremos mais sobre simetrias e voltaremos
 a estas divisões da oitava por igual.
 
-As escalas diatonicas também são facilmente especificadas, assim como
+As escalas diatônicas também são facilmente especificadas, assim como
 as escalas tonais maior e menor:
 
 
 \begin{equation}
 \begin{split}
 \text{menor natural} = \text{modo eólico} & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
-\text{menor harmônica} & = E_i^{mh} = \{e_i^{mh}\}_0^6 = \{0,2,3,5,7,8,11\} \\
-\text{menor melódica} & = E_i^{mm} = \{e_i^{mm}\}_0^{14} = \{0,2,3,5,7,9,11,12,10,8,7,5,3,2,0\} \\
 \text{modo lócrio} & = E_i^{mlo} = \{e_i^{mlo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
 \text{maior}  = \text{modo jônico} & = E_i^M = \{e_i^M\}_0^6 = \{0,2,4,5,7,9,11\} \\
 \text{modo dórico} & = E_i^{md} = \{e_i^{md}\}_0^6 = \{0,2,3,5,7,9,10\} \\
@@ -1580,6 +1612,8 @@ as escalas tonais maior e menor:
 \text{modo mixolídio} & = E_i^{mmi} = \{e_i^{mmi}\}_0^6 = \{0,2,4,5,7,9,10\}
 \end{split}
 \end{equation}
+
+Observe que nas escalas diatônicas só estão presentes intervalos maiores, menores e justos dentre quaisquer duas notas escohidas. Única excessão para o trítono, que se apresenta como quarta aumenta ou quinta diminuta, dependendo da nota mais grave que se leva em consideração.
 
 Todas as escalas diatônicas (salvo as menores harmônica e melódica)
 seguem o padrão de intervalos sucessivos
@@ -1603,6 +1637,18 @@ para o modo lídio.
 Várias outras escalas e sequências são facilmente representadas desta forma. Em especial,
 lembramos aqui das pentatônicas e os modos de transposição limitados de messiaen~\cite{Messiaen}.
 
+A escala menor se apresenta em duas formas adicionais, dependentes do uso, melódico ou harmônico:
+
+\begin{equation}
+\begin{split}
+\text{menor natural (igual acima)} & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
+\text{menor harmônica} & = E_i^{mh} = \{e_i^{mh}\}_0^6 = \{0,2,3,5,7,8,11\} \\
+\text{menor melódica} & = E_i^{mm} = \{e_i^{mm}\}_0^{14} = \{0,2,3,5,7,9,11,12,10,8,7,5,3,2,0\} \\
+\end{split}
+\end{equation}
+
+e podem ser utilizadas livremente, embora tradicionamente se associem aos citados usos melódicos ou harmônicos. Observe o traçado ascendente e descendente da escala menor melódica. Isso é necessário para que se apresente a sensível (sétimo e último grau separado por um semitom da oitava) no trajeto ascendente, o que não é necessário quando descende, retomando a forma natural. Já a harmônica apresenta a sensível, mas não evita o intervalo de segunda aumentada entre o sexto e sétimo graus, pois não precisa contemplar trajetória melódica, apenas apresentar a sensível tão cara ao sistema tonal~\cite{Harmonia}.
+
 A ocorrência simultânea de notas é observada musicalmente em grande medida
 através dos acordes. Listamos os acordes triádicos sem inversão e na forma fechada,
 com a fundamental em $0$:
@@ -1616,10 +1662,10 @@ com a fundamental em $0$:
 \end{split}
 \end{equation}
 
-Nestes casos, seguindo as mesmas restrições, basta acrescentar $10$ para ter o acorde
+Basta acrescentar $10$ para ter o acorde
 com sétima menor ou $11$ para resultar em sétima maior\footnote{As sétimas
-menor e maior são intervalos de $10$ e $11$ semitons respectivamente.}. Para realizar inversões e posições abertas,
-basta contar o número de semitons de cada nota a partir da nota mais grave.
+menor e maior são intervalos de $10$ e $11$ semitons respectivamente.}. As inversões e posições abertas
+podem ser obtidas contando o número de semitons de cada nota a partir da nota mais grave.
 
 Para a realização de microtonalidade\footnote{O uso explícito de
 intervalos menores que o semitom é chamado microtonalismo. Isso pode ter usos
@@ -1637,18 +1683,18 @@ para descrever a sequência de alturas ou modificar o fator $\varepsilon$
 e usar inteiros ainda. Por exemplo, uma afinação muito
 interessante por contemplar a série harmônica de forma consideravelmente precisa,
 é proposta na forma da divisão da oitava em $53$ notas, de forma
-que $\varepsilon=2^{\frac{1}{53}}$. As sequências de alturas
+que $\varepsilon=2^{\frac{1}{53}}$~\cite{microtonalidade}. As sequências de alturas
 continuam sendo compostas por inteiros com o novo $\varepsilon$.
 Note que se $S_i$ é uma sequência de alturas $s_i$ e mudamos de $\varepsilon_1$ para
 $\varepsilon_2$,
 resultamos em uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}$.
 
 \subsubsection{Rítmo}
-A noção rítmica é dependente de eventos separados por durações. Estes eventos são discerníveis se separados
+A noção rítmica é dependente de eventos separados por durações~\cite{rythm}. Estes eventos são discerníveis individualmente se separados
 por ao menos $50-63ms$. Para que a separação entre eles possa ser apreciada, ela deve ser ainda um pouco maior,
-por volta de $100ms$ ($10Hz$) (tem um resumo interessante na página 42 do \ref{microsound}). Podemos sumarizar 
+por volta de $100ms$~\cite{microsound}. Podemos sumarizar 
 a transição do domínio da apreciação
-de durações como alturas para a apreciação em rítmo da seguinte forma (~\ref{alfaix, microsound}):
+de durações como alturas para a apreciação em rítmo da seguinte forma ~\cite{Alfaix, microsound}:
 
 \begin{center}
 {\tiny 
@@ -1664,13 +1710,12 @@ frequência (Hz) & {\color{Gray} ...} & {\color{Gray} 1/32,}   & {\color{Gray} 1
 }
 \end{center}
 
-A banda de durações marcada como transição está minimizada pois os limites não são bem definidos.
-A duração específica em que começamos a perceber nitidademente uma frequência fundamental ou uma separação entre as ocorrências é dependente da pessoa e de características do som como conteúdo espectral e intensidade.
+A banda de durações marcada como transição está minimizada pois os limites não são bem definidos: a duração específica em que começamos a perceber nitidademente uma frequência fundamental ou uma separação entre as ocorrências é dependente da pessoa e de características do som como conteúdo espectral e intensidade~\cite{microsound,Roederer}.
 
 A métrica rítmica costuma se basear em uma duração básica chamada pulso. O pulso tipicamente
-compreende durações entre $0,25-1,5s$ (respectivamente $240$ e $40BPM$). Na educação musical e estudos cognitivistas,
+compreende durações entre $0.25-1.5s$ (respectivamente $240$ e $40BPM$). Na educação musical e estudos cognitivistas,
 costuma-se associar esta gama de frequências de pulsação às durações entre batidas 
-do coração ou entre os passos ao caminhar.
+do coração ou entre os passos ao caminhar~\cite{Lacerda,Roederer}.
 
 O pulso é subdividido em partes iguais e também é 
 repetido sequencialmente. Estas relações (de divisão e de concatenação) costumam
@@ -1679,53 +1724,54 @@ seguir relações de números inteiros de baixa ordem
 escrita e étnica, podemos
 dizer que as divisões do pulso musical e seus agrupamentos
 sequenciais no tempo ocorrem com fatores 2, 4 e 8, depois 3, 6 (dois grupos de 3 ou 3 grupos de 2) e 9 (3 grupos de 3). Por 
-último os primos 5 e 7, completando 1-9 (~\ref{jocelyn}, ~\ref{favre}).
-Outras métricas são incidentes (divisões ou agrupamentos em 13, 17, etc), mas não são tão usuais. As métricas, por mais complexas que pareçam, costumam ser decompostas em divisões como estas (inclusive as de fator 5 e 7).}.
+último os primos 5 e 7, completando 1-9.
+Outras métricas são incidentes (divisões ou agrupamentos em 13, 17, etc), mas não são tão usuais e ocorrem principalmente em música experimental e erudita do século XX para frente. As métricas, por mais complexas que pareçam, costumam ser decompostas em divisões como estas~\cite{Gramani,Roederer}.}.
 Uma exposição esquemática está na figura ~\ref{fig:pulsoSubAgl}.
 
 \begin{figure}[h!]
     \centering
-    \caption{Divisões e aglomerações do pulso musical para estabelecimento de métrica\footnote{Ao lado esquerdo temos as divisões da semínima estabelecida como pulso. Ao lado direito temos exemplos de fórmulas de compasso que especificam as mesmas métricas, mas na escala produzida pela algomeração e ocorrências do pulso musical.}}
+    \caption{Divisões e aglomerações do pulso musical para estabelecimento de métrica. Ao lado esquerdo temos as divisões da semínima estabelecida como pulso. Ao lado direito temos exemplos de fórmulas de compasso que especificam as mesmas métricas, mas na escala produzida pelas ocorrências e aglomerações do pulso musical.}
         \includegraphics[width=\textwidth]{figuras/metricaMusical}
         \label{fig:pulsoSubAgl}
 \end{figure}
 
 As relações duais (compassos simples e divisões binárias) costumam a ocorrer em rítmos de dança
-e ocasiões festivas e são chamadas imperfeitas. As relações triádicas ocorrem
+e ocasiões festivas e são chamadas imperfeitas. As relações triádicas
 incidem mais na música ritualística e relacionada ao sagrado
 e são ditas perfeitas.
 
-As divisões mais fortes (acentuadas) são as que consistem nas cabeças dos tempos. Nas divisões binárias (2, 4 e 8 dos casos considerados aqui),
+As unidades mais fortes (acentuadas) são as que consistem nas cabeças dos tempos. Nas divisões binárias (2, 4 e 8 dos casos considerados aqui),
 as unidades consideradas fortes se revesam com as fracas
 (e.g. a divisão em 4 resulta em forte, fraco, (meio) forte, fraco).
-Nas divisões ternárias (3, 6 e 9 dos casos considerados neste escrito) a
+Nas divisões ternárias (3, 6 e 9 dos casos considerados neste escrito)
 à unidade forte (primeira) se sucedem 2 unidades fracas (e.g. a divisão em 3 resulta em forte, fraco fraco)\footnote{A divisão em 6 é considerada composta
  mas pode ocorrer também como uma divisão binária.
  Uma divisão binária que sofre então uma divisão ternária
- resulta em duas unidades divididas em três unidades cada: forte (subdividifo em forte fraco, fraco) e fraco (subdividido em forte, fraco, fraco).
+ resulta em duas unidades divididas em três unidades cada: forte (subdividido em forte fraco, fraco) e fraco (subdividido em forte, fraco, fraco).
 A outra forma de ocorrer a divisão em 6 é através de 
 uma divisão ternária que sofre então uma divisão binária, resultando em:
-uma unidade forte (subdividido em forte e fraco) e duas unidades fracas (subdivididas em forte e fraco).}.
+uma unidade forte (subdividido em forte e fraco) e duas unidades fracas (subdivididas em forte e fraco cada).}.
 
-A acentuação em tempos fracos é chamada contratempo, as notas que se iniciam em tempos fracos e cuja duração percorre tempos fortes são as chamadas síncopas.
+A acentuação em tempos fracos é chamada contratempo, as notas que se iniciam em tempos fracos e cuja duração percorrem tempos fortes são as chamadas síncopas.
 
 As notas podem ocorrer dentro e fora destas divisões (da \emph{'métrica musical'}). Nos casos mais comportados, as notas ocorrem exatamente nestas divisões, com maior incidência para ataques nos tempos fortes.
+Em casos extremos, não se pode perceber a métrica~\cite{Roederer}. Variações (usualmente) bastante pequenas na grade compõem o que apreciamos como interpretação musical e diferenças entre estilos, junto a variações de intensidades, sobreposições de notas e timbre~\cite{Cook}.
 
 Com o fim de sistematizar e colocar em termos formais, podemos convencionar
 o pulso como nível $j=0$ de agrupamento, o nível $j=-1$ 
 é a primeira subdivisão do pulso, o nível $j=1$ como a primeira algomeração dos pulsos e assim por diante. 
-Assim, seja $P_i^j$ a $i$-ésima unidade de 
-pulsos no nível $j$ de agrupamento\footnote{Assim,
-$P^0_{10}$ é o décimo pulso, $P^{1}_3$ é a terceira unidade de agrupamento de pulsos,
-$P^{-1}_2$ é a segunda unidade da subdivisão do pulso.}.
 
+Assim, $P_i^j$ é a $i$-ésima unidade de 
+pulsos no nível $j$ de agrupamento:
+$P^0_{10}$ é o décimo pulso, $P^{1}_3$ é a terceira unidade de agrupamento de pulsos (possivelmente terceiro compasso),
+$P^{-1}_2$ é a segunda unidade da subdivisão do pulso.
 
 Especial atenção para
 os limites de $j$ pois as divisões do pulso devem resultar em durações apreciáveis
-como rítmo e também as junções do pulso deve resultar algo apreciável como, no máximo
-do nosso escopo, música. Dito de outra forma: a duração de $P^{min(j)}_i$, para $\forall \; i$
+como rítmo e também as junções do pulso devem resultar algo apreciável como, no máximo
+do nosso escopo, uma música ou um conjunto coeso de músicas. Dito de outra forma: a duração de $P^{min(j)}_i$, para $\forall \; i$
 é maior que $50ms$ e as durações de $P^{\text{máx}(j)}_i$ \emph{somadas}  em $\forall i$
-devem resultar em uma duração menor do que alguns minutos ou, no máximo poucas horas.
+devem resultar em uma duração menor do que alguns minutos ou, no máximo, poucas horas.
 
 
 Para cada nível $j$ temos alguns índices $i$. Sempre que $i$ soma três 
@@ -1733,19 +1779,23 @@ Para cada nível $j$ temos alguns índices $i$. Sempre que $i$ soma três
 quando soma dois, quatro ou oito índices temos uma relação \emph{imperfecta}.
 
 
-Podemos utilizar a notação
+Para especificar qualquer unidade (nota), de uma
+dada sequência musical que tenha métrica,
+podemos utilizar a notação:
 
 \begin{equation}
-P^{ \{ j_k \} }_{\left \{ \{ i_{l} \}_0^{\alpha_{k}-1} \right \} } \quad \text{onde}\; \alpha_k \; \text{é o número de partições do nível} j_k
+P^{ \{ j_k \} }_{ \{ i_{k} \}}
 \end{equation}
 
-para especificar qualquer unidade da subdivisão da métrica, com níveis $j_k$ e unidades $i_l$\footnote{Como um exemplo, podemos escrever $P^{-1,0,2}_{3,2,1}$  como a terceira subdivisão $P^{-1}_3$ do segundo
-pulso $P^0_2$ do terceiro aglomerado $P^2_2$ de aglomerado de pulsos (perceba o termo $P^1_1$ omitido por simplicidade).}.
+em que $j_k$ é o nível de aglomeração e $i_k$ é a ordem
+da unidade em si.
 
-A cada unidade ou conjunto de unidades $P_i^j$ pode ser associada uma sequência de amostras temporais $T_i$
-que formam uma nota musical. 
+Como um exemplo, podemos escrever $P^{-1,0,2}_{3,2,1}$  como a terceira subdivisão $P^{-1}_3$ do segundo
+pulso $P^0_2$ do terceiro aglomerado de aglomerado de pulsos $P^2_2$ (perceba o termo $P^1_1$ omitido por simplicidade).
 
-Usualmente lidamos com a distribuição rítmica dos eventos musicais com este arcabouço em mente. Assim como acontece com outras características
+Cada unidade ou conjunto de unidades $P_i^j$ pode ser associada a uma sequência de amostras temporais $T_i$ que formam uma nota musical. 
+
+Assim como acontece com outras características
 musicais, lidamos com a estrutura rítmica sem fórmulas pre-estabelecidas, deixando procedimentos sistemáticos para quando é pertinente.
 
 
@@ -1753,7 +1803,7 @@ musicais, lidamos com a estrutura rítmica sem fórmulas pre-estabelecidas, deix
 
 Dadas as estruturas musicais básicas tanto frequenciais (acordes e escalas) quanto 
 rítmicas (divisões e aglomerações simples, compostas e complexas) é 
-natural pensar em como realizar estas estruturas de forma musical.
+natural pensar em como realizar estas estruturas de forma que tenha coesão e sentido~\cite{Boulez}.
 
 Neste ponto, encontramos alguns artifícios consagrados pelo tempo e pelo uso. 
 Apresentamos aqui, de forma bastante breve, o pensamento musical dado por estruturas direcionais.
@@ -1762,16 +1812,20 @@ Na parte seguinte exploramos as estruturas recorrentes e cíclicas.
 As estruturas direcionais nos possibiitam os recursos mais usuais: arcos melódicos e sequências que convergem ou divergem.
 
 Os arcos melódicos são compostos por duas sequências convergentes: 
-uma que atinge um ápice (chamado literalmente de clímax pela teoria musical canônica) e 
-outra que, de forma paradigmática, volta do ápice à região da nota de partida.
+uma que atinge um ápice (chamado literalmente de clímax pela teoria musical tradicional) e 
+outra que, de forma paradigmática, volta do ápice à região da nota de partida. Canonicamente, distinguimos entre arcos cujos clímax estão: no começo, no meio, no final, na primeira metade e na segunda metade~\cite{Schoenberg}. Dispomos esquematicamente a disposição destes clímax na figura~\ref{fig:climax}.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Distinções canônicas do clímax musical em uma melodia ou arcos em outras escalas}
+        \includegraphics[width=\textwidth]{figuras/climax}
+        \label{fig:climax}
+\end{figure}
+
 
 Seja $S_i=\{s_i\}_0^{\Lambda_S-1}$ uma sequência crescente. A sequência 
 $R_i=\{r_i\}_0^{2\Lambda_S -2}=\{s_{(\Lambda_S-1-|\Lambda_S-1-i|)}\}_0^{2\Lambda_S-2}$ 
-é uma sequência perfeitamente simétrica\footnote{Apresenta simetria especular perfeita, i.e. a segunda metade é uma versão espelhada da primeira.}. Pensada segundo conceitos musicais, o clímax está exatamente no meio da sequência. 
-Canonicamente, distinguimos também entre arcos cujos clímax estão deslocados do meio para o final 
-e para o começo (e casos extremos disso, em que os climax estão no extato começo ou final)~\ref{schoenbergComp}.
-Por razões ilustrativas, apresentamos no APÊNDICE XX alguns exemplos 
-destas estruturas em casos da história da música.
+é uma sequência perfeitamente simétrica\footnote{Apresenta simetria especular perfeita, i.e. a segunda metade é uma versão espelhada da primeira.}. Pensada segundo conceitos musicais, o clímax está exatamente no meio da sequência. Podemos modificar isso fazendo com que alguma das metades seja expandida ou diminuída ou substituindo alguma das metades por outra sequência de tamanho diferente. É atraente este recurso pois contamos com toda a teoria de sequências, já bastante desenvolvida e estabelecida. Comparadas as sequências estudadas na teoria das sequências e as utilizadas na música, podemos concluir que existe um interesse especial por sequências relativamente curtas comparadas com as encontradas na teoria matemática~\cite{Guidorizzo,Schoenberg}.
 
 \subsubsection{Estruturas cíclicas}
 Os arcos musicais nem sempre são fruto de estruturas direcionais como as citadas
@@ -1779,23 +1833,24 @@ acima. Um caso crítico é o de estruturas que se modificam gradualmente
 até atingirem o estado original, formando um arco cíclico.
 
 Neste caso, faremos uma exposição específica sobre permutações dada
-a solidez desta abordagem segundo princípios musicais, matemáticos e
-filosóficos\footnote{De forma bastante resumida, apontamos o
+a completude desta abordagem segundo princípios musicais, matemáticos e
+filosóficos\footnote{De
+forma bastante resumida, apontamos o
 entendimento filosófico de que o pensamento humano se baseia
-em reconhecimentos de semelhanças e diferenças dentre os estímulos
-e objetos~\ref{deleuze}. Portanto, segundo este entendimento,
-as simetrias se encontram no cerne do processo cognitivo. Matematicamente,
+na percepção de semelhanças e diferenças dentre os estímulos
+e objetos~\cite{Deleuze}. Portanto, segundo este entendimento,
+as simetrias se encontram no cerne do processo cognitivo pois conceitualmente são as equivalências em si. Matematicamente,
 as simetrias são representadas por grupos algébricos e os grupos finitos, por sua vez,
 são sempre isomorfos a um grupo de permutações. Desta forma, podemos dizer que
 as permutações são capazes de representar quaisquer simetrias em um sistema finito.
 Diretamente na música encontramos permutações de forma bastante explícita, inclusive
-na análise de música étnica~\ref{permMusic}.
-Na tradição musical a permutação está presente em diversas técnicas~\ref{zamacois} e
+na análise de música étnica~\cite{permMusic}.
+Na tradição musical a permutação está presente em diversas técnicas~\cite{Zamacois} e
 apontamos em especial a técnica \emph{Change Ringing} que consiste essencialmente
-em padrões de permutações dentre um fixado número de notas~\ref{change}.}.
+em padrões de permutações dentre um fixado número de notas~\cite{change}.} e a consequente realização de dois trabalhos~\cite{figgusOriginal, figgusEspacializacao}.
 
 Toda permutação pode ser operada com outra permutação, resultando na permutação
-que representa a modificação de elementos fixados se aplicada uma permutação
+que representa a ordenação que resulta se aplicada uma permutação
 depois a outra:
 
 \begin{equation}
@@ -1810,19 +1865,19 @@ resulta na ordenação inicial dos elementos:
 \end{equation}
 
 O menor valor de $n$ é chamado de \emph{ordem} da permutação $p$. O elemento $e$ é chamado de elemento neutro e é
-a permutação que leva uma ordenação para ela mesma.
+a permutação que leva uma ordenação para ela mesma. Aqui já se pode notar o comportamento cíclico causado pela aplicação sucessiva da mesma permutação.
 
 A utilização de permutações na música pode ser resumida da seguinte forma:
-seja $L_i$ uma lista de eventos musicais (para simplificar, considere
-estes eventos musicais como sendo notas musicais) e $p$ uma permutação.
-$L_i'=p(L_i)$ consiste nos mesmos elementos de $L_i$ com a ordem entre eles
+seja $L_i$ uma sequência de eventos musicais (para simplificar, considere
+estes eventos como sendo notas musicais) e $p$ uma permutação.
+$L_i'=p(L_i)$ consiste nos mesmos elementos de $L_i$ com a ordenação
 modificada.
 
 Importante notar que não é necessário permutar os elementos de $L_i$, mas somente
 alguma ou algumas de suas características. Assim, seja $p^f$ uma permutação agindo
 nas frequências e $L_i$ uma sequência de notas básicas como expostas
 ao final de ~\ref{notaBasica}. A nova sequência $L_i'=p^f(L_i)$ consiste nas mesmas
-notas musicais, na mesma ordem, com as frequências fundamentais permutadas segundo
+notas musicais, na mesma ordem e com as mesmas características, com as frequências fundamentais permutadas segundo
 o padrão que $p^f$ apresenta.
 
 Por último, duas sutilezas deste procedimento.
@@ -1831,17 +1886,15 @@ pode operar em subconjuntos de $L_i$. Segundo, nem todos os eventos $L_i$ precis
 cada consulta de estado realizada.
 
 Para simplificar, considere novamente os eventos de $L_i$ 
-como notas musicais. Assim, se $i$ é vai de $0$ a $n>3$, a cada compasso
+como notas musicais. Assim, se $i$ é vai de $0$ a $n$, e $n>4$, a cada compasso
 de $4$ notas podemos executar somente as primeiras $4$ notas. As outras notas de
-$L_i$ podem ser incidentes nos compassos em que as permutações aloque
+$L_i$ podem ser incidentes nos compassos em que as permutações aloquem
 estas notas para as primeiras quatro notas de $L_i$.
 
-Nada impede que tenhamos permutações operando no mesmo conjunto, cada uma destas permutações
-$p_i$
-possui: dimensões das notas em que opera (frequência, duração, fades, intensidade, etc),
-modo de incidência (opera em $L_i$ a cada uma ou duas utilizações de $L_i$). Na realização das notas de $L_i$, uma solução fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $L_i$ equivale a modificar a permutação e executar as primeiras notas.}.
+Podemos dispor permutações que operem no mesmo conjunto, cada uma destas permutações
+$p_i$ possui: dimensões das notas em que opera (frequência, duração, fades, intensidade, etc), modo de incidência (opera em $L_i$ a cada uma ou duas utilizações de $L_i$), período de aplicação (a cada quantas consultas é aplicada a permutação). Na realização das notas de $L_i$, uma solução fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $L_i$ equivale a modificar a permutação e executar as primeiras notas.}.
 
-Esta abordagem resultou em alguns trabalhos ~\ref{figgusOriginal} e implementações computacionais. Descrevemos um uso coerente desta técnica abaixo e apresentamos no APÊNCIDE XX a implementação computacional disponibilizada em ~\ref{repoFiggus}
+Esta abordagem resultou em alguns trabalhos~\cite{figgusOriginal,figgusEspacializacao} e implementações computacionais~\cite{repoFIGGUS,repoFIGGUSold}. Descrevemos um uso coerente desta técnica abaixo e apresentamos no APÊNCIDE~\ref{cap:FIGGUScode} a implementação computacional disponibilizada em~\cite{repoFIGGUS}
 
 
 \subsubsection{Usos Musicais}

@@ -30,14 +30,14 @@ ax2.set_ylim(-3,8)
 p.xlim(-4,74)
 
 ax1.set_xticks(())
-ax1.set_ylabel(r"$\leftarrow$"+u"divisões do pulso musical"+r"$\rightarrow$")
-ax2.set_ylabel(r"$\leftarrow$"+u"fórmulas de compasso"+r"$\rightarrow$")
+ax1.set_ylabel(r"$\leftarrow$"+u"divisões do pulso musical"+r"$\rightarrow$", fontsize=22)
+ax2.set_ylabel(r"$\leftarrow$"+u"fórmulas de compasso"+r"$\rightarrow$", fontsize=22)
 
 ax1.set_yticks((-2,-1,0,1,2,3,4,5,6))
-ax1.set_yticklabels((r"$heptina\;de\;semicolcheia$",r"$quintina\;de\;semicolcheia$",r"$seminima$",r"$duas\;colcheias$",r"$quatro\;semicolcheias$",r"$oito\;fusas$", r"$tercina\;de\;colcheias$",r"$sextina\;de\;semicolcheias$",r"$nonina\;de\;semicolcheias$"))
+ax1.set_yticklabels((r"$heptina\;de\;semicolcheia$",r"$quintina\;de\;semicolcheia$",r"$seminima$",r"$duas\;colcheias$",r"$quatro\;semicolcheias$",r"$oito\;fusas$", r"$tercina\;de\;colcheias$",r"$sextina\;de\;semicolcheias$",r"$nonina\;de\;semicolcheias$"), fontsize=18)
 
 ax2.set_yticks((-2,-1,0,1,2,3,4,5,6))
-ax2.set_yticklabels((r"$.^7_4$",r"$.^5_4$",r"$(.^1_4)$",r"$.^2_4$",r"$.^4_4$",r"$.^8_4$",r"$.^3_4$",r"$.^6_8$",r"$.^9_8$"))
+ax2.set_yticklabels((r"$\binom{7}{4}$",r"$\binom{5}{4}$",r"$\binom{1}{4}$",r"$\binom{2}{4}$",r"$\binom{4}{4}$",r"$\binom{8}{4}$",r"$\binom{3}{4}$",r"$\binom{6}{8}$",r"$\binom{9}{8}$"), fontsize=22)
 #axR=p.subplot(2,1,2,sharex=axL, frameon=False)
 #axR.yaxis.set_label_position("right")
 
@@ -48,6 +48,6 @@ ax2.set_yticklabels((r"$.^7_4$",r"$.^5_4$",r"$(.^1_4)$",r"$.^2_4$",r"$.^4_4$",r"
 #p.yticks((-1,0,1,2,3,4,5,6),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$",r"$5\delta_a$",r"$6\delta_a$"))
 
 #p.ylabel(r"amplitude $\rightarrow$")
-ax1.set_xlabel(r"tempo $\rightarrow$")
+ax1.set_xlabel(r"tempo $\rightarrow$",fontsize=22)
 p.show()
 
