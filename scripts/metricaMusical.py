@@ -21,7 +21,7 @@ for i in xrange(9):
 
 p.plot((-1000,-1000),'r',linewidth=3,label=u'compassos compostos, divisões ternárias, modus perfectus')
 p.plot((-1000,-1000),'b',linewidth=3,label=u'compassos simples, divisões binárias, modus imperfectus')
-p.plot((-1000,-1000),'k',linewidth=3,label=u'compassos em 5 e 7, quiálteras de 5 e 7')
+p.plot((-1000,-1000),'k',linewidth=3,label=u'compassos complexos em 5 e 7, quiálteras de 5 e 7')
 p.legend(loc="upper right")
 
 
