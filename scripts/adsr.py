@@ -33,13 +33,14 @@ som=n.sin(n.linspace(0,45*2*n.pi,De,endpoint=False))
 som=som*s
 p.plot(som,'c*',markersize=9,label=u"Som amostrado submetido ao envelope ADSR")
 p.plot(som,'c')
+p.plot((len(som),len(som)),(-.8,0),"k--")
 
 p.legend(loc="upper right",prop={'size':16})
 p.xlim(-10,De+10)
 p.ylim(-1.2,1.2)
 
 p.yticks((-1,0,SS,1),(-1,0,r"$a_S$",1),fontsize=26)
-p.xticks(())
+p.xticks((len(som),),(r"$\Lambda$",),fontsize=26)
 
 
 p.arrow(0,-1.1,DA,0,length_includes_head=True,shape='full',head_width=.1,color='cyan'     ,width=0.009)
