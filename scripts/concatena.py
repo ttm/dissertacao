@@ -23,8 +23,12 @@ e=5.0
 ee=4
 p.xticks((),())
 p.yticks((),())
-p.plot(n.hstack((d,q,s)),'o')
+#p.plot(n.hstack((d,q,s)),'o')
+p.plot(d,'o')
+p.plot(range(len(d),len(d)+len(q)),q,'o')
+p.plot(range(len(d)+len(q),len(d)+len(q)+len(s)),s,'o')
 p.plot(n.hstack((d,q,s)))
+p.xlabel(r"tempo $\rightarrow$",fontsize=22)
 p.ylim(-1.5,1.5)
 p.xlim(-5,305)
 p.show()
