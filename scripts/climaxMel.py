@@ -21,6 +21,7 @@ p.ylim(-.18,1.02)
 p.xticks((),())
 p.yticks((),())
 
+p.xlabel(r"tempo $\rightarrow$", fontsize=19)
 
 p.show()
 
