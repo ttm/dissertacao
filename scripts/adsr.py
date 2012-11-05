@@ -31,7 +31,7 @@ p.text(2*91,.3,"R",fontsize=48,color='red')
 som=n.random.random(De)*2-1
 som=n.sin(n.linspace(0,45*2*n.pi,De,endpoint=False))
 som=som*s
-p.plot(som,'c*',markersize=9,label=u"Som amostrado submetido ao envelope ADSR")
+p.plot(som,'c*',markersize=9,label=u"Som amostrado submetido à envoltória ADSR")
 p.plot(som,'c')
 p.plot((len(som),len(som)),(-.8,0),"k--")
 

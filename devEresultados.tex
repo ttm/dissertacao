@@ -77,7 +77,7 @@ Outro valor de referência é a amplificação de amplitude
 necessária para que uma sequência tenha o volume dobrado ($10dB$s a mais):
 
 \begin{gather}
-10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \quad \sum_{i=0}^{\Delta.f_a-1}t^{'2}_i=10\sum_{i=0}^{\Delta.f_a-1}t_i^2=\sum_{i=0}^{\Delta.f_a-1}(\sqrt{10}.t_i)^2 \\
+10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \quad \sum_{i=0}^{\lfloor \Delta.f_a \rfloor -1}t^{'2}_i=10\sum_{i=0}^{\Lambda-1}t_i^2=\sum_{i=0}^{\Lambda-1}(\sqrt{10}.t_i)^2 \\
 \therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3,16t_i
 \end{gather}
 
@@ -1421,7 +1421,7 @@ Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X$.
 
 \begin{figure}[htpq!]
     \centering
-    \caption{Envelope ADSR canônico e uma sequência sonora arbitrária sendo submetida ao envelope}
+    \caption{Envoltória ADSR canônica e uma sequência sonora arbitrária sendo submetida à envoltória}
         \includegraphics[width=\textwidth]{figuras/adsr}
         \label{fig:adsr}
 \end{figure}
