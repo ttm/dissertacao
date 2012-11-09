@@ -23,13 +23,13 @@ A efetiva audição humana destas vibrações consiste em um fenômeno complexo 
 
 A representação do som é chamada áudio e usualmente usamos est termo para designar uma representação elétrica do som\footnote{Embora haja esta tendência e tradição de uso, Os termos
 som e áudio são, na verdade, usados de forma intercambeável.}. O áudio pode ser proveniente da captura do som por microfones ou da síntese direta. O áudio digital, também chamado som digital, consiste na representação sonora através de protocolos digitais. Alguns destes protocolos são bastante elaborados, em geral visando resultar em quantidades reduzidas de dados para facilitar armazenamento e transferência dos arquivos. Outras representações digitais do som são bastante diretas, consistindo em amostras igualmente espaçadas no tempo e cujas aplitudes individuais são registradas com um mesmo número de bits. Esta representação do som por amostras separadas por intervalos regulares $\lambda_a$ é a forma padrão de representação do com em tempo discreto e é chamada de modulação por código de pulsos (denotada pela sigla PCM do inglêm Pulse Code Modulation).
-Um som digital PCM é caracterizado pela frequência de amostragem $f_a=\frac{1}{\lambda_a}$ (também chamada de taxa de amostragem) e profundidade de bit que é o número de bits utilizados para representar cada amostra. Dispomos na figura~\ref{fig:PCM} um esquema gráfico de um áudio PCM.
+Um som digital PCM é caracterizado pela frequência de amostragem $f_a=\frac{1}{\lambda_a}$ (também chamada de taxa de amostragem) e profundidade de bit que é o número de bits utilizados para representar cada amostra. Dispomos na figura~\ref{fig:PCM} um esquema gráfico de um áudio PCM. Observe que os $2**4=16$ grados disponíveis para a amplitude de cada amostra junto ao espaçamento regular $\lambda_a$ introduzem um erro de quatização. Estaremos apontando as formas de lidar com este ruído sempre que pertinente.
 
 
 \begin{figure}[h!]
     \centering
-    \caption{Som digital em modulação por código de pulsos (PCM}
-        \includegraphics[width=\textwidth]{figuras/foo}
+    \caption{Som digital em modulação por código de pulsos (PCM): 25 amostras representadas por 4 bits cada uma.}
+        \includegraphics[width=\textwidth]{figuras/pcm}
         \label{fig:PCM}
 \end{figure}
 
@@ -61,34 +61,5 @@ Estas tecnologias são todas abertas, i.e. estão publicadas em licensas que per
    \label{sec:objetivos}
 Nosso objetivo principal nesta dissertação é dispor um sistema unificado que relacione elementos básicos da música às sequências amostrais do som digital. Este conhecimento é existente, tanto que diversos softwares comerciais apresentam desenvolvimentos relacionados, mas não há uma apresentação unificada e concisa destas relações. Assim, dispomos um texto coerente em que os elementos musicais são apresentados junto às sequências temporais envolvidas. Além disso, como parte da efetiva contriuição, entregamos implementações em código computacional (Python) destas equações e scripts que resultam em pequenas peças musicais\footnote{Ou, de forma menos pretenciosa, montagens musicais, sequências musicais}. 
 
-Dada esta direção bem estabelecida, existem alguns objetivos secundários que entendemos relevantes o suficientes para citarmos aqui. Em primeiro lugar, a difusão de conhecimentos em programação e compreensão do código computacional é bastante potencializada através de práticas lúdicas, no caso a música. Outro objetivo considerado é a apresentação de um arcabouço de síntese sonora e musical com controle amostral, para o qual encontramos potenciais usos em experimentos psico-acústicos e síntese em alta definição (\emph{hi-fi}). Talvez por último, buscamos apresentar estes conteúdos de forma didática, quase um verdaeiro tutorial, possibilitando uma compreensão e uso facilitados, pois os assuntos tratados são de reconhecida complexidade: processamento de sinais, música, psico-acústica, para citar somente alguns exemplos.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
+Dada esta direção bem estabelecida, existem alguns objetivos secundários que entendemos relevantes o suficientes para citarmos aqui. Em primeiro lugar, a difusão de conhecimentos em programação e compreensão do código computacional é bastante potencializada através de práticas lúdicas, no caso a música. Outro objetivo considerado é a apresentação de um arcabouço de síntese sonora e musical com controle amostral, para o qual encontramos potenciais usos em experimentos psico-acústicos e síntese em alta definição (\emph{hi-fi}). Talvez por último, buscamos apresentar estes conteúdos de forma didática, quase um verdaeiro tutorial, possibilitando uma compreensão e uso facilitados, pois os assuntos tratados são de reconhecida complexidade: processamento de sinais, música, psico-acústica, para citar somente alguns exemplos. Deste ponto de vista didático, também reconhecemos importante a apresentação deste material na forma de hipertexto, em que cada script e exemplo sonoro/musical seja acessível junto ao material teórico.
+  
