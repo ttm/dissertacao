@@ -42,13 +42,53 @@ Do ponto de vista didático, é notável que praticamente todo processamento esp
 
     \section{Arte sonora e rudimentos de teoria musical}
 
-A música é comumente definida como a arte manifesta pelos sons e silêncios. Embora esta concepção esteja canonicamente correta, para as concepções usuais, ela está mais associada a uma ideia de arte sonora do que à música propriamente dita. Para um ouvinte comum - e boa parte dos especialistas - a concepção de música exige também a presença de uma métrica rítmica além de organizações de alturas que formem melodias e harmonias (veja sessão~\ref{notasMusica}). De qualquer forma, é importante estabelecer este entendimento e reconhecer que a música do século XX ampliou esta concepção tradicional de música feita por notas que formam rítmos e melodias. Isso ocorreu primeiramente na música de concerto, especialmente nas chamadas correntes eletrônica, concreta e eletroacústica. Já na década de 90 ficou claro que a música popular, especialmente as músicas eletrônicas de dança, tinham por sua vez se desdobrado para abrangir não só sons de altura definida e organizações temporais bem estabelecidas dentro de métricas simples, mas também amálgamas sonoros ruidosos e disposições temporais fluídas e com sobreposições.
+A música é comumente descrita como a arte manifesta pelos sons e silêncios. Embora esta definição esteja canonicamente correta, para as concepções usuais, ela está mais associada a uma ideia de arte sonora do que à música propriamente dita pois para um ouvinte comum - e boa parte dos especialistas - uma 'música que seja música' pressupõe também a presença de uma métrica rítmica além de organizações de alturas que formem melodias e harmonias (veja sessão~\ref{notasMusica}). De qualquer forma, é importante estabelecer este entendimento e reconhecer que a música do século XX ampliou esta concepção tradicional de música feita por notas que formam estruturas baseadas em rítmos, melodias e harmonias bem identificáveis. Isso ocorreu primeiramente na música de concerto, especialmente nas chamadas correntes eletrônica, concreta e eletroacústica. Já na década de 90 ficou claro que também a música popular, especialmente as músicas eletrônicas de dança, tinham por sua vez se desdobrado para abarcar não só os sons de altura definida e os rganizações temporais bem estabelecidas dentro de métricas simples, mas também amálgamas sonoros ruidosos e disposições temporais fluídas e com sobreposições. Mesmo assim, a nota musical permanece paradigmática como 'unidade fundamental' das estruturas musicais, além disso, podem se desdobrar em estruturas não relevantes como notas em si, mas como sons que se desenvolvem no tempo, contemplando estes desenvolvimentos musicais recentes que foram supracitados (veja sessão~\ref{varInternas}).
 
-
-
+A teoria musical é uma ampla área de estudos com várias abordagens divergentes e que engloba assuntos são diversos quanto psicoacústica, convenções culturais de organização de alturas (e.g. escalas e seus usos) e formas musicais tradicionais, como a forma sonata e rondos, que consistem em estruturas paradigmáticas para uma música inteira. Neste trabalho, a abordagem deste assunto é bastante vinculada às aplicações dispostas no capítulo seguinte e estão apontadas no próprio texto mediante necessidade. Assim, não consideramos apropriado discorrer sobre estes assuntos aqui de forma independente, e apontamos para isso nossa bibliografia para títulos consagrados. Recomendamos também o acompanhamento de um especialista, pois, na música, é comum um mesmo termo ser utilizado para designar diferentes conceitos e um mesmo conceito ser vinculado a diferentes termos, mesmo em contexto escolásticos.
 
 
     \section{Disponibilização computacional}
+Os desenvolvimentos apresentados nesta dissertação incluem \emph{scripts} (i.e. pequenos programas) escritos em Python para disponibilização das tecnologias de forma explícita. Entendemos uma linguagem simples como o Python ou Scilab apropriada para esta tarefa
+por ser de compreensão bastante simples, aproximando-se do que chamamos de pseudo-código~\cite{tutPython}. Outra faceta importante desta disponibilização é a utilização de um sistema de controle de versão para os textos, códigos e figuras. Assim, pode-se observar o desenvolvimento do trabalho e executar modificações sem tantas preocupações, pois todas elas ficam registradas individualmente e são reversíveis. Utilizamos para isso o sistema Git, tida como a segunda grande contribuição de Linus Torvals, sendo o próprio kernel Linux a primeira.
+
+Os scripts estão dispostos em duas versões: em Python puro, i.e. sem bibliotecas externas, e em Python com Numpy e Audiolab. Esta segunda versão executa as rotinas através de chamadas para Fortran, o que torna o trabalho muito eficiente em termos de processamento computacional e, consequentemente, em termos da duração necessária para a execussão dos algorítmos.
+
+Algum código já foi transcrito para Javascript com muita facilidade, o que torna estas contribuições potencialmente utilizáveis em navegadores usuais, como o Firefox e o Chromium.
+
+Estas tecnologias são todas abertas, i.e. estão publicadas em licensas que permitem o uso, cópia, distribuição e utilização de quaisquer partes para geração de produtos derivados. Desta forma, os trabalhos aqui descritos estão disponíveis como parte de um repertório tecnológico livre que constitui um patromônio da humanidade e é vinculado usualmente às comunidades de Software Livre e de Código Aberto\footnote{A comunidade e movimento chamada \emph{'Open Source'} é uma corrente que entende a publicação em licensas abertas de código computacional (e outras tecnologias) como sendo uma vantagem pragmática, possibilitando facilidades de desenvolvimento e vantagens de aprendizado e mercadológicas. A comunidade e movimento chamada \emph{'Free Software'} engloba este entendimento, mas adiciona a abordagem filosófica da liberdade e compartilhamento, e dá ênfase a isso. Ambas as correntes reforçam o entendimento de que o código computacional é o 'bem mais  precioso produzido atualmente' pois consiste em tecnologia condensada, reativa (pois roda, processa ou gera resultados), modular (podendo ser copiada partes e coladas juntas de forma coerente, ainda rodam) e replicada sem custo adicional (pois a cópia de texto tem custo baixíssimo). Muito frequentemente isso tudo está disposto em poucas linhas escritas.}. Constatamos que, desta forma, facilitamos as colaborações em processos de co-autoria e geração de materiais subsequêntes.
 
     \section{Objetivos}
    \label{sec:objetivos}
+Nosso objetivo principal nesta dissertação é dispor um sistema unificado que relacione elementos básicos da música às sequências amostrais do som digital. Este conhecimento é existente, tanto que diversos softwares comerciais apresentam desenvolvimentos relacionados, mas não há uma apresentação unificada e concisa destas relações. Assim, dispomos um texto coerente em que os elementos musicais são apresentados junto às sequências temporais envolvidas. Além disso, como parte da efetiva contriuição, entregamos implementações em código computacional (Python) destas equações e scripts que resultam em pequenas peças musicais\footnote{Ou, de forma menos pretenciosa, montagens musicais, sequências musicais}. 
+
+Dada esta direção bem estabelecida, existem alguns objetivos secundários que entendemos relevantes o suficientes para citarmos aqui. Em primeiro lugar, a difusão de conhecimentos em programação e compreensão do código computacional é bastante potencializada através de práticas lúdicas, no caso a música. Outro objetivo considerado é a apresentação de um arcabouço de síntese sonora e musical com controle amostral, para o qual encontramos potenciais usos em experimentos psico-acústicos e síntese em alta definição (\emph{hi-fi}). Talvez por último, buscamos apresentar estes conteúdos de forma didática, quase um verdaeiro tutorial, possibilitando uma compreensão e uso facilitados, pois os assuntos tratados são de reconhecida complexidade: processamento de sinais, música, psico-acústica, para citar somente alguns exemplos.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
