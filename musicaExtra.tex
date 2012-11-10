@@ -1,56 +1,98 @@
 \chapter{Música digital em domínios não digitais}
 \label{cap:musicaExtra}
 
-Os resultados explicitados nesta dissertação estão focados no processamento de 
-áudio através de códigos em liguagens de programação de computadores e
-voltado para a música e na síntese de estruturas musicais. O tema é amplo
-e pertinente o suficiente para contar atualmente com ampla bibliografia e um histórico
-que remonta desde a própria história da computação e das linguagens de programação.
-Desta forma, entendemos cabível focar este texto nas empreitadas realizadas pelos autores
-da presente dissertação, com foco nas realizações do primeiro autor. São usos
-reais destas tecnologias, manifestadas de forma cultural e com repercussões
-sociais, como poderá é relatado neste mesmo capítulo.
+Os resultados explicitados nesta dissertação estão focados no
+processamento de áudio através de códigos em liguagens de programação
+de computadores e voltado para a música e na síntese de estruturas
+musicais. O tema é amplo e pertinente o suficiente para contar
+atualmente com ampla bibliografia e um histórico que remonta desde a
+própria história da computação e das linguagens de programação.  Desta
+forma, entendemos cabível focar este texto nas empreitadas realizadas
+pelos autores da presente dissertação, com foco nas realizações do
+primeiro autor. São usos reais destas tecnologias, manifestadas de
+forma cultural e com repercussões sociais, como é relatado neste mesmo
+capítulo.
 
-Tais realizações possuem um espectro amplo
-dentro do escopo proposto e constitui um percurso relativamente completo
-pelas possibilidades e decorrências da abordagem da música pelo código computacional\footnote{ao menos dentro do se denomina 'Cultura Livre', veja o primeiro capítulo do presente escrito para maiores informações}.
+Tais realizações possuem um espectro amplo dentro do escopo proposto e
+constitui um percurso relativamente completo pelas possibilidades e
+decorrências da abordagem da música pelo código
+computacional\footnote{ao menos dentro do que se denomina 'Cultura Livre',
+  veja o primeiro capítulo do presente escrito para maiores
+  informações}.
 
-Estaremos abordando experimentos abertos em áudio, abordagens musicais pelo código, incluindo música em tempo real, diferido, na matéria e repercussões no tecido social. De forma a relatar os resultados destas investidas, segue uma sessão sobre ações coletivas realizadas através das mobilizações que estes códigos criaram, e as estruturas virtuais mantidas na intenet relacionadas a estas mobilizações e ações. Por fim, alguns materiais didáticos criados pelo autor - que possuem algum papel emblemático - são também expostos por comporem o arsenal de repercussões desta investida no em som e código. 
+Estaremos relatando experimentos abertos em áudio, abordagens musicais
+pelo código, incluindo música em tempo real, diferido, na matéria e
+repercussões no tecido social. De forma a relatar os resultados destas
+investidas, segue uma sessão sobre ações coletivas realizadas através
+das mobilizações que estes códigos criaram, e as estruturas virtuais
+mantidas na Intenet e relacionadas a estas mobilizações e ações. Por
+fim, alguns materiais didáticos criados pelo autor -- que possuem
+algum papel emblemático -- são também expostos por comporem o arsenal
+de repercussões desta investida no em som e código.
 
-  \section{Experimentos abertos em áudio: LADSPAs, Wavelets e Redes Complexas}
+\section{Experimentos abertos em áudio: LADSPAs, Wavelets e Redes Complexas}
 
-Todos os desenvolvimentos desta dissertação estão em repositórios abertos\cite{repositorios-tese-dev}.
-Alguns foram especialmente importantes como percurso para o que é apresentado neste
-escrito. Ou seja, são explorações que manifestaram diferentes aspectos
-do trabalho do código voltado para o áudio e a música.
+Todos os desenvolvimentos desta dissertação estão em repositórios
+abertos\cite{repositorios-tese-dev}.  Alguns foram especialmente
+importantes como percurso para o que é apresentado neste escrito. Ou
+seja, são explorações que manifestaram diferentes aspectos do trabalho
+do código voltado para o áudio e a música.
 
 O código para a arte sonora, incluindo a musical, manifesta-se como cultura pois é fruto de práticas
 espontâneas, diárias e coletivas.
-\footnote{As chamadas culturas biopunk, ciberpunk, cipherpunk, hacker, digital e outras mais,
-possibilitadas aos recentes desenvolvimentos em telecomunicação, dizem respeito em menor
-ou maior grau à produção de código como cultura.}
+\footnote{As chamadas culturas biopunk, ciberpunk, cipherpunk, hacker,
+  digital e outras mais, possibilitadas aos recentes desenvolvimentos
+  em telecomunicação, dizem respeito em menor ou maior grau à produção
+  de código como cultura.}
 
-A seguir apresentamos alguns bons exemplos dos desenvolvimentos
-desta dissertação especificamente em áudio, sem o envolvimento direto da música. São
-códigos de necessidade para música, mas de uso mais geral e cuja implementação
-requer muito mais de processamento de sinais e computação do que de música propriamente dito.
+A seguir apresentamos alguns bons exemplos dos desenvolvimentos desta
+dissertação especificamente em áudio, sem o envolvimento direto da
+música. São códigos de necessidade para música, mas de uso mais geral
+e cuja implementação requer muito mais de processamento de sinais e
+computação do que de música propriamente dito.
 
-      \subsubsection{Plugins LADSPA e lv2}
-      [repos AE, LM, wiki EL, historico CDTL]
-LADSPA (Linux Audio Developers Simple Plugin API) é a API livre\footnote{Veja o Capítulo 1 para a definição de livre neste contexto.} estabelecida de plugins de áudio até a presente data. A última versão liberada desta API é a 1.1, em uso corrente até hoje e é de 2002 segundo os arquivos de cabeçalho relacionados.
+\subsubsection{Plugins LADSPA e lv2}
+      [repos AE, LM, wiki EL, historico CDTL] 
 
-A exploração de APIs específicas foge ao escopo do presente texto e os códigos completos podem ser encontrados pela rede, junto a tutoriais e plugins de exemplo. O código destes desenvolvimentos e pertinente ao áudio são relativos à síntese e remoção de ruídos. Da síntese, exitem abordagens mais puristas, que no caso sintetiza ruído branco e filtra para resultar nos espectros desejados (veja logo abaixo para maiores especificações). Uma abordagem menos purista porém mais eficiente é a de usar uma amostra curta do ruído e reproduzí-la indefinidamente através de \emph{cross-fades}.
+LADSPA (Linux Audio Developers Simple Plugin API) é a API
+livre\footnote{Veja o Capítulo 1 para a definição de livre neste
+  contexto.}  estabelecida de plugins de áudio até a presente data. A
+última versão liberada desta API é a 1.1, em uso corrente até hoje e é
+de 2002 segundo os arquivos de cabeçalho dos códigos relacionados.
 
-Já na remoção de ruídos as abordagens são as mais variadas e extremamente dependentes da aplicação. A complexidade dos algorítmos pode atingir níveis de especialidade em processamento de sinais que merecem um trabalho dedicado. Aqui iremos expor somente sobre remoção de ruído \emph{'Hum'} causado usualmente pela corrente alternada que alimenta os equipamentos utilizados.
+A exploração de APIs específicas foge ao escopo do presente texto e os
+códigos completos podem ser encontrados pela rede, junto a tutoriais e
+plugins de exemplo. O código destes desenvolvimentos e pertinente ao
+áudio são relativos à síntese e remoção de ruídos. Da síntese, existem
+abordagens mais puristas, que no caso sintetiza ruído branco e filtra
+para resultar nos espectros desejados (veja logo abaixo para maiores
+especificações). Uma abordagem menos purista porém mais eficiente é a
+de usar uma amostra curta do ruído e reproduzí-la indefinidamente
+através de \emph{cross-fades}.
 
-Abaixo dispomos explicações breves sobre os diferentes ruídos e os códigos relacionados. Preferimos expor em Python os códigos de síntese
-por questão de clareza e coerência com o resto do texto\footnote{Os códigos em C/C++ e a implementação como plugin lv2 está no repositório git LV2 como pode ser visto em: http://labmacambira.git.sourceforge.net/git/gitweb-index.cgi}.
+Já na remoção de ruídos as abordagens são as mais variadas e
+extremamente dependentes da aplicação. A complexidade dos algorítmos
+pode atingir níveis de especialidade em processamento de sinais que
+merecem um trabalho dedicado. Aqui iremos expor somente sobre remoção
+de ruído \emph{'Hum'} causado usualmente pela corrente alternada que
+alimenta os equipamentos utilizados.
 
-O procedimento de reprodução do ruído através de uma amostra repetida e em crossfade é a seguinte:
+Abaixo dispomos explicações breves sobre os diferentes ruídos e os
+códigos relacionados. Preferimos expor em Python os códigos de síntese
+por questão de clareza e coerência com o resto do texto\footnote{Os
+  códigos em C/C++ e a implementação como plugin lv2 está no
+  repositório git LV2 como pode ser visto em:
+  http://labmacambira.git.sourceforge.net/git/gitweb-index.cgi}.
+
+O procedimento de reprodução do ruído através de uma amostra repetida
+e em \textit{cross-fade} é a seguinte:
 
 [código da reprodução do ruído em loop e croos-fade ~10 linhas]
 
-Sintetizando diferentes ruídos\footnote{Dado o propósito do texto e da implementação, utilizamos nomenclaturas utilizadas na música para os ruídos, como se pode notar.}:
+Sintetizando diferentes ruídos\footnote{Dado o propósito do texto e da
+  implementação, utilizamos nomenclaturas utilizadas na música para os
+  ruídos, como se pode notar.}:
+
 \begin{itemize}
     \item Ruído Branco: 
     \item Ruído Rosa:
@@ -68,112 +110,145 @@ Sintetizando diferentes ruídos\footnote{Dado o propósito do texto e da impleme
     \item Clicks:
 \end{itemize} 
 
-A remoção de ruído Hum é baseada em uma sequência de filtros notch (ver fundamentos) idealmente dispostos nos harmônicos da frequência de oscilação da corrente elétrica. Cada um destes filtros deve permitir ajustes finos no fator de qualidade e também na frequência central pois trata-se de um sistema real passivel dos mais diversos efeitos de distorção do modelo ideal. Abaixo expomos o código em Python para tal \emph{removedor de ruído} como é chamado. O código C/C++ e a implementação como plugin está no mesmo repositório disponibilizado para a síntese de ruídos.
+A remoção de ruído Hum é baseada em uma sequência de filtros notch
+(ver fundamentos) idealmente dispostos nos harmônicos da frequência de
+oscilação da corrente elétrica. Cada um destes filtros deve permitir
+ajustes finos no fator de qualidade e também na frequência central
+pois trata-se de um sistema real passível dos mais diversos efeitos de
+distorção do modelo ideal. Abaixo expomos o código em Python para tal
+\emph{removedor de ruído} como é chamado. O código C/C++ e a
+implementação como plugin está no mesmo repositório disponibilizado
+para a síntese de ruídos.
 
-[código e explicação do remodedor de ruído Hum]
-
-
-
-
+[código e explicação do removedor de ruído Hum]
 
 \section{Áudio e Música}
 
-Por razões didáticas, dividimos este capítulo em 4 partes: música em tempo diferido (ou seja, que não é feito em tempo real),
-música em tempo real,  música na matéria (suporte físico em hardware) e música no tecido social
-(considerando especialmente as mobilizações humanas relacionadas).
+Por razões didáticas, dividimos este capítulo em 4 partes: música em
+tempo diferido (ou seja, que não é feito em tempo real), música em
+tempo real, música na matéria (suporte físico em hardware) e música no
+tecido social (considerando especialmente as mobilizações humanas
+relacionadas).
 
-Com isso desejamos expor a prática musical através do código
-com exemplos reais de aplicação e em uso pelo autor, por membros do LabMacambira.sf.net,
-por parceiros, colaboradores e por usuários eventuais das naturezas mais diversas.
+Com isso desejamos expor a prática musical através do código com
+exemplos reais de aplicação e em uso pelo autor, por membros do
+LabMacambira.sf.net, por parceiros, colaboradores e por usuários
+eventuais das naturezas mais diversas.
 
-  \subsection{Música em Tempo Diferido: Minimum-fi e FIGGUS}
+%%%%%%%%%%%%%%5 PULANDO AQUI, QUEM SABE COLOCAR EM OUTRO TEX %%%%%%%
+
+\subsection{Música em Tempo Diferido: Minimum-fi e FIGGUS}
 
 \begin{quotation}
-\small
-'The increasing dominance of graphic interfaces for music software obscured 
-the continuing presence of the command-line tradition, 
-the code writer, the hacker. The code writing of deferred time 
-computer programming may be assembled out of time order, debugged and optimized.'
+\small 'The increasing dominance of graphic interfaces for music
+software obscured the continuing presence of the command-line
+tradition, the code writer, the hacker. The code writing of deferred
+time computer programming may be assembled out of time order, debugged
+and optimized.'
 
 \emph{Simon Emmerson, Living electronic music, 2007}
 \end{quotation}
 
-A realização musical em tempo diferido é o paradigma inicial da música computacional.
-Iniciando com o Music V, a proposta foi depois desenvolvido com o CSound. Pode-se dizer
-que até hoje é a forma como compositores usualmente pensam a música: pensando
-e escrevendo as estruturas, que depois são executadas por instrumentistas ou aparelhos eletrônicos.
+A realização musical em tempo diferido é o paradigma inicial da música
+computacional. Iniciando com o Music V, a proposta foi depois
+desenvolvido com o CSound. Pode-se dizer que até hoje é a forma como
+compositores usualmente pensam a música: pensando e escrevendo as
+estruturas, que depois são executadas por instrumentistas ou aparelhos
+eletrônicos.
 
-Assim como a composição instrumental permite um trabalho mais minucioso do que
-a improvisação instrumental, a realização musical em tempo diferido usualmente permite um
-detalhamento maior dos procedimentos do que a realização em tempo real. Por este
-mesmo motivo, trataremos inicialmente de dois trabalhos em tempo diferido.
-Aliás, como veremos a seguir, as abordagens completam uma base para a música
-computacional praticada até os dias de hoje.
+Assim como a composição instrumental permite um trabalho mais
+minucioso do que a improvisação instrumental, a realização musical em
+tempo diferido usualmente permite um detalhamento maior dos
+procedimentos do que a realização em tempo real. Por este mesmo
+motivo, trataremos inicialmente de dois trabalhos em tempo diferido.
+Aliás, como veremos a seguir, as abordagens completam uma base para a
+música computacional praticada até os dias de hoje.
 
-O som musical pode ser caracterizado físicamente, e sua síntese digital com base em nossa banda de audição e no teorema de Nyquist, sintetiza uma música amostra por amostra, através de princípios
-claros de síntese sonora e organização musical\footnote{Veja no APÊNDICE XX: o \emph{minimum-fi} hi-fi, low-fi, minimum-fi, ou seja,
-o mínimo de qualidade para assegurar existência e consistência
-da criação}. O segundo, chamado de \emph{FIGGUS} (FInite
-Groups in Granular and Unit Synthesis), utiliza os princípios do minimum-fi e constitui
-um módulo Python completo, cuja proposta é a utilização de simetrias, através de
-permutações e de Teoria de Grupos, para a composição de músicas. Como demonstração
-das capacidades do FIGGUS, ele gera um EP\footnote{Extended Play, uma album musical maior que um single mas menor que um LP (Long Play) inteiro} com um único comando. Este é o
-\emph{PPEPPS}\footnote{Pure Python EP: Projeto Solvente}, como veremos a seguir.
+O som musical pode ser caracterizado fisicamente, e sua síntese
+digital com base em nossa banda de audição e no teorema de Nyquist,
+sintetiza uma música amostra por amostra, através de princípios claros
+de síntese sonora e organização musical\footnote{Veja em seguida o
+  \emph{minimum-fi} hi-fi, low-fi, minimum-fi, ou seja, o mínimo de
+  qualidade para assegurar existência e consistência da criação}. O
+segundo, chamado de \emph{FIGGUS} (FInite Groups in Granular and Unit
+Synthesis), utiliza os princípios do minimum-fi e constitui um módulo
+Python completo, cuja proposta é a utilização de simetrias, através de
+permutações e de Teoria de Grupos, para a composição de músicas. Como
+demonstração das capacidades do FIGGUS, ele gera um
+EP\footnote{Extended Play, uma álbum musical maior que um single mas
+  menor que um LP (Long Play) inteiro} com um único comando. Este é o
+\emph{PPEPPS}\footnote{Pure Python EP: Projeto Solvente}, como veremos
+a seguir.
 
-Desta forma, esta sessão exemplifica e explicita - através de dois exemplos reais - os
-princípios do uso de código para a síntese \emph{musical}, desde as amostras
-relativas a uma nota com dada frequencia, amplitude e timbre, até a confecção
-de uma ferramenta derivada, já incorporando propostas musicais e estruturas
-mais elaboradas.
+Desta forma, esta sessão exemplifica e explicita - através de dois
+exemplos reais - os princípios do uso de código para a síntese
+\emph{musical}, desde as amostras relativas a uma nota com dada
+frequencia, amplitude e timbre, até a confecção de uma ferramenta
+derivada, já incorporando propostas musicais e estruturas mais
+elaboradas.
 
-      \subsubsection{Minimum-fi}
+\subsubsection{Minimum-fi}
 
-Existe uma perene matiz estética e também tecnológica
-de realizar uma dada tarefa com \emph{o mínimo} necessário.
-Esta matiz é para a música igualmente
-fundamental e reconhecida como
-princípio de unidade e coerência\footnote{Este princípio tanto é fundamental
-que as escolas musicais possuem técnicas específicas, músicas possuem suas
-próprias convenções mantidas por toda a sua duração, os arcos mantém características,
-enfim, podemos até mesmo concluir que a simetria define o escopo.}. Em código computacional
-a empreitada para manifestar este princípio ele próprio de forma mínima
-resultou no \emph{minimum-fi.py}, código Python em um único arquivo curto que sintetiza
-músicas com segundo as estruturas especificadas em linha\footnote{Em música se fala da \emph{bula} (que equivaleria
-às funções em si e das especificações da linguagem) e a partitura ou 'música' propriamente ditas (que equivale à .}.
-Na versão atual, de 2012 mas adiantada em 2011, os algorítmos 
-em Python propriamente ditos somam 
-53 linhas e inclui 5 funções. Com estas funções, estruturas musicais podem 
-ser criadas padrão a padrão, nota a nota, amostra por amostra. Na prática e posto em
-linguagem cotidiana, resultam em notas que formam
-blocos e estruturas hierarquicamente superiores.
+Existe uma perene matiz estética e também tecnológica de realizar uma
+dada tarefa com \emph{o mínimo} necessário.  Esta matiz é para a
+música igualmente fundamental e reconhecida como princípio de unidade
+e coerência\footnote{Este princípio tanto é fundamental que as escolas
+  musicais possuem técnicas específicas, músicas possuem suas próprias
+  convenções mantidas por toda a sua duração, os arcos mantém
+  características, enfim, podemos até mesmo concluir que a simetria
+  define o escopo.}. Em código computacional a empreitada para
+manifestar este princípio ele próprio de forma mínima resultou no
+\emph{minimum-fi.py}, código Python em um único arquivo curto que
+sintetiza músicas segundo as estruturas especificadas em
+linha\footnote{Em música se fala da \emph{bula} (que equivaleria às
+  funções em si e das especificações da linguagem) e a partitura ou
+  'música' propriamente ditas (que equivale à .}.  Na versão atual, de
+2012 mas adiantada em 2011, os algorítmos em Python propriamente ditos
+somam 53 linhas e incluem apenas 5 funções. Com estas funções,
+estruturas musicais podem ser criadas padrão a padrão, nota a nota,
+amostra por amostra. Na prática e posto em linguagem cotidiana,
+resultam em notas que formam blocos e estruturas hierarquicamente
+superiores.
 
-
-Os princípios, bastante simples\footnote{Osvaldo Lacerda, em seu livro \emph{Compendio de Teoria Elementar da Musica} fala das propriedades do som musical de forma equivalente.}, são:
+Os princípios, bastante simples\footnote{Osvaldo Lacerda, em seu livro
+  \emph{Compêndio de Teoria Elementar da Música} fala das propriedades
+  do som musical de forma equivalente.}, são:
 \begin{itemize}
-  \item Deve-se ter um mecanismo de síntese sonora que
-possibilite a geração de unidades sonoras com diferentes timbres, controle sobre a frequência fundamental e duração específica\footnote{Também entra aqui o volume, mas como o que controlamos de fato é a intensidade relativa entre as notas, resolvemos por bem omitir
-esta parte até que fiquem claros os códigos relativos a isso, logo abaixo.}.
-  \item Deve-se ser capaz de construir não só unidades sonoras, mas também séries de unidades, sejam sobrepostas (acordes, por exemplo)
-  ou justapostas (melodias, por exemplo).
+  \item Deve-se ter um mecanismo de síntese sonora que possibilite a
+    geração de unidades sonoras com diferentes timbres, controle sobre
+    a frequência fundamental e duração específica\footnote{Também
+      entra aqui o volume, mas como o que controlamos de fato é a
+      intensidade relativa entre as notas, resolvemos por bem omitir
+      esta parte até que fiquem claros os códigos relativos a isso,
+      logo abaixo.}.
+  \item Deve-se ser capaz de construir não só unidades sonoras, mas
+    também séries de unidades, sejam sobrepostas (acordes, por
+    exemplo) ou justapostas (melodias, por exemplo).
 \end{itemize}
 
-Para o primeiro item, se prestam comumente os procedimentos de busca em tabelas/vetores com formas
-de ondas em alta resolução (chamado \emph{lookup table}). O procedimento é barato e de qualidade alta
-(não acrescentam ruídos relevantes ao sinal).
+Para o primeiro item, se prestam comumente os procedimentos de busca
+em tabelas/vetores com formas de ondas em alta resolução (chamado
+\emph{lookup table}). O procedimento é barato computacionalmente e de
+qualidade alta (não acrescentam ruídos relevantes ao sinal).
 
-Para realizarmos a busca de forma eficiente, precisamos de tabelas que contenham cada uma
-uma forma de onda. As tradicionais são a senoide e as ondas quadrada, triangular e dente de serra.
-Mostramos a seguir estas formas de onda e também uma forma de onda retirada de um som real.
+Para realizarmos a busca de forma eficiente, precisamos de tabelas que
+contenham cada forma de onda. As tradicionais são a senoide e
+as ondas quadrada, triangular e dente de serra.  Mostramos a seguir
+estas formas de onda e também uma forma de onda retirada de um som
+real.
 
-De posse destas formas de onda, A seguir está o procedimento da lookuptable:
+De posse destas formas de onda, A seguir está o procedimento da
+lookuptable:
 
 \code{Procedimento de Lookup Table}{python_snippets/lookuptable.py}
 
-O primeiro ponto importante é a tabela em si, usualmente unidimensional. É de comum conhecimento que
-tabelas com 1024 são mais que suficientes para os usos musicais e a diferença
-de qualidade (relação sinal/ruido) não muda consideravelmente com a utilização
-de tabelas maiores. A seguir dispomos algumas destas tabelas, mais 
-especificamente, dispomos as tabelas para os formatos de onda mais usuais. 
+O primeiro ponto importante é a tabela em si, usualmente
+unidimensional. É de comum conhecimento que tabelas com 1024 são mais
+que suficientes para os usos musicais e a diferença de qualidade
+(relação sinal/ruido) não muda consideravelmente com a utilização de
+tabelas maiores. A seguir dispomos algumas destas tabelas, mais
+especificamente, dispomos as tabelas para os formatos de onda mais
+usuais.
 
 \code{Formas de Onda Tradicionais}{python_snippets/formasDeOnda.py}
 
@@ -291,7 +366,7 @@ Neste ponto, basta criarmos músicas e sequências de interesse estético ou par
 
 \vspace{10 mm}
 
-        \subsubsection{FIGGUS: FInite Groups in Granular and Unit Synthesis}
+\subsubsection{FIGGUS: FInite Groups in Granular and Unit Synthesis}
 
 Em coerência com os conhecimentos
 e tecnologias já apresentados nesta exposição\footnote{Especificamos o arcabouço para geração de sons musicais em unidades
@@ -417,169 +492,281 @@ Em posse não apenas de representações abstratas do padrão musical a ser real
 
 \code{Escrita do Vetor Sonoro em Arquivo WAV}{python_snippets/fio.py}
 
+%%%%%%%%%%%%%%%%%% FIM DO PULO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \subsection{Música em Tempo Real: Livecoding e ABeatTracker (ABT)}
+\subsection{Música em Tempo Real: Live coding e ABeatTracker (ABT)}
 
-Com os avanços computacionais recentes, tornou-se usual a síntese sonora
-em tempo real. Com isso, surgiram liguagens dedicadas para o áudio e a música
-em sua maioria dedicadas - ou ao menos capacitadas - para o uso 
-em tempo de execussão [citar PD, SC, ChucK]. Em outras palavras, estas linguagens
-possibilitam que o usuário ouça o resultante sonoro do código utilizado e altere
-o código com resultado imediato no processamento e resultado que escuta.
+Com os avanços computacionais recentes, tornou-se usual a síntese
+sonora em tempo real. Com isso, surgiram linguagens chamadas de
+domínio específico, para o áudio e a música, em sua maioria dedicadas
+-- ou ao menos capacitadas -- para o uso em tempo de
+execução. Puredata, SuperCollider, ChucK e ixilang são exemplos de
+linguagens largamente utilizadas para a composição musical e síntese
+sonora em tempo real. Em outras palavras, estas linguagens
+possibilitam que o usuário ouça o resultante sonoro do código
+utilizado e altere o código com resultado imediato no processamento e
+resultado que escuta.
 
-Nesta linha de exploração musical do código, iremos expor a seguir sobre
-nossas investidas em \emph{Livecoding} (escrita de código em tempo real
-com vistas à performance pública) e o ABeatTracker (uma linguagem por macros
-para execussão sonora rítmica em conjunto com instrumentos tradicionais e outras
-fontes sonoras/musicais externas).
+Nesta linha de exploração musical do código, iremos expor a seguir
+sobre nossas investidas em \emph{Live coding} (escrita de código em
+tempo real com vistas à performance pública) através de linguagens em
+contínuo desenvolvimento como ChucK, e o ABeatTracker (uma linguagem
+por macros para execução sonora rítmica em conjunto com instrumentos
+tradicionais e outras fontes sonoras/musicais externas).
 
+\subsubsection{Live coding}
 
-        \subsubsection{Livecoding}
+Recentemente, grupos de ponta em música experimental no mundo todo
+estão desenvolvendo apresentações musicais públicas baseadas na
+escrita de código ao vivo. Destes vale ressaltar os grupos pioneiros
+slub e Benoît and the Mandelbrots e as ``orquestras de laptops''
+PLOrk, SLOrk e DubLOrk\footnote{Para maiores detalhes vide
+  \url{http://toplap.org}}. Usualmente, se projeta o código para que a
+audiência possa ver o que está sendo escrito, no rítmo em que se
+escreve, e se projeta também o resultante sonoro por autofalantes.
 
-Recentemente, grupos de ponta em música experimental no mundo todo estão
-desenvolvendo apresentações musicais públicas baseadas na escrita
-de código ao vivo. Usualmente, se projeta o código para que a audiência possa
-ver o que está sendo escrito, no rítmo em que se escreve, e se projeta também
-o resultante sonoro por autofalantes.
-
-As motivações para isso são variadas. Expomos a seguir de forma topificada
-um condensado do que nos orientou a tal prática. Vale ressaltar que são
-motivações igualmente presentes em outros grupos, embora não necessariamente
-em todos ou da mesmícima forma.
+As motivações para isso são variadas. Expomos a seguir de forma
+topificada um condensado do que nos orientou a tal prática. Vale
+ressaltar que são motivações igualmente presentes em outros
+grupos\footnote{Vide ``Manifesto Live coding'' em
+  \url{http://toplap.org/wiki/ManifestoDraft}}, embora não
+necessariamente em todos ou da mesmícima forma.
 
 \begin{itemize}
-    \item A performance musical por computador carece de recursos performáticos
-    à altura das execussões com instrumentos tradicionais. Os gestos são por demais
-    discretos e a concentração do performer é bastante focada na tela do computador.
-    \item O feedback auditivo do código projetado permite que o espectador infira
-    significados dos códigos. Mesmo que de forma superficial, este recurso do livecoding
-    é em muito capaz de desmistificar a programação de computadores, por muito considerada
-    completamente intangível.;
-    \item O código em si é um recurso poderosíssimo, que permite ao usuário controlar
-    os sons produzidos amostra por amostra ou em escalas maiores, como notas, compassos, fraseados
-    inteiros ou mesmo em escalas maiores de tempo, como minutos, horas, dias e semanas.
-    \item O compartilhamento do código é usual, leve e eficiente como entrega completamente
-    aberta da tecnologia relacionada à proposta estética.
+    \item A performance musical por computador carece de recursos
+      performáticos à altura das execuções com instrumentos
+      tradicionais. Os gestos são por demais discretos e a
+      concentração do performer é bastante focada na tela do
+      computador.
+    \item O feedback auditivo do código projetado permite que o
+      espectador infira significados dos códigos. Mesmo que de forma
+      superficial, este recurso do Live coding é em muito capaz de
+      desmistificar a programação de computadores e sua aplicação em
+      computação musical, por muito considerada completamente
+      intangível.
+    \item O código em si é um recurso poderosíssimo, que permite ao
+      usuário controlar os sons produzidos amostra por amostra ou em
+      escalas maiores, como notas, compassos, fraseados inteiros ou
+      mesmo em escalas maiores de tempo, como minutos, horas, dias e
+      semanas.
+    \item O compartilhamento do código é usual, leve e eficiente como
+      entrega completamente aberta da tecnologia relacionada à
+      proposta estética. Isso motiva não só o programador à aplicar
+      seus conhecimentos na música, mas também o músico a adentrar o
+      uso de linguagens de programação para expressão de suas ideias
+      musicais.
 \end{itemize}
 
-Desta forma, iniciamos em 2011 uma linha de atuação com Livecoding que resultou em uma performance
-no \emph{V Festival Contato}. Utilizamos a linguagem ChucK por apresentar os recursos que
-consideramos mais apropriados, embora de forma alguma isso seja consensual na prática atual
-de livecoding.
+Desta forma, iniciamos em 2011 uma linha de atuação em Live coding com
+a criação do duo \emph{FooBarBaz} (Variáveis Metasintáticas) composto
+pelo autor Renato Fabbri e Vilson Vieira. Essa atuação resultou em uma
+performance no \emph{V Festival Contato}. É interessante ressaltar que
+essa foi a primeira apresentação de Live coding no Brasil, e a maior
+apresentação internacional em número de ouvintes (por volta de 5 mil
+pessoas) que se tenha relato.
 
-A apresentação contou com recursos adicionais para agregar interesse, como a utilização
-do \emph{cowsay} (para enviar mensagens enquanto se desenrolava a música) e trajetórias
-de um ponto no fundo do código para sugerir a vertigem do sono REM. Estes recursos
-podem ser vistos em uso claramente nos videos demonstrativos [citar videos do vimeo].
-As linhas do cowsay e o script em processing relacionados estão no Apêndice XX...
+Utilizamos a linguagem ChucK por apresentar os recursos que
+consideramos mais apropriados, embora de forma alguma isso seja
+consensual na prática atual de Live coding. Ainda, a apresentação
+contou com recursos adicionais para agregar interesse, como a
+utilização do \emph{cowsay} (para enviar mensagens enquanto se
+desenrolava a música) e trajetórias de um ponto no fundo do código
+para sugerir a vertigem do sono REM. Estes recursos podem ser vistos
+em uso claramente nos videos demonstrativos\footnote{Disponíveis em
+  \url{http://vimeo.com/33012735}, \url{http://vimeo.com/33018740},
+  \url{http://vimeo.com/33019291}, \url{http://vimeo.com/33025717} e
+  \url{http://vimeo.com/33025913}.}  As linhas do \emph{cowsay} e o
+\emph{script} em linguagem Processing relacionados, assim como maiores
+detalhes sobre o duo e fotos da apresentação podem ser vistos em
+\url{http://wiki.nosdigitais.teia.org.br/FooBarBaz}.
 
-Duas pessoas executaram livecoding simultaneamente. A saber, Vilson Vieira executava
-rítmos, batidas bastante marcadas que serviam como base. Renato Fabbri, autor do presente
-trabalho, executava linhas fluídas quasi melódicas que formavam arcos maiores. Nos intervalos
-das investidas no formato citado, havia interlúdios em que ambos se revesavam com músicas
-curtas e inusitadas, como em um duelo[disponibilizar músicas em links e colocar de referencia].
+Duas pessoas executaram Live coding simultaneamente. A saber, Vilson
+Vieira executava ritmos, batidas bastante marcadas que serviam como
+base. Renato Fabbri, autor do presente trabalho, executava linhas
+fluídas quasi melódicas que formavam arcos maiores. Nos intervalos das
+investidas no formato citado, havia interlúdios em que ambos se
+revesavam com músicas curtas e inusitadas, como em um duelo. A mixagem
+e espacialização dos dois canais de áudio foram controladas por um
+patch em Puredata que permitia o \textit{cross-fading} entre os canais
+através da detecção do movimento das mãos. Isso foi possível através
+do objeto em Puredata/GEM chamado \emph{color classify}, criado por
+Ricardo Fabbri e posto em uso por Gilson Beck durante a
+apresentação. Esse mesmo objeto foi utilizado no instrumento
+AirHackTable, discutido na seção~\ref{aht}.
 
-[Colocar os códigos meus e do Vilson e explicar o funcionamento e uso]
+A prática de Live coding requer o uso de linguagens que permitam a
+execução rápida de instruções curtas, incentivando assim o improviso
+musical através do código. Com esse objetivo, ambos \emph{live coders}
+usaram editores de texto -- vim e Emacs -- que permitiam a comunicação
+imediata com a linguagem de síntese sonora ChucK.  Acreditando que a
+música, especialmente sua vertente experimental, se baseia fortemente
+na organização de trechos de arquivos de áudio ou notas dadas a
+instrumentos sintetizados, foram gerados códigos que permitissem tal
+manipulação. Renato utilizou de trechos (``esqueletos'') minimalistas
+de código em ChucK para reproduzir arcos longos e estruturas
+melódicas, como os que seguem:
 
+\code{Interface para controle de parâmetros em tempo
+  real}{chuck_snippets/bar.ck}
 
+Ao mesmo tempo, Vilson utilizou dos códigos seguintes, também em
+ChucK, que permitem facilmente especificar a posição do arquivo de
+áudio que deve ser executada, sua velocidade de execução, duração e
+amplitude. Uma interface minimalista foi utilizada para permitir a
+alteração rápida desses parâmetros em tempo de execução.
 
+\code{Interface para controle de parâmetros em tempo
+  real}{chuck_snippets/foo.ck}
 
+\code{Classe para \textit{sampling} de arquivos de
+  áudio}{chuck_snippets/foosp.ck}
 
-      \subsubsection{ABeatTracker (ABT)}
-O ABT é uma linguagem/ferramenta que dispara linhas rítmicas através de macros que especificam
-as células rítmicas, amostras sonoras que são utilizadas como conteúdo sonoro destas
-linhas, modos de leitura destas amostras sonoras, e variáveis randômicas utilizadas
-para execussão da linha. Além disso, o ABT dispõe de variáveis globais que podem ser alteradas
-a qualquer momento pelo usuário, como BPM, velocidade de leitura das amostras e variáveis
-randômicas globais (que se somam às individuais).
+Esses desenvolvimentos todos inspiraram a criação de uma linguagem
+específica para Live coding, chamada Vivace, que está em constante
+desenvolvimento e tem seu código e maiores detalhes disponíveis em
+\url{http://automata.github.com/vivace}. Já foram realizadas novas
+apresentações utilizando essa linguagem, a notar: Hacklab do Velho, em
+São Carlos (SP), Semana da Comunicação FAAP (SP), Palco UFSCar (SP) e
+Semana Nacional da Ciência e Tecnologia (SP). Nelas houve a
+predominância do apelo às mídias populares, em uma reinauguração do
+gênero da \emph{pop art}: trechos de vídeos de uma novela brasileira
+eram rearanjadas em tempo real, contrastando com linhas rítmicas e
+melódicas executadas em sincronia com o material visual\footnote{Uma
+  amostra está disponível on-line para ser utilizada por qualquer
+  pessoa que possua um navegador Chrome:
+  \url{http://pulapirata.com/skills/vivace}}.
 
-Em pouco explicitaremos a forma de utilização do ABT. De antemão, é pertinente apresentar
-uma pequena discussão a respeito do que o ABT é considerado e sobre os propósitos desta
-ferramenta. Em primeiro lugar, vale manter em mente que o ABT tem um funcionamento específico
-que pode transcender o que se conhece por livecoding. As macros pré-estabelecidas engendram um
-conjunto de recursos pré-estabelecidos bem definido, o que contrasta com a ideia de uma 'linguagem
-de programação' que tenha capacidades mais amplas. De qualquer forma, linguagens com domínios
-específicos não são raras e por vezes o ABT foi descrito como uma linguagem.
+\subsubsection{ABeatTracker (ABT)}
 
-Sobre os propósitos do ABT, em primeiro lugar ele se dispõe a ser um instrumento computacional
-essencialmente rítmico. Junto a esta proposta, vem a necessidade da utilização em conjunto com
-outros instrumentos, externos ao ABT, ao computador em que estiver rodando e possivelmente externo
-com relação a qualquer computador. Para isso foi elaborado o ABD (ABeatDetector), no qual o usuário
-tamborila os rítmos que estiver ouvindo ou imaginando para que o ABT sincronize o pulso e utilize
-células rítmicas relacionadas. A análise feita pelo ABD resulta em uma série de rítmos explicitados
-por sequências de compassos que encapsulem durações regulares do rítmo tamborilado. Estes rítmos
-relacionados ao tamborilar do usuário são chamados de harmônicos e podem ser selecionados
-prontamente para o disparo de linhas melódicas.
+O ABT é uma linguagem/ferramenta que dispara linhas rítmicas através
+de macros que especificam as células rítmicas, amostras sonoras que
+são utilizadas como conteúdo sonoro destas linhas, modos de leitura
+destas amostras sonoras, e variáveis randômicas utilizadas para
+execussão da linha. Além disso, o ABT dispõe de variáveis globais que
+podem ser alteradas a qualquer momento pelo usuário, como BPM,
+velocidade de leitura das amostras e variáveis randômicas globais (que
+se somam às individuais).
 
-No Apêndice XX está o manual de utilização do ABT e todo o código do ABT (e do ABD) está
-disponivel online (citar repos). Exploramos abaixo detalhes relevantes da implementação,
-em especial a forma de funcionamento do ABD.
+Em pouco explicitaremos a forma de utilização do ABT. De antemão, é
+pertinente apresentar uma pequena discussão a respeito do que o ABT é
+considerado e sobre os propósitos desta ferramenta. Em primeiro lugar,
+vale manter em mente que o ABT tem um funcionamento específico que
+pode transcender o que se conhece por Live coding. As macros
+pré-estabelecidas engendram um conjunto de recursos pré-estabelecidos
+bem definido, o que contrasta com a ideia de uma 'linguagem de
+programação' que tenha capacidades mais amplas. De qualquer forma,
+linguagens com domínios específicos não são raras e por vezes o ABT
+foi descrito como uma linguagem.
+
+Sobre os propósitos do ABT, em primeiro lugar ele se dispõe a ser um
+instrumento computacional essencialmente rítmico. Junto a esta
+proposta, vem a necessidade da utilização em conjunto com outros
+instrumentos, externos ao ABT, ao computador em que estiver executando
+e possivelmente externo com relação a qualquer computador. Para isso
+foi elaborado o ABD (ABeatDetector), no qual o usuário tamborila no
+teclado do computador os rítmos que estiver ouvindo ou imaginando para
+que o ABT sincronize o pulso e utilize células rítmicas
+relacionadas. A análise feita pelo ABD resulta em uma série de ritmos
+explicitados por sequências de compassos que encapsulem durações
+regulares do ritmo tamborilado. Estes ritmos relacionados ao
+tamborilar do usuário são chamados de harmônicos e podem ser
+selecionados prontamente para o disparo de linhas melódicas.
+
+No Apêndice XX está o manual de utilização do ABT e todo o código do
+ABT (e do ABD) está disponivel online (citar repos). Exploramos abaixo
+detalhes relevantes da implementação, em especial a forma de
+funcionamento do ABD.
 
 [códigos-chave e explicações sobre o ABT e o ABD]
 
+\subsection{Música na Matéria: EKP e AHT}
+\label{aht}
+
+Embora o foco deste trabalho seja na exploração musical através de
+códigos (abertos!), nesta sessão iniciamos uma explicação simples,
+clara e factual de como estas investidas transcendem o código e até
+mesmo a música em si.
+
+Mais relevantes que os desenvolvimentos em si, são as mobilizações
+criadas nos entornos e os engajamentos. Isso ficará evidente nas
+próximas - curtas - sessões destes desenvolvimentos e resultados.
+
+Aqui apresentamos dois trabalhos que geraram alguma movimentação de
+pessoas, resultando em reuniões, desenvolvimentos, pesquisas e
+apresentações propriamente ditas. O primeiro utiliza o estado do
+hardware como entrada, o segundo se trata de uma mesa escultural para
+flutuação de origamis que resulta em um instrumento musical bastante
+lúdico.
 
 
+\subsubsection{Emotional Kernel Panic (EKP)}
 
-  \subsection{Música na Matéria: EKP e AHT}
+Em 2008, colaborando intensamente com o CDTL (Centro de
+Desenvolvimento de Tecnologias Livres)\footnote{foi uma associação
+  civil formada e desmembrada em 2008 e sediada em Recife, PE} foi
+lançada a ideia de utilizar o estado do sistema operacional -
+especialmente o kernel linux - para geração de sons. Surge o Emotional
+Kernel Panic (EKP) na colaboração excepcional de Felipe
+Machado\footnote{Importantíssimo para o desenvolvimento da Cultura
+  Digital no Brasil [citar fontes e programas governamentais]},
+Ricardo Brazileiro\footnote{Artivista Digital bastante ativo [citar
+    fontes]} e o primeiro autor do presente trabalho.
 
-Embora o foco deste trabalho seja na exploração musical através de códigos (abertos!),
-nesta sessão iniciamos uma explicação simples, clara e factual de como estas
-investidas transcendem o código e até mesmo a música em si.
-
-Mais relevantes que os desenvolvimentos em si, são as mobilizações criadas nos
-entornos e os engajamentos. Isso ficará evidente nas próximas - curtas - sessões
-destes desenvolvimentos e resultados.
-
-Aqui apresentamos dois trabalhos que geraram alguma movimentação de pessoas,
-resultando em reuniões, desenvolvimentos, pesquisas e apresentações propriamente
-ditas. O primeiro utiliza o estado do hardware como entrada, o segundo se trata
-de uma mesa escultural para flutuação de origamis que resulta em um instrumento musical
-bastante lúdico.
-
-
-      \subsubsection{Emotional Kernel Panic (EKP)}
-
-Em 2008, colaborando intensamente com o CDTL
-(Centro de Desenvolvimento de Tecnologias Livres)\footnote{foi uma associação civil formada e desmembrada em 2008 e sediada em Recife, PE}
-foi lançada a ideia de utilizar o estado do sistema operacional - especialmente o kernel linux - para
-geração de sons. Surge o Emotional Kernel Panic (EKP) na colaboração excepcional de
-Felipe Machado\footnote{Importantíssimo para o desenvolvimento da Cultura Digital no Brasil [citar fontes e programas governamentais]},
-Ricardo Brazileiro\footnote{Artivista Digital bastante ativo [citar fontes]} e o primeiro autor do presente trabalho.
-
-Desde o inicio, foram definidos três finalidades
-para esta exploração do SO:
+Desde o inicio, foram definidos três finalidades para esta exploração
+do SO:
 
 [visitar o README do EKP e achar os scripts do Brazileiro sobre o EKP]
 
 \begin{itemize}
-    \item Didáticos
-    \item Artísticos
-    \item Monitoramento do SO
+\item Didáticos
+\item Artísticos
+\item Monitoramento do SO
 \end{itemize}
 
 Toda a base do EKP está aqui: http://trac.assembla.com/audioexperiments/browser/ekp-base
 
 [Patches desenvolvidos por Brazileiro/Machado e rascunho do EKP-Monitor]
 
-      \subsubsection{AirHackTable}
+\subsubsection{AirHackTable}
 
-A AirHackTable é um instrumento musical eletrônico controlado por origamis (dobraduras de papel), construída na forma de uma mesa. Nela, uma rede de coolers reciclados faz flutuar origamis de geometria e cores variadas. Os movimentos dos origamis são captados por webcam e interpretados em tempo real por software de processamento de imagens, gerando padrões que controlam a transformação sonora da música. Dessa forma, pode-se dizer que os sons gerados refletem o voo dos origamis de acordo com suas geometrias (que geram trajetórias de voo caracteristicas).
+A AirHackTable (AHT) é um instrumento musical eletrônico controlado por
+origamis (dobraduras de papel), construída na forma de uma mesa. Nela,
+uma rede de coolers reciclados faz flutuar origamis de geometria e
+cores variadas. Os movimentos dos origamis são captados por webcam e
+interpretados em tempo real por software de processamento de imagens,
+gerando padrões que controlam a transformação sonora da música. Dessa
+forma, pode-se dizer que os sons gerados refletem o voo dos origamis
+de acordo com suas geometrias (que geram trajetórias de voo
+caracteristicas).
 
-Na versão atual da AirHacktable, cada cor (vermelho, amarelo, azul, verde, preto, ou branco) controla uma voz, e a posição do origami na mesa modula aspectos do som. Em outras palavras, se o origami está flutuando mais à esquerda, o som sai no canal à esquerda da mesa, e se o origami está mais próximo da câmera, o volume aumenta, e se está mais afastado do operador, o som se torna mais agudo. 
+Na versão atual da AirHacktable, cada cor (vermelho, amarelo, azul,
+verde, preto, ou branco) controla uma voz, e a posição do origami na
+mesa modula aspectos do som. Em outras palavras, se o origami está
+flutuando mais à esquerda, o som sai no canal à esquerda da mesa, e se
+o origami está mais próximo da câmera, o volume aumenta, e se está
+mais afastado do operador, o som se torna mais agudo.
 
-[imagens da AHT e dos patches em operação]
+A AHT segue a filosofia de desenvolvimento contínuo, comum ao software
+livre, que atualmente foi incorporado ao movimento chamado hardware
+livre ou aberto.
 
-   \subsection{Música no Tecido Social: Sabrina Kawahara, Audioexperiments, EstudioLivre.org, CDTL, juntaDados.org, Devolts.org, MSST, LabMacambira.sf.net}
+[citar apresentações no contato, avav, oficinas sesc, chico, oficina semana imagem e som]
 
-Esta é uma sessão menor, dedicada a apontar repercussões emergentes destas empreitadas em comunidades diferentes
-e então tornar compreensível o desdobramento que estes códigos dedicados à música tiveram em processos sociais
-e mobilizações civis.
+[imagens da AHT e dos patches em operação, ver com renato quais ele quer]
 
-Grupos foram montados em torno destes desenvolvimentos. Como os propósitos de compartilhamento
-e apropriação tecnológica estavam no cerne dos grupos relacionados, as investidas
-naturalmente tomaram teores engajados socialmente. A questão do empoderamento das pontas
-e da criação de um patrimônio tecnológico da humanidade é consequência quase imediata
-das posturas de compartilhamento e apropriação citados.
+\subsection{Música no Tecido Social: Sabrina Kawahara, Audioexperiments, EstudioLivre.org, CDTL, juntaDados.org, Devolts.org, MSST, LabMacambira.sf.net}
+
+Esta é uma sessão menor, dedicada a apontar repercussões emergentes
+destas empreitadas em comunidades diferentes e então tornar
+compreensível o desdobramento que estes códigos dedicados à música
+tiveram em processos sociais e mobilizações civis.
+
+Grupos foram montados em torno destes desenvolvimentos. Como os
+propósitos de compartilhamento e apropriação tecnológica estavam no
+cerne dos grupos relacionados, as investidas naturalmente tomaram
+teores engajados socialmente. A questão do empoderamento das pontas e
+da criação de um patrimônio tecnológico da humanidade é consequência
+quase imediata das posturas de compartilhamento e apropriação citados.
 
 Discorremos brevemente sobre cada uma das iniciativas citadas:
 
@@ -594,7 +781,6 @@ Discorremos brevemente sobre cada uma das iniciativas citadas:
     \item LabMacambira.sf.net
     \item Outros relacionados: MuSa, Metareciclagem, Submidialogia, Tainã
 \end{itemize}
-
 
 \section{Web}
 
@@ -641,7 +827,6 @@ Discorremos brevemente sobre cada uma das iniciativas citadas:
 \subsubsection{Etherpads}
 
 \subsubsection{Outras fontes}
-
 
 \section{Materiais didáticos}
 
