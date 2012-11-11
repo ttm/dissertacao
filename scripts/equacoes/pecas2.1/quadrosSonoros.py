@@ -110,8 +110,10 @@ lambda_f=44100/f
 dente=((n.arange(float(Lambda))%lambda_f)/lambda_f)*2-1
 
 ii=n.linspace(0,Delta*2*n.pi,Lambda,endpoint=False)
-som=dente+n.sin(ii*43)+n.sin(ii*84) + n.sin(ii*126.3)
+som_d=dente+n.sin(ii*43)+n.sin(ii*84)
+som_e=dente+n.sin(ii*43) + n.sin(ii*126.3)
 
+som=n.vstack((som_d,som_e)).T
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro5.wav",f_a)
