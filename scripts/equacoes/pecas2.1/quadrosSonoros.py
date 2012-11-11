@@ -5,8 +5,8 @@ import numpy as n, scikits.audiolab as a
 # são mixagens de sons básicos apresentados na sessão 2.1
 
 f_a=44100 # 44.1kHz, frequência de amostragem de CDs
-Delta=30. # cada quadro terá 30 segundos
-Lambda=Delta*f_a # numero de amostras
+Delta=180. # cada quadro terá exatos 180 segundos == 3 minutos
+Lambda=Delta*f_a # número de amostras
 
 ii=n.linspace(0,Delta*2*n.pi,Lambda,endpoint=False)
 
@@ -30,6 +30,7 @@ som+=dente_aguda/80
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro1.wav",f_a)
+print(u"quadro 1 feito em quadro1.wav (mono), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a) )
 
 
 ### Quadro 2: 3 conjuntos separados de triangulares
@@ -47,6 +48,7 @@ for f in fs2:
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro2.wav",f_a)
+print("quadro 2 feito em quadro2.wav (mono), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
 ### Quadro 3: estereofonia alternada no espectro harmônico
@@ -67,6 +69,7 @@ som=n.vstack((som_d,som_e)).T
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro3.wav",f_a)
+print("quadro 3 feito em quadro3.wav (estéreo), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
 ### Quadro 4: batimentos intercalados por ouvido e com defasagens
@@ -101,6 +104,7 @@ som+=n.vstack((som_d,som_e)).T/60
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro4.wav",f_a)
+print("quadro 4 feito em quadro4.wav (estéreo), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
 # Quadro 5: Dente de serra grave bate com harmonico em cada lado
@@ -117,6 +121,7 @@ som=n.vstack((som_d,som_e)).T
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro5.wav",f_a)
+print("quadro 5 feito em quadro5.wav (estéreo), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
 
