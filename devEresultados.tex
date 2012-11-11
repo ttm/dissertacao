@@ -31,9 +31,7 @@ Com isso em mente, definiremos as características básicas da nota musical digi
 Para nós, este consiste  em amostras sequenciais
 igualmente espaçadas no tempo. As amostras assim dispostas,
 relativas à onda mecânica do som que representam,
-em conjunto formam a chamada \emph{modulação por código de pulsos}\footnote{\emph{Pulse Code Modulation},
-de onde vem a sigla PCM, é o formato de codificação de som
-padrão em Compact Discs e outras mídias de alta fidelidade e sem compactação com perdas.}.
+em conjunto formam o chamado áudio PCM (veja sessão~\ref{sec:audio}).
 
 
  Definimos a
@@ -431,24 +429,24 @@ d' & =\sqrt{\left (x+\frac{\zeta}{2} \right )^2 + y^2}
 e cálculos imediatos nos levam à DTI (Diferença de Tempo Interaural)\footnote{Constata-se que $\zeta \approx 21,5cm$ para um humano adulto.}:
 
 \begin{equation}
-DTI=\frac{d'-d}{v_{som\;no\;ar}\approx 343,2 }\quad \text{segundos}
+DTI=\frac{d'-d}{v_{som\;no\;ar}\approx 343.2 }\quad \text{segundos}
 \end{equation}
 
 e à DII (Diferença de Intensidade Interaural):
 \begin{equation}
-DII=20\log_{10}\left (\frac{d'}{d}\right) \quad dBs
+DII=20\log_{10}\left (\frac{d}{d'}\right) \quad dBs
 \end{equation}
 
-Convertendo para amplitude temos $DII_a=\frac{d'}{d}$. A $DII_a$ pode
-ser utilizada como constante multiplicativa do canal direito de um sinal sonoro estéreo ($\{t_i\}_0^{\Lambda -1}=\{DII_a . t_i'\}_0^{\Lambda -1}$). Pode-se utilizar a DII junto à DTI como adiantamento no tempo do canal direito com relação ao esquerdo, vínculo crucial para a percepção de localidade em sons graves e em sonoridades percussivas~\cite{Heeger}.
+Convertendo para amplitude temos $DII_a=\frac{d}{d'}$. A $DII_a$ pode
+ser utilizada como constante multiplicativa do canal direito de um sinal sonoro estéreo ($\{t_i'\}_0^{\Lambda -1}=\{DII_a . t_i\}_0^{\Lambda -1}$). Pode-se utilizar a DII junto à DTI como adiantamento no tempo do canal direito com relação ao esquerdo, vínculo crucial para a percepção de localidade em sons graves e em sonoridades percussivas~\cite{Heeger}.
 Considerando $\Lambda_{DTI}=\lfloor DTI . f_a \rfloor $, podemos escrever:
 
 \begin{equation}
 \begin{split}
 \Lambda_{DTI} & = \left \lfloor \frac{d'-d}{343,2}  f_a \right \rfloor \\
-DII_a & = \frac{d'}{d} \\
-\{t_{(i+\Lambda_{DTI})}\}_{\Lambda_{DTI}}^{\Lambda+\Lambda_{DTI}-1} & =\{DII_a . t_i'\}_0^{\Lambda-1} \\
-\{t_i\}_0^{\Lambda_{DTI}-1} & = 0
+DII_a & = \frac{d}{d'} \\
+\{t_{(i+\Lambda_{DTI})}'\}_{\Lambda_{DTI}}^{\Lambda+\Lambda_{DTI}-1} & =\{DII_a . t_i\}_0^{\Lambda-1} \\
+\{t_i'\}_0^{\Lambda_{DTI}-1} & = 0
 \end{split}
 \end{equation}
 
@@ -539,7 +537,7 @@ Este mecanismo é demonstrado de forma ilustrativa na figura~\ref{fig:concatenac
         \label{fig:concatenacao}
 \end{figure}
 
-A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python no APÊNDICE~\ref{cap:codigoPecas} e podem ser escutadas e vizualizadas nos links~\cite{reduced-fi} e~\cite{quadros}.
+A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python no Apêndice~\ref{cap:codigoPecas} e podem ser escutadas e vizualizadas nos links~\cite{reduced-fi} e~\cite{quadros}.
 
 Com isso estabelecemos nossa nota musical básica no som digital. Trabalharemos a seguir estas unidades, a evolução temporal de seus conteúdos e desenvolveremos as notas musicais com parâmetros que evoluem no tempo, como glissandos e envoltórias. 
 A filtragem de componentes e os ruídos finalizam sobre a constituição da nota musical como unidade isolada. A estruturação musical destas notas é então abordada do ponto de vista das estruturas fora do tempo (como as escalas), trajetórias cíclicas ou que convirjam ou divirjam.
@@ -1280,7 +1278,7 @@ onde
 \begin{equation}
 J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \quad , \quad \overline{k} = k \% 2 \;\;,\;\; k \in \mathbb{N}
 \end{equation}
-é a função de Bessel~\cite{BesselCCRMA,JOSFM} que, na FM, como podemos notar, especifica a amplitude de cada componente. Note que, nestas equações, a variação de frequência introduzida por $\{t_i'\}$ não respeita a progressão geométrica de frequência que acompanha a percepção de altura. Caso utilizemos as equações~\ref{vbrF} teríamos uma distribuição diferente dos harmônicos. Para este fim, dispomos o APÊNDICE~\ref{cap:fmam} onde calculamos o conteúdo espectral da síntese FM feita com oscilações na escala logarítmica. De fato, como pode-se notar nos cálculos, o comportamento simples que torna a FM atraente é obtido somente com as variações lineares utilizadas em~\ref{eq:fmEsp}.
+é a função de Bessel~\cite{BesselCCRMA,JOSFM} que, na FM, como podemos notar, especifica a amplitude de cada componente. Note que, nestas equações, a variação de frequência introduzida por $\{t_i'\}$ não respeita a progressão geométrica de frequência que acompanha a percepção de altura. Caso utilizemos as equações~\ref{vbrF} teríamos uma distribuição diferente dos harmônicos. Para este fim, dispomos o Apêndice~\ref{cap:fmam} onde calculamos o conteúdo espectral da síntese FM feita com oscilações na escala logarítmica. De fato, como pode-se notar nos cálculos, o comportamento simples que torna a FM atraente é obtido somente com as variações lineares utilizadas em~\ref{eq:fmEsp}.
 
 O caso da modulação de amplitude (AM) é mais simples:
 
@@ -1293,7 +1291,7 @@ O caso da modulação de amplitude (AM) é mais simples:
 
 Ou seja, o som resultante é o som original
 e a reprodução de seu conteúdo espectral acima e abaixo da frequência
-original, distantes $f'$ de $f$. Observe que utilizamos novamente a variação na escala linear de amplitude. Dispomos no APÊNDICE~\ref{cap:fmam} uma exposição do espectro da AM se realizada a oscilação na escala logarítmica de amplitude, que também perde o comportamento simples.
+original, distantes $f'$ de $f$. Observe que utilizamos novamente a variação na escala linear de amplitude. Dispomos no Apêndice~\ref{cap:fmam} uma exposição do espectro da AM se realizada a oscilação na escala logarítmica de amplitude, que também perde o comportamento simples.
 
 A realização da FM e AM através de LUTs é consideravelmente simples.
 A frequência $f$ a ser modulada, chamada portadora, é modulada pela $f'$, chamada moduladora. No jargão de FM e AM, $\mu$ e $\alpha=10^{\frac{V_{dB}}{20}}$ são chamados índices de modulação. Assim, temos

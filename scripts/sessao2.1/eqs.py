@@ -16,7 +16,6 @@ a.wavwrite(T_i,"silencio.wav",f_a)
 
 ############## 2.1.2 Volume
 ### 2.2
-
 Lambda=100 # o som terá 100 amostras
 T_i=n.random.random(Lambda) # 100 amostras quaisquer
 pot=(T_i**2).sum()/Lambda #potência
@@ -146,17 +145,4 @@ a.wavwrite(T_i,"mixados.wav",f_a)
 T_i=n.hstack((T1_i,T2_i,T3_i))
 # escrevendo arquivo
 a.wavwrite(T_i,"concatenados.wav",f_a)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
