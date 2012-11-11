@@ -5,7 +5,7 @@ import numpy as n, scikits.audiolab as a
 # são mixagens de sons básicos apresentados na sessão 2.1
 
 f_a=44100 # 44.1kHz, frequência de amostragem de CDs
-Delta=180. # cada quadro terá exatos 180 segundos == 3 minutos
+Delta=30. # cada quadro terá exatos 180 segundos == 3 minutos
 Lambda=Delta*f_a # número de amostras
 
 ii=n.linspace(0,Delta*2*n.pi,Lambda,endpoint=False)
