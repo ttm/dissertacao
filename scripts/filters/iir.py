@@ -55,7 +55,7 @@ def notch(f,bw,ftype='bs'):
         r=1-3*bw
         k=(1-2*r*n.cos(2*n.pi*f)+r**2)/(2-2*n.cos(2*n.pi*f))
         
-        # coefs rejeita banda
+        # coefs passa banda
         a0=1-k
         a1=-2*(k-r)*n.cos(2*n.pi*f)
         a2=r**2 -k
