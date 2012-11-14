@@ -582,8 +582,8 @@ Mais conhecido pelo termo em inglês, a \emph{Lookup Table} (ou simplesmente
 LUT), é um procedimento simples que consiste em criar uma tabela
 de referência e coletar as amostras desta tabela segundo a 
 necessidade\footnote{Em contraposição ao cálculo das amostras individuais
-de forma analítica e permitindo o uso de funções sem possibilidade de cálculo direto
-(por serem amostras recolhidas diretamente de algum fenômeno natural, por exemplo).}. Em nosso caso, usaremos tabelas de busca para os
+de forma analítica. A LUT permite o uso de funções sem possibilidade de cálculo direto como
+por exemplo, amostras recolhidas diretamente de algum fenômeno natural.}. Em nosso caso, usaremos tabelas de busca para os
 sons criados, as notas. Assim, estas tabelas são unidimensionais e com
 valores reais. Além disso, a tabela consiste nas amostras
 de um período de onda, que usamos para sintetizar períodos
@@ -603,7 +603,7 @@ período de onda possa ser usado para sintetizar sons em toda a banda
 de frequências audíveis, qualquer que seja a forma de onda amostrada.
 
 Descrevemos esta busca. Seja $\widetilde{\Lambda}$ o tamanho 
-da tabela e $\widetilde{L_i} = \{ \widetilde{l}_i \}_0^{\widetilde{\Lambda} -1}$ a tabela de elementos $\widetilde{l_i}$ de um
+da tabela e $\widetilde{L_i} = \left\{\, \widetilde{l}_i \,\right\}_0^{\widetilde{\Lambda} -1}$ a tabela de elementos $\widetilde{l_i}$ de um
 período de onda qualquer (veja equação ~\ref{periodoUnico}). Uma sequência
 $T_i^{f,\,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta$
 pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
@@ -615,8 +615,10 @@ T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} 
 Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
 para sintetizar o som em qualquer frequência. Dispomos graficamente
 o procedimento de LUT na figura~\ref{fig:lut} onde calculamos explicitamente
-também uma amostra de $\{t_i\}$ a partir de $\{\widetilde{l}_i\}$ para uma frequência
+também uma amostra de $\{t_i\}$ a partir de $\left\{\,\widetilde{l}_i\,\right\}$ para uma frequência
 de $f=200Hz$, $\widetilde{\Lambda}=128$ e considerada a taxa de amostragem em $f_a=44.1kHz$.
+Esta não é uma configuração praticável, como veremos abaixo, mas possibilita uma
+disposição gráfica bastante clara do procedimento.
 
 
 Para o cálculo do inteiro $\gamma_i$, convencionamos
