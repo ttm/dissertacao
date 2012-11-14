@@ -4,7 +4,7 @@ import numpy as n, pylab as p, scikits.audiolab as a
 N = 100000 # N sempre par
 fa=44100.
 
-# diferença em das frequências entre coeficiêntes vizinhos:
+# diferença das frequências entre coeficiêntes vizinhos:
 df=fa/N
 
 # geracao de espectro com modulo 1 uniforme
@@ -15,11 +15,11 @@ coefs=n.exp(1j*n.random.uniform(0, 2*n.pi, N))
 coefs[N/2+1:]=n.real(coefs[1:N/2])[::-1] - 1j*n.imag(coefs[1:N/2])[::-1]
 
 coefs[0]=0. # sem bias
-coefs[N/2]=0.9 # freq max eh real e 0.9
+coefs[N/2]=1 # freq max eh real simplesmente
 
 
 # as frequências relativas a cada coeficiente
-fi=n.arange(coefs.shape[0])*df # acima de N/2 nao vale)
+fi=n.arange(coefs.shape[0])*df # acima de N/2 nao vale
 f0=15. # iniciamos o ruido em 15 Hz
 i0=n.floor(f0/df) # primeiro coeff a valer
 coefs[:i0]=n.zeros(i0)
@@ -106,7 +106,7 @@ p.plot(r[ii:ie])
 p.ylabel(r"amplitude $ \rightarrow $", fontsize=16)
 
 
-################3
+################
 # Ruido rosa
 
 # para cada oitava, perde 3dB, i.e. cai para ~0.707 da amplitude
