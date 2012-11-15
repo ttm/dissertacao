@@ -61,7 +61,7 @@ def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
     Gamma_i=n.floor( Gamma_i) # já os índices
     Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
-    return Tr_i[Gamma_i%int(Lt)] # busca dos índices na tabela
+    return tab[Gamma_i%int(Lt)] # busca dos índices na tabela
 
 aa=v()
 bb=v(nu=4.)
