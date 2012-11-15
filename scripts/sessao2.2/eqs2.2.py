@@ -4,13 +4,13 @@ import numpy as n, scikits.audiolab as a
 f_a = 44100 # Hz, frequência de amostragem
 
 ############## 2.2.1 Tabela de busca (LUT)
-# tamanho da tabela: use par para não cnflitar abaixo
+# tamanho da tabela: use par para não conflitar abaixo
 # e ao menos 1024
 Lambda_tilde=Lt=1024
 
-# Senóide
+# Senoide
 foo=n.linspace(0,2*n.pi,Lt,endpoint=False)
-S_i=n.sin(foo) # um período da senóide com T amostras
+S_i=n.sin(foo) # um período da senoide com T amostras
 
 # Quadrada:
 Q_i=n.hstack(  ( n.ones(Lt/2)*-1 , n.ones(Lt/2) )  )
@@ -42,11 +42,12 @@ TfD_i=L_i[Gamma_i%Lt]
 # VARIAÇÕES DE FREQUÊNCIA
 f_0=100. # freq inicial em Hz
 f_f=300. # frq final em Hz
+Delta=2.4 # duração
 
-Lambda=int(f_a*2.4)
+Lambda=int(f_a*Delta)
 ii=n.arange(Lambda)
 ### 2.31 - variação linear
-f_i=f_0+(f_f-f_0)*ii/float(Lambda)
+f_i=f_0+(f_f-f_0)*ii/(float(Lambda)-1)
 ### 2.32
 D_gamma_i=f_i*Lt/f_a
 Gamma_i=n.cumsum(D_gamma_i)
@@ -55,7 +56,7 @@ Gamma_i=n.array(Gamma_i,dtype=n.int)
 Tf0ff_i=L_i[Gamma_i%Lt]
 
 ### 2.34 - variação exponencial
-f_i=f_0*(f_f/f_0)**(ii/float(Lambda))
+f_i=f_0*(f_f/f_0)**(ii/(float(Lambda)-1))
 ### 2.35
 D_gamma_i=f_i*Lt/f_a
 Gamma_i=n.cumsum(D_gamma_i)
@@ -305,7 +306,7 @@ Tv_i=tabv[Gammav_i%Lv] # padrão de variação do vibrato para cada amostra
 ### 2.56 frequências em cada amostra
 F_i=f*(   2.**(  Tv_i*nu/12.  )   ) # frequência em Hz em cada amostra
 ### 2.57 índices para busca na tabela do som
-D_gamma_i=f_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
+D_gamma_i=F_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
 Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
 Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
 ### 2.58 som em si
@@ -391,6 +392,8 @@ Gamma_i=n.array(ii*f*Lt/f_a,dtype=n.int)
 T_i=Tr_i[Gamma_i%Lt]*(A_i)
 
 a.wavwrite(T_i,"adsr.wav",f_a) # escrita do som
+
+
 
 
 
