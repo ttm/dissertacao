@@ -222,18 +222,6 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,5,4,4,4,0,2,4,5,5,5]):
 
 
 
-        # limando movimento paralelo
-        if atual-contra[0]==5
-        possiveis=[pos for pos in possiveis if pos-contra[i] != mov] 
-
-
-
-
-
-
-
-
-
 
     
 
