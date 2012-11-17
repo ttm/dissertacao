@@ -10,14 +10,25 @@ DR=2*20. # duracao do release \Delta_R
 SS=.4 # fração da amplitude em que ocorre o sustain
 xi=1e-2 # -180dB para iniciar o fade in e finalizar o fade out
 
-A=xi*(1./xi)**(n.arange(DA)/(DA-1)) # amostras do ataque
+# Variações logarítmicas
+#A=xi*(1./xi)**(n.arange(DA)/(DA-1)) # amostras do ataque
+#s=n.copy(A) 
+#D=SS**((n.arange(DA,DA+DD)-DA)/(DD-1)) # amostras do decay
+#s=n.hstack((  s,  D  ))
+#S=SS*n.ones(De-DR-(DA+DD)) # amostras do sustain
+#s=n.hstack((  s, S  ))
+#R=(SS)*(xi/SS)**(  (n.arange(De-DR,De)+DR-De)/(DR-1)  ) # amostras do release
+#s=n.hstack((  s,  R  ))
+
+A=n.arange(DA)/(DA-1) # amostras do ataque
 s=n.copy(A) 
-D=SS**((n.arange(DA,DA+DD)-DA)/(DD-1)) # amostras do decay
+D=1-(1-SS)*((n.arange(DA,DA+DD)-DA)/(DD-1)) # amostras do decay
 s=n.hstack((  s,  D  ))
 S=SS*n.ones(De-DR-(DA+DD)) # amostras do sustain
 s=n.hstack((  s, S  ))
-R=(SS)*(xi/SS)**(  (n.arange(De-DR,De)+DR-De)/(DR-1)  ) # amostras do release
+R=SS-(SS)*(  (n.arange(De-DR,De)+DR-De)/(DR-1)  ) # amostras do release
 s=n.hstack((  s,  R  ))
+
 
 p.plot(A,                      'bo', markersize=4)
 p.plot(n.arange(DA,DA+DD),D,   'go', markersize=4)
