@@ -180,7 +180,7 @@ Lambda = 100000 # Lambda sempre par
 # diferença das frequências entre coeficiêntes vizinhos:
 df=f_a/float(Lambda)
 
-### 2.48 Ruido brando
+### 2.48 Ruido branco
 # geracao de espectro com modulo 1 uniforme
 # e fase aleatoria
 coefs=n.exp(1j*n.random.uniform(0, 2*n.pi, Lambda))
@@ -373,16 +373,17 @@ Lambda_A=int(f_a*Delta_A)
 Lambda_D=int(f_a*Delta_D)
 Lambda_R=int(f_a*Delta_R)
 
+# Realização da envoltória ADSR: A_i
 ii=n.arange(Lambda_A,dtype=n.float)
-A=xi*(1./xi)**(ii/(Lambda_A-1))-1
+A=ii/(Lambda_A-1)
 A_i=A
 ii=n.arange(Lambda_A,Lambda_D+Lambda_A,dtype=n.float)
-D=a_S**(   ( ii-Lambda_A )/( Lambda_D-1) )
+D=1-(1-a_S)*(   ( ii-Lambda_A )/( Lambda_D-1) )
 A_i=n.hstack(  (A_i, D  )   )
-S=n.ones(Lambda-Lambda_R-(Lambda_A+Lambda_D),dtype=n.float)*a_S
+S=a_S*n.ones(Lambda-Lambda_R-(Lambda_A+Lambda_D),dtype=n.float)
 A_i=n.hstack( ( A_i, S )  )
 ii=n.arange(Lambda-Lambda_R,Lambda,dtype=n.float)
-R=a_S*(xi/a_S)**((ii-(Lambda-Lambda_R))/(Lambda_R-1))
+R=a_S-a_S*((ii-(Lambda-Lambda_R))/(Lambda_R-1))
 A_i=n.hstack(  (A_i,R)  )
 
 # Realização do som

@@ -82,7 +82,7 @@ amb=2**(.00/12.)*f
 amb_trem=.5
 for i in xrange(10):
     f_=f+amb*n.random.random()-amb/2.
-    s+=v(f=_,nu=n.random.random()*amb_trem-amb_trem/2)
+    s+=v(f=f_,nu=n.random.random()*amb_trem-amb_trem/2)
 
 T_i=n.hstack((s0,s))
 
@@ -91,16 +91,20 @@ T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
 a.wavwrite(T_i,"chorusInfantil.wav",f_a) # escrita do som
 
 
+
+
+######################
 s=v(f=200.,nu=0.)
 s0=n.copy(s)
 
-amb=2**(.1/12.)
+amb=.1 # semitons
 f=200.
-amb=2**(.00/12.)*f
-amb_trem=.5
+amb_vib=.5
+amb_ft=.4
 for i in xrange(10):
-    f_=f+amb*n.random.random()-amb/2.
-    s+=v(   f=f_,   nu=n.random.random()*amb_trem-amb_trem/2.    )
+    f_=f*2.**((n.random.random()-.5)*amb/12.)
+    nu_=(n.random.random()-.5)*amb_vib
+    s+=v(   f=f_,   nu=nu_    )
 
 T_i=n.hstack((s0,s))
 
