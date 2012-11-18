@@ -5,6 +5,8 @@
 % 	Software utilizados: Kile,Kbibtex,Kpdf,Gimp
 %
 %
+\newcommand{\massa}{{\large \textsc{massa}}}
+\newcommand{\mass}{{\large \textsc{mass}}}
 %-----------------TIPO DE DOCUMENTO------------------
 \documentclass[espaco=duplo,twoside,openany,tocpage=plain]{abnt}
 %-----------------NORMAS IFSC------------------------
@@ -33,7 +35,7 @@
 \newcommand\blankpage{%
     \null
     \thispagestyle{empty}%
-    \addtocounter{page}{-1}%
+    %\addtocounter{page}{-1}%
     \newpage}
 
 
@@ -130,6 +132,36 @@
 }
 
 
+
+\providecommand{\resumonameb}{RESUMO}
+
+%
+\newenvironment{resumo2}%
+  {%
+   \if@openright\cleardoublepage\else\clearpage\fi%
+   \setchaptertype{resumo2}
+   \pretextualchapter{\resumonameb}%
+   \begin{espacosimples}%
+  }%
+  {\end{espacosimples}\newpage}%abstract
+
+\providecommand{\resumonameb}{RESUMO}
+
+
+\providecommand{\abstractnameb}{ABSTRACT}
+%
+\newenvironment{abstract2}%
+  {%
+   \if@openright\cleardoublepage\else\clearpage\fi%
+   \setchaptertype{abstract2}
+   \pretextualchapter{\abstractnameb}%
+   \begin{espacosimples}%
+  }%
+  {\end{espacosimples}\newpage}%abstract
+
+
+
+
 %-----------------INICIO DO DOCUMENTO----------------
 \begin{document}
 %-----------------PARTE PRE-TEXTUAL------------------
@@ -143,7 +175,7 @@
 
 %\titulo{Música no áudio digital}
 %\titulo{Música no áudio digital: abordagem psicofísica e caixa de ferramentas}
-\titulo{Música no áudio digital: abordagem psicofísica e caixa de ferramentas em código computacional}
+\titulo{Música no áudio digital: abordagem psicofísica e caixa de ferramentas}
 
 
 %\titulo{áudio digital}
@@ -190,6 +222,7 @@
 %	Comandos que incluem os elementos textuais. A variável cap[j] é referente ao arquivo cap[j].tex. Pode ser qualquer nome, desde que exista no mesmo diretorio do tese.tex um capítulo referente.
 %	Ex: Se você usa \input{introducao}, deverá existir um arquivo tex com o nome introducao.tex no mesmo diretorio de tese.tex.
 
+\afterpage{\blankpage}
 \afterpage{\blankpage}
 \input{introducao}
 %\input{fundamentos}
