@@ -176,3 +176,13 @@
   \parbox[t]{\myFootnoteWidth}{#1}%
 }
 \renewcommand\footnoterule{\kern-.\p@\hrule\@width3cm\kern2.6\p@}
+
+
+%\makeatletter
+%\renewcommand*{\thetable}{\arabic{table}}
+%\renewcommand*{\thefigure}{\arabic{figure}}
+\let\c@table\c@figure
+%\makeatother
+
+
+

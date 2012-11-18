@@ -9,13 +9,23 @@
 	\noindent \parbox{5.7in}{\centering AUTORIZO A REPRODUÇÃO E DIVULGAÇÃO TOTAL OU PARCIAL DESTE TRABALHO, POR QUALQUER MEIO CONVENCIONAL OU ELETRÔNICO, PARA FINS DE ESTUDO E PESQUISA, DESDE QUE CITADA A FONTE.}
 
 \pretextualchapter{}
-	Lado dedicado à folha de aprovação. Apagar isso antes de imprimir a versão oficial
+[[	Lado dedicado à folha de aprovação. Apagar isso antes de imprimir a versão oficial ]]
 
-\pretextualchapter{Dedicatória} %Título da página dedicatória
+
+
+\afterpage{\blankpage}
+
+\pretextualchapter{DEDICATÓRIA} %Título da página dedicatória
 	\input{dedicatoria} %Para incluir o texto de dedicatória,use o arquivo dedicatória.tex
 
-\pretextualchapter{Agradecimentos} %Título da página de agradecimentos
+\afterpage{\blankpage}
+
+
+\pretextualchapter{AGRADECIMENTOS} %Título da página de agradecimentos
 	\input{agradecimentos} %Para incluir o texto de agradecimentos,use o arquivo agradecimentos.tex
+
+\afterpage{\blankpage}
+
 
 \pretextualchapter{}
 %	\begin{epigrafetop}
@@ -54,64 +64,69 @@
 		{Electronic music used pure sounds, completely calibrated. You had to think digitally, as it were, in a way that allowed you to extend serial ideas into other parameters through technology.} %frase
 		{Luc Ferrari (1929 - 2005)} %referência
 	\end{epigrafebot}
+
+
+\afterpage{\blankpage}
+
 \resumoeabstract %Para incluir o texto do resumo e abstract,use o arquivo resumoeabstract.tex
+
+\afterpage{\blankpage}
+
 
 \listadefiguras %Comando que gera a lista de figuras (AUTOMÁTICO)
 
-\listadetabelas %Comando que gera a lista de tabelas (AUTOMÁTICO)
+%\listadetabelas %Comando que gera a lista de tabelas (AUTOMÁTICO)
 
-\pretextualchapter{Lista de Abreviaturas}
+
+\pretextualchapter{Lista de relações descritas e implementadas}
 	\begin{listaespecial}[BIGNAMEWIDTH]
-		\item[OSS] Programas de Código Aberto \emph{(Open Source Software)}
-		\item[GNU] \emph{GNU is Not UNIX}
-		\item[GPL] \emph{General Public Licence}
-                \item[AA] \emph{Algorithmic Autoregularion ou Acrônimo Ambíguo}
-                \item[AC] \emph{Autogestão Coletiva ou Ágora Communs}
-                \item[CC] \emph{Creative Commons}
-                \item[ABT] \emph{ABeatTracker}
-                \item[ABD] \emph{ABeatDetector}
-                \item[PD] \emph{Pure Data}
-                \item[CMDCA] \emph{Conselho Municipal de defesa dos Direitos da Cirança e do Adolescente}
-                \item[SOS] \emph{Saúde Olha Sabedoria: uma proposta de coleta e difusão de conhecimentos relacionados à saúde}
-                \item[LADSPA] \emph{Linux Audio Developers Simple Plugin API}
-                \item[LV2] \emph{LADSPA Version 2}
-                \item[JACK] \emph{Jack Audio Connection Kit}
-                \item[SIP] \emph{Scilab Imaging Processing toolbox}
-                \item[MIT] \emph{Massachusetts Institute of Technology}
-                \item[NUMPY] \emph{Numerical Python}
-                \item[SCIPY] \emph{Scientific Python}
-                \item[ONU] \emph{Organização das Nações Unidas}
-                \item[SL] \emph{Software Livre}
-                \item[EKP] \emph{Emotional Kernel Panic}
-                \item[SOS] \emph{Saúde Olha Sabedoria}
-                \item[FISL] \emph{Festival Internacional de Software Livre}
-                \item[BPM] \emph{Batidas Por Minuto (medida de andamento musical)}
-                \item[API] \emph{Application Programming Interface ou Interface de Programação de Aplicativos}
-                \item[WP] \emph{Wavelet Packet}
-
-		\item[EL] \emph{Estúdio Livre}
-		\item[AE] \emph{AudioExperiments}
-		\item[PCM] \emph{Pulse Code Modulation (modulação por código de pulsos)}
-		\item[DTI] \emph{Diferença de Tempo Interaural (\emph{Interaural Time Difference} - ITD)}
-		\item[DII] \emph{Diferença de Intensidade Interaural (\emph{Interaural Intensity Difference)} - IID ou \emph{Interaural Level Difference} - ILD}
+		\item[AM]: modulação de amplitude como descrita em~\ref{}. Implementação computacional em Python com Numpy e Scikits/Audiolab no apêndice~\ref{}.
 	\end{listaespecial} 
 
-\pretextualchapter{Lista de Símbolos}
+\afterpage{\blankpage}
+
+\pretextualchapter{Lista de peças musicais}
 	\begin{listaespecial}[BIGNAMEWIDTH]
-		\item[\$] Indica que o resto da linha é um comando bash$\Lambda_{DTI}=DTI . f_a$
-		\item[\#] Resto da linha é comentario em código Bash ou Python
-		\item[] Resto da linha é comentario em código C/C++
+		\item[Chorus infantil]: relações harmônicas da seção~\ref{}. Música disponibilizada online~\cite{}. Arquivo Python no apêndice~\ref{}.
 	\end{listaespecial} 
 
-\pretextualchapter{Glossário de Termos}
-	\begin{listaespecial2}[BIGNAMEWIDTH]
-		\item[Montagem musical :] algumas ideias musicais rascunhadas, sem a pretensão de ser uma peça ou uma obra musical. Sinônimo de Sequência musical.
-		\item[Sequência musical :] sinônimo de montagem musical. 
-		\item[Tessitura :] âmbito de altura ($\log(freq)$) do objeto em discussão (instrumento, passagem musical, etc).
-
-		\item[Delay :] embora a palavra signifique simplesmente atraso, no contexto de música a áudio o \emph{delay} comumente se refere a um efeito causado por diversas repetições de um som original, com atrasos diferentes.
-	\end{listaespecial2} 
-
+\afterpage{\blankpage}
+%\pretextualchapter{Lista de Abreviaturas}
+%	\begin{listaespecial}[BIGNAMEWIDTH]
+%		\item[OSS] Programas de Código Aberto \emph{(Open Source Software)}
+%		\item[GNU] \emph{GNU is Not UNIX}
+%		\item[GPL] \emph{General Public Licence}
+%                \item[AA] \emph{Algorithmic Autoregularion ou Acrônimo Ambíguo}
+%                \item[AC] \emph{Autogestão Coletiva ou Ágora Communs}
+%                \item[CC] \emph{Creative Commons}
+%                \item[ABT] \emph{ABeatTracker}
+%                \item[ABD] \emph{ABeatDetector}
+%                \item[PD] \emph{Pure Data}
+%                \item[CMDCA] \emph{Conselho Municipal de defesa dos Direitos da Cirança e do Adolescente}
+%                \item[SOS] \emph{Saúde Olha Sabedoria: uma proposta de coleta e difusão de conhecimentos relacionados à saúde}
+%                \item[LADSPA] \emph{Linux Audio Developers Simple Plugin API}
+%                \item[LV2] \emph{LADSPA Version 2}
+%                \item[JACK] \emph{Jack Audio Connection Kit}
+%                \item[SIP] \emph{Scilab Imaging Processing toolbox}
+%                \item[MIT] \emph{Massachusetts Institute of Technology}
+%                \item[NUMPY] \emph{Numerical Python}
+%                \item[SCIPY] \emph{Scientific Python}
+%                \item[ONU] \emph{Organização das Nações Unidas}
+%                \item[SL] \emph{Software Livre}
+%                \item[EKP] \emph{Emotional Kernel Panic}
+%                \item[SOS] \emph{Saúde Olha Sabedoria}
+%                \item[FISL] \emph{Festival Internacional de Software Livre}
+%                \item[BPM] \emph{Batidas Por Minuto (medida de andamento musical)}
+%                \item[API] \emph{Application Programming Interface ou Interface de Programação de Aplicativos}
+%                \item[WP] \emph{Wavelet Packet}
+%
+%		\item[EL] \emph{Estúdio Livre}
+%		\item[AE] \emph{AudioExperiments}
+%		\item[PCM] \emph{Pulse Code Modulation (modulação por código de pulsos)}
+%		\item[DTI] \emph{Diferença de Tempo Interaural (\emph{Interaural Time Difference} - ITD)}
+%		\item[DII] \emph{Diferença de Intensidade Interaural (\emph{Interaural Intensity Difference)} - IID ou \emph{Interaural Level Difference} - ILD}
+%	\end{listaespecial} 
+%
 
 \sumario
 
