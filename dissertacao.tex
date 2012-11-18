@@ -14,6 +14,36 @@
 \usepackage{epigraph}
 
 
+\usepackage{tocloft}
+\makeatletter
+  \renewcommand\ext@table{lof}
+  \makeatother
+  
+  \newlength\mylen
+  \settowidth\mylen{Figure\ }
+  \addtolength\cftfignumwidth{\mylen}
+  \addtolength\cfttabnumwidth{\mylen}
+  
+  \renewcommand\cftfigpresnum{Figure }
+  \renewcommand\cfttabpresnum{Figura }
+  
+  \renewcommand\listfigurename{List of Figures and Tables}
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+
+
+
+
+
+
+
+
 %-----------------PARA CODIGO PYTHON------------------------
 % http://stackoverflow.com/questions/741985/latex-source-code-listing-like-in-professional-books
 % http://pedrokroger.com/2011/04/printing-python-code-with-latex/
@@ -107,7 +137,17 @@
 \autor{RENATO FABBRI}
 
 
-\titulo{MASSA: Um Sistema de Síntese Musical}
+%\titulo{Um conjunto de ferramentas para síntese sonora e musical}
+%\titulo{Princípios psicofísicos da música digital}
+
+
+%\titulo{Música no áudio digital}
+%\titulo{Música no áudio digital: abordagem psicofísica e caixa de ferramentas}
+\titulo{Música no áudio digital: abordagem psicofísica e caixa de ferramentas em código computacional}
+
+
+%\titulo{áudio digital}
+
 % \titulo{Código Aberto em áudio, web e cultura digital}
 % \titulo{Áudio, Código Aberto e Cultura Digital}
 % 1) Som e Código
@@ -128,8 +168,11 @@
 %-------
 \orientador{Prof. Dr. Osvaldo Novais de Oliveira Junior}
 \coorientador{Prof. Dr. Luciano da Fontoura Costa}
-\local{São Carlos}
+\local{Versão Original \\ São Carlos}
 \data{2012}
+\clearpage
+
+\afterpage{\blankpage}
 %	Este comando inclui o arquivo pretextual.tex onde estão todas as informações pretextuais.
 %	Nesse arquivo você poderá alterar as informações e formatação das seguintes paginas:
 %	* Capa e folha de rosto
@@ -146,12 +189,16 @@
 %-----------------PARTE TEXTUAL----------------------
 %	Comandos que incluem os elementos textuais. A variável cap[j] é referente ao arquivo cap[j].tex. Pode ser qualquer nome, desde que exista no mesmo diretorio do tese.tex um capítulo referente.
 %	Ex: Se você usa \input{introducao}, deverá existir um arquivo tex com o nome introducao.tex no mesmo diretorio de tese.tex.
+
+\afterpage{\blankpage}
 \input{introducao}
 %\input{fundamentos}
 \input{devEresultados}
 \input{conclusoes}
 %-----------------PARTE PÓS-TEXTUAL------------------
 %	Comando para incluir o banco de dados de bibliografia. O arquivo é o bibdatabase.bib e deve estar no mesmo diretório deste arquivo (tese.tex).
+\bibliographystyle{abnt-num}
+\bibliography{bibdatabase}
 
 \apendice
 %\input{mapaSitio}
@@ -166,8 +213,6 @@
 \input{musicaExtra}
 
 \renewcommand\bibname{Referências}
-\bibliographystyle{abnt-num}
-\bibliography{bibdatabase}
 %-----------------FIM DO DOCUMENTO-------------------
 % \enddocument
 \end{document}
