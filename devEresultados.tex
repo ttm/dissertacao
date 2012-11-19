@@ -280,7 +280,7 @@ Os coeficiêntes $\{c_k\}_0^{\Lambda-1=2}$ apresentam-se em
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\textwidth]{figuras/amostras3b}
-    \caption{3 amostras apresentam fixas apresentam uma só frequência não nula. $c_1=c_2^*$ e $w_1 \equiv w_2$}
+    \caption{3 amostras fixas apresentam uma só frequência não nula. $c_1=c_2^*$ e $w_1 \equiv w_2$}
         \label{fig:amostras3}
 \end{figure}
 
@@ -377,14 +377,42 @@ A figura ~\ref{fig:amostras6} mostra uma decomposição senoidal para o caso de 
         \label{fig:formas6}
 \end{figure}
 
+
+
+\subsection{A nota básica}\label{notaBasica}
+
+Seja $f$ tal que $f$ divida $f_a$\footnote{Como apontado anteriormente, esta limitação facilita a exposição sem perda de generalidade.
+Esta limitação será superada no início da próxima seção.}.
+Uma sequência $T_i$ de amostras sonoras separadas por $\delta_a=1/f_a$ descreve uma nota musical de frequência $f$ Herz e duração $\Delta$ segundos se, e somente se, possuir a periodicidade $\lambda_f=f_a/f$
+ e tamanho $\Lambda=\lfloor f_a . \Delta \rfloor $:
+
+\begin{equation}
+T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{\Lambda-1}= \left \{t_{i \; \% \left( \frac{f_a}{f} \right) } \right \}_0^{\Lambda-1}
+\end{equation}
+
+Note que a nota por si só não especifica um timbre. Mesmo assim, faz-se necessária a escolha de uma forma de onda para que as amostras $t_i$ tenham um valor estabelecido individualmente. Um único período dentre as ondas básicas pode ser utilizado para a especificação da nota da seguinte forma:
+
+$\lambda_f=\frac{f_a}{f}$ é o número de amostras do período. Seja $L_i^{f,\, \delta_f} $
+a sequência que descreve um período da onda $L_i^f \in \{S_i^f,Q_i^f,T_i^f,D_i^f,R_i^f \}$ de duração 
+$\delta_f=1/f$, dadas pelas equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada} e onde $R_i^f$ 
+uma onda real amostrada:
+
+\begin{equation}\label{periodoUnico}
+L_i^{f , \delta_f } = \left\{ l_i^f \right\}_0^{\delta_f . f_a -1}=\left\{ l_i^f \right\}_0^{\lambda_f-1}
+\end{equation}
+
+Então a sequência $T_i$ consistirá em uma nota de duração $\Delta$ e frequência $f$ se:
+
+\begin{equation}
+T_i^{f,\; \Delta}=\left\{t_i^f\right\}_0^{\lfloor f_a . \Delta \rfloor -1}=\left \{ l^f_{i\,\%\left(\frac{f_a}{f}\right)} \right \}_0^{\Lambda-1}
+\end{equation}
+
 \subsection{Localização espacial}
-Embora não seja uma das quatro qualidades básicas tradicionalmente elegidas para caracterizar uma nota musical,
-a localização espacial é também importante para um som
-pois este comumente é emitido por uma fonte localizada, como um instrumento musical ou uma pessoa. Além disso, a espacialização é atributo bastante valorizado
- por audiófilos e pela indústria fonográfica~\cite{floEsp}.
-Segundo a compreensão atual do fenômeno de percepção da localização espacial do som, nosso sistema nervoso utiliza
+Embora não seja uma das quatro qualidades básicas tradicionais de uma nota musical, esta possui sempre uma localização espacial. Além disso, a espacialização é atributo bastante valorizado
+ por audiófilos e pela indústria fonográfica.\cite{floEsp}
+Acredita-se que a percepção da localização espacial do som se dê em nosso sistema nervoso através destas
 três informações: o atraso de chegada do som entre um ouvido e o outro, a diferença de intensidade do som direto em cada ouvido e a 
-filtragem realizada pelo corpo, incluindo toráx, cabeça e orelhas~\cite{Roederer, hrtf, Heeger}.
+filtragem realizada pelo corpo, incluindo toráx, cabeça e orelhas.\cite{Roederer, hrtf, Heeger}
 
 
 \begin{figure}[h!]
@@ -396,7 +424,7 @@ filtragem realizada pelo corpo, incluindo toráx, cabeça e orelhas~\cite{Roeder
 
 
 
-	Se consideradas somente as incidências diretas em cada ouvido, podemos dispor as diferenças de tempo e intensidade em equações simples. Dada a distância entre os ouvidos $\zeta\approx 21,5cm$,
+	Se consideradas somente as incidências diretas em cada ouvido, as equações resultam simples. Dada a separação entre os ouvidos\footnote{Constata-se que $\zeta \approx 21,5cm$ para um humano adulto.} $\zeta$,
 um objeto localizado em $(x,y)$ conforme a figura~\ref{fig:spac}
 está distante de cada ouvido:
 
@@ -408,100 +436,71 @@ d' & =\sqrt{\left (x+\frac{\zeta}{2} \right )^2 + y^2}
 \end{equation}
 
 
-e cálculos imediatos nos levam à DTI (Diferença de Tempo Interaural)\footnote{Constata-se que $\zeta \approx 21,5cm$ para um humano adulto.}:
+e cálculos imediatos resultam na Diferença de Tempo Interaural:
 
 \begin{equation}
 DTI=\frac{d'-d}{v_{som\;no\;ar}\approx 343.2 }\quad \text{segundos}
 \end{equation}
 
-e à DII (Diferença de Intensidade Interaural):
+e na Diferença de Intensidade Interaural:
 \begin{equation}
 DII=20\log_{10}\left (\frac{d}{d'}\right) \quad dBs
 \end{equation}
 
 Convertendo para amplitude temos $DII_a=\frac{d}{d'}$. A $DII_a$ pode
-ser utilizada como constante multiplicativa do canal direito de um sinal sonoro estéreo ($\{t_i'\}_0^{\Lambda -1}=\{DII_a . t_i\}_0^{\Lambda -1}$). Pode-se utilizar a DII junto à DTI como adiantamento no tempo do canal direito com relação ao esquerdo, vínculo crucial para a percepção de localidade em sons graves e em sonoridades percussivas~\cite{Heeger}.
-Considerando $\Lambda_{DTI}=\lfloor DTI . f_a \rfloor $, podemos escrever:
+ser utilizada como constante multiplicativa do canal direito de um sinal sonoro estéreo: $\{t_i'\}_0^{\Lambda -1}=\{DII_a . t_i\}_0^{\Lambda -1}$. Pode-se utilizar a DII junto à DTI como adiantamento no tempo do canal direito com relação ao esquerdo, vínculo crucial para a localização em sons graves e em sonoridades percussivas.\cite{Heeger}  
+Considerando $\Lambda_{DTI}=\lfloor DTI . f_a \rfloor$, pode-se escrever:
 
 \begin{equation}
 \begin{split}
 \Lambda_{DTI} & = \left \lfloor \frac{d'-d}{343,2}  f_a \right \rfloor \\
 DII_a & = \frac{d}{d'} \\
-\{t_{(i+\Lambda_{DTI})}'\}_{\Lambda_{DTI}}^{\Lambda+\Lambda_{DTI}-1} & =\{DII_a . t_i\}_0^{\Lambda-1} \\
-\{t_i'\}_0^{\Lambda_{DTI}-1} & = 0
+\left\{t_{(i+\Lambda_{DTI})}'\right\}_{\Lambda_{DTI}}^{\Lambda+\Lambda_{DTI}-1} & =\left\{DII_a . t_i\right\}_0^{\Lambda-1} \\
+\left\{t_i'\right\}_0^{\Lambda_{DTI}-1} & = 0
 \end{split}
 \end{equation}
 
 Com $t_i$ o canal direito e $t_i'$ o canal esquerdo. Caso $\Lambda_{DTI} < 0 $, basta trocar $t_i$ por $t_i'$  e utilizar $\Lambda_{DTI}'= | \Lambda_{DTI} | $.
 
-Embora consideravelmente simples até aqui, a localização espacial depende drasticamente de outras pistas. De forma canonica, resolvemos pelas
-DTI e DII somente o ângulo horizontal (azimutal) $\theta$ dado por:
+Embora consideravelmente simples até aqui, a localização espacial depende drasticamente de outras pistas. De forma canonica, pela
+DTI e DII especifica-se somente o ângulo horizontal (azimutal) $\theta$ dado por:
 
 \begin{equation}
 \theta=\tan^{-1}\left ( \frac{y}{ x }  \right )
 \end{equation}
 
 Mesmo assim, há dificuldades quando $\theta$ incinde sobre o chamado "cone de confusão" em que um mesmo par de especificações DTI, DII resultam de vários dos pontos 
-do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que nas graves~\cite{Heeger,hrtf}. 
+do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que nas graves.\cite{Heeger,hrtf} 
 
-A figura~\ref{fig:spac} mostra esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não são especificadas na literatura~\cite{confCone}, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.
+A figura~\ref{fig:spac} mostra esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não são especificadas na literatura, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.\cite{confCone}
 
-Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}~\cite{hrtf}. Exitem bases abertas e conhecidas de HRTF como \emph{CIPIC}~\cite{CIPIC} e podemos aplicar estas funções de transferência em um som por convolução (veja equação~\ref{eq:conv}). Estas funções de transferência mudam de acordo com o corpo do indivíduo e existem diversas técnicas para resultar em funções de transferência que sejam utilizáveis de forma mais universal~\cite{lazaSPA}. 
+Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}).\cite{hrtf} Exitem bases abertas e conhecidas de HRTF como a CIPIC e pode-se aplicar estas funções de transferência em um som por convolução (veja equação~\ref{eq:conv}).\cite{CIPIC} O corpo do indivíduo altera bastante as filtragens realizadas e existem técnicas para resultar em HRTFs que sejam - como proposta - utilizáveis de forma universal.\cite{lazaSPA} 
 
-
-\subsection{A nota básica}\label{notaBasica}
-
-Escolhamos $f$ tal que $f$ divida $f_a$  
- \footnote{Como apontado anteriormente, esta escolha facilita as demonstrações.
-Transporemos esta limitação na próxima sessão.}. 
-Uma sequência $T_i$ de amostras sonoras separadas por $\delta_a=1/f_a$ descreve uma nota musical de frequência $f$ Herz e duração $\Delta$ segundos se, e somente se, possuir a periodicidade $\lambda_f=f_a/f$
- e tamanho $\Lambda=\lfloor f_a . \Delta \rfloor $:
-
-\begin{equation}
-T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{\Lambda-1}= \left \{t_{i \; \% \left( \frac{f_a}{f} \right) } \right \}_0^{\Lambda-1}
-\end{equation}
-
-Note que a nota por si só não especifica um timbre. Mesmo assim, faz-se necessária a escolha de uma forma de onda para que as amostras $t_i$ tenham um valor estabelecido individualmente. Um único período dentre as ondas básicas pode ser utilizado para a especificação da nota da seguinte forma:
-
-seja $f$ a frequência da nota e escolhamos $f$ tal que $f$ divida $f_a$ (transporemos esta limitação na sessão seguinte). Assim, o inteiro $\lambda_f=\frac{f_a}{f}$ é o número de amostras do período. Temos que $L_i^{f,\, \delta_f} $ é
-a sequência que descreve um período da onda $L_i^f \in \{S_i^f,Q_i^f,T_i^f,D_i^f,R_i^f \}$ de duração 
-$\delta_f=1/f$ (ver equações ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} e ~\ref{quadrada}; $R_i^f$ 
-é uma onda real amostrada):
-
-\begin{equation}\label{periodoUnico}
-L_i^{f , \delta_f } = \{ l_i^f \}_0^{\delta_f . f_a -1}=\{ l_i^f \}_0^{\lambda_f-1}
-\end{equation}
-
-Então a sequência $T_i$ consistirá em uma nota de duração $\Delta$ e frequência $f$ se:
-
-\begin{equation}
-T_i^{f,\; \Delta}=\{t_i^f\}_0^{\lfloor f_a . \Delta \rfloor -1}=\left \{ l^f_{i\,\%\left(\frac{f_a}{f}\right)} \right \}_0^{\Lambda-1}
-\end{equation}
 
 
 \subsection{Usos musicais}
 
 
-Em posse da nota básica, podemos montar estruturas musicais com
-sequências destas partículas. Caso somemos $N$ sequências ($T_{k,i}=\{t_{k,i}\}, \;\; k \in 0...N-1$) de mesmo tamanho, seus conteúdos espectrais serão sobrepostos e a isso damos o nome de mixagem:
+Em posse da nota básica, pode-se realizar estruturas musicais com
+sequências destas partículas. A soma de $N$ sequências $T_{k,i}=\{t_{k,i}\}_{k=0}^{N-1}$ de mesmo tamanho $\Lambda$, resulta em seus conteúdos espectrais sobrepostos em um processo de mixagem sonora:
 
 \begin{equation}\label{eq:mixagem}
-\{t_i\}=\left \{ \sum_{k=0}^{N-1}t_{k,i} \right \}
+\{t_i\}_0^{\Lambda-1}=\left \{ \sum_{k=0}^{N-1}t_{k,i} \right \}_0^{\Lambda-1}
 \end{equation}
 
 \begin{figure}[h!]
-    \centering
-        \includegraphics[width=\textwidth]{figuras/mixagem}
-    \caption{Mixagem de três sequências sonoras}
+    {\centering
+        \includegraphics[width=\textwidth]{figuras/mixagem}}
+    \caption{Mixagem de três sequências sonoras. }
+
         \label{fig:mixagem}
 \end{figure}
 
 
-Ilustramos na figura~\ref{fig:mixagem} este processo de superposição de ondas sonoras discretizadas\footnote{A figura dispõe 100 amostras, de onde podemos concluir que, se $f_a=44,1kHz$, as frequências da dente de serra, da onda quadrada e da senoide são,
-respectivamente, $\frac{f_a}{50}=882Hz$, $\frac{f_a}{25}=1764Hz$ e $\frac{f_a}{20}=2205Hz$. A duração do trecho é bastante curto $\frac{f_a=44,1kHz}{100} \approx 2 \text{ milisegundos}$.}.
- As notas mixadas são em grande parte separadas pelo ouvido por leis físicas de ressonância e pelo sistema nervoso~\cite{Roederer}.
+A figura~\ref{fig:mixagem} ilustra este processo de superposição de ondas sonoras discretizadas. A figura dispõe 100 amostras, de onde pode-se concluir que, se $f_a=44.1kHz$, as frequências da dente de serra, da onda quadrada e da senoide são,
+respectivamente, $\frac{f_a}{100/2}=882Hz$, $\frac{f_a}{100/4}=1764Hz$ e $\frac{f_a}{100/5}=2205Hz$. A duração do trecho é bastante curto $\frac{f_a=44.1kHz}{100} \approx 2 \text{ milisegundos}$. Pode-se completar com zeros para somar sequências de tamanhos diferentes. 
 
-Pode-se completar com zeros para somar sequências de tamanhos diferentes. O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação~\cite{Harmonia}. 
+As notas mixadas são em grande parte separadas pelo ouvido por leis físicas de ressonância e pelo sistema nervoso.\cite{Roederer} O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação.\cite{Harmonia} 
 
 As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem $k$ notas musicais, sua concatenação em uma única sequência $T_i$ resultará em uma sequência musical simples ou melodia:
 
@@ -510,19 +509,21 @@ As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t
 \end{equation}
 
 Este mecanismo é demonstrado de forma ilustrativa na figura~\ref{fig:concatenacao} com as mesmas sequências utilizadas na figura ~\ref{fig:mixagem}.
- As sequências são curtas para as taxas de amostragem usuais (cerca de $7$ milisegundos ao total se $f_a=44,1kHz$), mas pode-se observar de forma explícita a concatenação de sequências sonoras e o exemplo é real (cada nota tem a duração maior que $100ms$ se $f_a<1kHz$).
+ As sequências são curtas para as taxas de amostragem usuais, mas pode-se observar a concatenação de sequências sonoras. Além disso, cada nota tem a duração maior que $100ms$ se $f_a<1kHz$.
 
 \begin{figure}[h!]
-    \centering
-        \includegraphics[width=\textwidth]{figuras/concatenacao}
+{    \centering
+        \includegraphics[width=\textwidth]{figuras/concatenacao}}
     \caption{Concatenação de três sequências sonoras}
         \label{fig:concatenacao}
 \end{figure}
 
-A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python no Apêndice~\ref{cap:codigoPecas} e podem ser escutadas e vizualizadas nos links~\cite{reduced-fi} e~\cite{quadros}.
+A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python nos Apêndices~\ref{ap:quadros} e~\ref{ap:reduced} e estão disponíveis como parte da \emph{toolbox} \massa.\cite{MASSA}
 
-Com isso estabelecemos nossa nota musical básica no som digital. Trabalharemos a seguir estas unidades, a evolução temporal de seus conteúdos e desenvolveremos as notas musicais com parâmetros que evoluem no tempo, como glissandos e envoltórias. 
-A filtragem de componentes e os ruídos finalizam sobre a constituição da nota musical como unidade isolada. A estruturação musical destas notas é então abordada do ponto de vista das estruturas fora do tempo (como as escalas), trajetórias cíclicas ou que convirjam ou divirjam.
+Está descrita a nota musical digital básica e a seção a seguite desenvolve a evolução temporal de seus conteúdos, como nos glissandos e nas envoltórias. A filtragem de componentes espectrais e a geração dos ruídos completam a constituição da nota musical como unidade isolada. A seção~\ref{notasMusica} é dedicada à estruturação destas notas em música através de métricas e trajetórias.
+
+
+
 
 \clearpage
 
