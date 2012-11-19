@@ -69,9 +69,10 @@ smin=min(seq); smax=max(seq)
 seq= [(-.5+(i-smin)/(smax-smin)) for i in seq] # normalizando
 sound = wave.open('musica.wav','w')
 sound.setframerate(44100)
-sound.setsampwidth(2) # Always 16bit/sample (2 bytes)
-sound.setnchannels(1) # Mono
-sonic_vector=[i*(2**15-1) for i in seq] #signed 16 bit
-sound.writeframes(struct.pack('h'*len(sonic_vector),*[int(i) for i in sonic_vector]))
+sound.setsampwidth(2) # sempre 16bit/sample (2 bytes)
+sound.setnchannels(1) # mono
+sonic_vector=[i*(2**15-1) for i in seq] # 16 bit com sinal
+sound.writeframes(struct.pack('h'*len(sonic_vector),\
+                      *[int(i) for i in sonic_vector]))
 sound.close()
 print "arquivo musica.wav gravado"

@@ -40,7 +40,7 @@ limite superior de uma sequência é um número natural mas $ \Delta . f_a $
 só satisfaz esta condição em casos muito excepcionais. É necessário
 escolher um inteiro próximo de $\Delta . f_a$ e admitir algum erro. Por simplicidade, será considerada sempre a parte inteira da multiplicação, descrita por $\lfloor \Delta . f_a \rfloor$.}:
 
-\begin{equation}
+\begin{equation}\label{eq:dur}
 T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\lfloor \Delta . f_a \rfloor -1}
 \end{equation}
 
@@ -49,7 +49,7 @@ Denotaremos $\Lambda = \lfloor \Delta . f_a \rfloor$ como o número de amostras 
 \subsection{Volume}
 A sensação de volume sonoro depende da reverberação e distribuição dos harmônicos, dentre outras características trabalhamos na seção~\ref{varInternas}, e podemos obter variações do volume através da potência da onda~\cite{Chowning}:
 
-\begin{equation}\label{potencia}
+\begin{equation}\label{eq:potencia}
 pot(T_i)=\frac{\sum_{i=0}^{\Lambda -1} t_i^2}{\Lambda}
 \end{equation} 
 
@@ -520,7 +520,7 @@ Este mecanismo é demonstrado de forma ilustrativa na figura~\ref{fig:concatenac
 
 A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python nos Apêndices~\ref{ap:quadros} e~\ref{ap:reduced} e estão disponíveis como parte da \emph{toolbox} \massa.\cite{MASSA}
 
-Está descrita a nota musical digital básica e a seção a seguite desenvolve a evolução temporal de seus conteúdos, como nos glissandos e nas envoltórias. A filtragem de componentes espectrais e a geração dos ruídos completam a constituição da nota musical como unidade isolada. A seção~\ref{notasMusica} é dedicada à estruturação destas notas em música através de métricas e trajetórias.
+Está descrita a nota musical digital básica e a seção a seguite desenvolve a evolução temporal de seus conteúdos, como nos glissandos e nas envoltórias. A filtragem de componentes espectrais e a geração dos ruídos completam a constituição da nota musical como unidade isolada e se desdobra na seção~\ref{notasMusica}, dedicada à estruturação destas notas em música através de métricas e trajetórias.
 
 
 
@@ -529,28 +529,30 @@ Está descrita a nota musical digital básica e a seção a seguite desenvolve a
 
 \section{Variações na nota musical básica}\label{varInternas}
 
-Nossa nota musical digital básica está bem definida com os parâmetros:
+A nota musical digital básica está bem definida na seção~\ref{sec:notaDisc} com os parâmetros:
 duração, altura, intensidade (volume) e timbre. Esta é uma modelagem
-útil e paradigmática, mas não esgota o que entendemos por
+útil e paradigmática, mas não esgota o que se entedente por
 uma nota musical.
 
 Em primeiro lugar, as características da nota se modificam no decorrer
 da própria nota, i.e. em uma nota real os parâmetros
-não são absolutamente fixos~\cite{Chowning}. Por exemplo, em uma nota de piano
-de 3 segundos, a intensidade tem início abrupto e decaimento progressivo
-além de variações do espectro instantâneo, com harmônicos que
+não são absolutamente fixos.\cite{Chowning} Por exemplo, uma nota de piano
+de 3 segundos tem a intensidade com início abrupto e decaimento progressivo,
+além de variações do espectro, com harmônicos que
 decaem antes dos outros e alguns que aparecem com o tempo.
 Estas variações não são obrigatórias e sim orientações da
 síntese sonora para usos musicais pois é como os sons
 se apresentam na natureza\footnote{A regra de ouro
 aqui é: para que um som isolado disperte interesse
-por si só, faça como que tenha variações internas~\cite{Roederer}.}. 
+por si só, faça como que tenha variações internas.\cite{Roederer}}. 
 
 Explorar todas as formas pelas quais estas variações ocorrem está fora
 do escopo de qualquer trabalho dada a considerável sensibilidade do ouvido humano
-e a complexidade da nossa cognição sonora. Desta forma, apontaremos
-recursos primários para estas variações das características na nossa nota
+e a complexidade da nossa cognição sonora. Desta forma, serão apontados
+recursos primários para estas variações das características na nota
 básica.
+
+Todas as relações descritas nesta seção estão no Apêndice~\ref{sec:cod2}
 
 Iniciaremos com uma técnica que não resulta propriamente
 em variações internas da nota, mas simplificará esta exposição
@@ -713,7 +715,7 @@ para que o início da transição seja mais suave ou mais abrupto (compensado pe
 da transição). Este procedimento é mais comum para o caso de variações de volume através da energia
 da onda vibratória\footnote{A mudança do volume (qualidade psicofísica) ocorre por diversas características 
 do som como a reverberação e a concentração de harmônicos agudos, e não apenas pela energia da onda.
-Para nós, entretanto, a mais facilmente controlada é de fato a energia da onda (veja equação ~\ref{potencia}) e esta também pode variar de diferentes formas.
+Para nós, entretanto, a mais facilmente controlada é de fato a energia da onda (veja equação~\ref{eq:potencia}) e esta também pode variar de diferentes formas.
 Uma forma mais simples e conveniente é variar a amplitude pela multiplicação da sequência toda
 por algum número real. A variação de energia sem variação de
 amplitude é comumente chamada de \emph{compressão sonora} e é muito útil e corriqueira na

@@ -35,7 +35,8 @@ f_0=441
 lambda_0=f_a/f_0
 periodo=n.arcsin(n.random.random(lambda_0))
 Tf_i=n.array(list(periodo)*100)
-Tf_i=(Tf_i/Tf_i.max())*2-1 # normalizando para convencao no intervalo [-1,1]
+# normalizando para convencao no intervalo [-1,1]
+Tf_i=((Tf_i-Tf_i.min())/(Tf_i.max()-Tf_i.min()))*2.-1. 
 a.wavwrite(Tf_i,"f_0.wav",f_a) 
 
 
@@ -78,7 +79,8 @@ tau = (Lambda - Lambda%2)/2 + Lambda%2-1
 ### 2.19
 def t(i):
     w_k=2*n.pi*n.arange(Lambda)/Lambda
-    return (1./Lambda)*(A_k[0]+2*n.sum(n.abs(C_k[1:tau+1])*n.cos(w_k*i-n.angle(C_k)) + a[Lambda/2]*(1-Lambda%2)))
+    return (1./Lambda)*(A_k[0]+2*n.sum(n.abs(C_k[1:tau+1])*\
+            n.cos(w_k*i-n.angle(C_k)) + a[Lambda/2]*(1-Lambda%2)))
 
 
 ############## 2.1.6 Localização espacial

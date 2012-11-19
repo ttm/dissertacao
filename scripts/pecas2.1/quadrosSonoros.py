@@ -30,13 +30,13 @@ som+=dente_aguda/80
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro1.wav",f_a)
-print(u"quadro 1 feito em quadro1.wav (mono), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a) )
+print(u"quadro 1 feito em quadro1.wav (mono), são %i amostras \
+em uma frequência de amostragem de %iHz" % (len(som),f_a) )
 
 
 ### Quadro 2: 3 conjuntos separados de triangulares
 
 fs2=fs[20:21]+fs[65:70]+fs[77:]
-#fs2=[25, 28, 30, 35, 36, 1764, 2100, 2205, 2450, 2940, 11025, 14700, 22050]
 
 som=n.zeros(Lambda)
 ii=n.arange(Lambda)
@@ -48,7 +48,8 @@ for f in fs2:
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro2.wav",f_a)
-print("quadro 2 feito em quadro2.wav (mono), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a))
+print("quadro 2 feito em quadro2.wav (mono), são %i amostras \
+em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
 ### Quadro 3: estereofonia alternada no espectro harmônico
@@ -69,7 +70,8 @@ som=n.vstack((som_d,som_e)).T
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro3.wav",f_a)
-print("quadro 3 feito em quadro3.wav (estéreo), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a))
+print("quadro 3 feito em quadro3.wav (estéreo), são %i amostras \
+em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
 ### Quadro 4: batimentos intercalados por ouvido e com defasagens
@@ -104,10 +106,11 @@ som+=n.vstack((som_d,som_e)).T/60
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro4.wav",f_a)
-print("quadro 4 feito em quadro4.wav (estéreo), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a))
+print("quadro 4 feito em quadro4.wav (estéreo), são %i amostras \
+em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
-# Quadro 5: Dente de serra grave bate com harmonico em cada lado
+### Quadro 5: Dente de serra grave bate com harmonico em cada lado
 
 f=42. # Hz, freq da dente
 lambda_f=44100/f
@@ -121,7 +124,8 @@ som=n.vstack((som_d,som_e)).T
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro5.wav",f_a)
-print("quadro 5 feito em quadro5.wav (estéreo), são %i amostras em uma frequência de amostragem de %iHz" % (len(som),f_a))
+print("quadro 5 feito em quadro5.wav (estéreo), são %i amostras \
+em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
 
