@@ -66,12 +66,12 @@ A quantidade $V_{dB}$ possui a unidade decibel ($dB$). A cada 10 $dB$ se atribui
 a sensação de "volume dobrado". Importantes resultados de referência são os equivalentes em $dB$ de se dobrar
 a amplitude ou a potência:
 
-\begin{equation*}
+\begin{equation}\label{eq:ampVol}
 se \quad  t_i^{'}=2 . t_i \quad \Rightarrow \quad pot(T^{'}_i)=4 . pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 4 \quad  \approx \quad 6 dB
-\end{equation*}
-\begin{equation*}
+\end{equation}
+\begin{equation}
 se \quad pot(T^{'}_i)=2 pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 2 \quad \approx \quad 3 dB
-\end{equation*}
+\end{equation}
 
 Outro valor de referência é o ganho de amplitude
 necessário para que uma sequência tenha o volume dobrado ($10dB$ a mais):
@@ -535,44 +535,35 @@ duração, altura, intensidade (volume) e timbre. Esta é uma modelagem
 uma nota musical.
 
 Em primeiro lugar, as características da nota se modificam no decorrer
-da própria nota, i.e. em uma nota real os parâmetros
-não são absolutamente fixos.\cite{Chowning} Por exemplo, uma nota de piano
+da própria nota.\cite{Chowning} Por exemplo, uma nota de piano
 de 3 segundos tem a intensidade com início abrupto e decaimento progressivo,
 além de variações do espectro, com harmônicos que
 decaem antes dos outros e alguns que aparecem com o tempo.
 Estas variações não são obrigatórias e sim orientações da
 síntese sonora para usos musicais pois é como os sons
 se apresentam na natureza\footnote{A regra de ouro
-aqui é: para que um som isolado disperte interesse
+aqui é: para que um som isolado desperte interesse
 por si só, faça como que tenha variações internas.\cite{Roederer}}. 
 
 Explorar todas as formas pelas quais estas variações ocorrem está fora
 do escopo de qualquer trabalho dada a considerável sensibilidade do ouvido humano
-e a complexidade da nossa cognição sonora. Desta forma, serão apontados
+e a complexidade da nossa cognição sonora e, a seguir, serão apontados
 recursos primários para estas variações das características na nota
 básica.
 
-Todas as relações descritas nesta seção estão no Apêndice~\ref{sec:cod2}, as montagens musicais \emph{Tansita para metro}, \emph{Vibra e treme}, \emph{Tremolos, vibratos e a frequência}, \emph{Trenzinho de caipiras impulsivos}, \emph{Ruidosa faixa}, \emph{Bela rugosi}, \emph{Chorus infantil}, \emph{ADa e SaRa} estão nos Apêndices~\ref{ap:transita}, \ref{ap:vibra}, \ref{ap:tremolos}, \ref{ap:trenzinho}, \ref{ap:ruidosa}, \ref{ap:bela}, \ref{ap:chorus} e \ref{ap:ada}. Estes códigos são parte da caixa de ferramentas \massa, disponível online.\cite{MASSA}
-
-Iniciaremos com uma técnica que não resulta propriamente
-em variações internas da nota, mas simplificará esta exposição
-sem restringir o escopo, além de ser um notável recurso de otimização
-computacional.
+Todas as relações descritas nesta seção estão no Apêndice~\ref{sec:cod2}. As montagens musicais \emph{Tansita para metro}, \emph{Vibra e treme}, \emph{Tremolos, vibratos e a frequência}, \emph{Trenzinho de caipiras impulsivos}, \emph{Ruidosa faixa}, \emph{Bela rugosi}, \emph{Chorus infantil}, \emph{ADa e SaRa} estão nos Apêndices~\ref{ap:transita}, \ref{ap:vibra}, \ref{ap:tremolos}, \ref{ap:trenzinho}, \ref{ap:ruidosa}, \ref{ap:bela}, \ref{ap:chorus} e \ref{ap:ada}. Estes códigos são parte da caixa de ferramentas \massa, disponível online.\cite{MASSA}
 
 
 
 \subsection{Tabela de busca}
 
-Mais conhecido pelo termo em inglês, a \emph{Lookup Table} (ou simplesmente
-LUT), é um procedimento simples que consiste em criar uma tabela
-de referência e coletar as amostras desta tabela segundo a 
-necessidade\footnote{Em contraposição ao cálculo das amostras individuais
-de forma analítica. A LUT permite o uso de funções sem possibilidade de cálculo direto como
-por exemplo, amostras recolhidas diretamente de algum fenômeno natural.}. Em nosso caso, usaremos tabelas de busca para os
-sons criados, as notas. Assim, estas tabelas são unidimensionais e com
-valores reais. Além disso, a tabela consiste nas amostras
-de um período de onda, que usamos para sintetizar períodos
-de tamanhos diferentes, resultando em frequências diferentes.
+Mais conhecida pelo termo em inglês, a \emph{Lookup Table} (ou simplesmente
+LUT), é uma estrutura de dados para
+consultas indexadas usada
+frequentemente para reduzir a complexidade computacional
+e por
+permitir o uso de funções sem possibilidade de cálculo direto, como
+amostras recolhidas da natureza. 
 
 \begin{figure}[h!]
     \centering
@@ -581,14 +572,13 @@ de tamanhos diferentes, resultando em frequências diferentes.
         \label{fig:lut}
 \end{figure}
 
-O procedimento de busca em tabelas é visto geralmente como um
-artifício de otimização. Na música seu uso transcende este
-primeiro, facilitando as operações e permitindo que um único
+Na música seu uso transcende estes
+primeiros, facilitando as operações e permitindo que um único
 período de onda possa ser usado para sintetizar sons em toda a banda
 de frequências audíveis, qualquer que seja a forma de onda amostrada.
 
-Descrevemos esta busca. Seja $\widetilde{\Lambda}$ o tamanho 
-da tabela e $\widetilde{L_i} = \left\{\, \widetilde{l}_i \,\right\}_0^{\widetilde{\Lambda} -1}$ a tabela de elementos $\widetilde{l_i}$ de um
+Seja $\widetilde{\Lambda}$ o tamanho 
+do período e $\widetilde{L_i} = \left\{\, \widetilde{l}_i \,\right\}_0^{\widetilde{\Lambda} -1}$ os elementos $\widetilde{l_i}$ de um
 período de onda qualquer (veja equação ~\ref{periodoUnico}). Uma sequência
 $T_i^{f,\,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta$
 pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
@@ -597,32 +587,30 @@ pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
 T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
 \end{equation}
 
-Ou seja, dada a tabela de busca, basta termos a sequência de índices corretos
-para sintetizar o som em qualquer frequência. Dispomos graficamente
-o procedimento de LUT na figura~\ref{fig:lut} onde calculamos explicitamente
-também uma amostra de $\{t_i\}$ a partir de $\left\{\,\widetilde{l}_i\,\right\}$ para uma frequência
+Ou seja, com os índices corretos ($\gamma_i\%\widetilde{\Lambda}$)
+da LUT, pode-se sintetizar o som em qualquer frequência. 
+A figura~\ref{fig:lut} ilustra
+o cálculo de uma amostra de $\{t_i\}$ 
+a partir de $\left\{\,\widetilde{l}_i\,\right\}$ para uma frequência
 de $f=200Hz$, $\widetilde{\Lambda}=128$ e considerada a taxa de amostragem em $f_a=44.1kHz$.
-Esta não é uma configuração praticável, como veremos abaixo, mas possibilita uma
-disposição gráfica bastante clara do procedimento.
+Esta não é uma configuração praticável, como assinalado abaixo, mas possibilita uma
+disposição gráfica do procedimento.
 
 
-Para o cálculo do inteiro $\gamma_i$, convencionamos
-atribuir a ele o maior inteiro menor que $i.f\frac{\widetilde{\Lambda}}{f_a}$.
-Esta aproximação introduz um ruído, mas conseguimos que este ruído seja desprezível
-mesmo se o tomarmos como o maior inteiro acima da multiplicação
-ou se arredondarmos por outros métodos. Além disso, para fins de síntese, em $f_a=44.1 kHz$
+O cálculo do inteiro $\gamma_i$ introduz um ruído, 
+e este diminui com o aumento de $\widetilde{\Lambda}$.
+Para fins de síntese, em $f_a=44.1 kHz$
  o padrão é usar $\widetilde{\Lambda} = 1024$ amostras, pois já não gera ruído
- relevante no espectro audível~\cite{Geiger}.
+ relevante no espectro audível. O método de arredondamento ou interpolação não é decisivo.\cite{Geiger}
 
- A expressão que define a variável $\gamma_i$ pode ser facilmente compreendida da
- seguinte forma: a variável $i$ é acrescida de $f_a$ em $1$ segundo (pela
- definição de $f_a$ e $i$, pois temos $f_a$ amostras $t_i$ em $1$ segundo). Caso a dividamos por $f_a$, teremos $\frac{i}{f_a}$,
-fração esta que é acrescida de $1$ a cada $1$ segundo. Multiplicado pelo comprimento da
- tabela $\widetilde{\Lambda}$, teremos $i \frac{\widetilde{\Lambda}}{f_a}$
- que resulta na varredura completa da tabela $\widetilde{L_i}$ em 
- 1 segundo com o acréscimo de $\widetilde{\Lambda}$ em $1$ segundo. Por fim,
- se multiplicarmos pela frequência $f$ que queremos, teremos $i . f \frac{\widetilde{\Lambda}}{f_a}$
- que resulta em $f$ varreduras completas da tabela $\widetilde{L_i}$ em $1$ segundo, i.e. a sequência
+ A expressão que define a variável $\gamma_i$ pode ser compreendida da
+ seguinte forma: $i$ é acrescida de $f_a$ em $1$ segundo.
+ Caso seja dividida pela frequência de amostragem, resulta $\frac{i}{f_a}$,
+que é acrescida de $1$ a cada $1$ segundo. Multiplicada pelo comprimento do período, resulta $i \frac{\widetilde{\Lambda}}{f_a}$
+ que varre o 
+  período em $1$ segundo. Por fim,
+ com a frequência $f$, resulta $i . f \frac{\widetilde{\Lambda}}{f_a}$
+ que completa $f$ varreduras do período  $\widetilde{\Lambda}$ em $1$ segundo, i.e. a sequência
  resultante apresenta a frequência fundamental $f$.
 
 Importantes considerações: $f$ é qualquer, só há limitantes nas frequências
@@ -630,28 +618,28 @@ graves quando o tamanho da tabela $\widetilde{\Lambda}$ não é suficientemente 
 $f_a$. O procedimento de busca em tabela
 é computacionalmente bastante barato, substituindo cálculos por buscas simples (por isso geralmente
 é entendido como um processo de otimização). Salvo quando assinalado,
-no texto que segue usaremos este procedimento para todos os casos cabíveis pois
-simplifica diversas rotinas e é computacionalmente coerente.
+no texto que usará este procedimento para todos os casos cabíveis pois
+simplifica as rotinas e é computacionalmente coerente.
 
 O uso de LUTs é bastante difundido nas implementações computacionais
-voltadas para música e para um uso clássico que explora com ênfase
-as LUTs na síntese sonora musical, recomendamos procurar pela chamada 
+voltadas para música e um uso clássico que explora com ênfase
+as LUTs na síntese sonora musical, é a  chamada 
 \emph{Wavetable Synthesis} que consiste em várias LUTs utilizadas em 
-conjunto através da mixagem para gerar uma nota musical quasi-periódica~\cite{Cook,Wavetable}.
+conjunto através da mixagem para gerar uma nota musical quasi-periódica.~\cite{Cook,Wavetable}.
 
 
 \subsection{Variações incrementais de frequência e intensidade}
 
-Segundo revela a lei de Weber e Fechner, nossa percepção tem uma relação logarítmica com
-o estímulo que a causa~\cite{Weber-Fechner}. Em outras palavras, um estímulo em progressão exponencial
-é percebido como linear. Mesmo assim, dado o uso, explicitaremos também a variação
-linear e começaremos descrevendo esta por razões didáticas.
+Segundo a lei de Weber e Fechner, a percepção humana tem uma relação logarítmica com
+o estímulo que a causa.\cite{Weber-Fechner} Em outras palavras, um estímulo em progressão exponencial
+é percebido como linear.
+Por razões didáticas e dado o uso nas AM e FM (veja subseção~\ref{subsec:tvaf}), a variação linear será abordada primeiro.
 
 Em uma nota de duração $\Delta = \frac{\Lambda}{f_a}$, a frequência $f=f_i$ varia de $f_0$ até $f_{\Lambda -1}$
-linearmente. Podemos então escrever que:
+linearmente. Pode-se escrever:
 
 \begin{equation}\label{freqLinear}
-f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \mathbb{N}, \quad i \;\in\; [0,\Lambda-1]
+F_i=\{f_i\}_0^{\Lambda-1}=\left\{f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right\}_0^{\Lambda-1}
 \end{equation}
 
 \begin{equation}\label{indiceLinear}
@@ -664,27 +652,25 @@ f_i=f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \quad ,\quad \quad i \;\in\; \m
 
 Onde $\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a}$ é o incremento da LUT entre duas amostras dada a frequência do som na primeira amostra.
 
-Desta forma, podemos calcular os elementos $t_i^{\;\overline{f_0,f_{\Lambda-1}}}$
-com base no período $\{\widetilde{l}_i\}_0^{\Lambda-1}$.
+Desta forma, pode-se calcular os elementos $t_i^{\;\overline{f_0,f_{\Lambda-1}}}$
+com base no período $\left\{\widetilde{l}_i\right\}_0^{\Lambda-1}$.
 
 As equações \ref{freqLinear}, \ref{indiceLinear} e \ref{serieAmostralLin} são relativas à progressão linear
 da frequência. Como assinalado para o caso geral, também aqui
 uma progressão de frequência
 \emph{percebida} como linear segue uma progressão exponencial\footnote{Ou,
 dito ainda de outra forma, uma progressão geométrica da frequência
-é percebido como uma progressão aritmética de alturas.}.
-
-Fazendo a varredura com $i$
-de $0$ até $\Lambda-1$, podemos dizer que: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ onde 
+é percebida como uma progressão aritmética de alturas.}.
+Pode-se escrever que: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ onde 
 $n_8=\log_2\frac{f_{\Lambda-1}}{f_0}$ é o número de oitavas entre $f_0$ e $f_{\Lambda-1}$.
 De forma que $f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
 f_0 . 2^{\log_2\left ( \frac{f_{\Lambda-1}}{f_0} \right )^{\frac{i}{\Lambda-1}}}=
 f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}$. Portanto,
-nossas equações de referência para a síntese de transições de frequência tidas como
-lineares pelo ouvido são:
+ as equações de transições de frequência
+lineares para o ouvido são:
 
 \begin{equation}
-f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
+F_i=\{f_i\}_0^{\Lambda-1}=\left\{f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right\}_0^{\Lambda-1}
 \end{equation}
 
 \begin{equation}\label{indiceExponencial}
@@ -695,13 +681,6 @@ f_i=f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}
 \left\{t_i^{\;\overline{f_0,\,f_{\Lambda-1}}}\right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\,\right\}_0^{\Lambda-1}
 \end{equation}
 
-Onde usamos a equação \ref{indiceExponencial} para calcular a sequência $\{\gamma_i\}_0^{\Lambda-1}$ de índices para para
-serem buscados na nossa tabela que contém um único período da forma de onda representado em uma sequência de $\widetilde{\Lambda}$
-pontos igualmente espaçados (amostras).
-Isso é explicitado na equação ~\ref{serieAmostralLog}, onde estabelecemos a relação
- $t_i^{\;\overline{f_0,f_{\Lambda-1}}}=\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}$.
-Note que a equação \ref{serieAmostralLog} se mantém (é idêntica à equação \ref{serieAmostralLin}).
-
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\textwidth]{figuras/transicao}
@@ -710,20 +689,20 @@ Note que a equação \ref{serieAmostralLog} se mantém (é idêntica à equaçã
 \end{figure}
 
 
-O termo $\frac{i}{\Lambda-1}$ varre o intervalo $[0,1]$ e podemos elevá-lo a uma potência
-para que o início da transição seja mais suave ou mais abrupto (compensado pelo final
-da transição). Este procedimento é mais comum para o caso de variações de volume através da energia
-da onda vibratória\footnote{A mudança do volume (qualidade psicofísica) ocorre por diversas características 
-do som como a reverberação e a concentração de harmônicos agudos, e não apenas pela energia da onda.
-Para nós, entretanto, a mais facilmente controlada é de fato a energia da onda (veja equação~\ref{eq:potencia}) e esta também pode variar de diferentes formas.
-Uma forma mais simples e conveniente é variar a amplitude pela multiplicação da sequência toda
-por algum número real. A variação de energia sem variação de
-amplitude é comumente chamada de \emph{compressão sonora} e é muito útil e corriqueira na
-produção musical atual~\cite{compressao}.}. Podemos obter este resultado multiplicando a sequência original
+O termo $\frac{i}{\Lambda-1}$ varre o intervalo $[0,1]$ e pode-se elevá-lo a uma potência
+para que o início da transição seja mais suave ou abrupta.
+Este procedimento é útil para variações de energia
+da onda vibratória para alteração do volume\footnote{A mudança do volume (qualidade psicofísica) ocorre através de diferentes características 
+do som, como a reverberação e a concentração de harmônicos agudos, dentre as quais está energia da onda.
+A manipulada com mais facilidade é a energia da onda (veja equação~\ref{eq:potencia}) e esta também pode variar de diferentes formas.
+Uma forma mais simples é variar a amplitude através da multiplicação da sequência toda
+por um número real. A variação de energia sem variação de
+amplitude é a \emph{compressão sonora}, útil na
+produção musical atual.\cite{compressao}}. Basta multiplicar a sequência original
 (seja ela gerada ou pré-estabelecida) pela sequência $a_{\Lambda-1}^{\left( \frac{i}{\Lambda-1} \right )^\alpha}$
 onde $\alpha$ é o coeficiente citado e $a_{\Lambda-1}$ é fração da amplitude original que se visa atingir ao final da transição.
 
-Assim, para variações de amplitude, aplicamos as seguintes fórmulas:
+Assim, para variações de amplitude:
 
 \begin{equation}\label{seqAmp}
 \{a_i\}_0^{\Lambda-1}=\left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}=\left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ com } a_0=1
@@ -733,56 +712,50 @@ Assim, para variações de amplitude, aplicamos as seguintes fórmulas:
 T_i^{'}=T_i \odot A_i = \{t_i . a_i\}_0^{\Lambda-1}=\left \{ t_i . (a_{\Lambda-1} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
 \end{equation}
 
-Nosso intuito aqui é modificar a amplitude de um sinal original, seja qual for ele. Desta forma, tomamos
-$a_0=1$ para iniciar a nova sequência com a amplitude original e então ir modificando com o decorrer das amostras.
-Esta restrição faz com que nosso termo $a_{\Lambda-1}$ seja efetivamente a variação da amplitude.
+Pode-se tomar $a_0=1$ para iniciar a nova sequência com a amplitude original e então ir modificando com o decorrer das amostras.
+Esta restrição faz com que o termo $a_{\Lambda-1}$ seja a variação da amplitude.
 Caso $\alpha=1$, a variação de amplitude segue exatamente a progressão geométrica que caracteriza
-a percepção linear. A figura~\ref{fig:transicao} exibe as transições para diferentes valores de $\alpha$ e para a transição entre os valores $1$ e $2$ (se $1$ e $2$ relacionam amplitudes, há um ganho de $\approx 6dB$).
+a percepção linear. A figura~\ref{fig:transicao} exibe as transições para diferentes valores de $\alpha$ e para a transição entre os valores $1$ e $2$, um ganho de $\approx 6dB$ segundo a equação~\ref{eq:ampVol}.
 
 
-
-Algum cuidado é necessário para lidar com $a=0$. Observe que
-na equação~\ref{seqAmp}, se $a_0=0$ haverá divisão por zero e
+Algum cuidado é necessário para lidar com $a=0$.
+Na equação~\ref{seqAmp}, se $a_0=0$ há divisão por zero e
 se $a_{\Lambda-1}=0$, há uma multiplicação por zero. Ambos os casos
-tornam o procedimento inútil e provém do fato de que nenhum número diferente de zero pode ser representado como uma proporção com relação ao zero. Podemos resolver isso escolhendo um número suficientemente pequeno. Podemos aceitar $-120dB\;\Rightarrow a=10^{\frac{-120}{20}}=10^{-6}$ ou valores ainda menores como nosso volume mínimo no caso de um
-\emph{fade in} ($a_0=10^{-6}$) ou de um \emph{fade out} ($a_{\Lambda-1}=10^{-6}$).
+tornam o procedimento inútil pois nenhum número diferente de zero pode ser representado como uma proporção com relação ao zero. Pode-se resolver isso escolhendo um número suficientemente pequeno como $-80dB\;\Rightarrow a=10^{\frac{-80}{20}}=10^{-4}$ como o volume mínimo no caso de um
+\emph{fade in} ($a_0=10^{-4}$) ou de um \emph{fade out} ($a_{\Lambda-1}=10^{-4}$).
 
 
-Para resultar em uma amplificação linear, mas não linear para a percepção, basta usarmos uma sequência $\{a_i\}$ adequada:
+Para resultar em uma amplificação linear, mas não linear para a percepção, basta uma sequência $\{a_i\}$ adequada:
 
 \begin{equation}
 a_i=a_0 + (a_{\Lambda-1}-a_0)\frac{i}{\Lambda-1}
 \end{equation}
 
-Aqui pode muito nos auxiliar a conversão de decibels para amplitude apresentada na equação ~\ref{ampDec}.
-Junto à equação \ref{transAmp}, resulta na seguinte equação para uma transição de $V_{dB}$ decibels:
+Aqui convém a conversão de decibels para amplitude apresentada na equação ~\ref{ampDec}.
+Junto à equação \ref{transAmp}, resulta na transição de $V_{dB}$ decibels:
 
 \begin{equation}
-T_i^{'}=\left \{ t_i \left(10^{\frac{V_{dB}}{20}} \right)^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
+T_i^{'}=\left\{ t_i 10^{\frac{V_{dB}}{20}\left( \frac{i}{\Lambda-1} \right)^\alpha} \right\}_0^{\Lambda-1}
 \end{equation}
 
-para o caso geral de variações de amplitude segundo a progressão geométrica. Notamos que a transição mais natural e percebida como linear acorre com $\alpha=1$ e que quanto maior o valor de $\alpha$ mais suave é a introdução do som. Vale assinalar que $\alpha>1$ resulta em transições de volume muitas vezes chamadas de \emph{slow fade} enquanto $\alpha<1$ resulta em \emph{fast fade}~\cite{fades}.
+para o caso geral de variações de amplitude segundo a progressão geométrica. Quanto maior o valor de $\alpha$, mais suave é a introdução do som e mais intenso o final do fade. $\alpha>1$ resulta em transições de volume muitas vezes chamadas de \emph{slow fade} enquanto $\alpha<1$ resulta em \emph{fast fade}.\cite{fades}
 
-Veremos adiante a aplicação das transições lineares para as oscilações 
-de amplitude e frequência nas chamadas sínteses AM e FM e a aplicação das transições
+As transições lineares serão utilizadas para
+de as chamadas sínteses AM e FM e a aplicação das transições
 logarítmicas para os tremolos e vibratos.
 
 \subsection{Aplicação de filtros digitais}
- As possibilidades
-aqui são variadas e a complexidade facilmente
-foge ao escopo deste trabalho\footnote{A elaboração de filtros
+Esta subseção limita-se a uma descrição
+do processamento das sequências, por convolução
+e equação a diferenças, e em aplicações
+imediatas, pois a complexidade facilmente
+foge ao escopo\footnote{A elaboração de filtros
 constitui uma área reconhecidamente complexa, com literatura
 e pacotes de software dedicados. 
 Recomendamos ao leitor
-interessado uma visita à nossa bibliografia, em especial~\cite{Openheim,smith}.},
-de forma que focamos em explicitar o que ocorre com as sequências
-de amostras e em descrever os procedimentos usuais.
-A aplicação de filtros pode
+interessado uma visita à nossa bibliografia.\cite{Openheim,smith}}. A aplicação de filtros pode
 ser parte constituinte da síntese ou feita posteriormente
 como parte dos processos tipicamente chamados de tratamento sonoro.
-
-Explicitaremos a aplicação de filtros por convolução
-e por equação a diferenças.
 
 \begin{itemize}
 
@@ -799,67 +772,69 @@ Os filtros aplicados por convolução são conhecidos
 pela sua sigla FIR (do inglês Finite Impulse Response)
 e são caracterizados por possuirem uma representação amostral
 finita no tempo. Esta representação amostral é chamada
-de 'resposta ao impulso' $\{h_i\}$. Os filtros FIR são aplicados temporalmente ao som
+de 'resposta ao impulso' $\{h_i\}$. Os filtros FIR são aplicados 
+no domínio temporal ao som
 digitalizado pela convolucão do som com a 
-resposta ao impulso do filtro\footnote{Pode-se aplicar o filtro do domínio espectral através da multiplicação das transformadas de Fourier de ambos o som e a resposta ao impulso, e então realizada a transformada inversa de Fourier do espectro resultante~\cite{Openheim}.}. Para nossos fins, esta
+resposta ao impulso do filtro\footnote{Pode-se aplicar o filtro do domínio espectral através da multiplicação das transformadas de Fourier de ambos o som e a resposta ao impulso, e então realizada a transformada inversa de Fourier do espectro resultante.\cite{Openheim}}. Para os fins deste trabalho, a
 convolução fica definida como:
 
 \begin{equation}\label{eq:conv}
 \begin{split}
-\{t_i'\}_0^{\Lambda_t+\Lambda_h-2\; = \;\Lambda_{t\, '}-1} =\{(t*h)_i\}_0^{\Lambda_{t \, '}-1} & =\left \{ \sum_{j=0}^{min(\Lambda_h,i)}h_{j} . t_{i-j} \right \}_0^{\Lambda_{t\, '}-1} \\
-    & =\left \{ \sum_{j=max(i-\Lambda_h,0)}^{i}t_j . h_{i-j} \right \}_0^{\Lambda_{t\, '}-1}
+\left\{t_i'\right\}_0^{\Lambda_t+\Lambda_h-2\; = \;\Lambda_{t\, '}-1} =\{(T_j*H_j)_i\}_0^{\Lambda_{t \, '}-1} & =\left \{ \sum_{j=0}^{min(\Lambda_h-1,i)}h_{j} . t_{i-j} \right \}_0^{\Lambda_{t\, '}-1} \\
+    & =\left \{ \sum_{j=max(i+1-\Lambda_h,0)}^{i}t_j . h_{i-j} \right \}_0^{\Lambda_{t\, '}-1}
 \end{split}
 \end{equation}
 
-Onde consideramos $t_i=0$ para as
+Onde $t_i=0$ para as
 amostras não definidas de antemão.
 Ou seja, o som $\{t_i'\}$ resultante da convolução de $\{t_i\}$ com a resposta ao impulso $\{h_i\}$
 tem cada i-ésima amostra $t_i$ substituída pela soma de suas últimas $\Lambda_h$ amostras $\{t_{i-j}\}_{j=0}^{\Lambda_h-1}$
-multiplicadas uma a uma pela resposta ao impulso $\{h_i\}_0^{\Lambda_h-1}$ em si. Isso é facilmente
-percebido pela visualização gráfica da convolução de sequências arbitrárias e dispomos
-para este fim a figura \ref{fig:conv}. Observe que a resposta ao impulso $\{h_i\}$
-é disposta na forma retrograda e que mostramos na figura os cálculos explícitos
-das amostras $t_{12}'$ e $t_{32}'$ do sinal convoluído. O sinal resultante possui
+multiplicadas uma a uma pela resposta ao impulso $\{h_i\}_0^{\Lambda_h-1}$ em si como na figura~\ref{fig:conv}. A resposta ao impulso $\{h_i\}$
+é percorrida na forma retrograda e os cálculos explícitos
+das amostras $t_{12}'$ e $t_{32}'$ são duas amostras calculadas
+pela convolução $(T_j*H_j)_i=t_i'$. O sinal resultante possui
 sempre o tamanho $\Lambda_t+\Lambda_h -1=\Lambda_{t'}$.
 
 
-
-
-Com este procedimento podemos aplicar reverberadores, equalizadores, delays
+Com este procedimento pode-se aplicar reverberadores, equalizadores, delays
 e vários outros tipos de filtros para fins de tratamento sonoro ou
 efeitos musicais/artísticos.
  
-Para a obtenção da resposta ao impulso, pode-se recorrer a medições
-físicas ou à síntese direta do filtro. Para citar um exemplo
-de medições diretas, uma resposta ao impulso para a aplicação
-de reverberação pode resultar da gravação acústica do ambiente ao disparar
-um estalo (cuja gravação se aproxima da resposta ao impulso diretamente) ou ao disparar uma
-varredura de frequência (cuja gravação se aproxima da resposta em frequência).
-Ambas resultam em respostas ao impulso
+A resposta ao impulso pode provir de medições
+físicas ou à síntese direta do filtro. Uma resposta 
+ao impulso para a aplicação
+de reverberação pode resultar da gravação do ao disparar
+um estalo que se assemelhe a um impulso ou 
+de uma varredura em senoide, que transformada se aproxima
+da resposta em frequência.
+
+Ambas são respostas ao impulso
 que, convoluídas com a sequência sonora, resultam na própria sequência
 com uma reverberação que se assemelha à reverberação do ambiente 
-em que ocorreu a medição~\cite{Cook}.
+em que ocorreu a medição.\cite{Cook}
 
-Como exemplo de resposta ao impulso sintetizada, pode-se
-descrever um perfil espectral, realizar a transformada inversa
-de fourier e convoluir o resultante com o som, realizando
-uma filtragem cujo perfil é próximo ao especificado inicialmente. Note que este procedimento funciona particularmente bem se for grande o número de amostras utilizadas para especificar o perfil espectral do filtro\footnote{O que resulta em mais processamento computacional.}.
+A transformada inversa
+de fourier de uma envoltória par e real é uma
+resposta ao impulso de um FIR. Este realiza
+uma filtragem em frequência com a envoltória.
+Quanto maior o número de amostras maior
+a resolução a envoltória e também 
+o processamento computacional pois a convolução é cara.
 
-Outro exemplo simples e útil vem do deslocamento temporal causado pela convolução com o impulso deslocado. Assim, podemos aplicar de linhas de \emph{delays} através
-da convolução do som com uma resposta ao impulso que possui um impulso
-em cada reincidência do som na linha de delays intensionada.
-Para ilustrar essa aplicação, dispomos a figura~\ref{fig:delays}
-em que pode-se observar o deslocamento causado pela convolução
+Uma propriedade importante é o deslocamento temporal causado pela convolução com o impulso deslocado. Embora caro computacionalmente, 
+pode-se criar linhas de \emph{delays} através da convolução do som com uma resposta ao impulso que possui um impulso
+para cada reincidência do som.
+Na figura~\ref{fig:delays}
+pode-se observar o deslocamento causado pela convolução
 com o impulso. Dependendo da densidade dos impulsos, o resultado
 é de caráter rítmico (20 impulsos por segundo ou menos) ou de amálgama
 sonoro (20-40 impulsos por segundo ou mais). Neste último caso,
-ocorrem processos tipicamente vinculados à síntese granular e às
-equalizações.
+ocorrem processos tipicamente vinculados à síntese granular, delays, reverbs e equalizações.
 
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\textwidth]{figuras/delays__}
-    \caption{Convolução com o impulso e linhas de delays}
+    \caption{Convolução com o impulsoi, linhas de delays e síntese granular}
         \label{fig:delays}
 \end{figure}
 
@@ -876,53 +851,50 @@ a diferenças:
 t_i' = \frac{1}{b_0}\left ( \sum_{j=0}^Ja_j . t_{i-j} + \sum_{k=1}^Kb_k . t_{i-k}' \right )
 \end{equation}
 
-com $b_0=1$ na grande maioria dos casos pois basta normalizarmos as variáveis
-resultando em filtro idêntico: $a_j'=\frac{a_j}{b_0}$ e $b_k'=\frac{b_k}{b_0} \Rightarrow b_0' = 1$.
+com $b_0=1$ na grande maioria dos casos pois basta normalizar as variáveis para
+resultar em filtro idêntico: $a_j'=\frac{a_j}{b_0}$ e $b_k'=\frac{b_k}{b_0} \Rightarrow b_0' = 1$.
 
-Apontamos filtros IIR bastante simples, úteis e usuais abaixo. Existem
+Existem
 diversos métodos e ferrametas para a elaboração de filtros IIR
-e esta é uma seleção com fins didáticos e para consulta futura por
+e segue abaixo uma seleção com fins didáticos e para consulta futura por
 utilidade.
-São filtros de primeira e segunda ordem bem comportados cujas
-filtragens realizadas dispomos na figura~\ref{fig:iir}.
+São filtros bem comportados e cujas
+filtragens estão na figura~\ref{fig:iir}.
 
 No caso dos filtros de ordem simples, a frequência de corte $f_c$ é onde 
 o filtro realiza uma atenuação de $-3dB \approx 0.707 $ da amplitude original.
 No caso dos filtros passa e rejeita banda, esta mesma atenuação é
-resultado de duas especificações: $f_c$ (neste caso melhor compreendida como 'frequência central') e a largura de banda $bw$
-pois em ambas as frequências $f_c \pm bw$ há uma atenuação de $\approx 0.707$ da amplitude original.
+resultado de duas especificações: $f_c$ (neste caso melhor compreendida como 'frequência central') e a largura de banda $bw$,
+em ambas as frequências $f_c \pm bw$ há uma atenuação de $\approx 0.707$ da amplitude original.
 
-Observe que existe amplificação do som no caso dos filtros passa e rejeita banda quando a frequência
+Existe amplificação do som no caso dos filtros passa e rejeita banda quando a frequência
 de corte é baixa e a largura de banda é grande o suficiente. Nos agudos, estes filtros apresentam
-somente um desvio do perfil esperado, expandindo a envoltória um pouco mais do lado grave da banda em
+somente um desvio do perfil esperado, expandindo a envoltória para o lado grave da banda em
 evidência.
 
-Para conseguir filtros cujas respostas em frequência possuem outras envoltórias (para o módulo),
-o recurso mais simples a esta altura
-é fazer cascata destes filtros aplicando-os sucessivamente.
-
-Outra possibilidade é usar alguma receita de filtro
+Para filtros cujas respostas em frequência possuem outras envoltórias (para o módulo),
+pode-se realizar cascatas destes filtros aplicando-os sucessivamente.
+Outra possibilidade é utilizar alguma receita de filtro
 biquad\footnote{Abreviação
 de 'biquadrado' pois sua função de transferência possue dois polos e dois zeros, i.e. sua
 forma normal consiste em dois polinômios quadráticos formando uma fração:
 $\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1- b_1.z^{-1} -b_2 . z^{-2}}$.}
 ou rotinas para cálculo de coeficientes
 de filtros Chebichev\footnote{Filtros Butterworth e Elípticos podem
-ser considerados como casos específicos dos Filtros do tipo Chebichev~\cite{Openheim,smith}.}.
+ser considerados como casos específicos dos Filtros do tipo Chebichev.\cite{Openheim,smith}}.
 Ambas as possibilidades são exploradas
-por títulos em nossas referências, em especial recomendamos~\cite{JOSFM,smith} e a coleção de filtros da comunidade \emph{Music-DSP}, da Universiade de Columbia~\cite{music-dsp}.
-Para uma exposição aprofundada do assunto, recomendamos~\cite{Openheim}.
+por títulos em nossas referências, em especial~\cite{JOSFM,smith} e a coleção de filtros da comunidade \emph{Music-DSP}, da Universiade de Columbia.\cite{music-dsp,Openheim}
 
 \end{itemize}
 
 \begin{enumerate}
-\item Passa-baixas de polo simples com gráfico do canto superior esquerdo da figura~\ref{fig:iir}. A fórmula geral tem
+\item Passa-baixas de polo simples com módulo da resposta em frequência no canto superior esquerdo da figura~\ref{fig:iir}. A fórmula geral tem
 por referência da frequência de corte $f_c \in (0,\frac{1}{2})$,
 fração da frequência de amostragem $f_a$
 em que há aproximadamente uma atenuação de $3dB$.
-Calculamos os coeficientes do filtro IIR
+Os coeficientes do filtro IIR
 $a_0$ e $b_1$ 
-através da variável intermediária: $x \in [e^{-\pi},1]$:
+são dados através da variável intermediária: $x \in [e^{-\pi},1]$:
 
 \begin{figure}[h!]
     \centering
@@ -940,7 +912,7 @@ b_1 & =  x
 \end{split}
 \end{equation}
 
-\item Passa-altas de polo simples com gráfico do canto superior direito da figura~\ref{fig:iir}. A fórmula geral,
+\item Passa-altas de polo simples o módulo da resposta em frequência no canto superior direito da figura~\ref{fig:iir}. A fórmula geral,
 com frequência de corte $f_c \in (0,\frac{1}{2})$, é calculada através da variável
 intermediária $x \in [e^{-\pi},1]$:
 
@@ -958,12 +930,12 @@ b_1 & =  x
 %\item Passa-banda
 %\item Rejeita-banda
 \item Nó (\emph{notch filter}). Este filtro é parametrizado
-pela frequência central\footnote{Não
-confundir com a frequência de corte também notada aqui por $f_c$ nos filtros passa baixas e passa altas.} $f_c$
+pela frequência central\footnote{ Atenção com a frequência de corte também $f_c$ nos filtros passa baixas e passa altas.} $f_c$
 e a largura de banda $bw$
-($f_c \pm bw$ resulta em 0.707 da amplitude, i.e. atenuação de $3dB$),
+- $f_c \pm bw$ resultam em 0.707 da amplitude, i.e. atenuação de $3dB$ -
 ambos dados como fracoes de $f_a$, portanto $f,\; bw \in (0,0.5)$.
-Por conveniência definimos as variáveis auxiliares $K$ e $R$ como:
+
+Por facilidade, sejam as variáveis auxiliares $K$ e $R$:
 
 \begin{equation}
 \begin{split}
@@ -972,7 +944,7 @@ K & = \frac{1-2R\cos(2\pi f_c) + R^2}{2 - 2 \cos (2 \pi f_c)}
 \end{split}
 \end{equation}
 
-A partir das quais temos dois filtros. O filtro passa banda que dispomos no canto inferior esquerdo da figura~\ref{fig:iir}:
+O filtro passa banda do canto inferior esquerdo da figura~\ref{fig:iir}:
 
 \begin{equation}\label{eq:passa-banda}
 \begin{split}
@@ -996,6 +968,7 @@ b_2 & =  -R^2
 \end{split}
 \end{equation}
 
+com o módulo de sua resposta em frequência 
 disposto na parte inferior esquerda da figura~\ref{fig:iir}.
 
 %\item Biquad: pela especificação de uma frequência central, da qualidade
@@ -1137,7 +1110,7 @@ pode-se observar a contribuição dos harmônicos agudos no traçado geral dado
 pelas frequências graves e muito explícito no ruído marrom.
 
 
-\subsection{Usos musicais parte 1: tremolo e vibrato, AM e FM}
+\subsection{Usos musicais parte 1: tremolo e vibrato, AM e FM}\label{subsec:tvaf}
 
 Enquanto o vibrato é uma variação periódica de altura (frequência),
 o tremolo é uma variação periódica de volume (intensidade).\footnote{Alguns instrumentos e contextos musicais usam nomenclaturas diferentes. Por exemplo, no piano, o chamado tremolo é um vibrato e um tremolo segundo a classificação aqui utilizada. As definições presentes neste trabalho tem por base uma literatura mais abrangente do que a utilizada para um único instrumento, prática ou tradição musical e comum em contextos de teoria musical e musica eletrônica~\cite{Lacerda,Harmonia}.}
