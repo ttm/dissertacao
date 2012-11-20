@@ -981,28 +981,28 @@ disposto na parte inferior esquerda da figura~\ref{fig:iir}.
 
 \subsection{Ruídos}
 De forma geral, os sons sem altura definida 
-são chamados ruídos~\cite{Lacerda}.
-Estes sons estão presentes como constituintes importantes dos sons musicais de altura definida,
+são chamados ruídos.\cite{Lacerda}
+Estes sons são constituintes importantes dos sons musicais de altura definida,
 como os ruídos presentes nas notas do piano, do violino, etc. Além disso, os instrumentos
 de percussão, em grande parte, não possuem altura definida e seus sons
-são muitas vezes compreendidos como ruídos~\cite{Roederer}. Na música eletrônica (incluindo
-a eletroacústica e gêneros de pista de dança), os ruídos possuem usos amplos, diversificados e comumente
-idiomáticos~\cite{Cook}.
+são em geral compreendidos como ruídos.\cite{Roederer} Na música eletrônica, incluindo
+a eletroacústica e gêneros de pista de dança, os ruídos possuem usos diversificados e comumente
+idiomáticos.\cite{Cook}
 
-A ausência de uma altura definida é fruto da ausência de uma organização harmônica perceptível nas componentes senoidais que formam o som. Assim, pode-se inferir
-as incontáveis possibilidades de gerar ruídos. A mais imediata é a utilização
-de valores aleatórios para a geração da sequência sonora $T_i$. Este
-é um método atraente, visto a disponibilidade
-das consagradas distribuições de probabilidade em diversas linguagens de programação,
+A ausência de uma altura definida é fruto da ausência de uma organização harmônica perceptível nas componentes senoidais que formam o som. Assim,
+são incontáveis as possibilidades de gerar ruídos.
+A utilização
+de valores aleatórios para a geração da sequência sonora $T_i$
+é um método atraente,
 mas os resultados não são tão úteis, tendendo geralmente ao ruído branco.\cite{Cook}
 
-Outra possibilidade é a geração de ruído através do espectro desejado. A partir
-dele, executamos a transformada inversa de Fourier. Neste caso, é importante
-que realizemos a distribuição espectral com cuidado pois queremos um perfil
-do módulo do espectro e a fase é aleatória\footnote{Caso utilizemos a mesma fase
-(ou fases com forte correlação) para
-as componentes envolvidas, o som sintetizado possuirá energia bastante concentrada
-em alguns trechos.}. Veja a figura~\ref{fig:ruidos} e o código Python que a gerou para uma implementação.
+Outra possibilidade é a geração de ruído através do espectro desejadoi, a partir
+do qual executamos a transformada inversa de Fourier.
+A distribuição espectral deve ser feita com cuidado 
+pois caso utilizemos a mesma fase,
+ou fases com forte correlação, 
+o som sintetizado possuirá energia bastante concentrada
+em alguns trechos de sua duração.
 
 
 \begin{figure}[htpq!]
@@ -1014,12 +1014,15 @@ em alguns trechos.}. Veja a figura~\ref{fig:ruidos} e o código Python que a ger
 
 
 Abaixo elencamos alguns ruídos de espectro estático. São chamados \emph{coloridos} por terem sido associados a cores. 
+A figura~\ref{fig:ruidos} dipoe lado a lado o perfil espectral e
+a sequência sonora. Os ruídos foram gerados com a mesma fase, então
+pode-se observar o resultado das contribuições em diferentes regiões do espectro.
 
 \begin{itemize}
 
 \item O ruído branco deve seu nome por possuir energia distribuida
-igualmente por todas as frequências. Podemos obter a realização
-do ruído branco com a transformada inversa dos seguintes coeficientes:
+igualmente por todas as frequências. Podse realizar
+o ruído branco com a transformada inversa dos seguintes coeficientes:
 
 
 \begin{equation}\label{eq:branco}
@@ -1048,25 +1051,24 @@ c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \Lambda/2
 \end{split}
 \end{equation}
 
-A frequência mínima $f_{\text{min}}$ pode ser escolhida com base no limite da audição, pois não escutamos como altura uma componente sonora cuja frequência esteja abaixo de $\approx\; 20Hz$.
+A frequência mínima $f_{\text{min}}$ pode ser escolhida com base no limite da audição, pois não se escuta como altura uma componente sonora cuja frequência esteja abaixo de $\approx\; 20Hz$.
 
 O resto dos ruídos podem ser feitos com base neste procedimento descrito para 
-o ruído rosa. Basta que modifiquemos alguns detalhes. Em especial a equação que define $\alpha_i$.
+o ruído rosa, basta que modificar detalhes, em especial a equação que define $\alpha_i$.
 
 \item O ruído marrom deve seu nome ao Robert Brown, que descreveu o movimento browniano.
-Embora esta origem seja um tanto díspar do que poderíamos considerar motivo para uma associação com a cor marrom, o ruído sonoro ficou consagrado com este nome. De qualquer forma, é bastante comum declarar satisfatória a associação do ruído com a cor marrom, dados os ruídos branco e rosa mais estridentes e relacionados a cores mais intensas~\cite{marrom}.
+Embora esta origem seja um tanto díspar do que pode-se considerar motivo para uma associação com a cor marrom, o ruído sonoro ficou consagrado com este nome. De qualquer forma, é bastante comum declarar satisfatória a associação do ruído com a cor marrom, dados os ruídos branco e rosa mais estridentes e relacionados a cores mais intensas~\cite{marrom}.
 
-O que caracteriza este ruído é a queda de $6dB$ por oitava. Desta forma, basta modificarmos a equação de $\alpha_i$ 
-no conjunto \ref{eq:rosa} para:
+O que caracteriza este ruído é a queda de $6dB$ por oitava. Desta forma, $\alpha_i$ 
+no conjunto \ref{eq:rosa} fica:
 
 \begin{equation}\label{eq:marrom}
 \alpha_i=(10^{-\frac{6}{20}})^{\log _2 \left( \frac{f_i}{f_{\text{min}}} \right )}
 \end{equation}
 
-\item Ruído azul é aquele em que há um ganho de $3dB$ por oitava em uma banda limitada. Para
-a síntese deste ruído, basta estipularmos a frequência mínima $f_{\text{min}}$ e a frequência
-máxima $f_{\text{máx}}$. Assim, também com base no conjunto de equações \ref{eq:rosa}, 
-basta atentarmos para as sequintes identidades:
+\item No ruído azul há ganho de $3dB$ por oitava em uma banda limitada
+pela frequência mínima $f_{\text{min}}$ e a frequência
+máxima $f_{\text{máx}}$. Assim, também com base no conjunto de equações \ref{eq:rosa}:
 
 \begin{equation}\label{eq:azul}
 \begin{split}
@@ -1089,38 +1091,30 @@ c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \;\; \text{ou} \;\; f_i>f_{
 
 
 
-\item Um pouco diferente dos exemplos acima é o ruído cinza, definido como
-um ruído branco sujeito a uma das curvas iso-audíveis. Como estas curvas são resultados
-experimentais, precisamos neste caso da curva para a realização dos fatores multiplicativos
-$\alpha_i$.
+\item O ruído cinza e definido como
+um ruído branco sujeito a uma das curvas iso-audíveis. Estas curvas são resultados
+experimentais e necessárias para a obtenção de $\alpha_i$. Uma implementação da ISO 226, a última revisão destas curvas, está na toolbox \massa.\cite{MASSA}
 
 \end{itemize}
 
-Com base nestes ruídos expostos podemos prever a infinidade de ruídos utilizados. Importante
-neste momento é entender que foram expostos somente ruídos com espectro estático. Existem classificações
+Foram expostos somente ruídos com espectro estático. Existem classificações
 de ruídos com variações do espectro no decorrer do tempo. Existem também ruídos que
 são fundamentalmente transientes, como os clicks e os chirps. O primeiro é modelado
-facilmente por um impulso relativamente isolado, enquanto o segundo é uma varredura rápida de 
-alguma banda de frequência~\cite{Cook}.
+facilmente por um impulso relativamente isolado, enquanto o segundo não é um ruído, mas uma varredura rápida de 
+alguma banda de frequência.\cite{Cook}
 
 Os ruídos das equações \ref{eq:branco}, \ref{eq:rosa}, \ref{eq:marrom},
-\ref{eq:azul}, \ref{eq:violeta} estão na figura \ref{fig:ruidos}. Vale notar
-que os espectros foram feitos com a mesma fase nos coeficientes, de forma que
-pode-se observar a contribuição dos harmônicos agudos no traçado geral dado
-pelas frequências graves e muito explícito no ruído marrom.
+\ref{eq:azul}, \ref{eq:violeta} estão na figura \ref{fig:ruidos}. Os espectros foram feitos com a mesma fase em cada coeficiente de mesma frequência, de forma que
+pode-se observar a contribuição dos harmônicos agudos e
+das frequências graves.
 
 
 \subsection{Usos musicais parte 1: tremolo e vibrato, AM e FM}\label{subsec:tvaf}
 
 Enquanto o vibrato é uma variação periódica de altura (frequência),
-o tremolo é uma variação periódica de volume (intensidade).\footnote{Alguns instrumentos e contextos musicais usam nomenclaturas diferentes. Por exemplo, no piano, o chamado tremolo é um vibrato e um tremolo segundo a classificação aqui utilizada. As definições presentes neste trabalho tem por base uma literatura mais abrangente do que a utilizada para um único instrumento, prática ou tradição musical e comum em contextos de teoria musical e musica eletrônica~\cite{Lacerda,Harmonia}.}
+o tremolo é uma variação periódica de volume (intensidade).\footnote{Alguns instrumentos e contextos musicais usam nomenclaturas diferentes. Por exemplo, no piano, o chamado tremolo é um vibrato e um tremolo segundo a classificação aqui utilizada. As definições presentes neste trabalho tem por base uma literatura mais abrangente do que a utilizada para um único instrumento, prática ou tradição musical e comum em contextos de teoria musical e musica eletrônica.\cite{Lacerda,Harmonia}}
 
-Iniciemos pelo vibrato. Para realizarmos o caso mais geral, façamos uma sequência $t_i'$
-de frequência $f'$ com o auxílio
-de uma segunda tabela $\widetilde{M}_i$ de tamanho $\widetilde{\Lambda}_M$ que apresente também
-um período de onda que oscila entre $[-1,1]$. Descrevemos uma sequência sonora $t_i^{vbr(f',\,\nu)}$ com
-um vibrato de frequência $f'$ e profundidade  $\mu$ (quantos herz é a oscilação no pico superior)
-ou $\nu$ (amplitude do vibrato em semitons) da seguinte forma:
+Para o caso geral, o vibrato é descrito da seguinte forma:
 
 
 \begin{equation}\label{vbrGamma}
@@ -1140,7 +1134,7 @@ f_i=f \left ( \frac{f + \mu }{f} \right )^{t_i'}=f . 2^{t_i'\frac{\nu}{12}}
 \end{equation}
 
 \begin{equation}\label{vbrT}
-T_i^{f, vbr(f',\,\nu)}=\{ t_i^{f,vbr(f',\,\nu)} \}_0^{\Lambda-1}=\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \}_0^{\Lambda-1}
+T_i^{f, vbr(f',\,\nu)}=\left\{ t_i^{f,vbr(f',\,\nu)} \right\}_0^{\Lambda-1}=\left\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \right\}_0^{\Lambda-1}
 \end{equation}
 
 
@@ -1157,20 +1151,18 @@ A tabela $\widetilde{M}_i$ de tamanho $\widetilde{\Lambda}_M$ e a sequência de 
 a tabela $\widetilde{L}_i$ de tamanho $\widetilde{\Lambda}$ e a sequência de índices $\gamma_i$ formam $t_i$ que é o som em si.
 As variáveis $\mu$ e $\nu$ quantificam a intensidade do vibrato: $\mu$ é uma medida direta da quantidade
 de Herz envolvidos no limite superior da oscilação e $\nu$ é a medida direta de semitons envolvidos na oscilação ($2\nu$ é o número de semitons entre os picos superioes e inferiores de oscilação da frequência do som $\{t_i\}$ causada pelo vibrato).
-Note que $\nu=\log_{2}\frac{f+\mu}{f} $ é conveniente neste caso pois o aumento máximo de frequência
+É conveniente $\nu=\log_{2}\frac{f+\mu}{f} $ neste caso pois o aumento máximo de frequência
 não equivale à diminuição máxima, mas a variação de semitons se mantém.
 
 A Figura \ref{fig:vibrato} é o espectrograma de um vibrato artificial de uma nota em
 $1000Hz$ (entre um si e um dó) e cujo desvio da frequência atinge uma oitava
-para cima e para baixo. Note o padrão senoidal do vibrato e as compontentes harmônicas
-da dente de serra. Qualquer forma de onda pode
-ser utilizada para gerar o som e o padrão de oscilação do vibrato, o que é tão crucial para os usos musicais quanto a
-frequência de oscilação e o desvio de altura envolvido\footnote{O desvio de altura
+para cima e para baixo. Qualquer forma de onda pode
+ser utilizada para gerar o som e o padrão de oscilação do vibrato
+em quaisquer frequência de oscilação e desvio de altura envolvidos\footnote{O desvio de altura
 é chamado profundidade do vibrato e é geralmetne dado por conveniência em semitons ou cents.}. Estas qualidades não são praticáveis em instrumentos musicais tradicionais, introduzindo novidade nas possibilidades artísticas.
 
-O caso do tremolo é semelhante e $f'$, $\gamma_i'$ e $t_i'$ permanecem os mesmos. Calculamos
-a sequência de amplitudes a serem multiplicadas pela sequência original $t_i$ da
-sequinte forma:
+O caso do tremolo é semelhante: $f'$, $\gamma_i'$ e $t_i'$ permanecem os mesmos.
+A sequência de amplitudes a serem multiplicadas pela sequência original $t_i$ fica:
 
 \begin{equation}\label{trA}
 a_i=10^{\frac{V_{dB}}{20}t_i' } = a_{\text{máx}}^{t_i'}
@@ -1182,16 +1174,16 @@ T_i^{tr(f')}=\{ t_i^{tr(f')} \}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_
 
 Onde $V_{dB}$ é a profundidade da oscilação em decibels do tremolo e $a_{\text{máx}}=10^{\frac{V_{dB}}{20}}$
  é o ganho máximo de amplitude envolvido.
-A medição em decibels é bastante pertinente pois o aumento máximo de amplitude
+A medição em decibels é pertinente pois o aumento máximo de amplitude
 não equivale à diminuição máxima relacionada, enquanto a diferença em decibels se mantém.
 
 A figura~\ref{fig:tremolo} mostra a amplitude das sequências $\{a_i\}_0^{\Lambda-1}$ e $\{t_i'\}_0^{\Lambda-1}$
 para três oscilações de um tremolo com forma da dente de serra. A curvatura é devido à progressão logarítmica de
 intensidade. A frequência do tremolo é de $1,5Hz$ pois $f_a=44,1kHz \; \Rightarrow \; \text{duração} = \frac{i_{\text{máx}}=82000}{f_a}= 2s \; \Rightarrow \; \frac{3\text{oscilações}}{2s}=1,5$ oscilações por segundo ($Hz$). 
 
-A montagem musical \emph{Vibra e treme} explora estes recursos dos tremolos e vibratos
+A montagem musical \emph{Vibra e treme} explora estes recursos dos tremolos e vibratos em associação e isoladamente
 com frequências $f'$
-e profundidades ($\nu$ e $V_{dB}$) diferentes. Usados em associação e isoladamente os tremolos e vibratos e com variações progressivas dos parâmetros\footnote{Vale lembrar que os tremolos e vibratos ocorrem muitas vezes juntos em instrumentos tradicionais e na voz.}. A peça desenvolve também uma comparação entre os vibratos e tremolos em escala logarítmica e em escala linear para uma apreciação qualitativa.
+e profundidades ($\nu$ e $V_{dB}$) diferentes, variações progressivas dos parâmetros\footnote{Os tremolos e vibratos ocorrem muitas vezes juntos em instrumentos tradicionais e na voz.}. A peça desenvolve também uma comparação entre os vibratos e tremolos em escala logarítmica e em escala linear para uma apreciação qualitativa. Seu código está no Apêndice~\ref{ap:vibra} e disponível online como parte da \emph{toolbox} \massa.
 
 
 \begin{figure}[h!]
@@ -1201,35 +1193,35 @@ e profundidades ($\nu$ e $V_{dB}$) diferentes. Usados em associação e isoladam
         \label{fig:tremolo}
 \end{figure}
 
-Algo interessante ocorre se aumentarmos progressivamente $f'$.
-Primeiramente a aproximação do limiar de frequência
+No aumento progressico de $f'$,
+a aproximação do limiar de frequência
 para audição do fenômeno sonoro como
 altura ($\approx 20Hz$) gera rugosidades para
 ambos tremolos e vibratos. Estas rugosidades são muito apreciadas
-tanto na tradição erudita quanto na música eletrônica atual, especialmente no \emph{Dubstep}~\cite{DubRugoso}.
-A rugosidade também é gerada através de conteúdos espectrais que geram batimentos~\cite{Porres}.  A sequência \emph{Bela Rugosi's Dade}
+tanto na tradição erudita quanto na música eletrônica atual, especialmente no \emph{Dubstep}.\cite{DubRugoso}
+A rugosidade também é gerada através de conteúdos espectrais que geram batimentos.\cite{Porres}  A sequência \emph{Bela Rugosi}
 explora este limiar com concomitâncias de tremolos e vibratos na mesma
-voz, com intensidades e formas de onda diferentes.
+voz, com intensidades e formas de onda diferentes. Seu código está o Apêndice~\ref{ap:rugosi} e disponível online como parte da \massa.
 
-Se continuarmos aumentando a frequência, deixamos de ouvir estas oscilações
-como eventos identificáveis. Neste caso, as oscilações se apresentam na forma de espectro
+Aumentando ainda mais a frequência, estas oscilações
+deixam de ser eventos identificáveis. 
+Neste caso, as oscilações são
 audível como altura. Assim, $f'$, $\mu$ e a forma de onda realizam alterações espectrais no som
 original $T_i$ de formas diferentes para os tremolos e para os vibratos, são as 
 chamadas sínteses AM (\emph{Amplitude Modulation}) e FM (\emph{Frequency Modulation}), respectivamente.
 Estas são técnicas muito poderosas e conhecidas, com clássicas aplicações em sintetizadores
 históricos como o \emph{Yamaha DX7} e com aplicações fora da música, como em telecomunicações para transmissão de informação via ondas eletromagnéticas (ex. radios AM e FM).
 
-Para fins musicais e em resumo, podemos entender a síntese FM através do caso entre senoides
+Para fins musicais e em resumo, pode-se entender a síntese FM através do caso entre senoides
 e decompor os sinais em seus espectros de Fourier (i.e. senoidais) para casos mais complexos.
 Assim, a síntese FM realizada com um 'vibrato' senoidal de frequência $f'$ e profundidade $\mu$ em um som também senoidal $T_i$ de frequência $f$
-e duração $\Delta$ segundos (assumimos $\Lambda = \lfloor \Delta . f_a \rfloor $ amostras)
 gera bandas centradas em $f$ e distantes $f'$ entre si:
 
 \begin{equation}\label{eq:fmEsp}
 \begin{split}
-\{t_i'\}_0^{\Lambda -1} & = \left \{ \cos \left [f . 2 \pi \frac{i}{f_a-1} + \mu . sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right ) \right ] \right \}_0^{\Lambda-1}  = \\
- & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ f . 2 \pi \frac{i}{f_a-1} + k . f' . 2 \pi \frac{i}{f_a-1} \right ]  \right \}_0^{\Lambda-1} = \\
- & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ (f+k.f') . 2 \pi \frac{i}{f_a-1} \right ]  \right \}_0^{\Lambda-1}
+\{t_i'\} & = \left \{ \cos \left [f . 2 \pi \frac{i}{f_a-1} + \mu . sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right ) \right ] \right \} = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ f . 2 \pi \frac{i}{f_a-1} + k . f' . 2 \pi \frac{i}{f_a-1} \right ]  \right \} = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ (f+k.f') . 2 \pi \frac{i}{f_a-1} \right ]  \right \}
 \end{split}
 \end{equation}
 
@@ -1237,7 +1229,9 @@ onde
 \begin{equation}
 J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \quad , \quad \overline{k} = k \% 2 \;\;,\;\; k \in \mathbb{N}
 \end{equation}
-é a função de Bessel~\cite{BesselCCRMA,JOSFM} que, na FM, como podemos notar, especifica a amplitude de cada componente. Note que, nestas equações, a variação de frequência introduzida por $\{t_i'\}$ não respeita a progressão geométrica de frequência que acompanha a percepção de altura. Caso utilizemos as equações~\ref{vbrF} teríamos uma distribuição diferente dos harmônicos. Para este fim, dispomos o Apêndice~\ref{cap:fmam} onde calculamos o conteúdo espectral da síntese FM feita com oscilações na escala logarítmica. De fato, como pode-se notar nos cálculos, o comportamento simples que torna a FM atraente é obtido somente com as variações lineares utilizadas em~\ref{eq:fmEsp}.
+é a função de Bessel~\cite{BesselCCRMA,JOSFM} que na FM especifica a amplitude de cada componente. 
+
+Nestas equações, a variação de frequência introduzida por $\{t_i'\}$ não respeita a progressão geométrica de frequência que acompanha a percepção de altura, mas sim a equação~\ref{freqLinear}. A utilização das equações~\ref{vbrF} para a FM está no Apêndice~\ref{cap:fmam} onde é calculado o conteúdo espectral da síntese FM feita com oscilações na escala logarítmica. De fato, o comportamento simples que torna a FM atraente é obtido somente com as variações lineares utilizadas em~\ref{eq:fmEsp}.
 
 O caso da modulação de amplitude (AM) é mais simples:
 
@@ -1250,11 +1244,10 @@ O caso da modulação de amplitude (AM) é mais simples:
 
 Ou seja, o som resultante é o som original
 e a reprodução de seu conteúdo espectral acima e abaixo da frequência
-original, distantes $f'$ de $f$. Observe que utilizamos novamente a variação na escala linear de amplitude. Dispomos no Apêndice~\ref{cap:fmam} uma exposição do espectro da AM se realizada a oscilação na escala logarítmica de amplitude, que também perde o comportamento simples.
+original, distantes $f'$ de $f$. Novamente, isso é obtido com a variação na escala linear de amplitude. No Apêndice~\ref{cap:fmam} está uma exposição do espectro da AM realizada com a oscilação na escala logarítmica de amplitude. Esta também perde o comportamento simples.
 
-A realização da FM e AM através de LUTs é consideravelmente simples.
-A frequência $f$ a ser modulada, chamada portadora, é modulada pela $f'$, chamada moduladora. No jargão de FM e AM, $\mu$ e $\alpha=10^{\frac{V_{dB}}{20}}$ são chamados índices de modulação. Assim, temos
-para o padrão de vibração da moduladora $\{t_i'\}$ as mesmas equações utilizadas para os tremolos e vibratos:
+A sequência $T_i$ de frequência $f$, chamada portadora, é modulada pela $f'$, chamada moduladora. No jargão de FM e AM, $\mu$ e $\alpha=10^{\frac{V_{dB}}{20}}$ são chamados índices de modulação. Assim, 
+para o padrão de vibração da moduladora $\{t_i'\}$ as equações:
 
 \begin{equation}\label{fmGamma}
 \gamma_i'=\left \lfloor i f' \frac{\widetilde{\Lambda}_M}{f_a} \right \rfloor
@@ -1264,8 +1257,8 @@ para o padrão de vibração da moduladora $\{t_i'\}$ as mesmas equações utili
 t_i'=\widetilde{m}_{\gamma_i' \;\% \widetilde{\Lambda}_M}
 \end{equation}
 
-Para aplicação da moduladora $\{t_i'\}$ na portadora $\{t_i\}$,
-temos, para a FM:
+Para aplicação da moduladora $\{t_i'\}$ na portadora $\{t_i\}$
+por FM:
 
 \begin{equation}\label{fmF}
 f_i=f + \mu . t_i'
@@ -1281,7 +1274,7 @@ T_i^{f,\, FM(f',\,\mu)}=\left\{ t_i^{f,\,FM(f',\,\mu)} \right\}_0^{\Lambda-1}=\l
 
 Onde $\widetilde{l}$ é um período da forma de onda de comprimento $\widetilde{\Lambda}$ da portadora.
 
-Para realizar a AM, basta modular $\{t_i\}$ com $\{t_i'\}$ através das equações (lembrando que $\alpha=10^{\frac{V_{dB}}{20}}$):
+Para realizar a AM, basta modular $\{t_i\}$ com $\{t_i'\}$ através das equações:
 
 \begin{equation}\label{amA}
 a_i=1 + \alpha . t_i'
@@ -1294,24 +1287,24 @@ T_i^{f,\,AM(f',\,\alpha)}=\left\{ t_i^{f,\,AM(f',\,\alpha)} \right\}_0^{\Lambda-
 
 
 \subsection{Usos musicais parte 2}
-A este ponto as possibilidades musicais explodiram. Possuímos unidades
-musicais com características próprias de altura (dada pela frequência),
-tímbre (dado pela forma de onda),
-volume (dado pela intensidade) e duração (dada pelo número de amostras).
-Em uma nota, estas características podem ser consideradas
+A este ponto as possibilidades musicais explodiram. As
+características de altura (dada pela frequência),
+tímbre (dado pela forma de onda e filtragens),
+volume (dado pela intensidade) e duração (dada pelo número de amostras)
+podem ser consideradas
 de forma absoluta ou tratadas ao longo de sua duração,
 com a única exceção da duração em si.
 
-Desta forma, os usos musicais que apresentamos é uma coleção de possibilidades
+Desta forma, os usos musicais aqui dispostos são uma coleção de possibilidades
 com o objetivo de exemplificar manipulações sonoras que resultem algo
 musical, por razões variadas e aprofundadas na próxima sessão.
 
-Uma primeira possibilidade interessante é o estabelecimento de vínculos
+Uma primeira possibilidade interessante é a utilização de vínculos
 entre os parâmetros do tremolo e do vibrato e algum parâmetro da nota básica,
-digamos a frequência. Assim, podemos estabelecer que quanto mais aguda é a nota,
-mais alta é a frequência do vibrato e do tremolo mas menor a sua profundidade.
-Desta forma, tomando por base as equações \ref{vbrGamma}, \ref{vbrF} e \ref{trA}
-podemos escrever:
+como a frequência. Assim, pode-se estabelecer
+a frequência do vibrato  é diretamente proporcional à altura à qual a profundidade do tremolo é inversamente proporcional.
+Desta forma, com as equações \ref{vbrGamma}, \ref{vbrF} e \ref{trA}
+pode-se escrever:
 
 \begin{equation}
 \begin{split}
@@ -1321,48 +1314,50 @@ V_{dB} & = func_c(f)
 \end{split}
 \end{equation}
 
-Com $f^{vbr}$ e $f^{tr}$ sendo $f'$ nas equações de referência, ou seja, a frequência
-de oscilação do vibrato e do tremolo utilizada na equação~\ref{vbrGamma}. Já $\nu$ e $V_{dB}$ são as profundidades
+Com $f^{vbr}$ e $f^{tr}$ como $f'$ nas equações de referência, ou seja, a frequência
+de oscilação do vibrato e do tremolo utilizadas na equação~\ref{vbrGamma}. Já $\nu$ e $V_{dB}$ são as profundidades
 do vibrato e do tremolo, respectivamente. As funções $func_a$,
-$func_b$ e $func_c$ são arbitrárias e dependentes das intensões musicais. A montagem musical 
+$func_b$ e $func_c$ são arbitrárias e dependentes das intensões musicais. A montagem 
 \emph{Tremolos, vibratos e a frequência} explora
-recursos como este e variações da forma de onda da oscilação com vínculos, de modo a formar um \emph{idioma musical}\footnote{Veja na próxima sessão.}.
+recursos como este e variações da forma de onda da oscilação com vínculos, de modo a formar um \emph{idioma musical}\footnote{Veja na próxima sessão.}. Seu código está no Apêndice~\ref{ap:tremolos} e também disponivel online como parte da caixa de ferramentas \massa.
 
 
-Com relação à convolução, podemos estabelecer uma duração como pulso musical - a exemplo de um pulso BPM - 
+Com relação à convolução, pode-se estabelecer uma duração como pulso musical - a exemplo de um pulso BPM - 
 e distribuir impulsos no decorrer deste pulso, de forma a estabelecer métricas e ritmos\footnote{Lembrando
 que a convolução com o impulso resulta no som deslocado ao instante de ocorrência do impulso.}.
-Por exemplo, se escolhemos 2 impulsos igualmente espaçados, estaremos fazendo uma
-divisão binária básica do pulso. Se escolhemos dois sinais, um com 2 pulsos e outro com 3 pulsos,
-ambos com os impulsos igualmente espaçados na duração do pulso, resultamos na manutenção
+Por exemplo, 2 impulsos igualmente espaçados fazem uma
+divisão binária básica do pulso. Dois sinais, um com 2 pulsos e outro com 3 pulsos,
+ambos com os impulsos igualmente espaçados na duração do pulso, resultam na manutenção
 do pulso, com uma marcação rítmica usada tanto em divisões binárias quanto ternárias em diversos
-estilos de música étnica e tradicional~\cite{Gramani}. 
+estilos de música étnica e tradicional.\cite{Gramani} 
 Os próprios valores absolutos destes impulsos resultam em proporções entre as amplitudes dos sinais
 convoluídos.
-Exploramos este recurso da métrica
-estabelecida pela convolução com impulsos na sequência musical \emph{trenzinho de caipiras impulsivos}. Os recursos explorados incluem a criação de amálgamas sonoros provenientes da síntese granular e esta montagem é já uma ponte para a próxima sessão. Veja especialmente a figura~\ref{fig:pulsoSubAgl}.
+Este recurso da métrica
+estabelecida pela convolução com impulsos é explorado na montagem \emph{Trenzinho de caipiras impulsivos}. Os recursos explorados incluem a criação de amálgamas sonoros provenientes da síntese granular e esta montagem é já uma ponte para a próxima sessão. Veja especialmente a figura~\ref{fig:pulsoSubAgl}. O código da peça está na seção~\ref{ap:trenzinho} e disponível como parte da toolbox \massa.
 
-Já com os filtros as possibilidades explodem ainda mais vertiginosamente. Pode-se convoluir um sinal para reverberá-lo, para
-remover algum ruído, para gerar distorções ou para tratamento com intuito estético mesmo (soa melhor por algum motivo). Por exemplo,
-com a aplicação de um filtro passa banda em que deixamos passar somente entre $1kHz$ e $3kHz$, geramos um som
-que parece de telefone ou de televisão antiga. Ao remover com alguma precisão somente
-a frequência de oscilação da rede elétrica (usualmente $50Hz$ ou $60Hz$) e harmônicas, podemos remover
-ruídos introduzidos pelos equipamentos de áudio utilizados. Um uso mais incrementado
-e propriamente musical seria realizar filtragens em bandas específicas e usar estas bandas
+Com os filtros as possibilidades explodem ainda mais vertiginosamente. Pode-se convoluir um sinal para reverberá-lo, para
+remover algum ruído, para gerar distorções ou para tratamento com intuito estético mesmo. Por exemplo,
+a aplicação de um filtro passa banda em que deixa passar somente entre $1kHz$ e $3kHz$, resulta em sons
+que parecem de telefone ou de televisão antiga. Ao remover com alguma precisão somente
+a frequência de oscilação da rede elétrica (usualmente $50Hz$ ou $60Hz$) e harmônicas, pode-se remover
+ruídos introduzidos por equipamentos de áudio.
+Um uso mais incrementado
+e propriamente musical é realizar filtragens em bandas específicas e usar estas bandas
 pré-estabelecidas como um parâmetro adicional das notas.
 
-Um recurso considerado musicalmente forte pelo resultado que se aproxima dos instrumentos tradicionais é a filtragem dependente do tempo~\cite{Roederer}. Cascatas
-destes filtros podem realizar filtragens complexas e mais precisas. A montagem \emph{ruídos e faixas} explora
-este recursos, realizando filtragens em ruídos diversos e síntese de ruídos diversos.
+Inspirado em nos instrumentos tradicionais, pode-se aplicar uma a filtragem dependente do tempo~\cite{Roederer}.
+Cascatas
+destes filtros podem realizar filtragens complexas e mais precisas. A montagem \emph{Ruidosa faixa} explora
+este recursos, realizando filtragens em ruídos diversos e síntese de ruídos diversos. O código da peça está no Apêndice~\ref{ap:ruidosa} e disponível online como parte da \massa.
 
 Estes recursos todos utilizados em conjunto podem incindir na realização de um efeito chamado \emph{chorus}. A
 exemplo do que ocorre com um coro de cantores, neste efeito o som é realizado com diversas pequenas modificações,
 potencialmente aleatórias, em paramêtros como frequência central, presença (ou ausência) de vibrato
 e tremolo e suas características, equalizações, volume etc. Para o resultado final, estas versões do som
 inicial são então mixadas (ver equação \ref{eq:mixagem}). A peça \emph{Chorus infantil} realiza chorus de formas
-diferentes em sons diferentes.
+diferentes em sons diferentes e seu código está no Apêndice~\ref{ap:chorus}. A \emph{toolbox} \massa\ disponibiliza online este \emph{script}.
 
-Para terminar esta sessão com algo simples, vamos descrever a envoltória de volume chamada ADSR (sigla de \emph{Atack-Decay-Sustain-Release}). A envoltória ADSR possui numerosas implementações em sintetizadores de diversas procedências. Uma implementação pioneira pode ser encontrada no Hammond Novachord de 1938~\cite{ADSR} e algumas variantes são citadas logo abaixo.
+A variação de volume no decorrer de um som é crucial para nossa percepção de timbre. A envoltória de volume chamada ADSR (sigla de \emph{Atack-Decay-Sustain-Release}) possui numerosas implementações em sintetizadores em hardware e software. Uma implementação pioneira pode ser encontrada no Hammond Novachord de 1938 e algumas variantes são citadas logo abaixo.\cite{ADSR}
 
 A envoltória ADSR canônica é caracterizada por 4 parâmetros: duração do ataque (tempo que o som demora para atingir seu volume máximo), duração do decaimento (segue ao ataque imediatamente), nível de volume de sustentação (em que o volume fica estável após o decaimento) e duração de soltura (após a sustentação, nesta duração o volume decai a zero).
 Note que o tempo de sustentação não é especificado, pois é resultante da duração em si menos os tempos de ataque, decaimento e soltura.
@@ -1379,7 +1374,7 @@ como fração da amplitude máxima, em uma sequência sonora $t_i$ qualquer pode
 \end{split}
 \end{equation}
 
-Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)$ e $\xi$ um valor bastante pequeno que torne o \emph{fade in} e o \emph{fade out} satisfatórios, e.g. $\xi=10^{\frac{-120}{20}}=10^{-6}\;$ ou $\;\xi=10^{\frac{-180}{20}}=10^{-9}$.
+Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)$ e $\xi$ um valor pequeno que torne o \emph{fade in} e o \emph{fade out} satisfatórios, e.g. $\xi=10^{\frac{-80}{20}}=10^{-4}\;$ ou $\;\xi=10^{\frac{-40}{20}}=10^{-2}$. Quanto menor for $\xi$ mais lento é o face, a exemplo de $\alpha$ da figura~\ref{fig:transicao} .
 
 \begin{equation}
 \left\{t_i^{ADSR}\right\}_0^{\Lambda-1} =\{t_i . a_i\}_0^{\Lambda-1}
@@ -1393,10 +1388,10 @@ Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)$ 
         \label{fig:adsr}
 
 
-Podemos ver esquematicamente esta envoltória na figura~\ref{fig:adsr}. O envelope ADSR descrito é
-uma implementação clássica e paradigmática que comporta variações diversas. Por exemplo,
+Esquematicamente, a figura~\ref{fig:adsr} mostra esta envoltória ADSR, 
+uma implementação clássica que comporta variações diversas. Por exemplo,
 entre o ataque e o decaimento, pode-se adicionar uma partição adicional em que a amplitude
-máxima perdura. Outro exemplo comum é a elaboração de traçados mais elaborados para o
+máxima perdura. Outro exemplo comum é o uso de traçados mais elaborados para o
 ataque ou para o decaimento. A montagem musical \emph{ADa e SaRa} explora diversas destas
 configurações da envoltória ADSR.
 
