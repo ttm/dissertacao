@@ -1400,26 +1400,28 @@ configurações da envoltória ADSR.
 \clearpage
 \section{Organização de notas musicais em música}\label{notasMusica}
 Seja $ S_j=\{T_{i,1},T_{i,2}...T_{i,N}\} =\bigcup_{j \in [1,N]} T_{i,j} $ uma sequência de $N$ eventos
-musicais. Para simplificar, sejam notas musicais estes eventos musicais.
-Considerando $S$ uma estrutura musical, existem diversas técnicas
-para tornar estas estruturas interessantes e agradáveis. 	
+musicais. Para simplificar, sejam notas estes eventos musicais
+e $S_j$ uma estrutura musical. Esta seção é didicada às técnicas
+que torna $S_j$ interessante e agradável na audição.
 
-Os elementos de $S_j$ podem ser sobrepostos por mixagem (veja equação~\ref{eq:mixagem} e a figura~\ref{fig:mixagem}) formando intervalos e acordes ou concatenados (veja equação~\ref{eq:concatenacao} e a figura~\ref{fig:concatenacao}) formando sequências melódicas e ritmos.
+Os elementos de $S_j$ podem ser sobrepostos por mixagem, como na equação~\ref{eq:mixagem} e figura~\ref{fig:mixagem}, formando intervalos e acordes. Resultam no 'pensamento vertical' da música. A concatenação de $S_j$, como na equação~\ref{eq:concatenacao} e na figura~\ref{fig:concatenacao}, forma sequências melódicas e ritmos, associados ao 'pensamento horizontal' na música. A frequência fundamental $f$ e o momento de início (ataque) são as características mais importantes dos elementos de $S_j$, possibilitando, grosso modo, a preseça de músicas de alturas (harmonia e melodia) e a preseça da métrica temporal e ritmos, respectivamente.
+
+
 
 \subsection{Afinação, intervalos, escalas e acordes}
-Quando dobramos a frequência, temos uma oitava ascendente ($f=2f_0$).
+O dobro da frequência é uma oitava ascendente ($f=2f_0$).
 Doze semitons equidistantes para o ouvido formam uma oitava,
-portanto, se $f=2^{\frac{1}{12}}f_0$, temos um semitom entre $f_0$
+portanto, se $f=2^{\frac{1}{12}}f_0$, há um semitom entre $f_0$
 e $f$.
-O fator $\varepsilon=2^{\frac{1}{12}}$, equivalente a um semitom, forma uma grade de notas
-no espectro audível, em que as frequências fundamentais possíveis
+O fator $\varepsilon=2^{\frac{1}{12}}$, de um semitom, forma uma grade de notas
+no espectro audível. Fixada uma frequência $f$, as frequências fundamentais possíveis
 estão separadas por intervalos múltiplos de $\varepsilon$.
 Esta precisão absoluta é característica de implementações
 computacionais, pois os intrumentos reais possuem desvios destas frequências para melhor compatibilizar os harmônicos
-de suas notas~\cite{Roederer}.
+de suas notas.\cite{Roederer}
 
 Esta divisão da oitava em doze notas é o cânone da música ocidental clássica,
-além de usos cerimoniais/religiosos e étnicos~\cite{Wisnick}. Os intervalos entre quaisquer duas notas da escala de 12 notas em que se subdivide a oitava possuem nomes específicos. Notados em proporções de $\varepsilon$ entre as notas (i.e. um semitom), estes intervalos são, junto a suas notações abreviadas usuais:
+além de incindir em usos cerimoniais/religiosos e étnicos.\cite{Wisnick} Os intervalos entre quaisquer dois graus da escala de 12 notas. Notados em proporções de $\varepsilon$ entre as notas (i.e. um semitom), estes intervalos são, junto a suas notações abreviadas usuais:
 
 \begin{equation}
 \begin{split}
@@ -1439,27 +1441,26 @@ além de usos cerimoniais/religiosos e étnicos~\cite{Wisnick}. Os intervalos en
 \end{split}
 \end{equation}
 
-Nesta nomenclatura (um dos padrões presentes no Brasil~\cite{Lacerda}),
+Nesta nomenclatura, um dos padrões presentes no Brasil,
 um intervalo justo (uníssono, quarta, quinta e oitava), ou um intervalo maior (segunda maior, terça maior, sexta maior ou sétima maior), acrescido de um semitom, resulta em um intervalo aumentado. Um intervalo justo, ou um intervalo menor (segunda menor, terça menor, sexta menor ou sétima menor), decrescido de um semitom, resulta em um intervalo diminuto. Um intervalo maior, descrescido de um semitom,
 resulta em um intervalo menor. Um intervalo menor, acrescido de um semitom, resulta em um intervalo maior. Um intervalo aumentado, acrescido de um semitom, resulta em um intervalo 'mais que aumentado' e um intervalo diminuto, descrescido de um semitom, resulta em um intervalo 'mais que diminuto'\footnote{A
- necessidade da nomenclatura, notação e uso de intervalos aumentados/diminutos e mais que aumentados/diminutos é consequência do sistema tonal, em que os graus da escala (veja abaixo) são realmente notas diferentes, com funções e usos específicos. Assim, em uma escala de dó bemol maior, a tônica - primeiro grau - é dó bemol, não si, e a sensível - sétimo grau - é si bemol, não lá sustenido ou dó duplo bemol.}. 
+ necessidade da nomenclatura, notação e uso de intervalos aumentados/diminutos e mais que aumentados/diminutos é consequência do sistema tonal, em que os graus da escala (veja abaixo) são realmente notas diferentes, com funções e usos específicos. Assim, em uma escala de dó bemol maior, a tônica - primeiro grau - é dó bemol, não si, e a sensível - sétimo grau - é si bemol, não lá sustenido ou dó duplo bemol.}.\cite{Lacerda} 
 
-Caso as notas sejam dispostas sequencialmente, o intervalo é dito melódico. A ordem das notas, primeiro a nota mais grave ou a mais aguda, resulta em um intervalo ascendente ou descendente, respectivamente. 
-Passando a nota mais grave para a oitava acima, ou a nota mais aguda uma oitava para baixo, invertemos o intervalo. Um pouco de exploração do sistema revela que um intervalo, somado à sua inversão, resulta 9. Um intervalo maior invertido resulta em um intervalo menor e vice-versa. Um intervalo aumentado invertido resulta diminuto e vice-versa, assim como o mais que aumentado resulta em mais que diminuto e vice-versa. Um intervalo justo invertido resulta igualmente justo.
+Caso as notas sejam dispostas sequencialmente, o intervalo é melódico. A ordem das notas, primeiro a nota mais grave ou a mais aguda, resulta em um intervalo ascendente ou descendente, respectivamente. 
+Passando a nota mais grave para a oitava acima, ou a nota mais aguda uma oitava para baixo, o intervalo é invertido. Um intervalo, somado à sua inversão, resulta 9. Um intervalo maior invertido resulta em um intervalo menor e vice-versa. Um intervalo aumentado invertido resulta diminuto e vice-versa, assim como o mais que aumentado resulta em mais que diminuto e vice-versa. Um intervalo justo invertido resulta igualmente justo.
 
 
-Caso as notas soem simultaneamente, o intervalo é dito harmônico. Os intervalos de uníssono, oitava e quinta justa são consonâncias perfeitas. As terças e sextas são consideradas consonancias imperfeitas. As segundas, sétimas e trítonos são considerados dissonantes. Esta classificação não é absoluta. A discrepância mais comum é com relação à quarta justa, que é tida como consonante ou dissonante de acordo com o contexto e arcabouço teórico. Podemos considerá-la consonante sem muitos riscos. A sétima menor por vezes é considerada consonante, assim como algumas culturas entoam o trítono como intervalo consonante~\cite{Roederer,Wisnick}.
+Caso as notas soem simultaneamente, o intervalo é harmônico. Os intervalos de uníssono, oitava e quinta justa são consonâncias perfeitas. As terças e sextas são consonancias imperfeitas. As segundas, sétimas e trítonos são considerados dissonantes. Esta classificação não é absoluta. A discrepância mais comum é com relação à quarta justa, que é tida como consonante perfeita ou dissonante de acordo com o contexto e arcabouço teórico. Pode-se considerá-la consonante como regra geral. A sétima menor por vezes é considerada consonante, assim como algumas culturas entoam o trítono como intervalo consonante.\cite{Roederer,Wisnick}
 
 Um intervalo maior que a oitava é classificado como intervalo composto e leva o nome do intervalo entre as mesmas notas, mas na mesma oitava.
 
-Este arcabouço resume com exatidão a teoria tradicional dos intervalos musicais~\cite{Lacerda} e nos será útil adiante. Dispomos esta nomenclatura também por completude desta exposição, não há necessidade alguma de decorar estes nomes ou apreender estes detalhes todos enquanto não há uso efetivo. A montagem \emph{Intervalos entre alturas} explora estes intervalos de formas isoladas e diversas.
+Este arcabouço resume com exatidão a teoria tradicional dos intervalos musicais.\cite{Lacerda} A montagem \emph{Intervalos entre alturas} explora estes intervalos de formas isoladas e diversas. O código está no Apêndice~\ref{ap:intervalos} e disponível online com a \emph{toolbox} \massa.
 
 
 Na escala cromática
-de temperamento igual, temos 5 divisões perfeitamente simétricas, consideradas
-escalas pelas simetrias internas e usos fáceis que disso resultam. Descrevamos
-as escalas como sequências de inteiros aos quais $\varepsilon$ é elevado, resultando
-nos fatores a serem multiplicados por $f_0$ para obtenção dos graus de cada escala:
+de temperamento igual, existem 5 divisões perfeitamente simétricas, consideradas
+escalas pelas simetrias internas e usos fáceis que disso resultam. Como sequências de inteiros aos quais $\varepsilon$ é elevado
+para multiplicar $f_0$, as escalas são:
 
 \begin{equation}\label{escSim}
 \begin{split}
@@ -1475,13 +1476,11 @@ Assim, a terceira nota da escala em tons inteiros com $f_0=200Hz$
 é $f_3=\varepsilon^{e_3^t} . f_0 = 2^{\frac{6}{12}} . 200 \approxeq 282.843 Hz$. Estas
 'escalas' ou padrões, geram estruturas estáveis pelas simetrias internas, e podem ser
 repetidas de forma eficiênte e sustentada. Discutiremos mais sobre simetrias e voltaremos
-a estas divisões da oitava por igual. A montagem \emph{Cristais} expõe cada uma destas escalas tanto melódica quanto harmonicamente.
+a estas divisões da oitava por igual. A montagem \emph{Cristais} expõe cada uma destas escalas tanto melódica quanto harmonicamente e seu código está no Apêndice~\ref{ap:cristais}. Como parte da \massa, este código é disponibilizado online.
 
-As escalas diatônicas também são facilmente especificadas, assim como
-as escalas tonais maior e menor:
+As escalas diatônicas:
 
-
-\begin{equation}
+\begin{equation}\label{eq:escalas}
 \begin{split}
 \text{menor natural} = \text{modo eólico} & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
 \text{modo lócrio} & = E_i^{mlo} = \{e_i^{mlo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
@@ -1493,9 +1492,9 @@ as escalas tonais maior e menor:
 \end{split}
 \end{equation}
 
-Observe que nas escalas diatônicas só estão presentes intervalos maiores, menores e justos dentre quaisquer duas notas escohidas. Única exceção para o trítono, que se apresenta como quarta aumenta ou quinta diminuta, dependendo da nota mais grave que se leva em consideração.
+só possuem intervalos maiores, menores e justos. Única exceção para o trítono, que se apresenta como quarta aumenta ou quinta diminuta.
 
-Todas as escalas diatônicas (salvo as menores harmônica e melódica)
+Todas as escalas diatônicas
 seguem o padrão de intervalos sucessivos
 tom, tom, semitom, tom, tom, tom, semitom. De forma
 que podemos escrever:
@@ -1508,16 +1507,13 @@ e_i & =d_{(i+\kappa)\%7}+e_{i-1} \quad para \;\;  i > 0
 \end{equation}
 
 Com $\kappa \in \mathbb{N}$. Para cada
-modo, temos um único valor de $\kappa$ em qualquer intervalo $\in [x,x+6], \forall x \in \mathbb{N}$.
+modo, há um único valor de $\kappa$ em qualquer intervalo $\in [x,x+6], \forall x \in \mathbb{N}$.
 
-
-Por exemplo, consideremos o modo lídio. Uma breve
-inspeção revela que $e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}$. Temos, portanto, $\kappa=2$
+Por exemplo, uma breve
+inspeção revela que $e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}$. Portanto, $\kappa=2$
 para o modo lídio. 
-Várias outras escalas e sequências são facilmente representadas desta forma. Em especial,
-lembramos aqui das pentatônicas e os modos de transposição limitados de messiaen~\cite{Messiaen}.
 
-A escala menor se apresenta em duas formas adicionais, dependentes do uso, melódico ou harmônico:
+A escala menor possui duas formas adicionais, melódica e harmônica:
 
 \begin{equation}
 \begin{split}
@@ -1527,11 +1523,12 @@ A escala menor se apresenta em duas formas adicionais, dependentes do uso, meló
 \end{split}
 \end{equation}
 
-e podem ser utilizadas livremente, embora tradicionamente se associem aos usos melódicos ou harmônicos sugeridos pelos seus nomes. Observe o traçado ascendente e descendente da escala menor melódica. Isso é necessário para que se apresente a sensível (sétimo e último grau separado por um semitom da oitava) no trajeto ascendente, o que não é necessário quando descende, retomando a forma natural. Já a harmônica apresenta a sensível, mas não evita o intervalo de segunda aumentada entre o sexto e sétimo graus, pois não precisa contemplar trajetória melódica, apenas apresentar a sensível tão cara ao sistema tonal~\cite{Harmonia}.
+O traçado ascendente e descendente da escala menor melódica é necessário para a presença da sensível (sétimo e último grau separado por um semitom da oitava) no trajeto ascendente, o que não é necessário quando descende, retomando a forma natural. Já a escala harmônica apresenta a sensível, mas não evita o intervalo de segunda aumentada entre o sexto e sétimo graus, pois não precisa contemplar trajetória melódica, apenas apresentar a sensível tão cara ao sistema tonal (a sensível tende à tônica, afirmando-a).\cite{Harmonia}
 
-A ocorrência simultânea de notas é observada musicalmente em grande medida
-através dos acordes. Destes, a base na musica tonal são as tríades, que consistem em duas terças sucessivas. Listamos os acordes triádicos sem inversão e na forma fechada\footnote{Um acorde invertido é aquele que apresenta no grave outra nota que não a fundamental. A posição fechada é aquela em que não cabe nota alguma do acorde entre quaisquer duas notas consecutivas~\cite{Lacerda}.},
-com a fundamental em $0$:
+Outras escalas podem ser representadas da mesma forma, como as pentatônicas e os modos de transposição limitados de messiaen.\cite{Messiaen}
+
+A ocorrência simultânea de notas é observada através dos acordes. Destes, a base na musica tonal são as tríades. Estas constituem-se de duas terças sucessivas, em 3 notas: fundamental, terça e quinta. Os acordes triádicos sem inversão e na forma fechada\footnote{Um acorde invertido é aquele que apresenta no grave outra nota que não a fundamental. A posição fechada é aquela em que não cabe nota alguma do acorde entre quaisquer duas notas consecutivas.\cite{Lacerda}},
+com a fundamental em $0$ são escritos;
 
 \begin{equation}\label{triades}
 \begin{split}
@@ -1544,46 +1541,56 @@ com a fundamental em $0$:
 
 Basta acrescentar $10$ ao final para ter o acorde (uma tétrade)
 com sétima menor ou $11$ para resultar em sétima maior. As inversões e posições abertas
-podem ser obtidas contando o número de semitons de cada nota a partir da nota mais grave.
+podem ser obtidas contando o número de semitons de cada nota a partir da nota mais grave ou somando $12$ à fundamental, terça ou quinta.
 
-Para a realização de microtonalidade\footnote{O uso explícito de
-intervalos menores que o semitom é chamado microtonalismo. Isso pode ter usos
-ornamentais ou estruturantes da música em si. A
-divisão da oitava em $12$ notas igualmente espaçadas possui fundamentos físicos mas
+Para a realização de microtonalidade\footnote{O uso de
+intervalos menores que o semitom é chamado microtonalidade e tem usos
+ornamentais e estruturantes da música. A
+divisão da oitava em $12$ notas possui fundamentos físicos mas
 não deixa de ser uma \emph{convenção}
-(reconhecidamente adotada pela música erudita clássica de origem européia). Outras afinações
-são também incidentes na manifestação musical humana, para citar somente um exemplo, a
+adotada inclusive pela música erudita clássica de origem européia. Outras afinações
+são incidentes. Para citar somente um exemplo, a
 música tradicional tailandesa utiliza uma divisão da oitava em sete notas igualmente
 espaçadas ($\varepsilon=2^{\frac{1}{7}}$),
 resultando em intervalos que pouco se assemelham aos intervalos presentes na
-divisão de doze notas~\cite{Wisnick}.},
-podemos usar reais não inteiros
+divisão de doze notas.\cite{Wisnick}},
+pode-se usar reais não inteiros
 para descrever a sequência de alturas ou modificar o fator $\varepsilon$
-e usar inteiros ainda. Por exemplo, uma afinação muito
-interessante por contemplar a série harmônica de forma consideravelmente precisa,
-é proposta na forma da divisão da oitava em $53$ notas, de forma
-que $\varepsilon=2^{\frac{1}{53}}$~\cite{microtonalidade}. As sequências de alturas
-continuam sendo compostas por inteiros com o novo $\varepsilon$.
-Note que se $S_i$ é uma sequência de alturas $s_i$ e mudamos de $\varepsilon_1$ para
+e continuar usando inteiros. Por exemplo, uma afinação
+bastante próxima da série harmônica em si,
+é proposta na forma da divisão da oitava em $53$ notas:
+$\varepsilon=2^{\frac{1}{53}}$.\cite{microtonalidade}
+As notas
+continuam inteiras com o novo $\varepsilon$.
+Note que se $S_i$ é uma sequência de alturas $s_i$ e mapeamos uma sequência em $\varepsilon_1$ para
 $\varepsilon_2$,
-resultamos em uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}$.
+resultamos em uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}$. A montagem musical \emph{Micro tom} explora recursos microtonais e seu código está no Apêndice~\ref{ap:micro}, assim como parte da \massa\ online.
 
 
 \subsection{Rudimentos de harmonia}
 
-Abordaremos de forma bastante resumida e voltada para nossas aplicações
-computacionais a harmonia tonal. Para harmonia modal e atonal recomendamos~\cite{harmEXT}.
+Acordes como os listados em~\ref{triades} formados em cada
+grau das escalas em~\ref{eq:escalas} formam campos harmônicos
+das escalas. As progressões de acordes utilizadas e regras para seus encadeamentos é o objeto de estudo da harmonia musical.
+Mesmo uma melodia monofônica gera campos harmônicos.
 
-Na chamada harmonia tradicional, as escalas maior e menor são usadas
-de base para tríades feitas em cada grau da escala com duas terças consecutivas.
-É conveniente, assim, notar os graus da escala pelos números da seguinte forma: $\hat{1},\hat{2},\hat{3},\hat{4},\hat{5},\hat{6},\hat{7}$.
+Não respeitar 
+os encadeamentos básicos do sistema tonal resulta
+em harmonias modal e atonal. Caso
+as notas coincidam com algum modo diatônico~\ref{eq:escalas}
+ou sejam em número pequeno, podemos dizer que a
+harmonia é modal. Caso contrário, atonal.\cite{harmEXT}.
 
-Assim, as tríades formadas em cada grau é de fácil notação $\hat{1},\hat{3},\hat{5}$ é o acorde de primeiro grau, formado pelo primeiro grau da escala e central para uma música tonal. Em segundo lugar temos o acorde do quinto grau $\hat{5},\hat{7},\hat{2}$ ($\hat{7}$ sustenido no caso da escala menor) e em terceiro o do quarto grau $\hat{4},\hat{6},\hat{1}$. Depois consideramos as outras tríades todas. Ao longo da história, formas diferentes de lidar com estas tríades foram desenvolvidas. Estas convenções e técnicas apresentadas ao longo da história é o objeto de estudo da harmonia tradicional~\cite{Harmonia}.
+Na harmonia tonal tradicional,
+as escalas maior e menor são
+base para tríades em cada grau 
+da escala: $\hat{1},\hat{2},\hat{3},\hat{4},\hat{5},\hat{6},\hat{7}$.
+Pode-se anotar $\hat{1},\hat{3},\hat{5}$ para o acorde do primeiro grau, formado pelo primeiro grau da escala e central para uma música tonal. Secundários, o acorde do quinto grau $\hat{5},\hat{7},\hat{2}$ ($\hat{7}$ sustenido no caso da escala menor) e o acorde do quarto grau $\hat{4},\hat{6},\hat{1}$. Depois são considerados os outros graus. As convenções e técnicas apresentadas ao longo da história é o objeto de estudo da harmonia tradicional.\cite{Harmonia}
 
-A chamada harmonia funcional atribui funções a estes três acordes centrais e busca compreender seus usos através destas funções. O acorde formado sobre o primeiro grau é chamado de acorde de tônica e tem a função de manter um centro e um "chão" na música. O formado sobre o quinto grau é chamado de acorde de dominante e tem a função de tender à tônica, direcionar a música para ela. A tríade formada sobre o quarto grau é chamada de subdominante e tem a função de se distanciar da tônica.
+A chamada harmonia funcional atribui funções a estes três acordes centrais e busca compreender seus usos através destas funções. O acorde formado sobre o primeiro grau é o acorde de tônica e tem a função de manter um centro, um "chão" na música. O acorde formado sobre o quinto grau é o acorde de dominante e tem a função de tender à tônica, direcionar a música para ela. A tríade formada sobre o quarto grau é a subdominante e tem a função de se distanciar da tônica. O sistema se baseia em afirmar a tônica através de encadeamentos tônica-dominante-tônica expandidos com outros acordes das formas mais diversas.
 
 
-A estes três acordes, são associadas as outras tríades. Na escala maior, a associada relativa (tônica relativa, subdominante relativa e dominante relativa) é a tríade formada uma terça abaixo e a associada anti-relativa (tônica anti-relativa, subdominante anti-relativa e a dominante anti-relativa) é a tríade formada na terça acima. Na escala menor ocorre o mesmo, mas a tríade a uma terça abaixo é chamada anti-relativa e a tríade a uma terça acima é chamada de relativa. As exatas funções e efeitos musicais destes acordes é motivo de bastante controvérsia. Dispomos da tabela~\ref{tab:harmonia} esta relação entre as tríades formadas em cada grau da escala.
+A estes três acordes, são associadas as outras tríades. Na escala maior, a associada relativa (tônica relativa, subdominante relativa e dominante relativa) é a tríade formada uma terça abaixo e a associada anti-relativa (tônica anti-relativa, subdominante anti-relativa e a dominante anti-relativa) é a tríade formada na terça acima. Na escala menor ocorre o mesmo, mas a tríade a uma terça abaixo é chamada anti-relativa e a tríade a uma terça acima é chamada de relativa. As exatas funções e efeitos musicais destes acordes é motivo de bastante controvérsia. A tabela~\ref{tab:harmonia} mostra a relação entre as tríades formadas em cada grau da escala.
 
 \begin{table}[htpq!]
 \centering
@@ -1597,36 +1604,28 @@ $\hat{2},\hat{4},\hat{6}$ & subdominante: $\hat{4},\hat{6},\hat{1}$ & $\hat{6},\
 \label{tab:harmonia}
 \end{table}
 
+A dominante anti-relativa forma um acorde menor, exigindo a alteração do quarto grau um semitom para cima $\hat{7}\#$. O acorde diminuto $\hat{7},\hat{2},\hat{4}$, geralmente é considerado uma 'dominante com sétima e sem fundamental'.\cite{Koellheuteur}
+
 Na escala menor, a relativa é a tríade iniciada uma terça acima e a antirelativa uma terça abaixo,
 ou seja, se invertem com relação à tabela~\ref{tab:harmonia}. Outro detalhe destas tríades em modo
 menor é a alteração do $\hat{7}$ um semitom acima para que fique somente a um semitom da tônica,
-permitindo a dominante de fato (que deve ser maior e tender à tônica). Assim, a dominante é sempre maior, tanto em escalas maior ou menor. Por este motivo, a dominante relativa permanece a uma terça abaixo e a antirelativa a uma terça acima na escala menor.
-
-A dominante anti-relativa forma um acorde menor, exigindo a alteração do quarto grau um semitom para cima $\hat{7}\#$. O acorde diminuto $\hat{7},\hat{2},\hat{4}$, geralmente é considerado uma 'dominante com sétima e sem fundamental'~\cite{Koellheuteur}.
+permitindo a dominante (que deve ser maior e tender à tônica). Assim, a dominante é sempre maior, tanto em escalas maior ou menor. Por este motivo, a dominante relativa permanece a uma terça abaixo e a antirelativa a uma terça acima na escala menor.
 
 Cada um destes acordes pode ser confirmado e se desenvolver com uma dominante e uma subdominante individuais (acorde com base na tríade formada a uma quinta acima e uma quinta abaixo respectivamente).
 
-Por último, vale apontar as medianas\footnote{Também chamadas de medianas cromáticas.}, que são acordes formados também a uma terça, mas com alterações com relação ao acorde de origem. Caso haja duas alterações cromáticas, i.e. duas notas alteradas por um semitom cada com relação ao acorde original, a mediana é chamada 'duplamente cromática'. Esta relação entre acordes é considerada de tonalismo avançado, por vezes até de dissolução do tonalismo, e tem efeitos fortes e marcantes. Foi muito utilizada do final do romantismo em diante por Wagner, Lizt, Richard Strauss dentre outros e é bastante simples de ser realizada~\cite{Harmonia,Schachter}.
+As medianas\footnote{Também chamadas de medianas cromáticas.}, são acordes formados também a uma terça, mas com alterações com relação ao acorde de origem. Caso haja duas alterações cromáticas, i.e. duas notas alteradas por um semitom cada com relação ao acorde original, a mediana é chamada 'duplamente cromática'. Esta relação entre acordes é considerada de tonalismo avançado, por vezes até de dissolução do tonalismo, e tem efeitos fortes e marcantes embora perfeitamente consonantes. As medianas foram utilizadas a partir do final do romantismo por Wagner, Lizt, Richard Strauss dentre outros e é bastante simples de ser realizada.\cite{Harmonia,Schachter}
 
-As modulações e sutilezas de encaminhamento de vozes podem ser encontradas em títulos diversos como os citados acima e constituem uma discussão longa e ainda presente. Apontamos somente que, para a condução de diferentes vozes, os movimentos que levam a notas vizinhas costumam soar mais coerentes, a importância maior da voz mais aguda e mais grave (e menor das vozes internas) e que as modulações se dão principalmente através de uma dominante individual que afirma a mudança da tônica e através de alterações cromáticas e enharmonias (mudança de função de um acorde). A importância da dominante torna ela o alvo primário e natural das modulações, resultando no circulo das quintas~\cite{Harmonia,Schachter,Koellheuteur,Harmony}.
+A modulação é a troca de tonalidade e se dão principalmente através de: uma dominante individual que afirma a mudança da tônica; alterações cromáticas para um acorde da nova tonalidade; e enharmonia que é a mudança de função de um acorde com as mesmas notas. A importância da dominante torna ela o pivô natural das modulações, resultando no circulo das quintas.\cite{Harmonia,Schachter,Koellheuteur,Harmony}
 
-A montagem musical \emph{Acorde cedo} explora estas relações entre acordes.
+A montagem musical \emph{Acorde cedo} explora estas relações entre acordes. Seu código está disponível do Apêndice~\ref{ap:acorde} e online como parte da \massa.\cite{MASSA}
 
-\subsection{Rudimentos de contraponto}
+
+\subsection{Contraponto}
+Na condução de diferentes vozes, os movimentos a notas vizinhas soam mais coerentes. A importância melódica recai sobre as vozes mais aguda e mais grave.
 
 A condução de linhas melódicas simultâneas, chamadas vozes,
-é matéria do campo de estudo chamado contraponto. A nossa bibliografia aponta títulos para estudos específicos, geralmente percorrendo formas sistemáticas de condução de vozes e desembocando em gêneros escolásticos como cânones, invenções e fugas. É possível resumir
-as regras principais do contraponto e é dito que o próprio Beethoven - dentre outros - esboçou uma síntese.
-
-Como
-resumo de nossa bibliografia, apontamos que as dissonâncias só podem ser atingidas por movimento de
-grau conjunto (notas vizinhas) ou resolvidas
-imediatamente por movimento descendente de grau conjunto da voz superior. Além disso,
-as consonâncias perfeitas só devem ser atacadas por movimento contrário ou oblíquo entre
-as vozes. O movimento paralelo só é permitido entre consonâncias imperfeitas e não mais
-do que 3 vezes consecutivas~\cite{Fux,Tragtenberg,SchoenbergContra}.
-Estas regras tem como um dos objetivos principais, preservar a independência entre as vozes. Dispomos os movimentos tidos como base para o contraponto na figura~\ref{fig:movContraponto}. Observe o movimento paralelo como um caso específico do movimento oblíquo.
-
+é matéria do campo de estudo chamado contraponto. A bibliografia
+geralmente percorre formas sistemáticas de condução de vozes e desemboca em gêneros escolásticos como cânones, invenções e fugas. É possível resumir regras principais do contraponto e é dito que o próprio Beethoven - dentre outros - esboçou uma síntese deste tipo.
 
 \begin{figure}[h!]
     \centering
@@ -1637,13 +1636,28 @@ Estas regras tem como um dos objetivos principais, preservar a independência en
 
 
 
+O propósito do contraponto é conduzir as vozes 
+de forma que soem independentes. Crucial para isso
+são as movimentações relativas,
+categorizadas em: movimento direto, oblíquo e contrário
+conforme a figura~\ref{fig:movContraponto}. O movimento paralelo
+é um tipo de movimento oblíquo.
+A regra de ouro é cuidar que os movimentos diretos
+não resulte em consonância perfeita. O movimento paralelo
+deve só ocorrer entre consonâncias imperfeitas e não mais
+do que três vezes consecutivas. As dissonâncias podem
+ser não admitidas ou usadas seguidas 
+e precedidas de consonâncias em graus conjuntos.\cite{Fux,Tragtenberg,SchoenbergContra}
+
+Estas regras foram usadas na montagem \emph{Conta ponto}, o código está no Apêndice~\ref{ap:conta} e disponível online junto à \massa.
+
 
 \subsection{Ritmo}
-A noção rítmica é dependente de eventos separados por durações~\cite{rythm}. Estes eventos são discerníveis individualmente se separados
-por ao menos $50-63ms$. Para que a separação entre eles possa ser apreciada, ela deve ser ainda um pouco maior,
-por volta de $100ms$~\cite{microsound}. Podemos sumarizar 
-a transição do domínio da apreciação
-de durações como alturas para a apreciação em ritmo da seguinte forma ~\cite{Alfaix, microsound}:
+A noção rítmica é depende de eventos separados por durações.\cite{rythm} Estes eventos podem ser ouvidos individualmente se separados
+por ao menos $50-63ms$. Para que a separação entre eles possa ser apreciada como duração, ela deve ser maior,
+por volta de $100ms$.\cite{microsound} Pode-se sumarizar 
+a transição da
+de durações ouvidas alturas para a apreciação em ritmo da seguinte forma:\cite{Alfaix, microsound}
 
 \begin{center}
 {\tiny 
@@ -1659,28 +1673,28 @@ frequência (Hz) & {\color{Gray} ...} & {\color{Gray} 1/32,}   & {\color{Gray} 1
 }
 \end{center}
 
-A banda de durações marcada como transição está minimizada pois os limites não são bem definidos: a duração específica em que começamos a perceber nitidademente uma frequência fundamental ou uma separação entre as ocorrências é dependente da pessoa e de características do som como conteúdo espectral e intensidade~\cite{microsound,Roederer}.
+A banda de durações marcada como transição está minimizada pois os limites não são bem definidos: a duração em que começa-se a perceber uma frequência fundamental ou uma separação entre as ocorrências é dependente da pessoa e de características do som.\cite{microsound,Roederer}
 
 A métrica rítmica costuma se basear em uma duração básica chamada pulso. O pulso tipicamente
 compreende durações entre $0.25-1.5s$ (respectivamente $240$ e $40BPM$). Na educação musical e estudos cognitivistas,
 costuma-se associar esta gama de frequências de pulsação às durações entre batidas 
-do coração ou entre os passos ao caminhar~\cite{Lacerda,Roederer}.
+do coração ou entre os passos ao caminhar.\cite{Lacerda,Roederer}
 
 O pulso é subdividido em partes iguais e também é 
 repetido sequencialmente. Estas relações (de divisão e de concatenação) costumam
 seguir relações de números inteiros de baixa ordem
 \footnote{Em ordem crescente de ocorrência na música
-escrita e étnica, podemos
-dizer que as divisões do pulso musical e seus agrupamentos
-sequenciais no tempo ocorrem com fatores 2, 4 e 8, depois 3, 6 (dois grupos de 3 ou 3 grupos de 2) e 9 (3 grupos de 3). Por 
-último os primos 5 e 7, completando 1-9.
-Outras métricas são incidentes (divisões ou agrupamentos em 13, 17, etc), mas não são tão usuais e ocorrem principalmente em música experimental e erudita do século XX para frente. As métricas, por mais complexas que pareçam, costumam ser decompostas em divisões como estas~\cite{Gramani,Roederer}.}.
-Uma exposição esquemática está na figura ~\ref{fig:pulsoSubAgl}.
+escrita e étnica,
+as divisões do pulso musical e seus agrupamentos
+sequenciais no tempo ocorrem com fatores 2, 4 e 8, depois 3, 6 (dois grupos de 3 ou 3 grupos de 2) e 9 e 12 (3 e 4 grupos de 3). Por 
+último os primos 5 e 7, completando 1-9 e 12.
+Outras métricas são incidentes (divisões ou agrupamentos em 13, 17, etc), embora menos usuais e principalmente em contextos de música experimental e erudita do século XX e XXI. Por mais complexas que pareçam, as métricas costumam ser composições e decomposições de 1-9 partes iguais.\cite{Gramani,Roederer}.}.
+Uma exposição esquemática está na figura~\ref{fig:pulsoSubAgl}.
 
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\textwidth]{figuras/metricaMusical}
-    \caption{Divisões e aglomerações do pulso musical para estabelecimento de métrica. Ao lado esquerdo temos as divisões da semínima estabelecida como pulso. Ao lado direito temos exemplos de fórmulas de compasso que especificam as mesmas métricas, mas na escala produzida pelas ocorrências e aglomerações do pulso musical.}
+    \caption{Divisões e aglomerações do pulso musical para estabelecimento de métrica. Ao lado esquerdo estão as divisões da semínima estabelecida como pulso. Ao lado direito, fórmulas de compasso que especificam as mesmas métricas, mas na escala das aglomerações do pulso musical.}
         \label{fig:pulsoSubAgl}
 \end{figure}
 
@@ -1689,10 +1703,10 @@ e ocasiões festivas e são chamadas imperfeitas. As relações triádicas
 incidem mais na música ritualística e relacionada ao sagrado
 e são ditas perfeitas.
 
-As unidades mais fortes (acentuadas) são as que consistem nas 'cabeças das divisões'. A cabeça de um tempo ou uma unidade dividida é a primeira parte da subdivisão. Nas divisões binárias (2, 4 e 8 dos casos considerados aqui),
+As unidades mais fortes (acentuadas) são as que consistem nas 'cabeças das divisões'. A cabeça de uma unidade é a primeira parte da subdivisão. Nas divisões binárias (2, 4 e 8 dos casos considerados),
 as unidades consideradas fortes se revesam com as fracas
-(e.g. a divisão em 4 resulta em forte, fraco, (meio) forte, fraco).
-Nas divisões ternárias (3, 6 e 9 dos casos considerados neste escrito)
+(e.g. a divisão em 4 resulta em forte, fraco, meio-forte, fraco).
+Nas divisões ternárias (3, 6 e 9)
 à unidade forte (primeira) se sucedem 2 unidades fracas (e.g. a divisão em 3 resulta em forte, fraco fraco)\footnote{A divisão em 6 é considerada composta
  mas pode ocorrer também como uma divisão binária.
  Uma divisão binária que sofre então uma divisão ternária
@@ -1701,14 +1715,14 @@ A outra forma de ocorrer a divisão em 6 é através de
 uma divisão ternária que sofre então uma divisão binária, resultando em:
 uma unidade forte (subdividido em forte e fraco) e duas unidades fracas (subdivididas em forte e fraco cada).}.
 
-A acentuação em tempos fracos é chamada contratempo, as notas que se iniciam em tempos fracos e cuja duração percorrem tempos fortes são as chamadas síncopas.
+A acentuação em tempo fraco é o contratempo, as notas iniciadas em tempo fraco e cuja duração se prolonga sobre tempos fortes são as síncopas.
 
-As notas podem ocorrer dentro e fora destas divisões (da \emph{'métrica musical'}). Nos casos mais comportados, as notas ocorrem exatamente nestas divisões, com maior incidência para ataques nos tempos fortes.
-Em casos extremos, não se pode perceber a métrica~\cite{Roederer}. Variações (usualmente) bastante pequenas na grade compõem o que apreciamos como interpretação musical e diferenças entre estilos, junto a variações de intensidades, sobreposições de notas e timbre~\cite{Cook}.
+As notas podem ocorrer dentro e fora destas divisões da \emph{'métrica musical'}. Nos casos mais comportados, as notas ocorrem exatamente nestas divisões, com maior incidência em ataques nos tempos fortes.
+Em casos extremos, não se pode perceber a métrica.\cite{Roederer} Variações pequenas na grade ajudam a compor a interpretação musical e diferenças entre estilos.\cite{Cook}
 
-Com o fim de sistematizar e colocar em termos formais, podemos convencionar
+Pode-se convencionar
 o pulso como nível $j=0$ de agrupamento, o nível $j=-1$ 
-é a primeira subdivisão do pulso, o nível $j=1$ como a primeira algomeração dos pulsos e assim por diante. 
+a primeira subdivisão do pulso, o nível $j=1$ a primeira algomeração dos pulsos e assim por diante. 
 
 Desta forma, $P_i^j$ é a $i$-ésima unidade de 
 pulsos no nível $j$ de agrupamento:
@@ -1716,21 +1730,21 @@ $P^0_{10}$ é o décimo pulso, $P^{1}_3$ é a terceira unidade de agrupamento de
 $P^{-1}_2$ é a segunda unidade da subdivisão do pulso.
 
 Especial atenção para
-os limites de $j$ pois as divisões do pulso devem resultar em durações apreciáveis
-como ritmo e também as junções do pulso devem resultar algo apreciável como, no máximo
-do nosso escopo, uma música ou um conjunto coeso de músicas. Dito de outra forma: a duração de $P^{min(j)}_i$, para $\forall \; i$
+os limites de $j$: as divisões do pulso são durações apreciáveis
+como ritmo; as junções do pulso somam, no máximo
+do escopo, uma música ou um conjunto coeso de músicas. Dito de outra forma: a duração de $P^{min(j)}_i$, $\forall \; i$
 é maior que $50ms$ e as durações de $P^{\text{máx}(j)}_i$ \emph{somadas}  em $\forall \; i$
 devem resultar em uma duração menor do que alguns minutos ou, no máximo, poucas horas.
 
 
-Para cada nível $j$ temos alguns índices $i$. Sempre que $i$ soma três 
-(ou múltiplo de três) índices temos uma relação \emph{perfecta}, 
-quando soma dois, quatro ou oito índices temos uma relação \emph{imperfecta} (veja figura~\ref{fig:pulsoSubAgl}.
+Cada nível $j$ possui alguns índices $i$. Sempre que $i$ soma três 
+(ou múltiplo de três) índices há uma relação \emph{perfecta}, 
+quando soma dois, quatro ou oito índices há uma relação \emph{imperfecta}, como na figura~\ref{fig:pulsoSubAgl}.
 
 
-Para especificar qualquer unidade (nota), de uma
-dada sequência musical que tenha métrica,
-podemos utilizar a notação:
+Qualquer unidade (nota), de uma
+dada sequência musical que tenha métrica resulta
+assim especificada:
 
 \begin{equation}
 P^{ \{ j_k \} }_{ \{ i_{k} \}}
@@ -1739,68 +1753,61 @@ P^{ \{ j_k \} }_{ \{ i_{k} \}}
 em que $j_k$ é o nível de aglomeração e $i_k$ é a ordem
 da unidade em si.
 
-Como um exemplo, podemos escrever $P^{-1,0,2}_{3,2,1}$  como a terceira subdivisão $P^{-1}_3$ do segundo
-pulso $P^0_2$ do terceiro aglomerado de aglomerado de pulsos $P^2_2$ (perceba o termo $P^1_1$ omitido por simplicidade).
+Como um exemplo, $P^{-1,0,1}_{3,2,2}$  é a terceira subdivisão $P^{-1}_3$ do segundo
+pulso $P^0_2$ do segundo aglomerado de pulsos $P^1_2$.
 
-Cada unidade ou conjunto de unidades $P_i^j$ pode ser associada a uma sequência de amostras temporais $T_i$ que formam uma nota musical. 
+Cada unidade ou conjunto de unidades $P_i^j$ pode ser associada a uma sequência de amostras temporais $T_i$ que forma uma nota musical. 
 
-Assim como acontece com outras características
-musicais, lidamos com a estrutura rítmica sem fórmulas pre-estabelecidas, deixando procedimentos sistemáticos para quando é pertinente.
-
+A montagem \emph{Poli Hit Mia} utiliza as diferentes métricas e está no Apêndice~\ref{ap:poli} e disponível online como parte da \massa.
 
 \subsection{Estruturas direcionais}
 
 Dadas as estruturas musicais básicas tanto frequenciais (acordes e escalas) quanto 
 rítmicas (divisões e aglomerações simples, compostas e complexas) é 
-natural pensar em como realizar estas estruturas de forma que tenha coesão e sentido~\cite{Boulez}.
+natural pensar em como realizar estas estruturas de forma que tenha coesão e sentido.\cite{Boulez}
 
-Neste ponto, encontramos alguns artifícios consagrados pelo tempo e pelo uso. 
-Apresentamos aqui, de forma bastante breve, o pensamento musical dado por estruturas direcionais.
-Na parte seguinte exploramos as estruturas recorrentes e cíclicas.
+Para tal, os arcos são a base: partindo de algum lugar e voltando, forma-se um arco. Uma música sem nenhum arco pode ser compreendida como uma música sem coesão.
+Na subseção seguinte exploramos arcos cíclicos e neste
+os provenientes de estruturas direcionais.
 
-As estruturas direcionais nos possibiitam os recursos mais usuais: arcos melódicos e sequências que convergem ou divergem.
-
-Os arcos melódicos são compostos por duas sequências convergentes: 
-uma que atinge um ápice (chamado literalmente de clímax pela teoria musical tradicional) e 
-outra que, de forma paradigmática, volta do ápice à região da nota de partida. Canonicamente, distinguimos entre arcos cujos clímax estão: no começo, no meio, no final, na primeira metade e na segunda metade~\cite{Schoenberg}. Dispomos esquematicamente a disposição destes clímax na figura~\ref{fig:climax}.
+Os arcos podem ser decompostos em duas sequências convergentes: 
+uma que atinge o ápice (chamado literalmente de clímax pela teoria musical tradicional) e 
+outra que, de forma paradigmática, volta do ápice à região de partida. Canonicamente, distingue-se entre arcos cujos clímax estão: no começo, no meio, no final, na primeira metade e na segunda metade como esquematicamente a dispostos na figura~\ref{fig:climax}.\cite{Schoenberg}
 
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\textwidth]{figuras/climax}
-    \caption{Distinções canônicas do clímax musical em uma melodia ou arcos em outras escalas}
+    \caption{Distinções canônicas do clímax musical em uma melodia e outros domínios}
         \label{fig:climax}
 \end{figure}
 
 
 Seja $U_i=\{u_i\}_0^{\Lambda_U-1}$ uma sequência crescente. A sequência 
 $R_i=\{r_i\}_0^{2\Lambda_U -2}=\{u_{(\Lambda_U-1-|\Lambda_U-1-i|)}\}_0^{2\Lambda_U-2}$ 
-é uma sequência perfeitamente simétrica\footnote{Apresenta simetria especular perfeita, i.e. a segunda metade é uma versão espelhada da primeira.}. Pensada segundo conceitos musicais, o clímax está exatamente no meio da sequência. Podemos modificar isso fazendo com que alguma das metades seja expandida ou diminuída ou substituindo alguma das metades por outra sequência de tamanho diferente. É atraente este recurso pois contamos com toda a teoria de sequências, já bastante desenvolvida e estabelecida. Comparadas as sequências estudadas na teoria das sequências e as utilizadas na música, podemos concluir que existe um interesse especial por sequências relativamente curtas comparadas com as encontradas na teoria matemática~\cite{Guidorizzo,Schoenberg}. Teoricamente, estas sequências aplicadas a qualquer característica dos eventos musicais resulta em arcos. 
-Assim, podemos conceber para a mesma sequência de eventos um certo número de arcos distintos, com tamanhos diferentes e climax diferentes para as características escolhidas. Embora este seja um recurso
-bastante interessante e útil, vale manter em mente que a correlação dos arcos resulta em coerência da escuta~\cite{Schachter}.
+é uma sequência apresenta simetria especular perfeita, i.e. a segunda metade é uma versão espelhada da primeira. Pensada segundo conceitos musicais, o clímax está exatamente no meio da sequência. Pode-se modificar isso com a substituição por sequências de tamanhos diferentes. Toda a teoria matemática de sequências, já estabelecida, pode ser utilizada para geração destes arcos.\cite{Guidorizzo,Schoenberg}
+Teoricamente, estas sequências aplicadas desta forma
+a qualquer característica dos eventos musicais resulta em arcos,
+pois resultam no afastamento e aproximação de uma parametrização inicial. 
+Assim, é possível para uma mesma sequência de eventos possuir um número de arcos distintos, com tamanhos e climax diferentes. Este é um recurso
+interessante e útil e a correlação dos arcos resulta na coerência da escuta.\cite{Schachter}
 
 \subsection{Estruturas cíclicas}\label{estCic}
-Os arcos musicais nem sempre são fruto de estruturas direcionais como as citadas
-acima. Um caso crítico é o de estruturas que se modificam gradualmente
-até atingirem o estado original, formando um arco cíclico.
 
-Neste caso, faremos uma exposição específica sobre permutações dada
-a completude desta abordagem segundo princípios musicais, matemáticos e
-filosóficos além da incidência musical histórica\footnote{De
-forma bastante resumida, apontamos o
-entendimento filosófico de que o pensamento humano se baseia
+O entendimento filosófico de que o pensamento humano se baseia
 na percepção de semelhanças e diferenças dentre os estímulos
-e objetos~\cite{Deleuze}. Portanto, segundo este entendimento,
-as simetrias se encontram no cerne do processo cognitivo pois conceitualmente são as equivalências em si. Matematicamente,
-as simetrias são representadas por grupos algébricos e os grupos finitos, por sua vez,
-são sempre isomorfos a um grupo de permutações. Desta forma, podemos dizer que
-as permutações são capazes de representar quaisquer simetrias em um sistema finito.
-Diretamente na música encontramos permutações de forma bastante explícita, inclusive
-na análise de música étnica~\cite{permMusic}.
-Na tradição musical a permutação está presente em diversas técnicas~\cite{Zamacois} e
-apontamos em especial a técnica \emph{Change Ringing} que consiste essencialmente
-em padrões de permutações dentre um fixado número de notas~\cite{change}.} e a consequente realização de dois trabalhos acadêmicos~\cite{figgusOriginal, figgusEspacializacao}.
+e objetos coloca
+as simetrias no cerne do processo cognitivo.\cite{Deleuze}
+Matematicamente,
+as simetrias são grupos algébricos e os grupos finitos
+são sempre isomorfos a um grupo de permutações. 
+Pode-se dizer que
+as permutações representam quaisquer simetrias em um sistema finito.
+Na música, as permutações estão são ubíquas
+e estão presentes em técnicas.
+A aplicação sucessivas das permutações gera arcos cíclicos.\cite{change,Zamacois,permMusic}
+Esta abordagem resultou em dois trabalhos acadêmicos para geração de estruturas musicais.\cite{figgusOriginal, figgusEspacializacao}
 
-Qualquer conjunto de permutações pode ser utilizado como gerador de grupos algébricos~\cite{groups}. Assim, vale citarmos as propriedades que definem um grupo $G$:
+Qualquer conjunto de permutações pode ser utilizado como gerador de grupos algébricos.\cite{groups} As propriedades que definem um grupo $G$ são:
 
 \begin{equation}\label{eq:groups}
 \begin{split}
@@ -1812,13 +1819,12 @@ Qualquer conjunto de permutações pode ser utilizado como gerador de grupos alg
 \end{equation}
 
 
-A primeira destas propriedades nos é de particular importância, pois concluímos que toda permutação pode ser operada com outra permutação. De fato, podemos aplicar uma permutação, depois outra e, se compararmos com a ordenação inicial, temos uma permutação resultante. As outras propriedades resultam triviais para nosso caso.
+Da primeira propriedade conclui-se que toda permutação pode ser operada com outra permutação. De fato, pode-se aplicar uma permutação, depois outra e, se comparadas as ordenações inicial e final, temos uma permutação resultante.
 
-Alguns teoremas nos são caros. Por exemplo, segue imediatamente que, em um grupo finito, todo elemento $p$ operado consigo mesmo um número suficiente de vezes resulta no elemento neutro $p^n=e$, pois caso contrário a propriedade do fechamento resultaria em um grupo infinito gerado por $p$. O menor $n\;:\;p^n=e$ é chamado de ordem do elemento. Assim, uma permutação finita $p$ aplicada sucessivamente um número suficiente de vezes resulta na ordenação inicial dos elementos, formando um ciclo, i.e. um arco musical se os elementos ordenados são elementos musicais e se consultados em cada estágio.
+Todo elemento $p$ operado consigo mesmo um número suficiente de vezes resulta no elemento neutro $p^n=e$, pois caso contrário a propriedade do fechamento resultaria em um grupo infinito gerado por $p$. O menor $n\;:\;p^n=e$ é chamado de ordem do elemento. Assim, uma permutação finita $p$ aplicada sucessivamente resulta na ordenação inicial dos elementos, formando um ciclo. Um arco musical se consultados os elementos em cada estágio.
 
-Estes arcos, que levam uma ordenação de elementos na mesma ordenação após um certo número de aplicações de permutações, podem ser efetuados pelo uso conjunto de diferentes permutações. Como exemplo
-histórico, a tradição chamada \emph{change ringing} concebe música através de sinos tocados um após o outro e então tocados novamente, mas em uma ordem diferente. Este processo se repete até que se atinja a ordenação inicial e o conjunto de ordenações diferentes percorridas consiste no que é chamado de um \emph{peal}. Dispomos na tabela~\ref{tab:change} um \emph{peal} tradicional de 3 sinos (1, 2 e 3), que explora todas as suas ordenações. Cada linha apresenta uma ordenação dos sinos a ser tocada. As permutações agem aqui entre as linhas.
-% {\color{blue} AA}
+Estes arcos podem ser efetuados pelo uso conjunto de diferentes permutações. Como exemplo
+histórico, a tradição chamada \emph{change ringing} concebe música através de sinos tocados um após o outro e então tocados novamente, mas em uma ordem diferente. Este processo se repete até que se atinja a ordenação inicial. O conjunto de ordenações diferentes percorridas é um \emph{peal}. A tabela~\ref{tab:change} dispoe um \emph{peal} tradicional de 3 sinos (1, 2 e 3) que explora todas as suas ordenações. Cada linha apresenta uma ordenação dos sinos a ser tocada. As permutações estão entre as linhas.
 
 \begin{table}[htpq!]
 \centering
@@ -1835,73 +1841,66 @@ histórico, a tradição chamada \emph{change ringing} concebe música através 
 \label{tab:change}
 \end{table}
 
-Para maiores detalhes desta tradição, recomendamos~\cite{change}. Importante para nós aqui é notar a existência de tradições musicais consciêntes da importância das permutações na música e observar que, neste caso, a estrutura musical consiste em permutações propriamente ditas e algumas permutações diferentes estão operando. 
-Assim, fica claro o comportamento cíclico causado pela aplicação sucessiva da mesma permutação
-e a consistência musical deste procedimento.
+Neste caso, a estrutura musical consiste em permutações propriamente ditas e algumas permutações diferentes estão operando para resultar em um comportamento cíclico.
 
 A utilização de permutações na música pode ser resumida da seguinte forma:
-seja $L_i$ uma sequência de eventos musicais (para simplificar, considere
-estes eventos como sendo notas musicais) e $p$ uma permutação.
+seja $L_i$ uma sequência de eventos musicais (e.g. notas) e $p$ uma permutação.
 $L_i'=p(L_i)$ consiste nos mesmos elementos de $L_i$ com a ordenação
 modificada.
-
-As permutações são usualmente escritas em notação cíclica ou natural. Por brevidade, vamos abordar somente a notação natural. Esta notação consiste na ordem dos índices originais considerados resultante da aplicação da permutação. Assim,
+As permutações são usualmente escritas em notação cíclica ou natural. 
+Esta notação consiste na ordem dos índices 
+resultante da permutação. Assim,
 convencionada a ordenação original dada pela sequência de seus índices $[0\;1\;2\;3\;4\;5\;...]$ a permutação é notada pela sequência que produz (ex. $[1\;3\;7\;0\;...]$).
 
-Importante notar que não é necessário permutar os elementos de $L_i$, mas somente
-alguma ou algumas de suas características. Assim, seja $p^f$ uma permutação agindo
+Não é necessário permutar os elementos de $L_i$, mas somente
+alguma ou algumas de suas características. Assim, seja $p^f$ uma permutação 
 nas frequências e $L_i$ uma sequência de notas básicas como expostas
-ao final de ~\ref{notaBasica}. A nova sequência $L_i'=p^f(L_i)$ consiste nas mesmas
-notas musicais, na mesma ordem e com as mesmas características, com as frequências fundamentais permutadas segundo
-o padrão que $p^f$ apresenta.
+ao final de~\ref{notaBasica}. A nova sequência $L_i'=p^f(L_i)$ consiste nas mesmas
+notas musicais, na mesma ordem e com as mesmas características, com as frequências fundamentais permutadas segundo o padrão que $p^f$ apresenta.
 
 Por último, duas sutilezas deste procedimento.
 Primeiro, a permutação $p$ não precisa envolver todos os elementos de $L_i$, i.e. ela
-pode operar em subconjuntos de $L_i$. Segundo, nem todos os elementos $l_i$ precisam ser executados a
-cada consulta de estado realizada.
+pode operar em subconjuntos de $L_i$. Segundo, nem todos os elementos $l_i$ precisam ser executados a cada consulta de estado realizada.
 
-Para simplificar, considere novamente os eventos de $L_i$ 
-como notas musicais. Assim, se $i$ é vai de $0$ a $n$, e $n>4$, a cada compasso
-de $4$ notas podemos executar somente as primeiras $4$ notas. As outras notas de
-$L_i$ podem ser incidentes nos compassos em que as permutações aloquem
+Para exemplificar, seja $L_i$ 
+uma sequência de notas musicais $l_i$. 
+Se $i$ é vai de $0$ a $n$, e $n>4$, a cada compasso
+de $4$ notas pode-se executar as primeiras $4$ notas. As outras notas de
+$L_i$ podem incidir nos compassos em que as permutações aloquem
 estas notas para as primeiras quatro notas de $L_i$.
 
-Podemos dispor permutações que operem no mesmo conjunto, cada uma destas permutações
-$p_i$ possui ao menos, segundo nossa exposição acima, vinculadas à permutação em si: dimensões das notas em que opera (frequência, duração, fades, intensidade, etc) e período de incidência (a cada quantas consultas é aplicada a permutação). Na realização das notas de $L_i$, uma solução fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $L_i$ equivale a modificar a permutação e executar as primeiras notas.}.
+Cada uma destas permutações
+$p_i$ possui, ao menos, segundo a exposição acima: dimensões das notas em que opera (frequência, duração, fades, intensidade, etc) e período de incidência (a cada quantas consultas é aplicada a permutação). Na realização das notas de $L_i$, uma forma fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $L_i$ equivale a modificar a permutação e executar as primeiras notas.}.
 
-Esta abordagem resultou em alguns trabalhos~\cite{figgusOriginal,figgusEspacializacao} e implementações computacionais~\cite{repoFIGGUS,repoFIGGUSold}. Descrevemos um uso coerente desta técnica abaixo e apresentamos no APÊNCIDE~\ref{cap:FIGGUScode} a implementação computacional disponibilizada em~\cite{repoFIGGUS}
+Esta abordagem resultou em alguns trabalhos e implementações computacionais.\cite{repoFIGGUS,repoFIGGUSold,figgusOriginal,figgusEspacializacao} Descrevemos um uso coerente desta técnica abaixo e apresentamos no Apêndice~\ref{cap:FIGGUScode} a implementação computacional disponibilizada em~\cite{repoFIGGUS}.
 
 \subsection{Idioma musical?}
 
-De certa forma central à experiência musical é a concepção de 'idioma musical'.
-Existem diversas empreitadas para modelar e explorar diferentes entendimentos
-sobre a linguagem musical e linguística aplicada à música e para discernimento entre 
+Existem diversas empreitadas que se propõem a modelar e explorar entendimentos
+sobre a linguagem musical e da linguística aplicada à música ou ainda
+para discernimento entre 
 o que seriam diferentes
-'idiomas musicais'\cite{Lerdahl, Harmonia, Schachter,Alfaix}.
+'idiomas musicais'.\cite{Lerdahl, Harmonia, Schachter,Alfaix}
 
-Apontamos aqui que, de forma simplificada e resumida, um idioma musical é fruto da
-repetição de elementos e da repetição de relações entre elementos presentes no decorrer da música\footnote{A
-música é tradicionalmente pensada através de dicotomias bastante relacionadas umas com as outras,
-como: repetição e variação, relaxamento e tensão, equilíbrio e desequilíbrio, consonância e dissonância, etc}. 
+De forma simplificada, um idioma musical é fruto da
+repetição de elementos e da repetição de relações entre elementos presentes no decorrer da música. Bastante relacionado é o uso de dicotomias 
+como: repetição e variação, relaxamento e tensão, equilíbrio e desequilíbrio, consonância e dissonância, etc. 
 
 \subsection{Usos musicais}
 
 Primeiro, a nota básica foi definida e suas características postas em termos
-claros e quantitativos (sessão~\ref{notaBasica}). Em seguida, adentramos a nota musical e suas transições internas,
-além de tratamentos imediatos (sessão~\ref{varInternas}). Por fim, nesta última sessão, apresentamos
-recursos consagrados para organizar estas notas musicais em música.
+claros e quantitativos (sessão~\ref{notaBasica}). Em seguida, a nota foi adentrada e foram compreendidas suas transições internas e de tratamentos imediatos (sessão~\ref{varInternas}). Por fim, esta última sessão dedica-se a organizar estas notas musicais em música.
+A gama de recursos com uma infinidade de possibilidades de resultados,
+é situação típica e cara às artes.\cite{Harmonia,Webern}
 
-Assim, atingimos uma gama de recursos com uma infinidade de possibilidades de resultados,
-situação típica e tão cara às artes~\cite{Harmonia,Webern}.
+Existem estudos para cada recurso apresentado. Por exemplo, pode-se obter as harmonias triádicas 'sujas' (com notas não pertencentes à tríade) através de sobreposições de quartas justas. Outro exemplo interessante é a presença simultânea de ritmos em diferentes métricas, constituindo o que chamamos de \emph{polirritmia}. A montagem musical \emph{Poli-hit mia} explora estas métricas simultâneas através de trem de impulsos convoluídos com as notas que compõem cada linha. Seu código está no Apêndice~\ref{ap:poli} e disponível online como parte da \massa.
 
-Existem explorações e estudos individuais para cada recurso apresentado. Por exemplo, pode-se obter as harmonias triádicas 'sujas' (com notas não pertencentes à tríade) através de sobreposições de quartas justas. Outro exemplo interessante é a presença simultânea de ritmos em diferentes métricas, constituindo o que chamamos de \emph{polirritmia}. A montagem musical \emph{Poli-hit mia} explora estas métricas simultâneas através de trem de impulsos convoluídos com as notas que compõem cada linha.
+As escalas microtonais são importantes na música do século XX~\cite{microtonalidade} e possuem usos com resultados muito marcantes, como os quartos de tom na música indiana. A sequência musical \emph{MicroTom} explora estes recursos de forma dedicada, incluindo melodias microtonais e harmonias microtonais com várias notas em um âmbito de alturas bastante reduzido. Seu código está no Apêndice~\ref{ap:micro} e disponível online como parte da \massa.
 
-As escalas microtonais são bastante importantes na música do século XX~\cite{microtonalidade} e possuem vários usos com resultados muito marcantes, como os usos de quartos de tom na música indiana e possibilidades de batimentos. A sequência musical \emph{MicroTom} explora estes recursos de forma explícita, incluindo melodias microtonais e harmonias microtonais com várias notas em um âmbito de alturas bastante reduzido.
+Os vínculos entre parâmetros são formas poderosas de resultar peças e montagens musicais. O número de notas permutadas pode variar no decorrer da música, revelando vínculo com a duração da peça. As harmonias podem consituir-se triádicas (eqs.~\ref{triades}) com notas replicadas em várias oitavas e mais numerosas quanto menor a profundidade e frequência de vibratos (eqs.~\ref{vbrGamma},~\ref{vbrAux},~\ref{vbrF},~\ref{vbrGamma2},~\ref{vbrT}), dentre outras incontáveis possibilidades.
 
-Novamente, vínculos entre parâmetros são formas poderosas de resultar músicas ou ao menos montagens musicais. O número de notas permutadas podem variar no decorrer da música, revelando vínculo com a duração da peça. As harmonias podem consituir-se triádicas (eqs.~\ref{triades}) com notas replicadas em várias oitavas e mais numerosas quanto menor a profundidade e frequência de vibratos (eqs.~\ref{vbrGamma},~\ref{vbrAux},~\ref{vbrF},~\ref{vbrGamma2},~\ref{vbrT}), dentre outras incontáveis possibilidades.
+Um uso particularmente coerente, do ponto de vista das simetrias apresentadas nas divisões da oitava (eqs.~\ref{escSim}) e das simetrias apresentadas através das permutações (tabela~\ref{tab:change} e eqs.~\ref{eq:groups}) é o uso conjunto de ambos. Nas peças \emph{3 trios} esta associação é feita de forma sistemática para possibilitar uma audição dedicada a esta associação. Esta é uma peça instrumental e não consta dentre os códigos dos apêndices e da \massa.
 
-Um uso particularmente coerente, do ponto de vista das simetrias apresentadas nas divisões da oitava (eqs.~\ref{escSim}) e das simetrias apresentadas através das permutações (tabela~\ref{tab:change} e eqs.~\ref{eq:groups}) é o uso conjunto de ambos. Nas peças \emph{3 trios} esta associação é feita de forma sistemática para possibilitar uma audição dedicada a esta associação.
-
-O \emph{PPEPPS} (Pure Python EP: Projeto Solvente) é um EP inteiro sintetizado com os recursos apresentados neste trabalho. Com pouca parametrização, o programa resulta músicas inteiras, permitindo a composição de músicas e conjuntos de músicas com facilidade. As possibilidades de compartilhamento envolvem obter este album (ou outro feito de forma semelhante) baixando algumas linhas de código e rodando para obter uma pasta com as músicas.
+O \emph{PPEPPS} (Pure Python EP: Projeto Solvente) é um EP sintetizado com os recursos apresentados neste trabalho. Com pouca parametrização, o programa resulta músicas inteiras, permitindo a composição de músicas e conjuntos de músicas com facilidade. As possibilidades de compartilhamento envolvem obter este album (ou outro feito de forma semelhante) através depoucas linhas de código e, pela execução, obter uma pasta com as músicas.
 
 
