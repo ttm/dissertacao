@@ -1295,10 +1295,11 @@ Desta forma, os usos musicais aqui dispostos são uma coleção de possibilidade
 com o objetivo de exemplificar manipulações sonoras que resultem algo
 musical, por razões variadas e aprofundadas na próxima seção.
 
-Uma primeira possibilidade interessante é a utilização de vínculos
+Uma primeira possibilidade interessante é usar vínculos
 entre os parâmetros do tremolo e do vibrato e algum parâmetro da nota básica,
-como a frequência. Assim, pode-se estabelecer
-a frequência do vibrato  é diretamente proporcional à altura à qual a profundidade do tremolo é inversamente proporcional.
+como a frequência. Assim, pode-se estabelecer que
+a frequência do vibrato é diretamente proporcional à altura, e a profundidade do tremolo é inversamente proporcional
+à altura.
 Desta forma, com as equações \ref{vbrGamma}, \ref{vbrF} e \ref{trA}
 pode-se escrever:
 
@@ -1311,11 +1312,11 @@ V_{dB} & = func_c(f)
 \end{equation}
 
 Com $f^{vbr}$ e $f^{tr}$ como $f'$ nas equações de referência, ou seja, a frequência
-de oscilação do vibrato e do tremolo utilizadas na equação~\ref{vbrGamma}. Já $\nu$ e $V_{dB}$ são as profundidades
+de oscilação do vibrato e do tremolo da equação~\ref{vbrGamma}. Já $\nu$ e $V_{dB}$ são as profundidades
 do vibrato e do tremolo, respectivamente. As funções $func_a$,
-$func_b$ e $func_c$ são arbitrárias e dependentes das intensões musicais. A montagem 
+$func_b$ e $func_c$ são arbitrárias e dependentes das intenções musicais. A montagem 
 \emph{Tremolos, vibratos e a frequência} explora
-recursos como este e variações da forma de onda da oscilação com vínculos, de modo a formar um \emph{idioma musical}\footnote{Veja na próxima seção.}. Seu código está no Apêndice~\ref{ap:tremolos} e também disponivel online como parte da caixa de ferramentas \massa.
+recursos como este e variações da forma de onda da oscilação com vínculos, de modo a formar um \emph{idioma musical}\footnote{Veja na próxima seção.}. Seu código está no Apêndice~\ref{ap:tremolos} e também disponível online como parte da caixa de ferramentas \massa.
 
 
 Com relação à convolução, pode-se estabelecer uma duração como pulso musical - a exemplo de um pulso BPM - 
@@ -1355,11 +1356,11 @@ diferentes em sons diferentes e seu código está no Apêndice~\ref{ap:chorus}. 
 
 A variação de volume no decorrer de um som é crucial para nossa percepção de timbre. A envoltória de volume chamada ADSR (sigla de \emph{Atack-Decay-Sustain-Release}) possui numerosas implementações em sintetizadores em hardware e software. Uma implementação pioneira pode ser encontrada no Hammond Novachord de 1938 e algumas variantes são citadas logo abaixo.\cite{ADSR}
 
-A envoltória ADSR canônica é caracterizada por 4 parâmetros: duração do ataque (tempo que o som demora para atingir seu volume máximo), duração do decaimento (segue ao ataque imediatamente), nível de volume de sustentação (em que o volume fica estável após o decaimento) e duração de soltura (após a sustentação, nesta duração o volume decai a zero).
+A envoltória ADSR escolástica é caracterizada por 4 parâmetros: duração do ataque (tempo que o som demora para atingir seu volume máximo), duração do decaimento (segue ao ataque imediatamente), nível de volume de sustentação (em que o volume fica estável após o decaimento) e duração de soltura (após a sustentação, nesta duração o volume decai a zero).
 Note que o tempo de sustentação não é especificado, pois é resultante da duração em si menos os tempos de ataque, decaimento e soltura.
 
 A aplicação da envoltória ADSR com durações $\Delta_A$, $\Delta_D$ e $\Delta_R$, duração total $\Delta$ e nível de sustentação $a_S$, dado
-como fração da amplitude máxima, em uma sequência sonora $t_i$ qualquer pode ser feita da seguinte forma:
+como fração da amplitude máxima, em uma sequência sonora $t_i$ qualquer, pode ser feita da seguinte forma:
 
 \begin{equation}
 \begin{split}
@@ -1370,7 +1371,7 @@ como fração da amplitude máxima, em uma sequência sonora $t_i$ qualquer pode
 \end{split}
 \end{equation}
 
-Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)$ e $\xi$ um valor pequeno que torne o \emph{fade in} e o \emph{fade out} satisfatórios, e.g. $\xi=10^{\frac{-80}{20}}=10^{-4}\;$ ou $\;\xi=10^{\frac{-40}{20}}=10^{-2}$. Quanto menor for $\xi$ mais lento é o face, a exemplo de $\alpha$ da figura~\ref{fig:transicao} .
+Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)$ e $\xi$ um valor pequeno que torne o \emph{fade in} e o \emph{fade out} satisfatórios, e.g. $\xi=10^{\frac{-80}{20}}=10^{-4}\;$ ou $\;\xi=10^{\frac{-40}{20}}=10^{-2}$. Quanto menor for $\xi$ mais lento é o \emph{fade}, a exemplo de $\alpha$ da figura~\ref{fig:transicao} .
 
 \begin{equation}
 \left\{t_i^{ADSR}\right\}_0^{\Lambda-1} =\{t_i . a_i\}_0^{\Lambda-1}
@@ -1388,8 +1389,8 @@ Esquematicamente, a figura~\ref{fig:adsr} mostra esta envoltória ADSR,
 uma implementação clássica que comporta variações diversas. Por exemplo,
 entre o ataque e o decaimento, pode-se adicionar uma partição adicional em que a amplitude
 máxima perdura. Outro exemplo comum é o uso de traçados mais elaborados para o
-ataque ou para o decaimento. A montagem musical \emph{ADa e SaRa} explora diversas destas
-configurações da envoltória ADSR.
+ataque ou para o decaimento. A montagem musical \emph{ADa e SaRa}, disponível no Apêndice~\ref{ap:ada}
+e na \massa, explora diversas destas configurações da envoltória ADSR
 
 
 
