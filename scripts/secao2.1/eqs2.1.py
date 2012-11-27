@@ -73,9 +73,9 @@ Tf_i=1.-n.abs(2.-(4./lambda_f)*(ii%lambda_f))
 ### 2.13 Onda quadrada
 Qf_i=((ii%lambda_f)<(lambda_f/2))*2-1
 
-r=a.wavread("22686__acclivity__oboe-a-440_periodo.wav")[0]
+Rf_i=a.wavread("22686__acclivity__oboe-a-440_periodo.wav")[0]
 ### 2.14 Período amostrado
-Tf_i=r[n.int64(ii)%len(r)]
+Tf_i=Rf_i[n.int64(ii)%len(Rf_i)]
 
 
 ############## 2.1.5 O espectro no som amostrado
