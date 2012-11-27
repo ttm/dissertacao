@@ -1362,16 +1362,23 @@ Note que o tempo de sustentação não é especificado, pois é resultante da du
 A aplicação da envoltória ADSR com durações $\Delta_A$, $\Delta_D$ e $\Delta_R$, duração total $\Delta$ e nível de sustentação $a_S$, dado
 como fração da amplitude máxima, em uma sequência sonora $t_i$ qualquer, pode ser feita da seguinte forma:
 
-\begin{equation}
+\begin{equation}\label{eq:adsr}
 \begin{split}
-\{a_i\}_0^{\Lambda_A-1} & = \left\{\xi\left(\frac{1}{\xi}\right)^{\frac{i}{\Lambda_A-1}}\right\}_0^{\Lambda_A-1} \\
-\{a_i\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} & =\left\{a_S^{\frac{i-\Lambda_A}{\Lambda_D-1}}  \right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} \\
+\{a_i\}_0^{\Lambda_A-1} & = \left\{\xi\left(\frac{1}{\xi}\right)^{\frac{i}{\Lambda_A-1}}\right\}_0^{\Lambda_A-1} \;\;\quad\quad\quad \text{ou} \;\;\quad \left\{\frac{i}{\Lambda_A-1}\right\}_0^{\Lambda_A}\\
+\{a_i\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} & =\left\{a_S^{\frac{i-\Lambda_A}{\Lambda_D-1}}  \right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} \;\;\quad \quad\quad \text{ou} \quad\;\; \left\{1-(1-a_S)\frac{i-\Lambda_A}{\Lambda_D-1}\right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1}\\
 \{ a_i \}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} & =\left\{ a_S \right\}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} \\
-\{ a_i \}_{\Lambda-\Lambda_R}^{\Lambda-1} & =\left\{ a_S\left(\frac{\xi}{a_S} \right)^{\frac{i-(\Lambda-\Lambda_R)}{\Lambda_R-1}} \right\}_{\Lambda-\Lambda_R}^{\Lambda-1}
+\{ a_i \}_{\Lambda-\Lambda_R}^{\Lambda-1} & =\left\{ a_S\left(\frac{\xi}{a_S} \right)^{\frac{i-(\Lambda-\Lambda_R)}{\Lambda_R-1}} \right\}_{\Lambda-\Lambda_R}^{\Lambda-1} \quad\;\; \text{ou} \quad\;\; \left\{ a_S - a_S\frac{i+\Lambda_R-\Lambda}{\Lambda_R-1}\right\}_{\Lambda-\Lambda_R}^{\Lambda-1} 
 \end{split}
 \end{equation}
 
-Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)$ e $\xi$ um valor pequeno que torne o \emph{fade in} e o \emph{fade out} satisfatórios, e.g. $\xi=10^{\frac{-80}{20}}=10^{-4}\;$ ou $\;\xi=10^{\frac{-40}{20}}=10^{-2}$. Quanto menor for $\xi$ mais lento é o \emph{fade}, a exemplo de $\alpha$ da figura~\ref{fig:transicao} .
+Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)$ e $\xi$ um valor pequeno que torne o \emph{fade in} e o \emph{fade out} satisfatórios, e.g. $\xi=10^{\frac{-80}{20}}=10^{-4}\;$ ou $\;\xi=10^{\frac{-40}{20}}=10^{-2}$. Quanto menor for $\xi$ mais lento é o \emph{fade}, a exemplo de $\alpha$ da figura~\ref{fig:transicao}. Já os termos do lado direito de~\ref{eq:adsr} podem realizar as entrada e saída do som a partir da intensidade zero, por serem lineares. 
+Esquematicamente, a figura~\ref{fig:adsr} mostra esta envoltória ADSR, 
+uma implementação clássica que comporta variações diversas. Por exemplo,
+entre o ataque e o decaimento, pode-se adicionar uma partição adicional em que a amplitude
+máxima perdura. Outro exemplo comum é o uso de traçados mais elaborados para o
+ataque ou para o decaimento. A montagem musical \emph{ADa e SaRa}, disponível no Apêndice~\ref{ap:ada}
+e na \massa, explora diversas destas configurações da envoltória ADSR
+
 
 \begin{equation}
 \left\{t_i^{ADSR}\right\}_0^{\Lambda-1} =\{t_i . a_i\}_0^{\Lambda-1}
@@ -1380,17 +1387,9 @@ Com $\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)$ 
 \begin{figure}[htpq!]
     \centering
         \includegraphics[width=\textwidth]{figuras/adsr}
-    \caption{Envoltória ADSR canônica e uma sequência sonora arbitrária sendo submetida à envoltória}
+    \caption{Envoltória ADSR e uma sequência sonora arbitrária sendo submetida à envoltória. A variação linear de amplitude está acima. Abaixo a variação de amplitude é exponencial.}
 \end{figure}
         \label{fig:adsr}
-
-
-Esquematicamente, a figura~\ref{fig:adsr} mostra esta envoltória ADSR, 
-uma implementação clássica que comporta variações diversas. Por exemplo,
-entre o ataque e o decaimento, pode-se adicionar uma partição adicional em que a amplitude
-máxima perdura. Outro exemplo comum é o uso de traçados mais elaborados para o
-ataque ou para o decaimento. A montagem musical \emph{ADa e SaRa}, disponível no Apêndice~\ref{ap:ada}
-e na \massa, explora diversas destas configurações da envoltória ADSR
 
 
 
@@ -1735,8 +1734,8 @@ devem resultar em uma duração menor do que alguns minutos ou, no máximo, pouc
 
 
 Cada nível $j$ possui alguns índices $i$. Sempre que $i$ soma três 
-(ou múltiplo de três) índices há uma relação \emph{perfecta}, 
-quando soma dois, quatro ou oito índices há uma relação \emph{imperfecta}, como na figura~\ref{fig:pulsoSubAgl}.
+(ou múltiplo de três) índices há uma relação perfeita, 
+quando soma dois, quatro ou oito índices há uma relação imperfeita, como na figura~\ref{fig:pulsoSubAgl}.
 
 
 Qualquer unidade (nota), de uma
