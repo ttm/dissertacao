@@ -22,19 +22,20 @@ Tr_i=n.hstack(  ( foo , foo*-1 )   )
 # Dente de Serra:
 D_i=n.linspace(-1,1,Lt)
 
-
 def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     Lambda=n.floor(f_a*d)
     ii=n.arange(Lambda)
-    Lv=float(len(S_i))
+    Lv=float(len(tabv))
 
     Gammav_i=n.floor(ii*fv*Lv/f_a) # índices para a LUT
     Gammav_i=n.array(Gammav_i,n.int)
-    Tv_i=tabv[Gammav_i%int(Lv)] # padrão de variação do vibrato para cada amostra
+    # padrão de variação do vibrato para cada amostra
+    Tv_i=tabv[Gammav_i%int(Lv)] 
 
-    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) # frequência em Hz em cada amostra
-
-    D_gamma_i=F_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
+    # frequência em Hz em cada amostra
+    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) 
+    # a movimentação na tabela por amostra
+    D_gamma_i=F_i*(Lt/float(f_a))
     Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
     Gamma_i=n.floor( Gamma_i) # já os índices
     Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
@@ -46,11 +47,10 @@ def A(fa=2.,V_dB=10.,d=2.,taba=S_i):
     Lt=float(len(taba))
     Gammaa_i=n.floor(ii*fa*Lt/f_a) # índices para a LUT
     Gammaa_i=n.array(Gammaa_i,n.int)
-### 2.55 padrão de oscilação do vibrato
-    A_i=taba[Gammaa_i%int(Lt)] # padrão de variação da amplitude do tremolo para cada amostra
+    # variação da amplitude em cada amostra
+    A_i=taba[Gammaa_i%int(Lt)] 
     A_i=A_i*10.**(V_dB/20.)
     return A_i
-import pylab as p
 
 def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
     a_S=10**(S/20.)
@@ -70,19 +70,10 @@ def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
     ii=n.arange(Lambda-Lambda_R,Lambda,dtype=n.float)
     R=a_S-a_S*((ii-(Lambda-Lambda_R))/(Lambda_R-1))
     A_i=n.hstack(  (A_i,R)  )
-    p.plot(A_i)
-
     return som*A_i
 
-        
-        
 
-
-
-#T=v(tabv=Tr_i ,d=2.,fv=35.,nu=7.0)*A()
-#T2=v(tabv=Tr_i ,d=2.,fv=0.,nu=7.0)*A()
 T=adsr(v(tabv=Tr_i ,d=2.,fv=1.,nu=0.),10,10,-10.)
-
 
 T_i=n.hstack((n.zeros(f_a),adsr(v(tabv=Tr_i ,d=2.,fv=10.,nu=7.0),10,10,-5.),T))
 
@@ -91,9 +82,7 @@ T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 a.wavwrite(T_i,"ADa_e_SaRa.wav",f_a) # escrita do som
 
 
-############3
-#T=v(tabv=Tr_i ,d=2.,fv=35.,nu=7.0)*A()
-#T2=v(tabv=Tr_i ,d=2.,fv=0.,nu=7.0)*A()
+############
 T=adsr(v(tabv=Tr_i ,d=2.,fv=1.,nu=0.),10,10,-10.)
 T1=adsr(v(tabv=Tr_i ,d=2.,fv=1.,nu=0.),5,10,-10.)
 T2=adsr(v(tabv=Tr_i ,d=2.,fv=1.,nu=0.),5,5,-10.)
@@ -115,9 +104,7 @@ T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 a.wavwrite(T_i,"ADa_e_SaRa2.wav",f_a) # escrita do som
 
 
-############3
-#T=v(tabv=Tr_i ,d=2.,fv=35.,nu=7.0)*A()
-#T2=v(tabv=Tr_i ,d=2.,fv=0.,nu=7.0)*A()
+############
 T= adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=1.,nu=0.),10,10,-10.)
 T1=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=1.,nu=0.),5,10,-10.)
 T2=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=1.,nu=0.),5,5,-10.)
@@ -139,9 +126,7 @@ T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 a.wavwrite(T_i,"ADa_e_SaRa3.wav",f_a) # escrita do som
 
 
-############3
-#T=v(tabv=Tr_i ,d=2.,fv=35.,nu=7.0)*A()
-#T2=v(tabv=Tr_i ,d=2.,fv=0.,nu=7.0)*A()
+############
 T= adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=1.,nu=0.),2.,10,-10.)
 T1=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=1.,nu=0.),1.,10.,-10.)
 T2=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=1.,nu=0.),0.5, 5.,-10.)
@@ -162,7 +147,7 @@ T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 a.wavwrite(T_i,"ADa_e_SaRa4.wav",f_a) # escrita do som
 
-##########3
+##########
 T=adsr( v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=3.,  nu=3.),2,  5.,-10,1000.)
 T1=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=1., nu=3.) ,1,  2,-5,500.)
 T2=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=6., nu=3.) ,0.5,1.,-20,200.)
@@ -177,16 +162,12 @@ T3=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=19.,nu=3.) ,0.2,300.,-25,1500.)
 
 T_i=n.hstack((T_i,T,T1,T2,T3))
 
-
-
-
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 a.wavwrite(T_i,"ADa_e_SaRa5.wav",f_a) # escrita do som
 
 
-###########3
-
+###########
 T1=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=6., nu=3.) ,1.,1.,-20,200.)
 T2=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=19.,nu=3.) ,5.,5.,-30,1500.)
 T3=adsr(v(tab=Tr_i,tabv=Tr_i ,d=2.,fv=16., nu=6.) ,1.,2.,-10,200.)

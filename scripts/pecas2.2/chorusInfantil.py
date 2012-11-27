@@ -6,7 +6,7 @@ V=n.vstack
 f_a = 44100. # Hz, frequência de amostragem
 
 ############## 2.2.1 Tabela de busca (LUT)
-Lambda_tilde=Lt=1024.
+Lambda_tilde=Lt=1024.*16
 
 # Senoide
 foo=n.linspace(0,2*n.pi,Lt,endpoint=False)
@@ -26,15 +26,17 @@ D_i=n.linspace(-1,1,Lt)
 def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     Lambda=n.floor(f_a*d)
     ii=n.arange(Lambda)
-    Lv=float(len(S_i))
+    Lv=float(len(tabv))
 
     Gammav_i=n.floor(ii*fv*Lv/f_a) # índices para a LUT
     Gammav_i=n.array(Gammav_i,n.int)
-    Tv_i=tabv[Gammav_i%int(Lv)] # padrão de variação do vibrato para cada amostra
+    # padrão de variação do vibrato para cada amostra
+    Tv_i=tabv[Gammav_i%int(Lv)] 
 
-    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) # frequência em Hz em cada amostra
-
-    D_gamma_i=F_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
+    # frequência em Hz em cada amostra
+    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) 
+    # a movimentação na tabela por amostra
+    D_gamma_i=F_i*(Lt/float(f_a))
     Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
     Gamma_i=n.floor( Gamma_i) # já os índices
     Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
@@ -46,11 +48,10 @@ def A(fa=2.,V_dB=10.,d=2.,taba=S_i):
     Lt=float(len(taba))
     Gammaa_i=n.floor(ii*fa*Lt/f_a) # índices para a LUT
     Gammaa_i=n.array(Gammaa_i,n.int)
-### 2.55 padrão de oscilação do vibrato
-    A_i=taba[Gammaa_i%int(Lt)] # padrão de variação da amplitude do tremolo para cada amostra
+    # variação da amplitude em cada amostra
+    A_i=taba[Gammaa_i%int(Lt)] 
     A_i=A_i*10.**(V_dB/20.)
     return A_i
-
 
 def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
     a_S=10**(S/20.)
@@ -73,92 +74,114 @@ def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
 
     return som*A_i
 
+s=v()
+s1=v(fv=0.)
+s2=v(nu=0.)
+s3=v(fv=0.,nu=0.)
+s4=v(tabv=D_i)
 
-s=v(f=200.,nu=0.)
-s0=n.copy(s)
-amb=2**(.1/12.)
-f=200.
-amb=2**(.00/12.)*f
-amb_trem=.5
-for i in xrange(10):
-    f_=f+amb*n.random.random()-amb/2.
-    s+=v(f=f_,nu=n.random.random()*amb_trem-amb_trem/2)
+T_i=n.hstack((s, s1,s2,s3,s4))
 
-T_i=n.hstack((s0,s))
-
-T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
-        
 a.wavwrite(T_i,"chorusInfantil.wav",f_a) # escrita do som
 
+# soh nos vibratos
+s= v(d=8,)
+s1=v(d=8,fv=4.)
+s2=v(d=8,nu=0.2)
+s3=v(d=8,fv=2.,nu=0.7)
+s4=v(d=8,fv=3.,nu=.2)
 
-
-
-######################
-s=v(f=200.,nu=0.)
-s0=n.copy(s)
-
-amb=.1 # semitons
-f=200.
-amb_vib=.5
-amb_ft=.4
-for i in xrange(10):
-    f_=f*2.**((n.random.random()-.5)*amb/12.)
-    nu_=(n.random.random()-.5)*amb_vib
-    s+=v(   f=f_,   nu=nu_    )
-
-T_i=n.hstack((s0,s))
-
-
-s=v(f=200.,nu=0.)
-s0=n.copy(s)
-amb=2**(.01/12.)
-f=200.
-amb=2**(.00/12.)*f
-amb_trem=.5
-for i in xrange(10):
-    f_=f+amb*n.random.random()-amb/2.
-    s+=v(  f_,   nu=n.random.random()*amb_trem-amb_trem/2.    )
-
-T_i=n.hstack((T_i,s0,s))
-
-s=v(f=200.,nu=0.)
-s0=n.copy(s)
-amb=2**(.01/12.)
-f=200.
-amb=2**(.00/12.)*f
-amb_trem=.1
-for i in xrange(10):
-    s+=v(   f=200.*(n.random.random()*amb-amb/2.),   nu=n.random.random()*amb_trem-amb_trem/2.    )
-
-T_i=n.hstack((T_i,s0,s))
-
-s=v(f=200.,nu=0.)
-s0=n.copy(s)
-amb=2**(.01/12.)
-f=200.
-amb=2**(.00/12.)*f
-amb_trem=.0
-for i in xrange(10):
-    s+=v(   f=200.*(n.random.random()*amb-amb/2.),   nu=n.random.random()*amb_trem-amb_trem/2.    )
-
-T_i=n.hstack((T_i,s0,s))
-
-s=v(f=200.,nu=0.)
-s0=n.copy(s)
-f=200.
-amb=2**(.00/12.)*f
-f=200.
-amb=2**(.00/12.)*f
-amb_trem=.0
-for i in xrange(10):
-    f_=f+amb*n.random.random()-amb/2.
-    s+=v(   f=f_,   nu=n.random.random()*amb_trem-amb_trem/2.    )
-
-T_i=n.hstack((T_i,s0,s))
-
-
+T_i=n.hstack((s+ s1+s2+s3+s4))
 T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
-        
+a.wavwrite(T_i,"chorusInfantil2.wav",f_a) # escrita do som
+
+# nos vibratos e variacoes de f
+amb=.2
+s= v(f=200.*2.**((n.random.random()-0.5)*amb),d=8)
+s1=v(f=200.*2.**((n.random.random()-0.5)*amb),d=8,fv=4.,nu=2.)
+s2=v(f=200.*2.**((n.random.random()-0.5)*amb),d=8,fv=2.,nu=0.2)
+s3=v(f=200.*2.**((n.random.random()-0.5)*amb),d=8,fv=2.,nu=0.7)
+s4=v(f=200.*2.**((n.random.random()-0.5)*amb),d=8,fv=3.,nu=.2)
+
+T_i=n.hstack((s+ s1+s2+s3+s4))
+T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
 a.wavwrite(T_i,"chorusInfantil3.wav",f_a) # escrita do som
 
 
+# nos vibratos e variacoes de f
+foobar=v(d=2,nu=0.)
+amb=.03
+amb_fv=4.
+amb_nu=.1
+s= v(f=200.*2.**((n.random.random()-0.5)*amb),d=6)
+s1=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s2=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s3=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s4=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+
+ss=n.hstack((foobar,s+s1+s2+s3+s4))
+
+amb=.03
+amb_fv=4.
+amb_nu=.1
+foobar2=v(tab=Tr_i,d=2,nu=0.)
+s= v(tab=Tr_i,f=200.*2.**((n.random.random()-0.5)*amb),d=6)
+s1=v(tab=Tr_i,f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s2=v(tab=Tr_i,f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s3=v(tab=Tr_i,f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s4=v(tab=Tr_i,f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+
+ss=n.hstack((ss,foobar2,s+s1+s2+s3+s4))
+
+
+amb=1.5 #AUMENTEI
+s= v(f=200.*2.**((n.random.random()-0.5)*amb),d=6)
+s1=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s2=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s3=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s4=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+     fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+
+ss=n.hstack((ss,foobar,s+ s1+s2+s3+s4))
+
+
+### agora o dobro dos caras:
+amb=.03
+s= v(f=200.*2.**((n.random.random()-0.5)*amb),d=6)
+s1=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+    fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s2=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+    fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s3=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+    fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s4=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+    fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+
+
+foo=s+ s1+s2+s3+s4
+s= v(f=200.*2.**((n.random.random()-0.5)*amb),d=6)
+s1=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+    fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s2=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+    fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s3=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+    fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+s4=v(f=200.*2.**((n.random.random()-0.5)*amb),d=6,
+    fv=n.random.random()*amb_fv,nu=n.random.random()*amb_nu)
+
+ss=n.hstack((ss,foobar,(foo+s+ s1+s2+s3+s4)*.5))
+
+T_i=ss
+T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
+a.wavwrite(T_i,"chorusInfantil4.wav",f_a) # escrita do som
