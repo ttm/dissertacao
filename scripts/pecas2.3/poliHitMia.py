@@ -26,15 +26,17 @@ D_i=n.linspace(-1,1,Lt)
 def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     Lambda=n.floor(f_a*d)
     ii=n.arange(Lambda)
-    Lv=float(len(S_i))
+    Lv=float(len(tabv))
 
     Gammav_i=n.floor(ii*fv*Lv/f_a) # índices para a LUT
     Gammav_i=n.array(Gammav_i,n.int)
-    Tv_i=tabv[Gammav_i%int(Lv)] # padrão de variação do vibrato para cada amostra
+    # padrão de variação do vibrato para cada amostra
+    Tv_i=tabv[Gammav_i%int(Lv)] 
 
-    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) # frequência em Hz em cada amostra
-
-    D_gamma_i=F_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
+    # frequência em Hz em cada amostra
+    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) 
+    # a movimentação na tabela por amostra
+    D_gamma_i=F_i*(Lt/float(f_a))
     Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
     Gamma_i=n.floor( Gamma_i) # já os índices
     Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
@@ -46,11 +48,10 @@ def A(fa=2.,V_dB=10.,d=2.,taba=S_i):
     Lt=float(len(taba))
     Gammaa_i=n.floor(ii*fa*Lt/f_a) # índices para a LUT
     Gammaa_i=n.array(Gammaa_i,n.int)
-### 2.55 padrão de oscilação do vibrato
-    A_i=taba[Gammaa_i%int(Lt)] # padrão de variação da amplitude do tremolo para cada amostra
+    # variação da amplitude em cada amostra
+    A_i=taba[Gammaa_i%int(Lt)] 
     A_i=A_i*10.**(V_dB/20.)
     return A_i
-
 
 def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
     a_S=10**(S/20.)
@@ -144,17 +145,21 @@ l4=n.zeros(T_)
 import random as r
 EM_i=[0.,2.,4.,5.,7.,9.,11.]
 for i in xrange(4):
-    l4[i*(T_/4):i*(T_/4)+.1*f_a]=v(tab=Tr_i,f=150.*2.**(r.choice(EM_i)/12.),d=.1)
+    l4[i*(T_/4):i*(T_/4)+.1*f_a]=\
+               v(tab=Tr_i,f=150.*2.**(r.choice(EM_i)/12.),d=.1)
 
 l4b=n.zeros(T_)
 
 import random as r
 EM_i=[0.,2.,4.,5.,7.,9.,11.]
 for i in xrange(4):
-    l4b[i*(T_/4):i*(T_/4)+.1*f_a]=v(tab=Tr_i,f=150.*2.**(r.choice(EM_i)/12.),d=.1,fv=6.)
+    l4b[i*(T_/4):i*(T_/4)+.1*f_a]=\
+          v(tab=Tr_i,f=150.*2.**(r.choice(EM_i)/12.),d=.1,fv=6.)
 
 
-s=H((s, l5+l1+l4, l5+l2+l4b, l5+l1+l4,l5+l1+l7+l4 , l5+l1+l4b, l5+l2+l4, l5+l1+l4b,l5+l1+l7+l4))
+s=H((s, l5+l1+l4, l5+l2+l4b, l5+l1+l4,l5+l1+l7+l4 ,
+        l5+l1+l4b, l5+l2+l4, l5+l1+l4b,l5+l1+l7+l4))
+
 s=H((s,s[::-2],s[::-4],s[::-4],s))
 
 s=((s-s.min())/(s.max()-s.min()))*2.-1.

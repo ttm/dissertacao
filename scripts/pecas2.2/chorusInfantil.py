@@ -5,7 +5,6 @@ V=n.vstack
 
 f_a = 44100. # Hz, frequência de amostragem
 
-############## 2.2.1 Tabela de busca (LUT)
 Lambda_tilde=Lt=1024.*16
 
 # Senoide

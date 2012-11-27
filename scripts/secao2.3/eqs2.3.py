@@ -153,10 +153,10 @@ Vm=[2.,7.,10.] # quinto grau menor nao eh dominante, é quinto grau
 
 ############## 2.3.3 Contraponto
 
-def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0\
-                               ,7,5,4,4,4,0,2,4,5,5,5]):
+def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,\
+                                     5,4,4,4,0,2,4,5,5,5]):
     """Realiza rotina de independência das vozes
-    
+
     Limitado em 1 oitava acima da nota"""
     primeiraNota=alturas[0]+(7,12)[n.random.randint(2)]
     contra=[primeiraNota]
@@ -164,22 +164,22 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0\
     i=0
     cont=0 # contador de paralelas
     reg=0 # registrador de intervalo em que se fez a paralela
-    for al in alturas[-1]:
+    for al in alturas[:-1]:
         mov_cf=alturas[i:i+2]
-        atual_cf,seguinte_cf=mov_cA
+        atual_cf,seguinte_cf=mov_cf
         if seguinte_cf-atual_cf>0:
-            direct="asc"
+            mov="asc"
         elif seguinte_cf-atual_cf<0:
-            direct="asc"
+            mov="asc"
         else:
-            direct="obl"
+            mov="obl"
 
         # possibilidades por consonancia
         possiveis=[seguinte_cf+interval for interval in\
                                     [0,3,4,5,7,8,9,12]]
         movs=[]
         for pos in possiveis:
-            if pos -cotra[i] < 0:
+            if pos -contra[i] < 0:
                 movs.append("desc")
             if pos - contra[i] > 0:
                 movs.append("asc")
@@ -200,14 +200,14 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0\
             if mt == "direto": # mov direto
                 # n aceita intervalo perfeito
                 if nota-seguinte_cf in (0,7,8,12):
-                    possiveis.remove(inter)
+                    possiveis.remove(nota)
         ok=0
         while not ok:
-            nnota=possiveis[n.random.randint(len(possiveis)]
-            if nnota-seguinte_fc==contra[i]-atual_cf: # paralelo
+            nnota=possiveis[n.random.randint(len(possiveis))]
+            if nnota-seguinte_cf==contra[i]-atual_cf: # paralelo
                 intervalo=contra[i]-atual_cf
-                novo_intervalo=nnota-seguinte_fc
-                if abs(itervalo-novo)==1: # do mesmo tipo 3 ou 6
+                novo_intervalo=nnota-seguinte_cf
+                if abs(intervalo-novo_intervalo)==1: # do mesmo tipo 3 ou 6
                     if cont==2: # se já teve 2 paralelas
                         pass # outro intrevalo
                     else:
@@ -216,7 +216,10 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0\
             else: # mov obl ou contrario
                 cont=0 # zera paralelos
                 ok=1
-         i+=1
+        contra.append(nnota)
+        i+=1
+    return contra
+
 
 
 ############## 2.3.4 Ritmo
