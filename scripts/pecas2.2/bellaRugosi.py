@@ -5,9 +5,9 @@ V=n.vstack
 
 f_a = 44100. # Hz, frequência de amostragem
 
-############## 2.2.1 Tabela de busca (LUT)
-Lambda_tilde=Lt=1024.
-
+# Tamanho da LUT > 2**10 para usar também em oscilacoes
+# de comprimento de onda grandes (LFO)
+Lambda_tilde=Lt=(2.**5)*1024.
 # Senoide
 foo=n.linspace(0,2*n.pi,Lt,endpoint=False)
 S_i=n.sin(foo) # um período da senóide com T amostras
@@ -26,19 +26,24 @@ D_i=n.linspace(-1,1,Lt)
 def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     Lambda=n.floor(f_a*d)
     ii=n.arange(Lambda)
-    Lv=float(tabv)
+    Lv=float(len(tabv))
 
     Gammav_i=n.floor(ii*fv*Lv/f_a) # índices para a LUT
     Gammav_i=n.array(Gammav_i,n.int)
-    Tv_i=tabv[Gammav_i%int(Lv)] # padrão de variação do vibrato para cada amostra
+    # padrão de variação do vibrato para cada amostra
+    Tv_i=tabv[Gammav_i%int(Lv)] 
 
-    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) # frequência em Hz em cada amostra
-
-    D_gamma_i=F_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
+    # frequência em Hz em cada amostra
+    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) 
+    # a movimentação na tabela por amostra
+    D_gamma_i=F_i*(Lt/float(f_a))
     Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
     Gamma_i=n.floor( Gamma_i) # já os índices
     Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
     return tab[Gamma_i%int(Lt)] # busca dos índices na tabela
+
+
+
 
 
 
@@ -122,5 +127,4 @@ aa=n.vstack(( aa, (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
 
 print("BellaRugosiSdadE.wav escrito")
 a.wavwrite(aa,"BellaRugosiSdadE.wav",f_a)
-#a.wavwrite(aa,"BellaRugosidade.wav",f_a)
 

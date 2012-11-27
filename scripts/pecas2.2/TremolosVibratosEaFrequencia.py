@@ -26,15 +26,17 @@ D_i=n.linspace(-1,1,Lt)
 def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     Lambda=n.floor(f_a*d)
     ii=n.arange(Lambda)
-    Lv=float(len(S_i))
+    Lv=float(len(tabv))
 
     Gammav_i=n.floor(ii*fv*Lv/f_a) # índices para a LUT
     Gammav_i=n.array(Gammav_i,n.int)
-    Tv_i=tabv[Gammav_i%int(Lv)] # padrão de variação do vibrato para cada amostra
+    # padrão de variação do vibrato para cada amostra
+    Tv_i=tabv[Gammav_i%int(Lv)] 
 
-    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) # frequência em Hz em cada amostra
-
-    D_gamma_i=F_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
+    # frequência em Hz em cada amostra
+    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) 
+    # a movimentação na tabela por amostra
+    D_gamma_i=F_i*(Lt/float(f_a))
     Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
     Gamma_i=n.floor( Gamma_i) # já os índices
     Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
@@ -46,8 +48,8 @@ def A(fa=2.,V_dB=10.,d=2.,taba=S_i):
     Lt=float(len(taba))
     Gammaa_i=n.floor(ii*fa*Lt/f_a) # índices para a LUT
     Gammaa_i=n.array(Gammaa_i,n.int)
-### 2.55 padrão de oscilação do vibrato
-    A_i=taba[Gammaa_i%int(Lt)] # padrão de variação da amplitude do tremolo para cada amostra
+    # variação da amplitude em cada amostra
+    A_i=taba[Gammaa_i%int(Lt)] 
     A_i=A_i*10.**(V_dB/20.)
     return A_i
 
@@ -62,8 +64,7 @@ T2=v(tabv=Tr_i ,d=2.,fv=0.,nu=7.0)*A()
 T_i=n.hstack((T,T2))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia.wav",f_a) # escrita do som
-
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia.wav",f_a) 
 
 
 ###############
@@ -74,8 +75,7 @@ T2=v(tabv=Q_i ,d=2.,fv=20.,nu=12.0)*A()
 T_i=n.hstack((T,T2))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequenciai2.wav",f_a) # escrita do som
-
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia2.wav",f_a) 
 
 
 ###############
@@ -86,7 +86,7 @@ T2=v(tabv=Q_i ,d=2.,fv=20.,nu=12.0,f=100)*A()
 T_i=n.hstack((T,T2))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequenciai3.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia3.wav",f_a) 
 
 
 
@@ -101,7 +101,7 @@ T5=v(tabv=Q_i ,d=2.,fv=32.,nu=7.0,f=100)*A()
 T_i=n.hstack((T,T2,T3,T4,T5))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequenciai4.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia4.wav",f_a) 
 
 ###############
 T=v(tabv=Q_i ,d=2.,fv=35.,nu=7.0)*A()
@@ -114,11 +114,11 @@ T5=v(tabv=Q_i ,d=2.,fv=30.,nu=7.0,f=100)*A()
 T_i=n.hstack((T,T2,T3,T4,T5))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia5.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia5.wav",f_a) 
 
 
 
-##########3
+#########
 T4=v(tabv=D_i ,d=2.,fv=5*30.,nu=7.0,f=100)
 T5=v(tabv=Q_i ,d=2.,fv=5*30.,nu=7.0,f=100)
 
@@ -126,7 +126,7 @@ T5=v(tabv=Q_i ,d=2.,fv=5*30.,nu=7.0,f=100)
 T_i=n.hstack((T4,T5,T4,T5,T4,T5))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia6.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia6.wav",f_a) 
 
 ##########
 T1=v(tabv=D_i ,d=2.,fv=5*30.,nu=7.0,f=100)
@@ -138,7 +138,7 @@ T4=v(tabv=Tr_i ,d=2.,fv=5*30.,nu=7.0,f=100)
 T_i=n.hstack((T1,T2,T3,T4,T1,T2,T3,T4,T1,T2,T3,T4,T1,T2,T3,T4,T1,T1,T1))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia7.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia7.wav",f_a) 
 
 
 
@@ -152,7 +152,7 @@ T4=v(tabv=Tr_i ,d=2.,fv=30.,nu=7.0,f=100)*A()
 T_i=n.hstack((T1,T2,T3,T4,T1,T2,T3,T4,T1,T2,T3,T4,T1,T2,T3,T4,T1,T1,T1))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia8.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia8.wav",f_a) 
 
 
 ##########
@@ -165,7 +165,7 @@ T4=v(tabv=Tr_i ,d=2.,fv=5*30.,nu=7.0,f=100)*A(fa=1.)
 T_i=n.hstack((T1,T2,T3,T4,T1,T2,T3,T4,T1,T2,T3,T4,T1,T2,T3,T4,T1,T1,T1))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia9.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia9.wav",f_a) 
 
 
 #####################################
@@ -212,7 +212,7 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia10.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia10.wav",f_a) 
 
 
 
@@ -261,7 +261,7 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia11.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia11.wav",f_a) 
 
 
 
@@ -313,7 +313,7 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia12.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia12.wav",f_a) 
 
 
 #####################
@@ -364,7 +364,7 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia13.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia13.wav",f_a) 
 
 
 
@@ -404,7 +404,7 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia14.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia14.wav",f_a) 
 
 
 ######################
@@ -446,9 +446,9 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia15.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia15.wav",f_a) 
 
-###########################3
+##########################
 
 T1=v(tab=S_i,tabv=D_i ,d=2.,fv=30.,nu= 29.0,f=40 )*A(fa=0.5) # YEH
 T2=v(tab=S_i,tabv=Q_i ,d=2.,fv=30.,nu= 29.0,f=40 )*A(fa=0.5)
@@ -469,7 +469,7 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 T1=v(tab=S_i,tabv=D_i ,d=2.,fv=30.,nu= 49.0,f=40 )*A(fa=0.5) # forte
 T2=v(tab=S_i,tabv=Q_i ,d=2.,fv=30.,nu= 49.0,f=40 )*A(fa=0.5) # bonito2
 T3=v(tab=S_i,tabv=S_i ,d=2.,fv=30.,nu= 49.0,f=40 )*A(fa=0.5) # Animal
-T4=v(tab=S_i,tabv=Tr_i ,d=2.,fv=30.,nu=49.0,f=40)*A(fa=0.5) # Fodah
+T4=v(tab=S_i,tabv=Tr_i ,d=2.,fv=30.,nu=49.0,f=40)*A(fa=0.5) # mto bom 
 
 T_i=n.hstack((T_i,T1,T2,T3,T4))
 
@@ -477,9 +477,9 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia16.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia16.wav",f_a) 
 
-###########################3
+##########################
 
 T1=v(tab=S_i,tabv=D_i ,d=2.,fv=30.,nu= 29.0,f=40 )*A(fa=0.5) # YEH
 #T2=v(tab=S_i,tabv=Q_i ,d=2.,fv=30.,nu= 29.0,f=40 )*A(fa=0.5)
@@ -508,9 +508,9 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia17.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia17.wav",f_a) 
 
-###########################3
+##########################
 
 T1=v(tab=S_i,tabv=D_i ,d=2.,fv=30.,nu= 29.0,f=40 )*A(fa=.1) # YEH
 #T2=v(tab=S_i,tabv=Q_i ,d=2.,fv=30.,nu= 29.0,f=40 )*A(fa=0.5)
@@ -539,7 +539,7 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia18.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia18.wav",f_a) 
 
 
 T1=v(tab=S_i,tabv=S_i ,d=2.,fv=30.,nu= 49.0,f=40 )*A(fa=6.,taba=D_i) # Animal
@@ -553,5 +553,5 @@ T_i=n.hstack((T1,T2,T3,T4))
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TremolosVibratosEaFrequencia19.wav",f_a) # escrita do som
+a.wavwrite(T_i,"TremolosVibratosEaFrequencia19.wav",f_a) 
 
