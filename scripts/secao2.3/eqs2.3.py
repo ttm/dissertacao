@@ -3,7 +3,7 @@ import numpy as n, scikits.audiolab as a
 
 ############## 2.3.1 Afinação, intervalos, escalas e acordes
 
-### 2.74
+### 2.76 Intervalos
 I1j=0.
 I2m=1.
 I2M=2.
@@ -32,14 +32,14 @@ def intervaloHarmonico(f,I):
 def intervaloMelodico(f,I):
     return n.hstack((  v(f),v(f*2.**(I/12.))  ))
 
-### 2..7.5. Escalas simétricas
+### 2.77 Escalas simétricas
 Ec_i=[0.,1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,11.]
 Et_i=[0.,2.,4.,6.,8.,10.]
 Etm_i=[0.,3.,6.,9.]
 EtM_i=[0.,4.,8.]
 Ett_i=[0.,6.]
 
-### 2..7.6. Escalas diatônicas
+### 2.78 Escalas diatônicas
 Em_i=[0.,2.,3.,5.,7.,8.,10.]
 Emlo_i=[1.,3.,5.,6.,8.,10.]
 EM_i=[0.,2.,4.,5.,7.,9.,11.]
@@ -48,18 +48,18 @@ Emf_i=[0.,1.,3.,5.,7.,8.,10.]
 Eml_i=[0.,2.,4.,6.,7.,9.,11.]
 Emmi_i=[0.,2.,4.,5.,7.,8.,10.]
 
-### 2..7.7. Padrao diatônicos
+### 2.79 Padrão diatônicos
 E_i_=n.roll(n.array([2.,2.,1.,2.,2.,2.,1.]),n.random.randint(7.))
 E_i=n.cumsum(E_i_)-E_i_[0.]
 
 
-### 2..7.8. Escalas menores harmônica e melódica
+### 2.80 Escalas menores harmônica e melódica
 Em_i=[0.,2.,3.,5.,7.,8.,1.0.]
 Emh_i=[0.,2.,3.,5.,7.,8.,11.]
 Emm_i=[0.,2.,3.,5.,7.,9.,11.,12.,10.,8.,7.,5.,3.,2.,0.]
 
 
-### 2..7.9. Tríades
+### 2.81 Tríades
 AM_i=[0.,4.,7.]
 Am_i=[0.,3.,7.]
 Ad_i=[0.,3.,6.]
@@ -69,7 +69,8 @@ def comSetimam(A):  return A+[10.]
 def comSetimaM(A):  return A+[11.]
 
 
-### Microtonalidade
+### Microtonalidade de quartos de tom
+### e sétimos de oitava
 # com
 epslon=2**(1/12.)
 s1=[0.,0.25,1.75,2.,2.25,4.,5.,5.25]
@@ -79,7 +80,7 @@ s2=[0.,1.,2.,3.,4.,5.,6.]
 
 
 ############## 2.3.2 Rudimentos de harmonia
-### tabela 2.1
+### Figura 2.22
 def relativa(TT):
     """TT é tríade maior ou menor em posicão fechada e fundamental"""
     T=n.copy(TT)
@@ -141,7 +142,7 @@ class Mediana:
             T[2]=9. # retorna menor
         return T
 
-
+### Tônicas e funções principais
 tonicaM=[0.,4.,7.]
 tonicam=[0.,3.,7.]
 subM=[0.,5.,9.]
@@ -150,9 +151,10 @@ dom=[2.,7.,11.]
 Vm=[2.,7.,10.] # quinto grau menor nao eh dominante, é quinto grau
 
 
-############## 2.3.2 Rudimentos de contraponto
+############## 2.3.3 Contraponto
 
-def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,5,4,4,4,0,2,4,5,5,5]):
+def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0\
+                               ,7,5,4,4,4,0,2,4,5,5,5]):
     """Realiza rotina de independência das vozes
     
     Limitado em 1 oitava acima da nota"""
@@ -173,7 +175,8 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,5,4,4,4,0,2,4,5,5,5]):
             direct="obl"
 
         # possibilidades por consonancia
-        possiveis=[seguinte_cf+interval for interval in [0,3,4,5,7,8,9,12]]
+        possiveis=[seguinte_cf+interval for interval in\
+                                    [0,3,4,5,7,8,9,12]]
         movs=[]
         for pos in possiveis:
             if pos -cotra[i] < 0:
@@ -216,7 +219,17 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,5,4,4,4,0,2,4,5,5,5]):
          i+=1
 
 
+############## 2.3.4 Ritmo
+### Veja peça Poli Hit Mia no Apêndice B
 
+
+############## 2.3.5 Estruturas direcionais
+### Veja peça Dirracional no Apêndice B
+
+
+############## 2.3.6 Estruturas cíclicas
+### Veja as peças 3 Trios no Apêndice B
+### e o PPEPPS no Apêndice C
 
 
 
