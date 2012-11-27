@@ -2,23 +2,22 @@
 import numpy as n, scikits.audiolab as a
 
 # Peça musical baseada em sons estáticos
-# são mixagens de sons básicos apresentados na sessão 2.1
+# são mixagens de sons básicos apresentados na seção 2.1
 
 f_a=44100 # 44.1kHz, frequência de amostragem de CDs
-Delta=30. # cada quadro terá exatos 180 segundos == 3 minutos
-Lambda=Delta*f_a # número de amostras
+Delta=180. # cada quadro terá Delta segundos
+Lambda=int(Delta*f_a) # número de amostras
 
 ii=n.linspace(0,Delta*2*n.pi,Lambda,endpoint=False)
 
-# frequencias que dividem f_a
+# frequências que dividem f_a
 fs=[]
 for i in xrange(1,f_a/2+1):
     if f_a/float(i)==int(f_a/i):
         fs.append(i)
 
-### Quadro 1: senoides no grave em batimento e no agudo uma
-# dente de serra bem suave
-
+### Quadro 1: senoides no grave em batimento e
+### no agudo uma dente de serra bem suave
 f1=100
 f2=100.5
 
@@ -26,7 +25,7 @@ som=n.sin(ii*f1)+n.sin(ii*f2)
 dente_aguda=(n.arange(Lambda)%4-2)
 som+=dente_aguda/80
 
-# normalizando no intervalo [-1,1]
+# normalição no intervalo [-1,1]
 som=((som -som.min())/(som.max()-som.min()))*2-1
 
 a.wavwrite(som,"quadro1.wav",f_a)
@@ -54,7 +53,7 @@ em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 ### Quadro 3: estereofonia alternada no espectro harmônico
 f=50.
-fs3=[f*i for i in xrange(1,7)] # 6 harmonicos
+fs3=[f*i for i in xrange(1,7)] # 6 harmônicos
 som_d=n.zeros(Lambda)
 som_e=n.zeros(Lambda)
 ii=n.linspace(0,Delta*2*n.pi,Lambda,endpoint=False)
@@ -110,7 +109,7 @@ print("quadro 4 feito em quadro4.wav (estéreo), são %i amostras \
 em uma frequência de amostragem de %iHz" % (len(som),f_a))
 
 
-### Quadro 5: Dente de serra grave bate com harmonico em cada lado
+### Quadro 5: Dente de serra grave bate com harmônico em cada lado
 
 f=42. # Hz, freq da dente
 lambda_f=44100/f
