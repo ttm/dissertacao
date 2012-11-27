@@ -4,11 +4,11 @@ import numpy as n, pylab as p, scikits.audiolab as a
 ############## 2.1.1 Duração
 ### 2.1
 # a equação relaciona o número de amostras à duração do som
-f_a=44100 # frequência de amostragem
+f_a=44100. # frequência de amostragem
 Delta=3.7 # duração de 3.7 segundos
 
 # som de duração 3.7 segundos => 3.7*44100 amostras
-T_i=n.zeros(int(f_a*Delta)) # por hora fizemos silencio
+T_i=n.zeros( int(f_a*Delta) ) # silêncio
 
 # escrevendo em disco como arquivo PCM (WAV no caso)
 a.wavwrite(T_i,"silencio.wav",f_a) 

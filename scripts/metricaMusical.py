@@ -19,8 +19,8 @@ for i in xrange(9):
     for j in xrange(i+1):
         p.plot((j*resolucao/(i+1), (j+1)*resolucao/(i+1)-2),(ordem[i],ordem[i]),c=colors[i%len(colors)], linewidth=3)
 
-p.plot((-1000,-1000),'r',linewidth=3,label=u'compassos compostos, divisões ternárias, modus perfectus')
-p.plot((-1000,-1000),'b',linewidth=3,label=u'compassos simples, divisões binárias, modus imperfectus')
+p.plot((-1000,-1000),'r',linewidth=3,label=u'compassos compostos, divisões ternárias, modo perfeito')
+p.plot((-1000,-1000),'b',linewidth=3,label=u'compassos simples, divisões binárias, modo imperfeito')
 p.plot((-1000,-1000),'k',linewidth=3,label=u'compassos complexos em 5 e 7, quiálteras de 5 e 7')
 p.legend(loc="upper right")
 

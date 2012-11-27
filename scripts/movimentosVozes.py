@@ -81,5 +81,11 @@ for line in ax.get_xticklines() + ax.get_yticklines():
 
 p.xticks(())
 p.xlabel(r"tempo $\rightarrow$",fontsize=26)
+
+ax2=ax.twinx()
+ax2.set_ylabel(r"$\log(freq)$ $\rightarrow$",fontsize=26)
+p.ylim(-10,3.6)
+p.yticks(())
+
 p.show()
 
