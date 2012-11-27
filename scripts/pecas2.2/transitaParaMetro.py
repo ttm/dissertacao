@@ -1,12 +1,12 @@
 #-*- coding: utf8 -*-
 import numpy as n, scikits.audiolab as aa
 
-# ça dedicada e expor as diferentes transições
+# peça dedicada e expor as diferentes transições
 # de intensidade e altura
 
-# rtes
-# 1) Sansições de altura log e lin e com alpha
-# 2) Sansições de intensidade log e in e com alpha
+# partes
+# 1) Transições de altura log e lin e com alpha
+# 2) Transições de intensidade log e in e com alpha
 # 3) Usos combinados de ambos
 
 f_a = 44100. # Hz, frequência de amostragem
@@ -42,7 +42,7 @@ def T(f1,f2,dur,ttype="exp",tab=S_i,alpha=1.):
     return tab[Gamma_i%Lt]
 
 ############################################
-# RTE 1)
+# PARTE 1)
 
 # 1a: comparando variação linear e logarítmica
 #class 
@@ -51,7 +51,7 @@ def T(f1,f2,dur,ttype="exp",tab=S_i,alpha=1.):
 f=[50.,100.,150.,200.,250.,300.,350.,400.,450.,500.,550.,  600.]
 #  01  11    25  31    43  55    67   71   82   83   94#   105
 d=[0.1,0.2,0.3,0.5,1.0,1.5,2.0,3.0,5.0,7.0,10.0]
-#  0    1   2   3   4   5   6   7   8
+#  0    1   2   3   4   5   6   7   8  9    10
 a=[0.01,0.1,1.0,10.,100.]
 #   0    1   2   3    4
 
@@ -62,80 +62,85 @@ intr=n.hstack((T(f[9],f[0],d[7]),T(f[0],f[10],d[8],'lin',Tr_i)))
 #entrada (8 segundos)
 entr=  n.hstack(( T(f[10],f[10],d[8],'lin',Tr_i),n.zeros(f_a*d[7])))+ \
            n.hstack(( T(f[3],f[0],d[3]),
-         T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),
-         T(f[2],f[0],d[3]),
-         T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),
-         T(f[3],f[0],d[3]),
-         T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),
-         T(f[5],f[0],d[3]),
-         T(f[3],f[0],d[3]),T(f[2],f[0],d[3]),T(f[1],f[0],d[3],'lin') ))
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),
+     T(f[2],f[0],d[3]),
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),
+     T(f[3],f[0],d[3]),
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),T(f[1],f[0],d[3]),
+     T(f[5],f[0],d[3]),
+     T(f[3],f[0],d[3]),T(f[2],f[0],d[3]),T(f[1],f[0],d[3],'lin') ))
 
 #desenvolvimento da entrada (8 segundos)
 devEntr=n.hstack(( T(f[0],f[0],d[8]),T(f[0],f[0],d[4]),
-           T(f[0],f[0],d[3],'lin',Tr_i),
-           T(f[0],f[0],d[3],'lin',Tr_i),T(f[0],f[0],d[3],'lin',Q_i),T(f[0],f[0],d[3],'lin',Tr_i) )) + \
-           n.hstack(( T(f[5],f[2],d[3]),
-            T(f[5],f[8],d[3]),T(f[5],f[2],d[3]),T(f[8],f[5],d[3]),
-            T(f[5],f[2],d[3]),
-            T(f[5],f[1],d[3]),T(f[5],f[0],d[3]),T(f[1],f[2],d[3]),
-            T(f[5],f[2],d[3]),
-            T(f[10],f[2],d[3]),T(f[10],f[0],d[3]),T(f[10],f[9],d[3]),
-            T(f[5],f[2],d[3]),
-            T(f[7],f[5],d[3]),T(f[7],f[2],d[3]),T(f[0],f[2],d[3]) ))
+     T(f[0],f[0],d[3],'lin',Tr_i),
+     T(f[0],f[0],d[3],'lin',Tr_i),T(f[0],f[0],d[3],'lin',Q_i),\
+     T(f[0],f[0],d[3],'lin',Tr_i) )) + n.hstack(( T(f[5],f[2],d[3]),
+     T(f[5],f[8],d[3]),T(f[5],f[2],d[3]),T(f[8],f[5],d[3]),
+     T(f[5],f[2],d[3]),
+     T(f[5],f[1],d[3]),T(f[5],f[0],d[3]),T(f[1],f[2],d[3]),
+     T(f[5],f[2],d[3]),
+     T(f[10],f[2],d[3]),T(f[10],f[0],d[3]),T(f[10],f[9],d[3]),
+     T(f[5],f[2],d[3]),
+     T(f[7],f[5],d[3]),T(f[7],f[2],d[3]),T(f[0],f[2],d[3]) ))
 
 #sublimada 1 / passagem para outros funcionamentos e estereofonia 8s
 sub_e=n.hstack(( T(f[1],f[0],d[3],'log',Q_i),
-               T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
-               T(f[1],f[0],d[3]),
-               T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
-                T(f[1],f[0],d[3],'log',Q_i),
-               T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
-                T(f[1],f[0],d[3]),
-               T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]) )) + \
-                n.hstack(( T(f[0],f[10],d[9])+T(f[0],f[10],d[9],'lin',Tr_i),n.zeros(f_a*d[4]) ))
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
+     T(f[1],f[0],d[3]),
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
+      T(f[1],f[0],d[3],'log',Q_i),
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
+      T(f[1],f[0],d[3]),
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]) )) + \
+                 n.hstack(( T(f[0],f[10],d[9])+\
+                 T(f[0],f[10],d[9],'lin',Tr_i),n.zeros(f_a*d[4]) ))
 
 sub_d=n.hstack(( T(f[1],f[0],d[3],'log',Q_i),
-               T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
-               T(f[1],f[0],d[3]),
-               T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
-                T(f[1],f[0],d[3],'log',Q_i),
-               T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
-                T(f[1],f[0],d[3]),
-               T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]) )) + \
-                n.hstack(( T(f[0],f[10],d[9],'log',Tr_i)+T(f[0],f[10],d[9],'lin'),n.zeros(f_a*d[4]) ))
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
+     T(f[1],f[0],d[3]),
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
+      T(f[1],f[0],d[3],'log',Q_i),
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]),
+      T(f[1],f[0],d[3]),
+     T(f[1],f[0],d[3]),T(f[1],f[0],d[3],'lin'),T(f[1],f[0],d[3]) )) + \
+      n.hstack(( T(f[0],f[10],d[9],'log',Tr_i)+\
+      T(f[0],f[10],d[9],'lin'),n.zeros(f_a*d[4]) ))
 
 # dev da sublimada +8s
 sub2_e=n.hstack(( T(f[10],f[9],d[3]),
-                  T(f[10],f[7],d[3]),T(f[10],f[9],d[3]),T(f[10],f[6],d[3]),
-                  T(f[10],f[9],d[3]),
-                  T(f[10],f[7],d[3]),T(f[10],f[9],d[3]),T(f[10],f[6],d[3]), )) + \
+     T(f[10],f[7],d[3]),T(f[10],f[9],d[3]),T(f[10],f[6],d[3]),
+     T(f[10],f[9],d[3]),
+     T(f[10],f[7],d[3]),T(f[10],f[9],d[3]),T(f[10],f[6],d[3]), )) + \
 n.hstack(( T(f[10],f[8],d[3],tab=Tr_i),
-                  T(f[10],f[5],d[3],tab=Tr_i),T(f[10],f[4],d[3],tab=Tr_i),T(f[10],f[6],d[3],tab=Tr_i),
-                  T(f[10],f[10],d[3],tab=Tr_i),
-                  T(f[10],f[5],d[3],tab=Tr_i),T(f[10],f[0],d[3],tab=Tr_i),T(f[10],f[1],d[3],tab=Tr_i)  ))
+     T(f[10],f[5],d[3],tab=Tr_i),T(f[10],f[4],d[3],tab=Tr_i),
+         T(f[10],f[6],d[3],tab=Tr_i),
+     T(f[10],f[10],d[3],tab=Tr_i),
+     T(f[10],f[5],d[3],tab=Tr_i),T(f[10],f[0],d[3],tab=Tr_i),
+         T(f[10],f[1],d[3],tab=Tr_i)  ))
 
 
 sub2_d=n.hstack(( T(f[10],f[9],d[3],tab=Tr_i),
-                  T(f[10],f[7],d[3],tab=Tr_i),T(f[10],f[9],d[3],tab=Tr_i),T(f[10],f[6],d[3],tab=Tr_i),
-                  T(f[10],f[9],d[3],tab=Tr_i),
-                  T(f[10],f[7],d[3],tab=Tr_i),T(f[10],f[9],d[3],tab=Tr_i),T(f[10],f[6],d[3],tab=Tr_i) )) + \
-n.hstack(( T(f[10],f[8],d[3]),
-                  T(f[10],f[5],d[3]),T(f[10],f[4],d[3]),T(f[10],f[6],d[3]),
-                  T(f[10],f[10],d[3]),
-                  T(f[10],f[5],d[3]),T(f[10],f[0],d[3]),T(f[10],f[1],d[3]) ))
+     T(f[10],f[7],d[3],tab=Tr_i),T(f[10],f[9],d[3],tab=Tr_i),
+        T(f[10],f[6],d[3],tab=Tr_i),
+     T(f[10],f[9],d[3],tab=Tr_i),
+     T(f[10],f[7],d[3],tab=Tr_i),T(f[10],f[9],d[3],tab=Tr_i),
+     T(f[10],f[6],d[3],tab=Tr_i) )) + n.hstack(( T(f[10],f[8],d[3]),
+     T(f[10],f[5],d[3]),T(f[10],f[4],d[3]),T(f[10],f[6],d[3]),
+     T(f[10],f[10],d[3]),
+     T(f[10],f[5],d[3]),T(f[10],f[0],d[3]),T(f[10],f[1],d[3]) ))
 
-# rarefacao e repeticoes preparando para término
+# rarefação e repetições preparando para término
 rar_e=n.hstack(( T(f[7],f[9],d[3]),
-                 n.zeros(d[3]), T(f[10],f[9],d[3]),T(f[0],f[9],d[3]),
-                 n.zeros(d[3]),T(f[0],f[9],d[5]),
-                 n.zeros(d[6]),
-                 T(f[1],f[9],d[6],'lin')    ))
+     n.zeros(d[3]), T(f[10],f[9],d[3]),T(f[0],f[9],d[3]),
+     n.zeros(d[3]),T(f[0],f[9],d[5]),
+     n.zeros(d[6]),
+     T(f[1],f[9],d[6],'lin')    ))
 
 rar_d=n.hstack(( T(f[7],f[9],d[3],'lin'),
-                 n.zeros(d[3]), n.zeros(d[3]),T(f[1],f[9],d[3]),
-                 T(f[0],f[10],d[4],'lin',Tr_i),
-                 T(f[9],f[9],d[4]),
-                 T(f[1],f[9],d[6],'log')    ))
+     n.zeros(d[3]), n.zeros(d[3]),T(f[1],f[9],d[3]),
+     T(f[0],f[10],d[4],'lin',Tr_i),
+     T(f[9],f[9],d[4]),
+     T(f[1],f[9],d[6],'log')    ))
 
 
 # finalização com elementos dos outros momentos
@@ -158,53 +163,19 @@ s=((s-s.min())/(s.max()-s.min()))*2-1
 aa.wavwrite(s,'trans1.wav',f_a)
 
 
-
-#Gamma_i=n.array(ii*f_0*Lt/f_a,dtype=n.int)
-#T_i=S_i[Gamma_i%Lt]
-#
-#Gamma_i=n.array(ii*f_f*Lt/f_a,dtype=n.int)
-#T_i=n.hstack((T_i,S_i[Gamma_i%Lt]))
-#
-#
-#f_i=f_0+(f_f-f_0)*ii/(Lambda-1) # linear
-#
-#D_gamma_i=f_i*Lt/f_a
-#Gamma_i=n.cumsum(D_gamma_i)
-#Gamma_i=n.array(Gamma_i,dtype=n.int)
-#
-#T1_i=S_i[Gamma_i%Lt]
-#T_i=n.hstack((T_i,T1_i))
-#
-#f_i=f_0*(f_f/f_0)**(ii/(floaT(Lambda)-1)) # exponencial
-#### 2.35
-#D_gamma_i=f_i*Lt/f_a
-#Gamma_i=n.cumsum(D_gamma_i)
-#Gamma_i=n.array(Gamma_i,dtype=n.int)
-#### 2.36
-#T2_i=S_i[Gamma_i%Lt]
-#T_i=n.hstack((T_i,T2_i,(T1_i+T2_i)*0.5))
-#a.wavwrite(T_i,'trans.wav',f_a)
-
-
-
-
-
+# Exploracao sistemática dos tremolos:
 #first=n.array(())
 #for d in d[:5]:
-#    prinT(d)
-#    for f in f:
-#        for f2 in f:
-#            first=n.hstack((first,
-#                            trans(f,f2,d),
-#                            trans(f,f2,d,'lin'),
-#                            trans(f,f2,d,tab=Tr_i),
-#                            trans(f,f2,d,'lin',tab=Tr_i),
-#                            trans(f,f2,d,tab=D_i),
-#                            trans(f,f2,d,'lin',tab=D_i),
-#                            (trans(f,f2,d)+trans(f,f2,d,'lin'))*.5,
-#                            (trans(f,f2,d,tab=Tr_i)+trans(f,f2,d,'lin',tab=Tr_i))*.5,
-#                            (trans(f,f2,d,tab=Q_i)+trans(f,f2,d,'lin',tab=Q_i))*0.5  ))
-
-#first=trans(f[-1],f[0],d[0],'exp',Q_i)
-#second=trans(f[-1],f[0],d[0],'exp',S_i)
-
+#  prinT(d)
+#  for f in f:
+#    for f2 in f:
+#      first=n.hstack((first,
+#        trans(f,f2,d),
+#        trans(f,f2,d,'lin'),
+#        trans(f,f2,d,tab=Tr_i),
+#        trans(f,f2,d,'lin',tab=Tr_i),
+#        trans(f,f2,d,tab=D_i),
+#        trans(f,f2,d,'lin',tab=D_i),
+#        (trans(f,f2,d)+trans(f,f2,d,'lin'))*.5,
+#        (trans(f,f2,d,tab=Tr_i)+trans(f,f2,d,'lin',tab=Tr_i))*.5,
+#        (trans(f,f2,d,tab=Q_i)+trans(f,f2,d,'lin',tab=Q_i))*0.5  ))

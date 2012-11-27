@@ -53,11 +53,13 @@ def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
 
     Gammav_i=n.floor(ii*fv*Lv/f_a) # índices para a LUT
     Gammav_i=n.array(Gammav_i,n.int)
-    Tv_i=tabv[Gammav_i%int(Lv)] # padrão de variação do vibrato para cada amostra
+    # padrão de variação do vibrato para cada amostra
+    Tv_i=tabv[Gammav_i%int(Lv)] 
 
-    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) # frequência em Hz em cada amostra
-
-    D_gamma_i=F_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
+    # frequência em Hz em cada amostra
+    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) 
+    # a movimentação na tabela por amostra
+    D_gamma_i=F_i*(Lt/float(f_a)) 
     Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
     Gamma_i=n.floor( Gamma_i) # já os índices
     Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
@@ -121,7 +123,8 @@ cc=v(d=7,f=300,fv=3,nu=4)
 cc2=v(d=7,f=300,fv=3,nu=4,tabv=Tr_i)
 dd=v(tabv=Tr_i,d=7)
 dd2=v(d=7)
-a.wavwrite(V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T,"vbr8.wav",f_a)
+a.wavwrite(V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T,\
+                                                 "vbr8.wav",f_a)
 
 
 aa=v(f=100, fv=3,nu=5,tabv=D_i)
@@ -133,7 +136,8 @@ cc=v(d=7,f=300,fv=3,nu=14)
 cc2=v(d=7,f=300,fv=3,nu=4,tabv=Tr_i)
 dd=v(tabv=Tr_i,d=7)
 dd2=v(tabv=D_i,d=7)
-a.wavwrite(V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T,"vbr9.wav",f_a)
+a.wavwrite(V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T,\
+                                                 "vbr9.wav",f_a)
 
 aa=v(f=100, fv=20,nu=5,tabv=D_i)
 aa2=v(f=100,fv=20,nu=5,tabv=Q_i)
@@ -144,7 +148,8 @@ cc=v(d=7,f=300, fv=20,nu=14)
 cc2=v(d=7,f=300,fv=20,nu=4,tabv=Tr_i)
 dd=v(tabv=Tr_i,d=7,fv=20.)
 dd2=v(tabv=D_i,d=7,fv=20.)
-a.wavwrite(V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T,"vbr10.wav",f_a)
+a.wavwrite(V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T,\
+                                                "vbr10.wav",f_a)
 
 
 dd=v(tabv=Tr_i ,d=2,fv=20.)
@@ -162,7 +167,8 @@ dd8=v(tabv=D_i ,d=2,fv=20.)
 dd9=v(tabv=Tr_i,d=2,fv=20.)
 dd10=v(tabv=D_i,d=2,fv=20.)
 
-a.wavwrite(V((H((dd,dd3,dd5,dd7,dd9)), H((dd2,dd4,dd6,dd8,dd10)))).T,"vbr11.wav",f_a)
+a.wavwrite(V((H((dd,dd3,dd5,dd7,dd9)),H((dd2,dd4,dd6,dd8,dd10)))).T,\
+                                                 "vbr11.wav",f_a)
 
 zz=V((H((dd,dd3,dd5,dd7,dd9)), H((dd2,dd4,dd6,dd8,dd10))))
 aa1=n.array(list(v(tabv=Q_i,fv=.5,f=200,nu=7))*5)
@@ -174,7 +180,8 @@ aa1=n.array(list(v(tabv=Q_i,fv=.5,f=200,nu=7))* 4)
 aa2=n.array(list(v(tabv=D_i,fv=.5,f=200,nu=7))* 4)
 aa3=n.array(list(v(tabv=Tr_i,fv=.5,f=200,nu=7))*4)
 
-a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),"vbr13.wav",f_a)
+a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),\
+                                                 "vbr13.wav",f_a)
 
 dd=v(tabv=Tr_i ,d=2,fv=20.,nu=4)
 dd2=v(tabv=D_i ,d=2,fv=20.,nu=4)
@@ -196,7 +203,8 @@ aa1=n.array(list(v(tabv=Q_i,fv=.5,f=200,nu=7))  *4)
 aa2=n.array(list(v(tabv=D_i,fv=2,f=200,nu=7))   *4)
 aa3=n.array(list(v(tabv=Tr_i,fv=.5,f=200,nu=19))*4)
 
-a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),"vbr14.wav",f_a)
+a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),\
+                                                 "vbr14.wav",f_a)
 
 
 dd=v(tabv=Tr_i ,d=2,fv=15.,nu=7)
@@ -219,7 +227,8 @@ aa1=n.array(list(v(tabv=Q_i,fv=.5,f=200,nu=19))*4)
 aa2=n.array(list(v(tabv=D_i,fv=2,f=800,nu=7))  *4)
 aa3=n.array(v(tabv=Tr_i,fv=.25,f=200,nu=9.,d=8.))
 
-a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),"vbr15.wav",f_a)
+a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),\
+                                                  "vbr15.wav",f_a)
 
 
 dd=v(tabv=Tr_i ,d=2,fv=15.,nu=.7)
@@ -242,7 +251,8 @@ aa1=n.array(list(v(tabv=Q_i,fv=.5,f=200,nu=29))*4)
 aa2=n.array(list(v(tabv=D_i,fv=2,f=800,nu=17))* 4)
 aa3=n.array(v(tabv=Tr_i,fv=.25/2.,f=200,nu=9,d=8.))
 
-a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),"vbr16.wav",f_a)
+a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),\
+                                                 "vbr16.wav",f_a)
 
 
 dd=v(tabv=Tr_i ,d=2,fv=35.,nu=.7)
@@ -265,6 +275,7 @@ aa1=n.array(list(v(tabv=Q_i,fv=.5,f=200,nu=9))*4)
 aa2=n.array(v(tabv=Tr_i,fv=.25/2.,f=200,nu=9,d=8.))
 aa3=n.array(v(fv=.25/2.,f=200,nu=9,d=8.))
 
-a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),"vbr17.wav",f_a)
+a.wavwrite(n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5)),\
+                                                 "vbr17.wav",f_a)
 
 
