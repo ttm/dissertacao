@@ -27,15 +27,17 @@ D_i=n.linspace(-1,1,Lt)
 def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     Lambda=n.floor(f_a*d)
     ii=n.arange(Lambda)
-    Lv=float(len(S_i))
+    Lv=float(len(tabv))
 
     Gammav_i=n.floor(ii*fv*Lv/f_a) # índices para a LUT
     Gammav_i=n.array(Gammav_i,n.int)
-    Tv_i=tabv[Gammav_i%int(Lv)] # padrão de variação do vibrato para cada amostra
+    # padrão de variação do vibrato para cada amostra
+    Tv_i=tabv[Gammav_i%int(Lv)] 
 
-    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) # frequência em Hz em cada amostra
-
-    D_gamma_i=F_i*(Lt/float(f_a)) # a movimentação na tabela por amostra
+    # frequência em Hz em cada amostra
+    F_i=f*(   2.**(  Tv_i*nu/12.  )   ) 
+    # a movimentação na tabela por amostra
+    D_gamma_i=F_i*(Lt/float(f_a))
     Gamma_i=n.cumsum(D_gamma_i) # a movimentação na tabela total
     Gamma_i=n.floor( Gamma_i) # já os índices
     Gamma_i=n.array( Gamma_i, dtype=n.int) # já os índices
@@ -47,10 +49,11 @@ def A(fa=2.,V_dB=10.,d=2.,taba=S_i):
     Lt=float(len(taba))
     Gammaa_i=n.floor(ii*fa*Lt/f_a) # índices para a LUT
     Gammaa_i=n.array(Gammaa_i,n.int)
-### 2.55 padrão de oscilação do vibrato
-    A_i=taba[Gammaa_i%int(Lt)] # padrão de variação da amplitude do tremolo para cada amostra
+    # variação da amplitude em cada amostra
+    A_i=taba[Gammaa_i%int(Lt)] 
     A_i=A_i*10.**(V_dB/20.)
     return A_i
+
 
 
 def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
@@ -75,7 +78,8 @@ def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
     return som*A_i
 
 seq=[(i-1.)/i for i in range(60)[1::2]]
-seq=[i for i in n.linspace(0,1,14)] # particionando a oitava em 17 grados, 18 com a oitava
+# particionamento d oitava em 17 grados, 18 com a oitava
+seq=[i for i in n.linspace(0,1,14)] 
 s1=seq[::2]+seq[::-2]  # simetrica
 s2=seq[::4]+seq[::-2]  # na primeira metade
 s3=seq[::2]+seq[::-4]  # na segunda metade
@@ -84,7 +88,8 @@ s5=seq[::-1]  # no fim
 pausa=p=[0.]*8
 s_=s1+p+s2+p+s3+p+s4+p+s5+p+p
 
-s=H(([adsr(v(tab=Tr_i,f=800.*2.**(ss),nu=0.5,d=.2,fv=20),70.,100.,R=20.) for ss in s_]))
+s=H(([adsr(v(tab=Tr_i,f=800.*2.**(ss),nu=0.5,d=.2,fv=20),
+                            70.,100.,R=20.) for ss in s_]))
 s=((s-s.min())/(s.max()-s.min()))*2-1
 
 a.wavwrite(s,"dirracional.wav",f_a)
