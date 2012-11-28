@@ -17,6 +17,28 @@
 % \usepackage{python}
 \usepackage{epigraph}
 
+\makeatletter
+\newcommand*{\flipmargins}{%
+    \clearpage
+        \setlength{\@tempdima}{\oddsidemargin}%
+        \setlength{\oddsidemargin}{\evensidemargin}%
+        \setlength{\evensidemargin}{\@tempdima}%
+        \if@reversemargin
+        \normalmarginpar
+        \else
+        \reversemarginpar
+        \fi
+        \ifdim \evensidemargin>\oddsidemargin
+        \ihead{\headmark}%
+        \ohead[\pagemark]{\pagemark}%
+        \else
+        \ihead[\pagemark]{\pagemark}%
+        \ohead{\headmark}%
+        \fi
+}
+\makeatother
+
+
 
 \usepackage{tocloft}
 \makeatletter
