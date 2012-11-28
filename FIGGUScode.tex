@@ -1,3 +1,69 @@
-\chapter{Código do FIGGUS (Finite Groups in Granular and Unit Synthesis}
+\chapter{\emph{Finite Groups in Granular and Unit Synthesis} e a síntese de um EP}
 \label{cap:FIGGUScode}
+\section{\emph{FiGGUS}}
+
+Escrito como um módulo python, o \figgus\ sintetiza estruturas
+musicais através de permutações, como apresentadas na subseção~\ref{estCic}. Utiliza os princípios da \massa\
+e os códigos foram reescritos para python nativo, i.e. sem a 
+utilização de bibliotecas externas como o Numpy e o Audiolab, para facilitar
+o uso de terceiros. O \figgus\ é parte da toolbox \massa\ como exemplo de implementação dos princípios da \emph{toolbox} com as biblitecas padrão da linguagem Python.\cite{MASSA}
+
+
+\subsection{FIGGUS.py}\label{ap:figgus.py}
+Arquivo principal, possui todas as rotinas.
+\code{figgus/FIGGUS.py}{FIGGUS/figgus/FIGGUS.py}
+
+
+\subsection{tables.py}\label{ap:tables.py}
+Arquivo auxiliar para tratar as tabelas separadamente.
+\code{figgus/tables.py}{FIGGUS/figgus/tables.py}
+
+\subsection{\_\_init\_\_.py}\label{ap:init.py}
+Inicialização do módulo.
+\code{figgus/\_\_init\_\_.py}{FIGGUS/figgus/__init__.py}
+
+
+%%%%%%%%%%%%%%%%%%%%
+\section{PPEPPS: músicas de um EP solvente}
+O PPEPPS (Pure Python EP: Projeto Solvente) usa
+o \figgus\ para sintetizar um EP inteiro. As músicas
+estão abaixo, junto com o arquivo que executa cada uma.
+
+\subsection{RUNME make EP MUSIC.py}\label{ap:RUNME.py}
+Arquivo que executa os outros um por um para sintetizar as músicas do EP.
+\code{RUNME\_make\_now\_an\_EP\_MUSIC.py}{FIGGUS/RUNME_make_now_an_EP_MUSIC.py}
+
+\subsection{Éter}\label{ap:triangulo3b.py}
+\code{examples/triangulo3\_B.py}{FIGGUS/examples/triangulo3_B.py}
+\clearpage
+\subsection{Butano}\label{ap:triangulo4b}
+\code{examples/try4\_B.py}{FIGGUS/examples/try4_B.py}
+\clearpage
+
+\subsection{Thinner}\label{ap:triangulo5b}
+\code{examples/try5\_B.py}{FIGGUS/examples/try5_B.py}
+\clearpage
+
+\subsection{Tolueno}\label{ap:triangulo6b}
+\code{examples/try6\_B.py}{FIGGUS/examples/try6_B.py}
+\clearpage
+
+\subsection{Benzina}\label{ap:try7}
+\code{examples/try7.py}{FIGGUS/examples/try7.py}
+\clearpage
+
+\subsection{LSA}\label{ap:try3b}
+\code{examples/try3\_B.py}{FIGGUS/examples/try3_B.py}
+\clearpage
+
+\subsection{Clorofórmio}\label{ap:try2}
+\code{examples/try2.py}{FIGGUS/examples/try2.py}
+\clearpage
+
+
+\subsection{Água}\label{ap:try5}
+\code{examples/try5.py}{FIGGUS/examples/try5.py}
+\clearpage
+
+
 
