@@ -8,7 +8,7 @@
 Representar estruturas e artifícios musicais através das características do som discretizado
 é a tarefa proposta por este trabalho. Os resultados são relações matemáticas e suas implementações computacionais. Uma descrição teórica está no capítulo~\ref{cap:resultados} e o conjunto de \emph{scripts} disponibilizados no Apêndice~\ref{cap:codigoProc} e online.\cite{MASSA} A \emph{toolbox} resultante recebeu o nome \massa\ (música e áudio em sequências e séries amostrais) e foi utilizada para fazer pequenas peças e montagens focadas nos princípios expostos. O Apêndice~\ref{cap:codigoPecas} possui uma relação destas montagens assim como o diretório \emph{exemplos\_de\_uso} da \massa.
 
-    \section{Do som ao áudio digital}\label{sec:audio}
+    \section{Som em áudio digital}\label{sec:audio}
 
 O som é uma onda mecânica longitudinal de pressão. A banda de frequências compreendida entre $20Hz$ e $20 kHz$ é apreciada pelo aparelho auditivo humano com variações dependentes da pessoa, das condições climáticas e do som em si.
  Considerada a velocidade do som no ar $\approx 343.2\,m/s$,
@@ -29,12 +29,12 @@ Um som digital PCM é caracterizado pela frequência de amostragem $f_a=\frac{1}
         \label{fig:PCM}
 \end{figure}
 
-Pelo teorema de Nyquist, constata-se que a metade da frequência de amostragem é a frequência máxima do sinal. Assim, para apreender as frequências audíveis, é necessária uma taxa de amostragem que seja ao menos o dobro da frequência mais aguda $f_a \geq 2\times 20kHz=40kHz$. Este raciocínio está na base da utilização das frequências de amostragens $f_a=44.1kHz$ e $f_a=48kHz$, ambas padrão em \emph{Compact Disks} (CDs) e em sistemas de Rádio e TV, respectivamente.\cite{protocolosAudio}
+Pelo teorema de Nyquist, constata-se que a metade da frequência de amostragem é a frequência máxima do sinal. Assim, para apreender as frequências audíveis, é necessária uma taxa de amostragem que seja ao menos o dobro da frequência mais aguda $f_a \geq 2\times 20kHz=40kHz$. Este raciocínio está na base da utilização das frequências de amostragem $f_a=44.1kHz$ e $f_a=48kHz$, ambas padrão em \emph{Compact Disks} (CDs) e em sistemas de Rádio e TV, respectivamente.\cite{protocolosAudio}
 
 
     \section{Arte sonora e teoria musical}
 
-A música é definida como a arte manifesta pelos sons e silêncios. Para um ouvinte comum - e boa parte dos especialistas - uma 'música que seja música' pressupõe também uma métrica rítmica e organizações de alturas que formem melodias e harmonias como explicadas na seção~\ref{notasMusica}. A música do século XX ampliou esta concepção tradicional de música. Isso ocorreu na música de concerto, especialmente nas correntes concreta, eletrônica e eletroacústica. Já na década de 90 era evidente que também a música popular, especialmente as músicas eletrônicas de dança, tinham se desdobrado para abarcar sons sem altura definida e organizações temporais fora de métricas simples. Mesmo assim, a nota permanece paradigmática como 'unidade fundamental' das estruturas musicais e, na prática, podem se desdobrar em sons que contemplam estes desenvolvimentos recentes. A nota musical e sua expansão são abordadas na seção~\ref{varInternas}.\cite{Wisnick,Webern,Lerdahl,Cook}
+A música é definida como a arte manifesta pelos sons e silêncios. Para um ouvinte comum - e boa parte dos especialistas - uma 'música que seja música' pressupõe também uma métrica rítmica e organizações de alturas que formem melodias e harmonias como explicadas na seção~\ref{notasMusica}. A música do século XX ampliou esta concepção tradicional de música. Isso ocorreu na música de concerto, especialmente nas correntes concreta, eletrônica e eletroacústica. Já na década de 90 era evidente que também a música popular, especialmente as músicas eletrônicas de dança, tinham incorporado sons sem altura definida e organizações temporais fora de métricas simples. Mesmo assim, a nota permanece paradigmática como 'unidade fundamental' das estruturas musicais e, na prática, podem se desdobrar em sons que contemplam estes desenvolvimentos recentes. A nota musical e sua expansão são abordadas na seção~\ref{varInternas}.\cite{Wisnick,Webern,Lerdahl,Cook}
 
 A teoria musical engloba assuntos tão diversos quanto psico-acústica, manifestações culturais e formalismos. O texto do capítulo~\ref{cap:resultados} aborda estes assuntos mediante necessidade e assinala complementos externos.\cite{Zamacois,Schoenberg,microsound}
 
