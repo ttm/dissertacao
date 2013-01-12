@@ -1,5 +1,5 @@
 # Note as variáveis que são fixadas de antemão
-def fazSequencia(notas, f0, fator, dur_nota, dur_silencio,
+def fazSequencia(notas, f0, fator, dur_nota, dur_silencio,\
                                         funcao1, funcao2=0):
     seq=[] # a sequência é iniciada vazia
     for nota in notas: # para cada nota
