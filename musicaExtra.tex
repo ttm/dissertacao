@@ -353,99 +353,122 @@ Em posse não apenas de representações abstratas do padrão musical a ser real
 
 \code{Escrita do Vetor Sonoro em Arquivo WAV}{python_snippets/fio.py}
 
-%%%%%%%%%%%%%%%%%% FIM DO PULO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Música em Tempo Real: Live coding e ABeatTracker (ABT)}
 
-Com os avanços computacionais recentes, tornou-se usual a síntese
-sonora em tempo real. Com isso, surgiram linguagens chamadas de
+Tornou-se usual a síntese
+sonora em tempo real mesmo em \emph{laptops} populares.
+Assim, surgiram linguagens de
 domínio específico, para o áudio e a música, em sua maioria dedicadas
--- ou ao menos capacitadas -- para o uso em tempo de
-execução. Puredata, SuperCollider, ChucK e ixilang são exemplos de
+- ou ao menos capacitadas - para interação em tempo de
+execução como \emph{Puredata}, \emph{SuperCollider}, \emph{ChucK}
+ e \emph{ixilang}. Todos estes são exemplos de
 linguagens largamente utilizadas para a composição musical e síntese
 sonora em tempo real. Em outras palavras, estas linguagens
 possibilitam que o usuário ouça o resultante sonoro do código
-utilizado e altere o código com resultado imediato no processamento e
-resultado que escuta.
+utilizado e altere o código com resultados imediatos no processamento e
+sonoridades produzidas.
 
-Nesta linha de exploração musical do código, iremos expor a seguir
-sobre nossas investidas em \emph{Live coding} (escrita de código em
-tempo real com vistas à performance pública) através de linguagens em
-contínuo desenvolvimento como ChucK, e o ABeatTracker (uma linguagem
-por macros para execução sonora rítmica em conjunto com instrumentos
-tradicionais e outras fontes sonoras/musicais externas).
+A exploração estética destas ferramentas 
+em performances musicais é a proposta do \emph{Live coding}.
+Esta prática de \emph{performance} se dedica
+especialmente à escrita de código em
+tempo real com vistas à projeção visual dos códigos enquanto
+são escritos, junto à projeção sonora que produzem.
+O ABeatTracker ainda pode ser considerado
+livecoding, mas já é um intermediário, com traços
+de um aplicativo ou ferramenta, embora os comandos sejam
+pela escrita. É uma linguagem
+com macros para execução de rítmos através de \emph{samples}
+em conjunto com instrumentos
+tradicionais e outras fontes sonoras/musicais externas.
 
 \subsubsection{Live coding}
 
-Recentemente, grupos de ponta em música experimental no mundo todo
+Recentemente, grupos de ponta em música experimental
 estão desenvolvendo apresentações musicais públicas baseadas na
-escrita de código ao vivo. Destes vale ressaltar os grupos pioneiros
-slub e Benoît and the Mandelbrots e as ``orquestras de laptops''
-PLOrk, SLOrk e DubLOrk\footnote{Para maiores detalhes vide
-  \url{http://toplap.org}}. Usualmente, se projeta o código para que a
+escrita de código ao vivo. Este é um fenômeno cultural e
+estético, do qual vale ressaltar os grupos pioneiros
+\emph{Slub} e \emph{Benoît and the Mandelbrots} assim como
+as 'orquestras de \emph{laptops}'
+\emph{PLOrk}, \emph{SLOrk} e \emph{DubLOrk}\footnote{Para maiores detalhes, veja:
+  \url{http://toplap.org}.}. Usualmente, o código é projetado para que a
 audiência possa ver o que está sendo escrito, no rítmo em que se
 escreve, e se projeta também o resultante sonoro por autofalantes.
 
-As motivações para isso são variadas. Expomos a seguir de forma
-topificada um condensado do que nos orientou a tal prática. Vale
-ressaltar que são motivações igualmente presentes em outros
-grupos\footnote{Vide ``Manifesto Live coding'' em
-  \url{http://toplap.org/wiki/ManifestoDraft}}, embora não
-necessariamente em todos ou da mesmícima forma.
+
+
+Estas são motivações presentes em diferentes
+grupos\footnote{Vide 'Manifesto Live coding' em
+  \url{http://toplap.org/wiki/ManifestoDraft}.}, embora não
+necessariamente ou da mesmícima forma:
 
 \begin{itemize}
-    \item A performance musical por computador carece de recursos
-      performáticos à altura das execuções com instrumentos
-      tradicionais. Os gestos são por demais discretos e a
-      concentração do performer é bastante focada na tela do
+    \item A apresentação musical, com o uso do computador como instrumento,
+    carece de recursos
+      performáticos visuais dos instrumentos tradicionais.
+       Os gestos são por demais discretos e a
+      concentração do \emph{performer}/instrumentista é bastante focada na tela do
       computador.
-    \item O feedback auditivo do código projetado permite que o
-      espectador infira significados dos códigos. Mesmo que de forma
-      superficial, este recurso do Live coding é em muito capaz de
+    \item O \emph{feedback} auditivo do código projetado permite que o
+      espectador infira significados dos códigos. 
+      Este recurso do \emph{livecoding} é usado para
       desmistificar a programação de computadores e sua aplicação em
-      computação musical, por muito considerada completamente
+      computação musical, comumente considerada
       intangível.
-    \item O código em si é um recurso poderosíssimo, que permite ao
+    \item O código em si é um recurso poderosíssimo que permite ao
       usuário controlar os sons produzidos amostra por amostra ou em
-      escalas maiores, como notas, compassos, fraseados inteiros ou
+      escalas maiores de tempo, como notas, compassos, fraseados inteiros ou
       mesmo em escalas maiores de tempo, como minutos, horas, dias e
       semanas.
     \item O compartilhamento do código é usual, leve e eficiente como
-      entrega completamente aberta da tecnologia relacionada à
-      proposta estética. Isso motiva não só o programador à aplicar
+      entrega de tecnologia valiosa para a
+      proposta estética. Isso motiva não só o programador a aplicar
       seus conhecimentos na música, mas também o músico a adentrar o
       uso de linguagens de programação para expressão de suas ideias
       musicais.
 \end{itemize}
 
-Desta forma, iniciamos em 2011 uma linha de atuação em Live coding com
-a criação do duo \emph{FooBarBaz} (Variáveis Metasintáticas) composto
-pelo autor Renato Fabbri e Vilson Vieira. Essa atuação resultou em uma
-performance no \emph{V Festival Contato}. É interessante ressaltar que
-essa foi a primeira apresentação de Live coding no Brasil, e a maior
-apresentação internacional em número de ouvintes (por volta de 5 mil
-pessoas) que se tenha relato.
+Desta forma, foi iniciada em 2011 uma linha de atuação em \emph{livecoding} com
+a criação do duo \emph{FooBar} composto por Vilson Vieira e o autor
+deste escrito. Este duo se desenvolveu no
+trio \emph{FooBarBaz}/Variáveis Metasintáticas composto
+pelo duo e por Gilson Beck na mesa de som, usando detecção de cor no laptop
+para incrementar a apresentação. Este trio
+realizou uma \emph{performance} no \emph{V Festival Contato}.
+ É interessante ressaltar que, até onde se sabe,
+essa foi a primeira apresentação de \emph{livecoding} no Brasil, e a maior
+apresentação internacional em tamanho de platéia, estima-se que entre 3 e 5 mil
+pessoas estavam presentes.
 
-Utilizamos a linguagem ChucK por apresentar os recursos que
-consideramos mais apropriados, embora de forma alguma isso seja
-consensual na prática atual de Live coding. Ainda, a apresentação
+Foi usada a linguagem emph{ChucK} por apresentar os recursos que
+o duo inicial considerou mais apropriados,
+ embora de forma alguma isso seja
+consensual na prática atual de \emph{livecoding}. Além disso, a apresentação
 contou com recursos adicionais para agregar interesse, como a
-utilização do \emph{cowsay} (para enviar mensagens enquanto se
-desenrolava a música) e trajetórias de um ponto no fundo do código
-para sugerir a vertigem do sono REM. Estes recursos podem ser vistos
-em uso claramente nos videos demonstrativos\footnote{Disponíveis em
+utilização do \emph{cowsay} para enviar mensagens enquanto se
+desenrolava a música. Em especial, as trajetórias de um ponto branco
+no fundo do código sugeria o sono REM como uma experiência coletiva de alteração
+do estado.
+Estes recursos podem ser vistos
+em uso nos videos demonstrativos\footnote{Disponíveis em
   \url{http://vimeo.com/33012735}, \url{http://vimeo.com/33018740},
   \url{http://vimeo.com/33019291}, \url{http://vimeo.com/33025717} e
-  \url{http://vimeo.com/33025913}.}  As linhas do \emph{cowsay} e o
+  \url{http://vimeo.com/33025913}.}
+  As linhas do \emph{cowsay} e o
 \emph{script} em linguagem Processing relacionados, assim como maiores
 detalhes sobre o duo e fotos da apresentação podem ser vistos em
-\url{http://wiki.nosdigitais.teia.org.br/FooBarBaz}.
+\url{http://wiki.nosdigitais.teia.org.br/FooBarBaz}. Estavam presentes
+no palco outros membros do labMacambira.sourceforge.net: Ricardo Fabbri,
+Alexandre 'Bzum', Larissa.
 
-Duas pessoas executaram Live coding simultaneamente. A saber, Vilson
-Vieira executava ritmos, batidas bastante marcadas que serviam como
-base. Renato Fabbri, autor do presente trabalho, executava linhas
-fluídas quasi melódicas que formavam arcos maiores. Nos intervalos das
-investidas no formato citado, havia interlúdios em que ambos se
+Especificamente sobre a prática do \emph{livecoding},
+duas pessoas executaram \emph{scripts} em \emph{Chuck} simultaneamente.
+A saber, Vilson
+Vieira executou ritmos, batidas bastante marcadas que serviam como
+base. Renato Fabbri, autor deste texto, executava linhas
+fluídas quasi-melódicas que formavam arcos maiores.
+Havia também interlúdios em que ambos se
 revesavam com músicas curtas e inusitadas, como em um duelo. A mixagem
 e espacialização dos dois canais de áudio foram controladas por um
 patch em Puredata que permitia o \textit{cross-fading} entre os canais
@@ -455,25 +478,23 @@ Ricardo Fabbri e posto em uso por Gilson Beck durante a
 apresentação. Esse mesmo objeto foi utilizado no instrumento
 AirHackTable, discutido na seção~\ref{aht}.
 
-A prática de Live coding requer o uso de linguagens que permitam a
-execução rápida de instruções curtas, incentivando assim o improviso
-musical através do código. Com esse objetivo, ambos \emph{live coders}
-usaram editores de texto -- vim e Emacs -- que permitiam a comunicação
-imediata com a linguagem de síntese sonora ChucK.  Acreditando que a
-música, especialmente sua vertente experimental, se baseia fortemente
-na organização de trechos de arquivos de áudio ou notas dadas a
-instrumentos sintetizados, foram gerados códigos que permitissem tal
-manipulação. Renato utilizou de trechos (``esqueletos'') minimalistas
-de código em ChucK para reproduzir arcos longos e estruturas
-melódicas, como os que seguem:
+A prática de \emph{livecoding} requer o uso de 
+instruções curtas, incentivando o improviso
+musical através do código. Ambos \emph{livecoders}
+usaram bons editores de texto
+para a escrita dos \emph{scripts} em \emph{ChucK}: Vim e Emacs.
+Renato utilizou aspectos estruturais de alto nivel, 
+arcos longos e estruturas
+melódicas e minimalistas, como os que seguem:
 
 \code{Interface para controle de parâmetros em tempo
   real}{chuck_snippets/bar.ck}
 
-Ao mesmo tempo, Vilson utilizou dos códigos seguintes, também em
-ChucK, que permitem facilmente especificar a posição do arquivo de
-áudio que deve ser executada, sua velocidade de execução, duração e
-amplitude. Uma interface minimalista foi utilizada para permitir a
+Ao mesmo tempo, Vilson fez uso de scripts para
+facilmente especificar a posição do arquivo de
+áudio que deve ser iniciada a execução, assim como a velocidade
+reprodução do áudio, duração e
+amplitude. Uma interface simples foi permitiu a
 alteração rápida desses parâmetros em tempo de execução.
 
 \code{Interface para controle de parâmetros em tempo
@@ -483,62 +504,64 @@ alteração rápida desses parâmetros em tempo de execução.
   áudio}{chuck_snippets/foosp.ck}
 
 Esses desenvolvimentos todos inspiraram a criação de uma linguagem
-específica para Live coding, chamada Vivace, que está em constante
-desenvolvimento e tem seu código e maiores detalhes disponíveis em
-\url{http://automata.github.com/vivace}. Já foram realizadas novas
+específica para \emph{livecoding}, chamada \emph{Vivace}, que está em constante
+desenvolvimento e tem seu código e maiores detalhes disponíveis online
+de forma livre\footnote{Veja: 
+\url{http://automata.github.com/vivace}.}. Já foram realizadas novas
 apresentações utilizando essa linguagem, a notar: Hacklab do Velho, em
 São Carlos (SP), Semana da Comunicação FAAP (SP), Palco UFSCar (SP) e
 Semana Nacional da Ciência e Tecnologia (SP). Nelas houve a
 predominância do apelo às mídias populares, em uma reinauguração do
-gênero da \emph{pop art}: trechos de vídeos de uma novela brasileira
-eram rearanjadas em tempo real, contrastando com linhas rítmicas e
-melódicas executadas em sincronia com o material visual\footnote{Uma
-  amostra está disponível on-line para ser utilizada por qualquer
-  pessoa que possua um navegador Chrome:
-  \url{http://pulapirata.com/skills/vivace}}.
+gênero da \emph{pop art}: trechos de vídeos de uma novela brasileira: 'Avenida Brasil'
+eram rearanjados em tempo real em sincronia com linhas rítmicas e
+melódicas\footnote{Uma
+  amostra está disponível \emph{online} para ser utilizada por qualquer
+  em qualquer computador com o navegador \emph{Google-Chrome}:
+  \url{http://pulapirata.com/skills/vivace}.}.
+
+  Catalizadas pela aproximação de "Gera" Magela e Caleb Mascarenhas Luporini, as
+   apresentações e amadurecimeentos de 2012 desembocaram na
+  na escrita coletiva de códigos (acesso e controle da platéia 
+  no código que está sendo escrito), utilização de monstros e ascii art e
+  e sonoridades bizarras. Com isso, está sendo proposto
+  um gênero de \emph{livecoding} batizado de '\emph{Freakcoding}', possivelmente o primeiro subgênero
+  de \emph{livecoding}.
 
 \subsubsection{ABeatTracker (ABT)}
 
-O ABT é uma linguagem/ferramenta que dispara linhas rítmicas através
-de macros que especificam as células rítmicas, amostras sonoras que
+O ABT é uma linguagem que dispara linhas rítmicas através
+de macros. Nestas, especifica-se as células rítmicas, amostras sonoras que
 são utilizadas como conteúdo sonoro destas linhas, modos de leitura
-destas amostras sonoras, e variáveis randômicas utilizadas para
+destas amostras sonoras e variáveis randômicas utilizadas para
 execussão da linha. Além disso, o ABT dispõe de variáveis globais que
-podem ser alteradas a qualquer momento pelo usuário, como BPM,
+podem ser alteradas a qualquer momento pelo usuário também com macros, como BPM,
 velocidade de leitura das amostras e variáveis randômicas globais (que
 se somam às individuais).
-
-Em pouco explicitaremos a forma de utilização do ABT. De antemão, é
-pertinente apresentar uma pequena discussão a respeito do que o ABT é
-considerado e sobre os propósitos desta ferramenta. Em primeiro lugar,
-vale manter em mente que o ABT tem um funcionamento específico que
-pode transcender o que se conhece por Live coding. As macros
-pré-estabelecidas engendram um conjunto de recursos pré-estabelecidos
+As macros
+pré-estabelecidas constituem um conjunto de recursos pré-estabelecidos
 bem definido, o que contrasta com a ideia de uma 'linguagem de
 programação' que tenha capacidades mais amplas. De qualquer forma,
 linguagens com domínios específicos não são raras e por vezes o ABT
 foi descrito como uma linguagem.
 
-Sobre os propósitos do ABT, em primeiro lugar ele se dispõe a ser um
-instrumento computacional essencialmente rítmico. Junto a esta
-proposta, vem a necessidade da utilização em conjunto com outros
-instrumentos, externos ao ABT, ao computador em que estiver executando
+O ABT é um instrumento computacional essencialmente rítmico. Junto a esta
+proposta, está a necessidade da utilização em conjunto com outros
+instrumentos, externos ao ABT, ao computador em que o ABT está sendo executado
 e possivelmente externo com relação a qualquer computador. Para isso
 foi elaborado o ABD (ABeatDetector), no qual o usuário tamborila no
 teclado do computador os rítmos que estiver ouvindo ou imaginando para
 que o ABT sincronize o pulso e utilize células rítmicas
-relacionadas. A análise feita pelo ABD resulta em uma série de ritmos
+relacionadas. A análise feita pelo ABD resulta em uma série de rítmos
 explicitados por sequências de compassos que encapsulem durações
-regulares do ritmo tamborilado. Estes ritmos relacionados ao
+regulares do rítmo tamborilado. Estes ritmos relacionados ao
 tamborilar do usuário são chamados de harmônicos e podem ser
-selecionados prontamente para o disparo de linhas melódicas.
+selecionados prontamente para o disparo de linhas melódicas no ABT.
+De fato, atualmente o ABD é parte do ABT.
 
-No Apêndice XX está o manual de utilização do ABT e todo o código do
-ABT (e do ABD) está disponivel online (citar repos). Exploramos abaixo
-detalhes relevantes da implementação, em especial a forma de
-funcionamento do ABD.
+Todo o código do
+ABT está disponivel online junto à documentação para uso\footnote{Veja o
+repositório: git://labmacambira.git.sourceforge.net/labmacambira/audioArt/ABT}.
 
-[códigos-chave e explicações sobre o ABT e o ABD]
 
 \subsection{Música na Matéria: EKP e AHT}
 \label{aht}
