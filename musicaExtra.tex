@@ -567,107 +567,137 @@ repositório: git://labmacambira.git.sourceforge.net/labmacambira/audioArt/ABT}.
 \label{aht}
 
 Embora o foco deste trabalho seja na exploração musical através de
-códigos (abertos!), nesta sessão iniciamos uma explicação simples,
+códigos computacionais, nesta sessão está explicação simples,
 clara e factual de como estas investidas transcendem o código e até
 mesmo a música em si.
 
-Mais relevantes que os desenvolvimentos em si, são as mobilizações
-criadas nos entornos e os engajamentos. Isso ficará evidente nas
-próximas - curtas - sessões destes desenvolvimentos e resultados.
+Por vezes, mais relevantes que os próprios desenvolvimentos são as mobilizações
+criadas nos entornos e os engajamentos.
 
-Aqui apresentamos dois trabalhos que geraram alguma movimentação de
-pessoas, resultando em reuniões, desenvolvimentos, pesquisas e
+A seguir estão dois trabalhos que geraram alguma mobilização,
+resultando em trocas, reuniões, desenvolvimentos, pesquisas e
 apresentações propriamente ditas. O primeiro utiliza o estado do
-hardware como entrada, o segundo se trata de uma mesa escultural para
-flutuação de origamis que resulta em um instrumento musical bastante
+hardware como entrada, o segundo consiste na
+flutuação de origamis para a obtenção de um instrumento musical
 lúdico.
 
 
 \subsubsection{Emotional Kernel Panic (EKP)}
 
-Em 2008, colaborando intensamente com o CDTL (Centro de
-Desenvolvimento de Tecnologias Livres)\footnote{foi uma associação
-  civil formada e desmembrada em 2008 e sediada em Recife, PE} foi
+Em 2008, em colaboração intensa com o CDTL (Centro de
+Desenvolvimento de Tecnologias Livres)\footnote{Uma associação
+  civil formada e desmembrada em 2008, sediada em Recife, PE.} foi
 lançada a ideia de utilizar o estado do sistema operacional -
-especialmente o kernel linux - para geração de sons. Surge o Emotional
-Kernel Panic (EKP) na colaboração excepcional de Felipe
-Machado\footnote{Importantíssimo para o desenvolvimento da Cultura
-  Digital no Brasil [citar fontes e programas governamentais]},
-Ricardo Brazileiro\footnote{Artivista Digital bastante ativo [citar
-    fontes]} e o primeiro autor do presente trabalho.
+especialmente o kernel linux - para gerar de sons. Surge então o 
+'\emph{Emotional Kernel Panic}' (EKP) na parceria de Felipe
+Machado (então coordenador do CDTL),
+Ricardo Brazileiro (artista conhecedor de tecnologias livres)
+e o primeiro autor do presente trabalho.
 
-Desde o inicio, foram definidos três finalidades para esta exploração
-do SO:
-
-[visitar o README do EKP e achar os scripts do Brazileiro sobre o EKP]
+Foram definidos três finalidades para esta exploração
+do Sistema Operacional:
 
 \begin{itemize}
-\item Didáticos
-\item Artísticos
-\item Monitoramento do SO
+\item Pedagógicos, através da utilização de um sentido que não o visual para a tarefa de analisar o Sistema.
+\item Artísticos, para apresentações musicais/audiovisuais.
+\item Monitoramento do SO, pela emissão de sons periódicos relativos à carga de processamento, memória, uso de rede, etc.
 \end{itemize}
 
-Toda a base do EKP está aqui: http://trac.assembla.com/audioexperiments/browser/ekp-base
+Esta empreitada se desdobrou em apresentações na Conferência Internacional de PureData (2009), SESC (2009),
+e no III Festival Contato (2009). No Festival Internacional de Software Livre de 2010 foi apresentada
+uma pesquisa sobre o EKP com diversos patches feitos por Ricardo Brazileiro e Felipe Machado, assim
+como amadurecimentos da proposta.
+Uma implementação conceitual do EKP está aqui: \url{http://trac.assembla.com/audioexperiments/browser/ekp-base}.
 
-[Patches desenvolvidos por Brazileiro/Machado e rascunho do EKP-Monitor]
+
 
 \subsubsection{AirHackTable}
 
 A AirHackTable (AHT) é um instrumento musical eletrônico controlado por
 origamis (dobraduras de papel), construída na forma de uma mesa. Nela,
 uma rede de coolers reciclados faz flutuar origamis de geometria e
-cores variadas. Os movimentos dos origamis são captados por webcam e
+cores variadas. Os movimentos dos origamis são captados por \emph{webcam} e
 interpretados em tempo real por software de processamento de imagens,
 gerando padrões que controlam a transformação sonora da música. Dessa
-forma, pode-se dizer que os sons gerados refletem o voo dos origamis
-de acordo com suas geometrias (que geram trajetórias de voo
-caracteristicas).
+forma, pode-se dizer que os sons gerados refletem o vôo dos origamis
+de acordo com suas geometrias (que geram trajetórias de vôo
+caracteristicas). Dito de maneira mais teórica, as estruturas fora
+do tempo (geometrias dos origamis) estão sendo mapeadas em estruturas
+temporais (trajetórias dos origamis em seus vôos), o que é um macete
+da música erudita desde tempos antigos.
 
 Na versão atual da AirHacktable, cada cor (vermelho, amarelo, azul,
-verde, preto, ou branco) controla uma voz, e a posição do origami na
-mesa modula aspectos do som. Em outras palavras, se o origami está
-flutuando mais à esquerda, o som sai no canal à esquerda da mesa, e se
-o origami está mais próximo da câmera, o volume aumenta, e se está
-mais afastado do operador, o som se torna mais agudo.
+verde, preto, ou branco) controla uma voz, já a posição do origami na
+mesa controla aspectos do som. Como um exeplo, pode-se
+configurar a AHT de forma que, se o origami está
+flutuando para a esquerda, o som também se move para esquerda, se
+o origami está mais próximo da câmera, o volume é maior, e se está
+mais afastando do operador, o som se torna mais agudo.
 
 A AHT segue a filosofia de desenvolvimento contínuo, comum ao software
 livre, que atualmente foi incorporado ao movimento chamado hardware
-livre ou aberto.
+livre ou aberto. A concepção inicial foi de Chico Simões (mestre de maracatu
+e conhecedor de tecnologias livres) e o autor
+deste texto, através do amadurecimento de possiveis instrumentos musicais de papel. 
+Logo neste estágio inicial, foram aproximados Vilson Vieira, Ricardo Fabbri, Fábio Simões
+e Daniel Penalva em reuniões presenciais. Destas reuniões, saíram ideias
+diversas, escritas em um \emph{pad} aberto\footnote{Veja: \url{http://pontaopad.me/origami-sensores}.},
+e, por fim, a AHT em si.
 
-[citar apresentações no contato, avav, oficinas sesc, chico, oficina semana imagem e som]
+A primeira realização da mesa se deu no V Festival Contato, no \emph{Espaço Macambira},
+com apresentação na Teia Casa de Criação, durante o mesmo festival. A estrutura
+da mesa é também de papel (papelão, e foi feita
+por Francisco Simões por pesquisa própria. O uso do reticulado de ventoinhas foi fruto
+de discussões coletivas e de experimentos do coletivo labMacambira.sourceforge.net,
+com especial empenho do Francisco e uso de sua luthearia de percussão: \emph{Tora Tambores}.
 
-[imagens da AHT e dos patches em operação, ver com renato quais ele quer]
+Em 2012 houve a aproximação de Caleb Mascarenhas Luporini e "Gera" Magela.
+Foram feitas oficinas no SESC Pinheiros e SESC Belenzinho e apresentação
+no AVAV\footnote{Evento mensal que ocorre na cidade São Paulo: AudioVisual Ao Vivo.},
+todas com o foco na construção e uso da AHT.
 
-\subsection{Música no Tecido Social: Sabrina Kawahara, Audioexperiments, EstudioLivre.org, CDTL, juntaDados.org, Devolts.org, MSST, LabMacambira.sf.net}
 
-Esta é uma sessão menor, dedicada a apontar repercussões emergentes
-destas empreitadas em comunidades diferentes e então tornar
-compreensível o desdobramento que estes códigos dedicados à música
-tiveram em processos sociais e mobilizações civis.
+\subsection{Música no tecido social: Sabrina Kawahara, Audioexperiments, EstudioLivre.org, CDTL, juntaDados.org, Devolts.org, MSST, LabMacambira.sf.net}
 
-Grupos foram montados em torno destes desenvolvimentos. Como os
-propósitos de compartilhamento e apropriação tecnológica estavam no
-cerne dos grupos relacionados, as investidas naturalmente tomaram
-teores engajados socialmente. A questão do empoderamento das pontas e
-da criação de um patrimônio tecnológico da humanidade é consequência
-quase imediata das posturas de compartilhamento e apropriação citados.
-
-Discorremos brevemente sobre cada uma das iniciativas citadas:
+A singularidade do cruzamento artístico, cultural e tecnológico
+dos trabalhos expostos também é desenvolvida por diferentes grupos.
+Os propósitos de compartilhamento e apropriação tecnológica estão no
+cerne destas comunidades, de forma que as investidas naturalmente tomam
+rumos engajados socialmente. Em especial, o empoderamento civil e
+a criação de um patrimônio tecnológico da humanidade são consequências
+imediatas das posturas de compartilhamento e apropriação citados.
 
 \begin{itemize}
-    \item Sabrina Kawahara
-    \item Audioexperiments
-    \item Estudiolivre.org
-    \item CDTL
-    \item JuntaDados.org
-    \item Devolts.org
-    \item MSST
-    \item LabMacambira.sf.net
-    \item Outros relacionados: MuSa, Metareciclagem, Submidialogia, Tainã
+    \item Sabrina Kawahara: formado pelo autor deste texto, Guilherme Lunhani,
+    Guilherme Rebecchi, Israel Laurindo, Rodrigo Felício e Otávio Martigli,
+    este grupo dedicou-se à realização
+    de apresentações conjuntas, bem como a escrita de peças e textos através
+    de dinâmicas coletivas.
+    \item Audioexperiments (Æ): iniciado por Tiago Tavares, o autor do texto e aproximações de
+    Daniel Pastore. O grupo se dedicou à publicação de textos didáticos e produção
+    de código em repositórios públicos. Em destaque, o repositório no \emph{Assembla}
+    possui códigos em Python e C/C++ que realizam diversos experimentos em áudio, música
+    e inteligência artificial\footnote{Veja a página principal do espaço: \url{https://www.assembla.com/spaces/audioexperiments}.}.
+    \item Estudios Livres: são ambientes de estudo, produção e distribuição de mídias livres.
+    Formam, sem conjunto, um movimento e uma rede social brasileira, tida como única no mundo, embora
+    o conceito seja conhecido internacionalmente\footnote{Há uma plataforma aberta com capacidades
+    de \emph{wiki}, blog e midiateca em \url{http://estudiolivre.org}.}. Tanto a comunidade quanto
+    a lista operacional e plataforma da comunidade foram essenciais nos amadurecimentos de questões
+    relacionadas às mídias livres e ao uso de Python para áudio e música, como pode ser visto
+    na Carta Mídias Livres e no Tutorial de Python para Áudio e Música, abordados abaixo
+    em~\ref{subsec:tuts} deste mesmo Apêndice.
+    \item CDTL (Centro de Desenvolvimento de Tecnologias Livres): foi uma associação civil com base em Recife/PE, dedicada ao desenvolvimento e difusão de tecnologias livres. Esta associação proporcionou suporte para os primeiros materiais didáticos e investidas em plugins de áudio através do convênio estabelecido com o Ministério da Cultura de Pontão de Cultura Digital.
+    \item JuntaDados.org: é um grupo com membros em todo o território brasileiro e ainda ativo. Embora tenha havido um momento de maior institucionalidade, durante o convênio de Pontão de Cultura Digital com o Ministério da Cultura e parceria com a Universidade Estadual da Bahia (UNEB), o grupo é marcado pela descentralização e autonomia dos envolvidos. O autor é membro fundador e ativo do juntaDados, em conjunto, especialmente, com Fabiana "Goa" Sherine e Marcelo Soares Souza. Neste grupo foram desenvolvidas ideias como o EKP, o ABT, os tutoriais de Python para Áudio e escritos socialmente engajados.
+    \item Devolts.org: responsável por Esporos de Pesquisa e Experimentação do programa Cultura Viva, os "Jardins Devolts" cultivam listas nacionais de trocas de conhecimentos livres e cultivo de informações voltadas para música com usos especiais de \emph{PureData}, \emph{Arduinos} e \emph{Python}. Este é um meio de troca rico e alternativo a alguns meios mais politizados, como a lista do \emph{estudiolivre.org}.
+    \item MSST (Movimento dos Sem Satélite): com um manifesto e propostas coerentes, mas nada óbvias, como a demanda específica por satélites civís, abordagens tecnomágicas, o grupo é uma instâncias iniciáticas em termos tecnológicos e conceituais.
+    \item LabMacambira.sf.net: espaço virtual de programadores dedicados ao audiovisual e propósitos socialmente engajados. Fundado em parceria do autor deste trabalho e de Vilson Vieira, Daniel Marostegan e Carneiro e Ricardo Fabbri e de parte dos investimentos da segunda etapa do convênio de Pontão de Cultura Digital Nós Digitais, da Teia Casa de Criação. Em um primeiro momento, membros foram remunerados como mentores e como aprendizes\footnote{Renato Fabbri, Ricardo Fabbri, Vilson Vieira, Marcos Mendonça e Gilson Beck mentoraram; Alexandre "Bzum" Negrão, Lucas Zambianchi, Larissa Arruda, Nivaldo Henrique Bondança, Fernando Gorodscy, Andres Martano desenvolveram como bolsistas; Danilo Shiga e Marcos Murad foram parceiros colaboradores; Francisco Simões, Fábio Simões, Caleb Mascarenhas Luporini, "Gera" Magela, Edson "Presto" Correia, Daniel Penalva se aproximaram para atividades específicas, cruciais em todo ano já sem os investimentos do convênio.}. Em um segundo momento, aproximações e parcerias diversas ocorreram. Detalhes estão mas subseções seguintes de \emph{Web} e materiais didáticos.
+    \item Submidialogia: grupo bastante relacionado aos encontros de '\emph{submidialogias}, ao Descentro e às ideias de submídia. A lista de emails do grupo possui membros de diversos dos outros grupos citados.
+    \item Outros relacionados: o MuSa foi um grupo de JoinVille importante neste trabalho por ter sido fundado por Vilson Vieira, que possui presença forte no LabMacambira.sf.net e nos trabalhos aqui descritos. O  Metareciclagem é uma rede engajada em apropriação tecnológica e empoderamento civil com bastante presença dos outros grupos aqui citados e muito movimentada. A Casa de Cultura Tainã é uma entidade cultural de Campinas/SP, referência no uso de tecnologias livres e atividades socialmente engajadas, e onde muito do que está aqui descrito foi inspirado.
 \end{itemize}
 
-\section{Web}
 
+\section{Web}
+Houve tentativas, como do grupo APISTO, 
   Difusão de informação com ênfase na facilitação
   da apropriação de tecnologias e de instancias políticas.
 
@@ -714,7 +744,7 @@ Discorremos brevemente sobre cada uma das iniciativas citadas:
 
 \section{Materiais didáticos}
 
-  \subsection{Tutoriais em texto e código: Filtros, Nyquist e plugins LADSPA}
+  \subsection{Tutoriais em texto e código: Filtros, Nyquist e plugins LADSPA}\label{subsec:tuts}
 
 Os vários materiais didáticos produzidos constam no apêndice
 deste trabalho. Um único destes será exposto a seguir por sua
