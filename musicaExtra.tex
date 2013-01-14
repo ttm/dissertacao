@@ -692,8 +692,9 @@ imediatas das posturas de compartilhamento e apropriação citados.
     \item MSST (Movimento dos Sem Satélite): com um manifesto e propostas coerentes, mas nada óbvias, como a demanda específica por satélites civís, abordagens tecnomágicas, o grupo é uma instâncias iniciáticas em termos tecnológicos e conceituais.
     \item LabMacambira.sf.net: espaço virtual de programadores dedicados ao audiovisual e propósitos socialmente engajados. Fundado em parceria do autor deste trabalho e de Vilson Vieira, Daniel Marostegan e Carneiro e Ricardo Fabbri e de parte dos investimentos da segunda etapa do convênio de Pontão de Cultura Digital Nós Digitais, da Teia Casa de Criação. Em um primeiro momento, membros foram remunerados como mentores e como aprendizes\footnote{Renato Fabbri, Ricardo Fabbri, Vilson Vieira, Marcos Mendonça e Gilson Beck mentoraram; Alexandre "Bzum" Negrão, Lucas Zambianchi, Larissa Arruda, Nivaldo Henrique Bondança, Fernando Gorodscy, Andres Martano desenvolveram como bolsistas; Danilo Shiga e Marcos Murad foram parceiros colaboradores; Francisco Simões, Fábio Simões, Caleb Mascarenhas Luporini, "Gera" Magela, Edson "Presto" Correia, Daniel Penalva se aproximaram para atividades específicas, cruciais em todo ano já sem os investimentos do convênio.}. Em um segundo momento, aproximações e parcerias diversas ocorreram. Detalhes estão mas subseções seguintes de \emph{Web} e materiais didáticos.
     \item Submidialogia: grupo bastante relacionado aos encontros de '\emph{submidialogias}, ao Descentro e às ideias de submídia. A lista de emails do grupo possui membros de diversos dos outros grupos citados.
-    \item Outros relacionados: o MuSa foi um grupo de JoinVille importante neste trabalho por ter sido fundado por Vilson Vieira, que possui presença forte no LabMacambira.sf.net e nos trabalhos aqui descritos. O  Metareciclagem é uma rede engajada em apropriação tecnológica e empoderamento civil com bastante presença dos outros grupos aqui citados e muito movimentada. A Casa de Cultura Tainã é uma entidade cultural de Campinas/SP, referência no uso de tecnologias livres e atividades socialmente engajadas, e onde muito do que está aqui descrito foi inspirado.
+    \item Outros grupos relacionados: o MuSa foi um grupo de JoinVille importante neste trabalho por ter sido fundado por Vilson Vieira, que possui presença forte no LabMacambira.sf.net e nos trabalhos aqui descritos. O  Metareciclagem é uma rede engajada em apropriação tecnológica e empoderamento civil com bastante presença dos outros grupos aqui citados e muito movimentada. A Casa de Cultura Tainã é uma entidade cultural de Campinas/SP, referência no uso de tecnologias livres e atividades socialmente engajadas, e onde muito do que está aqui descrito foi inspirado.
 \end{itemize}
+
 
 
 \section{Materiais didáticos}
@@ -703,31 +704,33 @@ imediatas das posturas de compartilhamento e apropriação citados.
 \begin{itemize}
     \item {\bf Tutorial de python para áudio e som}
 
-Este tutorial foi levado para Berlim no LAC 2007 e sofreu melhoras desde entao. Esta
-primeira versao ficou resumida em forma de texto no EL\footnote{\url{http://estudiolivre.org/python-e-som-tutorial}.}. Em 2010
+Este tutorial foi apresentado parcialmente em Berlim no LAC 2007 e, desde então, foi melhorado algumas vezes. Esta
+primeira versao ficou resumida em forma de texto na plataforma
+Estúdio Livre\footnote{\url{http://estudiolivre.org/python-e-som-tutorial}.}.
+Um agradecimento especial para Fábio Furlanete e Marília Chiozo pelas contribuições.
+Em 2010
 a Associacao Python Brasil escolheu este trabalho, então já mais maduro, para ser apresentado no
-Festival Internacional de \emph{Software} Livre, em Porto Alegre. Como consequência, foi feita uma série de video-tutoriais bastante utilizados\footnote{http://estudiolivre.org/tiki-index.php?page=Video+Tutoriais}.
-Este tutorial foi comentado em listas de \emph{emails} e mensagens pessoais. Os vídeos são tidos como iniciáticos em Python por diferentes pessoas ligadas ao movimento de \emph{software} livre.
+Festival Internacional de \emph{Software} Livre, em Porto Alegre. Como consequência, 
+foi feita uma série de video-tutoriais\footnote{http://estudiolivre.org/tiki-index.php?page=Video+Tutoriais}.
+Os vídeos são tidos como iniciáticos em Python por diferentes pessoas ligadas ao movimento de \emph{software} livre.
 
     \item {\bf Tutoriais de filtros e amostragem via python }
 
 Voltados para explicitar fundamentos de áudio digital, estes tutoriais
 são baseados código Python e o equivalente em C. Pequenas explicações são
 dadas com o intuito de orientar a exploração inteligente destes \emph{snippets}.
+\emph{Teorema de Amostragem}: estes \emph{scripts} executam experimentações ilustrativas com
+o Teorema de Nyquist e figuras.
+\emph{Filtros}: além de filtros FIR e IIR simples,
+duas utilizações clássicas destes filtros estão implementadas
+de forma didática: Wavelets (FIR) e Quad (IIR).
 
-\emph{Teorema de Amostragem}: estes scripts visam a experimentacao inteligente com
-o Teorema de Nyquist. (descricao)
-
-\emph{Filtros}: alem da explicitação sobre as diferenças entre filtros FIR e IIR,
-duas utilizações clássicas destes filtros estão implementadas: Wavelets (FIR) e Quad (IIR)
-
-Estes códigos podem ser baixados no repositório SVN do AudioExperiments. E os textos estão
-na wiki (nos digitais ou EL, recriar pois os CDTL foram apagados)
+Estes códigos didáticos podem ser baixados do repositório \emph{AudioExperiments}.
 
     \item {\bf Tutorial de plugins lv2}
 
 Dadas as dificuldades que o desenvolvimento dos \emph{plugins} de áudio apresenta,
-desenvolvi um tutorial passo a passo com plugins que rodam em todas as etapas.
+foi feito um tutorial passo a passo com plugins que rodam em todas as etapas.
 Ele é baseado em uma interface C++ para este padrão de plugin que eh implementado
 em C. Os códigos e os textos estão todos em repositório.
 
@@ -738,77 +741,59 @@ Estes 'microtutoriais' são baseados nos conceitos de \emph{scripts mínimos} e
 a reconstruir o tutorial oficial do django de forma condensada e não prolixa.
 O segundo destes conjuntos é dedicado a instrumentalizar de fato o leitor com
 o entendimento do funcionamento dos princípios fundamentais deste framework.
+Uma das primeiras incidências dos \emph{scripts} mínimos, muito usados no
+labMacambira.sourceforge.net para passagens de tecnologias de forma precisa.
 
-    \item {\bf Philosometrics}
+     \item {\bf Figusdevpack (FDP)}
 
-Embora este não seja um trabalho didático propriamente dito, ele tem este intuito
-no cerne de sua concepção e surgimento. Em decorrência dele, surgiu o  Musimetrics,
-o Cinemetrics e o Literametrics. Além disso, ele é um belo exemplo da
-utilização das ciências duras para a análise de ciências humanas e foi acolhido
-como tal em alguns momentos.
+Idealizado como um meio de interação da comunidade de Python e Música 
+para compartilhamento de códigos e excertos, o FDP foi Baseado principalmente
+em documentação organizada sobre as práticas e as bibliotecas
+existentes para Python. Parte desta documentação
+é proposta como \emph{scripts} que
+fazem uso de objetos e módulos de forma isolada, puntual.
+ Este trabalho foi aceito na
+maior conferência de áudio em linux, a Linux Audio Conference de 2008
+(LAC2008) e foi reativado algumas vezes pelo autor deste texto
+em conjunto com Vilson Vieira, Ivan Marin
+e outros desenvolvedores. Este projeto está
+documentado na plataforma do Estúdio Livre\footnote{
+Veja a página do PDF \url{http://estudiolivre.org/tiki-index.php?page=fdp&highlight=fdp}, o artigo aceito no LAC2008 \url{http://www.estudiolivre.org/el-gallery_view.php?arquivoId=8221}
+e o repositório do FDP \url{http://sourceforge.net/projects/fdpack/develop fdpsf}.}.
+
 
     \item {\bf Carta mídias livres}
 
 Texto criado em decorrência da participação da comissão de seleção no
-'Prêmio Mídias Livres', a convite do Ministério da Cultura por 'notório saber'.
-Esta carta é um documento único no seu conteúdo, deixando às claras
-o conceito de Mídias Livres como mídias não aprisionadas pelo conceito
+'Prêmio Mídias Livres', a convite do Ministério da Cultura por 'notório saber'. A participação consistia em analisar os inscritos no Prêmio Mídias Livres e distribuir 4 milhões de reais dentre categorias regionais e nacionais.
+Esta carta é um documento único, deixando às claras
+o conceito de Mídias Livres como não aprisionadas pelo conceito
 de propriedade, ou seja, que priorizam a sua livre circulação e a possibilidade
-de geração de materiais derivados, assim como sua geração aberta ao colaborativo e comunitário.
+de geração de materiais derivados. Há o viés de priorizar processos colaborativos, comunitários e setores da sociedade menos contemplados na geração e circulação midiática\footnote{Veja: \url{http://www.estudiolivre.org/carta-pts-midias-livres}}.
 
-    \item {\bf Textos de cunho sociológico, transformador}
+    \item {\bf Philosometrics}
 
-Produção mais numerosa que as anteriores, se caracteriza por métodos não convencionais
-de abordagem dos assuntos e de escrita. Em especial utiliza-se pseudônimos para
-auxiliar a despersonificação, gerando textos menos presos à satisfação da auto-imagem, dente
-outras qualidades. A utiliação de psudônimos é um costume muito apreciado em diversos meios,
-e as pesquisas tem confirmado as vantagens que a prática apresenta e confirma\footnote{http://disqus.com/research/pseudonyms/}.
+Em decorrência deste trabalho, surgiu o  Musimetrics,
+o Cinemetrics e o Literametrics. Uma publicação no
+JSTAT condensa e compara as análises de filosofia
+e música.\cite{FabbriJSTAT}
+Além disso, ele é uma
+utilização das ciências duras para 
+assunto mais incidente em ciências humanas. 
 
-O autor destes textos se dá ao direito de não revelar seus psudônimos - embora muitos deles
-sejam publicamente conhecidos - para conservar as consequências desta prática na
-forma mais pura. Como comprovante desta produção, deixamos uma mensagem sobre a publicação
-de textos em mídia impressa com autores internacionais,
-confirmando a participação do autor desta dissertação, mas cujo
-nome não consta na publicação.
+    \item {\bf Textos socialmente engajados }
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+O uso de pseudônimos é um costume apreciado em diversos meios. As pesquisas informais confirmam vantagens desta prática\footnote{Veja: \url{http://disqus.com/research/pseudonyms/}}.
+Em especial utiliza-se pseudônimos para
+auxiliar a despersonificação, gerando textos menos presos à satisfação da auto-imagem. Como resultado, além de aumento de produtividade, constuma-se conseguir também compreensões diferentes. Destes textos, dois foram publicados em duas publicações relevantes: O Contracultura Digital e o Peixe Morto, este último relacionado aos submidialogias\footnote{Veja: \url{http://mutgamb.org/blog/Submidialogias-Peixe-Morto-para-Baixar} e \url{http://culturadigital.br/contraculturadigital/2012/02/01/publicacao-contraculturadigital/}.}.
 
-de      fabi borges catadores@gmail.com por  riseup.net 
-responder a     submidialogia@lists.riseup.net
-para    submidialogia@lists.riseup.net
-data    23 de agosto de 2011 12:26
-assunto Re: [submidialogia] livro sub- publicação
-lista de e-mails        <submidialogia.lists.riseup.net> Filtrar as mensagens dessa lista de e-mails
-enviado por     lists.riseup.net
-assinado por    riseup.net
-cancelar inscrição      Cancelar a inscrição para essa lista de e-mails
-        Importante principalmente porque você frequentemente lê mensagens com esse marcador.
-ocultar detalhes 12:26 (6 minutos atrás)
-entao, eu fui recebendo textos durante esse tempo,
-alguns tao atrazados como dos sem satelites, mas muita gente mandou;
+ \end{itemize}
 
-aqui os autores:
-
-os internacionais nao sao muitos, o joni kempf (o que bebe ouro do hardware), o barbrook (futuros imaginarios),
-Hamdy heda (da revolucao egipcia), o pedro soller (summerlab), maria llopis (pos porno),  talvez a bronac, nao entregou ainda.
-
-dos brasileiros, renato fabri, ruiz, pasteur, morgana e caio, ju dornelles, mari marcassa, coletivo errorista, adriana velozo-drica, tiago pimentel, felipe fonseca, thiago novaes, lelex, felipe ribeiro(?), maira, verenilde,  bartolina silva, poro, vitoria amaro, fabib (eu),
-
-entao, precisa publicar agora,
-uma equipe para publicacao e,,, 
-
-bjs
-f
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-\end{itemize}
-
-\subsection{Screencasts e outros materiais em video e em texto}
+\subsection{Screencasts e outros materiais em video}
 
 \begin{itemize}
     \item Python para áudio e música
-	  Texto - palestras - videos
+    Relacionado ao tutorial em texto citado acima, foram feitos videos sobre
 
     \item Canal Macambira
 No Macambira estão sendo produzidos materiais em screencasts sobre
@@ -820,22 +805,7 @@ diversas cenas de hackeamento.
     \end{itemize}
 \end{itemize}
 
-\subsection{Figusdevpack (FDP)}
 
-Um ambiente de interação da comunidade de Python e Música 
-para compartilhamento de códigos e excertos. Baseado principalmente
-em documentação organizada sobre as práticas e as bibliotecas
-existentes para python. Assim como scripts compartilhados que
-fazem uso de objetos e módulos específicos. Este trabalho foi aceito na
-maior conferência de áudio em linux, a Linux Audio Conference de 2008
-(LAC2008) e está sendo reativado por mim em conjunto com Vilson Vieira
-e outros desenvolvedores de áudio. Este projeto está em desenvolvimento
-do site do Estúdio Livre [estudio livre] com repositório no sourceforge [source force].
-
-As principais fontes sobre estre trabalho é a página de desenvolvimento da ideia
-que está em constante mudança ~\cite{http://estudiolivre.org/tiki-index.php?page=fdp&highlight=fdp fdpel}
-e, o artigo que foi aceito no LAC de 2008 ~\cite{http://www.estudiolivre.org/el-gallery_view.php?arquivoId=8221 fdplac2008}
-e o repositório ~\cite{http://sourceforge.net/projects/fdpack/develop fdpsf}.
 
 
 
