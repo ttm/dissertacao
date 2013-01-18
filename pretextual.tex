@@ -75,14 +75,101 @@
 \listadefiguras %Comando que gera a lista de figuras (AUTOMÁTICO)
 
 %\listadetabelas %Comando que gera a lista de tabelas (AUTOMÁTICO)
+\afterpage{\blankpage}
+
+\pretextualchapter{Lista de relações analíticas descritas e implementadas computacionalmente no Apêndice~\ref{cap:codigoProc}}
+	\begin{listaespecial}[BIGNAMEWIDTH]
+        \item[Equação~\ref{eq:dur}] Duração em áudio PCM.
+        \item[Equação~\ref{eq:potencia}] Potência.
+        \item[Equação~\ref{decibels}] Decibels entre dois áudios.
+        \item[Equação~\ref{eq:ampVol}]  Amplitude dobrada em decibels.
+        \item[Equação~\ref{eq:potVol}] Potência dobrada em decibels.
+        \item[Equação~\ref{eq:dobraVol}] Variação de amplitude no volume dobrado (10 dBs).
+        \item[Equação~\ref{ampDec}] Conversão de decibels em amplitude.
+        \item[Equação~\ref{periodicidade}] Representação básica de uma sequência periódica.
+        \item[Equação~\ref{senoide}] Sequência infinita senoidal.
+        \item[Equação~\ref{denteDeSerra}] Sequência infinita de uma onda 'dente de serra'.
+        \item[Equação~\ref{triangular}] Sequência infinita de uma onda 'triangular'.
+        \item[Equação~\ref{quadrada}] Sequência infinita de uma onda 'quadrada'.
+        \item[Equação~\ref{sampleandoFormaDeOnda}] Sequência infinita de uma forma de onda \emph{sampleada}.
+        \item[Equação~\ref{recomposicaoFourier}] Recomposição das amostras temporais com base nos coeficientes espectrais.
+        \item[Equação~\ref{moduloEfase}] Recomposição das amostras temporais reais em termos do módulo e fase.
+        \item[Equação~\ref{coefsPareados}] Número de pares de coeficientes relativos à mesma frequência.
+        \item[Equação~\ref{equivalenciasFreqs}] Coeficientes equivalentes em termos das frequêcias que representam.
+        \item[Equação~\ref{equivalenciasModulos}] Equivalências dos módulos dos coeficientes espectrais.
+        \item[Equação~\ref{equivalenciasFases}] Equivalências das fases dos coeficientes espectrais.
+        \item[Equação~\ref{eq:reconsCompleta}] Reconstrução das amostras temporais em termos dos coeficientes pareados e independentes.
+        \item[Equação~\ref{eq:notaBasica}] Nota básica com duração, frequência e altura.
+        \item[Equação~\ref{periodoUnico}] Forma de onda sintética ou amostrada.
+        \item[Equação~\ref{eq:notaBasicaTimbre}] Nota básica com forma de onda especificada.
+        \item[Equação~\ref{eq:distOuvidos}] Distância de uma fonte sonora a cada ouvido.
+        \item[Equação~\ref{eq:dti}] Diferença de Tempo Interaural (DTI).
+        \item[Equação~\ref{eq:dii}] Diferença de Intensidade Interaural (DII).
+        \item[Equação~\ref{eq:locImpl}] Sequência binaural PCM com  DTI e DII para localização espacial.
+        \item[Equação~\ref{eq:angulo}] Ângulo resolvido pela implementação da DTI e DII.
+        \item[Equação~\ref{eq:mixagem}] Mixagem de N sequências.
+        \item[Equação~\ref{eq:concatenacao}] Concatenação de N sequências.
+        \item[Equação~\ref{eq:lut}] Procedimento de busca em tabelas (Lookup Table).
+        \item[Equação~\ref{freqLinear}] Frequências em cada amostra em uma variação linear.
+        \item[Equação~\ref{indiceLinear}] Índices para busca na tabela em uma variação linear de frequência.
+        \item[Equação~\ref{serieAmostralLin}] Sequência amostral em uma variação linear de frequências.
+        \item[Equação~\ref{freqExponencial}] Frequências em cada amostra em uma variação exponencial.
+        \item[Equação~\ref{indiceExponencial}] Índices para busca na tabela em uma variação exponencial de frequência.
+        \item[Equação~\ref{serieAmostralLog}] Sequência amostral em uma variação exponencial de frequências.
+        \item[Equação~\ref{seqAmp}] Sequência de amplitudes em uma variação exponencial.
+        \item[Equação~\ref{transAmp}] Sequência amostral em uma variação exponencial de amplitude.
+        \item[Equação~\ref{seqAmpLin}] Sequência de amplitudes em uma variação linear de amplitude.
+        \item[Equação~\ref{seqAmpDB}] Sequência amostral em uma variação exponencial de amplitude dada em decibels.
+        \item[Equação~\ref{eq:conv}] Convolução de sequências reais e finitas.
+        \item[Equação~\ref{eq:diferencas}] Equação a diferenças para aplicação temporal de filtros IIR.
+        \item[Equação~\ref{eq:passa-baixas}] Coeficientes de um filtro passa-baixas bem comportado de primeira ordem com frequência de corte variável.
+        \item[Equação~\ref{eq:passa-altas}] Coeficientes de um filtro passa-altas bem comportado de primeira ordem com frequência de corte variável.
+        \item[Equação~\ref{eq:varAux}] Variáveis auxiliares de um filtro nó de segunda ordem.
+        \item[Equação~\ref{eq:passa-banda}] Coeficientes de um filtro passa-banda de segunda ordem com frequência central e largura de banda variáveis.
+        \item[Equação~\ref{eq:rejeita-banda}] Coeficientes de um filtro rejeita-banda de segunda ordem com frequência central e largura de banda variáveis.
+        \item[Equação~\ref{eq:branco}] Coeficientes espectrais para síntese de ruído branco.
+        \item[Equação~\ref{eq:rosa}] Coeficientes espectrais para síntese de ruído rosa.
+        \item[Equação~\ref{eq:marrom}] Coeficientes espectrais para síntese de ruído marrom.
+        \item[Equação~\ref{eq:azul}] Coeficientes espectrais para síntese de ruído azul.
+        \item[Equação~\ref{eq:violeta}] Coeficientes espectrais para síntese de ruído violeta.
+        \item[Equação~\ref{eq:preto}] Coeficientes espectrais para síntese de ruído preto.
+        \item[Equação~\ref{vbrGamma}] Índices auxiliares para um vibrato de frequência variável.
+        \item[Equação~\ref{vbrAux}] Expoentes auxiliares para um vibrato de frequência variável.
+        \item[Equação~\ref{vbrF}] Frequências por amostra de um vibrato de frequência e profundidade variáveis.
+        \item[Equação~\ref{vbrGamma2}] Índices um vibrato de frequência e profundidade variáveis.
+        \item[Equação~\ref{vbrT}] Amostras de um áudio com vibrato de frequência e profundidade variáveis.
+        \item[Equação~\ref{trA}] Amplitudes por amostra de um tremolo de frequência e profundidade variáveis.
+        \item[Equação~\ref{trT}] Amostras de um áudio com tremolo de frequência e profundidade variáveis.
+        \item[Equação~\ref{eq:fmEsp}] Espectro da síntese FM.
+        \item[Equação~\ref{eq:amEsp}] Espectro da síntese AM.
+        \item[Equação~\ref{fmGammaAux}] Índices auxiliares para síntese FM.
+        \item[Equação~\ref{fmAux}] Sequência auxiliar para síntese FM.
+        \item[Equação~\ref{fmF}] Sequência de frequências para cada amostra para síntese FM.
+        \item[Equação~\ref{fmGamma}] Índices para síntese FM.
+        \item[Equação~\ref{fmT}] Sequência amostral resultante da síntese FM.
+        \item[Equação~\ref{amA}] Sequência de amplitudes por amostra na síntese AM.
+        \item[Equação~\ref{amT}] Sequência amostral resultante da síntese AM.
+        \item[Equação~\ref{eq:vinculos}] Exemplo de vínculo entre a frequência e parâmetros do tremolo e do vibrato em um som.
+        \item[Equação~\ref{eq:adsr}] Envoltória ADSR com variações lineares e logarítmicas.
+        \item[Equação~\ref{eq:adsrApl}] Aplicação da envoltória ADSR em uma sequência arbitrária.
+        \item[Equação~\ref{eq:intervalos}] Intervalos musicais em número de semitons.
+        \item[Equação~\ref{escSim}] Escalas simétricas na oitava divida em 12 notas.
+        \item[Equação~\ref{eq:escalas}] Escalas diatônicas.
+        \item[Equação~\ref{eq:relacaoDia}] Sucessão de intervalos em uma escala diatônica.
+        \item[Equação~\ref{eq:escalasMenores}] Escalas menores natural, harmônica e melódica.
+        \item[Equação~\ref{triades}] Tríades maior, menor, diminuta e aumentada.
+        \item[Subseção~\ref{subsec:intervalos}] Relações microtonais através de frações de semitons ou através de quantidades inteiras de divisões arbitrárias da oitava.
+        \item[Subseção~\ref{subsec:harmonia}] Relações básicas de harmonia tonal.
+        \item[Subseção~\ref{subsec:contraponto}] Regras básicas de condução de vozes com independência.
+        \item[Subseção~\ref{subsec:ritmo}] Relações básicas de métrica e rítmica.
+        \item[Subseção~\ref{subsec:dir}] Formação de arcos musicais através de estruturas direcionais.
+        \item[Subseção~\ref{estCic}] Estruturas cíclicas para a síntese musical.
+        \item[Equação~\ref{eq:groups}] Propriedades básicas de um grupo algébrico.
+
+	\end{listaespecial} 
 
 
-%\pretextualchapter{Lista de relações descritas e implementadas}
-%	\begin{listaespecial}[BIGNAMEWIDTH]
-%        \item[Dura\,c\~oo]: equação~\ref{eq:dur} e código no Apêndice~\ref{sec:cod1}.
-%        \item[Potência]: equação~\ref{}
-%		\item[AM]: modulação de amplitude como descrita em~\ref{}. Implementação computacional em Python com Numpy e Scikits/Audiolab no apêndice~\ref{}.
-%	\end{listaespecial} 
+\afterpage{\blankpage}
 %
 %\afterpage{\blankpage}
 %
