@@ -91,7 +91,7 @@ ii=range(1,11)
 p.ylabel(u"amplitude"+r"$\; \rightarrow$")
 p.xlabel(u"frequência "+r"$  \; \rightarrow$")
 p.xticks((0,len(m)/8,len(m)/4,3*len(m)/8,len(m)/2),(r"0",r"$\frac{f_a}{8}$", r"$\frac{f_a}{4}$", r"$\frac{3 . f_a}{8}$", r"$\frac{f_a}{2}$"),fontsize='16')
-p.title("Passa baixas ordem simples")
+p.title("(a) Passa baixas ordem simples")
 #p.xlim(xvals[0]-1,n.log2(fa/2))
 #p.ylim(-123,3)
 
@@ -108,7 +108,7 @@ for fc,pos in zip(fcs,poss):
 p.ylabel(u"amplifitude "+r"$\; \rightarrow$")
 p.xlabel(u"frequência "+r"$  \; \rightarrow$")
 p.xticks((0,len(m)/8,len(m)/4,3*len(m)/8,len(m)/2),(r"0",r"$\frac{f_a}{8}$", r"$\frac{f_a}{4}$", r"$\frac{3 . f_a}{8}$", r"$\frac{f_a}{2}$"),fontsize='16')
-p.title("Passa altas ordem simples")
+p.title("(b) Passa altas ordem simples")
 
 
 ##########
@@ -133,7 +133,7 @@ p.xticks((0,int(0.05*len(m)),int(0.25*len(m)),int(0.45*len(m))),(r"0",r"$f_c=\fr
 p.yticks((0,0.5,1,1.5),(0,0.5,1,1.5))
 p.xlim(0,len(m)/2)
 p.ylim(0,2.5)
-p.title("Rejeita banda de polo duplo")
+p.title("(c) Rejeita banda de polo duplo")
 p.legend(loc="upper left", labelspacing=0,prop={'size':16})
 
 p.ylabel(u"amplifitude "+r"$\; \rightarrow$")
@@ -163,7 +163,7 @@ p.xticks((0,int(0.05*len(m)),int(0.25*len(m)),int(0.45*len(m))),(r"0",r"$f_c=\fr
 p.yticks((0,0.5,1,1.5,2),(0,0.5,1,1.5,2))
 p.xlim(0,len(m)/2)
 #p.ylim(0,2.5)
-p.title("Passa banda de polo duplo")
+p.title("(d) Passa banda de polo duplo")
 p.legend(loc="upper right", labelspacing=0,prop={'size':16})
 
 p.ylabel(u"amplifitude "+r"$\; \rightarrow$")

@@ -2,6 +2,8 @@
 import numpy as n, pylab as p
 
 ax=p.subplot(111)
+p.xlabel(r"tempo $\rightarrow$",fontsize=19)
+p.ylabel(r"amplitude $\rightarrow$", fontsize=19)
 
 De=2*100. #duracao total (\Delta)
 DA=2*20. # duracao do ataque \Delta_A
@@ -128,7 +130,6 @@ p.ylim(-3.8,1.8)
 
 
 p.yticks((-1-2.5,0-2.5,SS-2.5,1-2.5),(-1,0,r"$a_S$",1),fontsize=26)
-
 
 
 
