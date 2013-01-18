@@ -68,17 +68,17 @@ a amplitude ou a potência:
 \begin{equation}\label{eq:ampVol}
 se \quad  t_i^{'}=2 . t_i \quad \Rightarrow \quad pot(T^{'}_i)=4 . pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 4 \quad  \approx \quad 6 dB
 \end{equation}
-\begin{equation}
+\begin{equation}\label{eq:potVol}
 se \quad pot(T^{'}_i)=2 pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 2 \quad \approx \quad 3 dB
 \end{equation}
 
 Outro valor de referência é o ganho de amplitude
 necessário para que uma sequência tenha o volume dobrado ($10dB$ a mais):
 
-\begin{gather}
-10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \quad \sum_{i=0}^{\lfloor \Delta.f_a \rfloor -1}t^{'2}_i=10\sum_{i=0}^{\Lambda-1}t_i^2=\sum_{i=0}^{\Lambda-1}(\sqrt{10}.t_i)^2 \\
-\therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3,16t_i
-\end{gather}
+\begin{align}
+10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \quad \sum_{i=0}^{\lfloor \Delta.f_a \rfloor -1}t^{'2}_i=10\sum_{i=0}^{\Lambda-1}t_i^2=\sum_{i=0}^{\Lambda-1}(\sqrt{10}.t_i)^2 \label{eq:dobraAmp}\\
+\therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3,16t_i\label{eq:dobraVol}
+\end{align}
 
 Ou seja, é necessário pouco mais que triplicar a amplitude para um volume drobrado.
 Estes valores servem de guia para os aumentos e diminuições dos valores absolutos que compõem as
@@ -333,7 +333,7 @@ Com $k \in \mathbb{N}$.
  A observação da equação de reconstrução para o sinal real ~\ref{moduloEfase} em conjunto com as equivalências dos módulos e fases ~\ref{equivalenciasModulos} e ~\ref{equivalenciasFases}, o número de coeficientes pareados \ref{coefsPareados} e equivalência de pares de frequências \ref{equivalenciasFreqs}
 expõe o caso geral da combinação das componentes em cada amostra $t_i$:
 
-\begin{equation}
+\begin{equation}\label{eq:reconsCompleta}
 t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]+ \frac{ a_{\Lambda/2}}{\Lambda}.(1-\Lambda\% 2)
 \end{equation}
 
@@ -383,8 +383,8 @@ Esta limitação será superada no início da próxima seção.}.
 Uma sequência $T_i$ de amostras sonoras separadas por $\delta_a=1/f_a$ descreve uma nota musical de frequência $f$ Herz e duração $\Delta$ segundos se, e somente se, possuir a periodicidade $\lambda_f=f_a/f$
  e tamanho $\Lambda=\lfloor f_a . \Delta \rfloor $:
 
-\begin{equation}
-T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{\Lambda-1}= \left \{t_{i \; \% \left( \frac{f_a}{f} \right) } \right \}_0^{\Lambda-1}
+\begin{equation}\label{eq:notaBasica}
+T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{\Lambda-1}= \left \{t^f_{i \; \% \left( \frac{f_a}{f} \right) } \right \}_0^{\Lambda-1}
 \end{equation}
 
 A nota por si só não especifica um timbre. Mesmo assim, faz-se necessária a escolha de uma forma de onda para que as amostras $t_i$ tenham um valor estabelecido individualmente. Um único período dentre as ondas básicas pode ser utilizado para a especificação da nota da seguinte forma:
@@ -400,7 +400,7 @@ L_i^{f , \delta_f } = \left\{ l_i^f \right\}_0^{\delta_f . f_a -1}=\left\{ l_i^f
 
 Então a sequência $T_i$ consistirá em uma nota de duração $\Delta$ e frequência $f$ se:
 
-\begin{equation}
+\begin{equation}\label{eq:notaBasicaTimbre}
 T_i^{f,\; \Delta}=\left\{t_i^f\right\}_0^{\lfloor f_a . \Delta \rfloor -1}=\left \{ l^f_{i\,\%\left(\frac{f_a}{f}\right)} \right \}_0^{\Lambda-1}
 \end{equation}
 
@@ -425,7 +425,7 @@ filtragem realizada pelo corpo, incluindo toráx, cabeça e orelhas.\cite{Roeder
 um objeto localizado em $(x,y)$ conforme a figura~\ref{fig:spac}
 está distante de cada ouvido:
 
-\begin{equation}
+\begin{equation}\label{eq:distOuvidos}
 \begin{split}
 d & =\sqrt{\left (x-\frac{\zeta}{2} \right )^2+y^2} \\
 d' & =\sqrt{\left (x+\frac{\zeta}{2} \right )^2 + y^2}
@@ -435,12 +435,12 @@ d' & =\sqrt{\left (x+\frac{\zeta}{2} \right )^2 + y^2}
 
 e cálculos imediatos resultam na Diferença de Tempo Interaural:
 
-\begin{equation}
+\begin{equation}\label{eq:dti}
 DTI=\frac{d'-d}{v_{som\;no\;ar}\approx 343.2 }\quad \text{segundos}
 \end{equation}
 
 e na Diferença de Intensidade Interaural:
-\begin{equation}
+\begin{equation}\label{eq:dii}
 DII=20\log_{10}\left (\frac{d}{d'}\right) \quad dBs
 \end{equation}
 
@@ -448,7 +448,7 @@ Convertendo para amplitude temos $DII_a=\frac{d}{d'}$. A $DII_a$ pode
 ser utilizada como constante multiplicativa do canal direito de um sinal sonoro estéreo: $\{t_i'\}_0^{\Lambda -1}=\{DII_a . t_i\}_0^{\Lambda -1}$. Pode-se utilizar a DII junto à DTI como adiantamento no tempo do canal direito com relação ao esquerdo, vínculo crucial para a localização em sons graves e em sonoridades percussivas.\cite{Heeger}  
 Considerando $\Lambda_{DTI}=\lfloor DTI . f_a \rfloor$, pode-se escrever:
 
-\begin{equation}
+\begin{equation}\label{eq:locImpl}
 \begin{split}
 \Lambda_{DTI} & = \left \lfloor \frac{d'-d}{343,2}  f_a \right \rfloor \\
 DII_a & = \frac{d}{d'} \\
@@ -462,7 +462,7 @@ Com $t_i$ o canal direito e $t_i'$ o canal esquerdo. Caso $\Lambda_{DTI} < 0 $, 
 Embora consideravelmente simples até aqui, a localização espacial depende drasticamente de outras pistas. Pela
 DTI e DII especifica-se somente o ângulo horizontal (azimutal) $\theta$ dado por:
 
-\begin{equation}
+\begin{equation}\label{eq:angulo}
 \theta=\tan^{-1}\left ( \frac{y}{ x }  \right )
 \end{equation}
 
@@ -578,7 +578,7 @@ período de onda qualquer (veja equação ~\ref{periodoUnico}). Uma sequência
 $T_i^{f,\,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta$
 pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
 
-\begin{equation}
+\begin{equation}\label{eq:lut}
 T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
 \end{equation}
 
@@ -664,7 +664,7 @@ f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}$. Portant
  as equações de transições de frequência
 lineares para o ouvido são:
 
-\begin{equation}
+\begin{equation}\label{freqExponencial}
 F_i=\{f_i\}_0^{\Lambda-1}=\left\{f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right\}_0^{\Lambda-1}
 \end{equation}
 
@@ -722,14 +722,14 @@ tornam o procedimento inútil pois nenhum número diferente de zero pode ser rep
 
 Para uma amplificação linear, mas não linear para a percepção, basta usar uma sequência $\{a_i\}$ adequada:
 
-\begin{equation}
+\begin{equation}\label{seqAmpLin}
 a_i=a_0 + (a_{\Lambda-1}-a_0)\frac{i}{\Lambda-1}
 \end{equation}
 
 Aqui convém a conversão de decibels para amplitude. Assim, as equações ~\ref{ampDec} e \ref{transAmp}
 especificam a transição de $V_{dB}$ decibels:
 
-\begin{equation}
+\begin{equation}\label{seqAmpDB}
 T_i^{'}=\left\{ t_i 10^{\frac{V_{dB}}{20}\left( \frac{i}{\Lambda-1} \right)^\alpha} \right\}_0^{\Lambda-1}
 \end{equation}
 
@@ -937,7 +937,7 @@ ambos dados como frações de $f_a$, portanto $f,\; bw \in (0,0.5)$.
 
 Por facilidade, sejam as variáveis auxiliares $K$ e $R$:
 
-\begin{equation}
+\begin{equation}\label{eq:varAux}
 \begin{split}
 R & = 1 - 3bw \\
 K & = \frac{1-2R\cos(2\pi f_c) + R^2}{2 - 2 \cos (2 \pi f_c)}
@@ -1226,7 +1226,7 @@ gera bandas centradas em $f$ e distantes $f'$ entre si:
 \end{equation}
 
 onde 
-\begin{equation}
+\begin{equation}\label{eq:Bessel}
 J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \quad , \quad \overline{k} = k \% 2 \;\;,\;\; k \in \mathbb{N}
 \end{equation}
 é a função de Bessel~\cite{BesselCCRMA,JOSFM} que na FM especifica a amplitude de cada componente. 
@@ -1235,7 +1235,7 @@ Nestas equações, a variação de frequência introduzida por $\{t_i'\}$ não r
 
 O caso da modulação de amplitude (AM) é mais simples:
 
-\begin{equation}\label{eq:am}
+\begin{equation}\label{eq:amEsp}
 \begin{split}
 \{t_i'\}_0^{\Lambda-1} & =\{(1+a_i) . t_i\}_0^{\Lambda-1}= \left \{ \left [ 1+M.\sin \left ( f'.2\pi\frac{i}{f_a -1} \right ) \right] . P .\sin \left ( f.2\pi\frac{i}{f_a -1} \right ) \right \}_0^{\Lambda-1} = \\
 & = P.\sin \left( f.2\pi\frac{i}{f_a -1}  \right ) + \frac{P.M}{2} \left [ \sin \left( (f-f').2\pi\frac{i}{f_a -1}  \right ) + \sin \left( (f+f').2\pi\frac{i}{f_a -1}  \right ) \right ]
@@ -1249,7 +1249,7 @@ original, distantes $f'$ de $f$. Novamente, isso é obtido com a variação na e
 A sequência $T_i$ de frequência $f$, chamada portadora, é modulada pela $f'$, chamada moduladora. No jargão de FM e AM, $\mu$ e $\alpha=10^{\frac{V_{dB}}{20}}$ são chamados índices de modulação. Assim, 
 para o padrão de vibração da moduladora $\{t_i'\}$ as equações:
 
-\begin{equation}\label{fmGamma}
+\begin{equation}\label{fmGammaAux}
 \gamma_i'=\left \lfloor i f' \frac{\widetilde{\Lambda}_M}{f_a} \right \rfloor
 \end{equation}
 
@@ -1280,7 +1280,7 @@ Para realizar a AM, basta modular $\{t_i\}$ com $\{t_i'\}$ através das equaçõ
 a_i=1 + \alpha . t_i'
 \end{equation}
 
-\begin{equation}\label{trT}
+\begin{equation}\label{amT}
 T_i^{f,\,AM(f',\,\alpha)}=\left\{ t_i^{f,\,AM(f',\,\alpha)} \right\}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_i . (1 + \alpha . t_i')    \}_0^{\Lambda-1}
 \end{equation}
 
@@ -1307,7 +1307,7 @@ a frequência do vibrato é diretamente proporcional à altura, e a profundidade
 Desta forma, com as equações \ref{vbrGamma}, \ref{vbrF} e \ref{trA}
 pode-se escrever:
 
-\begin{equation}
+\begin{equation}\label{eq:vinculos}
 \begin{split}
 f^{vbr} = f^{tr} & = func_a(f) \\
 \nu & = func_b(f) \\
@@ -1384,7 +1384,7 @@ ataque ou para o decaimento. A montagem musical \emph{ADa e SaRa}, disponível n
 e na \massa, explora diversas destas configurações da envoltória ADSR
 
 
-\begin{equation}
+\begin{equation}\label{eq:adsrApl}
 \left\{t_i^{ADSR}\right\}_0^{\Lambda-1} =\{t_i . a_i\}_0^{\Lambda-1}
 \end{equation}
 
@@ -1423,7 +1423,7 @@ de suas notas.\cite{Roederer}
 Esta divisão da oitava em doze notas é o cânone da música ocidental clássica,
 além de incidir em usos cerimoniais/religiosos e étnicos.\cite{Wisnick} Notados em proporções de $\varepsilon$ entre as notas (i.e. um semitom), estes intervalos são, junto a suas notações abreviadas usuais:
 
-\begin{equation}
+\begin{equation}\label{eq:intervalos}
 \begin{split}
 \text{uníssono} = 1J & = 0 \\
 \text{semitom ou segunda menor} =2m & = 1 \\
@@ -1496,7 +1496,7 @@ Todas as escalas diatônicas
 seguem o padrão de intervalos sucessivos
 tom, tom, semitom, tom, tom, tom, semitom. De forma
 que podemos escrever:
-\begin{equation}
+\begin{equation}\label{eq:relacaoDia}
 \begin{split}
 d_i & =\{2,2,1,2,2,2,1\} \\
 e_0 & =0 \\
@@ -1513,7 +1513,7 @@ para o modo lídio.
 
 A escala menor possui duas formas adicionais, melódica e harmônica:
 
-\begin{equation}
+\begin{equation}\label{eq:escalasMenores}
 \begin{split}
 \text{menor natural (igual acima)} & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
 \text{menor harmônica} & = E_i^{mh} = \{e_i^{mh}\}_0^6 = \{0,2,3,5,7,8,11\} \\
@@ -1760,7 +1760,7 @@ Cada unidade ou conjunto de unidades $P_i^j$ pode ser associada a uma sequência
 
 A montagem \emph{Poli Hit Mia} utiliza as diferentes métricas e está no Apêndice~\ref{ap:poli}, disponível online como parte da \massa.
 
-\subsection{Estruturas direcionais}
+\subsection{Estruturas direcionais}\label{subsec:dir}
 
 Dadas as estruturas musicais básicas tanto frequenciais (acordes e escalas) quanto 
 rítmicas (divisões e aglomerações simples, compostas e complexas), é 

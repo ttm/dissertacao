@@ -118,9 +118,9 @@
 \newenvironment{listaespecial}[1][R(x)]{
    \begin{list}{}{
       \renewcommand\makelabel[1]
-         {\normalsize\ensuremath{##1}}
+         {\normalsize##1\;-}
       \setlength{\listparindent}{0pt}
-      \settowidth{\labelwidth}{\makelabel{#1}}
+      \settowidth{\labelwidth}{#1}
       \setlength{\leftmargin}{\labelwidth}
       \addtolength{\leftmargin}{\labelsep}
    }
