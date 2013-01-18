@@ -469,7 +469,7 @@ DTI e DII especifica-se somente o ângulo horizontal (azimutal) $\theta$ dado po
 Mesmo assim, há dificuldades quando $\theta$ incide sobre o chamado "cone de confusão" em que um mesmo par de especificações DTI, DII resultam de vários dos pontos 
 do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que nas graves.\cite{Heeger,hrtf} 
 
-A figura~\ref{fig:spac} mostra esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não são especificadas na literatura, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.\cite{confCone}
+A figura~\ref{fig:spac} mostra esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não são especificadas na literatura, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.\cite{hrtf}
 
 Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}).\cite{hrtf} Exitem bases abertas e conhecidas de HRTF como a CIPIC e pode-se aplicar estas funções de transferência em um som por convolução (veja equação~\ref{eq:conv}).\cite{CIPIC} O corpo do indivíduo altera bastante as filtragens realizadas e existem técnicas para gerar HRTFs que sejam - como proposta - utilizáveis de forma universal.\cite{lazaSPA} 
 
@@ -691,9 +691,9 @@ da onda vibratória para alteração do volume\footnote{A mudança do volume (qu
 do som, como a reverberação e a concentração de harmônicos agudos, dentre as quais está a energia da onda.
 A manipulada com mais facilidade é a energia da onda (veja equação~\ref{eq:potencia}) e esta também pode variar de diferentes formas.
 Uma forma mais simples é variar a amplitude através da multiplicação da sequência toda
-por um número real. A variação de energia sem variação de
+por um número real. O aumento de energia sem variação de
 amplitude é a \emph{compressão sonora}, útil na
-produção musical atual.\cite{compressao}}. Basta multiplicar a sequência original
+produção musical atual.\cite{guillaume}}. Basta multiplicar a sequência original
 (seja ela gerada ou pré-estabelecida) pela sequência $a_{\Lambda-1}^{\left( \frac{i}{\Lambda-1} \right )^\alpha}$
 onde $\alpha$ é o coeficiente citado e $a_{\Lambda-1}$ é fração da amplitude original que se visa atingir ao final da transição.
 
@@ -733,7 +733,7 @@ especificam a transição de $V_{dB}$ decibels:
 T_i^{'}=\left\{ t_i 10^{\frac{V_{dB}}{20}\left( \frac{i}{\Lambda-1} \right)^\alpha} \right\}_0^{\Lambda-1}
 \end{equation}
 
-para o caso geral de variações de amplitude segundo a progressão geométrica. Quanto maior o valor de $\alpha$, mais suave é a introdução do som e mais intenso o final da transição. $\alpha>1$ resulta em transições de volume muitas vezes chamadas de \emph{slow fade} enquanto $\alpha<1$ resulta em \emph{fast fade}.\cite{fades}
+para o caso geral de variações de amplitude segundo a progressão geométrica. Quanto maior o valor de $\alpha$, mais suave é a introdução do som e mais intenso o final da transição. $\alpha>1$ resulta em transições de volume muitas vezes chamadas de \emph{slow fade} enquanto $\alpha<1$ resulta em \emph{fast fade}.\cite{guillaume}
 
 As transições lineares serão usadas para
 as sínteses AM e FM e a aplicação das transições
@@ -894,7 +894,7 @@ fração da frequência de amostragem $f_a$
 em que há aproximadamente uma atenuação de $3dB$.
 Os coeficientes do filtro IIR
 $a_0$ e $b_1$ 
-são dados através da variável intermediária: $x \in [e^{-\pi},1]$:
+são dados através da variável intermediária $x \in [e^{-\pi},1]$:
 
 \begin{figure}[h!]
     \centering
@@ -1058,7 +1058,7 @@ Os ruídos restantes podem ser feitos com base no procedimento descrito para
 o ruído rosa, bastando que modificar detalhes, em especial a equação que define $\alpha_i$.
 
 \item O ruído marrom deve seu nome a Robert Brown, que descreveu o movimento browniano.
-Embora esta origem seja um tanto díspar do que pode-se considerar motivo para uma associação com a cor marrom, o ruído sonoro ficou consagrado com este nome. De qualquer forma, é bastante comum declarar satisfatória a associação do ruído com a cor marrom, uma vez que os ruídos branco e rosa são mais estridentes e relacionados a cores mais intensas~\cite{marrom}.
+Embora esta origem seja um tanto díspar do que pode-se considerar motivo para uma associação com a cor marrom, o ruído sonoro ficou consagrado com este nome. De qualquer forma, é bastante comum declarar satisfatória a associação do ruído com a cor marrom, uma vez que os ruídos branco e rosa são mais estridentes e relacionados a cores mais intensas~\cite{Cook,guillaume}.
 
 O que caracteriza este ruído é a queda de $6dB$ por oitava. Desta forma, $\alpha_i$ 
 no conjunto \ref{eq:rosa} fica:
@@ -1198,8 +1198,8 @@ a aproximação do limiar de frequência
 para audição do fenômeno sonoro como
 altura ($\approx 20Hz$) gera rugosidades para
 ambos tremolos e vibratos. Estas rugosidades são muito apreciadas
-tanto na tradição erudita quanto na música eletrônica atual, especialmente no \emph{Dubstep}.\cite{DubRugoso}
-A rugosidade também é gerada através de conteúdos espectrais que geram batimentos.\cite{Porres}  A sequência \emph{Bela Rugosi}
+tanto na tradição erudita quanto na música eletrônica atual, especialmente no \emph{Dubstep}.
+A rugosidade também é gerada através de conteúdos espectrais que geram batimentos.\cite{Porres,porres2009} A sequência \emph{Bela Rugosi}
 explora este limiar com concomitâncias de tremolos e vibratos na mesma
 voz, com intensidades e formas de onda diferentes. Seu código está o Apêndice~\ref{ap:bela} e disponível online como parte da \massa.
 
@@ -1286,7 +1286,7 @@ T_i^{f,\,AM(f',\,\alpha)}=\left\{ t_i^{f,\,AM(f',\,\alpha)} \right\}_0^{\Lambda-
 
 
 
-\subsection{Usos musicais - Parte 2}\label{subsec:mus2}
+\subsection{Usos musicais}\label{subsec:mus2}
 A este ponto as possibilidades musicais explodiram. As
 características de altura (dada pela frequência),
 timbre (dado pela forma de onda e filtragens),
@@ -1611,9 +1611,9 @@ permitindo a dominante (que deve ser maior e tender à tônica). Assim, a domina
 
 Cada um destes acordes pode ser confirmado e se desenvolver com uma dominante e uma subdominante individuais (acorde com base na tríade formada a uma quinta acima e uma quinta abaixo respectivamente).
 
-As medianas\footnote{Também chamadas de medianas cromáticas.} são acordes formados também a uma terça, mas com alterações com relação ao acorde de origem. Caso haja duas alterações cromáticas, i.e. duas notas alteradas por um semitom cada com relação ao acorde original, a mediana é chamada 'duplamente cromática'. Esta relação entre acordes é considerada de tonalismo avançado, por vezes até de dissolução do tonalismo, e tem efeitos fortes e marcantes embora perfeitamente consonantes. As medianas foram utilizadas a partir do final do romantismo por Wagner, Lizt, Richard Strauss dentre outros e é bastante simples de ser realizada.\cite{Harmonia,Schachter}
+As medianas\footnote{Também chamadas de medianas cromáticas.} são acordes formados também a uma terça, mas com alterações com relação ao acorde de origem. Caso haja duas alterações cromáticas, i.e. duas notas alteradas por um semitom cada com relação ao acorde original, a mediana é chamada 'duplamente cromática'. Esta relação entre acordes é considerada de tonalismo avançado, por vezes até de dissolução do tonalismo, e tem efeitos fortes e marcantes embora perfeitamente consonantes. As medianas foram utilizadas a partir do final do romantismo por Wagner, Lizt, Richard Strauss dentre outros e é bastante simples de ser realizada.\cite{Harmonia,Salzer}
 
-A modulação é a troca de tonalidade e se dão principalmente através de: uma dominante individual que afirma a mudança da tônica; alterações cromáticas para um acorde da nova tonalidade; e 'enarmonia' que é a mudança de função de um acorde com as mesmas notas. A importância da dominante torna ela o pivô natural das modulações, resultando no círculo das quintas.\cite{Harmonia,Schachter,Koellheuteur,Harmony}
+A modulação é a troca de tonalidade e se dão principalmente através de: uma dominante individual que afirma a mudança da tônica; alterações cromáticas para um acorde da nova tonalidade; e 'enarmonia' que é a mudança de função de um acorde com as mesmas notas. A importância da dominante torna ela o pivô natural das modulações, resultando no círculo das quintas.\cite{Harmonia,Salzer,Koellheuteur,Harmony}
 
 A montagem musical \emph{Acorde cedo} explora estas relações entre acordes. Seu código está disponível do Apêndice~\ref{ap:acorde} e online como parte da \massa.\cite{MASSA}
 
@@ -1653,7 +1653,7 @@ Estas regras foram usadas na montagem \emph{Conta ponto}, o código está no Ap�
 
 
 \subsection{Ritmo}\label{subsec:ritmo}
-A noção rítmica é depende de eventos separados por durações.\cite{rythm} Estes eventos podem ser ouvidos individualmente se separados
+A noção rítmica é depende de eventos separados por durações.\cite{Lacerda} Estes eventos podem ser ouvidos individualmente se separados
 por ao menos $50-63ms$. Para que a separação entre eles possa ser apreciada como duração, ela deve ser maior,
 por volta de $100ms$.\cite{microsound} Pode-se sumarizar 
 a transição
@@ -1788,7 +1788,7 @@ Teoricamente, estas sequências aplicadas desta forma
 a qualquer característica dos eventos musicais produz arcos,
 pois resultam no afastamento e aproximação de uma parametrização inicial. 
 Assim, é possível para uma mesma sequência de eventos possuir um número de arcos distintos, com tamanhos e clímax diferentes. Este é um recurso
-interessante e útil e a correlação dos arcos resulta na coerência da escuta.\cite{Schachter}
+interessante e útil e a correlação dos arcos resulta na coerência da escuta.\cite{Salzer}
 
 A montagem sonora \emph{Dirracional} expõe estes arcos em estruturas direcionais. Seu código está no Apêndice~\ref{ap:dirracional} e disponível online como parte da \massa.\cite{MASSA}
 
@@ -1808,7 +1808,7 @@ e estão presentes em técnicas, o que confirma seu papel central.
 A aplicação sucessiva das permutações gera arcos cíclicos.\cite{change,Zamacois,permMusic}
 A esta abordagem foram dedicados dois trabalhos acadêmicos para geração de estruturas musicais.\cite{figgusOriginal, figgusEspacializacao}
 
-Qualquer conjunto de permutações pode ser utilizado como gerador de grupos algébricos.\cite{groups} As propriedades que definem um grupo $G$ são:
+Qualquer conjunto de permutações pode ser utilizado como gerador de grupos algébricos.\cite{permMusic} As propriedades que definem um grupo $G$ são:
 
 \begin{equation}\label{eq:groups}
 \begin{split}
@@ -1872,7 +1872,7 @@ estas notas para as primeiras quatro notas de $L_i$.
 Cada uma destas permutações
 $p_i$ possui, ao menos, segundo a exposição acima: dimensões das notas em que opera (frequência, duração, \emph{fades}, intensidade, etc) e período de incidência (a cada quantas consultas é aplicada a permutação). Na realização das notas de $L_i$, uma forma fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $L_i$ equivale a modificar a permutação e executar as primeiras notas.}.
 
-Esta abordagem resultou em alguns trabalhos e implementações computacionais.\cite{repoFIGGUS,repoFIGGUSold,figgusOriginal,figgusEspacializacao} Descrevemos um uso coerente desta técnica abaixo e apresentamos no Apêndice~\ref{cap:FIGGUScode} a implementação computacional disponibilizada em~\cite{repoFIGGUS}.
+Esta abordagem resultou em alguns trabalhos e implementações computacionais.\cite{figgusOriginal,figgusEspacializacao} Abaixo está um uso coerente desta técnica abaixo e no Apêndice~\ref{cap:FIGGUScode} apontada a implementação computacional disponibilizada em.\cite{MASSA}
 
 \subsection{Idioma musical?}
 
@@ -1880,7 +1880,7 @@ Existem diversas empreitadas que se propõem a modelar e explorar entendimentos
 sobre a linguagem musical e da linguística aplicada à música ou ainda
 para discernimento entre 
 o que seriam diferentes
-`idiomas musicais'.\cite{Lerdahl, Harmonia, Schachter,Alfaix}
+`idiomas musicais'.\cite{Lerdahl, Harmonia, Salzer,Alfaix}
 De forma simplificada, um idioma musical é fruto da
 repetição de elementos e da repetição de relações entre elementos presentes no decorrer da música. Bastante relacionado é o uso de dicotomias 
 como: repetição e variação, relaxamento e tensão, equilíbrio e desequilíbrio, consonância e dissonância, etc. 
