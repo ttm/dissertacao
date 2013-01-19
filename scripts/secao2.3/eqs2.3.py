@@ -78,15 +78,15 @@ Emf_i = [0., 1., 3., 5., 7., 8., 10.]
 Eml_i = [0., 2., 4., 6., 7., 9., 11.]
 Emmi_i = [0., 2., 4., 5., 7., 8., 10.]
 
-### 2.79 Padrão diatônicos
-E_i_ = n.roll(n.array([2., 2., 1., 2., 2., 2., 1.]), n.random.randint(7.))
+### 2.79 Padrão diatônico
+E_i_ = n.roll(n.array([2.,2.,1.,2.,2.,2.,1.]), n.random.randint(7.))
 E_i = n.cumsum(E_i_)-E_i_[0.]
 
 
 ### 2.80 Escalas menores harmônica e melódica
 Em_i = [0., 2., 3., 5., 7., 8., 10.]
 Emh_i = [0., 2., 3., 5., 7., 8., 11.]
-Emm_i = [0., 2., 3., 5., 7., 9., 11., 12., 10., 8., 7., 5., 3., 2., 0.]
+Emm_i = [0.,2.,3.,5.,7.,9.,11.,12.,10.,8.,7.,5.,3.,2.,0.]
 
 
 ### 2.81 Tríades
@@ -179,7 +179,7 @@ tonicam = [0., 3., 7.]
 subM = [0., 5., 9.]
 subm = [0., 5., 8.]
 dom = [2., 7., 11.]
-Vm = [2., 7., 10.]  # quinto grau menor nao eh dominante,  é quinto grau
+Vm = [2., 7., 10.]  # quinto grau menor nao eh dominante
 
 
 ############## 2.3.3 Contraponto
@@ -236,7 +236,8 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,
             if nnota-seguinte_cf == contra[i]-atual_cf:  # paralelo
                 intervalo = contra[i]-atual_cf
                 novo_intervalo = nnota-seguinte_cf
-                if abs(intervalo-novo_intervalo) == 1:  # do mesmo tipo 3 ou 6
+                # do mesmo tipo 3 ou 6
+                if abs(intervalo-novo_intervalo) == 1:
                     if cont == 2:  # se já teve 2 paralelas
                         pass  # outro intrevalo
                     else:
