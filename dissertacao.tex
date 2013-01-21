@@ -17,6 +17,9 @@
 % \usepackage{python}
 \usepackage{epigraph}
 
+\renewcommand\bibname{Referências}
+\providecommand{\ABNTbibliographyname}{Refer\^{e}ncias}
+\renewcommand{\ABNTbibliographyname}{REFERÊNCIAS}
 \makeatletter
 \newcommand*{\flipmargins}{%
     \clearpage
@@ -233,7 +236,7 @@
 %-------
 \orientador{Prof. Dr. Osvaldo Novais de Oliveira Junior}
 \coorientador{Prof. Dr. Luciano da Fontoura Costa}
-\local{Versão Original \\ São Carlos}
+\local{São Carlos}
 \data{2012}
 \clearpage
 
@@ -250,7 +253,8 @@
 %	* Lista de abreviaturas (manual)
 %	* Lista de símbolos (manual)
 %	* Sumário (automatizado)
-    \renewcommand*\listfigurename{Lista de Figuras e Tabelas}
+    \renewcommand*\listfigurename{LISTA DE FIGURAS E TABELAS}
+    \renewcommand*\listfigurename{LISTA DE FIGURAS E TABELAS}
 \input{pretextual}
 %-----------------PARTE TEXTUAL----------------------
 %	Comandos que incluem os elementos textuais. A variável cap[j] é referente ao arquivo cap[j].tex. Pode ser qualquer nome, desde que exista no mesmo diretorio do tese.tex um capítulo referente.
@@ -279,7 +283,6 @@
 \input{fmam}
 \input{musicaExtra}
 
-\renewcommand\bibname{Referências}
 %-----------------FIM DO DOCUMENTO-------------------
 % \enddocument
 \end{document}
