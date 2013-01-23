@@ -118,7 +118,7 @@ w_k = 2*n.pi*n.arange(Lambda)/Lambda
 
 def t_(i):
     return (1./Lambda)*(A_k[0]+2.*n.sum(n.abs(C_k[1:tau+1]) *
-                        n.cos(w_k*i-n.angle(C_k)) + a[Lambda/2] *
+                        n.cos(w_k*i-n.angle(C_k)) + A_k[Lambda/2] *
                         (1-Lambda % 2)))
 
 

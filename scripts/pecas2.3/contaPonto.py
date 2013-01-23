@@ -83,7 +83,6 @@ def ac(f=200.,notas=[0.,4.,7.,12.],tab=S_i):
 
 
 ############## 2.3.2 Rudimentos de contraponto
-
 def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,\
                                      5,4,4,4,0,2,4,5,5,5]):
     """Realiza rotina de independência das vozes

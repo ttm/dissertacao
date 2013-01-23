@@ -5,7 +5,8 @@
 # ou
 # python reduced-fi.py
 
-import math as m, random as r
+import math as m
+import random as r
 
 def p(freq):
     return 2*m.pi*freq/44100

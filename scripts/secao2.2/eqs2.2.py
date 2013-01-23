@@ -281,7 +281,7 @@ r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
 a.wavwrite(r, 'violeta.wav', f_a)
 
-# 2.55 Ruído preto
+### 2.55 Ruído preto
 # a cada oitava, perdemos mais que 6dB
 fator = 10.**(-12/20.)
 alphai = fator**(n.log2(fi[i0:]/f0))
@@ -298,7 +298,7 @@ r = ((r-r.min())/(r.max()-r.min()))*2-1
 a.wavwrite(r, 'preto.wav', f_a)
 
 
-############## 2.2.5 Usos musicais parte 1: tremolo e vibrato, AM e FM
+############## 2.2.5 Tremolo e vibrato, AM e FM
 # VEJA: vibrato.py e tremolo.py para as figuras 2.19 e 2.20
 f = 220.
 Lv = 2048  # tamanho da tabela do vibrato
@@ -373,7 +373,7 @@ T_i = Tr_i[Gamma_i % Lt]*(A_i)
 a.wavwrite(T_i, "am.wav", f_a)  # escrita do som
 
 
-############## 2.2.5 Usos musicais parte 2
+############## 2.2.5 Usos musicais
 ### 2.73 Veja peça Tremolos, Vibratos e a Frequência
 ### 2.74 ADSR - variação linear
 Delta = 5.  # duração total em segundos
@@ -400,7 +400,7 @@ ii = n.arange(Lambda-Lambda_R, Lambda, dtype=n.float)
 R = a_S-a_S*((ii-(Lambda-Lambda_R))/(Lambda_R-1))
 A_i = n.hstack((A_i, R))
 
-# Realização do som
+### 2.75 Realização do som com a envoltória
 ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
@@ -424,5 +424,10 @@ S = a_S*n.ones(De-DR-(DA+DD))  # amostras do sustain
 A_i = n.hstack((A_i, S))
 R = (SS)*(xi/SS)**((n.arange(De-DR, De)+DR-De)/(DR-1))  # release
 A_i = n.hstack((A_i,  R))
+
+### 2.75 Realização do som com a envoltória
+ii = n.arange(Lambda, dtype=n.float)
+Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
+T_i = Tr_i[Gamma_i % Lt]*(A_i)
 
 a.wavwrite(T_i, "adsr_exp.wav", f_a)  # escrita do som em disco

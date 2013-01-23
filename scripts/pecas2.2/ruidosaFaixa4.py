@@ -75,12 +75,10 @@ def adsr(som,A=10.,D=20.,S=-20.,R=100.,xi=1e-2):
     return som*A_i
 
         
-        
-
-BPM=60. #80 batidas por minuto
-DELTA=BPM/60 # duração da batida
-LAMBDA=DELTA*f_a # número de samples da batida
-LAMBDA_=int(LAMBDA) # inteiro para operação com índices
+BPM=60.  # 80 batidas por minuto
+DELTA=BPM/60  # duração da batida
+LAMBDA=DELTA*f_a  # número de samples da batida
+LAMBDA_=int(LAMBDA)  # inteiro para operação com índices
 
 #cabeca=[1]+[0]*(LAMBDA-1)
 #contra=[0]*Lambda/2+[1]+[0]*(Lambda/2-1)
@@ -90,7 +88,7 @@ contra=n.copy(tempo); contra[LAMBDA_/2]=1.
 
 
 # tempo de musica
-Delta=4*DELTA # segundos
+Delta=4*DELTA  # segundos
 Lambda=Delta*f_a
 Lambda_=int(Lambda)
 ii=n.arange(Lambda_)
@@ -113,7 +111,7 @@ linha_em3=em3[ii%LAMBDA_]
 ##############
 #RUIDOS
 
-Lambda = 100000 # Lambda sempre par
+Lambda = 100000  # Lambda sempre par
 # diferença das frequências entre coeficiêntes vizinhos:
 df=f_a/float(Lambda)
 
@@ -122,22 +120,21 @@ coefs=n.exp(1j*n.random.uniform(0, 2*n.pi, Lambda))
 # real par, imaginaria impar
 coefs[Lambda/2+1:]=n.real(coefs[1:Lambda/2])[::-1] \
                    - 1j*n.imag(coefs[1:Lambda/2])[::-1]
-coefs[0]=0. # sem bias
-coefs[Lambda/2]=1. # freq max eh real simplesmente
+coefs[0]=0.  # sem bias
+coefs[Lambda/2]=1.  # freq max eh real simplesmente
 
 # as frequências relativas a cada coeficiente
 # acima de Lambda/2 nao vale
 fi=n.arange(coefs.shape[0])*df 
-f0=15. # iniciamos o ruido em 15 Hz
-i0=n.floor(f0/df) # primeiro coeff a valer
+f0=15.  # iniciamos o ruido em 15 Hz
+i0=n.floor(f0/df)  # primeiro coeff a valer
 coefs[:i0]=n.zeros(i0)
 f0=fi[i0]
 
 # realizando o ruído em suas amostras temporais
 ruido=n.fft.ifft(coefs)
 r=n.real(ruido)
-rb=((r-r.min())/(r.max()-r.min()))*2-1 # ruido branco
-
+rb=((r-r.min())/(r.max()-r.min()))*2-1  # ruido branco
 
 # fazendo ruido preto
 fator=10.**(-7/20.)
@@ -186,9 +183,6 @@ l4_=n.convolve(obj4,linha_contra)[:len(linha_em3)]
 l6_=n.convolve(obj5,linha_cabeca)[:len(linha_em3)]
 
 
-
-
-print "AA"
 linha1=n.convolve(som2,linha_cabeca)[:len(linha_cabeca)]
 linha2=n.convolve(som4,linha_em3)[:len(linha_em3)]
 linha4=n.convolve(som5,linha_em3)[:len(linha_em3)]
@@ -200,7 +194,6 @@ H_i=(n.random.random(int(f_a*1.2))*2-1)*n.e**(-n.arange(int(f_a*1.2)))
 def r(l):
     return n.convolve(H_i,l)[:len(linha_em3)]
     
-
 som_e=n.hstack((r(linha2)+l1,linha3+r(l2),linha1+l3,
                        r(linha1)+linha2+linha3,r(l6)))
 som_e=n.hstack((som_e,r(linha4)+l1_,r(l2_),l3_+linha3+linha1,
@@ -219,9 +212,6 @@ som[:,len(l1)*3:len(l1)*3+len(LR2)]+=LR2
 som[:,int(len(l1)*3.5):int(len(l1)*3.5)+len(LR3)]+=LR3
 som[:,len(l1)*7:len(l1)*7+len(LR)]+=LR
 
-
-
-print "BB"
 T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
