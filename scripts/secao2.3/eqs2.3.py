@@ -183,73 +183,72 @@ Vm = [2., 7., 10.]  # quinto grau menor nao eh dominante
 
 
 ############## 2.3.3 Contraponto
-
-def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,
-                        5,4,4,4,0,2,4,5,5,5]):
+def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,\
+                                     5,4,4,4,0,2,4,5,5,5]):
     """Realiza rotina de independência das vozes
-
+    
     Limitado em 1 oitava acima da nota"""
-    primeiraNota = alturas[0]+(7, 12)[n.random.randint(2)]
-    contra = [primeiraNota]
+    primeiraNota=alturas[0]+(7,12)[n.random.randint(2)]
+    contra=[primeiraNota]
 
-    i = 0
-    cont = 0  # contador de paralelas
+    i=0
+    cont=0 # contador de paralelas
+    reg=0 # registrador de intervalo em que se fez a paralela
     for al in alturas[:-1]:
-        mov_cf = alturas[i:i+2]
-        atual_cf, seguinte_cf = mov_cf
-        if seguinte_cf-atual_cf > 0:
-            mov = "asc"
-        elif seguinte_cf-atual_cf < 0:
-            mov = "asc"
+        mov_cf=alturas[i:i+2]
+        atual_cf,seguinte_cf=mov_cf
+        if seguinte_cf-atual_cf>0:
+            mov="asc"
+        elif seguinte_cf-atual_cf<0:
+            mov="asc"
         else:
-            mov = "obl"
+            mov="obl"
 
         # possibilidades por consonancia
-        possiveis = [seguinte_cf+interval for interval in
+        possiveis=[seguinte_cf+interval for interval in\
                                     [0,3,4,5,7,8,9,12]]
-        movs = []
+        movs=[]
         for pos in possiveis:
-            if pos - contra[i] < 0:
+            if pos -contra[i] < 0:
                 movs.append("desc")
             if pos - contra[i] > 0:
                 movs.append("asc")
             else:
                 movs.append("obl")
 
-        movt = []
+        movt=[]
         for m in movs:
-            if 'obl' in (m, mov):
+            if 'obl' in (m,mov):
                 movt.append("obl")
-            elif m == mov:
+            elif m==mov:
                 movt.append("direto")
             else:
                 movt.append("contrario")
-        for nota, mt in zip(possiveis, movt):
+        blacklist=[]
+        for nota,mt in zip(possiveis,movt):
 
-            if mt == "direto":  # mov direto
+            if mt == "direto": # mov direto
                 # n aceita intervalo perfeito
                 if nota-seguinte_cf in (0,7,8,12):
                     possiveis.remove(nota)
-        ok = 0
+        ok=0
         while not ok:
-            nnota = possiveis[n.random.randint(len(possiveis))]
-            if nnota-seguinte_cf == contra[i]-atual_cf:  # paralelo
-                intervalo = contra[i]-atual_cf
-                novo_intervalo = nnota-seguinte_cf
-                # do mesmo tipo 3 ou 6
-                if abs(intervalo-novo_intervalo) == 1:
-                    if cont == 2:  # se já teve 2 paralelas
-                        pass  # outro intrevalo
+            nnota=possiveis[n.random.randint(len(possiveis))]
+            if nnota-seguinte_cf==contra[i]-atual_cf: # paralelo
+                intervalo=contra[i]-atual_cf
+                novo_intervalo=nnota-seguinte_cf
+                if abs(intervalo-novo_intervalo)==1: # do mesmo tipo 3 ou 6
+                    if cont==2: # se já teve 2 paralelas
+                        pass # outro intrevalo
                     else:
-                        cont += 1
-                        ok = 1
-            else:  # mov obl ou contrario
-                cont = 0  # zera paralelos
-                ok = 1
+                        cont+=1
+                        ok=1
+            else: # mov obl ou contrario
+                cont=0 # zera paralelos
+                ok=1
         contra.append(nnota)
-        i += 1
+        i+=1
     return contra
-
 
 
 ############## 2.3.4 Ritmo

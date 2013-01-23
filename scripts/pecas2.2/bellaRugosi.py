@@ -43,10 +43,6 @@ def v(f=200,d=2.,tab=S_i,fv=2.,nu=2.,tabv=S_i):
     return tab[Gamma_i%int(Lt)] # busca dos índices na tabela
 
 
-
-
-
-
 dd=v(tabv=Tr_i ,d=2,fv=35.,nu=7.0)
 dd2=v(tabv=D_i ,d=2,fv=35.,nu=7.0)
 
@@ -66,7 +62,6 @@ aa3=n.array(v(fv=.25/2.,f=200,nu=9,d=8.))
 
 aa=n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
 
-
 dd= v(tab=Tr_i,tabv=Tr_i ,d=2,fv=35.,nu=7.0)
 dd2=v(tab=Tr_i,tabv=D_i ,d=2,fv=35.,nu=7.0)
 
@@ -85,7 +80,6 @@ aa2=n.array(v(tabv=Tr_i,fv=.25/2.,f=200,nu=9,d=8.))
 aa3=n.array(v(fv=.25/2.,f=200,nu=9,d=8.))
 
 aa=n.vstack(( aa, (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
-
 
 dd= v(tab=Q_i,tabv=Tr_i ,d=2,fv=35.,nu=7.0)
 dd2=v(tab=Q_i,tabv=D_i ,d=2,fv=35.,nu=7.0)
@@ -127,4 +121,3 @@ aa=n.vstack(( aa, (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
 
 print("BellaRugosiSdadE.wav escrito")
 a.wavwrite(aa,"BellaRugosiSdadE.wav",f_a)
-

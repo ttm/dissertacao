@@ -283,7 +283,7 @@ Os coeficiêntes $\{c_k\}_0^{\Lambda-1=2}$ apresentam-se em
 
 
 
-$\Lambda$ amostras reais $t_i$ resultam em $\Lambda$ coeficientes complexos $c_k=a_k+j.b_k$. Os coeficientes $c_k$ se equivalem dois a dois correspondendo às mesmas frequências e com contribuições idênticas\footnote{Parte real igual e imaginária com sinal trocado: $a_{k1}=a_{k2}$ e $b_{k1}=-b_{k2}$. Como consequência temos módulos iguais e fases com sinais opostos}. Lembrando que $f_k = k\frac{f_a}{\Lambda}, \; k \in \left\{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \right\} $. Quando $k> \frac{\Lambda}{2} $,
+$\Lambda$ amostras reais $t_i$ resultam em $\Lambda$ coeficientes complexos $c_k=a_k+j.b_k$. Os coeficientes $c_k$ se equivalem dois a dois correspondendo às mesmas frequências e com contribuições idênticas\footnote{Parte real igual e imaginária com sinal trocado: $a_{k1}=a_{k2}$ e $b_{k1}=-b_{k2}$. Como consequência os módulos são iguais e as fases possuem sinais opostos}. Lembrando que $f_k = k\frac{f_a}{\Lambda}, \; k \in \left\{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \right\} $. Quando $k> \frac{\Lambda}{2} $,
 a frequência $f_k$ é espelhada em $\frac{f_a}{2}$ da seguinte forma $f_k=\frac{f_a}{2} - (f_k-\frac{f_a}{2})=f_a-f_k=f_a - k\frac{f_a}{\Lambda}=(\Lambda-k)\frac{f_a}{\Lambda} \;\;\;\; \Rightarrow \;\;\;\; f_k\equiv f_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda$. 
 
  
@@ -378,7 +378,7 @@ A figura ~\ref{fig:amostras6} mostra uma decomposição senoidal para o caso de 
 \subsection{A nota básica}\label{notaBasica}
 
 Seja $f$ tal que $f$ divida $f_a$\footnote{Como apontado anteriormente, esta limitação facilita a exposição sem perda de generalidade.
-Esta limitação será superada no início da próxima seção.}.
+A limitação será superada no início da próxima seção.}.
 Uma sequência $T_i$ de amostras sonoras separadas por $\delta_a=1/f_a$ descreve uma nota musical de frequência $f$ Herz e duração $\Delta$ segundos se, e somente se, possuir a periodicidade $\lambda_f=f_a/f$
  e tamanho $\Lambda=\lfloor f_a . \Delta \rfloor $:
 
@@ -420,7 +420,7 @@ filtragem realizada pelo corpo, incluindo toráx, cabeça e orelhas.\cite{Roeder
 
 
 
-	Se consideradas somente as incidências diretas em cada ouvido, as equações resultam simples. Dada a separação entre os ouvidos\footnote{Constata-se que $\zeta \approx 21,5cm$ para um humano adulto.} $\zeta$,
+	Se consideradas somente as incidências diretas em cada ouvido, as equações são simples. Dada a separação $\zeta$ entre os ouvidos\footnote{Constata-se que $\zeta \approx 21,5cm$ para um humano adulto.},
 um objeto localizado em $(x,y)$ conforme a figura~\ref{fig:spac}
 está distante de cada ouvido:
 
@@ -440,12 +440,12 @@ DTI=\frac{d'-d}{v_{som\;no\;ar}\approx 343.2 }\quad \text{segundos}
 
 e na Diferença de Intensidade Interaural:
 \begin{equation}\label{eq:dii}
-DII=20\log_{10}\left (\frac{d}{d'}\right) \quad dBs
+DII=20\log_{10}\left (\frac{d}{d'}\right) \quad decibels
 \end{equation}
 
-Convertendo para amplitude temos $DII_a=\frac{d}{d'}$. A $DII_a$ pode
+Convertendo para amplitude, obtem-se $DII_a=\frac{d}{d'}$. A $DII_a$ pode
 ser utilizada como constante multiplicativa do canal direito de um sinal sonoro estéreo: $\{t_i'\}_0^{\Lambda -1}=\{DII_a . t_i\}_0^{\Lambda -1}$. Pode-se utilizar a DII junto à DTI como adiantamento no tempo do canal direito com relação ao esquerdo, vínculo crucial para a localização em sons graves e em sonoridades percussivas.\cite{Heeger}  
-Considerando $\Lambda_{DTI}=\lfloor DTI . f_a \rfloor$, pode-se escrever:
+Considerando $\Lambda_{DTI}=\lfloor DTI . f_a \rfloor$:
 
 \begin{equation}\label{eq:locImpl}
 \begin{split}
@@ -465,10 +465,10 @@ DTI e DII especifica-se somente o ângulo horizontal (azimutal) $\theta$ dado po
 \theta=\tan^{-1}\left ( \frac{y}{ x }  \right )
 \end{equation}
 
-Mesmo assim, há dificuldades quando $\theta$ incide sobre o chamado "cone de confusão" em que um mesmo par de especificações DTI, DII resultam de vários dos pontos 
+com $x,y$ tais como representados na figura~\ref{fig:spac}. Mesmo assim, há dificuldades quando $\theta$ incide sobre o chamado "cone de confusão" em que um mesmo par de especificações DTI, DII resultam de vários dos pontos 
 do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que nas graves.\cite{Heeger,hrtf} 
 
-A figura~\ref{fig:spac} mostra esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não são especificadas na literatura, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.\cite{hrtf}
+A figura~\ref{fig:spac} mostra também esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não foram encontradas na literatura visitada, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.\cite{hrtf}
 
 Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}).\cite{hrtf} Exitem bases abertas e conhecidas de HRTF como a CIPIC e pode-se aplicar estas funções de transferência em um som por convolução (veja equação~\ref{eq:conv}).\cite{CIPIC} O corpo do indivíduo altera bastante as filtragens realizadas e existem técnicas para gerar HRTFs que sejam - como proposta - utilizáveis de forma universal.\cite{lazaSPA} 
 
@@ -477,8 +477,8 @@ Já a localização completa, incluindo distância e elevação da fonte sonora,
 \subsection{Usos musicais}\label{subsec:basMus}
 
 
-A partir da nota básica, pode-se realizar estruturas musicais com
-sequências destas partículas. A soma de $N$ sequências $T_{k,i}=\{t_{k,i}\}_{k=0}^{N-1}$ de mesmo tamanho $\Lambda$ resulta em seus conteúdos espectrais sobrepostos em um processo de mixagem sonora:
+A partir da nota básica, cabe realizar estruturas musicais com
+sequências destas partículas. A soma dos elementos de mesmo índice de $N$ sequências $T_{k,i}=\{t_{k,i}\}_{k=0}^{N-1}$ de mesmo tamanho $\Lambda$ resulta em seus conteúdos espectrais sobrepostos em um processo de mixagem sonora:
 
 \begin{equation}\label{eq:mixagem}
 \{t_i\}_0^{\Lambda-1}=\left \{ \sum_{k=0}^{N-1}t_{k,i} \right \}_0^{\Lambda-1}
@@ -494,11 +494,11 @@ sequências destas partículas. A soma de $N$ sequências $T_{k,i}=\{t_{k,i}\}_{
 
 
 A figura~\ref{fig:mixagem} ilustra este processo de superposição de ondas sonoras discretizadas. A figura dispõe 100 amostras, de onde pode-se concluir que, se $f_a=44.1kHz$, as frequências da dente de serra, da onda quadrada e da senoide são,
-respectivamente, $\frac{f_a}{100/2}=882Hz$, $\frac{f_a}{100/4}=1764Hz$ e $\frac{f_a}{100/5}=2205Hz$. A duração do trecho é bastante curto $\frac{f_a=44.1kHz}{100} \approx 2 \text{ milisegundos}$. Pode-se completar com zeros para somar sequências de tamanhos diferentes. 
+respectivamente, $\frac{f_a}{100/2}=882Hz$, $\frac{f_a}{100/4}=1764Hz$ e $\frac{f_a}{100/5}=2205Hz$. A duração do trecho é bastante curto $\frac{f_a=44.1kHz}{100} \approx 2 \text{ milisegundos}$. Basta completar com zeros para somar sequências de tamanhos diferentes. 
 
 As notas mixadas são em grande parte separadas pelo ouvido por leis físicas de ressonância e pelo sistema nervoso.\cite{Roederer} O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação.\cite{Harmonia} 
 
-As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem $k$ notas musicais, sua concatenação em uma única sequência $T_i$ resulta em uma sequência musical simples ou melodia:
+As sequências podem também ser concatenadas no tempo. Caso as sequências $\{t_{k,i}\}_0^{\Lambda_k-1}$ de tamanhos $\Lambda_k$  representem $k$ notas musicais, sua concatenação em uma única sequência $T_i$ é em uma sequência musical simples ou melodia:
 
 \begin{equation}\label{eq:concatenacao}
 \{t_i\}_0^{\sum\Delta_k-1}=\{t_{l,i}\}_0^{\sum\Delta_k-1}, \;\; l\text{ menor inteiro } : \quad \Lambda_l > i -\sum_{j=0}^{l-1}\Lambda_j
@@ -514,9 +514,9 @@ Este mecanismo é demonstrado de forma ilustrativa na figura~\ref{fig:concatenac
         \label{fig:concatenacao}
 \end{figure}
 
-A montagem musical \emph{reduced-fi} demonstra de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python nos Apêndices~\ref{ap:quadros} e~\ref{ap:reduced} e estão disponíveis como parte da \emph{toolbox} \massa.\cite{MASSA}
+A montagem musical \emph{reduced-fi} explora de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos \emph{quadros sonoros}, sons estáticos com espectros peculiares. Ambas as peças estão em código Python nos Apêndices~\ref{ap:quadros} e~\ref{ap:reduced} e estão disponíveis como parte da \emph{toolbox} \massa.\cite{MASSA}
 
-Está descrita a nota musical digital básica e a seção a seguinte desenvolve a evolução temporal de seus conteúdos, como nos glissandos e nas envoltórias. A filtragem de componentes espectrais e a geração dos ruídos completam a constituição da nota musical como unidade isolada e se desdobra na seção~\ref{notasMusica}, dedicada à estruturação destas notas em música através de métricas e trajetórias.
+Está descrita a nota musical digital básica e a seção a seguinte desenvolve a evolução temporal de seus conteúdos, como nos glissandos e nas envoltórias de volume. A filtragem de componentes espectrais e a geração dos ruídos completam a constituição da nota musical como unidade isolada e se desdobra na seção~\ref{notasMusica}, dedicada à estruturação destas notas em música através de métricas e trajetórias.
 
 
 
@@ -545,7 +545,7 @@ do escopo de qualquer trabalho dada a considerável sensibilidade do ouvido huma
 e a complexidade da nossa cognição sonora. A seguir, serão apontados
 recursos primários para estas variações das características na nota
 básica.
-Todas as relações descritas nesta seção estão no Apêndice~\ref{sec:cod2}. As montagens musicais \emph{Tansita para metro}, \emph{Vibra e treme}, \emph{Tremolos, vibratos e a frequência}, \emph{Trenzinho de caipiras impulsivos}, \emph{Ruidosa faixa}, \emph{Bela rugosi}, \emph{Chorus infantil}, \emph{ADa e SaRa} estão nos Apêndices~\ref{ap:transita}, \ref{ap:vibra}, \ref{ap:tremolos}, \ref{ap:trenzinho}, \ref{ap:ruidosa}, \ref{ap:bela}, \ref{ap:chorus} e \ref{ap:ada}. Estes códigos são parte da caixa de ferramentas \massa, disponível online.\cite{MASSA}
+Todas as relações descritas nesta seção estão implementadas em Python no Apêndice~\ref{sec:cod2}. As montagens musicais \emph{Tansita para metro}, \emph{Vibra e treme}, \emph{Tremolos, vibratos e a frequência}, \emph{Trenzinho de caipiras impulsivos}, \emph{Ruidosa faixa}, \emph{Bela rugosi}, \emph{Chorus infantil}, \emph{ADa e SaRa} estão nos Apêndices~\ref{ap:transita}, \ref{ap:vibra}, \ref{ap:tremolos}, \ref{ap:trenzinho}, \ref{ap:ruidosa}, \ref{ap:bela}, \ref{ap:chorus} e \ref{ap:ada}. Estes códigos são parte da caixa de ferramentas \massa, disponível online.\cite{MASSA}
 
 
 
@@ -575,7 +575,7 @@ Seja $\widetilde{\Lambda}$ o tamanho
 do período e $\widetilde{L_i} = \left\{\, \widetilde{l}_i \,\right\}_0^{\widetilde{\Lambda} -1}$ os elementos $\widetilde{l_i}$ de um
 período de onda qualquer (veja equação ~\ref{periodoUnico}). Uma sequência
 $T_i^{f,\,\Delta}$ com amostras de um som de frequência $f$ e duração $\Delta$
-pode ser feita a partir de $\widetilde{L_i}$ da seguinte forma:
+pode ser obtida a partir de $\widetilde{L_i}$ da seguinte forma:
 
 \begin{equation}\label{eq:lut}
 T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
@@ -598,7 +598,7 @@ Para fins de síntese, em $f_a=44.1 kHz$
  relevante no espectro audível. O método de arredondamento ou interpolação não é decisivo.\cite{Geiger}
 
  A expressão que define a variável $\gamma_i$ pode ser compreendida da
- seguinte forma: $i$ é acrescida de $f_a$ em $1$ segundo.
+ seguinte forma: $i$ é acrescida de $f_a$ a cada $1$ segundo.
  Caso seja dividida pela frequência de amostragem, resulta $\frac{i}{f_a}$,
 que é acrescida de $1$ a cada $1$ segundo. Multiplicada pelo comprimento do período, resulta $i \frac{\widetilde{\Lambda}}{f_a}$
  que varre o 
@@ -684,7 +684,7 @@ F_i=\{f_i\}_0^{\Lambda-1}=\left\{f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) 
 
 
 O termo $\frac{i}{\Lambda-1}$ varre o intervalo $[0,1]$ e pode-se elevá-lo a uma potência
-para que o início da transição seja mais suave ou abrupta.
+para que o início da transição seja mais suave ou abrupto.
 Este procedimento é útil para variações de energia
 da onda vibratória para alteração do volume\footnote{A mudança do volume (qualidade psicofísica) ocorre através de diferentes características 
 do som, como a reverberação e a concentração de harmônicos agudos, dentre as quais está a energia da onda.
@@ -999,7 +999,7 @@ mas os resultados não são tão úteis, tendendo geralmente ao ruído branco.\c
 Outra possibilidade é a geração de ruído através do espectro desejado, a partir
 do qual executamos a transformada inversa de Fourier.
 A distribuição espectral deve ser feita com cuidado 
-pois caso utilizemos a mesma fase,
+pois caso se utilize a mesma fase,
 ou fases com forte correlação, 
 o som sintetizado possuirá energia bastante concentrada
 em alguns trechos de sua duração.
@@ -1027,7 +1027,7 @@ o ruído branco com a transformada inversa dos seguintes coeficientes:
 
 \begin{equation}\label{eq:branco}
 \begin{split}
-c_0 & =0 \quad \text{pois não queremos bias} \\
+c_0 & =0 \quad \text{pois evita-se bias} \\
 c_i & =e^{j.x}\;,\;\; j^2=-1 \;, \;\; x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; \left[1, \, \frac{\Lambda}{2}-1\right] \\
 c_{\Lambda/2} & = 1 \quad\quad \text{(se $\Lambda$ par)}\\ 
 c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \frac{\Lambda}{2}
@@ -1449,9 +1449,9 @@ Caso as notas sejam dispostas sequencialmente, o intervalo é melódico. A ordem
 Passando a nota mais grave para a oitava acima, ou a nota mais aguda uma oitava para baixo, o intervalo é invertido. Um intervalo, somado à sua inversão, resulta 9 (7m inverte para 2M: $7+2=9$). Um intervalo maior invertido resulta em um intervalo menor e vice-versa. Um intervalo aumentado invertido resulta diminuto e vice-versa, assim como o mais que aumentado resulta em mais que diminuto e vice-versa. Um intervalo justo invertido resulta igualmente justo.
 Um intervalo maior que a oitava é classificado como intervalo composto e leva o nome do intervalo entre as mesmas notas, mas na mesma oitava.
 
-Caso as notas soem simultaneamente, o intervalo é harmônico. Os intervalos de uníssono, oitava e quinta justa são consonâncias perfeitas. As terças e sextas são consonâncias imperfeitas. As segundas, sétimas e trítonos são considerados dissonantes. Esta classificação não é absoluta. A discrepância mais comum é com relação à quarta justa, que é tida como consonante perfeita ou dissonante de acordo com o contexto e arcabouço teórico. Pode-se considerá-la consonante como regra geral. A sétima menor por vezes é considerada consonante, assim como algumas culturas entoam o trítono como intervalo consonante.\cite{Roederer,Wisnick}
+Caso as notas soem simultaneamente, o intervalo é harmônico. Os intervalos de uníssono, oitava e quinta justa são consonâncias perfeitas. As terças e sextas são consonâncias imperfeitas. As segundas, sétimas e trítonos são considerados dissonantes. Esta classificação não é absoluta. A discrepância mais comum é com relação à quarta justa, que é tida como consonante perfeita ou dissonante de acordo com o contexto e arcabouço teórico. Pode-se considerá-la consonante como regra geral. A sétima menor por vezes é considerada consonante, assim como algumas culturas entoam o trítono como intervalo consonante. Por vezes, as segundas menores, sétimas maiores e trítonos são consideradas dissonãncias forte, as segundas maiores, sétimas menores consideradas dissonâncias fracas. As oitavas, quintas e uníssonos consonâncias fortes, terças e sextas consonâncias fracas.\cite{Roederer,Wisnick}
 
-Este arcabouço resume com exatidão a teoria tradicional dos intervalos musicais.\cite{Lacerda} A montagem \emph{Intervalos entre alturas} explora estes intervalos de formas isoladas e diversas. O código está no Apêndice~\ref{ap:intervalos} e disponível online com a \emph{toolbox} \massa.
+Esta descrição resume a teoria tradicional dos intervalos musicais.\cite{Lacerda} A montagem \emph{Intervalos entre alturas} explora estes intervalos de formas isoladas e diversas. O código está no Apêndice~\ref{ap:intervalos} e disponível online com a \emph{toolbox} \massa.\cite{massa}
 
 
 Na escala cromática
@@ -1472,8 +1472,8 @@ para multiplicar $f_0$, as escalas são:
 Assim, a terceira nota da escala em tons inteiros com $f_0=200Hz$
 é $f_3=\varepsilon^{e_3^t} . f_0 = 2^{\frac{6}{12}} . 200 \approxeq 282.843 Hz$. Estas
 'escalas' ou padrões, geram estruturas estáveis pelas simetrias internas, e podem ser
-repetidas de forma eficiente e sustentada. Discutiremos mais sobre simetrias e voltaremos
-a estas divisões da oitava por igual. A montagem \emph{Cristais} expõe cada uma destas escalas tanto melódica quanto harmonicamente e seu código está no Apêndice~\ref{ap:cristais}. Como parte da \massa, este código é disponibilizado online.
+repetidas de forma eficiente e sustentada. Abaixo há mais sobre simetrias e
+sobre estas divisões da oitava por igual. A montagem \emph{Cristais} expõe cada uma destas escalas tanto melódica quanto harmonicamente e seu código está no Apêndice~\ref{ap:cristais}. Como parte da \massa, este código é disponibilizado online.
 
 As escalas diatônicas:
 
@@ -1494,7 +1494,7 @@ só possuem intervalos maiores, menores e justos. Única exceção para o tríto
 Todas as escalas diatônicas
 seguem o padrão de intervalos sucessivos
 tom, tom, semitom, tom, tom, tom, semitom. De forma
-que podemos escrever:
+que pode-se escrever:
 \begin{equation}\label{eq:relacaoDia}
 \begin{split}
 d_i & =\{2,2,1,2,2,2,1\} \\
@@ -1574,7 +1574,7 @@ Não respeitar
 os encadeamentos básicos do sistema tonal resulta
 em harmonias modal e atonal. Caso
 as notas coincidam com algum modo diatônico~\ref{eq:escalas}
-ou sejam em número pequeno, podemos dizer que a
+ou sejam em número pequeno, pode-se dizer que a
 harmonia é modal. Caso contrário, atonal.\cite{harmEXT}.
 
 Na harmonia tonal tradicional,
@@ -1819,7 +1819,7 @@ Qualquer conjunto de permutações pode ser utilizado como gerador de grupos alg
 \end{equation}
 
 
-Da primeira propriedade conclui-se que toda permutação pode ser operada com outra permutação. De fato, pode-se aplicar uma permutação, depois outra e, se comparadas as ordenações inicial e final, temos uma permutação resultante.
+Da primeira propriedade conclui-se que toda permutação pode ser operada com outra permutação. De fato, pode-se aplicar uma permutação, depois outra e, se comparadas as ordenações inicial e final, há uma permutação resultante.
 
 Todo elemento $p$ operado consigo mesmo um número suficiente de vezes $n$ atinge o elemento neutro $p^n=e$, pois caso contrário com a propriedade do fechamento se prova que o grupo é infinito (gerado por $p$). O menor $n\;:\;p^n=e$ é chamado de ordem do elemento. Assim, uma permutação finita $p$ aplicada sucessivamente atinge a ordenação inicial dos elementos, formando um ciclo. Este ciclo, se utilizado para parametros de notas musicais, resulta em um arco musical.
 
