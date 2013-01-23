@@ -97,7 +97,7 @@ def inv(I):
     """retorna intervalo inverso de I: 0<= I <=12"""
     return 12-I
 
-# intervalo harmonico
+# intervalo harmônico
 def intervaloHarmonico(f,I,d=.3):
     return (  v(f,d=d)+v(f*2.**(I/12.),d=d)  )*0.5
 # intervalo melódico

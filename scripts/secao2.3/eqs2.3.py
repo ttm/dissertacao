@@ -53,7 +53,7 @@ def inv(I):
     return 12-I
 
 
-# intervalo harmonico
+# intervalo harmônico
 def intervaloHarmonico(f, I):
     return (v(f)+v(f*2.**(I/12.)))*0.5
 

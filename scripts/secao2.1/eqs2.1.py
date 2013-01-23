@@ -7,7 +7,7 @@ import scikits.audiolab as a
 f_a = 44100.  # frequência de amostragem
 Delta = 3.7  # duração de Delta segundos  = >
 
-Lambda = int(f_a*Delta)  # Delta*f_a amostras
+Lambda = int(f_a*Delta)  # número de amostras
 ### 2.1
 T_i = n.zeros(Lambda)  # silêncio com ~ Delta segundos
 
@@ -50,11 +50,11 @@ A = 10.**(V_dB/20.)
 ############## 2.1.3 Altura
 f_0 = 441.
 lambda_0 = f_a/f_0
-periodo = n.arcsin(n.random.random(lambda_0))
+periodo = n.arcsin(n.random.random(lambda_0))  # amostras quaisquer
 ### 2.9 Som com frequência fundamental f_0
 Tf_i = n.array(list(periodo)*1000)  # 1000 períodos
 
-# normalizando para convencao no intervalo [-1,1]
+# normalizando para convenção no intervalo [-1,1]
 Tf_i = ((Tf_i-Tf_i.min())/(Tf_i.max()-Tf_i.min()))*2.-1.
 a.wavwrite(Tf_i, "f_0.wav", f_a)  # escrita em disco
 
