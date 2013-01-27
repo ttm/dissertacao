@@ -61,7 +61,7 @@
 
 \newcommand\blankpage{%
     \null
-    \thispagestyle{empty}%
+    %\thispagestyle{empty}%
     %\addtocounter{page}{-1}%
     \newpage}
 
@@ -129,7 +129,7 @@
  
 
 %% 1
-\usepackage[centering,includeheadfoot,margin=2cm]{geometry}
+\usepackage[centering,includeheadfoot,left=3cm,right=2cm,top=3cm,bottom=2cm]{geometry}
 \usepackage{txfonts}
 \usepackage{blindtext}
 
@@ -227,7 +227,7 @@
 % OU GRUPO DE Conputação Mutidisciplinar, veja em: http://cyvision.ifsc.usp.br/~luciano/
 
 %	Alunos da Física deixem as três linhas abaixo não comentadas
-\comentario{Dissertação apresentada ao Programa de Pós-graduação em Física do Instituto de Física de São Carlos da Universidade de São Paulo, para a obtenção do título de Mestre em Ciência.}
+\comentario{Dissertação apresentada ao Programa de Pós-graduação em Física do Instituto de Física de São Carlos da Universidade de São Paulo, para a obtenção do título de Mestre em Ciências.}
 \area{Física Aplicada} %Física Aplicada ou Básica
 % \opcao{Física Computacional} %Usado para quem faz parte da Física Computacional ou Biomolecular
 %	Alunos da Interunidades deixem as duas linhas abaixo descomentadas
@@ -237,7 +237,7 @@
 \orientador{Prof. Dr. Osvaldo Novais de Oliveira Junior}
 \coorientador{Prof. Dr. Luciano da Fontoura Costa}
 \local{São Carlos}
-\data{2012}
+\data{2013}
 \clearpage
 
 \afterpage{\blankpage}
@@ -271,6 +271,7 @@
 \bibliographystyle{abnt-num}
 \bibliography{bibdatabase}
 
+\afterpage{\blankpage}
 \apendice
 %\input{mapaSitio}
 %\input{tutoriais}
@@ -278,8 +279,11 @@
 %\input{reconhecimentoDeEmocoes}
 %\input{redesComplexasSom}
 \input{codigoProcedimentos}
+\afterpage{\blankpage}
 \input{codigoPecas}
+\afterpage{\blankpage}
 \input{FIGGUScode}
+\afterpage{\blankpage}
 \input{fmam}
 \input{musicaExtra}
 
