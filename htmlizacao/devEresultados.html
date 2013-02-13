@@ -1,0 +1,781 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="m&#250;sica-no-som-digitalizado">Música no som digitalizado</h1>
+<p>{cap:resultados}</p>
+<blockquote>
+<p>’The increasing dominance of graphic interfaces for music software obscured the continuing presence of the command-line tradition, the code writer, the hacker. The code writing of deferred time computer programming may be assembled out of time order, debugged and optimized.’</p>
+<p><em>Simon Emmerson, Living electronic music.</em></p>
+</blockquote>
+<h2 id="caracteriza&#231;&#227;o-da-nota-musical-em-tempo-discreto">Caracterização da nota musical em tempo discreto</h2>
+<p>{sec:notaDisc} Em diversos contextos artísticos e teóricos, a música é pensada através de unidades chamadas notas e estas unidades compreendidas como &quot;átomos&quot; constituintes da música. Atualmente, estas notas são tidas como um paradigma de proposta musical e, de um ponto de vista cognitivo, como discretizações que facilitam e enriquecem o fluxo de informação através da música. Canonicamente, as notas possuem ao menos duração, volume, altura e timbre. Estas são qualidades tratáveis quantitativamente. Assim, as características da nota musical digital básica são dadas pelas amostras igualmente espaçadas no tempo da onda mecânica que representam (veja seção {sec:audio} sobre áudio PCM).</p>
+<p>Todas as relações desta seção estão no Apêndice {sec:cod1}, as montagens musicais <em>Quadros sonoros</em> e <em>Reduced-fi</em> estão nos Apêndices {ap:quadros} e {ap:reduced}. Estas implementações estão também disponíveis online como parte do <em>toolbox</em> .</p>
+<h3 id="dura&#231;&#227;o">Duração</h3>
+<p>A frequência (ou taxa) de amostragem \(f_a\) é definida como o número de amostras por segundo. Seja a sequência \(T_i=\{t_i\}\) um conjunto ordenado de amostras reais separadas por \(\delta_a=1/f_a\) segundos. Uma nota musical de duração \(\Delta\) se apresenta como uma sequência de \( \lfloor \Delta . f_a \rfloor \) amostras<sup><a href="#fn1" class="footnoteRef" id="fnref1">1</a></sup>:</p>
+<p>\[\label{eq:dur}
+T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\lfloor \Delta . f_a \rfloor -1}
+\]</p>
+<p>Seja \(\Lambda = \lfloor \Delta . f_a \rfloor\) o número de amostras da sequência, de forma que \(T_i=\{t_i\}_0^{\Lambda-1}\).</p>
+<h3 id="volume">Volume</h3>
+<p>A sensação de volume sonoro depende da reverberação e distribuição dos harmônicos, dentre outras características trabalhadas na seção {varInternas}. Pode-se obter variações do volume através da potência da onda :</p>
+<p>\[\label{eq:potencia}
+pot(T_i)=\frac{\sum_{i=0}^{\Lambda -1} t_i^2}{\Lambda}
+\]</p>
+<p>O volume final dependerá sempre da amplificação do sinal nos alto-falantes, assim o crucial é a potência relativa de uma nota em relação às outras ou de um trecho da música em relação ao resto. As diferenças de volume são medidas em decibels, e estes são calculados diretamente com as amplitudes através das energias ou potências<sup><a href="#fn2" class="footnoteRef" id="fnref2">2</a></sup>:</p>
+<p>\[\label{decibels}
+V_{dB}=10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)}
+\]</p>
+<p>A quantidade \(V_{dB}\) possui a unidade decibel (\(dB\)). A cada 10 \(dB\) se atribui a sensação de &quot;volume dobrado&quot;. Importantes resultados de referência são os equivalentes em \(dB\) de se dobrar a amplitude ou a potência:</p>
+<p>\[\label{eq:ampVol}
+se \quad  t_i^{'}=2 . t_i \quad \Rightarrow \quad pot(T^{'}_i)=4 . pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 4 \quad  \approx \quad 6 dB
+\] \[\label{eq:potVol}
+se \quad pot(T^{'}_i)=2 pot(T_i) \quad \Rightarrow \quad V^{'}_{dB}=10log_{10} 2 \quad \approx \quad 3 dB
+\]</p>
+<p>Outro valor de referência é o ganho de amplitude necessário para que uma sequência tenha o volume dobrado (\(10dB\) a mais):</p>
+<p>\[10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \quad \sum_{i=0}^{\lfloor \Delta.f_a \rfloor -1}t^{'2}_i=10\sum_{i=0}^{\Lambda-1}t_i^2=\sum_{i=0}^{\Lambda-1}(\sqrt{10}.t_i)^2 \label{eq:dobraAmp}\\
+\therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3,16t_i\label{eq:dobraVol}
+\]</p>
+<p>Ou seja, é necessário pouco mais que triplicar a amplitude para um volume drobrado. Estes valores servem de guia para os aumentos e diminuições dos valores absolutos que compõem as sequências de amostras sonoras com propósitos musicais. A conversão direta de decibels em ganho ou atenuação de amplitude se dá da seguinte forma:</p>
+<p>\[\label{ampDec}
+A = 10^{\frac{V_{dB}}{20}}
+\]</p>
+<p>Onde \(A\) é o fator multiplicativo que relaciona as amplitudes do sinal antes e depois da amplificação.</p>
+<h3 id="altura">Altura</h3>
+<p>Recapitulando, a partícula musical (nota) é uma sequência \(T_i\) cuja duração e volume correspondem ao tamanho da sequência e amplitude de suas amostras. A altura é especificada pela frequência fundamental \(f_0\) com ciclo de duração \(\delta_{f_0} = 1/f_0\). Esta duração multiplicada pela frequência de amostragem \(f_a\) resulta no número de amostras do ciclo \(\lambda_{f_0}=f_a . \delta_{f_0} =f_a/f_0\).</p>
+<p>Por motivos didáticos, seja \(f_0\) tal que divida \(f_a\) e \(\lambda_{f_0}\) resulte inteiro. Se \(T_i^f\) é uma sequência sonora de frequência fundamental \(f\), então:</p>
+<p>\[\label{periodicidade}
+     T^f_i=\left\{ t_i^f \right\}=\left\{ t^f_{i+\lambda_{f}}  \right\}= \left\{ t^f_{i+\frac{f_a}{f}} \right\}
+\]</p>
+<p>Na seção seguinte serão contempladas frequências \(f\) que não dividem \(f_a\) e esta restrição não implica na perda de generalidade do conteúdo desta seção.</p>
+<h3 id="timbre">Timbre</h3>
+<p>Enquanto o período da onda corresponde a uma frequência fundamental, o percurso da onda sonora dentro do período - chamado de forma de onda - define um espectro harmônico e portanto um timbre<sup><a href="#fn3" class="footnoteRef" id="fnref3">3</a></sup>. Musicalmente, importa que espectros sonoros com diferenças mínimas resultam em timbres com diferenças expressivamente cruciais e que, portanto, pode-se produzir timbres diferentes através de espectros diferentes.</p>
+<p>O caso mais simples (e mais importante, como mostra o texto que segue) é o do espectro que consiste somente em sua própria fundamental \(f\). Este é o caso da senoide, frequência em movimento oscilatório puro chamado movimento harmônico simples. Seja \(S_i^f\) uma sequência cujas amostras \(s_i^f\) descrevem uma senoide de frequência \(f\):</p>
+<p>\[\label{senoide}
+     S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(2\pi \frac{i}{\lambda_f} \bigr)  \Bigr\} = \Bigl\{ \sin\bigl(2\pi f \frac{i}{f_a}\bigr)  \Bigr\} 
+\]</p>
+<p>Onde \(\lambda_f=\frac{f_a}{f}=\frac{\delta_f}{\delta_a} \;\) é o número de amostras do período<sup><a href="#fn4" class="footnoteRef" id="fnref4">4</a></sup>.</p>
+<p>De forma semelhante, outras formas de onda são utilizadas na música por suas qualidades espectrais e simplicidade. Enquanto a senoide é um ponto isolado no espectro, estas ondas apresentam cadeias de componentes harmônicas. As formas de onda especificadas nas equações {senoide}, {denteDeSerra}, {triangular} e {quadrada} estão na figura {fig:formasDeOnda}. São as formas de onda artificiais tradicionalmente usadas na música para síntese e controle oscilatório de variáveis e apresentam diversos usos também fora da música.</p>
+<p>A dente de serra apresenta todas as componentes da série harmônica com energia decrescente de \(-6dB/oitava\). A sequência de amostras temporais pode ser descrita da seguinte forma: \[\label{denteDeSerra}
+     D^f_i=\left\{ d^f_i \right\}=\left\{ 2\frac{i\,\%\lambda_f}{\lambda_f} -1 \right\}
+\]</p>
+<p>A forma de onda triangular apresenta somente os harmônicos ímpares caindo a \(-12dB/oitava\): \[\label{triangular}
+     T^f_i=\left\{ t^f_i \right\}=\left\{1- \left| 2 - 4\frac{i\,\%\lambda_f}{\lambda_f} \right| \right\}
+\]</p>
+<p>A onda quadrada apresenta somente os harmônicos ímpares caindo a \(-6dB/oitava\): \[\label{quadrada}
+     Q^f_i=\left\{ q^f_i \right\}= \left\{
+         \begin{array}{l l}
+              1 & \quad \text{para} \; \; (i\,\%\lambda_f)   <  \lambda_f /2  \\
+              -1 & \quad \text{caso contrário}\\
+         \end{array} \right.
+\]</p>
+<p>A dente de serra é um ponto de partida comum para a síntese subtrativa pois possui ambos os harmônicos pares e ímpares e em grande quantidade. Para fins musicais, estas formas de onda são excessivamente ricas em harmônicos agudos e uma filtragem atenuante nos médios e agudos é útil para que o som ganhe naturalidade e fique mais agradável. Os harmônicos relativamente atenuados da onda triangular a faz a mais funcional - dentre as citadas - para ser usada sem nenhum tratamento na síntese de notas musicais.</p>
+<p>Para citar também uma utilidade da onda quadrada, ela pode ser usada em uma síntese subtrativa que vise a imitar um clarinete. Este instrumento também só apresenta os componentes ímpares do espectro harmônico e a onda quadrada convém com sua energia abundante nas altas frequências.</p>
+<blockquote>
+<p><img src="figuras/formasDeOnda6" alt="image" /> {Formas de onda musicais básicas. As formas de onda sintéticas estão em (a) e as formas de onda reais estão em (b).} {fig:formasDeOnda}</p>
+</blockquote>
+<p>A figura  {fig:formasDeOnda} apresenta as formas de onda descritas nas equações  {senoide},  {denteDeSerra},  {triangular} e  {quadrada} para \(\lambda_f=100\) (período de \(100\) amostras). Se \(t_a=44,1 kHz\), como no padrão PCM de <em>Compact Disks</em>, a onda possui frequência fundamental \(f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz \). Um lá<sup><a href="#fn5" class="footnoteRef" id="fnref5">5</a></sup>, independente da forma de onda.</p>
+<p>O espectro de cada forma de onda básica está na figura  {fig:espectroDeOndas}. As componentes isoladas e exatamente harmônicas dos espectros correspondem a um período rigorosamente fixo. A senoide consiste de um nódulo único no espectro, frequência pura. A dente de serra é a única com a série harmônica completa (pares e ímpares). Já as ondas triangular e quadrada possuem as mesmas componentes espectrais, mas com decaimentos de \(-12dB/oitava\) e \(-6dB/oitava\) respectivamente.</p>
+<blockquote>
+<p><img src="figuras/espectroDeOndas6" alt="image" /> {Espectros das ondas sonoras musicais artificiais básicas. As senoide tem o especro puntual, a triangular apresenta somente os harmônicos ímpares, caindo a 6dB por oitava; a onda quadrada tem somente os harmônicos ímpares, caindo a 12dB por oitava; a onda dente de serra apresenta todos os harmônicos, caindo a 6dB por oitava.} {fig:espectroDeOndas}</p>
+</blockquote>
+<p>O espectro harmônico é formado pelas frequências múltiplas da frequência fundamental \(f_n=(n+1).f_0\). Como a percepção humana de altura segue uma progressão geométrica de frequências, o espectro possui notas diferentes da frequência fundamental. Além disso, o número de harmônicos será limitado pela frequência máxima \(f_a/2\) (pelo Teorema de Nyquist).</p>
+<p>Musicalmente crucial aqui é internalizar que a presença de energia em uma componente de frequência \(f_n\) significa uma oscilação na constituição do som, puramente harmônica e naquela frequência \(f_n\). Esta energia concentrada especificamente na frequência \(f_n\) é separada pelo ouvido para adentrar em um nível cognitivo de processamento<sup><a href="#fn6" class="footnoteRef" id="fnref6">6</a></sup>. As componentes senoidais são geralmente as principais responsáveis pela qualidade chamada timbre. Caso não se apresentem em proporções harmônicas (relações de pequenos números), o som é percebido como ruidoso ou dissonante e não com uma sonoridade de frequência fundamental estabelecida de forma unívoca. Além disso, a noção de altura absoluta em um complexo sonoro é baseada na semelhança do espectro com a série harmônica.</p>
+<p>No caso de uma forma de onda fixa e de tamanho fixo, o espectro é sempre harmônico e estático. Cada forma de onda é composta de proporções específicas das componentes harmônicas e quanto maior a curvatura do trecho na forma de onda, maior a contribuição do trecho para a concentração de energia nos harmônicos agudos. Pode-se constatar isso em sons reais. A onda rotulada como “som real amostrado” na figura  {fig:formasDeOnda} é um período de \(\lambda_f=114\) amostras extraído de um som real relativamente comportado. A onda de oboé foi amostrada de um lá 4 também em \(44,1kHz\). O período escolhido para a amostragem é relativamente curto, com 98 amostras corresponde a uma frequência de \(\frac{44100}{98}=450 Hz\). Pode-se perceber, através das curvaturas, o espectro rico em frequências agudas do oboé e o espectro mais grave do som real.</p>
+<p>A sequência \( R_i=\{ r_i \}_0^{\lambda_f-1}\) de amostras do som real da figura  {fig:formasDeOnda} pode ser tomada como base para um som \(T_i^f\) da seguinte forma:</p>
+<p>\[\label{sampleandoFormaDeOnda}
+     T^f_i=\{ t_i^f \}=\Bigl\{ r_{(i\,\%\lambda_{f})} \Bigr\}
+\]</p>
+<p>O som resultante possui o espectro momentâneo do som original. Por ser repetido de forma idêntica, seu espectro é perfeitamente harmônico, sem os ruídos e variações típicas do fenômeno natural. Isso pode ser visto na figura {fig:espectroOboe}, que mostra os espectros da nota original do oboé e de uma nota artificial de mesma duração e cujas amostras consistem no mesmo período da figura {fig:formasDeOnda}. O espectro natural possui variações nas frequências dos harmônicos, nas suas intensidades e uma quantidade de ruído. Já a nota cujo período foi amostrado possui espectro perfeitamente harmônico.</p>
+<blockquote>
+<p><img src="figuras/espectroOboeAmostradoNatural3" alt="image" /> {Espectros das ondas sonoras de uma nota de oboé natural e de período amostrado. O som natural possui flutuações nos harmônicos e ruídos, já o som de período amostrado possui espectro perfeitamente harmônico.} {fig:espectroOboe}</p>
+</blockquote>
+<h3 id="o-espectro-no-som-amostrado">O espectro no som amostrado</h3>
+<p>A presença e comportamento destas componentes senoidais no som discretizado possui particularidades. Considere um sinal \(T_i\) e sua decomposição de Fourier \(\mathcal{F}\langle T_i\rangle=C_i=\{c_i\}_0^{\Lambda-1}\). A recomposição é a soma das componentes frequenciais em amostras temporais<sup><a href="#fn7" class="footnoteRef" id="fnref7">7</a></sup>:</p>
+<p>\[\label{recomposicaoFourier}
+t_i = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}c_ke^{j \frac{2\pi k}{\Lambda} i } = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}(a_k+ j . b_k)\left[cos(w_k i) +j . sen(w_k i)\right]
+\]</p>
+<p>Onde \(c_k = a_k + j . b_k\) dita a amplitude e fase de cada frequência: \(w_k=\frac{2\pi}{\Lambda}k\) em radianos ou \(f_k=w_k\frac{f_a}{2\pi}=\frac{f_a}{\Lambda}k\) em Herz,com atenção para os respectivos limites em \(\pi\) e em \(\frac{f_a}{2}\) dados pelo Teorema de Nyquist.</p>
+<p>No caso específico de um sinal sonoro, as amostras \(t_i\) são reais e dadas pela parte real da equação  {recomposicaoFourier}:</p>
+<p>\[\label{moduloEfase}
+\begin{split}
+t_i& = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}\left[a_k cos(w_k i) -b_k sen(w_k i)\right] \\
+   & = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]
+\end{split}
+\]</p>
+<p>A equação  {moduloEfase} mostra que o termo imaginário de \(c_k\) acrescenta uma fase à senoide real, i.e. os termos imaginários \(b_k\) da decomposição espectral por Fourier proporcionam a varredura de fase \(\left[-\frac{\pi}{2},+\frac{\pi}{2}\right]\) dada pelo termo \(tg^{-1}\left(\frac{b_k}{a_k}\right)\) que possui esta imagem. O sinal de \(a_k\) especifica o lado direito ou esquerdo do circulo trigonométrico, o que completa a varredura de fase: \(\left[-\frac{\pi}{2},+\frac{\pi}{2}\right] \cup \left[\frac{\pi}{2},\frac{3\pi}{2}\right]\equiv [2\pi]\).</p>
+<blockquote>
+<p><img src="figuras/amostras2c__" alt="image" /> {Oscilação de 2 amostras (frequência máxima em qualquer \(f_a\)). O primeiro coeficiente reflete o deslocamento (<em>offset</em> ou <em>bias</em>) e o segundo coeficiente especifica a amplitude da oscilação.} {fig:amostras2}</p>
+</blockquote>
+<p>A figura  {fig:amostras2} exibe duas amostras e as componentes espectrais que contêm. A decomposição de Fourier possui neste caso um único par de coeficientes \(\{c_k=a_k-j.b_k\}_0^{\Lambda-1=1}\) relativos às frequências \(\{f_k\}_0^1=\left\{w_k\frac{f_a}{2\pi}\right\}_0^1=\left\{k\frac{f_a}{\Lambda=2}\right\}_0^1=\left\{0,\frac{f_a}{2}=f_{\text{máx}}\right\}\) com energias \(e_k=\frac{(c_k)^2}{\Lambda=2}\). O papel das amplitudes \(a_k\) é nítido com \(\frac{a_0}{2}\) o deslocamento fixo<sup><a href="#fn8" class="footnoteRef" id="fnref8">8</a></sup> e \(\frac{a_1}{2}\) a amplitude da oscilação em si, dada pela relação \(f_k=k \frac{f_a}{\Lambda=2}\). Este caso é de especial importância pois o mínimo necessário para representar uma oscilação são 2 amostras e disso resulta a frequência de Nyquist \(f_{\text{máx}}=\frac{f_a}{2}\). Esta é a frequência máxima presente em um som amostrado com \(f_a\) amostras por segundo<sup><a href="#fn9" class="footnoteRef" id="fnref9">9</a></sup>.</p>
+<p>Todas as sequências fixas \(T_i\) de apenas \(3\) amostras também apresentam somente \(1\) frequência, pois sua primeira harmônica usaria \(1.5\) amostras e ultrapassa o limite inferior de 2 amostras mínimas, i.e. a frequência da harmônica ultrapassaria a de Nyquist pois: \(\; \frac{2. f_a}{3} > \frac{f_a}{2} \). Os coeficiêntes \(\{c_k\}_0^{\Lambda-1=2}\) apresentam-se em 3 componentes frequenciais. Uma delas é relativa à frequência zero (\(c_0\)), as outras duas (\(c_1\) e \(c_2\)) contribuem de forma igual na reconstrução da senoide com \(f=f_a/3\).</p>
+<blockquote>
+<p><img src="figuras/amostras3b" alt="image" /> {3 amostras fixas apresentam uma só frequência não nula. \(c_1=c_2^*\) e \(w_1 \equiv w_2\).} {fig:amostras3}</p>
+</blockquote>
+<p>\(\Lambda\) amostras reais \(t_i\) resultam em \(\Lambda\) coeficientes complexos \(c_k=a_k+j.b_k\). Os coeficientes \(c_k\) se equivalem dois a dois correspondendo às mesmas frequências e com contribuições idênticas<sup><a href="#fn10" class="footnoteRef" id="fnref10">10</a></sup>. Lembrando que \(f_k = k\frac{f_a}{\Lambda}, \; k \in \left\{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \right\} \). Quando \(k> \frac{\Lambda}{2} \), a frequência \(f_k\) é espelhada em \(\frac{f_a}{2}\) da seguinte forma \(f_k=\frac{f_a}{2} - (f_k-\frac{f_a}{2})=f_a-f_k=f_a - k\frac{f_a}{\Lambda}=(\Lambda-k)\frac{f_a}{\Lambda} \;\;\;\; \Rightarrow \;\;\;\; f_k\equiv f_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda\).</p>
+<p>O mesmo pode ser observado com \(w_k=f_k.\frac{2\pi}{f_a}\) e lembrando da periodicidade \(2\pi\), que resulta em \(w_k=-w_{\Lambda-k}\). Como o coseno é uma função par e a tangente inversa é impar, as componentes em \(w_k\) e \(w_{\Lambda-k}\) se somam na equação de reconstrução das amostras reais disposta na equação {recomposicaoFourier}.</p>
+<p>Ou seja, em uma decomposição de \(\Lambda\) amostras, as \(\Lambda\) componentes frequenciais \(\{c_i\}_0^{\Lambda-1}\) resultantes são equivalentes em pares. Exceção para \(f_0\) e, no caso de \(\Lambda\) ser par, de \(f_{\Lambda/2}=f_{\text{máx}}=\frac{f_a}{2}\) , ambas as componentes são isoladas, i.e. não existe outra componente na frequência \(f_0\) ou \(f_{\Lambda/2}\) (se \(\Lambda\) par) além dela mesma. Pois \(f_{\Lambda/2}=f_{(\Lambda-\Lambda/2) = \Lambda/2}\) e \(f_0=f_{(\Lambda-0)=\Lambda}=f_0\). Além disso, estas duas frequências (a frequência zero e a frequência máxima) não são representadas com variação de fase e, portanto, são estritamente reais. Assim, pode-se concluir que o número \(\tau\) de pares de coeficientes equivalentes é:</p>
+<p>\[\label{coefsPareados}
+\tau = \frac{\Lambda - \Lambda \% 2}{2} +\Lambda \% 2 -1
+\]</p>
+<p>e ficam evidentes as equivalências  {equivalenciasFreqs},  {equivalenciasModulos} e  {equivalenciasFases}:</p>
+<p>\[\label{equivalenciasFreqs}
+f_{k}\equiv f_{\Lambda-k}\;, \;\; w_{k}\equiv-w_{\Lambda-k}\;\;\;, \quad \;\; \forall \quad 1 \leq k \leq \tau  
+\]</p>
+<blockquote>
+<p><img src="figuras/amostras4__" alt="image" /> {Componentes frequenciais em 4 amostras.} {fig:amostras4}</p>
+</blockquote>
+<p>Como \(a_k = a_{\Lambda -k}\;\;\) e \(\;\;b_k = - b_{\Lambda -k}\):</p>
+<p>\[\label{equivalenciasModulos}
+\sqrt{a_k^2 + b_k^2} = \sqrt{a_{\Lambda - k}^2 + b_{\Lambda -k}^2} \;\;, \quad \;\; \forall \quad 1 \leq k \leq \tau  \\
+\]</p>
+<p>\[\label{equivalenciasFases}
+tg^{-1}\left(\frac{b_k}{a_k}\right)=-tg^{-1}\left(\frac{b_{\Lambda -k}}{a_{\Lambda - k}}\right)\;\;,\quad \;\; \forall \quad 1 \leq k \leq \tau
+\]</p>
+<p>Com \(k \in \mathbb{N}\).</p>
+<p>A observação da equação de reconstrução para o sinal real  {moduloEfase} em conjunto com as equivalências dos módulos e fases  {equivalenciasModulos} e  {equivalenciasFases}, o número de coeficientes pareados {coefsPareados} e equivalência de pares de frequências {equivalenciasFreqs} expõe o caso geral da combinação das componentes em cada amostra \(t_i\):</p>
+<p>\[\label{eq:reconsCompleta}
+t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]+ \frac{ a_{\Lambda/2}}{\Lambda}.(1-\Lambda\% 2)
+\]</p>
+<blockquote>
+<p><img src="figuras/amostras4formas__" alt="image" /> {Formas de onda básicas em 4 amostras.} {fig:formas4}</p>
+</blockquote>
+<p>Assim, a exemplo da figura  {fig:amostras3}, a transformada de Fourier de 3 amostras possui 2 coeficientes frequenciais com quantidades iguais de energia na mesma frequência.</p>
+<p>Com 4 amostras, pode-se representar 1 ou 2 frequências em proporções quaisquer. A figura  {fig:amostras4} mostra uma forma de onda de 4 amostras e suas duas componentes. As contribuições individuais se somam na forma de onda original, e uma breve inspeção revela que as curvaturas maiores são fruto da frequência mais aguda, enquanto um deslocamento fixo da somatória das componentes advém da componente na frequência zero.</p>
+<blockquote>
+<p><img src="figuras/amostras6" alt="image" /> {Componentes frequenciais em 6 amostras: 3 senoides se somam ao <em>bias</em>.} {fig:amostras6}</p>
+</blockquote>
+<p>A figura  {fig:formas4} explicita os harmônicos em 4 amostras nas formas de onda básicas das equações  {senoide},  {denteDeSerra},  {triangular} e  {quadrada}. Todas consistem em apenas 1 senoide, com exceção da dente de serra que possui os harmônicos pares.</p>
+<p>A figura  {fig:amostras6} mostra uma decomposição senoidal para o caso de 6 amostras e a figura  {fig:formas6} decompõe as formas de onda básicas. Neste caso todas as ondas se diferenciam no espectro: as quadrada e triangular possuem as mesmas componentes, mas em proporções diferentes, já a dente de serra possui uma componente a mais.</p>
+<blockquote>
+<p><img src="figuras/amostras6formas___" alt="image" /> {Formas de onda básicas em 6 amostras: as ondas triangular e quadrada possuem os harmônicos ímpares, mas em proporções e fases diferentes; a dente de serra possui também o harmônico par.} {fig:formas6}</p>
+</blockquote>
+<h3 id="a-nota-b&#225;sica">A nota básica</h3>
+<p>{notaBasica}</p>
+<p>Seja \(f\) tal que \(f\) divida \(f_a\)<sup><a href="#fn11" class="footnoteRef" id="fnref11">11</a></sup>. Uma sequência \(T_i\) de amostras sonoras separadas por \(\delta_a=1/f_a\) descreve uma nota musical de frequência \(f\) Herz e duração \(\Delta\) segundos se, e somente se, possuir a periodicidade \(\lambda_f=f_a/f\) e tamanho \(\Lambda=\lfloor f_a . \Delta \rfloor \):</p>
+<p>\[\label{eq:notaBasica}
+T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{\Lambda-1}= \left \{t^f_{i \; \% \left( \frac{f_a}{f} \right) } \right \}_0^{\Lambda-1}
+\]</p>
+<p>A nota por si só não especifica um timbre. Mesmo assim, faz-se necessária a escolha de uma forma de onda para que as amostras \(t_i\) tenham um valor estabelecido individualmente. Um único período dentre as ondas básicas pode ser utilizado para a especificação da nota da seguinte forma:</p>
+<p>\(\lambda_f=\frac{f_a}{f}\) é o número de amostras do período. Seja \(L_i^{f,\, \delta_f} \) a sequência que descreve um período da onda \(L_i^f \in \{S_i^f,Q_i^f,T_i^f,D_i^f,R_i^f \}\) de duração \(\delta_f=1/f\), dadas pelas equações  {senoide},  {denteDeSerra},  {triangular} e  {quadrada} e onde \(R_i^f\) é uma onda real amostrada:</p>
+<p>\[\label{periodoUnico}
+L_i^{f , \delta_f } = \left\{ l_i^f \right\}_0^{\delta_f . f_a -1}=\left\{ l_i^f \right\}_0^{\lambda_f-1}
+\]</p>
+<p>Então a sequência \(T_i\) consistirá em uma nota de duração \(\Delta\) e frequência \(f\) se:</p>
+<p>\[\label{eq:notaBasicaTimbre}
+T_i^{f,\; \Delta}=\left\{t_i^f\right\}_0^{\lfloor f_a . \Delta \rfloor -1}=\left \{ l^f_{i\,\%\left(\frac{f_a}{f}\right)} \right \}_0^{\Lambda-1}
+\]</p>
+<h3 id="localiza&#231;&#227;o-espacial">Localização espacial</h3>
+<p>Embora não seja uma das quatro qualidades básicas tradicionais de uma nota musical, esta possui sempre uma localização espacial. Além disso, a espacialização é atributo bastante valorizado por audiófilos e pela indústria fonográfica. Acredita-se que a percepção da localização espacial do som se dê em nosso sistema nervoso através destas três informações: o atraso de chegada do som entre um ouvido e o outro, a diferença de intensidade do som direto em cada ouvido e a filtragem realizada pelo corpo, incluindo toráx, cabeça e orelhas.</p>
+<blockquote>
+<p><img src="figuras/espacializacao___" alt="image" /> {Detecção de localização espacial de fonte sonora: esquema utilizado para cálculo da diferença de tempo interaural (DTI) e da diferença de intensidade interaural (DII).} {fig:spac}</p>
+</blockquote>
+<p>Se consideradas somente as incidências diretas em cada ouvido, as equações são simples. Dada a separação \(\zeta\) entre os ouvidos<sup><a href="#fn12" class="footnoteRef" id="fnref12">12</a></sup>, um objeto localizado em \((x,y)\) conforme a figura {fig:spac} está distante de cada ouvido:</p>
+<p>\[\label{eq:distOuvidos}
+\begin{split}
+d & =\sqrt{\left (x-\frac{\zeta}{2} \right )^2+y^2} \\
+d' & =\sqrt{\left (x+\frac{\zeta}{2} \right )^2 + y^2}
+\end{split}
+\]</p>
+<p>e cálculos imediatos resultam na Diferença de Tempo Interaural:</p>
+<p>\[\label{eq:dti}
+DTI=\frac{d'-d}{v_{som\;no\;ar}\approx 343.2 }\quad \text{segundos}
+\]</p>
+<p>e na Diferença de Intensidade Interaural: \[\label{eq:dii}
+DII=20\log_{10}\left (\frac{d}{d'}\right) \quad decibels
+\]</p>
+<p>Convertendo para amplitude, obtem-se \(DII_a=\frac{d}{d'}\). A \(DII_a\) pode ser utilizada como constante multiplicativa do canal direito de um sinal sonoro estéreo: \(\{t_i'\}_0^{\Lambda -1}=\{DII_a . t_i\}_0^{\Lambda -1}\). Pode-se utilizar a DII junto à DTI como adiantamento no tempo do canal direito com relação ao esquerdo, vínculo crucial para a localização em sons graves e em sonoridades percussivas. Considerando \(\Lambda_{DTI}=\lfloor DTI . f_a \rfloor\):</p>
+<p>\[\label{eq:locImpl}
+\begin{split}
+\Lambda_{DTI} & = \left \lfloor \frac{d'-d}{343,2}  f_a \right \rfloor \\
+DII_a & = \frac{d}{d'} \\
+\left\{t_{(i+\Lambda_{DTI})}'\right\}_{\Lambda_{DTI}}^{\Lambda+\Lambda_{DTI}-1} & =\left\{DII_a . t_i\right\}_0^{\Lambda-1} \\
+\left\{t_i'\right\}_0^{\Lambda_{DTI}-1} & = 0
+\end{split}
+\]</p>
+<p>Com \(t_i\) o canal direito e \(t_i'\) o canal esquerdo. Caso \(\Lambda_{DTI} < 0 \), basta trocar \(t_i\) por \(t_i'\) e utilizar \(\Lambda_{DTI}'= | \Lambda_{DTI} | \).</p>
+<p>Embora consideravelmente simples até aqui, a localização espacial depende drasticamente de outras pistas. Pela DTI e DII especifica-se somente o ângulo horizontal (azimutal) \(\theta\) dado por:</p>
+<p>\[\label{eq:angulo}
+\theta=\tan^{-1}\left ( \frac{y}{ x }  \right )
+\]</p>
+<p>com \(x,y\) tais como representados na figura {fig:spac}. Mesmo assim, há dificuldades quando \(\theta\) incide sobre o chamado &quot;cone de confusão&quot; em que um mesmo par de especificações DTI, DII resultam de vários dos pontos do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que nas graves.</p>
+<p>A figura {fig:spac} mostra também esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não foram encontradas na literatura visitada, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.</p>
+<p>Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês <em>Head Related Transfer Function</em>). Exitem bases abertas e conhecidas de HRTF como a CIPIC e pode-se aplicar estas funções de transferência em um som por convolução (veja equação {eq:conv}). O corpo do indivíduo altera bastante as filtragens realizadas e existem técnicas para gerar HRTFs que sejam - como proposta - utilizáveis de forma universal.</p>
+<h3 id="usos-musicais">Usos musicais</h3>
+<p>{subsec:basMus}</p>
+<p>A partir da nota básica, cabe realizar estruturas musicais com sequências destas partículas. A soma dos elementos de mesmo índice de \(N\) sequências \(T_{k,i}=\{t_{k,i}\}_{k=0}^{N-1}\) de mesmo tamanho \(\Lambda\) resulta em seus conteúdos espectrais sobrepostos em um processo de mixagem sonora:</p>
+<p>\[\label{eq:mixagem}
+\{t_i\}_0^{\Lambda-1}=\left \{ \sum_{k=0}^{N-1}t_{k,i} \right \}_0^{\Lambda-1}
+\]</p>
+<blockquote>
+<p>{Mixagem de três sequências sonoras. As amplitudes são sobrepostas diretamente.}</p>
+<p>{fig:mixagem}</p>
+</blockquote>
+<p>A figura {fig:mixagem} ilustra este processo de superposição de ondas sonoras discretizadas. A figura dispõe 100 amostras, de onde pode-se concluir que, se \(f_a=44.1kHz\), as frequências da dente de serra, da onda quadrada e da senoide são, respectivamente, \(\frac{f_a}{100/2}=882Hz\), \(\frac{f_a}{100/4}=1764Hz\) e \(\frac{f_a}{100/5}=2205Hz\). A duração do trecho é bastante curto \(\frac{f_a=44.1kHz}{100} \approx 2 \text{ milisegundos}\). Basta completar com zeros para somar sequências de tamanhos diferentes.</p>
+<p>As notas mixadas são em grande parte separadas pelo ouvido por leis físicas de ressonância e pelo sistema nervoso. O resultado da mixagem de notas musicais é a harmonia musical, cujos intervalos entre as frequências e os acordes de notas simultâneas regem aspectos subjetivos e abstratos da música e sua apreciação.</p>
+<p>As sequências podem também ser concatenadas no tempo. Caso as sequências \(\{t_{k,i}\}_0^{\Lambda_k-1}\) de tamanhos \(\Lambda_k\) representem \(k\) notas musicais, sua concatenação em uma única sequência \(T_i\) é em uma sequência musical simples ou melodia:</p>
+<p>\[\label{eq:concatenacao}
+\{t_i\}_0^{\sum\Delta_k-1}=\{t_{l,i}\}_0^{\sum\Delta_k-1}, \;\; l\text{ menor inteiro } : \quad \Lambda_l > i -\sum_{j=0}^{l-1}\Lambda_j
+\]</p>
+<p>Este mecanismo é demonstrado de forma ilustrativa na figura {fig:concatenacao} com as mesmas sequências da figura  {fig:mixagem}. As sequências são curtas para as taxas de amostragem usuais, mas pode-se observar a concatenação de sequências sonoras. Além disso, cada nota tem a duração maior que \(100ms\) se \(f_a<1kHz\).</p>
+<blockquote>
+<p>{Concatenação de três sequências sonoras através da justaposição temporal de suas amostras.} {fig:concatenacao}</p>
+</blockquote>
+<p>A montagem musical <em>reduced-fi</em> explora de forma isolada este uso de justaposição temporal das notas, resultando em uma peça homofônica. O princípio vertical está demonstrado nos <em>quadros sonoros</em>, sons estáticos com espectros peculiares. Ambas as peças estão em código Python nos Apêndices {ap:quadros} e {ap:reduced} e estão disponíveis como parte da <em>toolbox</em> .</p>
+<p>Está descrita a nota musical digital básica e a seção a seguinte desenvolve a evolução temporal de seus conteúdos, como nos glissandos e nas envoltórias de volume. A filtragem de componentes espectrais e a geração dos ruídos completam a constituição da nota musical como unidade isolada e se desdobra na seção {notasMusica}, dedicada à estruturação destas notas em música através de métricas e trajetórias.</p>
+<p>{}</p>
+<h2 id="varia&#231;&#245;es-na-nota-musical-b&#225;sica">Variações na nota musical básica</h2>
+<p>{varInternas}</p>
+<p>A nota musical digital básica foi definida na seção {sec:notaDisc} com os parâmetros: duração, altura, intensidade (volume) e timbre. Esta é uma modelagem útil e paradigmática, mas não esgota o que se entende por uma nota musical.</p>
+<p>Em primeiro lugar, as características da nota se modificam no decorrer da própria nota. Por exemplo, uma nota de piano de 3 segundos tem a intensidade com início abrupto e decaimento progressivo, além de variações do espectro, com harmônicos que decaem antes dos outros e alguns que aparecem com o tempo. Estas variações não são obrigatórias e sim orientações da síntese sonora para usos musicais, pois é como os sons se apresentam na natureza<sup><a href="#fn13" class="footnoteRef" id="fnref13">13</a></sup>. Explorar todas as formas pelas quais estas variações ocorrem está fora do escopo de qualquer trabalho dada a considerável sensibilidade do ouvido humano e a complexidade da nossa cognição sonora. A seguir, serão apontados recursos primários para estas variações das características na nota básica. Todas as relações descritas nesta seção estão implementadas em Python no Apêndice {sec:cod2}. As montagens musicais <em>Tansita para metro</em>, <em>Vibra e treme</em>, <em>Tremolos, vibratos e a frequência</em>, <em>Trenzinho de caipiras impulsivos</em>, <em>Ruidosa faixa</em>, <em>Bela rugosi</em>, <em>Chorus infantil</em>, <em>ADa e SaRa</em> estão nos Apêndices {ap:transita}, {ap:vibra}, {ap:tremolos}, {ap:trenzinho}, {ap:ruidosa}, {ap:bela}, {ap:chorus} e {ap:ada}. Estes códigos são parte da caixa de ferramentas , disponível online.</p>
+<h3 id="tabela-de-busca">Tabela de busca</h3>
+<p>{subsec:lookup}</p>
+<p>Mais conhecida pelo termo em inglês, a <em>Lookup Table</em> (ou simplesmente LUT), é uma estrutura de dados para consultas indexadas usada frequentemente para reduzir a complexidade computacional e por permitir o uso de funções sem possibilidade de cálculo direto, como amostras recolhidas da natureza. Na música seu uso transcende estes primeiros, facilitando as operações e permitindo que um único período de onda possa ser usado para sintetizar sons em toda a banda de frequências audíveis, qualquer que seja a forma de onda amostrada.</p>
+<blockquote>
+<p><img src="figuras/lut" alt="image" /> {Procedimento de busca em tabela (conhecido como <em>Lookup Table</em>) para síntese de sons em frequências diferentes a partir de uma única forma de onda em alta resolução.} {fig:lut}</p>
+</blockquote>
+<p>Seja \(\widetilde{\Lambda}\) o tamanho do período e \(\widetilde{L_i} = \left\{\, \widetilde{l}_i \,\right\}_0^{\widetilde{\Lambda} -1}\) os elementos \(\widetilde{l_i}\) de um período de onda qualquer (veja equação  {periodoUnico}). Uma sequência \(T_i^{f,\,\Delta}\) com amostras de um som de frequência \(f\) e duração \(\Delta\) pode ser obtida a partir de \(\widetilde{L_i}\) da seguinte forma:</p>
+<p>\[\label{eq:lut}
+T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \text{onde} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
+\]</p>
+<p>Ou seja, com os índices corretos (\(\gamma_i\%\widetilde{\Lambda}\)) da LUT, pode-se sintetizar o som em qualquer frequência. A figura {fig:lut} ilustra o cálculo de uma amostra de \(\{t_i\}\) a partir de \(\left\{\,\widetilde{l}_i\,\right\}\) para uma frequência de \(f=200Hz\), \(\widetilde{\Lambda}=128\) e considerada a taxa de amostragem em \(f_a=44.1kHz\). Esta não é uma configuração praticável, como assinalado abaixo, mas possibilita uma disposição gráfica do procedimento.</p>
+<p>O cálculo do inteiro \(\gamma_i\) introduz um ruído, e este diminui com o aumento de \(\widetilde{\Lambda}\). Para fins de síntese, em \(f_a=44.1 kHz\) o padrão é usar \(\widetilde{\Lambda} = 1024\) amostras, pois já não gera ruído relevante no espectro audível. O método de arredondamento ou interpolação não é decisivo.</p>
+<p>A expressão que define a variável \(\gamma_i\) pode ser compreendida da seguinte forma: \(i\) é acrescida de \(f_a\) a cada \(1\) segundo. Caso seja dividida pela frequência de amostragem, resulta \(\frac{i}{f_a}\), que é acrescida de \(1\) a cada \(1\) segundo. Multiplicada pelo comprimento do período, resulta \(i \frac{\widetilde{\Lambda}}{f_a}\) que varre o período em \(1\) segundo. Por fim, com a frequência \(f\), resulta \(i . f \frac{\widetilde{\Lambda}}{f_a}\) que completa \(f\) varreduras do período \(\widetilde{\Lambda}\) em \(1\) segundo, i.e. a sequência resultante apresenta a frequência fundamental \(f\).</p>
+<p>Importantes considerações: \(f\) é qualquer, só há limitantes nas frequências graves quando o tamanho da tabela \(\widetilde{\Lambda}\) não é suficientemente grande para a taxa de amostragem \(f_a\). O procedimento de busca em tabela é computacionalmente bastante barato, substituindo cálculos por buscas simples (por isso geralmente é entendido como um processo de otimização). Salvo quando assinalado, no texto que usará este procedimento para todos os casos cabíveis pois simplifica as rotinas e é computacionalmente coerente.</p>
+<p>O uso de LUTs é bastante difundido nas implementações computacionais voltadas para música e um uso clássico que explora com ênfase as LUTs na síntese sonora musical, é a chamada <em>Wavetable Synthesis</em> que consiste em várias LUTs utilizadas em conjunto através da mixagem para gerar uma nota musical quasi-periódica. .</p>
+<h3 id="varia&#231;&#245;es-incrementais-de-frequ&#234;ncia-e-intensidade">Variações incrementais de frequência e intensidade</h3>
+<p>{subsec:vars}</p>
+<p>Segundo a lei de Weber e Fechner, a percepção humana tem uma relação logarítmica com o estímulo que a causa. Em outras palavras, um estímulo em progressão exponencial é percebido como linear. Por razões didáticas e dado o uso nas AM e FM (veja subseção {subsec:tvaf}), a variação linear será abordada primeiro.</p>
+<p>Em uma nota de duração \(\Delta = \frac{\Lambda}{f_a}\), a frequência \(f=f_i\) varia de \(f_0\) até \(f_{\Lambda -1}\) linearmente. Pode-se escrever:</p>
+<p>\[\label{freqLinear}
+F_i=\{f_i\}_0^{\Lambda-1}=\left\{f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right\}_0^{\Lambda-1}
+\]</p>
+<p>\[\label{indiceLinear}
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{j}{\Lambda-1} \right ] \right \rfloor 
+\]</p>
+<p>\[\label{serieAmostralLin}
+\left\{t_i^{\;\overline{f_0,\, f_{\Lambda-1}}}\right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\,\right\}_0^{\Lambda-1}
+\]</p>
+<p>Onde \(\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a}\) é o incremento da LUT entre duas amostras dada a frequência do som na primeira amostra.</p>
+<p>Desta forma, pode-se calcular os elementos \(t_i^{\;\overline{f_0,f_{\Lambda-1}}}\) com base no período \(\left\{\widetilde{l}_i\right\}_0^{\Lambda-1}\).</p>
+<p>As equações {freqLinear}, {indiceLinear} e {serieAmostralLin} são relativas à progressão linear da frequência. Como assinalado para o caso geral, também aqui uma progressão de frequência <em>percebida</em> como linear segue uma progressão exponencial<sup><a href="#fn14" class="footnoteRef" id="fnref14">14</a></sup>. Pode-se escrever que: \(f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}\) onde \(n_8=\log_2\frac{f_{\Lambda-1}}{f_0}\) é o número de oitavas entre \(f_0\) e \(f_{\Lambda-1}\). De forma que \(f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
+f_0 . 2^{\log_2\left ( \frac{f_{\Lambda-1}}{f_0} \right )^{\frac{i}{\Lambda-1}}}=
+f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}\). Portanto, as equações de transições de frequência lineares para o ouvido são:</p>
+<p>\[\label{freqExponencial}
+F_i=\{f_i\}_0^{\Lambda-1}=\left\{f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right\}_0^{\Lambda-1}
+\]</p>
+<p>\[\label{indiceExponencial}
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i} f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{j}{\Lambda -1}} \right \rfloor
+\]</p>
+<p>\[\label{serieAmostralLog}
+\left\{t_i^{\;\overline{f_0,\,f_{\Lambda-1}}}\right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\,\right\}_0^{\Lambda-1}
+\]</p>
+<blockquote>
+<p><img src="figuras/transicao" alt="image" /> {Transições de intensidade para diferentes valores de \(\alpha\) (veja equações {seqAmp} e  {transAmp}).} {fig:transicao}</p>
+</blockquote>
+<p>O termo \(\frac{i}{\Lambda-1}\) varre o intervalo \([0,1]\) e pode-se elevá-lo a uma potência para que o início da transição seja mais suave ou abrupto. Este procedimento é útil para variações de energia da onda vibratória para alteração do volume<sup><a href="#fn15" class="footnoteRef" id="fnref15">15</a></sup>. Basta multiplicar a sequência original (seja ela gerada ou pré-estabelecida) pela sequência \(a_{\Lambda-1}^{\left( \frac{i}{\Lambda-1} \right )^\alpha}\) onde \(\alpha\) é o coeficiente citado e \(a_{\Lambda-1}\) é fração da amplitude original que se visa atingir ao final da transição.</p>
+<p>Assim, para variações de amplitude:</p>
+<p>\[\label{seqAmp}
+\{a_i\}_0^{\Lambda-1}=\left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}=\left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ com } a_0=1
+\]</p>
+<p>\[\label{transAmp}
+T_i^{'}=T_i \odot A_i = \{t_i . a_i\}_0^{\Lambda-1}=\left \{ t_i . (a_{\Lambda-1} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
+\]</p>
+<p>Pode-se tomar \(a_0=1\) para iniciar a nova sequência com a amplitude original e então ir modificando com o decorrer das amostras. Esta restrição faz com que o termo \(a_{\Lambda-1}\) seja a variação da amplitude. Caso \(\alpha=1\), a variação de amplitude segue exatamente a progressão geométrica que caracteriza a percepção linear. A figura {fig:transicao} exibe as transições para diferentes valores de \(\alpha\) e para a transição entre os valores \(1\) e \(2\), um ganho de \(\approx 6dB\) segundo a equação {eq:ampVol}.</p>
+<p>Algum cuidado é necessário para lidar com \(a=0\). Na equação {seqAmp}, se \(a_0=0\) há divisão por zero e se \(a_{\Lambda-1}=0\), há uma multiplicação por zero. Ambos os casos tornam o procedimento inútil pois nenhum número diferente de zero pode ser representado como uma proporção com relação ao zero. Pode-se resolver isso escolhendo um número suficientemente pequeno como \(-80dB\;\Rightarrow a=10^{\frac{-80}{20}}=10^{-4}\) como o volume mínimo no caso de um <em>fade in</em> (\(a_0=10^{-4}\)) ou de um <em>fade out</em> (\(a_{\Lambda-1}=10^{-4}\)).</p>
+<p>Para uma amplificação linear, mas não linear para a percepção, basta usar uma sequência \(\{a_i\}\) adequada:</p>
+<p>\[\label{seqAmpLin}
+a_i=a_0 + (a_{\Lambda-1}-a_0)\frac{i}{\Lambda-1}
+\]</p>
+<p>Aqui convém a conversão de decibels para amplitude. Assim, as equações  {ampDec} e {transAmp} especificam a transição de \(V_{dB}\) decibels:</p>
+<p>\[\label{seqAmpDB}
+T_i^{'}=\left\{ t_i 10^{\frac{V_{dB}}{20}\left( \frac{i}{\Lambda-1} \right)^\alpha} \right\}_0^{\Lambda-1}
+\]</p>
+<p>para o caso geral de variações de amplitude segundo a progressão geométrica. Quanto maior o valor de \(\alpha\), mais suave é a introdução do som e mais intenso o final da transição. \(\alpha>1\) resulta em transições de volume muitas vezes chamadas de <em>slow fade</em> enquanto \(\alpha<1\) resulta em <em>fast fade</em>.</p>
+<p>As transições lineares serão usadas para as sínteses AM e FM e a aplicação das transições logarítmicas para os tremolos e vibratos. Uma exploração não oscilatória destas variações está na montagem musical <em>Transita para metro</em>, cujo código está no Apêndice {ap:transita} e online na .</p>
+<h3 id="aplica&#231;&#227;o-de-filtros-digitais">Aplicação de filtros digitais</h3>
+<p>{subsec:filtros} Esta subseção limita-se a uma descrição do processamento das sequências, por convolução e equação a diferenças, e em aplicações imediatas, pois a complexidade facilmente foge ao escopo<sup><a href="#fn16" class="footnoteRef" id="fnref16">16</a></sup>. A aplicação de filtros pode ser parte constituinte da síntese ou feita posteriormente como parte dos processos tipicamente chamados de tratamento sonoro.</p>
+<ul>
+<li><p>Convolução e filtros de resposta ao impulso finita (FIR)</p>
+<blockquote>
+<p><img src="figuras/convolucao______" alt="image" /> {Interpretação gráfica da convolução. Cada amostra resultante é a soma das amostras anteriores de um sinal uma a uma multiplicadas pelas amostras retrógradas do outro sinal.} {fig:conv}</p>
+</blockquote>
+<p>Os filtros aplicados por convolução são conhecidos pela sua sigla FIR (do inglês Finite Impulse Response) e são caracterizados por possuirem uma representação amostral finita no tempo. Esta representação amostral é chamada de ’resposta ao impulso’ \(\{h_i\}\). Os filtros FIR são aplicados no domínio temporal ao som digitalizado pela convolução do som com a resposta ao impulso do filtro<sup><a href="#fn17" class="footnoteRef" id="fnref17">17</a></sup>. Para os fins deste trabalho, a convolução fica definida como:</p>
+<p>\[\label{eq:conv}
+\begin{split}
+\left\{t_i'\right\}_0^{\Lambda_t+\Lambda_h-2\; = \;\Lambda_{t\, '}-1} =\{(T_j*H_j)_i\}_0^{\Lambda_{t \, '}-1} & =\left \{ \sum_{j=0}^{min(\Lambda_h-1,i)}h_{j} . t_{i-j} \right \}_0^{\Lambda_{t\, '}-1} \\
+    & =\left \{ \sum_{j=max(i+1-\Lambda_h,0)}^{i}t_j . h_{i-j} \right \}_0^{\Lambda_{t\, '}-1}
+\end{split}
+\]</p>
+<p>Onde \(t_i=0\) para as amostras não definidas de antemão. Ou seja, o som \(\{t_i'\}\) resultante da convolução de \(\{t_i\}\) com a resposta ao impulso \(\{h_i\}\) tem cada i-ésima amostra \(t_i\) substituída pela soma de suas últimas \(\Lambda_h\) amostras \(\{t_{i-j}\}_{j=0}^{\Lambda_h-1}\) multiplicadas uma a uma pelas amostras da resposta ao impulso \(\{h_i\}_0^{\Lambda_h-1}\). Este procedimento está ilustrado na figura {fig:conv}, onde a resposta ao impulso \(\{h_i\}\) é percorrida na forma retrógrada e \(t_{12}'\) e \(t_{32}'\) são duas amostras calculadas pela convolução \((T_j*H_j)_i=t_i'\). O sinal resultante possui sempre o tamanho \(\Lambda_t+\Lambda_h -1=\Lambda_{t'}\).</p>
+<p>Com este procedimento pode-se aplicar reverberadores, equalizadores, delays e vários outros tipos de filtros para fins de tratamento sonoro ou efeitos musicais/artísticos.</p>
+<p>A resposta ao impulso pode provir de medições físicas ou da síntese. Uma resposta ao impulso para a aplicação de reverberação pode resultar da gravação sonora em um ambiente ao disparar um estalo que se assemelhe a um impulso ou de uma varredura em senoide, que transformada se aproxima da resposta em frequência. Ambas são respostas ao impulso que, convoluídas com a sequência sonora, resultam na própria sequência com uma reverberação que se assemelha àquela do ambiente em que ocorreu a medição.</p>
+<p>A transformada inversa de Fourier de uma envoltória par e real é uma resposta ao impulso de um FIR. Este realiza uma filtragem em frequência com a envoltória. Quanto maior o número de amostras maior a resolução da envoltória e também o processamento computacional, pois a convolução é cara.</p>
+<p>Uma propriedade importante é o deslocamento temporal causado pela convolução com o impulso deslocado. Embora caro computacionalmente, pode-se criar linhas de <em>delays</em> através da convolução do som com uma resposta ao impulso que possui um impulso para cada reincidência do som. Na figura {fig:delays} pode-se observar o deslocamento causado pela convolução com o impulso. Dependendo da densidade dos impulsos, o resultado é de caráter rítmico (20 impulsos por segundo ou menos) ou de amálgama sonoro (20-40 impulsos por segundo ou mais). Neste último caso, ocorrem processos tipicamente vinculados à síntese granular, delays, reverbs e equalizações.</p>
+<blockquote>
+<p><img src="figuras/delays__" alt="image" /> {Convolução com o impulso: deslocamento (a), linhas de delays (b) e síntese granular (c). Dispostos em ordem crescente de densidade de pulsos.} {fig:delays}</p>
+</blockquote></li>
+<li><p>Filtros de resposta ao impulso infinita (IIR)</p>
+<p>Esta classe de filtros é conhecida pela sigla IIR (do inglês Infinite Impulse Response) e é caracterizada por possuir uma representação temporal infinita, i.e. a resposta ao impulso não converge para zero. Sua aplicação é usualmente feita pela equação:</p>
+<p>\[\label{eq:diferencas}
+t_i' = \frac{1}{b_0}\left ( \sum_{j=0}^Ja_j . t_{i-j} + \sum_{k=1}^Kb_k . t_{i-k}' \right )
+\]</p>
+<p>com \(b_0=1\) na grande maioria dos casos pois pode-se normalizar as variáveis: \(a_j'=\frac{a_j}{b_0}\) e \(b_k'=\frac{b_k}{b_0} \Rightarrow b_0' = 1\). A equação {eq:diferencas} é chamada ’equação a diferenças’ por exibir as amostras resultantes \(\left\{t_i'\right\}\) através das diferenças entre as amostras originais \(\{t_i\}\) e as amostras resultantes anteriores \(\left\{t_{i-k}'\right\}\).</p>
+<p>Existem diversos métodos e ferrametas para a elaboração de filtros IIR e segue abaixo uma seleção com fins didáticos e para consulta futura por utilidade. São filtros bem comportados e cujas filtragens estão na figura {fig:iir}.</p>
+<p>No caso dos filtros de ordem simples, a frequência de corte \(f_c\) é onde o filtro realiza uma atenuação de \(-3dB \approx 0.707 \) da amplitude original. No caso dos filtros passa e rejeita banda, esta mesma atenuação é resultado de duas especificações: \(f_c\) (neste caso mais bem compreendida como ’frequência central’) e a largura de banda \(bw\), em ambas as frequências \(f_c \pm bw\) há uma atenuação de \(\approx 0.707\) da amplitude original. Existe amplificação do som no caso dos filtros passa e rejeita banda quando a frequência de corte é baixa e a largura de banda é grande o suficiente. Nos agudos, estes filtros apresentam somente um desvio do perfil esperado, expandindo a envoltória para o lado grave da banda em evidência.</p>
+<p>Para filtros cujas respostas em frequência possuem outras envoltórias (para o módulo), pode-se realizar cascatas destes filtros aplicando-os sucessivamente. Outra possibilidade é utilizar alguma receita de filtro biquad<sup><a href="#fn18" class="footnoteRef" id="fnref18">18</a></sup> ou rotinas para cálculo de coeficientes de filtros Chebichev<sup><a href="#fn19" class="footnoteRef" id="fnref19">19</a></sup>. Ambas as possibilidades são exploradas por títulos em nossas referências, em especial  e a coleção de filtros da comunidade <em>Music-DSP</em>, da Universiade de Columbia.</p></li>
+</ul>
+<ol>
+<li><p>Passa-baixas de polo simples com módulo da resposta em frequência no canto superior esquerdo da figura {fig:iir}. A fórmula geral tem por referência da frequência de corte \(f_c \in (0,\frac{1}{2})\), fração da frequência de amostragem \(f_a\) em que há aproximadamente uma atenuação de \(3dB\). Os coeficientes do filtro IIR \(a_0\) e \(b_1\) são dados através da variável intermediária \(x \in [e^{-\pi},1]\):</p>
+<blockquote>
+<p><img src="figuras/iir___" alt="image" /> {Módulos da resposta em frequência (a), (b), (c) e (d) respectivamente dos filtros IIR das equações {eq:passa-baixas}, {eq:passa-altas}, {eq:passa-banda} e {eq:rejeita-banda} para diferentes frequências de corte, frequências centrais e larguras de banda.} {fig:iir}</p>
+</blockquote>
+<p>\[\label{eq:passa-baixas}
+\begin{split}
+x & =e^{-2\pi f_c} \\
+a_0 & =  1-x \\
+b_1 & =  x
+\end{split}
+\]</p></li>
+<li><p>Passa-altas de polo simples com o módulo da resposta em frequência no canto superior direito da figura {fig:iir}. A fórmula geral, com frequência de corte \(f_c \in (0,\frac{1}{2})\), é calculada através da variável intermediária \(x \in [e^{-\pi},1]\):</p>
+<p>\[\label{eq:passa-altas}
+\begin{split}
+x & =e^{-2\pi f_c} \\
+a_0 & =  \frac{x+1}{2} \\
+a_1 & =  -\frac{x+1}{2} \\
+b_1 & =  x
+\end{split}
+\]</p>
+</li>
+<li><p>Nó (<em>notch filter</em>). Este filtro é parametrizado pela frequência central<sup><a href="#fn20" class="footnoteRef" id="fnref20">20</a></sup> \(f_c\) e a largura de banda \(bw\) - \(f_c \pm bw\), que resultam em \(0.707\) da amplitude, i.e. atenuação de \(3dB\) - ambos dados como frações de \(f_a\), portanto \(f,\; bw \in (0,0.5)\).</p>
+<p>Por facilidade, sejam as variáveis auxiliares \(K\) e \(R\):</p>
+<p>\[\label{eq:varAux}
+\begin{split}
+R & = 1 - 3bw \\
+K & = \frac{1-2R\cos(2\pi f_c) + R^2}{2 - 2 \cos (2 \pi f_c)}
+\end{split}
+\]</p>
+<p>O filtro passa banda do canto inferior esquerdo da figura {fig:iir} possui os seguintes coeficientes para a equação {eq:diferencas}:</p>
+<p>\[\label{eq:passa-banda}
+\begin{split}
+a_0 & =  1 - K \\
+a_1 & =  2(K-R)\cos (2\pi f_c) \\
+a_2 & =  R^2-K \\
+b_1 & =  2R \cos (2\pi f_c) \\
+b_2 & =  -R^2
+\end{split}
+\]</p>
+<p>Os coeficientes do filtro rejeita banda são:</p>
+<p>\[\label{eq:rejeita-banda}
+\begin{split}
+a_0 & =  K \\
+a_1 & =  -2K\cos (2\pi f_c) \\
+a_2 & =  K \\
+b_1 & =  2R \cos (2\pi f_c) \\
+b_2 & =  -R^2
+\end{split}
+\]</p>
+<p>com o módulo de sua resposta em frequência disposto na parte inferior esquerda da figura {fig:iir}.</p>
+</li>
+</ol>
+<h3 id="ru&#237;dos">Ruídos</h3>
+<p>{subsec:ruidos} De forma geral, os sons sem altura definida são chamados ruídos. Estes são constituintes importantes dos sons musicais de altura definida, como os ruídos presentes nas notas do piano, do violino, etc. Além disso, os instrumentos de percussão, em grande parte, não possuem altura definida e seus sons são em geral compreendidos como ruídos. Na música eletrônica, incluindo a eletroacústica e gêneros de pista de dança, os ruídos possuem usos diversificados e comumente característicos do estilo musical.</p>
+<p>A ausência de uma altura definida é fruto da ausência de uma organização harmônica perceptível nas componentes senoidais que formam o som. Assim, são incontáveis as possibilidades de gerar ruídos. A utilização de valores aleatórios para a geração da sequência sonora \(T_i\) é um método atraente, mas os resultados não são tão úteis, tendendo geralmente ao ruído branco.</p>
+<p>Outra possibilidade é a geração de ruído através do espectro desejado, a partir do qual executamos a transformada inversa de Fourier. A distribuição espectral deve ser feita com cuidado pois caso se utilize a mesma fase, ou fases com forte correlação, o som sintetizado possuirá energia bastante concentrada em alguns trechos de sua duração.</p>
+<blockquote>
+<p><img src="figuras/ruidos___" alt="image" /> {Ruídos coloridos realizados através das equações {eq:branco}, {eq:rosa}, {eq:marrom}, {eq:azul}, {eq:violeta}: espectros e ondas sonoras resultantes.} {fig:ruidos}</p>
+</blockquote>
+<p>Abaixo elencamos alguns ruídos de espectro estático. São chamados <em>coloridos</em> por terem sido associados a cores. A figura {fig:ruidos} mostra lado a lado o perfil espectral e a sequência sonora. Os ruídos foram gerados com a mesma fase, então pode-se observar o resultado das contribuições em diferentes regiões do espectro.</p>
+<ul>
+<li><p>O ruído branco deve seu nome por possuir energia distribuída igualmente por todas as frequências. Pode-se realizar o ruído branco com a transformada inversa dos seguintes coeficientes:</p>
+<p>\[\label{eq:branco}
+\begin{split}
+c_0 & =0 \quad \text{pois evita-se bias} \\
+c_i & =e^{j.x}\;,\;\; j^2=-1 \;, \;\; x \; \text{randômico} \; \in \; [0,2\pi]\;,\;\; i \; \in \; \left[1, \, \frac{\Lambda}{2}-1\right] \\
+c_{\Lambda/2} & = 1 \quad\quad \text{(se $\Lambda$ par)}\\ 
+c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \frac{\Lambda}{2}
+\end{split}
+\]</p>
+<p>O valor de \(c_i\) calculado pela exponencial é apenas um artifício para resultar em módulo unitário e fase aleatória. Já \(c_{\Lambda/2}\) é sempre puramente real (como vimos na seção anterior).</p></li>
+<li><p>O ruído rosa possui uma queda de \(3dB\) por oitava. Este ruído é muito usual no teste de equipamentos e montagens de aparelhos além de presença destacada na natureza .</p>
+<p>\[\label{eq:rosa}
+\begin{split}
+f_{\text{min}} & \approx 15 Hz \\
+f_i & = i \frac{f_a}{\Lambda} \;, \;\; \quad i \;\leq\; \frac{\Lambda}{2},\;\; i\;\in\;\mathbb{N}  \\
+\alpha_i & = \left(10^{-\frac{3}{20}}\right)^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )}  \\
+c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \\
+c_i & =e^{j.x} . \alpha_i\;,\;\; j^2=-1 \;, \;\;\  x \;\; \text{randômico} \; \in \; [0,2\pi]\;,\;\; \forall \; i \; : f_{\text{min}} \le f_i < f_{\lceil \Lambda/2-1 \rceil}  \\
+c_{\Lambda/2} & = \alpha_{\Lambda/2} \quad\quad \text{(se $\Lambda$ par)}\\ 
+c_i & = c_{\Lambda - i}^*\;,\;\; \text{para}\;  i \; > \;  \Lambda/2
+\end{split}
+\]</p>
+<p>A frequência mínima \(f_{\text{min}}\) pode ser escolhida com base no limite da audição, pois não se escuta como altura uma componente sonora cuja frequência esteja abaixo de \(\approx\; 20Hz\).</p>
+<p>Os ruídos restantes podem ser feitos com base no procedimento descrito para o ruído rosa, bastando que modificar detalhes, em especial a equação que define \(\alpha_i\).</p></li>
+<li><p>O ruído marrom deve seu nome a Robert Brown, que descreveu o movimento browniano. Embora esta origem seja um tanto díspar do que pode-se considerar motivo para uma associação com a cor marrom, o ruído sonoro ficou consagrado com este nome. De qualquer forma, é bastante comum declarar satisfatória a associação do ruído com a cor marrom, uma vez que os ruídos branco e rosa são mais estridentes e relacionados a cores mais intensas .</p>
+<p>O que caracteriza este ruído é a queda de \(6dB\) por oitava. Desta forma, \(\alpha_i\) no conjunto {eq:rosa} fica:</p>
+<p>\[\label{eq:marrom}
+\alpha_i=(10^{-\frac{6}{20}})^{\log _2 \left( \frac{f_i}{f_{\text{min}}} \right )}
+\]</p></li>
+<li><p>No ruído azul há ganho de \(3dB\) por oitava em uma banda limitada pela frequência mínima \(f_{\text{min}}\) e a frequência máxima \(f_{\text{máx}}\). Assim, também com base no conjunto de equações {eq:rosa}:</p>
+<p>\[\label{eq:azul}
+\begin{split}
+\alpha_i & = (10^{\frac{3}{20}})^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )} \\
+c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \;\; \text{ou} \;\; f_i>f_{\text{máx}} \\
+\end{split}
+\]</p></li>
+<li><p>O ruído violeta é similar ao ruído azul, mas o ganho é de \(6dB\) por oitava:</p>
+<p>\[\label{eq:violeta}
+\alpha_i = (10^{\frac{6}{20}})^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )} \;\;, \quad f_{\text{min}} \approx 15 Hz \\
+\]</p></li>
+<li><p>O ruído preto possui perdas maiores que \(6dB\) por oitava, assim:</p>
+<p>\[\label{eq:preto}
+\alpha_i=(10^{-\frac{\beta}{20}})^{\log _2 \left( \frac{f_i}{f_{\text{min}}} \right )}\;\;, \quad \beta > 6
+\]</p></li>
+<li><p>O ruído cinza é definido como um ruído branco sujeito a uma das curvas iso-audíveis. Estas curvas são resultados experimentais e necessárias para a obtenção de \(\alpha_i\). Uma implementação da ISO 226, a última revisão destas curvas, está na toolbox .</p></li>
+</ul>
+<p>Foram expostos somente ruídos com espectro estático. Existem classificações de ruídos com variações do espectro no decorrer do tempo. Existem também ruídos que são fundamentalmente transientes, como os clicks e os chirps. O primeiro é modelado facilmente por um impulso relativamente isolado, enquanto o segundo não é um ruído, mas uma varredura rápida de alguma banda de frequência.</p>
+<p>Os ruídos das equações {eq:branco}, {eq:rosa}, {eq:marrom}, {eq:azul}, {eq:violeta} estão na figura {fig:ruidos}. Os espectros foram feitos com a mesma fase em cada coeficiente de mesma frequência, de forma que se pode observar a contribuição dos harmônicos agudos e das frequências graves.</p>
+<h3 id="tremolo-e-vibrato-am-e-fm">Tremolo e vibrato, AM e FM</h3>
+<p>{subsec:tvaf}</p>
+<p>O vibrato é uma variação periódica de altura (frequência) e o tremolo é uma variação periódica de volume (intensidade).<sup><a href="#fn21" class="footnoteRef" id="fnref21">21</a></sup> Para o caso geral, o vibrato é descrito da seguinte forma:</p>
+<p>\[\label{vbrGamma}
+\gamma_i'=\left \lfloor i f' \frac{\widetilde{\Lambda}_M}{f_a} \right \rfloor
+\]</p>
+<p>\[\label{vbrAux}
+t_i'=\widetilde{m}_{\gamma_i' \;\% \widetilde{\Lambda}_M}
+\]</p>
+<p>\[\label{vbrF}
+f_i=f \left ( \frac{f + \mu }{f} \right )^{t_i'}=f . 2^{t_i'\frac{\nu}{12}}
+\]</p>
+<p>\[\label{vbrGamma2}
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_j \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f \left ( \frac{f + \mu }{f} \right )^{t_j'}  \right \rfloor= \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f . 2^{t_j'\frac{\nu}{12}}  \right \rfloor
+\]</p>
+<p>\[\label{vbrT}
+T_i^{f, vbr(f',\,\nu)}=\left\{ t_i^{f,vbr(f',\,\nu)} \right\}_0^{\Lambda-1}=\left\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \right\}_0^{\Lambda-1}
+\]</p>
+<blockquote>
+<p><img src="figuras/vibrato___" alt="image" /> {Espectrograma de um som com vibrato senoidal de \(3Hz\) e profundidade de uma oitava em uma dente de serra de \(1000Hz\) (considerada \(f_a=44.1kHz\)).} {fig:vibrato}</p>
+</blockquote>
+<p>Para a correta realização do vibrato, é importante atenção para as duas tabelas e sequências. A tabela \(\widetilde{M}_i\) de tamanho \(\widetilde{\Lambda}_M\) e a sequência de índices \(\gamma_i'\) formam a sequência \(t_i'\) que é o padrão da oscilação da frequência enquanto a tabela \(\widetilde{L}_i\) de tamanho \(\widetilde{\Lambda}\) e a sequência de índices \(\gamma_i\) formam \(t_i\) que é o som em si. As variáveis \(\mu\) e \(\nu\) quantificam a intensidade do vibrato: \(\mu\) é uma medida direta da quantidade de Herz envolvidos no limite superior da oscilação e \(\nu\) é a medida direta de semitons envolvidos na oscilação (\(2\nu\) é o número de semitons entre os picos superiores e inferiores de oscilação da frequência do som \(\{t_i\}\) causada pelo vibrato). É conveniente \(\nu=\log_{2}\frac{f+\mu}{f} \) neste caso pois o aumento máximo de frequência não equivale à diminuição máxima, mas a variação de semitons se mantém.</p>
+<p>A Figura {fig:vibrato} é o espectrograma de um vibrato artificial de uma nota em \(1000Hz\) (entre um si e um dó) e cujo desvio da frequência atinge uma oitava para cima e para baixo. Qualquer forma de onda pode ser utilizada para gerar o som e o padrão de oscilação do vibrato em quaisquer frequência de oscilação e desvio de altura envolvidos<sup><a href="#fn22" class="footnoteRef" id="fnref22">22</a></sup>. Estas qualidades não são praticáveis em instrumentos musicais tradicionais, introduzindo novidade nas possibilidades artísticas.</p>
+<p>O caso do tremolo é semelhante: \(f'\), \(\gamma_i'\) e \(t_i'\) permanecem os mesmos. A sequência de amplitudes a serem multiplicadas pela sequência original \(t_i\) fica:</p>
+<p>\[\label{trA}
+a_i=10^{\frac{V_{dB}}{20}t_i' } = a_{\text{máx}}^{t_i'}
+\]</p>
+<p>\[\label{trT}
+T_i^{tr(f')}=\{ t_i^{tr(f')} \}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_i .10^{t_i' \frac{V_{dB}}{20}}    \}_0^{\Lambda-1}=\{t_i . a_{\text{máx}}^{t_i'}\}_0^{\Lambda-1}
+\]</p>
+<p>Onde \(V_{dB}\) é a profundidade da oscilação em decibels do tremolo e \(a_{\text{máx}}=10^{\frac{V_{dB}}{20}}\) é o ganho máximo de amplitude envolvido. A medição em decibels é pertinente pois o aumento máximo de amplitude não equivale à diminuição máxima relacionada, enquanto a diferença em decibels se mantém.</p>
+<p>A figura {fig:tremolo} mostra a amplitude das sequências \(\{a_i\}_0^{\Lambda-1}\) e \(\{t_i'\}_0^{\Lambda-1}\) para três oscilações de um tremolo com forma da dente de serra. A curvatura é devida à progressão logarítmica de intensidade. A frequência do tremolo é de \(1,5Hz\) pois \(f_a=44,1kHz \; \Rightarrow \; \text{duração} = \frac{i_{\text{máx}}=82000}{f_a}= 2s \; \Rightarrow \; \frac{3\text{oscilações}}{2s}=1,5\) oscilações por segundo (\(Hz\)).</p>
+<p>A montagem musical <em>Vibra e treme</em> explora estes recursos dos tremolos e vibratos em associação e isoladamente com frequências \(f'\) e profundidades (\(\nu\) e \(V_{dB}\)) diferentes, variações progressivas dos parâmetros<sup><a href="#fn23" class="footnoteRef" id="fnref23">23</a></sup>. A peça desenvolve também uma comparação entre os vibratos e tremolos em escala logarítmica e em escala linear para uma apreciação qualitativa. Seu código está no Apêndice {ap:vibra} e disponível online como parte da <em>toolbox</em> .</p>
+<blockquote>
+<p><img src="figuras/tremolo" alt="image" /> {Tremolo de profundidade \(V_{dB}=12dB\) com padrão oscilatório de uma dente de serra em \(f'=1.5Hz\) em uma senoide de \(f=40Hz\) (considerada taxa de amostragem \(f_a=44,1kHz\)).} {fig:tremolo}</p>
+</blockquote>
+<p>No aumento progressivo de \(f'\), a aproximação do limiar de frequência para audição do fenômeno sonoro como altura (\(\approx 20Hz\)) gera rugosidades para ambos tremolos e vibratos. Estas rugosidades são muito apreciadas tanto na tradição erudita quanto na música eletrônica atual, especialmente no <em>Dubstep</em>. A rugosidade também é gerada através de conteúdos espectrais que geram batimentos. A sequência <em>Bela Rugosi</em> explora este limiar com concomitâncias de tremolos e vibratos na mesma voz, com intensidades e formas de onda diferentes. Seu código está o Apêndice {ap:bela} e disponível online como parte da .</p>
+<p>Aumentando ainda mais a frequência, estas oscilações deixam de ser eventos identificáveis. Neste caso, as oscilações são audíveis como altura. Assim, \(f'\), \(\mu\) e a forma de onda realizam alterações espectrais no som original \(T_i\) de formas diferentes para os tremolos e para os vibratos. São as chamadas sínteses AM (<em>Amplitude Modulation</em>) e FM (<em>Frequency Modulation</em>), respectivamente. Estas são técnicas conhecidas, com aplicações em sintetizadores como o <em>Yamaha DX7</em>, e com aplicações fora da música, como em telecomunicações para transmissão de informação via ondas eletromagnéticas (ex. rádios AM e FM).</p>
+<p>Para fins musicais e em resumo, pode-se entender a síntese FM através do caso entre senoides e decompor os sinais em seus espectros de Fourier (i.e. senoidais) para casos mais complexos. Assim, a síntese FM realizada com um ’vibrato’ senoidal de frequência \(f'\) e profundidade \(\mu\) em um som também senoidal \(T_i\) de frequência \(f\) gera bandas centradas em \(f\) e distantes \(f'\) entre si:</p>
+<p>\[\label{eq:fmEsp}
+\begin{split}
+\{t_i'\} & = \left \{ \cos \left [f . 2 \pi \frac{i}{f_a-1} + \mu . sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right ) \right ] \right \} = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ f . 2 \pi \frac{i}{f_a-1} + k . f' . 2 \pi \frac{i}{f_a-1} \right ]  \right \} = \\
+ & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu) \cos \left [ (f+k.f') . 2 \pi \frac{i}{f_a-1} \right ]  \right \}
+\end{split}
+\]</p>
+<p>onde \[\label{eq:Bessel}
+J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \quad , \quad \overline{k} = k \% 2 \;\;,\;\; k \in \mathbb{N}
+\] é a função de Bessel  que na FM especifica a amplitude de cada componente.</p>
+<p>Nestas equações, a variação de frequência introduzida por \(\{t_i'\}\) não respeita a progressão geométrica de frequência que acompanha a percepção de altura, mas sim a equação {freqLinear}. A utilização das equações {vbrF} para a FM está no Apêndice {cap:fmam}, onde é calculado o conteúdo espectral da síntese FM obtida com oscilações na escala logarítmica. De fato, o comportamento simples que torna a FM atraente é obtido somente com as variações lineares em {eq:fmEsp}.</p>
+<p>O caso da modulação de amplitude (AM) é mais simples:</p>
+<p>\[\label{eq:amEsp}
+\begin{split}
+\{t_i'\}_0^{\Lambda-1} & =\{(1+a_i) . t_i\}_0^{\Lambda-1}= \left \{ \left [ 1+M.\sin \left ( f'.2\pi\frac{i}{f_a -1} \right ) \right] . P .\sin \left ( f.2\pi\frac{i}{f_a -1} \right ) \right \}_0^{\Lambda-1} = \\
+& = P.\sin \left( f.2\pi\frac{i}{f_a -1}  \right ) + \frac{P.M}{2} \left [ \sin \left( (f-f').2\pi\frac{i}{f_a -1}  \right ) + \sin \left( (f+f').2\pi\frac{i}{f_a -1}  \right ) \right ]
+\end{split}
+\]</p>
+<p>Ou seja, o som resultante é o original e a reprodução de seu conteúdo espectral acima e abaixo da frequência original, distantes \(f'\) de \(f\). Novamente, isso é obtido com a variação na escala linear de amplitude. No Apêndice {cap:fmam} está uma exposição do espectro da AM realizada com a oscilação na escala logarítmica de amplitude. Esta também perde o comportamento simples.</p>
+<p>A sequência \(T_i\) de frequência \(f\), chamada portadora, é modulada pela \(f'\), chamada moduladora. No jargão de FM e AM, \(\mu\) e \(\alpha=10^{\frac{V_{dB}}{20}}\) são chamados índices de modulação. Assim, para o padrão de vibração da moduladora \(\{t_i'\}\) as equações:</p>
+<p>\[\label{fmGammaAux}
+\gamma_i'=\left \lfloor i f' \frac{\widetilde{\Lambda}_M}{f_a} \right \rfloor
+\]</p>
+<p>\[\label{fmAux}
+t_i'=\widetilde{m}_{\gamma_i' \;\% \widetilde{\Lambda}_M}
+\]</p>
+<p>Para aplicação da moduladora \(\{t_i'\}\) na portadora \(\{t_i\}\) por FM:</p>
+<p>\[\label{fmF}
+f_i=f + \mu . t_i'
+\]</p>
+<p>\[\label{fmGamma}
+\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_j \frac{\widetilde{\Lambda}}{f_a} \right \rfloor = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}(f+\mu . t_j') \right\rfloor
+\]</p>
+<p>\[\label{fmT}
+T_i^{f,\, FM(f',\,\mu)}=\left\{ t_i^{f,\,FM(f',\,\mu)} \right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \,\right\}_0^{\Lambda-1}
+\]</p>
+<p>Onde \(\widetilde{l}\) é um período da forma de onda de comprimento \(\widetilde{\Lambda}\) da portadora.</p>
+<p>Para realizar a AM, basta modular \(\{t_i\}\) com \(\{t_i'\}\) através das equações:</p>
+<p>\[\label{amA}
+a_i=1 + \alpha . t_i'
+\]</p>
+<p>\[\label{amT}
+T_i^{f,\,AM(f',\,\alpha)}=\left\{ t_i^{f,\,AM(f',\,\alpha)} \right\}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}=\{t_i . (1 + \alpha . t_i')    \}_0^{\Lambda-1}
+\]</p>
+<h3 id="usos-musicais-1">Usos musicais</h3>
+<p>{subsec:mus2} A este ponto as possibilidades musicais explodiram. As características de altura (dada pela frequência), timbre (dado pela forma de onda e filtragens), volume (dado pela intensidade) e duração (dada pelo número de amostras) podem ser consideradas de forma absoluta ou tratadas ao longo de sua duração, com a única exceção da duração em si.</p>
+<p>Desta forma, os usos musicais aqui dispostos são uma coleção de possibilidades com o objetivo de exemplificar manipulações sonoras que resultem algo musical, por razões variadas e aprofundadas na próxima seção.</p>
+<p>Uma primeira possibilidade interessante é usar vínculos entre os parâmetros do tremolo e do vibrato e algum parâmetro da nota básica, como a frequência. Assim, pode-se estabelecer que a frequência do vibrato é diretamente proporcional à altura, e a profundidade do tremolo é inversamente proporcional à altura. Desta forma, com as equações {vbrGamma}, {vbrF} e {trA} pode-se escrever:</p>
+<p>\[\label{eq:vinculos}
+\begin{split}
+f^{vbr} = f^{tr} & = func_a(f) \\
+\nu & = func_b(f) \\
+V_{dB} & = func_c(f)
+\end{split}
+\]</p>
+<p>Com \(f^{vbr}\) e \(f^{tr}\) como \(f'\) nas equações de referência, ou seja, a frequência de oscilação do vibrato e do tremolo da equação {vbrGamma}. Já \(\nu\) e \(V_{dB}\) são as profundidades do vibrato e do tremolo, respectivamente. As funções \(func_a\), \(func_b\) e \(func_c\) são arbitrárias e dependentes das intenções musicais. A montagem <em>Tremolos, vibratos e a frequência</em> explora recursos como este e variações da forma de onda da oscilação com vínculos, de modo a formar um <em>idioma musical</em><sup><a href="#fn24" class="footnoteRef" id="fnref24">24</a></sup>. Seu código está no Apêndice {ap:tremolos} e também disponível online como parte da caixa de ferramentas .</p>
+<p>Com relação à convolução, pode-se estabelecer uma duração como pulso musical - a exemplo de um pulso BPM - e distribuir impulsos no decorrer deste pulso, de forma a estabelecer métricas e ritmos<sup><a href="#fn25" class="footnoteRef" id="fnref25">25</a></sup>. Por exemplo, 2 impulsos igualmente espaçados fazem uma divisão binária básica do pulso. Dois sinais, um com 2 pulsos e outro com 3 pulsos, ambos com os impulsos igualmente espaçados na duração do pulso, resultam na manutenção do pulso, com uma marcação rítmica usada tanto em divisões binárias quanto ternárias em diversos estilos de música étnica e tradicional. Os próprios valores absolutos destes impulsos resultam em proporções entre as amplitudes dos sinais convoluídos. Este recurso da métrica estabelecida pela convolução com impulsos é explorado na montagem <em>Trenzinho de caipiras impulsivos</em>. Os recursos explorados incluem a criação de amálgamas sonoros provenientes da síntese granular e esta montagem é já uma ponte para a próxima seção. Veja especialmente a figura {fig:pulsoSubAgl}. O código da peça está na seção {ap:trenzinho} e disponível como parte da toolbox .</p>
+<p>Com os filtros as possibilidades explodem ainda mais vertiginosamente. Pode-se convoluir um sinal para reverberá-lo, para remover algum ruído, para gerar distorções ou para tratamento com intuito estético mesmo. Por exemplo, a aplicação de um filtro passa banda em que deixa passar somente entre \(1kHz\) e \(3kHz\), resulta em sons que parecem de telefone ou de televisão antiga. Ao remover com alguma precisão somente a frequência de oscilação da rede elétrica (usualmente \(50Hz\) ou \(60Hz\)) e harmônicas, pode-se remover ruídos introduzidos por equipamentos de áudio. Um uso mais incrementado e propriamente musical é realizar filtragens em bandas específicas e usar estas bandas pré-estabelecidas como um parâmetro adicional das notas.</p>
+<p>Inspirado em nos instrumentos tradicionais, pode-se aplicar uma a filtragem dependente do tempo . Cascatas destes filtros podem realizar filtragens complexas e mais precisas. A montagem <em>Ruidosa faixa</em> explora este recursos, realizando filtragens em ruídos diversos e síntese de ruídos diversos. O código da peça está no Apêndice {ap:ruidosa} e disponível online como parte da .</p>
+<p>Estes recursos todos utilizados em conjunto podem incidir na realização de um efeito chamado <em>chorus</em>. A exemplo do que ocorre com um coro de cantores, neste efeito o som é realizado com diversas pequenas modificações, potencialmente aleatórias, em paramêtros como frequência central, presença (ou ausência) de vibrato e tremolo e suas características, equalizações, volume etc. Para o resultado final, estas versões do som inicial são então mixadas (ver equação {eq:mixagem}). A peça <em>Chorus infantil</em> realiza chorus de formas diferentes em sons diferentes e seu código está no Apêndice {ap:chorus}. A <em>toolbox</em>  disponibiliza online este <em>script</em>.</p>
+<p>A variação de volume no decorrer de um som é crucial para nossa percepção de timbre. A envoltória de volume chamada ADSR (sigla de <em>Atack-Decay-Sustain-Release</em>) possui numerosas implementações em sintetizadores em hardware e software. Uma implementação pioneira pode ser encontrada no Hammond Novachord de 1938 e algumas variantes são citadas logo abaixo.</p>
+<p>A envoltória ADSR escolástica é caracterizada por 4 parâmetros: duração do ataque (tempo que o som demora para atingir seu volume máximo), duração do decaimento (segue ao ataque imediatamente), nível de volume de sustentação (em que o volume fica estável após o decaimento) e duração de soltura (após a sustentação, nesta duração o volume decai a zero). Note que o tempo de sustentação não é especificado, pois é resultante da duração em si menos os tempos de ataque, decaimento e soltura.</p>
+<p>A aplicação da envoltória ADSR com durações \(\Delta_A\), \(\Delta_D\) e \(\Delta_R\), duração total \(\Delta\) e nível de sustentação \(a_S\), dado como fração da amplitude máxima, em uma sequência sonora \(t_i\) qualquer, pode ser feita da seguinte forma:</p>
+<p>\[\label{eq:adsr}
+\begin{split}
+\{a_i\}_0^{\Lambda_A-1} & = \left\{\xi\left(\frac{1}{\xi}\right)^{\frac{i}{\Lambda_A-1}}\right\}_0^{\Lambda_A-1} \;\;\quad\quad\quad \text{ou} \;\;\quad \left\{\frac{i}{\Lambda_A-1}\right\}_0^{\Lambda_A}\\
+\{a_i\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} & =\left\{a_S^{\frac{i-\Lambda_A}{\Lambda_D-1}}  \right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} \;\;\quad \quad\quad \text{ou} \quad\;\; \left\{1-(1-a_S)\frac{i-\Lambda_A}{\Lambda_D-1}\right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1}\\
+\{ a_i \}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} & =\left\{ a_S \right\}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} \\
+\{ a_i \}_{\Lambda-\Lambda_R}^{\Lambda-1} & =\left\{ a_S\left(\frac{\xi}{a_S} \right)^{\frac{i-(\Lambda-\Lambda_R)}{\Lambda_R-1}} \right\}_{\Lambda-\Lambda_R}^{\Lambda-1} \quad\;\; \text{ou} \quad\;\; \left\{ a_S - a_S\frac{i+\Lambda_R-\Lambda}{\Lambda_R-1}\right\}_{\Lambda-\Lambda_R}^{\Lambda-1} 
+\end{split}
+\]</p>
+<p>Com \(\Lambda_X=\lfloor \Delta . f_a \rfloor\;\;\forall\;\; X \; \in (A,D,R,\;)\) e \(\xi\) um valor pequeno que torne o <em>fade in</em> e o <em>fade out</em> satisfatórios, e.g. \(\xi=10^{\frac{-80}{20}}=10^{-4}\;\) ou \(\;\xi=10^{\frac{-40}{20}}=10^{-2}\). Quanto menor for \(\xi\) mais lento é o <em>fade</em>, a exemplo de \(\alpha\) da figura {fig:transicao}. Já os termos do lado direito de {eq:adsr} podem realizar as entrada e saída do som a partir da intensidade zero, por serem lineares. Esquematicamente, a figura {fig:adsr} mostra esta envoltória ADSR, uma implementação clássica que comporta variações diversas. Por exemplo, entre o ataque e o decaimento, pode-se adicionar uma partição adicional em que a amplitude máxima perdura. Outro exemplo comum é o uso de traçados mais elaborados para o ataque ou para o decaimento. A montagem musical <em>ADa e SaRa</em>, disponível no Apêndice {ap:ada} e na , explora diversas destas configurações da envoltória ADSR</p>
+<p>\[\label{eq:adsrApl}
+\left\{t_i^{ADSR}\right\}_0^{\Lambda-1} =\{t_i . a_i\}_0^{\Lambda-1}
+\]</p>
+<blockquote>
+<p><img src="figuras/adsr" alt="image" /> {Envoltória ADSR (<em>Attack, Decay, Sustain, Release</em>) e uma sequência sonora arbitrária submetida à envoltória. A variação linear de amplitude está acima. Abaixo a variação de amplitude é exponencial.}</p>
+</blockquote>
+<p>{fig:adsr}</p>
+<h2 id="organiza&#231;&#227;o-de-notas-em-m&#250;sica">Organização de notas em música</h2>
+<p>{notasMusica} Seja \( S_j=\{T_{i,1},T_{i,2}...T_{i,N}\} =\bigcup_{j \in [1,N]} T_{i,j} \) uma sequência de \(N\) eventos musicais. Para simplificar, sejam notas estes eventos musicais e \(S_j\) uma estrutura musical. Esta seção é dedicada às técnicas que tornam \(S_j\) interessante e agradável na audição.</p>
+<p>Os elementos de \(S_j\) podem ser sobrepostos por mixagem, como na equação {eq:mixagem} e figura {fig:mixagem}, formando intervalos e acordes. Resultam no ’pensamento vertical’ da música. A concatenação de \(S_j\), como na equação {eq:concatenacao} e na figura {fig:concatenacao}, forma sequências melódicas e ritmos, associados ao ’pensamento horizontal’ na música. A frequência fundamental \(f\) e o momento de início (ataque) são as características mais importantes dos elementos de \(S_j\), possibilitando, grosso modo, a presença de músicas de alturas (harmonia e melodia) e a presença da métrica temporal e ritmos, respectivamente.</p>
+<h3 id="afina&#231;&#227;o-intervalos-escalas-e-acordes">Afinação, intervalos, escalas e acordes</h3>
+<p>{subsec:intervalos} O dobro da frequência é uma oitava ascendente (\(f=2f_0\)). Doze semitons equidistantes para o ouvido formam uma oitava, portanto, se \(f=2^{\frac{1}{12}}f_0\), há um semitom entre \(f_0\) e \(f\). O fator \(\varepsilon=2^{\frac{1}{12}}\), de um semitom, forma uma grade de notas no espectro audível. Fixada uma frequência \(f\), as frequências fundamentais possíveis estão separadas por intervalos múltiplos de \(\varepsilon\). Esta precisão absoluta é característica de implementações computacionais, pois os intrumentos reais possuem desvios destas frequências para mais bem compatibilizar os harmônicos de suas notas.</p>
+<p>Esta divisão da oitava em doze notas é o cânone da música ocidental clássica, além de incidir em usos cerimoniais/religiosos e étnicos. Notados em proporções de \(\varepsilon\) entre as notas (i.e. um semitom), estes intervalos são, junto a suas notações abreviadas usuais:</p>
+<p>\[\label{eq:intervalos}
+\begin{split}
+\text{uníssono} = 1J & = 0 \\
+\text{semitom ou segunda menor} =2m & = 1 \\
+\text{tom, tom inteiro ou segunda maior} =2M & = 2 \\
+\text{terça menor} = 3m & = 3 \\
+\text{terça maior} = 3M & = 4 \\
+\text{quarta justa} = 4J & = 5 \\
+\text{quarta aumentada, quinta diminuta ou trítono} = 4aum = 5dim = Tri & = 6 \\
+\text{quinta justa} = 5J & = 7 \\
+\text{sexta menor} = 6m & = 8 \\
+\text{sexta maior} = 6M & = 9 \\
+\text{sétima menor} = 7m & = 10 \\
+\text{sétima maior} = 7M & = 11 \\
+\text{oitava} = 8J & = 12
+\end{split}
+\]</p>
+<p>Nesta nomenclatura, um dos padrões presentes no Brasil, um intervalo justo (uníssono, quarta, quinta e oitava), ou um intervalo maior (segunda maior, terça maior, sexta maior ou sétima maior), acrescido de um semitom, resulta em um intervalo aumentado. Um intervalo justo, ou um intervalo menor (segunda menor, terça menor, sexta menor ou sétima menor), decrescido de um semitom, resulta em um intervalo diminuto. Um intervalo maior, descrescido de um semitom, resulta em um intervalo menor. Um intervalo menor, acrescido de um semitom, resulta em um intervalo maior. Um intervalo aumentado, acrescido de um semitom, resulta em um intervalo ’mais que aumentado’ e um intervalo diminuto, descrescido de um semitom, resulta em um intervalo ’mais que diminuto’<sup><a href="#fn26" class="footnoteRef" id="fnref26">26</a></sup>.</p>
+<p>Caso as notas sejam dispostas sequencialmente, o intervalo é melódico. A ordem das notas, primeiro a nota mais grave ou a mais aguda, resulta em um intervalo ascendente ou descendente, respectivamente. Passando a nota mais grave para a oitava acima, ou a nota mais aguda uma oitava para baixo, o intervalo é invertido. Um intervalo, somado à sua inversão, resulta 9 (7m inverte para 2M: \(7+2=9\)). Um intervalo maior invertido resulta em um intervalo menor e vice-versa. Um intervalo aumentado invertido resulta diminuto e vice-versa, assim como o mais que aumentado resulta em mais que diminuto e vice-versa. Um intervalo justo invertido resulta igualmente justo. Um intervalo maior que a oitava é classificado como intervalo composto e leva o nome do intervalo entre as mesmas notas, mas na mesma oitava.</p>
+<p>Caso as notas soem simultaneamente, o intervalo é harmônico. Os intervalos de uníssono, oitava e quinta justa são consonâncias perfeitas. As terças e sextas são consonâncias imperfeitas. As segundas, sétimas e trítonos são considerados dissonantes. Esta classificação não é absoluta. A discrepância mais comum é com relação à quarta justa, que é tida como consonante perfeita ou dissonante de acordo com o contexto e arcabouço teórico. Pode-se considerá-la consonante como regra geral. A sétima menor por vezes é considerada consonante, assim como algumas culturas entoam o trítono como intervalo consonante. Por vezes, as segundas menores, sétimas maiores e trítonos são consideradas dissonãncias forte, as segundas maiores, sétimas menores consideradas dissonâncias fracas. As oitavas, quintas e uníssonos consonâncias fortes, terças e sextas consonâncias fracas.</p>
+<p>Esta descrição resume a teoria tradicional dos intervalos musicais. A montagem <em>Intervalos entre alturas</em> explora estes intervalos de formas isoladas e diversas. O código está no Apêndice {ap:intervalos} e disponível online com a <em>toolbox</em> .</p>
+<p>Na escala cromática de temperamento igual, existem 5 divisões perfeitamente simétricas, consideradas escalas pelas simetrias internas e usos fáceis que disso resultam. Como sequências de inteiros aos quais \(\varepsilon\) é elevado para multiplicar \(f_0\), as escalas são:</p>
+<p>\[\label{escSim}
+\begin{split}
+\text{cromática} & = E_i^c = \{e_i^c\}_0^{11} =  \{0,1,2,3,4,5,6,7,8,9,10,11\} = \{i\}_0^{11}\\
+\text{tons inteiros} & = E_i^t = \{e_i^t\}_0^{5} = \{0,2,4,6,8,10\} = \{2.i\}_0^{5} \\
+\text{terças menores} & = E_i^{tm} = \{e_i^{tm}\}_0^{3} = \{0,3,6,9\} = \{3.i\}_0^3 \\
+\text{terças maiores} & = E_i^{tM} = \{e_i^{tM}\}_0^{2} = \{0,4,8\} = \{4.i\}_0^2\\
+\text{trítonos} & = E_i^{tt} = \{e_i^{tt}\}_0^{1} = \{ 0, 6 \} = \{6.i\}_0^1
+\end{split}
+\]</p>
+<p>Assim, a terceira nota da escala em tons inteiros com \(f_0=200Hz\) é \(f_3=\varepsilon^{e_3^t} . f_0 = 2^{\frac{6}{12}} . 200 \approxeq 282.843 Hz\). Estas ’escalas’ ou padrões, geram estruturas estáveis pelas simetrias internas, e podem ser repetidas de forma eficiente e sustentada. Abaixo há mais sobre simetrias e sobre estas divisões da oitava por igual. A montagem <em>Cristais</em> expõe cada uma destas escalas tanto melódica quanto harmonicamente e seu código está no Apêndice {ap:cristais}. Como parte da , este código é disponibilizado online.</p>
+<p>As escalas diatônicas:</p>
+<p>\[\label{eq:escalas}
+\begin{split}
+\text{menor natural} = \text{modo eólico} & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
+\text{modo lócrio} & = E_i^{mlo} = \{e_i^{mlo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
+\text{maior}  = \text{modo jônico} & = E_i^M = \{e_i^M\}_0^6 = \{0,2,4,5,7,9,11\} \\
+\text{modo dórico} & = E_i^{md} = \{e_i^{md}\}_0^6 = \{0,2,3,5,7,9,10\} \\
+\text{modo frígio} & = E_i^{mf} = \{e_i^{mf}\}_0^6 = \{0,1,3,5,7,8,10\} \\
+\text{modo lídio} & = E_i^{ml}=\{e_i^{ml}\}_0^6 = \{0,2,4,6,7,9,11\} \\
+\text{modo mixolídio} & = E_i^{mmi} = \{e_i^{mmi}\}_0^6 = \{0,2,4,5,7,9,10\}
+\end{split}
+\]</p>
+<p>só possuem intervalos maiores, menores e justos. Única exceção para o trítono, que se apresenta como quarta aumenta ou quinta diminuta.</p>
+<p>Todas as escalas diatônicas seguem o padrão de intervalos sucessivos tom, tom, semitom, tom, tom, tom, semitom. De forma que pode-se escrever: \[\label{eq:relacaoDia}
+\begin{split}
+d_i & =\{2,2,1,2,2,2,1\} \\
+e_0 & =0 \\
+e_i & =d_{(i+\kappa)\%7}+e_{i-1} \quad para \;\;  i > 0
+\end{split}
+\]</p>
+<p>Com \(\kappa \in \mathbb{N}\). Para cada modo, há um único valor de \(\kappa\) em qualquer intervalo \(\in [x,x+6], \forall x \in \mathbb{N}\).</p>
+<p>Por exemplo, uma breve inspeção revela que \(e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}\). Portanto, \(\kappa=2\) para o modo lídio.</p>
+<p>A escala menor possui duas formas adicionais, melódica e harmônica:</p>
+<p>\[\label{eq:escalasMenores}
+\begin{split}
+\text{menor natural (igual acima)} & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
+\text{menor harmônica} & = E_i^{mh} = \{e_i^{mh}\}_0^6 = \{0,2,3,5,7,8,11\} \\
+\text{menor melódica} & = E_i^{mm} = \{e_i^{mm}\}_0^{14} = \{0,2,3,5,7,9,11,12,10,8,7,5,3,2,0\} \\
+\end{split}
+\]</p>
+<p>O traçado ascendente e descendente da escala menor melódica é necessário para a presença da sensível (sétimo e último grau separado por um semitom da oitava) no trajeto ascendente, o que não é necessário quando descende, retomando a forma natural. Já a escala harmônica apresenta a sensível, mas não evita o intervalo de segunda aumentada entre o sexto e sétimo graus, pois não precisa contemplar trajetória melódica, apenas apresentar a sensível tão cara ao sistema tonal (a sensível tende à tônica, afirmando-a). Outras escalas podem ser representadas da mesma forma, como as pentatônicas e os modos de transposição limitados de Messiaen.</p>
+<p>A ocorrência simultânea de notas é observada através dos acordes. Destes, a base na música tonal são as tríades. Estas constituem-se de duas terças sucessivas, em 3 notas: fundamental, terça e quinta. Os acordes triádicos sem inversão e na forma fechada<sup><a href="#fn27" class="footnoteRef" id="fnref27">27</a></sup>, com a fundamental em \(0\) são escritos;</p>
+<p>\[\label{triades}
+\begin{split}
+\text{tríade maior} = A_i^M= \{a_i^M\}_0^2=\{0,4,7\} \\ 
+\text{tríade menor} = A_i^m = \{a_i^m\}_0^2=\{0,3,7\} \\
+\text{tríade diminuta} = A_i^d = \{a_i^d\}_0^2=\{0,3,6\} \\
+\text{tríade aumentada} = A_i^a = \{a_i^a\}_0^2=\{0,4,8\}
+\end{split}
+\]</p>
+<p>Basta acrescentar \(10\) ao final para ter o acorde (uma tétrade) com sétima menor ou \(11\) para resultar em sétima maior. As inversões e posições abertas podem ser obtidas contando o número de semitons de cada nota a partir da nota mais grave ou somando \(12\) à fundamental, terça ou quinta.</p>
+<p>Para a realização de microtonalidade<sup><a href="#fn28" class="footnoteRef" id="fnref28">28</a></sup>, pode-se usar reais não inteiros para descrever a sequência de alturas, ou modificar o fator \(\varepsilon\) e continuar usando inteiros. Por exemplo, uma afinação bastante próxima da série harmônica em si é proposta na forma da divisão da oitava em \(53\) notas: \(\varepsilon=2^{\frac{1}{53}}\). As notas continuam inteiras com o novo \(\varepsilon\). Note que se \(S_i\) é uma sequência de alturas relacionadas por \(\varepsilon_1\), um mapeamento para notas em \(\varepsilon_2\) resulta em uma nova sequência \(S_i'\) com \(s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}\). A montagem musical <em>Micro tom</em> explora recursos microtonais e seu código está no Apêndice {ap:micro}, assim como na  online.</p>
+<h3 id="rudimentos-de-harmonia">Rudimentos de harmonia</h3>
+<p>{subsec:harmonia}</p>
+<p>Acordes como os listados em {triades} formados em cada grau das escalas em {eq:escalas} formam campos harmônicos das escalas. As progressões de acordes utilizadas e regras para seus encadeamentos é o objeto de estudo da harmonia musical. Mesmo uma melodia monofônica gera campos harmônicos.</p>
+<p>Não respeitar os encadeamentos básicos do sistema tonal resulta em harmonias modal e atonal. Caso as notas coincidam com algum modo diatônico {eq:escalas} ou sejam em número pequeno, pode-se dizer que a harmonia é modal. Caso contrário, atonal..</p>
+<p>Na harmonia tonal tradicional, as escalas maior e menor são base para tríades em cada grau da escala: \(\hat{1},\hat{2},\hat{3},\hat{4},\hat{5},\hat{6},\hat{7}\). Pode-se anotar \(\hat{1},\hat{3},\hat{5}\) para o acorde do primeiro grau, formado pelo primeiro grau da escala e central para uma música tonal. Secundários, o acorde do quinto grau \(\hat{5},\hat{7},\hat{2}\) (\(\hat{7}\) sustenido no caso da escala menor) e o acorde do quarto grau \(\hat{4},\hat{6},\hat{1}\). Depois são considerados os outros graus. As convenções e técnicas apresentadas ao longo da história são objeto de estudo da harmonia tradicional.</p>
+<p>A chamada harmonia funcional atribui funções a estes três acordes centrais e busca compreender seus usos através destas funções. O acorde formado sobre o primeiro grau é o acorde de tônica e tem a função de manter um centro, um &quot;chão&quot; na música. O acorde formado sobre o quinto grau é a dominante e tem a função de tender à tônica, direcionar a música para ela. A tríade formada sobre o quarto grau é a subdominante e tem a função de se distanciar da tônica. O sistema se baseia em afirmar a tônica através de encadeamentos tônica-dominante-tônica expandidos com outros acordes das formas mais diversas.</p>
+<p>A estes três acordes, são associadas as outras tríades. Na escala maior, a associada relativa (tônica relativa, subdominante relativa e dominante relativa) é a tríade formada uma terça abaixo e a associada anti-relativa (tônica anti-relativa, subdominante anti-relativa e a dominante anti-relativa) é a tríade formada na terça acima. Na escala menor ocorre o mesmo, mas a tríade a uma terça abaixo é chamada anti-relativa e a tríade a uma terça acima é chamada de relativa. As exatas funções e efeitos musicais destes acordes é motivo de bastante controvérsia. A tabela {tab:harmonia} mostra a relação entre as tríades formadas em cada grau da escala.</p>
+<blockquote>
+<p>{Resumo das funções harmônicas tonais para a escala maior. A tônica é o centro da música, a dominante tende à tônica e a subdominante se distancia da tônica. Os três acordes podem, a princípio, serem substituídos livremente pela relativa ou antirelativa.}</p>
+<blockquote>
+<p>relativa &amp; acorde principal da função &amp; antirelativa <br /> \(\hat{6},\hat{1},\hat{3}\) &amp; tônica: \(\hat{1},\hat{3},\hat{5}\) &amp; \(\hat{3}, \hat{5},      \hat{7}\) <br /> \(\hat{3},\hat{5},\hat{7}\) &amp; dominante: \(\hat{5},\hat{7},\hat{2}\) &amp; [ \(\hat{7},\hat{2},\hat{4}\#\) ] <br /> \(\hat{2},\hat{4},\hat{6}\) &amp; subdominante: \(\hat{4},\hat{6},\hat{1}\) &amp; \(\hat{6},\hat{1},       \hat{3}\)</p>
+</blockquote>
+<p>{tab:harmonia}</p>
+</blockquote>
+<p>A dominante anti-relativa forma um acorde menor, exigindo a alteração do quarto grau um semitom para cima \(\hat{7}\#\). O acorde diminuto \(\hat{7},\hat{2},\hat{4}\), geralmente é considerado uma ’dominante com sétima e sem fundamental’.</p>
+<p>Na escala menor, a relativa é a tríade iniciada uma terça acima e a antirelativa uma terça abaixo, ou seja, se invertem com relação à tabela {tab:harmonia}. Outro detalhe destas tríades em modo menor é a alteração do \(\hat{7}\) um semitom acima para que fique somente a um semitom da tônica, permitindo a dominante (que deve ser maior e tender à tônica). Assim, a dominante é sempre maior, tanto em escalas maior ou menor. Por este motivo, a dominante relativa permanece a uma terça abaixo e a antirelativa a uma terça acima na escala menor.</p>
+<p>Cada um destes acordes pode ser confirmado e se desenvolver com uma dominante e uma subdominante individuais (acorde com base na tríade formada a uma quinta acima e uma quinta abaixo respectivamente).</p>
+<p>As medianas<sup><a href="#fn29" class="footnoteRef" id="fnref29">29</a></sup> são acordes formados também a uma terça, mas com alterações com relação ao acorde de origem. Caso haja duas alterações cromáticas, i.e. duas notas alteradas por um semitom cada com relação ao acorde original, a mediana é chamada ’duplamente cromática’. Esta relação entre acordes é considerada de tonalismo avançado, por vezes até de dissolução do tonalismo, e tem efeitos fortes e marcantes embora perfeitamente consonantes. As medianas foram utilizadas a partir do final do romantismo por Wagner, Lizt, Richard Strauss dentre outros e é bastante simples de ser realizada.</p>
+<p>A modulação é a troca de tonalidade e se dão principalmente através de: uma dominante individual que afirma a mudança da tônica; alterações cromáticas para um acorde da nova tonalidade; e ’enarmonia’ que é a mudança de função de um acorde com as mesmas notas. A importância da dominante torna ela o pivô natural das modulações, resultando no círculo das quintas.</p>
+<p>A montagem musical <em>Acorde cedo</em> explora estas relações entre acordes. Seu código está disponível do Apêndice {ap:acorde} e online como parte da .</p>
+<h3 id="contraponto">Contraponto</h3>
+<p>{subsec:contraponto}</p>
+<p>A condução de linhas melódicas simultâneas, chamadas vozes, é matéria do campo de estudo chamado contraponto. A bibliografia geralmente percorre formas sistemáticas de condução de vozes e desemboca em gêneros escolásticos como cânones, invenções e fugas. É possível resumir regras principais do contraponto e é dito que o próprio Beethoven - dentre outros - esboçou uma síntese deste tipo.</p>
+<blockquote>
+<p><img src="figuras/movContraponto" alt="image" /> {Movimentos diferenciados pelo contraponto. Visando preservar a independência entre as vozes, são distinguidos 3 tipos de movimentos.} {fig:movContraponto}</p>
+</blockquote>
+<p>O propósito do contraponto é conduzir as vozes de forma que soem independentes. Cruciais para isso são as movimentações relativas, categorizadas em: movimento direto, oblíquo e contrário conforme a figura {fig:movContraponto}. O movimento paralelo é um movimento oblíquo. A regra de ouro é cuidar que os movimentos diretos não terminem em consonância perfeita. O movimento paralelo deve só ocorrer entre consonâncias imperfeitas e não mais do que três vezes consecutivas. As dissonâncias podem ser não admitidas ou usadas seguidas e precedidas de consonâncias em graus conjuntos. Os movimentos que levam a nota a uma vizinha soam mais coerentes. Na presença de 3 ou mais vozes, a importância melódica recai sobre as vozes mais aguda e mais grave.</p>
+<p>Estas regras foram usadas na montagem <em>Conta ponto</em>, o código está no Apêndice {ap:conta} e disponível online junto à .</p>
+<h3 id="ritmo">Ritmo</h3>
+<p>{subsec:ritmo} A noção rítmica é depende de eventos separados por durações. Estes eventos podem ser ouvidos individualmente se separados por ao menos \(50-63ms\). Para que a separação entre eles possa ser apreciada como duração, ela deve ser maior, por volta de \(100ms\). Pode-se sumarizar a transição de durações ouvidas como alturas para a apreciação em ritmo da seguinte forma:</p>
+<blockquote>
+<p>{Transição das durações ouvidas individualmente para alturas.}</p>
+<blockquote>
+<p>&amp; {10} {c} {\(\underleftarrow{\text{\bf zona de percepção de durações em ritmo}}\)} &amp; {2} {c} {transição} &amp; {3} {c} {-} <br /> duração (s) &amp; { ...} &amp; { 32,} &amp; { 16,} &amp; { 8,} &amp; { 4,} &amp; { 2,} &amp; { 1,} &amp; { 1/2,} &amp; { 1/4,} &amp; { 1/8,} &amp; \(\frac{1}{16}=62,5ms\) , &amp; \(\frac{1}{20}=50ms\) &amp; {{Gray} 1/40} &amp; {{Gray} 1/80 } &amp; {{Gray} 1/160 } &amp; {{Gray} 1/320 } &amp; {{Gray} 1/640 } &amp; {{Gray} ... } <br /> frequência (Hz) &amp; {{Gray} ...} &amp; {{Gray} 1/32,} &amp; {{Gray} 1/16,} &amp; {{Gray} 1/8,} &amp; {{Gray} 1/4,} &amp; {{Gray} 1/2,} &amp; {{Gray} 1,} &amp; {{Gray} 2,} &amp; {{Gray} 4,} &amp; {{Gray} 8,} &amp; 16, &amp; 20 &amp; { 40} &amp; { 80} &amp; { 160} &amp; { 320} &amp; { 640} &amp; { ...} <br /> &amp; {10} {c} { - } &amp; {2} {c} {transição} &amp; {6} {c} {\(\overrightarrow{\text{\bf zona de percepção de durações em altura}}\)} <br /></p>
+</blockquote>
+<p>{tab:duracoes}</p>
+</blockquote>
+<p>A banda de durações marcada como transição está minimizada pois os limites não são bem definidos: a duração em que se começa a perceber uma frequência fundamental ou uma separação entre as ocorrências é dependente da pessoa e de características do som.</p>
+<p>A métrica rítmica costuma se basear em uma duração básica chamada pulso. O pulso tipicamente compreende durações entre \(0.25-1.5s\) (respectivamente \(240\) e \(40BPM\)). Na educação musical e estudos cognitivistas, costuma-se associar esta gama de frequências de pulsação às durações entre batidas do coração ou entre os passos ao caminhar.</p>
+<p>O pulso é subdividido em partes iguais e também é repetido sequencialmente. Estas relações (de divisão e de concatenação) costumam seguir relações de números inteiros de baixa ordem <sup><a href="#fn30" class="footnoteRef" id="fnref30">30</a></sup>. Uma exposição esquemática está na figura {fig:pulsoSubAgl}.</p>
+<blockquote>
+<p><img src="figuras/metricaMusical" alt="image" /> {Divisões e aglomerações do pulso musical para estabelecimento de métrica. Ao lado esquerdo estão as divisões da semínima estabelecida como pulso. Ao lado direito, fórmulas de compasso que especificam as mesmas métricas, mas na escala das aglomerações do pulso musical.} {fig:pulsoSubAgl}</p>
+</blockquote>
+<p>As relações duais (compassos simples e divisões binárias) costumam ocorrer em ritmos de dança e ocasiões festivas, e são chamadas imperfeitas. As relações triádicas incidem mais na música ritualística e relacionada ao sagrado e são ditas perfeitas.</p>
+<p>As unidades mais fortes (acentuadas) são as que consistem nas ’cabeças das divisões’. A cabeça de uma unidade é a primeira parte da subdivisão. Nas divisões binárias (2, 4 e 8 dos casos considerados), as unidades consideradas fortes se revezam com as fracas (e.g. a divisão em 4 é forte, fraco, meio-forte, fraco). Nas divisões ternárias (3, 6 e 9) à unidade forte (primeira) se sucedem 2 unidades fracas (e.g. a divisão em 3 é forte, fraco fraco)<sup><a href="#fn31" class="footnoteRef" id="fnref31">31</a></sup>.</p>
+<p>A acentuação em tempo fraco é o contratempo, as notas iniciadas em tempo fraco e cuja duração se prolonga sobre tempos fortes são as síncopas.</p>
+<p>As notas podem ocorrer dentro e fora destas divisões da <em>’métrica musical’</em>. Nos casos mais comportados, as notas ocorrem exatamente nestas divisões, com maior incidência em ataques nos tempos fortes. Em casos extremos, não se pode perceber a métrica. Variações pequenas na grade ajudam a compor a interpretação musical e diferenças entre estilos.</p>
+<p>Pode-se convencionar o pulso como nível \(j=0\) de agrupamento, o nível \(j=-1\) a primeira subdivisão do pulso, o nível \(j=1\) a primeira algomeração dos pulsos e assim por diante.</p>
+<p>Desta forma, \(P_i^j\) é a \(i\)-ésima unidade de pulsos no nível \(j\) de agrupamento: \(P^0_{10}\) é o décimo pulso, \(P^{1}_3\) é a terceira unidade de agrupamento de pulsos (possivelmente terceiro compasso), \(P^{-1}_2\) é a segunda unidade da subdivisão do pulso.</p>
+<p>Especial atenção para os limites de \(j\): as divisões do pulso são durações apreciáveis como ritmo; as junções do pulso somam, no máximo do escopo, uma música ou um conjunto coeso de músicas. Dito de outra forma: a duração de \(P^{min(j)}_i\), \(\forall \; i\) é maior que \(50ms\) e as durações de \(P^{\text{máx}(j)}_i\) <em>somadas</em> em \(\forall \; i\) devem resultar em uma duração menor do que alguns minutos ou, no máximo, poucas horas.</p>
+<p>Cada nível \(j\) possui alguns índices \(i\). Sempre que \(i\) soma três (ou múltiplo de três) índices há uma relação perfeita, quando soma dois, quatro ou oito índices há uma relação imperfeita, como na figura {fig:pulsoSubAgl}.</p>
+<p>Qualquer unidade (nota), de uma dada sequência musical que tenha métrica pode ser univocamente assim especificada:</p>
+<p>\[P^{ \{ j_k \} }_{ \{ i_{k} \}}
+\]</p>
+<p>em que \(j_k\) é o nível de aglomeração e \(i_k\) é a ordem da unidade em si.</p>
+<p>Como um exemplo, \(P^{-1,0,1}_{3,2,2}\) é a terceira subdivisão \(P^{-1}_3\) do segundo pulso \(P^0_2\) do segundo aglomerado de pulsos \(P^1_2\). Cada unidade ou conjunto de unidades \(P_i^j\) pode ser associada a uma sequência de amostras temporais \(T_i\) que forma uma nota musical.</p>
+<p>A montagem <em>Poli Hit Mia</em> utiliza as diferentes métricas e está no Apêndice {ap:poli}, disponível online como parte da .</p>
+<h3 id="estruturas-direcionais">Estruturas direcionais</h3>
+<p>{subsec:dir}</p>
+<p>Dadas as estruturas musicais básicas tanto frequenciais (acordes e escalas) quanto rítmicas (divisões e aglomerações simples, compostas e complexas), é natural pensar em como realizar estas estruturas de forma que tenha coesão e sentido. Para tal, os arcos são a base: partindo de algum lugar e voltando, forma-se um arco. Uma música sem nenhum arco pode ser compreendida como uma música sem coesão. Na subseção seguinte exploramos arcos cíclicos e nesta os provenientes de estruturas direcionais.</p>
+<p>Os arcos podem ser decompostos em duas sequências convergentes: uma que atinge o ápice (chamado literalmente de clímax pela teoria musical tradicional) e outra que, de forma paradigmática, volta do ápice à região de partida. Distingue-se entre arcos cujos clímax estão: no começo, no meio, no final, na primeira metade e na segunda metade como esquematicamente a dispostos na figura {fig:climax}.</p>
+<blockquote>
+<p><img src="figuras/climax" alt="image" /> {Distinções canônicas do clímax musical em uma melodia e outros domínios.} {fig:climax}</p>
+</blockquote>
+<p>Seja \(U_i=\{u_i\}_0^{\Lambda_U-1}\) uma sequência crescente. A sequência \(R_i=\{r_i\}_0^{2\Lambda_U -2}=\left\{u_{(\Lambda_U-1-|\Lambda_U-1-i|)}\right\}_0^{2\Lambda_U-2}\) é uma sequência que apresenta simetria especular perfeita, i.e. a segunda metade é uma versão espelhada da primeira. Segundo conceitos musicais, o clímax está exatamente no meio da sequência. Pode-se modificar isso com a substituição por sequências de tamanhos diferentes. Toda a teoria matemática de sequências, já estabelecida, pode ser utilizada para geração destes arcos. Teoricamente, estas sequências aplicadas desta forma a qualquer característica dos eventos musicais produz arcos, pois resultam no afastamento e aproximação de uma parametrização inicial. Assim, é possível para uma mesma sequência de eventos possuir um número de arcos distintos, com tamanhos e clímax diferentes. Este é um recurso interessante e útil e a correlação dos arcos resulta na coerência da escuta.</p>
+<p>A montagem sonora <em>Dirracional</em> expõe estes arcos em estruturas direcionais. Seu código está no Apêndice {ap:dirracional} e disponível online como parte da .</p>
+<h3 id="estruturas-c&#237;clicas">Estruturas cíclicas</h3>
+<p>{estCic}</p>
+<p>O entendimento filosófico de que o pensamento humano se baseia na percepção de semelhanças e diferenças dentre os estímulos e objetos coloca as simetrias no cerne do processo cognitivo. Matematicamente, as simetrias são grupos algébricos e os grupos finitos são sempre isomorfos a um grupo de permutações. Pode-se dizer que as permutações representam quaisquer simetrias em um sistema finito. Na música, as permutações são ubíquas e estão presentes em técnicas, o que confirma seu papel central. A aplicação sucessiva das permutações gera arcos cíclicos. A esta abordagem foram dedicados dois trabalhos acadêmicos para geração de estruturas musicais.</p>
+<p>Qualquer conjunto de permutações pode ser utilizado como gerador de grupos algébricos. As propriedades que definem um grupo \(G\) são:</p>
+<p>\[\label{eq:groups}
+\begin{split}
+\forall \;\; p_1,p_2 \in G \Rightarrow\quad\quad\quad\;\; p_1 \bullet p_2 & = p_3 \in G  \quad\quad\quad\;\;\;\text{(propriedade de fechamento)} \\
+\forall \;\; p_1,p_2,p_3 \in G \Rightarrow\quad (p_1\bullet p_2)\bullet p_3 & = p_1\bullet (p_2\bullet p_3)\quad\;  \text{(propriedade da associatividade)} \\
+\exists \;\; e \in G :\quad\quad\quad\quad\; p \bullet e & = e \bullet p \;\;\;\; \forall p \in G  \quad \text{(existência do elemento neutro)} \\
+\forall \;\; p \in G, \;\exists\; p^{-1} :\quad\quad\quad\;  p\bullet p^{-1} & =p^{-1}\bullet p = e  \quad\quad\;\text{(existência do inverso)}
+\end{split}
+\]</p>
+<p>Da primeira propriedade conclui-se que toda permutação pode ser operada com outra permutação. De fato, pode-se aplicar uma permutação, depois outra e, se comparadas as ordenações inicial e final, há uma permutação resultante.</p>
+<p>Todo elemento \(p\) operado consigo mesmo um número suficiente de vezes \(n\) atinge o elemento neutro \(p^n=e\), pois caso contrário com a propriedade do fechamento se prova que o grupo é infinito (gerado por \(p\)). O menor \(n\;:\;p^n=e\) é chamado de ordem do elemento. Assim, uma permutação finita \(p\) aplicada sucessivamente atinge a ordenação inicial dos elementos, formando um ciclo. Este ciclo, se utilizado para parametros de notas musicais, resulta em um arco musical.</p>
+<p>Estes arcos podem ser efetuados pelo uso conjunto de diferentes permutações. Como exemplo histórico, a tradição chamada <em>change ringing</em> concebe música através de sinos tocados um após o outro e então tocados novamente, mas em uma ordem diferente. Este processo se repete até que se atinja a ordenação inicial. O conjunto de ordenações diferentes percorridas é um <em>peal</em>. A tabela {tab:change} representa um <em>peal</em> tradicional de 3 sinos (1, 2 e 3) que explora todas as suas ordenações. Cada linha apresenta uma ordenação dos sinos a ser tocada. As permutações estão entre as linhas. Neste caso, a estrutura musical consiste em permutações propriamente ditas e algumas permutações diferentes estão operando para resultar em um comportamento cíclico.</p>
+<blockquote>
+<p>{Change Ringing: <em>Peal</em> (padrão) com 3 sinos}</p>
+<blockquote>
+<p>{red} {1} &amp; {blue} {2} &amp; {green} {3} <br /> {blue} {2} &amp; {red} {1} &amp; {green} {3} <br /> {blue} {2} &amp; {green} {3} &amp; {red} {1} <br /> {green} {3} &amp; {blue} {2} &amp; {red} {1} <br /> {green} {3} &amp; {red} {1} &amp; {blue} {2} <br /> {red} {1} &amp; {green} {3} &amp; {blue} {2} <br /> {red} {1} &amp; {blue} {2} &amp; {green} {3}</p>
+</blockquote>
+<p>{tab:change}</p>
+</blockquote>
+<p>A utilização de permutações na música pode ser resumida da seguinte forma: seja \(L_i\) uma sequência de eventos musicais (e.g. notas) e \(p\) uma permutação. \(L_i'=p(L_i)\) consiste nos mesmos elementos de \(L_i\) com a ordenação modificada. As permutações são usualmente escritas em notação cíclica ou natural. Esta notação consiste na ordem dos índices resultante da permutação. Assim, convencionada a ordenação original dada pela sequência de seus índices \([0\;1\;2\;3\;4\;5\;...]\) a permutação é notada pela sequência que produz (ex. \([1\;3\;7\;0\;...]\)).</p>
+<p>Não é necessário permutar os elementos de \(L_i\), mas somente alguma ou algumas de suas características. Assim, seja \(p^f\) uma permutação nas frequências e \(L_i\) uma sequência de notas básicas como expostas ao final de {notaBasica}. A nova sequência \(L_i'=p^f(L_i)\) consiste nas mesmas notas musicais, na mesma ordem e com as mesmas características, com as frequências fundamentais permutadas segundo o padrão que \(p^f\) apresenta.</p>
+<p>Por último, duas sutilezas deste procedimento. Primeiro, a permutação \(p\) não precisa envolver todos os elementos de \(L_i\), i.e. ela pode operar em subconjuntos de \(L_i\). Segundo, nem todos os elementos \(l_i\) precisam ser executados a cada consulta de estado realizada. Para exemplificar, seja \(L_i\) uma sequência de notas musicais \(l_i\). Se \(i\) vai de \(0\) a \(n\), e \(n>4\), a cada compasso de \(4\) notas pode-se executar as primeiras \(4\) notas. As outras notas de \(L_i\) podem incidir nos compassos em que as permutações aloquem estas notas para as primeiras quatro notas de \(L_i\).</p>
+<p>Cada uma destas permutações \(p_i\) possui, ao menos, segundo a exposição acima: dimensões das notas em que opera (frequência, duração, <em>fades</em>, intensidade, etc) e período de incidência (a cada quantas consultas é aplicada a permutação). Na realização das notas de \(L_i\), uma forma fácil e coerente é executar as primeiras \(n\) notas<sup><a href="#fn32" class="footnoteRef" id="fnref32">32</a></sup>.</p>
+<p>Esta abordagem resultou em alguns trabalhos e implementações computacionais. Abaixo está um uso coerente desta técnica abaixo e no Apêndice {cap:FIGGUScode} apontada a implementação computacional disponibilizada em.</p>
+<h3 id="idioma-musical">Idioma musical?</h3>
+<p>Existem diversas empreitadas que se propõem a modelar e explorar entendimentos sobre a linguagem musical e da linguística aplicada à música ou ainda para discernimento entre o que seriam diferentes ‘idiomas musicais’. De forma simplificada, um idioma musical é fruto da repetição de elementos e da repetição de relações entre elementos presentes no decorrer da música. Bastante relacionado é o uso de dicotomias como: repetição e variação, relaxamento e tensão, equilíbrio e desequilíbrio, consonância e dissonância, etc.</p>
+<h3 id="usos-musicais-2">Usos musicais</h3>
+<p>Primeiro, a nota básica foi definida e suas características postas em termos claros e quantitativos (seção {notaBasica}). Em seguida, a composição interna da nota foi abordada, e compreendidas suas transições internas e tratamentos imediatos (seção {varInternas}). Por fim, esta presente seção dedica-se a organizar estas notas musicais em música. A gama de recursos com uma infinidade de possibilidades de resultados é situação típica e cara às artes.</p>
+<p>Existem estudos para cada recurso apresentado. Por exemplo, pode-se obter as harmonias triádicas ’sujas’ (com notas não pertencentes à tríade) através de sobreposições de quartas justas. Outro exemplo interessante é a presença simultânea de ritmos em diferentes métricas, constituindo o que chamamos de <em>polirritmia</em>. A montagem musical <em>Poli-hit mia</em> explora estas métricas simultâneas através de trem de impulsos convoluídos com as notas que compõem cada linha. Seu código está no Apêndice {ap:poli} e disponível online como parte da .</p>
+<p>As escalas microtonais são importantes na música do século XX  e possuem usos com resultados muito marcantes, como os quartos de tom na música indiana. A sequência musical <em>MicroTom</em> explora estes recursos, incluindo melodias microtonais e harmonias microtonais com várias notas em um âmbito de alturas bastante reduzido. Seu código está no Apêndice {ap:micro} e disponível online como parte da .</p>
+<p>Os vínculos entre parâmetros são formas poderosas de obter peças e montagens musicais. O número de notas permutadas pode variar no decorrer da música, revelando vínculo com a duração da peça. As harmonias podem consituir-se triádicas (eqs. {triades}) com notas replicadas em várias oitavas e mais numerosas quanto menor a profundidade e frequência de vibratos (eqs. {vbrGamma}, {vbrAux}, {vbrF}, {vbrGamma2}, {vbrT}), dentre outras incontáveis possibilidades.</p>
+<p>As simetrias apresentadas nas divisões da oitava (eqs. {escSim}) e das simetrias apresentadas através das permutações (tabela {tab:change} e eqs. {eq:groups}) podem ser usadas em conjunto. Nas peças <em>3 trios</em> esta associação é feita de forma sistemática para possibilitar uma audição a ela dedicada. Esta é uma peça instrumental e não consta dentre os códigos dos Apêndices e da .</p>
+<p>O <em>PPEPPS</em> (Pure Python EP: Projeto Solvente) é um EP sintetizado com os recursos apresentados neste trabalho. Com pouca parametrização, o programa gera músicas inteiras, permitindo a composição de músicas e conjuntos de músicas com facilidade. As possibilidades de compartilhamento permitem obter este album (ou outro feito de forma semelhante) através de poucas linhas de código e, pela execução, obter uma pasta com as músicas.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>O limite superior de uma sequência é um número natural, mas \( \Delta . f_a \) só satisfaz esta condição em casos muito excepcionais. É necessário escolher um inteiro próximo de \(\Delta . f_a\) e admitir algum erro. Por simplicidade, será considerada sempre a parte inteira da multiplicação, descrita por \(\lfloor \Delta . f_a \rfloor\) e aceito o erro de até \(-\delta_a\) segundos. Por exemplo, \(\delta_a=1/44100 \approx 2,3.10^{-5}\), por volta de 23 microssegundos, o que é razoável para usos musicais. <a href="#fnref1" class="footnoteBackLink" title="Jump back to footnote 1">↩</a></p></li>
+<li id="fn2"><p>Lembrando que, devido à percepção logarítmica, em um som de volume \(v\) a redução da potência \(p\) para uma mesma fração \(\nu . p \) com \(\nu \in [0,1]\) é sentido como a mesma diminuição \(\kappa\) do volume \(v-\kappa\) com \(\kappa \geq 0\). <a href="#fnref2" class="footnoteBackLink" title="Jump back to footnote 2">↩</a></p></li>
+<li id="fn3"><p>O timbre é uma característica subjetiva e complexa. Fisicamente, o timbre é multidimensional e dado pelo comportamento temporalmente dinâmico de energias em componentes espectrais tanto harmônicas quanto ruidosas. Além disso, a palavra <em>timbre</em> é utilizada para designar coisas diferentes: uma mesma nota possui diferentes timbres, um mesmo instrumento possui diferentes timbres, dois instrumentos da mesma família possuem o mesmo timbre que a caracteriza mas possuem timbres diferentes porque são instrumentos diferentes. Vale salientar que nem tudo o que se atribui ao timbre se acha manifesto em diferenças espectrais e que até aspectos culturais ou circunstanciais alteram nossa percepção do timbre. <a href="#fnref3" class="footnoteBackLink" title="Jump back to footnote 3">↩</a></p></li>
+<li id="fn4"><p>Neste ponto já se tem toda a base para música <em>Reduced-fi</em> do Apêndice {ap:reduced}. <a href="#fnref4" class="footnoteBackLink" title="Jump back to footnote 4">↩</a></p></li>
+<li id="fn5"><p>Um lá 4, logo acima do dó central, no segundo espaço do pentagrama na clave de sol comum. <a href="#fnref5" class="footnoteBackLink" title="Jump back to footnote 5">↩</a></p></li>
+<li id="fn6"><p>Esta separação em frequência é realizada por diversas espécies através de mecanismos similares à cóclea humana. <a href="#fnref6" class="footnoteBackLink" title="Jump back to footnote 6">↩</a></p></li>
+<li id="fn7"><p>Lembrando que o fator \(\frac{1}{\Lambda}\) pode ser distribuído dentre a transformada e a reconstrução como preferir. <a href="#fnref7" class="footnoteBackLink" title="Jump back to footnote 7">↩</a></p></li>
+<li id="fn8"><p>Chamado de <em>bias</em> ou <em>offset</em>. <a href="#fnref8" class="footnoteBackLink" title="Jump back to footnote 8">↩</a></p></li>
+<li id="fn9"><p>Qualquer sinal amostrado possui esta característica, não somente o som digitalizado. <a href="#fnref9" class="footnoteBackLink" title="Jump back to footnote 9">↩</a></p></li>
+<li id="fn10"><p>Parte real igual e imaginária com sinal trocado: \(a_{k1}=a_{k2}\) e \(b_{k1}=-b_{k2}\). Como consequência os módulos são iguais e as fases possuem sinais opostos <a href="#fnref10" class="footnoteBackLink" title="Jump back to footnote 10">↩</a></p></li>
+<li id="fn11"><p>Como apontado anteriormente, esta limitação facilita a exposição sem perda de generalidade. A limitação será superada no início da próxima seção. <a href="#fnref11" class="footnoteBackLink" title="Jump back to footnote 11">↩</a></p></li>
+<li id="fn12"><p>Constata-se que \(\zeta \approx 21,5cm\) para um humano adulto. <a href="#fnref12" class="footnoteBackLink" title="Jump back to footnote 12">↩</a></p></li>
+<li id="fn13"><p>A regra de ouro aqui é: para que um som isolado desperte interesse por si só, faça como que tenha variações internas. <a href="#fnref13" class="footnoteBackLink" title="Jump back to footnote 13">↩</a></p></li>
+<li id="fn14"><p>Ou, dito ainda de outra forma, uma progressão geométrica da frequência é percebida como uma progressão aritmética de alturas. <a href="#fnref14" class="footnoteBackLink" title="Jump back to footnote 14">↩</a></p></li>
+<li id="fn15"><p>A mudança do volume (qualidade psicofísica) ocorre através de diferentes características do som, como a reverberação e a concentração de harmônicos agudos, dentre as quais está a energia da onda. A manipulada com mais facilidade é a energia da onda (veja equação {eq:potencia}) e esta também pode variar de diferentes formas. Uma forma mais simples é variar a amplitude através da multiplicação da sequência toda por um número real. O aumento de energia sem variação de amplitude é a <em>compressão sonora</em>, útil na produção musical atual. <a href="#fnref15" class="footnoteBackLink" title="Jump back to footnote 15">↩</a></p></li>
+<li id="fn16"><p>A elaboração de filtros constitui uma área reconhecidamente complexa, com literatura e pacotes de software dedicados. Recomendamos ao leitor interessado uma visita à nossa bibliografia. <a href="#fnref16" class="footnoteBackLink" title="Jump back to footnote 16">↩</a></p></li>
+<li id="fn17"><p>Pode-se aplicar o filtro do domínio espectral através da multiplicação das transformadas de Fourier de ambos o som e a resposta ao impulso, e então realizada a transformada inversa de Fourier do espectro resultante. <a href="#fnref17" class="footnoteBackLink" title="Jump back to footnote 17">↩</a></p></li>
+<li id="fn18"><p>Abreviação de ’biquadrado’ pois sua função de transferência possui dois polos e dois zeros, i.e. sua forma normal consiste em dois polinômios quadráticos formando uma fração: \(\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1- b_1.z^{-1} -b_2 . z^{-2}}\). <a href="#fnref18" class="footnoteBackLink" title="Jump back to footnote 18">↩</a></p></li>
+<li id="fn19"><p>Filtros Butterworth e Elípticos podem ser considerados como casos específicos dos Filtros do tipo Chebichev. <a href="#fnref19" class="footnoteBackLink" title="Jump back to footnote 19">↩</a></p></li>
+<li id="fn20"><p>Atenção com a frequência de corte também \(f_c\) nos filtros passa baixas e passa altas. <a href="#fnref20" class="footnoteBackLink" title="Jump back to footnote 20">↩</a></p></li>
+<li id="fn21"><p>Alguns instrumentos e contextos musicais usam nomenclaturas diferentes. Por exemplo, no piano, o chamado tremolo é um vibrato e um tremolo segundo a classificação aqui utilizada. As definições presentes neste trabalho tem por base uma literatura mais abrangente do que a utilizada para um único instrumento, prática ou tradição musical e comum em contextos de teoria musical e musica eletrônica. <a href="#fnref21" class="footnoteBackLink" title="Jump back to footnote 21">↩</a></p></li>
+<li id="fn22"><p>O desvio de altura é chamado profundidade do vibrato e é geralmetne dado por conveniência em semitons ou cents. <a href="#fnref22" class="footnoteBackLink" title="Jump back to footnote 22">↩</a></p></li>
+<li id="fn23"><p>Os tremolos e vibratos ocorrem muitas vezes juntos em instrumentos tradicionais e na voz. <a href="#fnref23" class="footnoteBackLink" title="Jump back to footnote 23">↩</a></p></li>
+<li id="fn24"><p>Veja na próxima seção. <a href="#fnref24" class="footnoteBackLink" title="Jump back to footnote 24">↩</a></p></li>
+<li id="fn25"><p>Lembrando que a convolução com o impulso resulta no som deslocado ao instante de ocorrência do impulso. <a href="#fnref25" class="footnoteBackLink" title="Jump back to footnote 25">↩</a></p></li>
+<li id="fn26"><p>A necessidade da nomenclatura, notação e uso de intervalos aumentados/diminutos e mais que aumentados/diminutos é consequência do sistema tonal, em que os graus da escala (veja abaixo) são realmente notas diferentes, com funções e usos específicos. Assim, em uma escala de dó bemol maior, a tônica - primeiro grau - é dó bemol, não si, e a sensível - sétimo grau - é si bemol, não lá sustenido ou dó duplo bemol. <a href="#fnref26" class="footnoteBackLink" title="Jump back to footnote 26">↩</a></p></li>
+<li id="fn27"><p>Um acorde invertido é aquele que apresenta no grave outra nota que não a fundamental. A posição fechada é aquela em que não cabe nota alguma do acorde entre quaisquer duas notas consecutivas. <a href="#fnref27" class="footnoteBackLink" title="Jump back to footnote 27">↩</a></p></li>
+<li id="fn28"><p>O uso de intervalos menores que o semitom é chamado microtonalidade e tem usos ornamentais e estruturantes da música. A divisão da oitava em \(12\) notas possui fundamentos físicos mas não deixa de ser uma <em>convenção</em> adotada inclusive pela música erudita clássica de origem européia. Outras afinações são incidentes. Para citar somente um exemplo, a música tradicional tailandesa utiliza uma divisão da oitava em sete notas igualmente espaçadas (\(\varepsilon=2^{\frac{1}{7}}\)), resultando em intervalos que pouco se assemelham aos intervalos na divisão de doze notas. <a href="#fnref28" class="footnoteBackLink" title="Jump back to footnote 28">↩</a></p></li>
+<li id="fn29"><p>Também chamadas de medianas cromáticas. <a href="#fnref29" class="footnoteBackLink" title="Jump back to footnote 29">↩</a></p></li>
+<li id="fn30"><p>Em ordem crescente de ocorrência na música escrita e étnica, as divisões do pulso musical e seus agrupamentos sequenciais no tempo ocorrem com fatores 2, 4 e 8, depois 3, 6 (dois grupos de 3 ou 3 grupos de 2) e 9 e 12 (3 e 4 grupos de 3). Por último os primos 5 e 7, completando 1-9 e 12. Outras métricas são incidentes (divisões ou agrupamentos em 13, 17, etc), embora menos usuais e principalmente em contextos de música experimental e erudita do século XX e XXI. Por mais complexas que pareçam, as métricas costumam ser composições e decomposições de 1-9 partes iguais.. <a href="#fnref30" class="footnoteBackLink" title="Jump back to footnote 30">↩</a></p></li>
+<li id="fn31"><p>A divisão em 6 é considerada composta mas pode ocorrer também como uma divisão binária. Uma divisão binária que sofre então uma divisão ternária resulta em duas unidades divididas em três unidades cada: forte (subdividido em forte fraco, fraco) e fraco (subdividido em forte, fraco, fraco). A outra forma de ocorrer a divisão em 6 é através de uma divisão ternária que sofre então uma divisão binária, resultando em: uma unidade forte (subdividido em forte e fraco) e duas unidades fracas (subdivididas em forte e fraco cada). <a href="#fnref31" class="footnoteBackLink" title="Jump back to footnote 31">↩</a></p></li>
+<li id="fn32"><p>A execução de notas disjuntas de \(L_i\) equivale a modificar a permutação e executar as primeiras notas. <a href="#fnref32" class="footnoteBackLink" title="Jump back to footnote 32">↩</a></p></li>
+</ol>
+</div>
+</body>
+</html>
