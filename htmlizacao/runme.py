@@ -9,7 +9,8 @@ import os
 # convertemos cada arquivo .tex do diretorio abaixo
 # e para mostrar as equacoes, usamos mathjax
 
-tex = ['introducao',
+tex = ['pretextual',
+       'introducao',
        'devEresultados',
        'conclusoes',
        'codigoProcedimentos',
@@ -17,7 +18,7 @@ tex = ['introducao',
        'FIGGUScode',
        'fmam',
        'musicaExtra']
-
+#tex = ['dissertacao']
 titulo = 'Música no áudio digital: descrição psicofísica e caixa de ferramentas'
 autor = 'Renato Fabbri'
 instituicao = 'Universidade de São Paulo <br /> Instituto de Física de São Carlos <br />  Departamento de Física e Informática <br /> Grupo de Física Computacional e Instrumentação Aplicada'
@@ -25,7 +26,7 @@ orientador = 'Prof. Dr. Osvaldo Novais de Oliveira Junior'
 coorientador = 'Prof. Dr. Luciano da Fontoura Costa'
 
 for t in tex:
-    os.system('pandoc ../%s.tex -s --listings --mathjax=http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML -o %s.html' % (t,t))
+    os.system('pandoc ../%s.tex -f latex -t html --latex-engine=pdflatex --chapters --toc --mathjax=http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML -o %s.html' % (t,t))
 
 # geramos um index simples apontando para cada arquivo html gerado
 
