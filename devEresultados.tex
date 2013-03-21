@@ -1506,9 +1506,10 @@ Esta descrição resume a teoria tradicional dos intervalos musicais.\cite{Lacer
 
 
 \subsection{Escalas}\label{subsec:escalas}
-Na escala cromática
-de temperamento igual, existem 5 divisões perfeitamente simétricas, consideradas
-escalas pelas simetrias internas e usos fáceis que disso resultam. Como sequências de inteiros aos quais $\varepsilon$ é elevado
+Uma escala é um conjunto ordenado de alturas. Usualmente, as escalas se repetem
+a cada oitava. A sequências ascendente com todas as notas da divisão da oitava em 12 intervalos iguais
+separados pela razão $\varepsilon=2^{\frac{1}{12}}$ é a escala cromática de temperamento igual. Há 5 divisões perfeitamente simétricas da oitava dentro da escala cromática. Estas divisões são consideradas
+escalas pelos usos fáceis e peculiares que disso provém. Como inteiros aos quais $\varepsilon=2^{\frac{1}{12}}$ é elevado
 para multiplicar $f_0$, as escalas são:
 
 \begin{equation}\label{escSim}
@@ -1524,8 +1525,7 @@ para multiplicar $f_0$, as escalas são:
 Assim, a terceira nota da escala em tons inteiros com $f_0=200Hz$
 é $f_3=\varepsilon^{e_3^t} . f_0 = 2^{\frac{6}{12}} . 200 \approxeq 282.843 Hz$. Estas
 'escalas' ou padrões, geram estruturas estáveis pelas simetrias internas, e podem ser
-repetidas de forma eficiente e sustentada. Abaixo há mais sobre simetrias e
-sobre estas divisões da oitava por igual. A montagem \emph{Cristais} expõe cada uma destas escalas tanto melódica quanto harmonicamente e seu código está no Apêndice~\ref{ap:cristais}. Como parte da \massa, este código é disponibilizado online.
+repetidas de forma eficiente e sustentada. Abaixo, na seção~\ref{estCic}. A montagem \emph{Cristais} expõe cada uma destas escalas tanto melódica quanto harmonicamente e seu código está no Apêndice~\ref{ap:cristais}. Como parte da \massa, este código é disponibilizado online.
 
 As escalas diatônicas:
 
@@ -1541,12 +1541,12 @@ As escalas diatônicas:
 \end{split}
 \end{equation}
 
-só possuem intervalos maiores, menores e justos. Única exceção para o trítono, que se apresenta como quarta aumenta ou quinta diminuta.
+possuem apenas intervalos maiores, menores e justos. Única exceção para o trítono, que se apresenta como quarta aumenta ou quinta diminuta.
 
 Todas as escalas diatônicas
 seguem o padrão de intervalos sucessivos
-tom, tom, semitom, tom, tom, tom, semitom. De forma
-que pode-se escrever:
+tom, tom, semitom, tom, tom, tom, semitom, e
+pode-se escrever:
 \begin{equation}\label{eq:relacaoDia}
 \begin{split}
 \{d_i\} & =\{2,2,1,2,2,2,1\} \\
@@ -1556,8 +1556,7 @@ e_i & =d_{(i+\kappa)\%7}+e_{i-1} \quad para \;\;  i > 0
 \end{equation}
 
 Com $\kappa \in \mathbb{N}$. Para cada
-modo, há um único valor de $\kappa$ em qualquer intervalo $\in [x,x+6], \forall x \in \mathbb{N}$.
-
+modo, há um único valor de $\kappa \in [0,6]$.
 Por exemplo, uma breve
 inspeção revela que $e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}$. Portanto, $\kappa=2$
 para o modo lídio. 
@@ -1572,12 +1571,12 @@ A escala menor possui duas formas adicionais, melódica e harmônica:
 \end{split}
 \end{equation}
 
-O traçado ascendente e descendente da escala menor melódica é necessário para a presença da sensível (sétimo e último grau separado por um semitom da oitava) no trajeto ascendente, o que não é necessário quando descende, retomando a forma natural. Já a escala harmônica apresenta a sensível, mas não evita o intervalo de segunda aumentada entre o sexto e sétimo graus, pois não precisa contemplar trajetória melódica, apenas apresentar a sensível tão cara ao sistema tonal (a sensível tende à tônica, afirmando-a).\cite{Harmonia}
+O traçado ascendente e descendente da escala menor melódica é necessário para a presença da sensível (sétimo e último grau separado por um semitom da oitava e realça a polarização na tônica) no trajeto ascendente, o que não é necessário quando descende, retomando a forma natural. Já a escala harmônica apresenta a sensível, mas não evita o intervalo de segunda aumentada entre o sexto e sétimo graus, pois não precisa contemplar trajetória melódica, apenas apresentar a sensível tão cara ao sistema tonal (a sensível tende à tônica, afirmando-a).\cite{Harmonia}
 Outras escalas podem ser representadas da mesma forma, como as pentatônicas e os modos de transposição limitados de Messiaen.\cite{Messiaen}
 
 \subsection{Acordes}\label{subsec:acordes}
-A ocorrência simultânea de notas é observada através dos acordes. Destes, a base na música tonal são as tríades. Estas constituem-se de duas terças sucessivas, em 3 notas: fundamental, terça e quinta. Os acordes triádicos sem inversão e na forma fechada\footnote{Um acorde invertido é aquele que apresenta no grave outra nota que não a fundamental. A posição fechada é aquela em que não cabe nota alguma do acorde entre quaisquer duas notas consecutivas.\cite{Lacerda}},
-com a fundamental em $0$ são escritos;
+A ocorrência simultânea de notas é observada através dos acordes. Destes, a base na música tonal são as tríades. Estas constituem-se de duas terças sucessivas, em 3 notas: fundamental, terça e quinta. Um acorde invertido é aquele que apresenta no grave outra nota que não a fundamental. A posição fechada é aquela em que não cabe nota alguma do acorde entre quaisquer duas notas consecutivas.\cite{Lacerda}
+As tríades, sem inversão, na forma fechada e com a fundamental em $0$, são:
 
 \begin{equation}\label{triades}
 \begin{split}
@@ -1588,42 +1587,87 @@ com a fundamental em $0$ são escritos;
 \end{split}
 \end{equation}
 
-Basta acrescentar $10$ ao final para ter o acorde (uma tétrade)
-com sétima menor ou $11$ para resultar em sétima maior. As inversões e posições abertas
-podem ser obtidas contando o número de semitons de cada nota a partir da nota mais grave ou somando $12$ à fundamental, terça ou quinta.
+Para considerar outra terça sobreposta à quinta, basta acrescentar $10$ ao final para a tétrade
+com sétima menor ou $11$ para a tétrade com sétima maior. As inversões e posições abertas
+podem ser obtidas com a adição seletiva de $12$ às componentes.
+
+Acordes triádicos incompletos, com notas adicionais (acordes 'sujos'), e não triádicos são comuns.
+Orientações gerais são:
+\begin{itemize}
+    \item Uma quinta constitui uma fundamental confirmada pelo intervalo.
+    \item A terça maior ou menor aponta a qualidade maior ou menor do acorde.
+    \item Todo trítono, especialmente se formado entre uma terça maior e uma sétima menor, tende a resolver em uma terça ou uma sexta.
+    \item Na repetição, a ordem de preferência é: a fundamental, a quinta, a terça e a sétima.
+    \item Pode-se formar acordes com notas diferentes das triádicas, especialmente se dentro de alguma lógica recorrente ou encadeamento musical que justifique as notas diferentes.
+    \item Acordes formados por sucessões de intervalos diferentes da terças, como as quartas ou as segundas, são recorrentes dentre composições de tonalismo avançado ou experimentais.
+    \item A repetição de sucessões de acordes (ou suas características) fixa uma trajetória pela recorrência e permite a introdução de formações exóticas sem que haja incoerência.
+\end{itemize}
 
 
-\subsection{Rudimentos de harmonia}\label{subsec:harmonia}
+\subsection{Harmonia}\label{subsec:harmonia}
 
-Acordes como os listados em~\ref{triades} formados em cada
-grau das escalas em~\ref{eq:escalas} formam campos harmônicos
-das escalas. As progressões de acordes utilizadas e regras para seus encadeamentos é o objeto de estudo da harmonia musical.
-Mesmo uma melodia monofônica gera campos harmônicos.
+Omitir os encadeamentos básicos do sistema tonal é a chave para a obtenção de 
+harmonias modal e atonal. No caso desta ausência de estruturas tonais mínimas,
+se as notas coincidirem com alguma escala diatônica (veja as equações ~\ref{eq:escalas})
+ou forem em número pequeno, pode-se dizer que a
+harmonia é modal. Caso encadeamentos tonais básicos estejam ausentes, a notas não coincidam
+com alguma das escalas diatônicas e forem diversos e dissonantes o suficiente para evitar redução por
+polarizações, a harmonia é atonal.
+Nesta classificação, a harmonia modal não é tonal e não é atonal.
+A harmonia modal está reduzida à incidência de notas dentro de escalas diatônicas.
+Pode-se perceber, pelo conceito, que a harmonia atonal é difícil de ser realizada.\cite{harmEXT}
 
-Não respeitar 
-os encadeamentos básicos do sistema tonal resulta
-em harmonias modal e atonal. Caso
-as notas coincidam com algum modo diatônico~\ref{eq:escalas}
-ou sejam em número pequeno, pode-se dizer que a
-harmonia é modal. Caso contrário, atonal.\cite{harmEXT}.
+De fato, as técnicas de música atonal
+visam estruturas que evitam o vínculo da audição a modos e relações tonais. A
+dificuldade é tamanha que o dodecafonismo surgiu. A proposta do dodecafonismo é
+usar um conjunto de notas, idealmente usa-se as 12 notas, e executar uma a uma destas notas
+na mesma ordem. Neste contexto, a tônica fica difícil de se estabelecer. Mesmo assim, a audição ocidental
+procura traços tonais nas música e facilmente os encontra por caminhos inesperados e por vezes tortuosos.
+A utilização de
+intervalos dissonantes, especialmente trítonos sem resoluções, nonas, segundas e sétimas, reforça
+a ausência de tonalidade. Neste contexto, para criação da peça, pode-se:
+\begin{itemize}
+    \item Repetir notas, como artifício de sua incidência anterior, não adiciona informação relevante.
+    \item Tocar notas adjacentes ao mesmo tempo, em bloco.
+    \item As durações podem ser livres, desde que respeitada ordem de aparição das notas.
+    \item Para variação, além dos recursos de ampliação, transposição e translação, são usados o inverso, o retrógrado e o retrógrado do inverso. Veja nas subseções~\ref{subsec:motivos} e~\ref{subsec:usosmusicais3} para maiores detalhes.
+    \item Variações de intrumentação, articulação, espacialização e outras possibilidades de apresentação da estrutura de notas.
+\end{itemize}
 
-Na harmonia tonal tradicional,
-as escalas maior e menor são
-base para tríades em cada grau 
-da escala: $\hat{1},\hat{2},\hat{3},\hat{4},\hat{5},\hat{6},\hat{7}$.
-Pode-se anotar $\hat{1},\hat{3},\hat{5}$ para o acorde do primeiro grau, formado pelo primeiro grau da escala e central para uma música tonal. Secundários, o acorde do quinto grau $\hat{5},\hat{7},\hat{2}$ ($\hat{7}$ sustenido no caso da escala menor) e o acorde do quarto grau $\hat{4},\hat{6},\hat{1}$. Depois são considerados os outros graus. As convenções e técnicas apresentadas ao longo da história 
-são objeto de estudo da harmonia tradicional.\cite{Harmonia}
+A harmonia atonal pode ser observada, de forma paradigmática, dentro destas condições.
+Vale apontar que boa parte do que escreveram os compositores
+emblemáticos para o dodecafonismo, como Alban Berg e o próprio Schoenberg, consiste
+aplicações parciais e livres destas técnicas. Várias peças fazem até mesmo pontes
+propositais entre técnicas tonais e atonais.
 
-A chamada harmonia funcional atribui funções a estes três acordes centrais e busca compreender seus usos através destas funções. O acorde formado sobre o primeiro grau é o acorde de tônica e tem a função de manter um centro, um "chão" na música. O acorde formado sobre o quinto grau é a dominante e tem a função de tender à tônica, direcionar a música para ela. A tríade formada sobre o quarto grau é a subdominante e tem a função de se distanciar da tônica. O sistema se baseia em afirmar a tônica através de encadeamentos tônica-dominante-tônica expandidos com outros acordes das formas mais diversas.
+No século XX, músicas rítmicas
+e com ênfase em sonoridades/timbres ampliaram 
+as concepções de tonalidade e harmonia. Ainda assim, a harmonia tonal tem forte presença
+nas vertentes artísticas e comerciais. O próprio dodecafonismo considera-se de natureza
+tonal pois consiste na negação de suas características de polarização.
+
+Na música tonal ou modal, acordes, como os listados nas equações~\ref{triades}, constituídos com a fundamental em cada
+grau de escalas especificadas nas equações~\ref{eq:escalas}, formam os pilares do campo harmônico.
+A observação de progressões incidentes de acordes e regras para encadeamentos é o objeto de estudo da harmonia musical.
+Mesmo uma melodia monofônica gera campos harmônicos e pode-se observar acordes sugeridos por cada passagem.
 
 
-A estes três acordes, são associadas as outras tríades. Na escala maior, a associada relativa (tônica relativa, subdominante relativa e dominante relativa) é a tríade formada uma terça abaixo e a associada anti-relativa (tônica anti-relativa, subdominante anti-relativa e a dominante anti-relativa) é a tríade formada na terça acima. Na escala menor ocorre o mesmo, mas a tríade a uma terça abaixo é chamada anti-relativa e a tríade a uma terça acima é chamada de relativa. As exatas funções e efeitos musicais destes acordes é motivo de bastante controvérsia. A tabela~\ref{tab:harmonia} mostra a relação entre as tríades formadas em cada grau da escala.
+
+Na 'harmonia tonal tradicional',
+a escala pode ter como tônica (primeiro grau da escala) qualquer nota e pode ser maior (com as mesmas notas do modo jônico) ou menor (as notas do eólico constituem a escala "menor natural" e esta possui versões harmônica e melódica, veja a equação~\ref{eq:escalasMenores}. A escala escolhida é
+base para tríades, cada uma com a fundamental em um grau 
+da escala: $\hat{1},\hat{2},\hat{3},\hat{4},\hat{5},\hat{6},\hat{7}$. Para a formação do acorde, são consideradas a terceira nota e a quinta nota acima da fundamental, considerando a própria nota como a primeira e utilizando as notas da escala.
+Pode-se anotar $\hat{1},\hat{3},\hat{5}$ para o acorde do primeiro grau, formado pelo primeiro grau da escala e central para uma música tonal. Secundários são os acordes do quinto grau $\hat{5},\hat{7},\hat{2}$ ($\hat{7}$ sustenido no caso da escala menor) e do quarto grau $\hat{4},\hat{6},\hat{1}$. Depois são considerados os outros graus. A harmonia tradicional consiste em convenções e técnicas estilísticas de encadeamento destes acordes, formados em cada grau da escala.\cite{Harmonia}
+
+A 'harmonia funcional' atribui funções a estes três acordes centrais e busca compreender seus usos através destas funções. O acorde formado sobre o primeiro grau é o acorde de tônica (T ou t se tônica maior ou menor) e tem a função de manter um centro, um "chão" na música. O acorde formado sobre o quinto grau é a dominante (D, a dominante é sempre maior) e tem a função de tender à tônica, direcionar a música para ela. A tríade formada sobre o quarto grau é a subdominante (S ou s se subdominante maior ou menor) e tem a função de distanciar a música da tônica. O sistema se baseia em afirmar a tônica através de encadeamentos tônica-dominante-tônica expandidos com outros acordes das formas mais diversas.
+
+A estes três acordes, são associadas as outras tríades. Na escala maior, a associada relativa (tônica relativa Tr, subdominante relativa Sr e dominante relativa Dr) é a tríade formada uma terça abaixo e a associada anti-relativa (tônica anti-relativa Ta, subdominante anti-relativa Sa e a dominante anti-relativa Da) é a tríade formada na terça acima. Na escala menor ocorre o mesmo, mas a tríade a uma terça abaixo é chamada anti-relativa (tA, sA) e a tríade a uma terça acima é chamada de relativa (tR, sR). As exatas funções e efeitos musicais destes acordes é motivo de bastante controvérsia. A tabela~\ref{tab:harmonia} mostra a relação entre as tríades formadas em cada grau da escala.
 
 \begin{table}[htpq!]
 \centering
-\caption{Resumo das funções harmônicas tonais para a escala maior. A tônica é o centro da música, a dominante tende à tônica e a subdominante se distancia da tônica. Os três acordes podem, a princípio, serem substituídos livremente pela relativa ou antirelativa.}
+\caption{Resumo das funções harmônicas tonais para a escala maior. A tônica é o centro da música, a dominante tende à tônica e a subdominante se distancia da tônica. Os três acordes podem, a princípio, serem substituídos livremente pelas respectivas relativas ou anti-relativas.}
 \begin{tabular}{l | c | r}
-relativa & acorde principal da função & antirelativa \\\hline\hline
+relativa & acorde principal da função & anti-relativa \\\hline\hline
 $\hat{6},\hat{1},\hat{3}$ & tônica:       $\hat{1},\hat{3},\hat{5}$ & $\hat{3}, \hat{5},      \hat{7}$ \\
 $\hat{3},\hat{5},\hat{7}$ & dominante:    $\hat{5},\hat{7},\hat{2}$ & [ $\hat{7},\hat{2},\hat{4}\#$ ] \\
 $\hat{2},\hat{4},\hat{6}$ & subdominante: $\hat{4},\hat{6},\hat{1}$ & $\hat{6},\hat{1},       \hat{3}$
@@ -1633,12 +1677,12 @@ $\hat{2},\hat{4},\hat{6}$ & subdominante: $\hat{4},\hat{6},\hat{1}$ & $\hat{6},\
 
 A dominante anti-relativa forma um acorde menor, exigindo a alteração do quarto grau um semitom para cima $\hat{7}\#$. O acorde diminuto $\hat{7},\hat{2},\hat{4}$, geralmente é considerado uma 'dominante com sétima e sem fundamental'.\cite{Koellheuteur}
 
-Na escala menor, a relativa é a tríade iniciada uma terça acima e a antirelativa uma terça abaixo,
+Na escala menor, a relativa é a tríade iniciada uma terça acima e a anti-relativa uma terça abaixo,
 ou seja, se invertem com relação à tabela~\ref{tab:harmonia}. Outro detalhe destas tríades em modo
 menor é a alteração do $\hat{7}$ um semitom acima para que fique somente a um semitom da tônica,
-permitindo a dominante (que deve ser maior e tender à tônica). Assim, a dominante é sempre maior, tanto em escalas maior ou menor. Por este motivo, a dominante relativa permanece a uma terça abaixo e a antirelativa a uma terça acima na escala menor.
+permitindo a dominante (que deve ser maior e tender à tônica). Assim, a dominante é sempre maior, tanto em escalas maior ou menor. Por este motivo, mesmo em tom menor, a dominante relativa permanece a uma terça abaixo e a antirelativa a uma terça acima.
 
-Cada um destes acordes pode ser confirmado e se desenvolver com uma dominante e uma subdominante individuais (acorde com base na tríade formada a uma quinta acima e uma quinta abaixo respectivamente).
+Cada um destes acordes pode ser confirmado e se desenvolver com uma execução de sua dominante ou subdominante individual (acorde com base na tríade formada a uma quinta acima e uma quinta abaixo respectivamente). Estas dominantes/subdominantes indiduais, por sua vez, possuem também subdominantes e dominantes individuais passíveis de uso. Assim, em uma dada tonalidade, pode ocorrer qualquer acorde, por mais distante que seja do campo harmônico e das notas da escala, desde que a ocorrência apresente um percurso coerente de dominantes e subdominantes até a tonalidade de origem.
 
 As medianas\footnote{Também chamadas de medianas cromáticas.} são acordes formados também a uma terça, mas com alterações com relação ao acorde de origem. Caso haja duas alterações cromáticas, i.e. duas notas alteradas por um semitom cada com relação ao acorde original, a mediana é chamada 'duplamente cromática'. Esta relação entre acordes é considerada de tonalismo avançado, por vezes até de dissolução do tonalismo, e tem efeitos fortes e marcantes embora perfeitamente consonantes. As medianas foram utilizadas a partir do final do romantismo por Wagner, Lizt, Richard Strauss dentre outros e é bastante simples de ser realizada.\cite{Harmonia,Salzer}
 
@@ -1789,6 +1833,8 @@ Cada unidade ou conjunto de unidades $P_i^j$ pode ser associada a uma sequência
 
 A montagem \emph{Poli Hit Mia} utiliza as diferentes métricas e está no Apêndice~\ref{ap:poli}, disponível online como parte da \massa.
 
+\subsection{Motivos e unidades maiores}\label{subsec:motivos}
+
 \subsection{Estruturas direcionais}\label{subsec:dir}
 
 Dadas as estruturas musicais básicas tanto frequenciais (acordes e escalas) quanto 
@@ -1914,7 +1960,7 @@ De forma simplificada, um idioma musical é fruto da
 repetição de elementos e da repetição de relações entre elementos presentes no decorrer da música. Bastante relacionado é o uso de dicotomias 
 como: repetição e variação, relaxamento e tensão, equilíbrio e desequilíbrio, consonância e dissonância, etc. 
 
-\subsection{Usos musicais}
+\subsection{Usos musicais}\label{subsec:usosmusicais3}
 
 Primeiro, a nota básica foi definida e suas características postas em termos
 claros e quantitativos (seção~\ref{notaBasica}). Em seguida, a composição interna da nota foi abordada, e compreendidas suas transições internas e tratamentos imediatos (seção~\ref{varInternas}). Por fim, esta presente seção dedica-se a organizar estas notas musicais em música.
