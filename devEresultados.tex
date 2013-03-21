@@ -1402,61 +1402,110 @@ e na \massa, explora diversas destas configurações da envoltória ADSR
 \clearpage
 \section{Organização de notas em música}\label{notasMusica}
 Seja $ S_j=\{T_{i,1},T_{i,2}...T_{i,N}\} =\bigcup_{j \in [1,N]} T_{i,j} $ uma sequência de $N$ eventos
-musicais. Para simplificar, sejam notas estes eventos musicais
-e $S_j$ uma estrutura musical. Esta seção é dedicada às técnicas
+musicais. Por simplicidade, sejam notas estes eventos musicais
+e seja $S_j$ chamada uma 'estrutura musical'. Esta seção é dedicada às técnicas
 que tornam $S_j$ interessante e agradável na audição.
 
-Os elementos de $S_j$ podem ser sobrepostos por mixagem, como na equação~\ref{eq:mixagem} e figura~\ref{fig:mixagem}, formando intervalos e acordes. Resultam no 'pensamento vertical' da música. A concatenação de $S_j$, como na equação~\ref{eq:concatenacao} e na figura~\ref{fig:concatenacao}, forma sequências melódicas e ritmos, associados ao 'pensamento horizontal' na música. A frequência fundamental $f$ e o momento de início (ataque) são as características mais importantes dos elementos de $S_j$, possibilitando, grosso modo, a presença de músicas de alturas (harmonia e melodia) e a presença da métrica temporal e ritmos, respectivamente.
+Os elementos de $S_j$ podem ser sobrepostos por mixagem, como na equação~\ref{eq:mixagem} e figura~\ref{fig:mixagem}, formando intervalos e acordes. Este é o 'pensamento vertical' da música. A concatenação de $S_j$, como na equação~\ref{eq:concatenacao} e na figura~\ref{fig:concatenacao}, forma sequências melódicas e ritmos, associados ao 'pensamento horizontal' na música. A frequência fundamental $f$ e o momento de início (ataque) são, em geral, as características mais importantes dos elementos de $S_j$. Estas viabilizam músicas de alturas (harmonia e melodia) e a presença da métrica temporal e ritmos, respectivamente.
 
 
 
-\subsection{Afinação, intervalos, escalas e acordes}\label{subsec:intervalos}
+\subsection{Afinação}
 O dobro da frequência é uma oitava ascendente ($f=2f_0$).
+A divisão da oitava em doze notas é o cânone da música ocidental clássica,
+além de usos cerimoniais/religiosos e étnicos observados fora da tradição ocidental.\cite{Wisnick}
 Doze semitons equidistantes para o ouvido formam uma oitava,
 portanto, se $f=2^{\frac{1}{12}}f_0$, há um semitom entre $f_0$
 e $f$.
-O fator $\varepsilon=2^{\frac{1}{12}}$, de um semitom, forma uma grade de notas
+O fator $\varepsilon=2^{\frac{1}{12}}$, um semitom, forma uma grade de notas
 no espectro audível. Fixada uma frequência $f$, as frequências fundamentais possíveis
 estão separadas por intervalos múltiplos de $\varepsilon$.
 Esta precisão absoluta é característica de implementações
-computacionais, pois os intrumentos reais possuem desvios destas frequências para mais bem compatibilizar os harmônicos
-de suas notas.\cite{Roederer}
+computacionais, pois os intrumentos reais possuem desvios destas frequências para melhor compatibilizar os harmônicos
+de suas notas. Além disso, o fator fixo $\varepsilon=2^{\frac{1}{12}}$ caracteriza
+a afinação de temperamento por igual. Há afinações com intervalos propostos como razões de inteiros de baixa ordem, com
+fundamentação em leis físicas, e foram propostas antes do advento do temperamento por igual.\cite{Roederer}
 
-Esta divisão da oitava em doze notas é o cânone da música ocidental clássica,
-além de incidir em usos cerimoniais/religiosos e étnicos.\cite{Wisnick} Notados em proporções de $\varepsilon$ entre as notas (i.e. um semitom), estes intervalos são, junto a suas notações abreviadas usuais:
+Duas afinações emblemáticas são:
+\begin{itemize}
+    \item A {\bf intonação justa} consiste em notas da escala diatônica descritas como razão de inteiros de pequena ordem como apontados pela série harmônica. As razões básicas estão contidas no modo jônico (dó a dó nas teclas brancas do piano, veja abaixo na subseção~\ref{subsec:escalas}): 1, 9/8, 5/4, 4/3, 3/2, 5/3, 15/8, 2/1. Os intervalos são considerados com relação às notas das escala e são usados o semitom 16/15, o 'tom menor' 10/9 e o 'tom maior' 9/8. Há diferentes formas de realizar uma divisão de 12 notas.
+    \item A {\bf afinação pitagórica} baseia-se no intervalo 3/2 (quinta justa). O modo jônico fica: 1, 9/8, 81/64, 4/3, 3/2, 27/16, 243/128, 2/1. Os intervalos são também considerados com relação às notas da escala. Além dos intervalos do modo, são usados a segunda menor 256/243, a terça menor 32/27, a quarta aumentada 729/512, a quinta diminuta 1024/729, a sexta menor 128/81 e a sétima menor 16/9. 
+\end{itemize}
 
-\begin{equation}\label{eq:intervalos}
-\begin{split}
-\text{uníssono} = 1J & = 0 \\
-\text{semitom ou segunda menor} =2m & = 1 \\
-\text{tom, tom inteiro ou segunda maior} =2M & = 2 \\
-\text{terça menor} = 3m & = 3 \\
-\text{terça maior} = 3M & = 4 \\
-\text{quarta justa} = 4J & = 5 \\
-\text{quarta aumentada, quinta diminuta ou trítono} = 4aum = 5dim = Tri & = 6 \\
-\text{quinta justa} = 5J & = 7 \\
-\text{sexta menor} = 6m & = 8 \\
-\text{sexta maior} = 6M & = 9 \\
-\text{sétima menor} = 7m & = 10 \\
-\text{sétima maior} = 7M & = 11 \\
-\text{oitava} = 8J & = 12
-\end{split}
-\end{equation}
+Para a realização de microtonalidade\footnote{O uso de
+intervalos menores que o semitom é chamado microtonalidade e tem usos
+ornamentais e estruturantes da música. A
+divisão da oitava em $12$ notas possui fundamentos físicos mas
+não deixa de ser uma \emph{convenção}
+adotada inclusive pela música erudita clássica de origem européia. Outras afinações
+são incidentes. Para citar somente um exemplo, a
+música tradicional tailandesa utiliza uma divisão da oitava em sete notas igualmente
+espaçadas ($\varepsilon=2^{\frac{1}{7}}$),
+resultando em intervalos que pouco se assemelham aos intervalos na
+divisão de doze notas.\cite{Wisnick}},
+pode-se usar reais não inteiros
+para a sequência de alturas, ou modificar o fator $\varepsilon=2^{\frac{1}{12}}$
+e continuar usando inteiros. Por exemplo, uma afinação
+bastante próxima da série harmônica em si
+é proposta na forma da divisão da oitava em $53$ notas:
+$\varepsilon_2=2^{\frac{1}{53}}$.\cite{microtonalidade}
+As notas nesta divisão da oitava em $53$ notas se relacionam por inteiros
+com $\varepsilon_2$.
+Note que se $S_i$ é uma sequência de alturas relacionadas por $\varepsilon_1$,
+um mapeamento para notas em $\varepsilon_2$
+constitui uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}$. A montagem musical \emph{Micro tom} explora recursos microtonais e seu código está no Apêndice~\ref{ap:micro}, assim como na \massa\ online.
 
-Nesta nomenclatura, um dos padrões presentes no Brasil,
-um intervalo justo (uníssono, quarta, quinta e oitava), ou um intervalo maior (segunda maior, terça maior, sexta maior ou sétima maior), acrescido de um semitom, resulta em um intervalo aumentado. Um intervalo justo, ou um intervalo menor (segunda menor, terça menor, sexta menor ou sétima menor), decrescido de um semitom, resulta em um intervalo diminuto. Um intervalo maior, descrescido de um semitom,
-resulta em um intervalo menor. Um intervalo menor, acrescido de um semitom, resulta em um intervalo maior. Um intervalo aumentado, acrescido de um semitom, resulta em um intervalo 'mais que aumentado' e um intervalo diminuto, descrescido de um semitom, resulta em um intervalo 'mais que diminuto'\footnote{A
- necessidade da nomenclatura, notação e uso de intervalos aumentados/diminutos e mais que aumentados/diminutos é consequência do sistema tonal, em que os graus da escala (veja abaixo) são realmente notas diferentes, com funções e usos específicos. Assim, em uma escala de dó bemol maior, a tônica - primeiro grau - é dó bemol, não si, e a sensível - sétimo grau - é si bemol, não lá sustenido ou dó duplo bemol.}.\cite{Lacerda} 
 
-Caso as notas sejam dispostas sequencialmente, o intervalo é melódico. A ordem das notas, primeiro a nota mais grave ou a mais aguda, resulta em um intervalo ascendente ou descendente, respectivamente. 
-Passando a nota mais grave para a oitava acima, ou a nota mais aguda uma oitava para baixo, o intervalo é invertido. Um intervalo, somado à sua inversão, resulta 9 (7m inverte para 2M: $7+2=9$). Um intervalo maior invertido resulta em um intervalo menor e vice-versa. Um intervalo aumentado invertido resulta diminuto e vice-versa, assim como o mais que aumentado resulta em mais que diminuto e vice-versa. Um intervalo justo invertido resulta igualmente justo.
-Um intervalo maior que a oitava é classificado como intervalo composto e leva o nome do intervalo entre as mesmas notas, mas na mesma oitava.
 
-Caso as notas soem simultaneamente, o intervalo é harmônico. Os intervalos de uníssono, oitava e quinta justa são consonâncias perfeitas. As terças e sextas são consonâncias imperfeitas. As segundas, sétimas e trítonos são considerados dissonantes. Esta classificação não é absoluta. A discrepância mais comum é com relação à quarta justa, que é tida como consonante perfeita ou dissonante de acordo com o contexto e arcabouço teórico. Pode-se considerá-la consonante como regra geral. A sétima menor por vezes é considerada consonante, assim como algumas culturas entoam o trítono como intervalo consonante. Por vezes, as segundas menores, sétimas maiores e trítonos são consideradas dissonãncias forte, as segundas maiores, sétimas menores consideradas dissonâncias fracas. As oitavas, quintas e uníssonos consonâncias fortes, terças e sextas consonâncias fracas.\cite{Roederer,Wisnick}
+\subsection{Intervalos}\label{subsec:intervalos}
+Em proporções de $\varepsilon=2^{\frac{1}{12}}$ entre as frequências das notas (i.e. um semitom), os intervalos do sistema de 12 notas são representados por inteiros. A tabela~\ref{eq:intervalos} resume as características de cada intervalo: sua nomenclatura tradicional, características de consonância e dissonância e número de semitons de cada um.
+
+\begin{table}[htpq!]
+\centering
+\caption{Intervalos musicais, suas notações tradicionais, classificações básicas de dissonância e número de semitons.
+As consonâncias perfeitas são os uníssonos, as quintas e as oitavas justas (J). As consonâncias imperfeitas são
+as terças e as sextas maiores (M) e menores (m). As dissonâncias fortes são as segundas menores e sétimas maiores. As dissonâncias
+brandas são as segundas maiores e as sétimas menores. O primeiro caso especial consite na quarta justa, que é consonante perfeita
+se considerada uma inversão da quinta justa, caso contrário pode ser considerada uma dissonância ou uma consonância imperfeita. O segundo caso especial é o trítono (4aum, 5dim, tri). Este é consonante em algumas culturas, já para a música tonal, o trítono indica dominante e busca fundamentalmente sua resolução em uma terça ou sexta e, por esta instabilidade, é considerado intervalo dissonante.}
+\begin{tabular}{| c | c | c | }\hline
+    \multicolumn{3}{|c|}{\bf consonâncias}  \\\hline
+   & notação tradicional & número de semitons \\
+   perfeitas: & 1J, 5J, 8J & 0, 7, 12 \\
+ imperfeitas: & 3m, 3M, 6m, 6M & 3, 4, 8, 9 \\\hline\hline
+    \multicolumn{3}{|c|}{\bf dissonâncias} \\\hline
+ & notação tradicional & número de semitons \\
+ fortes: & 2m, 7M & 1, 11 \\
+ brandas: & 2M, 7m & 2, 10 \\\hline\hline
+    \multicolumn{3}{|c|}{\bf casos especiais} \\\hline
+ & notação tradicional & número de semitons \\
+ consonante ou dissonante: & 4J & 5 \\
+ dissonante na tradição ocidental: & trítono, 4aum, 5dim & 6 \\\hline
+\end{tabular}\label{eq:intervalos}
+\end{table}
+
+
+A nomenclatura, com base em imposições e conveniências do sistema tonal, e de aspectos práticos da manipulação de notas, pode ser especificada assim:\cite{Roederer,Wisnick}
+\begin{itemize}
+        \item Intervalos por número de grados entre as notas: primeira (uníssono), segunda, terça, quarta, quinta, sexta, sétima, oitava. Nona, décima, décima primeira, etc, são os intervalos compostos, de uma ou mais oitavas + um intervalo dentro da oitava, que caracteriza o intervalo composto. São representados pelos dígitos numéricos: 1, 3, 5 é um uníssono, uma terça, e uma quinta.
+        \item Qualidades de cada intervalo: as consonâncias perfeitas - i.e. uníssono, quarta, quinta e oitava - são 'justas'. As consonâncias imperfeitas - i.e. terças e sextas - e as dissonâncias - i.e. segundas e sétimas - podem ser maiores ou menores. Excessão para o trítono.
+        \item A quarta justa é tida como consonante perfeita ou dissonante de acordo com o contexto e arcabouço teórico. Como regra geral, pode ser considerada consonante salvo casos em que é usada de passagem para uma quinta ou terça como resolução.
+        \item O trítono é dissonante na música ocidental por caracterizar a "dominante" no sistema tonal (veja abaixo na subseção~\ref{subsec:harmonia}) e representar instabilidade. Algumas culturas entoam o intervalo como consonante.
+        \item Um intervalo maior, descrescido de um semitom, resulta em um intervalo menor. Um intervalo menor, acrescido de um semitom, resulta em um intervalo maior.
+        \item Um intervalo justo (uníssono, quarta justa, quinta justa, oitava justa), ou um intervalo maior (segunda maior 2M, terça maior 3M, sexta maior 6M ou sétima maior 7M), acrescido de um semitom, resulta em um intervalo aumentado (p.ex. terça aumentada 3aum com cinco semitons). A quarta aumentada é também chamada de trítono (4aum ~ tri).
+        \item Um intervalo justo, ou um intervalo menor (segunda menor 2m, terça menor 3m, sexta menor 6m ou sétima menor 7m), decrescido de um semitom, resulta em um intervalo diminuto. A quinta diminuta é também chamda de trítono (5dim ~ tri).
+        \item Um intervalo aumentado, acrescido de um semitom, resulta em um intervalo 'mais que aumentado' e um intervalo diminuto, descrescido de um semitom, resulta em um intervalo 'mais que diminuto'.
+        \item Caso as notas soem simultaneamente, o intervalo é harmônico.
+        \item Caso as notas soem em sequência no tempo, o intervalo é melódico. A ordem das notas, primeiro a nota mais grave ou a mais aguda, resulta em um intervalo ascendente ou descendente, respectivamente. 
+        \item Passando a nota mais grave para a oitava acima, ou a nota mais aguda uma oitava para baixo, o intervalo é invertido. Um intervalo, somado à sua inversão, resulta 9 (7m inverte para 2M: $7m+2M=9-$). Um intervalo maior invertido resulta em um intervalo menor e vice-versa. Um intervalo aumentado invertido resulta diminuto e vice-versa, assim como o mais que aumentado resulta em mais que diminuto e vice-versa. Um intervalo justo invertido resulta igualmente justo.
+        \item Um intervalo maior que a oitava é dito 'intervalo composto' e é classificado como o intervalo entre as mesmas notas, mas na mesma oitava. São também especificados por 7 acrescido deste intervalo: 11J é uma oitava mais uma quarta (7+4J==11J), 9M é uma oitava mais uma segunda (7+2M=9M).
+\end{itemize}
+
+Os intervalos aumentados/diminutos e mais que aumentados/diminutos são consequências do sistema tonal. Os graus da escala (veja abaixo na subseção~\ref{subsec:escalas}) são realmente notas diferentes, com funções e usos específicos. Assim, em uma escala de dó bemol maior, a tônica - primeiro grau - é dó bemol, não si, e a sensível - sétimo grau - é si bemol, não lá sustenido ou dó duplo bemol. De forma semelhante, o segundo grau de uma escala pode estar a um semitom do primeiro grau, assim como a sensível (sétimo grau a um semitom ascendente do primeiro), momento no qual há uma terça diminuta entre os dois semitons do sétimo e segundo grau da escala pois o primeiro grau está entre os dois graus próximos a ele: segundo e sensível.\cite{Lacerda}
 
 Esta descrição resume a teoria tradicional dos intervalos musicais.\cite{Lacerda} A montagem \emph{Intervalos entre alturas} explora estes intervalos de formas isoladas e diversas. O código está no Apêndice~\ref{ap:intervalos} e disponível online com a \emph{toolbox} \massa.\cite{MASSA}
 
 
+\subsection{Escalas}\label{subsec:escalas}
 Na escala cromática
 de temperamento igual, existem 5 divisões perfeitamente simétricas, consideradas
 escalas pelas simetrias internas e usos fáceis que disso resultam. Como sequências de inteiros aos quais $\varepsilon$ é elevado
@@ -1526,6 +1575,7 @@ A escala menor possui duas formas adicionais, melódica e harmônica:
 O traçado ascendente e descendente da escala menor melódica é necessário para a presença da sensível (sétimo e último grau separado por um semitom da oitava) no trajeto ascendente, o que não é necessário quando descende, retomando a forma natural. Já a escala harmônica apresenta a sensível, mas não evita o intervalo de segunda aumentada entre o sexto e sétimo graus, pois não precisa contemplar trajetória melódica, apenas apresentar a sensível tão cara ao sistema tonal (a sensível tende à tônica, afirmando-a).\cite{Harmonia}
 Outras escalas podem ser representadas da mesma forma, como as pentatônicas e os modos de transposição limitados de Messiaen.\cite{Messiaen}
 
+\subsection{Acordes}\label{subsec:acordes}
 A ocorrência simultânea de notas é observada através dos acordes. Destes, a base na música tonal são as tríades. Estas constituem-se de duas terças sucessivas, em 3 notas: fundamental, terça e quinta. Os acordes triádicos sem inversão e na forma fechada\footnote{Um acorde invertido é aquele que apresenta no grave outra nota que não a fundamental. A posição fechada é aquela em que não cabe nota alguma do acorde entre quaisquer duas notas consecutivas.\cite{Lacerda}},
 com a fundamental em $0$ são escritos;
 
@@ -1541,29 +1591,6 @@ com a fundamental em $0$ são escritos;
 Basta acrescentar $10$ ao final para ter o acorde (uma tétrade)
 com sétima menor ou $11$ para resultar em sétima maior. As inversões e posições abertas
 podem ser obtidas contando o número de semitons de cada nota a partir da nota mais grave ou somando $12$ à fundamental, terça ou quinta.
-
-Para a realização de microtonalidade\footnote{O uso de
-intervalos menores que o semitom é chamado microtonalidade e tem usos
-ornamentais e estruturantes da música. A
-divisão da oitava em $12$ notas possui fundamentos físicos mas
-não deixa de ser uma \emph{convenção}
-adotada inclusive pela música erudita clássica de origem européia. Outras afinações
-são incidentes. Para citar somente um exemplo, a
-música tradicional tailandesa utiliza uma divisão da oitava em sete notas igualmente
-espaçadas ($\varepsilon=2^{\frac{1}{7}}$),
-resultando em intervalos que pouco se assemelham aos intervalos na
-divisão de doze notas.\cite{Wisnick}},
-pode-se usar reais não inteiros
-para descrever a sequência de alturas, ou modificar o fator $\varepsilon$
-e continuar usando inteiros. Por exemplo, uma afinação
-bastante próxima da série harmônica em si
-é proposta na forma da divisão da oitava em $53$ notas:
-$\varepsilon=2^{\frac{1}{53}}$.\cite{microtonalidade}
-As notas
-continuam inteiras com o novo $\varepsilon$.
-Note que se $S_i$ é uma sequência de alturas relacionadas por $\varepsilon_1$,
-um mapeamento para notas em $\varepsilon_2$
-resulta em uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}$. A montagem musical \emph{Micro tom} explora recursos microtonais e seu código está no Apêndice~\ref{ap:micro}, assim como na \massa\ online.
 
 
 \subsection{Rudimentos de harmonia}\label{subsec:harmonia}
