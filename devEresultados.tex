@@ -1401,10 +1401,10 @@ e na \massa, explora diversas destas configurações da envoltória ADSR
 
 \clearpage
 \section{Organização de notas em música}\label{notasMusica}
-Seja $ S_j=\{T_{i,1},T_{i,2}...T_{i,N}\} =\bigcup_{j \in [1,N]} T_{i,j} $ uma sequência de $N$ eventos
-musicais. Por simplicidade, sejam notas estes eventos musicais
-e seja $S_j$ chamada uma 'estrutura musical'. Esta seção é dedicada às técnicas
-que tornam $S_j$ interessante e agradável na audição.
+Seja $ S_j=\left\{  s_j=T_i^j=\{t_i^j\}_{i=0}^{\Lambda_j-1} \right\}_{j=0}^{H-1} $ uma sequência $S_j$ de $H$ eventos
+musicais $s_j$. Seja $S_j$ chamada uma 'estrutura musical' composta de eventos $s_j$ que são também estruturas musicais,
+p.ex. notas.
+Esta seção é dedicada às técnicas que tornam $S_j$ interessante e agradável na audição.
 
 Os elementos de $S_j$ podem ser sobrepostos por mixagem, como na equação~\ref{eq:mixagem} e figura~\ref{fig:mixagem}, formando intervalos e acordes. Este é o 'pensamento vertical' da música. A concatenação de $S_j$, como na equação~\ref{eq:concatenacao} e na figura~\ref{fig:concatenacao}, forma sequências melódicas e ritmos, associados ao 'pensamento horizontal' na música. A frequência fundamental $f$ e o momento de início (ataque) são, em geral, as características mais importantes dos elementos de $S_j$. Estas viabilizam músicas de alturas (harmonia e melodia) e a presença da métrica temporal e ritmos, respectivamente.
 
@@ -1803,8 +1803,7 @@ A acentuação em tempo fraco é o contratempo, as notas iniciadas em tempo frac
 As notas podem ocorrer dentro e fora destas divisões da \emph{'métrica musical'}. Nos casos mais comportados, as notas ocorrem exatamente nestas divisões, com maior incidência em ataques nos tempos fortes.
 Em casos extremos, não se pode perceber a métrica.\cite{Roederer} Variações pequenas na grade ajudam a compor a interpretação musical e diferenças entre estilos.\cite{Cook}
 
-Pode-se convencionar
-o pulso como nível $j=0$ de agrupamento, o nível $j=-1$ 
+Seja o pulso o nível $j=0$ de agrupamento, o nível $j=-1$ 
 a primeira subdivisão do pulso, o nível $j=1$ a primeira algomeração dos pulsos e assim por diante. 
 
 Desta forma, $P_i^j$ é a $i$-ésima unidade de 
@@ -1842,35 +1841,66 @@ Cada unidade ou conjunto de unidades $P_i^j$ pode ser associada a uma sequência
 
 A montagem \emph{Poli Hit Mia} utiliza as diferentes métricas e está no Apêndice~\ref{ap:poli}, disponível online como parte da \massa.
 
-\subsection{Motivos e unidades maiores}\label{subsec:motivos}
+\subsection{Repetição e variação: motivos e unidades maiores}\label{subsec:motivos}
+Dadas as estruturas musicais básicas tanto frequenciais (acordes e escalas) quanto 
+rítmicas (divisões e aglomerações simples, compostas e complexas), é 
+natural apresentar estas estruturas de forma que tenham coesão e sentido.\cite{Boulez}
+Para tal, é fundamental o conceito de arcos: partindo de algum lugar e voltando, forma-se um arco. 
+A audição de linhas melódicas e harmônicas é permeada de arcos musicais pela natureza cognitiva
+da escuta musical. Pode-se considerar a nota o menor arco, cada motivo e melodia também um arco.
+Cada tempo e cada subdivisão, cada compasso e secção da música, constitui um arco próprio.
+Uma música, cujos arcos não apresentam consistência entre si, pode ser compreendida como uma música sem coesão.
+A sensação de coerência provém, em grande parte, do tratamento hábil dos arcos de uma peça.
+
+Os arcos músicais são estruturas abstratas e passíveis de operações básicas. Um arco espectral, como um
+acorde, pode ser invertido, ampliado, permutado, por exemplo. Os arcos temporais, como uma melodia, um motivo, um compasso ou
+uma nota, são igualmente passíveis de variações. Lembrando que $S_j=\left\{s_j=T_i^j=\{t_i^{j}\}_0^{\Lambda_j-1}\right\}_0^{H-1}$ é uma
+sequência de $H$ eventos musicais $s_j$, cada evento com suas $\Lambda_j$ amostras $t_i^j$ (veja no início desta seção~\ref{notasMusica}), as técnicas básicas podem ser descritas assim:
+
+\begin{itemize}
+    \item A translação temporal é o deslocamento $\delta$ do material para um outro instante $\Gamma'=\Gamma + \delta$ da música. É uma variação do material com modificação na localização no decorrer da música: $\left\{s_j'\right\}=\left\{s_j^{\Gamma'}\right\}=\left\{s_j^{\Gamma+\delta}\right\}$ onde $\Gamma$ é a duração entre o começo da peça (ou trecho considerado) e o primeiro evento $s_0$ da estrutura $S_j$ original. Observe que $\delta$ é o deslocamento no tempo.
+    \item A dilatação ou contração temporal é a alteração da duração de cada arco por um fator $\mu\,:\; s_j'^{\Delta}=s_j^{\mu_j . \Delta}$. Possivelmente, $\mu_j=\mu$ constante.
+    \item Reversão temporal consiste em gerar uma sequência com os elementos em ordem invertida da sequência original $S_j$, assim: $S_j'=\left\{s_j'\right\}_0^{H-1}=\left\{s_{(H-j-1)}\right\}_0^{H-1}$.
+    \item A inversão intervalar é a inversão do sentido dos intervalos percorridos pelo material. A inversão é estrita se o número de semitons esteja sendo usado como referência para a operação: $S_j'=\{s_j'\}_0^{H-1}=\left\{s_j^{-\varepsilon_j . f_0}\right\}$, onde $\varepsilon_j$ é o fator entre a frequência do evento $s_j$ e a frequência de $s_0$. A inversão é tonal caso as distâncias sejam consideradas em termos de números de graus da escala $E_k$: $S_j'=\{s_j'\}_0^{H-1}=\left\{s_j^{-\varepsilon^{\left(e_{\left(j_e\right)}\right)} . f_0}\right\}_0^{H-1}$ onde $j_e=e_{j}^{inv}$ é o índice $k=j_e$ em $E_k$ da nota do evento $s_j$.
+    \item A inserção e remoção de materiais na estrutura $S_j$ pode ser ornamental ou estruturante: $S_j'=\{s_j'\}=\{s_j \text{ se condição A, caso contrário } r_j\}$, para qualquer material musical $r_j$, incluindo o instante vazio. Elementos de $R_j$ podem ser inseridos no começo, como uma prefixo de $S_j$, ao final, como um sufixo, ou no meio, dividindo $S_j$ ou fazendo dele o prefixo e o sufixo. Os dois materiais podem se misturar das formas mais diversas.
+    \item Modificações de articulação, instrumentação e espacialização $s_j'=s_j^{*_j}$, com $*_j$ a nova característica incorporada pelo elemento $s_j'$.
+    \item Acompanhamento, tanto a instrumentação quanto as linhas melódicas que presentes na ocorrência de $S_j$ podem sofrer modificações e ser considerada uma variação de $S_j$ em si.
+\end{itemize}
+
+Com estes procedimentos, outros são derivados: o retrógrado do inverso, uma contração temporal com um sufixo externo, etc.
+A estruturas musicais ressoam mentalmente devido à própria natureza do pensamento.
+As ideias dizem respeito a objetos/contextos. Em suas várias facetas,
+uma ideia lida com o mesmo número de elementos e aspectos conectivos entre eles.
+A música, através de sintonia com estas estruturas mentais, suscita impressões. É, assim, desencadeado
+todo um processo de ressonância mental e cortical responsável pelos sentimentos, lembranças e imaginações
+típicas de uma audição musical atenta. Esta atividade neurológica contribui para a terapia
+músical, conhecida pela utilidade em casos de depressão e dano neurológico. Considera-se que as regiões do cérebro responsáveis pelo processamento auditivo são também usadas para outras atividades, incluindo linguísticas e matemáticas.\cite{Sacks,Roederer}
+
+Como princípios gerais que orientam a criação de novos materiais musicais, utiliza-se estruturas paradigmáticas. Uma delas, central, é o dipolo tensão/relaxamento. Relaciona-se com este dipolo, cada outro dipolo tradicional: tônica/dominante, repetição/variação, consonância/dissonância, coerência/rompimento, simetria/assimetria, chegada/saída, perto/longe, parado/em movimento, etc. Já as relações ternárias tendem a se relacionar com o circular e a unificação.
+A subseção seguinte é dedicada aos arcos direcionais e, 
+no seguinte, os arcos cíclicos.
 
 \subsection{Estruturas direcionais}\label{subsec:dir}
 
-Dadas as estruturas musicais básicas tanto frequenciais (acordes e escalas) quanto 
-rítmicas (divisões e aglomerações simples, compostas e complexas), é 
-natural pensar em como realizar estas estruturas de forma que tenha coesão e sentido.\cite{Boulez}
-Para tal, os arcos são a base: partindo de algum lugar e voltando, forma-se um arco. Uma música sem nenhum arco pode ser compreendida como uma música sem coesão.
-Na subseção seguinte exploramos arcos cíclicos e nesta
-os provenientes de estruturas direcionais.
 
 Os arcos podem ser decompostos em duas sequências convergentes: 
-uma que atinge o ápice (chamado literalmente de clímax pela teoria musical tradicional) e 
-outra que, de forma paradigmática, volta do ápice à região de partida. Distingue-se entre arcos cujos clímax estão: no começo, no meio, no final, na primeira metade e na segunda metade como esquematicamente a dispostos na figura~\ref{fig:climax}.\cite{Schoenberg}
+uma que atinge o ápice, e 
+outra que, de forma paradigmática, volta do ápice à região de partida. Este ápice é chamado de clímax pela teoria musical tradicional. Distingue-se entre arcos cujos clímax estão: no começo, no meio, no final, na primeira metade e na segunda metade da duração considerada. Estas estruturas estão na figura~\ref{fig:climax}. O parâmetro que varia pode não existir, no caso o arco consiste somente em uma estrutura de referência.\cite{Schoenberg}
 
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\textwidth]{figuras/climax}
-    \caption{Distinções canônicas do clímax musical em uma melodia e outros domínios.}
+    \caption{Distinções canônicas do clímax musical em uma melodia e outros domínios. As possibilidades diferenciadas são: clímax no começo, clímax na primeira metade, clímax no meio, clímax na segunda metade, clímax no fim. Não está especificado o eixo das ordenadas pois pode não haver variação paramétrica real, neste caso a estrutura é uma referência.}
         \label{fig:climax}
 \end{figure}
 
 
-Seja $U_i=\{u_i\}_0^{\Lambda_U-1}$ uma sequência crescente. A sequência 
-$R_i=\{r_i\}_0^{2\Lambda_U -2}=\left\{u_{(\Lambda_U-1-|\Lambda_U-1-i|)}\right\}_0^{2\Lambda_U-2}$ 
-é uma sequência que apresenta simetria especular perfeita, i.e. a segunda metade é uma versão espelhada da primeira. Segundo conceitos musicais, o clímax está exatamente no meio da sequência. Pode-se modificar isso com a substituição por sequências de tamanhos diferentes. Toda a teoria matemática de sequências, já estabelecida, pode ser utilizada para geração destes arcos.\cite{Guidorizzo,Schoenberg}
+Seja $S_i=\{s_i\}_0^{H-1}$ uma sequência crescente. A sequência 
+$R_i=\{r_i\}_0^{2H -2}=\left\{s_{(H-1-|H-1-i|)}\right\}_0^{2H-2}$ 
+é uma sequência que apresenta simetria especular perfeita, i.e. a segunda metade é uma versão espelhada da primeira. Segundo conceitos musicais, o clímax está exatamente no meio da sequência. Pode-se modificar isso com a substituição por sequências de tamanhos diferentes. Toda a teoria matemática de sequências, já estabelecida e ensinada corriqueiramente em cursos de cálculo III, pode ser utilizada para geração destes arcos.\cite{Guidorizzo,Schoenberg}
 Teoricamente, estas sequências aplicadas desta forma
 a qualquer característica dos eventos musicais produz arcos,
-pois resultam no afastamento e aproximação de uma parametrização inicial. 
+pois implicam no afastamento e retorno de uma parametrização inicial. 
 Assim, é possível para uma mesma sequência de eventos possuir um número de arcos distintos, com tamanhos e clímax diferentes. Este é um recurso
 interessante e útil e a correlação dos arcos resulta na coerência da escuta.\cite{Salzer}
 
@@ -1878,13 +1908,13 @@ A montagem sonora \emph{Dirracional} expõe estes arcos em estruturas direcionai
 
 \subsection{Estruturas cíclicas}\label{estCic}
 
-O entendimento filosófico de que o pensamento humano se baseia
+O entendimento filosófico de que o pensamento humano é fundamentado
 na percepção de semelhanças e diferenças dentre os estímulos
 e objetos coloca
 as simetrias no cerne do processo cognitivo.\cite{Deleuze}
 Matematicamente,
-as simetrias são grupos algébricos e os grupos finitos
-são sempre isomorfos a um grupo de permutações. 
+as simetrias são grupos algébricos e um grupo finito
+é sempre isomorfo a um grupo de permutações. 
 Pode-se dizer que
 as permutações representam quaisquer simetrias em um sistema finito.
 Na música, as permutações são ubíquas
@@ -1904,17 +1934,17 @@ Qualquer conjunto de permutações pode ser utilizado como gerador de grupos alg
 \end{equation}
 
 
-Da primeira propriedade conclui-se que toda permutação pode ser operada com outra permutação. De fato, pode-se aplicar uma permutação, depois outra e, se comparadas as ordenações inicial e final, há uma permutação resultante.
+Da primeira propriedade conclui-se que toda permutação pode ser operada com outra permutação. De fato, pode-se aplicar uma permutação $p_1$, depois outra $p_2$ e, se comparadas as ordenações inicial e final, há uma permutação $p_3$.
 
-Todo elemento $p$ operado consigo mesmo um número suficiente de vezes $n$ atinge o elemento neutro $p^n=e$, pois caso contrário com a propriedade do fechamento se prova que o grupo é infinito (gerado por $p$). O menor $n\;:\;p^n=e$ é chamado de ordem do elemento. Assim, uma permutação finita $p$ aplicada sucessivamente atinge a ordenação inicial dos elementos, formando um ciclo. Este ciclo, se utilizado para parametros de notas musicais, resulta em um arco musical.
+Todo elemento $p$ operado consigo mesmo um número suficiente de vezes $n$ atinge o elemento neutro $p^n=e$, caso contrário o grupo seria infinito (gerado por $p$). O menor $n\;:\;p^n=e$ é chamado de ordem do elemento. Assim, uma permutação finita $p$ aplicada sucessivamente atinge a ordenação inicial dos elementos, formando um ciclo. Este ciclo, se utilizado para parametros de notas musicais, implica em um arco musical cíclico.
 
 Estes arcos podem ser efetuados pelo uso conjunto de diferentes permutações. Como exemplo
 histórico, a tradição chamada \emph{change ringing} concebe música através de sinos tocados um após o outro e então tocados novamente, mas em uma ordem diferente. Este processo se repete até que se atinja a ordenação inicial. O conjunto de ordenações diferentes percorridas é um \emph{peal}. A tabela~\ref{tab:change} representa um \emph{peal} tradicional de 3 sinos (1, 2 e 3) que explora todas as suas ordenações. Cada linha apresenta uma ordenação dos sinos a ser tocada. As permutações estão entre as linhas.
-Neste caso, a estrutura musical consiste em permutações propriamente ditas e algumas permutações diferentes estão operando para resultar em um comportamento cíclico.
+Neste caso, a estrutura musical consiste em permutações propriamente ditas e algumas permutações diferentes operam para o comportamento cíclico. 
 
 \begin{table}[htpq!]
 \centering
-\caption{Change Ringing: \emph{Peal} (padrão) com 3 sinos}
+\caption{Change Ringing: \emph{Peal} (padrão) com 3 sinos. As permutações estão entre as ordenações. Cada linha é uma ordednação dos sinos, cada ordenaçao é tocada, uma linha por vez.}
 \begin{tabular}{l c r}
 \textcolor{red}{1} & \textcolor{blue}{2} & \textcolor{green}{3} \\
 \textcolor{blue}{2} & \textcolor{red}{1} & \textcolor{green}{3} \\
@@ -1930,12 +1960,12 @@ Neste caso, a estrutura musical consiste em permutações propriamente ditas e a
 
 A utilização de permutações na música pode ser resumida da seguinte forma:
 seja $L_i$ uma sequência de eventos musicais (e.g. notas) e $p$ uma permutação.
-$L_i'=p(L_i)$ consiste nos mesmos elementos de $L_i$ com a ordenação
-modificada.
-As permutações são usualmente escritas em notação cíclica ou natural. 
-Esta notação consiste na ordem dos índices 
+$L_i'=p(L_i)$ consiste nos mesmos elementos de $L_i$ mas em ordem diferente.
+As permutações podem ser escritas em duas notações: cíclica ou natural. 
+A notação natural consiste na ordem dos índices 
 resultante da permutação. Assim,
-convencionada a ordenação original dada pela sequência de seus índices $[0\;1\;2\;3\;4\;5\;...]$ a permutação é notada pela sequência que produz (ex. $[1\;3\;7\;0\;...]$).
+convencionada a ordenação original dada pela sequência de seus índices $[0\;1\;2\;3\;4\;5\;...]$ a permutação é notada pela sequência que produz (ex. $[1\;3\;7\;0\;...]$). Na notação cíclica, a permutação é a troca de um elemento pelo
+da frente, e o último pelo primeiro.
 
 Não é necessário permutar os elementos de $L_i$, mas somente
 alguma ou algumas de suas características. Assim, seja $p^f$ uma permutação 
@@ -1943,9 +1973,9 @@ nas frequências e $L_i$ uma sequência de notas básicas como expostas
 ao final de~\ref{notaBasica}. A nova sequência $L_i'=p^f(L_i)$ consiste nas mesmas
 notas musicais, na mesma ordem e com as mesmas características, com as frequências fundamentais permutadas segundo o padrão que $p^f$ apresenta.
 
-Por último, duas sutilezas deste procedimento.
-Primeiro, a permutação $p$ não precisa envolver todos os elementos de $L_i$, i.e. ela
-pode operar em subconjuntos de $L_i$. Segundo, nem todos os elementos $l_i$ precisam ser executados a cada consulta de estado realizada.
+Duas sutilezas deste procedimento.
+1) A permutação $p$ não precisa envolver todos os elementos de $L_i$, i.e. ela
+pode operar em subconjuntos de $L_i$. 2) Nem todos os elementos $l_i$ precisam ser executados a cada consulta de estado realizada.
 Para exemplificar, seja $L_i$ 
 uma sequência de notas musicais $l_i$. 
 Se $i$ vai de $0$ a $n$, e $n>4$, a cada compasso
@@ -1956,34 +1986,34 @@ estas notas para as primeiras quatro notas de $L_i$.
 Cada uma destas permutações
 $p_i$ possui, ao menos, segundo a exposição acima: dimensões das notas em que opera (frequência, duração, \emph{fades}, intensidade, etc) e período de incidência (a cada quantas consultas é aplicada a permutação). Na realização das notas de $L_i$, uma forma fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $L_i$ equivale a modificar a permutação e executar as primeiras notas.}.
 
-Esta abordagem resultou em alguns trabalhos e implementações computacionais.\cite{figgusOriginal,figgusEspacializacao} Abaixo está um uso coerente desta técnica abaixo e no Apêndice~\ref{cap:FIGGUScode} apontada a implementação computacional disponibilizada em.\cite{MASSA}
+No Apêndice~\ref{cap:FIGGUScode} apontada a implementação computacional disponibilizada em.\cite{MASSA,figgusOriginal,figgusEspacializacao}
 
 \subsection{Idioma musical?}
 
 Existem diversas empreitadas que se propõem a modelar e explorar entendimentos
-sobre a linguagem musical e da linguística aplicada à música ou ainda
+sobre a 'linguagem musical', a 'linguística aplicada à música' ou ainda
 para discernimento entre 
 o que seriam diferentes
 `idiomas musicais'.\cite{Lerdahl, Harmonia, Salzer,Alfaix}
-De forma simplificada, um idioma musical é fruto da
-repetição de elementos e da repetição de relações entre elementos presentes no decorrer da música. Bastante relacionado é o uso de dicotomias 
-como: repetição e variação, relaxamento e tensão, equilíbrio e desequilíbrio, consonância e dissonância, etc. 
+De forma simples, um idioma musical é fruto da escolha de materiais básicos e
+repetição de elementos e da repetição de relações entre elementos presentes no decorrer da música. Nestas questões, as dicotomias são salientes,
+como explicadas na subseção~\ref{subsec:motivos}: repetição e variação, relaxamento e tensão, equilíbrio e desequilíbrio, consonância e dissonância, etc. 
 
 \subsection{Usos musicais}\label{subsec:usosmusicais3}
 
-Primeiro, a nota básica foi definida e suas características postas em termos
-claros e quantitativos (seção~\ref{notaBasica}). Em seguida, a composição interna da nota foi abordada, e compreendidas suas transições internas e tratamentos imediatos (seção~\ref{varInternas}). Por fim, esta presente seção dedica-se a organizar estas notas musicais em música.
-A gama de recursos com uma infinidade de possibilidades de resultados
+Primeiro, a nota básica foi definida e caracterizada em termos
+claros e quantitativos (seção~\ref{sec:notaDisc}). Em seguida, a composição interna da nota foi abordada, e compreendidas as transições internas e tratamentos imediatos (seção~\ref{varInternas}). Por fim, esta presente seção dedica-se a organizar estas notas em música.
+A gama de recursos e a consequênte infinidade de possibilidades de resultados
 é situação típica e cara às artes.\cite{Harmonia,Webern}
 
-Existem estudos para cada recurso apresentado. Por exemplo, pode-se obter as harmonias triádicas 'sujas' (com notas não pertencentes à tríade) através de sobreposições de quartas justas. Outro exemplo interessante é a presença simultânea de ritmos em diferentes métricas, constituindo o que chamamos de \emph{polirritmia}. A montagem musical \emph{Poli-hit mia} explora estas métricas simultâneas através de trem de impulsos convoluídos com as notas que compõem cada linha. Seu código está no Apêndice~\ref{ap:poli} e disponível online como parte da \massa.
+Existem estudos para cada recurso apresentado. Por exemplo, pode-se obter as harmonias triádicas 'sujas' (com notas não pertencentes à tríade) através de sobreposições de quartas justas. Outro exemplo interessante é a presença simultânea de ritmos em diferentes métricas, constituindo o que chama-se de \emph{polirritmia}. A montagem musical \emph{Poli-hit mia} explora estas métricas simultâneas através de trem de impulsos convoluídos com as notas que compõem cada linha. Seu código está no Apêndice~\ref{ap:poli} e disponível online como parte da \massa.
 
-As escalas microtonais são importantes na música do século XX~\cite{microtonalidade} e possuem usos com resultados muito marcantes, como os quartos de tom na música indiana. A sequência musical \emph{MicroTom} explora estes recursos, incluindo melodias microtonais e harmonias microtonais com várias notas em um âmbito de alturas bastante reduzido. Seu código está no Apêndice~\ref{ap:micro} e disponível online como parte da \massa.
+As escalas microtonais são importantes na música do século XX~\cite{microtonalidade} e possuem resultados muito marcantes, como os quartos de tom na música indiana. A sequência musical \emph{MicroTom} explora estes recursos, incluindo melodias microtonais e harmonias microtonais com várias notas em um âmbito de alturas bastante reduzido. Seu código está no Apêndice~\ref{ap:micro} e disponível online como parte da \massa.
 
-Os vínculos entre parâmetros são formas poderosas de obter peças e montagens musicais. O número de notas permutadas pode variar no decorrer da música, revelando vínculo com a duração da peça. As harmonias podem consituir-se triádicas (eqs.~\ref{triades}) com notas replicadas em várias oitavas e mais numerosas quanto menor a profundidade e frequência de vibratos (eqs.~\ref{vbrGamma},~\ref{vbrAux},~\ref{vbrF},~\ref{vbrGamma2},~\ref{vbrT}), dentre outras incontáveis possibilidades.
+Como também apontado na subseção~\ref{subsec:mus2}, os vínculos entre parâmetros são formas poderosas de se obter peças e montagens musicais. O número de notas permutadas pode variar no decorrer da música, revelando vínculo com a duração da peça. As harmonias podem constituir-se triádicas (eqs.~\ref{triades}) com notas replicadas em várias oitavas e mais numerosas quanto menor a profundidade e frequência de vibratos (eqs.~\ref{vbrGamma},~\ref{vbrAux},~\ref{vbrF},~\ref{vbrGamma2},~\ref{vbrT}), dentre outras incontáveis possibilidades.
 
-As simetrias apresentadas nas divisões da oitava (eqs.~\ref{escSim}) e das simetrias apresentadas através das permutações (tabela~\ref{tab:change} e eqs.~\ref{eq:groups}) podem ser usadas em conjunto. Nas peças \emph{3 trios} esta associação é feita de forma sistemática para possibilitar uma audição a ela dedicada. Esta é uma peça instrumental e não consta dentre os códigos dos Apêndices e da \massa.
+As simetrias apresentadas nas divisões da oitava (eqs.~\ref{escSim}) e as simetrias apresentadas através das permutações (tabela~\ref{tab:change} e eqs.~\ref{eq:groups}) podem ser usadas em conjunto. Nas peças \emph{3 trios} esta associação é feita de forma sistemática para possibilitar uma audição a ela dedicada. Esta é uma peça instrumental e não consta dentre os códigos dos Apêndices e da \massa.\cite{3Trios}
 
-O \emph{PPEPPS} (Pure Python EP: Projeto Solvente) é um EP sintetizado com os recursos apresentados neste trabalho. Com pouca parametrização, o programa gera músicas inteiras, permitindo a composição de músicas e conjuntos de músicas com facilidade. As possibilidades de compartilhamento permitem obter este album (ou outro feito de forma semelhante) através de poucas linhas de código e, pela execução, obter uma pasta com as músicas.
+O \emph{PPEPPS} (Pure Python EP: Projeto Solvente) é um EP sintetizado com os recursos apresentados neste trabalho. Com pouca parametrização, o programa gera músicas inteiras, permitindo a composição de músicas e conjuntos de músicas com facilidade. Através de poucas linhas de código e, pela execução, pode-se obter uma pasta com as músicas. Esta facilidade e entrega tecnológica abre possibilidades estéticas, de compartilhamento e educacionais.
 
 
