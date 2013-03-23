@@ -10,13 +10,37 @@ Os trabalhos relacionados a esta dissertação são numerosos. Dentre as causas 
     \item As rotinas descritas neste trabalho são essenciais para boa parte dos \emph{software} voltados para áudio e música.
 \end{itemize}
 
-Vale observar que, embora estas rotinas estejam presentes em diversas implementações livres e proprietárias, suas descrições precisas se encontram somente em código computacional. A maior contribuição desta dissertação é exatamente a descrição analítica das qualidades básicas que compõem elementos musicais no áudio digital. A apresentação didática dos fenômenos envolvidos também não foi encontrada na literatura visitada, o que, junto com as implementações em código Python destas relações e de peças musicais que as exemplifiquem, forma uma contribuição simples e convidativa embora inédita e multidisciplinar.
+Vale observar que, embora estas rotinas estejam presentes em diversas implementações livres e proprietárias, suas descrições precisas se encontram somente em código computacional. A maior contribuição desta dissertação é exatamente a descrição analítica das qualidades básicas que compõem elementos musicais no áudio digital. A apresentação didática dos fenômenos envolvidos também não foi encontrada na literatura visitada, o que, junto com as implementações em código Python destas relações e de peças musicais que as exemplifiquem, forma uma contribuição simples e convidativa embora inédita e multidisciplinar. Vale apontar que, no início da escrita desta dissertação, a caixa de ferramentas não estava prevista, ela foi fruto das equações e descrições precisas, o que tornou imediata a escrita dos scripts que compõem a \emph{toolbox} \massa.
 
 Este capítulo é dedicado aos trabalhos similares ou relacionados. Os livros mais próximos são descritos. Na sequência, são apontadas as implementações computacionais proprietárias e livres. Por fim, esta dissertação é posicionada com relação aos trabalhos relacionados.
 
 \section{Trabalhos relacionados}
 
 \subsection{Livros}
+
+\begin{enumerate}
+    \item \emph{Music For Geeks And Nerds: learn more about music with Python and a little bit of math}
+        \begin{itemize}
+            \item {\bf Descrição:} com exemplos em código computacional e sonoros, este excelênte livro de Pedro Kroeger aborda conceitos de notas, afinações, especificação da nota Midi e conversão entre nomenclaturas latina (dó-ré-mi) e anglo-saxã (C-D-E). Lida também com operações musicais fundamentais como transposição, inversão e afins, combinações randômicas, por Fibonacci. Explora estas organizações tanto para acordes quanto para combinações horizontais (melódicas). Apresenta o básico sobre a constituição dos sons, batimentos, série harmônica, e um aprofundamento sobre as afinações. Por fim, aponta os recursos de ampliação temporal e de tessitura (alturas) de um dado conjunto de notas. Com isso, aponta o dipolo repetição/variação. Faz vínculos de apreensão de estruturas com peças de Josquin des Prez, Bach, Rachmaninoff e Steve Reich.
+            \item {\bf Aspecto complementar: as formalizações de operações dentro da notação tradicional são preciosos adendos às questões naturais abordadas na presente dissertação. A notação em si capta aspectos estruturais do sistema tonal e de 12 notas. Além disso, com a notação abre-se uma ponte com as tradições musicais eruditas.}
+            \item {\bf Aspecto diferencial: o livro não desenvolve descrição precisa de aspectos musicais do som em si e não há foco em relacionar qualidades psicofísicas aos elementos musicais.}
+            \item {\bf Contribuições diretas:}
+        \end{itemize}
+    \item  \emph{The Theory and Technique of Electronic Music}
+        \begin{itemize}
+            \item {\bf Descrição:} um livro de Miller Puckette, de reconhecida complexidade, se define, nas palavras de Max Matheus (Prefácio) "The Theory and Technique of Electronic Music is a uniquely complete source of information for the computer synthesis of rich and interesting musical timbres". O livro começa com medições do som e controle de parâmetros, cai em síntese, modulações, métodos espectrais, atrasos e reverberações e termina com filtros.
+            \item {\bf Aspecto complementar:} o livro apresenta diversos procedimentos valioso para síntese, tratamento e análise. O texto busca ser de computação musical em geral e todo o texto é acompanhado de exemplos em Puredata, que é uma excelênte, linguagem de programação por patches voltada para audiovisual. Puredata é a linguagem de programação mais difundida na música acadêmica e tecnológica em geral.
+            \item {\bf Aspecto diferencial:} salvo raras excessões, o livro não apresenta uma descrição analítica das amostras sonoras com relação aos procedimentos, assim, não relaciona de forma precisa as qualidades físicas do som. Tampouco se aprofunda em aspectos formais da teoria musical tradicional.
+            \item {\bf Contribuições diretas:} na página 92, há uma solução para a o \emph{fade-in} e o \emph{fade-out} que, se feitos em progressão geométrica, demora a cair ao inaudível. A curva "quártica" atinge o zero e se é bastante próxima da progressão exponencial, especialmente nas intensidades maiores: $a_n = \left\{\left(\frac{n}{\Lambda-1}\right)^4\right\}_0^{\Lambda-1}$. Outra contribuição é a descrição prática do uso ideal de 1000 ou mais linhas de atrasos por segundo para simular a reverberação. Também deixa claro que há uma equalização na atenuação do som refletido, e que esta equalização tende ser mais atenuante nos agudos.
+        \end{itemize}
+    \item \emph{}
+        \begin{itemize}
+            \item {\bf Descrição:}
+            \item {\bf Aspecto complementar:}
+            \item {\bf Aspecto diferencial:}
+            \item {\bf Contribuições diretas:}
+        \end{itemize}
+\end{enumerate}
 
 \subsection{Bibliotecas, linguagens e conjuntos de implementações computacionais voltados para música}
 
