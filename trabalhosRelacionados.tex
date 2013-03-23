@@ -1,29 +1,25 @@
 \chapter{Trabalhos relacionados e caracterização das contribuições destre trabalho}
 \label{cap:trabalhosRelacionados}
 
-\begin{equation}
-\begin{split}
-\{t_i'\}_0^{\Lambda -1} &  = \left \{ \cos \left [f_i . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  = \left \{ \cos \left [f\left ( \frac{f+\mu}{f} \right )^{sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )} . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1}  =  \\
- & = \left \{ \cos \left [f\left ( 2^{\frac{\nu}{12}} \right )^{sen \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )} . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1} =\left \{ \cos \left [f\left ( 2^{\frac{\nu}{12} \sin \left ( f' . 2 \pi \frac{i}{ f_a -1 } \right )  } \right ) . 2 \pi \frac{i}{f_a-1} \right ] \right \}_0^{\Lambda-1} \Rightarrow \\
-& \Rightarrow \text{usando: } \left ( 2^x=e^{x \ln 2}, \;\; e^x=\sum_0^\infty \frac{x^n}{n!},\;\; \sin^nx=y_1(n)\sum_k y_2(n,k).\sin[y_3(n,k,x)]   \right ) \Rightarrow \\
-\Rightarrow \{t_i'\}_0^{\Lambda -1} & = \left \{ \sum_{k=-\infty}^{+\infty} J_k(\mu,f) \cos \left [ y(f.f', f_a) \right ]  \right \}_0^{\Lambda-1}
-\end{split}
-\end{equation}
+Os trabalhos relacionados a esta dissertação são numerosos. Dentre as causas disso, pode-se apontar:
 
-Por brevidade, as identidades úteis para a obtenção
-da equação final, que explicita o conteúdo em frequências puras.
-Portanto, se utilizada a progressão exponencial de frequência,
-o espectro da FM perde a simplicidade.
-A função de Bessel dependerá não somente da profundidade de oscilação,
-mas também da frequência original do som. Além disso, as frequências dependem do produto das frequências
-da portadora e da moduladora ($f.f'$), o que também introduz complexidade.
+\begin{itemize}
+    \item Natureza interdisciplinar entre música, computação e física.
+    \item Há um interesse generalizado em música por parte das pessoas que compõem a sociedade.
+    \item A programação de computadores está se difundindo notavelmente.
+    \item As rotinas descritas neste trabalho são essenciais para boa parte dos \emph{software} voltados para áudio e música.
+\end{itemize}
 
-No caso da modulação de amplitude na escala logarítmica:
-\begin{equation}\label{eq:am}
-\begin{split}
-\{t_i'\}_0^{\Lambda-1} & =\{(a_{\text{máx}})^{ti'} . t_i\}_0^{\Lambda-1}= \left \{ a_{\text{máx}}^{\sin \left ( f'.2\pi\frac{i}{f_a -1} \right )} . P .\sin \left ( f.2\pi\frac{i}{f_a -1} \right ) \right \}_0^{\Lambda-1} 
-\end{split}
-\end{equation}
+Vale observar que, embora estas rotinas estejam presentes em diversas implementações livres e proprietárias, suas descrições precisas se encontram somente em código computacional. A maior contribuição desta dissertação é exatamente a descrição analítica das qualidades básicas que compõem elementos musicais no áudio digital. A apresentação didática dos fenômenos envolvidos também não foi encontrada na literatura visitada, o que, junto com as implementações em código Python destas relações e de peças musicais que as exemplifiquem, forma uma contribuição simples e convidativa embora inédita e multidisciplinar.
 
-através das mesmas três identidades, observa-se um espectro com complexidade similar.
+Este capítulo é dedicado aos trabalhos similares ou relacionados. Os livros mais próximos são descritos. Na sequência, são apontadas as implementações computacionais proprietárias e livres. Por fim, esta dissertação é posicionada com relação aos trabalhos relacionados.
+
+\section{Trabalhos relacionados}
+
+\subsection{Livros}
+
+\subsection{Bibliotecas, linguagens e conjuntos de implementações computacionais voltados para música}
+
+\subsection{Aprofundamento sobre esta dissertação com base nos trabalhos visitados}
+
 

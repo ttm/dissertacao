@@ -1628,8 +1628,8 @@ intervalos dissonantes, especialmente trítonos sem resoluções, nonas, segunda
 a ausência de tonalidade. Neste contexto, para criação da peça, pode-se:
 \begin{itemize}
     \item Repetir notas, como artifício de sua incidência anterior, não adiciona informação relevante.
-    \item Tocar notas adjacentes ao mesmo tempo, em bloco.
-    \item As durações podem ser livres, desde que respeitada ordem de aparição das notas.
+    \item Soar notas adjacentes ao mesmo tempo, em bloco.
+    \item Apresentar durações livremente, desde que respeitada ordem de aparição das notas.
     \item Para variação, além dos recursos de ampliação, transposição e translação, são usados o inverso, o retrógrado e o retrógrado do inverso. Veja nas subseções~\ref{subsec:motivos} e~\ref{subsec:usosmusicais3} para maiores detalhes.
     \item Variações de intrumentação, articulação, espacialização e outras possibilidades de apresentação da estrutura de notas.
 \end{itemize}
@@ -1861,10 +1861,12 @@ sequência de $H$ eventos musicais $s_j$, cada evento com suas $\Lambda_j$ amost
     \item A translação temporal é o deslocamento $\delta$ do material para um outro instante $\Gamma'=\Gamma + \delta$ da música. É uma variação do material com modificação na localização no decorrer da música: $\left\{s_j'\right\}=\left\{s_j^{\Gamma'}\right\}=\left\{s_j^{\Gamma+\delta}\right\}$ onde $\Gamma$ é a duração entre o começo da peça (ou trecho considerado) e o primeiro evento $s_0$ da estrutura $S_j$ original. Observe que $\delta$ é o deslocamento no tempo.
     \item A dilatação ou contração temporal é a alteração da duração de cada arco por um fator $\mu\,:\; s_j'^{\Delta}=s_j^{\mu_j . \Delta}$. Possivelmente, $\mu_j=\mu$ constante.
     \item Reversão temporal consiste em gerar uma sequência com os elementos em ordem invertida da sequência original $S_j$, assim: $S_j'=\left\{s_j'\right\}_0^{H-1}=\left\{s_{(H-j-1)}\right\}_0^{H-1}$.
+    \item A translação em altura é o deslocamento $\tau$ do material para uma frequência/altura diferente $\Xi'=\Xi + \tau$ da música. É uma variação com modificação na localização em altura do material: $\left\{s_j'\right\}=\left\{s_j^{\Xi'}\right\}=\left\{s_j^{\Xi+\tau}\right\}$ onde $\Xi$ é a altura do trecho $S_j$ ou do primeiro evento $s_0$ da estrutura $S_j$ original. Observe que $\tau$ é o deslocamento em altura. Caso $\tau$ seja dado em semitons, o deslocamento em frequência é $\tau_f=f_0.2^{\frac{\tau}{12}}$ onde $f_0$ é resultado da adoção de alguma referência: $f_0=\Xi_{f_0}Hz\;\sim \Xi_0$ valor absoluto de altura. Para a frequência para qualquer valor de altura: $\Xi_f=\Xi_{f_0}.2^{\frac{\Xi-\Xi_0}{12}}$. 
+        Para altura de qualquer valor de frequência: $\Xi=\Xi_0 +12 . \log_2\left(\frac{\Xi_f}{\Xi_{f_0}}\right)$.  No protocolo MIDI, $\Xi_{f_0}=55Hz$ enquanto $\Xi_0=33$ de altura marca o lá 1, outro ponto de referência é o $\Xi_{f_0}=440Hz$ que corresponde a $\Xi_0=69$. A diferença da unidade equivale ao semitom. Não se pode dizer que a unidade é o semitom pois $\Xi=1$ não é um semitom, é uma nota de frequência audível como rítmo, com menos de 9 ocorrências por segundo (veja a tabela~\ref{tab:duracoes}).
     \item A inversão intervalar é a inversão do sentido dos intervalos percorridos pelo material. A inversão é estrita se o número de semitons esteja sendo usado como referência para a operação: $S_j'=\{s_j'\}_0^{H-1}=\left\{s_j^{-\varepsilon_j . f_0}\right\}$, onde $\varepsilon_j$ é o fator entre a frequência do evento $s_j$ e a frequência de $s_0$. A inversão é tonal caso as distâncias sejam consideradas em termos de números de graus da escala $E_k$: $S_j'=\{s_j'\}_0^{H-1}=\left\{s_j^{-\varepsilon^{\left(e_{\left(j_e\right)}\right)} . f_0}\right\}_0^{H-1}$ onde $j_e=e_{j}^{inv}$ é o índice $k=j_e$ em $E_k$ da nota do evento $s_j$.
     \item A inserção e remoção de materiais na estrutura $S_j$ pode ser ornamental ou estruturante: $S_j'=\{s_j'\}=\{s_j \text{ se condição A, caso contrário } r_j\}$, para qualquer material musical $r_j$, incluindo o instante vazio. Elementos de $R_j$ podem ser inseridos no começo, como uma prefixo de $S_j$, ao final, como um sufixo, ou no meio, dividindo $S_j$ ou fazendo dele o prefixo e o sufixo. Os dois materiais podem se misturar das formas mais diversas.
     \item Modificações de articulação, instrumentação e espacialização $s_j'=s_j^{*_j}$, com $*_j$ a nova característica incorporada pelo elemento $s_j'$.
-    \item Acompanhamento, tanto a instrumentação quanto as linhas melódicas que presentes na ocorrência de $S_j$ podem sofrer modificações e ser considerada uma variação de $S_j$ em si.
+    \item Acompanhamento. Tanto a instrumentação quanto as linhas melódicas que presentes na ocorrência de $S_j$ podem sofrer modificações e ser considerada uma variação de $S_j$ em si.
 \end{itemize}
 
 Com estes procedimentos, outros são derivados: o retrógrado do inverso, uma contração temporal com um sufixo externo, etc.
