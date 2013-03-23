@@ -24,7 +24,6 @@ Este capítulo é dedicado aos trabalhos similares ou relacionados. Os livros ma
             \item {\bf Descrição:} com exemplos em código computacional e sonoros, este excelênte livro de Pedro Kroeger aborda conceitos de notas, afinações, especificação da nota Midi e conversão entre nomenclaturas latina (dó-ré-mi) e anglo-saxã (C-D-E). Lida também com operações musicais fundamentais como transposição, inversão e afins, combinações randômicas, por Fibonacci. Explora estas organizações tanto para acordes quanto para combinações horizontais (melódicas). Apresenta o básico sobre a constituição dos sons, batimentos, série harmônica, e um aprofundamento sobre as afinações. Por fim, aponta os recursos de ampliação temporal e de tessitura (alturas) de um dado conjunto de notas. Com isso, aponta o dipolo repetição/variação. Faz vínculos de apreensão de estruturas com peças de Josquin des Prez, Bach, Rachmaninoff e Steve Reich.
             \item {\bf Aspecto complementar: as formalizações de operações dentro da notação tradicional são preciosos adendos às questões naturais abordadas na presente dissertação. A notação em si capta aspectos estruturais do sistema tonal e de 12 notas. Além disso, com a notação abre-se uma ponte com as tradições musicais eruditas.}
             \item {\bf Aspecto diferencial: o livro não desenvolve descrição precisa de aspectos musicais do som em si e não há foco em relacionar qualidades psicofísicas aos elementos musicais.}
-            \item {\bf Contribuições diretas:}
         \end{itemize}
     \item  \emph{The Theory and Technique of Electronic Music}
         \begin{itemize}
@@ -32,6 +31,75 @@ Este capítulo é dedicado aos trabalhos similares ou relacionados. Os livros ma
             \item {\bf Aspecto complementar:} o livro apresenta diversos procedimentos valioso para síntese, tratamento e análise. O texto busca ser de computação musical em geral e todo o texto é acompanhado de exemplos em Puredata, que é uma excelênte, linguagem de programação por patches voltada para audiovisual. Puredata é a linguagem de programação mais difundida na música acadêmica e tecnológica em geral.
             \item {\bf Aspecto diferencial:} salvo raras excessões, o livro não apresenta uma descrição analítica das amostras sonoras com relação aos procedimentos, assim, não relaciona de forma precisa as qualidades físicas do som. Tampouco se aprofunda em aspectos formais da teoria musical tradicional.
             \item {\bf Contribuições diretas:} na página 92, há uma solução para a o \emph{fade-in} e o \emph{fade-out} que, se feitos em progressão geométrica, demora a cair ao inaudível. A curva "quártica" atinge o zero e se é bastante próxima da progressão exponencial, especialmente nas intensidades maiores: $a_n = \left\{\left(\frac{n}{\Lambda-1}\right)^4\right\}_0^{\Lambda-1}$. Outra contribuição é a descrição prática do uso ideal de 1000 ou mais linhas de atrasos por segundo para simular a reverberação. Também deixa claro que há uma equalização na atenuação do som refletido, e que esta equalização tende ser mais atenuante nos agudos.
+        \end{itemize}
+    \item \emph{Real Sound Synthesis for Interactive Applications}
+        \begin{itemize}
+            \item {\bf Descrição:} livro do Perry Cook, de 2002, discorre sobre fundamentos de áudio digital e modelagem física. Possui preciosas dicas de modelagens de sons reais com características de intrumentos tradicionais e efeitos com origem nos instrumentos analógicos.
+            \item {\bf Aspecto complementar:} implementa diversos instrumentos musicais e efeitos sonoros. Trata de uma biblioteca em C para síntese sonora que contempla boa parte das funcionalidades da \massa.
+            \item {\bf Aspecto diferencial:} O trabalho escapa à descrição das amostras sonoras em si e não possui uma sistematização de elementos musicais básicos em termos das características sonoras.
+            \item {\bf Contribuições diretas:}  a parte "1.3 Quantização" descreve de forma breve e suficiente o ruído de quantização e pode complementar à dissertação em "1.1 Som em áudio digital". O escrito sugere uma melhora na relação sinal/ruído de 6 decibels por bit utilizado na quantização de cada amostra do áudio PCM. O que indica diretamente uma relação sinal/ruído de 96dB para 16 bits/amostra (padrão de CD) e 48dB para 8 bits/amostra (comum em sistemas de voz).
+        \end{itemize}
+    \item \emph{Interação Tímbrica na Música Eletroacústica Mista}
+        \begin{itemize}
+            \item {\bf Descrição:} dissertação de Ignacio de Campos, possui diversas discussões cognitivas e musicais.
+            \item {\bf Aspecto complementar:} desenvolvem os apontamentos da dissertação e do Apêndice~\ref{cap:musicaExtra} com relação à \emph{performance} musical.
+            \item {\bf Aspecto diferencial:} o trabalho não lida de forma sistemática com as características do sinal digital de elementos musicais.
+            \item {\bf Contribuições diretas:} a parte "2.3.2 A Sensação de Identidade Tímbrica" pode completar a exposição sobre timbre em "2.1.4 Timbre" com os apontamentos de envoltória, inarmonicidade, jitter e shimmer.
+        \end{itemize}
+    \item \emph{Music, Cognition, and Computerized Sound: An Introduction to Psychoacoustics}
+        \begin{itemize}
+            \item {\bf Descrição:} outro livro do Perry Cook, desta vez são artigos de vários autores, ele cuidou da edição. Um valioso apanhado pertinente para a psicofísica de elementos musicais no áudio digital, com textos focados em aspectos cognitivos e físicos do som além de eventuais descrições de procedimentos elétricos e digitais envolvidos. O foco é qualitativo embora com bastante embasamento quantitativo.
+            \item {\bf Aspecto complementar:} o livro traz artigos de vários autores. As temáticas são pertinentes para a dissertação como cultura a respeito dos assuntos.
+            \item {\bf Aspecto diferencial:} o trabalho não é uma descrição de elementos musicais com relação às características do som digital.
+            \item {\bf Contribuições diretas:} talvez as partes mais interessantes para a dissertação sejam a subseção "23.10 Special Considerations in Psychoacoustic Research" e o capítulo "Appendix A: Suggested Lab Exercises".
+        \end{itemize}
+    \item \emph{Modelos Psicoacústicos de Dissonância para Eletrônica ao Vivo}
+        \begin{itemize}
+            \item {\bf Descrição:} tese de Alexandre Porres com considerações pertinentes sobre modelos psicoacústicos, dissonância e aspereza/rugosidade. Outros trabalhos, do mesmo autor, incluem um livro sobre computação musical em PD e apresentam, de forma acessível, procedimentos-chave de computação musical junto às implementações em Puredata.
+            \item {\bf Aspecto complementar:} a tese foca em teorias psicoacústicas e em descrições minuciosas de rugosidade e dissonâncias que podem acrescentar bastante ao que foi apresentado na dissertação. Além disso, há um viés prático com a utilização do Puredata.
+            \item {\bf Aspecto diferencial:} a trabalho não é uma descrição psicofísica de sequências amostrais relacionadas a elementos musicais.
+        \end{itemize}
+    \item \emph{5 livros do Julious O. Smith III}\cite{JOSFaust,JOSSpec,JOSFilt,JOSPhy,JOSFM}
+        \begin{itemize}
+            \item {\bf Descrição:} este autor possui diversos escritos, mais de 200 artigos publicados. Ao menos 5 livros de interesse para a dissertação: \emph{Mathematics of the Discrete Fourier Transform (DFT)} descreve a DFT minuciosamente, influindo FFT. O livro \emph{Introduction to Digital Filters (with audio applications)} trata de filtros de diversos tipos e descreve transfomadas, técnicas de design de filtros e análises de frequência e por polos e zeros. Além de abordar filtros não convencionais, o livro termina com implementações em matlab, Faust e PD e possibilidades de confeção de plugins. O livro \emph{Physical Audio Signal Processing (for virtual musical instruments and audio effects)} trata de modelagem física. O livro \emph{Spectral Audio Signal Processing} adentra STFT em detalhes das janelas utilizadas e aplicações da STFT. Também aborda Wavelets de forma superficial porém consistente. O livro \emph{Audio Signal Processing in Faust} trata da liguagem Faust e suas facilidades para o processamento de áudio e música.
+            \item {\bf Aspecto complementar:} a seção "Perceptual Aspects of Reverberation", do livro de filtros, pode fechar o assunto da espacialização junto à subseção "2.1.7 Localização espacial". As partes de modelagem de voz e de fundamentos físicos podem também servir de bons  complementos à dissertação. o livro sobre Faust complementa a dissertação por explicitar uma linguagem de domínio específico para áudio e música. O livro também contempla usos integrados com outros programas e linguagens via, por exemplo, o padrão de plugin LADSPA ou o protocolo OSC de comunicação entre programas para manipulação multimídia. 
+            \item {\bf Aspecto diferencial:} estes trabalhos apresentam teorias fundamentais para o que se faz hoje em termos de programação para música, e não uma descrição de elementos musicais em termos das amostras digitais.
+            \item {\bf Contribuições diretas:} a parte de espacialização tem como referencia forte o livro de modelagem física. A clareza sobre a natureza da reverberação e sobre suas características foi toda disparada por este livro.
+        \end{itemize}
+    \item \emph{}
+        \begin{itemize}
+            \item {\bf Descrição:}
+            \item {\bf Aspecto complementar:}
+            \item {\bf Aspecto diferencial:}
+            \item {\bf Contribuições diretas:}
+        \end{itemize}
+    \item \emph{}
+        \begin{itemize}
+            \item {\bf Descrição:}
+            \item {\bf Aspecto complementar:}
+            \item {\bf Aspecto diferencial:}
+            \item {\bf Contribuições diretas:}
+        \end{itemize}
+    \item \emph{}
+        \begin{itemize}
+            \item {\bf Descrição:}
+            \item {\bf Aspecto complementar:}
+            \item {\bf Aspecto diferencial:}
+            \item {\bf Contribuições diretas:}
+        \end{itemize}
+    \item \emph{}
+        \begin{itemize}
+            \item {\bf Descrição:}
+            \item {\bf Aspecto complementar:}
+            \item {\bf Aspecto diferencial:}
+            \item {\bf Contribuições diretas:}
+        \end{itemize}
+    \item \emph{}
+        \begin{itemize}
+            \item {\bf Descrição:}
+            \item {\bf Aspecto complementar:}
+            \item {\bf Aspecto diferencial:}
+            \item {\bf Contribuições diretas:}
         \end{itemize}
     \item \emph{}
         \begin{itemize}

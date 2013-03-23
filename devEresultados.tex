@@ -405,9 +405,11 @@ Então a sequência $T_i$ consistirá em uma nota de duração $\Delta$ e frequ�
 T_i^{f,\; \Delta}=\left\{t_i^f\right\}_0^{\lfloor f_a . \Delta \rfloor -1}=\left \{ l^f_{i\,\%\left(\frac{f_a}{f}\right)} \right \}_0^{\Lambda-1}
 \end{equation}
 
-\subsection{Localização espacial}
-Embora não seja uma das quatro qualidades básicas tradicionais de uma nota musical, esta possui sempre uma localização espacial. Além disso, a espacialização é atributo bastante valorizado
+\subsection{Localização espacial e espacialização}\label{subsec:spac}
+Embora não seja uma das quatro qualidades básicas tradicionais de uma nota musical, esta possui sempre uma localização espacial, que é a posição da fonte que a emitiu, no espaço físico tridimensional ordinário. Além disso, há um ambiente que reverbera a nota emitida, assunto ao qual a 'espacialização' é dedicada. Ambas, a espacialização e a localização espacial, são bastante valorizadas
  por audiófilos e pela indústria fonográfica.\cite{floEsp}
+
+ \subsubsection{Localização espacial}
 Acredita-se que a percepção da localização espacial do som se dê em nosso sistema nervoso através destas
 três informações: o atraso de chegada do som entre um ouvido e o outro, a diferença de intensidade do som direto em cada ouvido e a 
 filtragem realizada pelo corpo, incluindo toráx, cabeça e orelhas.\cite{Roederer, hrtf, Heeger}
@@ -474,7 +476,18 @@ A figura~\ref{fig:spac} mostra também esta sombra acústica do crânio, importa
 
 Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}).\cite{hrtf} Exitem bases abertas e conhecidas de HRTF como a CIPIC e pode-se aplicar estas funções de transferência em um som por convolução (veja equação~\ref{eq:conv}).\cite{CIPIC} O corpo do indivíduo altera bastante as filtragens realizadas e existem técnicas para gerar HRTFs que sejam - como proposta - utilizáveis de forma universal.\cite{lazaSPA} 
 
+\subsubsection{Espacialização}
+Já a espacialização é, fundamentalmente, o resultado das reflexões e absorções da nota emitida nas superfícies do recinto/paisagem no qual a nota foi emitida. Pode-se simular reverberações reais não possíveis em sistemas reais. O som viaja a $343,2m/s$, e pode ser emitido da fonte com qualquer padrão de direcionalidade. Quando uma frente sonora encontra uma superfície do recinto, há uma reflexão. Nesta reflexão ocorrem tanto 1) a inversão da componente da velocidade de propagação que é perpendicular à superfície, quanto 2) a absorção de energia, especialmente nos agudos. As ondas se propagam até atingirem niveis considerados inaudíveis. Quando alguma frente de onda atingir o ouvido, é registrada e pode ser inteiramente descrita com: momento de chegada ao ouvido e o número de reflexões junto aos filtros de absorção de cada superfície que atingiu. Para experimentações, pode-se usar reflexões assimétricas com relação ao eixo perpendicular à superfície, ou ainda ganhos em determinadas bandas de frequência (tidos como 'ressonâncias'), ambas as características não são encontradas em sistemas reais.
 
+Existem algumas modelagens de reverberação menos atreladas ao cálculo de cada reflexão, exploram informações valiosas do ponto de vista auditivo. De fato, a reverberação pode ser modelada com um conjunto de 2 características temporais e no espectro:
+\begin{itemize}
+    \item Primeiro periodo: as 'primeiras reflexões' são mais intensas e esparças.
+    \item Segundo período: a 'reverberação tardia' é uma continuação de atrasos com um decaimento exponencial e ocorrências estatísticas.
+    \item Primeira banda: o grave possui algumas frequências de ressonância relativamente espaçadas.
+    \item Segunda banda: o médio e agudo possuem um decaimento progressivo e suave com flutuações estatísticas.
+\end{itemize}
+
+Smith III aponta que boas salas de concerto possuem um tempo total de reverberação de aproximadamente $1,9$ segundos. Aponta também que o período das primeiras reflexões deve ser de $0,1$ segundos. Estas quantidades apontam que, nas condições contempladas, há frentes de onda perceptíveis que se propagam até $652,08$ metros ($83.79k$ amostras em $f_a=44.1kHz$) antes de atingirem o ouvido. Além disso, as reflexões do som formam, para a audição, após a propagação por $34,32$ metros ($4.41k$ amostras em $f_a=44.1kHz$ ), um emaranhado cujas incidências são pouco distintas. Estas primeiras reflexões são particularmente importantes para a sensação de espaço. A primeira incidência é o som direto, descrito por DTI e DII das equações~\ref{eq:dti} e~\ref{eq:dii}. Admitindo-se que cada uma das primeiras reflexões se propagará, ao menos, $3-30m$ dependentes das dimensões da sala, a separação entre as primeiras reflexões é de, ao menos, $8-90$ milissegundos, correspondendo a uma separação de aproximadamente $350-4000$ amostras. Verifica-se experimentalmente que o número de reflexões por aumenta em proporção quadrática  $ \approx k.n^2$. Apontamentos do uso de convoluções e filtragens para facilitar estas implementações estão na subseção~\ref{subsec:mus2}, especialmente nos parágrafos sobre reverberação.
 
 \subsection{Usos musicais}\label{subsec:basMus}
 
@@ -1301,7 +1314,9 @@ Desta forma, os usos musicais aqui dispostos são uma coleção de possibilidade
 com o objetivo de exemplificar manipulações sonoras que resultem algo
 musical, por razões variadas e aprofundadas na próxima seção.
 
-Uma primeira possibilidade interessante é usar vínculos
+\subsubsection{Vínculos entre características}
+
+Uma outra possibilidade interessante é usar vínculos
 entre os parâmetros do tremolo e do vibrato e algum parâmetro da nota básica,
 como a frequência. Assim, pode-se estabelecer que
 a frequência do vibrato é diretamente proporcional à altura, e a profundidade do tremolo é inversamente proporcional
@@ -1338,6 +1353,17 @@ convoluídos.
 Este recurso da métrica
 estabelecida pela convolução com impulsos é explorado na montagem \emph{Trenzinho de caipiras impulsivos}. Os recursos explorados incluem a criação de amálgamas sonoros provenientes da síntese granular e esta montagem é já uma ponte para a próxima seção. Veja especialmente a figura~\ref{fig:pulsoSubAgl}. O código da peça está na seção~\ref{ap:trenzinho} e disponível como parte da toolbox \massa.
 
+\subsubsection{Fonte em movimento, receptor em movimento, efeito Doppler}
+
+Retomada a exposição da subseção~\ref{subsec:spac}, quando uma fonte ou um receptor está em movimento, suas características idealmente são calculadas amostra a amostra do sinal digital. As velocidades são decompostas com relação à direção de cada ouvido. Assim, dada a velocidade $v_s$ da fonte ($s$ de \emph{source}), positiva se a fonte se no sentido de se afastar do receptor e a velocidade $v_r$ do receptor, positiva no sentido de se aproximar da fonte, a frequência é dada pela conhecida fórmula do efeito Doppler:
+
+\begin{equation}
+    f=\left(\frac{c+v_r}{c+v_s}\right)f_0
+\end{equation}
+
+Com esta frequência e com as relações dadas pela nova DII da nova localização da fonte, pode-se realizar o efeito Doppler. Há um acréscimo para maior fidelidade ao fenômeno físico: um aumento da potência recebida $\Delta P=\left(\frac{c+v_r}{c+v_s}\right)P_0$, com $P_0$ a potência do sinal.
+
+\subsubsection{Ruidos e filtragens}
 Com os filtros as possibilidades explodem ainda mais vertiginosamente. Pode-se convoluir um sinal para reverberá-lo, para
 remover algum ruído, para gerar distorções ou para tratamento com intuito estético mesmo. Por exemplo,
 a aplicação de um filtro passa banda em que deixa passar somente entre $1kHz$ e $3kHz$, resulta em sons
@@ -1360,6 +1386,14 @@ e tremolo e suas características, equalizações, volume etc. Para o resultado 
 inicial são então mixadas (ver equação \ref{eq:mixagem}). A peça \emph{Chorus infantil} realiza chorus de formas
 diferentes em sons diferentes e seu código está no Apêndice~\ref{ap:chorus}. A \emph{toolbox} \massa\ disponibiliza online este \emph{script}.
 
+\subsubsection{Reverberação}
+Retomando também a exposição da subseção~\ref{subsec:spac}, a reverberação tardia pode ser modelada como a convolução com um trecho de ruído colorido rosa, marrom ou preto, em decaimento exponencial de amplitude com relação também ao tempo. A atenuação nos agudos e irregularidade suave na resposta em frequência são contempladas de forma bastante satisfatória.\cite{JOSPhy,guillaume} Linhas de atrasos podem ser adicionadas como prefixo à ao ruído com o decaimento, assim comtemplando as duas partes temporais da reverberação: as primeiras reflexões e a reverberação tardia. Pode-se, para melhora qualidade, calcular geometricamente a localização da última superfície em que cada frente de onda refletiu antes de chegar ao ouvido nos primeiros $100-200$ milissegundos e aplicar um filtro passa-baixas como em~\ref{subsec:filtros}. O ruído colorido pode ser introduzido gradualmente, desde o instante inicial dado pela incidência direta (i.e. sem reflexão alguma e dada pela DTI e DII), em \emph{fade-in}, atingindo o máximo no começo da 'reveberação tardia', quando as incidências geométricas perdem sua importância para as estatísticas do ruído em decaimento.
+
+A reverberação é conhecida por causar bastante interesse no ouvinte e tornar as sonoridades mais agradáveis. Além disso, a modificação do espaço em que são reverberadas a música, ou as sonoridades individualmente, constitui um massete (quase um clichê) para causar supresa e interesse no ouvinte. 
+
+
+
+\subsubsection{Envoltória ADSR}
 A variação de volume no decorrer de um som é crucial para nossa percepção de timbre. A envoltória de volume chamada ADSR (sigla de \emph{Atack-Decay-Sustain-Release}) possui numerosas implementações em sintetizadores em hardware e software. Uma implementação pioneira pode ser encontrada no Hammond Novachord de 1938 e algumas variantes são citadas logo abaixo.\cite{ADSR}
 
 A envoltória ADSR escolástica é caracterizada por 4 parâmetros: duração do ataque (tempo que o som demora para atingir seu volume máximo), duração do decaimento (segue ao ataque imediatamente), nível de volume de sustentação (em que o volume fica estável após o decaimento) e duração de soltura (após a sustentação, nesta duração o volume decai a zero).
