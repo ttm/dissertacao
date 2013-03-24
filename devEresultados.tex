@@ -1361,7 +1361,7 @@ Retomada a exposição da subseção~\ref{subsec:spac}, quando uma fonte ou um r
     f=\left(\frac{c+v_r}{c+v_s}\right)f_0
 \end{equation}
 
-Com esta frequência e com as relações dadas pela nova DII da nova localização da fonte, pode-se realizar o efeito Doppler. Há um acréscimo para maior fidelidade ao fenômeno físico: um aumento da potência recebida $\Delta P=\left(\frac{c+v_r}{c+v_s}\right)P_0$, com $P_0$ a potência do sinal.
+Com esta frequência e com as relações dadas pela nova DII da nova localização da fonte, pode-se realizar o efeito Doppler. Há um acréscimo para maior fidelidade ao fenômeno físico: um aumento da potência recebida. Pode-se assumir que este aumento em potência é proporcional à velocidade relativa, que, a cada segundo, acrescenta aquele trecho percorrido, pela forma de onda, de potência: $\Delta P=P_0\left(\frac{v_r-v_s}{343,2}\right)$, com $P_0$ a potência do sinal.
 
 \subsubsection{Ruidos e filtragens}
 Com os filtros as possibilidades explodem ainda mais vertiginosamente. Pode-se convoluir um sinal para reverberá-lo, para
@@ -1386,7 +1386,7 @@ e tremolo e suas características, equalizações, volume etc. Para o resultado 
 inicial são então mixadas (ver equação \ref{eq:mixagem}). A peça \emph{Chorus infantil} realiza chorus de formas
 diferentes em sons diferentes e seu código está no Apêndice~\ref{ap:chorus}. A \emph{toolbox} \massa\ disponibiliza online este \emph{script}.
 
-\subsubsection{Reverberação}
+\subsubsection{Reverberação}\label{subsubsec:reverb}
 Retomando também a exposição da subseção~\ref{subsec:spac}, a reverberação tardia pode ser modelada como a convolução com um trecho de ruído colorido rosa, marrom ou preto, em decaimento exponencial de amplitude com relação também ao tempo. A atenuação nos agudos e irregularidade suave na resposta em frequência são contempladas de forma bastante satisfatória.\cite{JOSPhy,guillaume} Linhas de atrasos podem ser adicionadas como prefixo à ao ruído com o decaimento, assim comtemplando as duas partes temporais da reverberação: as primeiras reflexões e a reverberação tardia. Pode-se, para melhora qualidade, calcular geometricamente a localização da última superfície em que cada frente de onda refletiu antes de chegar ao ouvido nos primeiros $100-200$ milissegundos e aplicar um filtro passa-baixas como em~\ref{subsec:filtros}. O ruído colorido pode ser introduzido gradualmente, desde o instante inicial dado pela incidência direta (i.e. sem reflexão alguma e dada pela DTI e DII), em \emph{fade-in}, atingindo o máximo no começo da 'reveberação tardia', quando as incidências geométricas perdem sua importância para as estatísticas do ruído em decaimento.
 
 A reverberação é conhecida por causar bastante interesse no ouvinte e tornar as sonoridades mais agradáveis. Além disso, a modificação do espaço em que são reverberadas a música, ou as sonoridades individualmente, constitui um massete (quase um clichê) para causar supresa e interesse no ouvinte. 
@@ -1444,7 +1444,7 @@ Os elementos de $S_j$ podem ser sobrepostos por mixagem, como na equação~\ref{
 
 
 
-\subsection{Afinação, intervalos, escalas e acordes}
+\subsection{Afinação, intervalos, escalas e acordes}\label{subsec:afinacao}
 \subsubsection{Afinação}
 O dobro da frequência é uma oitava ascendente ($f=2f_0$).
 A divisão da oitava em doze notas é o cânone da música ocidental clássica,
