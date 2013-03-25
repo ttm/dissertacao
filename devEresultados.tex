@@ -23,8 +23,8 @@ e, de um ponto de vista cognitivo, como discretizações
 que facilitam e enriquecem o fluxo de informação através da música.\cite{Roederer, Lacerda}
 Canonicamente, as notas possuem ao menos duração, volume, altura e timbre.\cite{Lacerda} Estas
 são qualidades tratáveis quantitativamente
-e ditadas pelas amostras igualmente espaçadas no tempo
-da onda mecânica que representam (veja seção~\ref{sec:audio} sobre áudio PCM).\cite{Roederer}
+e ditadas pelas amostras, igualmente espaçadas no tempo,
+da onda sonora (veja seção~\ref{sec:audio} sobre áudio PCM).\cite{Roederer}
 
 Todas as relações desta seção estão no Apêndice~\ref{sec:cod1}, as montagens musicais \emph{Quadros sonoros} e \emph{Reduced-fi} estão nos Apêndices~\ref{ap:quadros} e~\ref{ap:reduced}. Estas implementações estão também disponíveis online como parte do \emph{toolbox} \massa.\cite{MASSA}
 
@@ -470,24 +470,24 @@ DTI e DII especifica-se somente o ângulo horizontal (azimutal) $\theta$ dado po
 \end{equation}
 
 com $x,y$ tais como representados na figura~\ref{fig:spac}. Mesmo assim, há dificuldades quando $\theta$ incide sobre o chamado "cone de confusão" em que um mesmo par de especificações DTI, DII resultam de vários dos pontos 
-do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que nas graves.\cite{Heeger,hrtf} 
+do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que nas graves.\cite{Heeger,hrtf}  Também pertinente à audição de fonte lateral, quando o som é graves o suficiente, há uma difração e a onda chega ao ouvido $\approx 0,7ms$ depois.\cite{floEsp}
 
 A figura~\ref{fig:spac} mostra também esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não foram encontradas na literatura visitada, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.\cite{hrtf}
 
 Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}).\cite{hrtf} Exitem bases abertas e conhecidas de HRTF como a CIPIC e pode-se aplicar estas funções de transferência em um som por convolução (veja equação~\ref{eq:conv}).\cite{CIPIC} O corpo do indivíduo altera bastante as filtragens realizadas e existem técnicas para gerar HRTFs que sejam - como proposta - utilizáveis de forma universal.\cite{lazaSPA} 
 
 \subsubsection{Espacialização}
-Já a espacialização é, fundamentalmente, o resultado das reflexões e absorções da nota emitida nas superfícies do recinto/paisagem no qual a nota foi emitida. Pode-se simular reverberações reais não possíveis em sistemas reais. O som viaja a $343,2m/s$, e pode ser emitido da fonte com qualquer padrão de direcionalidade. Quando uma frente sonora encontra uma superfície do recinto, há uma reflexão. Nesta reflexão ocorrem tanto 1) a inversão da componente da velocidade de propagação que é perpendicular à superfície, quanto 2) a absorção de energia, especialmente nos agudos. As ondas se propagam até atingirem niveis considerados inaudíveis. Quando alguma frente de onda atingir o ouvido, é registrada e pode ser inteiramente descrita com: momento de chegada ao ouvido e o número de reflexões junto aos filtros de absorção de cada superfície que atingiu. Para experimentações, pode-se usar reflexões assimétricas com relação ao eixo perpendicular à superfície, ou ainda ganhos em determinadas bandas de frequência (tidos como 'ressonâncias'), ambas as características não são encontradas em sistemas reais.
+Já a espacialização é o resultado das reflexões e absorções do som nas superfícies do recinto/paisagem no qual a nota foi emitida. O som se propaga no ar a $\approx 343,2m/s$, e pode ser emitido da fonte com qualquer padrão de direcionalidade. Quando uma frente sonora encontra uma superfície, há uma reflexão. Nesta reflexão ocorrem tanto 1) a inversão da componente da velocidade de propagação que é perpendicular à superfície, quanto 2) a absorção de energia, especialmente nos agudos. As ondas se propagam até atingirem níveis inaudíveis. Quando alguma frente de onda atingir o ouvido, pode ser descrita com o momento de chegada ao ouvido e os filtros de absorção de cada superfície que atingiu. Pode-se simular reverberações não possíveis em sistemas reais. Para experimentações, pode-se usar reflexões assimétricas com relação ao eixo perpendicular à superfície, ou ainda ganhos em determinadas bandas de frequência (tidos como 'ressonâncias'), ambas as características não são encontradas em sistemas reais.
 
 Existem algumas modelagens de reverberação menos atreladas ao cálculo de cada reflexão, exploram informações valiosas do ponto de vista auditivo. De fato, a reverberação pode ser modelada com um conjunto de 2 características temporais e no espectro:
 \begin{itemize}
-    \item Primeiro periodo: as 'primeiras reflexões' são mais intensas e esparças.
-    \item Segundo período: a 'reverberação tardia' é uma continuação de atrasos com um decaimento exponencial e ocorrências estatísticas.
+    \item Primeiro periodo: as 'primeiras reflexões' são mais intensas e esparsas.
+    \item Segundo período: a 'reverberação tardia' é praticamente uma sucessão densa de atrasos indistintos com um decaimento exponencial e ocorrências estatísticas.
     \item Primeira banda: o grave possui algumas frequências de ressonância relativamente espaçadas.
     \item Segunda banda: o médio e agudo possuem um decaimento progressivo e suave com flutuações estatísticas.
 \end{itemize}
 
-Smith III aponta que boas salas de concerto possuem um tempo total de reverberação de aproximadamente $1,9$ segundos. Aponta também que o período das primeiras reflexões deve ser de $0,1$ segundos. Estas quantidades apontam que, nas condições contempladas, há frentes de onda perceptíveis que se propagam até $652,08$ metros ($83.79k$ amostras em $f_a=44.1kHz$) antes de atingirem o ouvido. Além disso, as reflexões do som formam, para a audição, após a propagação por $34,32$ metros ($4.41k$ amostras em $f_a=44.1kHz$ ), um emaranhado cujas incidências são pouco distintas. Estas primeiras reflexões são particularmente importantes para a sensação de espaço. A primeira incidência é o som direto, descrito por DTI e DII das equações~\ref{eq:dti} e~\ref{eq:dii}. Admitindo-se que cada uma das primeiras reflexões se propagará, ao menos, $3-30m$ dependentes das dimensões da sala, a separação entre as primeiras reflexões é de, ao menos, $8-90$ milissegundos, correspondendo a uma separação de aproximadamente $350-4000$ amostras. Verifica-se experimentalmente que o número de reflexões por aumenta em proporção quadrática  $ \approx k.n^2$. Apontamentos do uso de convoluções e filtragens para facilitar estas implementações estão na subseção~\ref{subsec:mus2}, especialmente nos parágrafos sobre reverberação.
+Smith III aponta que boas salas de concerto possuem um tempo total de reverberação de aproximadamente $1,9$ segundos. Aponta também o período das primeiras reflexões de $0,1$ segundos. Estas quantidades sugerem que, nas condições contempladas, há frentes de onda perceptiveis que se propagam até $652.08$ metros ($83.79k$ amostras em $f_a=44.1kHz$) antes de atingirem o ouvido. Além disso, as reflexões do som formam, após a propagação por $34.32$ metros ($4.41k$ amostras em $f_a=44.1kHz$ ), um emaranhado cujas incidências são pouco distintas na audição. Estas primeiras reflexões são particularmente importantes para a sensação de espaço. A primeira incidência é o som direto, descrito por DTI e DII das equações~\ref{eq:dti} e~\ref{eq:dii}. Admitindo que cada uma das primeiras reflexões, antes de chegar ao ouvido. se propagará, ao menos, $3-30m$ dependentes das dimensões da sala, a separação entre as primeiras reflexões é de, ao menos, $8-90$ milissegundos ($\approx 350-4000$ amostras em $f_a=44.1kHz$). Verifica-se experimentalmente que o número de reflexões aumenta em proporção quadrática  $ \approx k.n^2$. Apontamentos do uso de convoluções e filtragens para facilitar estas implementações estão na subseção~\ref{subsec:mus2}, especialmente nos parágrafos sobre reverberação.
 
 \subsection{Usos musicais}\label{subsec:basMus}
 
@@ -1387,7 +1387,7 @@ inicial são então mixadas (ver equação \ref{eq:mixagem}). A peça \emph{Chor
 diferentes em sons diferentes e seu código está no Apêndice~\ref{ap:chorus}. A \emph{toolbox} \massa\ disponibiliza online este \emph{script}.
 
 \subsubsection{Reverberação}\label{subsubsec:reverb}
-Retomando também a exposição da subseção~\ref{subsec:spac}, a reverberação tardia pode ser modelada como a convolução com um trecho de ruído colorido rosa, marrom ou preto, em decaimento exponencial de amplitude com relação também ao tempo. A atenuação nos agudos e irregularidade suave na resposta em frequência são contempladas de forma bastante satisfatória.\cite{JOSPhy,guillaume} Linhas de atrasos podem ser adicionadas como prefixo à ao ruído com o decaimento, assim comtemplando as duas partes temporais da reverberação: as primeiras reflexões e a reverberação tardia. Pode-se, para melhora qualidade, calcular geometricamente a localização da última superfície em que cada frente de onda refletiu antes de chegar ao ouvido nos primeiros $100-200$ milissegundos e aplicar um filtro passa-baixas como em~\ref{subsec:filtros}. O ruído colorido pode ser introduzido gradualmente, desde o instante inicial dado pela incidência direta (i.e. sem reflexão alguma e dada pela DTI e DII), em \emph{fade-in}, atingindo o máximo no começo da 'reveberação tardia', quando as incidências geométricas perdem sua importância para as estatísticas do ruído em decaimento.
+Com a mesma nomenclatura da subseção~\ref{subsec:spac} sobre espacialização, a reverberação tardia pode ser modelada como a convolução com um trecho de ruído colorido rosa, marrom ou preto, em decaimento exponencial de amplitude com relação também ao tempo. Assim, a atenuação nos agudos e irregularidade suave na resposta em frequência são contempladas de forma bastante satisfatória.\cite{JOSPhy,guillaume} Linhas de atrasos podem ser adicionadas como prefixo à ao ruído com o decaimento, assim comtemplando as duas partes temporais da reverberação: as primeiras reflexões e a reverberação tardia. Pode-se, para melhora de qualidade, calcular geometricamente a localização da última superfície em que cada frente de onda refletiu antes de chegar ao ouvido nos primeiros $100-200$ milissegundos e aplicar um filtro passa-baixas como em~\ref{subsec:filtros}. O ruído colorido pode ser introduzido gradualmente, desde o instante inicial dado pela incidência direta (i.e. sem reflexão alguma e dada pela DTI e DII), em \emph{fade-in}, atingindo o máximo no começo da 'reveberação tardia', quando as incidências geométricas perdem sua importância para as estatísticas do ruído em decaimento.
 
 A reverberação é conhecida por causar bastante interesse no ouvinte e tornar as sonoridades mais agradáveis. Além disso, a modificação do espaço em que são reverberadas a música, ou as sonoridades individualmente, constitui um massete (quase um clichê) para causar supresa e interesse no ouvinte. 
 
@@ -1456,14 +1456,14 @@ O fator $\varepsilon=2^{\frac{1}{12}}$, um semitom, forma uma grade de notas
 no espectro audível. Fixada uma frequência $f$, as frequências fundamentais possíveis
 estão separadas por intervalos múltiplos de $\varepsilon$.
 Esta precisão absoluta é característica de implementações
-computacionais, pois os intrumentos reais possuem desvios destas frequências para melhor compatibilizar os harmônicos
-de suas notas. Além disso, o fator fixo $\varepsilon=2^{\frac{1}{12}}$ caracteriza
+computacionais, os intrumentos reais possuem desvios destas frequências para melhor compatibilizar os harmônicos
+de suas notas. Além disso, a referência fixa $\varepsilon=2^{\frac{1}{12}}$ caracteriza
 a afinação de temperamento por igual. Há afinações com intervalos propostos como razões de inteiros de baixa ordem, com
-fundamentação em leis físicas, e foram propostas antes do advento do temperamento por igual.\cite{Roederer}
+fruto da observação de comportamentos físicos.  As primeiras destas afinações foram formalizadas por volta de 2 mil anos antes do advento do temperamento por igual.\cite{Roederer}
 
 Duas afinações emblemáticas são:
 \begin{itemize}
-    \item A {\bf intonação justa} consiste em notas da escala diatônica descritas como razão de inteiros de pequena ordem como apontados pela série harmônica. As razões básicas estão contidas no modo jônico (dó a dó nas teclas brancas do piano, veja abaixo na subseção~\ref{subsec:escalas}): 1, 9/8, 5/4, 4/3, 3/2, 5/3, 15/8, 2/1. Os intervalos são considerados com relação às notas das escala e são usados o semitom 16/15, o 'tom menor' 10/9 e o 'tom maior' 9/8. Há diferentes formas de realizar uma divisão de 12 notas.
+    \item A {\bf intonação justa} consiste em notas da escala diatônica associadas a razões de inteiros de pequena ordem como apontados pela série harmônica. As razões básicas estão contidas no modo jônico (dó a dó nas teclas brancas do piano, veja abaixo na subseção~\ref{subsec:escalas}): 1, 9/8, 5/4, 4/3, 3/2, 5/3, 15/8, 2/1. Os intervalos são considerados com relação às notas das escala e são usados o semitom 16/15, o 'tom menor' 10/9 e o 'tom maior' 9/8. Há diferentes formas de realizar uma divisão de 12 notas.
     \item A {\bf afinação pitagórica} baseia-se no intervalo 3/2 (quinta justa). O modo jônico fica: 1, 9/8, 81/64, 4/3, 3/2, 27/16, 243/128, 2/1. Os intervalos são também considerados com relação às notas da escala. Além dos intervalos do modo, são usados a segunda menor 256/243, a terça menor 32/27, a quarta aumentada 729/512, a quinta diminuta 1024/729, a sexta menor 128/81 e a sétima menor 16/9. 
 \end{itemize}
 
@@ -1487,8 +1487,8 @@ $\varepsilon_2=2^{\frac{1}{53}}$.\cite{microtonalidade}
 As notas nesta divisão da oitava em $53$ notas se relacionam por inteiros
 com $\varepsilon_2$.
 Note que se $S_i$ é uma sequência de alturas relacionadas por $\varepsilon_1$,
-um mapeamento para notas em $\varepsilon_2$
-constitui uma nova sequência $S_i'$ com $s_i'=s_i \frac{\varepsilon_1}{\varepsilon_2}$. A montagem musical \emph{Micro tom} explora recursos microtonais e seu código está no Apêndice~\ref{ap:micro}, assim como na \massa\ online.
+um mapeamento para notas relacionadas por $\varepsilon_2$
+constitui uma nova sequência $S_i'=\left\{s_i'\right\}=\left\{ s_i \frac{\varepsilon_1}{\varepsilon_2}\right\}$. A montagem musical \emph{Micro tom} explora recursos microtonais e seu código está no Apêndice~\ref{ap:micro}, assim como na \massa\ online.
 
 
 
@@ -1501,7 +1501,7 @@ Em proporções de $\varepsilon=2^{\frac{1}{12}}$ entre as frequências das nota
 As consonâncias perfeitas são os uníssonos, as quintas e as oitavas justas (J). As consonâncias imperfeitas são
 as terças e as sextas maiores (M) e menores (m). As dissonâncias fortes são as segundas menores e sétimas maiores. As dissonâncias
 brandas são as segundas maiores e as sétimas menores. O primeiro caso especial consite na quarta justa, que é consonante perfeita
-se considerada uma inversão da quinta justa, caso contrário pode ser considerada uma dissonância ou uma consonância imperfeita. O segundo caso especial é o trítono (4aum, 5dim, tri). Este é consonante em algumas culturas, já para a música tonal, o trítono indica dominante e busca fundamentalmente sua resolução em uma terça ou sexta e, por esta instabilidade, é considerado intervalo dissonante.}
+se considerada uma inversão da quinta justa, caso contrário pode ser considerada uma dissonância ou uma consonância imperfeita. O segundo caso especial é o trítono (4aum, 5dim, tri). Este é consonante em algumas culturas, já para a música tonal, o trítono indica dominante e busca sua resolução em uma terça ou sexta e, por esta instabilidade, é considerado intervalo dissonante.}
 \begin{tabular}{| c | c | c | }\hline
     \multicolumn{3}{|c|}{\bf consonâncias}  \\\hline
    & notação tradicional & número de semitons \\
