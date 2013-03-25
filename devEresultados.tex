@@ -1997,32 +1997,32 @@ Neste caso, a estrutura musical consiste em permutações propriamente ditas e a
 
 
 A utilização de permutações na música pode ser resumida da seguinte forma:
-seja $L_i$ uma sequência de eventos musicais (e.g. notas) e $p$ uma permutação.
-$L_i'=p(L_i)$ consiste nos mesmos elementos de $L_i$ mas em ordem diferente.
+seja $S_i=\{s_i\}$ uma sequência de eventos musicais $s_i$ (e.g. notas) e $p$ uma permutação.
+$S_i'=p(S_i)$ consiste nos mesmos elementos de $S_i$ mas em ordem diferente.
 As permutações podem ser escritas em duas notações: cíclica ou natural. 
 A notação natural consiste na ordem dos índices 
 resultante da permutação. Assim,
 convencionada a ordenação original dada pela sequência de seus índices $[0\;1\;2\;3\;4\;5\;...]$ a permutação é notada pela sequência que produz (ex. $[1\;3\;7\;0\;...]$). Na notação cíclica, a permutação é a troca de um elemento pelo
 da frente, e o último pelo primeiro.
 
-Não é necessário permutar os elementos de $L_i$, mas somente
+Não é necessário permutar os elementos de $S_i$, mas somente
 alguma ou algumas de suas características. Assim, seja $p^f$ uma permutação 
-nas frequências e $L_i$ uma sequência de notas básicas como expostas
-ao final de~\ref{notaBasica}. A nova sequência $L_i'=p^f(L_i)$ consiste nas mesmas
+nas frequências e $S_i$ uma sequência de notas básicas como expostas
+ao final de~\ref{notaBasica}. A nova sequência $S_i'=p^f(S_i)=\left\{s_i^{p(f)}\right\}$ consiste nas mesmas
 notas musicais, na mesma ordem e com as mesmas características, com as frequências fundamentais permutadas segundo o padrão que $p^f$ apresenta.
 
 Duas sutilezas deste procedimento.
-1) A permutação $p$ não precisa envolver todos os elementos de $L_i$, i.e. ela
-pode operar em subconjuntos de $L_i$. 2) Nem todos os elementos $l_i$ precisam ser executados a cada consulta de estado realizada.
-Para exemplificar, seja $L_i$ 
-uma sequência de notas musicais $l_i$. 
+1) A permutação $p$ não precisa envolver todos os elementos de $S_i$, i.e. ela
+pode operar em subconjuntos de $S_i$. 2) Nem todos os elementos $s_i$ precisam ser executados a cada consulta de estado realizada.
+Para exemplificar, seja $S_i$ 
+uma sequência de notas musicais $s_i$. 
 Se $i$ vai de $0$ a $n$, e $n>4$, a cada compasso
 de $4$ notas pode-se executar as primeiras $4$ notas. As outras notas de
-$L_i$ podem incidir nos compassos em que as permutações aloquem
-estas notas para as primeiras quatro notas de $L_i$.
+$S_i$ podem incidir nos compassos em que as permutações aloquem
+estas notas para as primeiras quatro notas de $S_i$.
 
-Cada uma destas permutações
-$p_i$ possui, ao menos, segundo a exposição acima: dimensões das notas em que opera (frequência, duração, \emph{fades}, intensidade, etc) e período de incidência (a cada quantas consultas é aplicada a permutação). Na realização das notas de $L_i$, uma forma fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $L_i$ equivale a modificar a permutação e executar as primeiras notas.}.
+A cada uma destas permutações
+$p_i$, segundo a exposição acima, relaciona-se: dimensões das notas em que opera (frequência, duração, \emph{fades}, intensidade, etc) e período de incidência (a cada quantas consultas é aplicada a permutação). Na realização das notas de $S_i$, uma forma fácil e coerente é executar as primeiras $n$ notas\footnote{A execução de notas disjuntas de $S_i$ equivale a modificar a permutação e executar as primeiras notas.}.
 
 No Apêndice~\ref{cap:FIGGUScode} apontada a implementação computacional disponibilizada em.\cite{MASSA,figgusOriginal,figgusEspacializacao}
 
