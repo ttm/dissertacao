@@ -22,6 +22,7 @@ p.xticks((),())
 p.yticks((),())
 
 p.xlabel(r"tempo $\rightarrow$", fontsize=19)
+p.ylabel(u"parâmetro"+r"$\rightarrow$", fontsize=19)
 
 p.show()
 
