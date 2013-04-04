@@ -156,7 +156,7 @@ som = n.vstack((T2_i, T_i)).T
 a.wavwrite(som, "estereo.wav", f_a)
 # espelhando
 som = n.vstack((T_i, T2_i)).T
-a.wavwrite(som, "estereo2wav", f_a)
+a.wavwrite(som, "estereo2.wav", f_a)
 
 ### 2.29 ângulo do objeto
 theta = n.arctan(y/x)
