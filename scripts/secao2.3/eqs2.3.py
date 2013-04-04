@@ -1,4 +1,4 @@
-#_8_ coding: utf8 -*-
+#-*- coding: utf8 -*-
 import numpy as n
 
 f_a = 44100.  # Hz, frequência de amostragem
