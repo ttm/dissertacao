@@ -16,7 +16,7 @@ Estes tópicos são tratados separadamente
 abaixo em termos do que é
 mantido \emph{online}.
 Estas atividades extrapolam os usos musicais, especialmente devido às
-finalidades pedagódicas e sociais das práticas audiovisuais.
+finalidades pedagógicas e sociais das práticas audiovisuais.
 Assim, por completude, alguns materiais didáticos
 e ferramentas \emph{web} são descritas.
 Todos os desenvolvimentos desta dissertação estão em repositórios
@@ -59,16 +59,16 @@ pois seus usos comuns incluem aplicações em tempo real.
 Através deste trabalho, foi disponibilizado um pacote de plugins lv2
 que sintetizam os ruídos branco, azul, violeta, rosa e marrom. Os
   códigos em C e a implementação como plugin lv2 estão no
-  repositório git como pode ser visto em \emph{online}\footnote{Este link é o \emph{README} do repositódio \emph{git} com os códigos dos
+  repositório git como pode ser visto em \emph{online}\footnote{Este link é o \emph{README} do repositório \emph{git} com os códigos dos
       plugins:
   \url{http://labmacambira.git.sourceforge.net/git/gitweb.cgi?p=labmacambira/LV2;a=summary}.}.
 
 Já na remoção de ruídos as abordagens são as mais variadas e
-extremamente dependentes da aplicação. A complexidade dos algorítmos
+extremamente dependentes da aplicação. A complexidade dos algoritmos
 atinge níveis de especialidade em processamento de sinais que já
 mereceram trabalhos dedicados. Adiante está a implementação de um
 removedor de ruído \emph{'Hum'}. Este ruído é
-geralemte causado pela corrente alternada que
+geralmente causado pela corrente alternada que
 alimenta os equipamentos utilizados.
 
 A remoção de ruído \emph{Hum} é baseada em uma sequência de filtros nó rejeita
@@ -138,7 +138,7 @@ a seguir.
 Desta forma, esta seção exemplifica e explicita - através de dois
 exemplos reais - o uso de código para a síntese
 \emph{musical}, desde as amostras relativas a uma nota com dada
-frequencia, amplitude e timbre, até a confecção de uma ferramenta
+frequência, amplitude e timbre, até a confecção de uma ferramenta
 derivada, que já incorpora propostas musicais e estruturas mais
 elaboradas.
 
@@ -157,7 +157,7 @@ manifestar este princípio ele próprio de forma mínima resultou no
 \emph{minimum-fi.py}, código Python em um único arquivo curto que
 sintetiza a música segundo as estruturas especificadas em
 linha. Na versão atual, de
-2012 mas adiantada em 2011, os algorítmos em Python propriamente ditos
+2012 mas adiantada em 2011, os algoritmos em Python propriamente ditos
 somam 53 linhas e incluem apenas 5 funções. Com estas funções,
 estruturas musicais são criadas padrão a padrão, nota a nota,
 amostra por amostra. Na prática, e em linguagem cotidiana,
@@ -186,7 +186,7 @@ do procedimento está na subseção~\ref{subsec:lookup}.
 Através da utilização do \emph{lookup} sucessivo (procura-se um valor na primeira tabela
 e este valor indica o valor na segunda tabela a ser utilizado), executa-se
 um \emph{waveshaping}. Este procedimento é bastante apreciado pela simplicidade e eficácia
-na síntese de tímbres diversos e ricos em harmônicos e evolução temporal. Embora
+na síntese de timbres diversos e ricos em harmônicos e evolução temporal. Embora
 uma explicação exaustiva do waveshaping fuja ao escopo deste trabalho, este
 método se caracteriza pela aplicação de uma função não linear ao sinal de entrada.
 Neste caso o sinal de entrada é gerado pela primeira busca, a função não linear aplicada
@@ -213,7 +213,7 @@ das funções \emph{fazSequencia} e \emph{fazAcorde} no \emph{minimum-fi}. Vale 
 equivalentes em uma análise puramente conceitual, i.e. uma delas pode ser omitida sem perda das possibilidades musicais. Isso fica particularmente óbvio quando se nota que os procedimentos de mixagem e concatenação são
 plenamente capazes de realizar o que estas funções realizam. Aliás, as funções nada
 mais são do que usos típicos e quase caricatos destes procedimentos: no \emph{fazAcorde} a mixagem
-sobrepõe no tempo todas as unidades, no \emph{fazSequencia} as unidades são todas juntapostas no tempo.
+sobrepõe no tempo todas as unidades, no \emph{fazSequencia} as unidades são todas justapostas no tempo.
 
 Como pode-se notar a seguir, as sequências de notas e os acordes, em última instância, são usos específicos das 2 funções de síntese sonora implementadas: \emph{lookup} e \emph{lookupcruz}.
 
@@ -241,7 +241,7 @@ pode ser feita desta forma:
 \code{Sintetizando sequências e acordes}{python_snippets/seqs_acordes.py}
 
 Já a síntese de estruturas compostas (e.g. sequências de acordes e sobreposição
-de linhas melódicas), é feita com os recursos usuais da liguagem:
+de linhas melódicas), é feita com os recursos usuais da linguagem:
 listas em Python e vetores Numpy (mais eficientes em tempo de
 execução e também na simplicidade do código). Estes 
 procedimentos são praticamente os mesmos se implementados em Scilab, C/C++, Javascript, PHP, etc.
@@ -327,12 +327,12 @@ frequência (Hz), timbre (identificador para usar mediante implementações conv
 O \figgus\ funciona com base em uma sequência de grãos especificada inicialmente e na qual operam as permutações.
 Aos grãos em sequência são aplicadas permutações.
 Para isso é bastante conveniente representar as permutações em classes próprias.
-A classe do padrão de permutação possui também um período de aplicação da permutação, ou seja, de quantas em quantas leituras da sequência apermutação é aplicada.
+A classe do padrão de permutação possui também um período de aplicação da permutação, ou seja, de quantas em quantas leituras da sequência a permutação é aplicada.
 
 Em posse dos grãos, da sequência, das permutações e do padrão de permutações, pode-se realizar a estrutura musical em si. Basta adicionalmente especificar o número desejado de iterações da sequência. Com isso, a sequência de grãos é lida um número de vezes, aplicando as permutações na sequência de grãos segundo o padrão especificado, de forma a resultar em uma sequência musical. Note que se a permutação usar menos elementos que a sequência possui, alguns destes elementos ficarão estáticos nas iterações da sequência no padrão sonoro.
 
 
-A partir das representações abstratas do padrão musical, são feitos os vetores sonoros da representação digital da música a ser realizada e pode-se escrever um arquivo de áudio propriamente dito. O mais conveniente, neste caso, é escrever um arquivo PCM (Pulse Code Modulation) em algum padrão amplamente utilizado e reconhecido. Ambos WAV e AIFF satisfazem estes requisitos. Mais especificamente, o padrão de CDs é WAV com 44100 amostras por segundo e 16 bits por amostra. As amostras dos vetores sonoros são calculados, por conveniência e convenção, no âmbito $[-1,1]$ e precisam ser normalizados para o âmbito $[-32767,32768]$ e truncados em números inteiros. Depois disso devem ser escritos em um arquivo com os \emph{bits} como na convenção da linguagem C/C++. A bibioteca \emph{struct} cuida dessa escrita do inteiro no formato correto, e a biblioteca \emph{wave} escreve o cabeçalho no formato WAV adequado. Assim, a clase de escrita do vetor sonoro em arquivo comum fica assim:
+A partir das representações abstratas do padrão musical, são feitos os vetores sonoros da representação digital da música a ser realizada e pode-se escrever um arquivo de áudio propriamente dito. O mais conveniente, neste caso, é escrever um arquivo PCM (Pulse Code Modulation) em algum padrão amplamente utilizado e reconhecido. Ambos WAV e AIFF satisfazem estes requisitos. Mais especificamente, o padrão de CDs é WAV com 44100 amostras por segundo e 16 bits por amostra. As amostras dos vetores sonoros são calculados, por conveniência e convenção, no âmbito $[-1,1]$ e precisam ser normalizados para o âmbito $[-32767,32768]$ e truncados em números inteiros. Depois disso devem ser escritos em um arquivo com os \emph{bits} como na convenção da linguagem C/C++. A biblioteca \emph{struct} cuida dessa escrita do inteiro no formato correto, e a biblioteca \emph{wave} escreve o cabeçalho no formato WAV adequado. Assim, a clase de escrita do vetor sonoro em arquivo comum fica assim:
 
 \code{Escrita do Vetor Sonoro em Arquivo WAV}{python_snippets/fio.py}
 
@@ -362,7 +362,7 @@ O ABeatTracker ainda pode ser considerado
 livecoding, mas já é um intermediário, com traços
 de um aplicativo ou ferramenta, embora os comandos sejam acessados
 pela escrita. É uma linguagem
-com macros para execução de rítmos através de \emph{samples}
+com macros para execução de ritmos através de \emph{samples}
 em conjunto com instrumentos
 tradicionais e outras fontes sonoras/musicais externas.
 
@@ -376,7 +376,7 @@ estético, do qual vale ressaltar os grupos pioneiros
 as 'orquestras de \emph{laptops}'
 \emph{PLOrk}, \emph{SLOrk} e \emph{DubLOrk}\footnote{Para maiores detalhes, veja:
   \url{http://toplap.org}.}. Usualmente, o código é projetado para que a
-audiência possa ver o que está sendo escrito, no rítmo em que se
+audiência possa ver o que está sendo escrito, no ritmo em que se
 escreve, e se projeta também o resultante sonoro por autofalantes.
 
 

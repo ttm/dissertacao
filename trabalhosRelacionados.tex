@@ -32,7 +32,7 @@ Este capítulo é dedicado aos trabalhos similares ou relacionados. Os livros ma
         \end{itemize}
     \item \emph{Real Sound Synthesis for Interactive Applications}
         \begin{itemize}
-            \item {\bf Descrição:} livro do Perry Cook, de 2002, discorre sobre fundamentos de áudio digital e modelagem física. Possui preciosas dicas de modelagens de sons reais com características de intrumentos tradicionais e efeitos com origem nos instrumentos analógicos.
+            \item {\bf Descrição:} livro do Perry Cook, de 2002, discorre sobre fundamentos de áudio digital e modelagem física. Possui preciosas dicas de modelagens de sons reais com características de instrumentos tradicionais e efeitos com origem nos instrumentos analógicos.
             \item {\bf Aspecto complementar:} implementa diversos instrumentos musicais e efeitos sonoros. Trata de uma biblioteca em C para síntese sonora que contempla boa parte das funcionalidades da \massa.
             \item {\bf Aspecto diferencial:} O trabalho escapa à descrição das amostras sonoras em si e não possui uma sistematização de elementos musicais básicos em termos das características sonoras.
             \item {\bf Contribuições diretas:}  a parte "1.3 Quantização" descreve de forma breve e suficiente o ruído de quantização e pode complementar à dissertação em "1.1 Som em áudio digital". O escrito sugere uma melhora na relação sinal/ruído de 6 decibels por bit utilizado na quantização de cada amostra do áudio PCM. O que indica diretamente uma relação sinal/ruído de 96dB para 16 bits/amostra (padrão de CD) e 48dB para 8 bits/amostra (comum em sistemas de voz).
@@ -59,7 +59,7 @@ Este capítulo é dedicado aos trabalhos similares ou relacionados. Os livros ma
         \end{itemize}
     \item \emph{5 livros do Julious O. Smith III}\cite{JOSFaust,JOSSpec,JOSFilt,JOSPhy,JOSFM}
         \begin{itemize}
-            \item {\bf Descrição:} este autor possui diversos escritos, mais de 200 artigos publicados. Ao menos 5 livros de interesse para a dissertação: \emph{Mathematics of the Discrete Fourier Transform (DFT)} descreve a DFT minuciosamente, influindo FFT. O livro \emph{Introduction to Digital Filters (with audio applications)} trata de filtros de diversos tipos e descreve transfomadas, técnicas de design de filtros e análises de frequência e por polos e zeros. Além de abordar filtros não convencionais, o livro termina com implementações em matlab, Faust e PD e possibilidades de confeção de plugins. O livro \emph{Physical Audio Signal Processing (for virtual musical instruments and audio effects)} trata de modelagem física. O livro \emph{Spectral Audio Signal Processing} adentra STFT em detalhes das janelas utilizadas e aplicações da STFT. Também aborda Wavelets de forma superficial porém consistente. O livro \emph{Audio Signal Processing in Faust} trata da liguagem Faust e suas facilidades para o processamento de áudio e música.
+            \item {\bf Descrição:} este autor possui diversos escritos, mais de 200 artigos publicados. Ao menos 5 livros de interesse para a dissertação: \emph{Mathematics of the Discrete Fourier Transform (DFT)} descreve a DFT minuciosamente, influindo FFT. O livro \emph{Introduction to Digital Filters (with audio applications)} trata de filtros de diversos tipos e descreve transformadas, técnicas de design de filtros e análises de frequência e por polos e zeros. Além de abordar filtros não convencionais, o livro termina com implementações em matlab, Faust e PD e possibilidades de confecção de plugins. O livro \emph{Physical Audio Signal Processing (for virtual musical instruments and audio effects)} trata de modelagem física. O livro \emph{Spectral Audio Signal Processing} adentra STFT em detalhes das janelas utilizadas e aplicações da STFT. Também aborda Wavelets de forma superficial porém consistente. O livro \emph{Audio Signal Processing in Faust} trata da linguagem Faust e suas facilidades para o processamento de áudio e música.
             \item {\bf Aspecto complementar:} a seção "Perceptual Aspects of Reverberation", do livro de filtros, pode fechar o assunto da espacialização junto à subseção "2.1.7 Localização espacial". As partes de modelagem de voz e de fundamentos físicos podem também servir de bons  complementos à dissertação. o livro sobre Faust complementa a dissertação por explicitar uma linguagem de domínio específico para áudio e música. O livro também contempla usos integrados com outros programas e linguagens via, por exemplo, o padrão de plugin LADSPA ou o protocolo OSC de comunicação entre programas para manipulação multimídia. 
             \item {\bf Aspecto diferencial:} estes trabalhos apresentam teorias fundamentais para o que se faz hoje em termos de programação para música, e não uma descrição de elementos musicais em termos das amostras digitais.
             \item {\bf Contribuições diretas:} a parte de espacialização tem como referencia forte o livro de modelagem física. A clareza sobre a natureza da reverberação e sobre suas características foi toda disparada por este livro.
@@ -79,13 +79,13 @@ Este capítulo é dedicado aos trabalhos similares ou relacionados. Os livros ma
     \item \emph{Symmetry as a Compositional Determinant}
         \begin{itemize}
             \item {\bf Descrição:} livro Larry J. Salomon, de 1973 e revisado em 2002, é uma leitura de procedimentos composicionais tradicionais tendo como base comum a simetria.
-            \item {\bf Aspecto complementar:} é um escrito bastante pertinete para toda a seção "2.3 Organização de notas em música", principalmente para a parte "2.3.6 Estruturas cíclicas" com as rotações, reflexões, translados e incidências tradicionais.
+            \item {\bf Aspecto complementar:} é um escrito bastante pertinente para toda a seção "2.3 Organização de notas em música", principalmente para a parte "2.3.6 Estruturas cíclicas" com as rotações, reflexões, translados e incidências tradicionais.
             \item {\bf Aspecto diferencial:} o trabalho não relaciona as características musicais com o som como fenômeno físico.
             \item {\bf Contribuições diretas:} foi um livro importante no amadurecimento das questões tratadas nesta dissertação por ser um livro focado em simetrias na música.
         \end{itemize}
     \item \emph{The CSound Book}
         \begin{itemize}
-            \item {\bf Descrição:} editado por Richard Boulanger, 2000, possui contribuições de diversos autores. Além de abordar pincípios da linguagem, seus funcionamentos internos e paradigmas musicais, é um apanhado de técnicas de síntese musical do som e estruturas de mais alto nivel.
+            \item {\bf Descrição:} editado por Richard Boulanger, 2000, possui contribuições de diversos autores. Além de abordar princípios da linguagem, seus funcionamentos internos e paradigmas musicais, é um apanhado de técnicas de síntese musical do som e estruturas de mais alto nível.
             \item {\bf Aspecto complementar:} apresenta a paradigmática linguagem de programação voltada para música: CSound. Junto a esta valiosa empreitada, consagrados recursos musicais eletrônicos são expostos.
             \item {\bf Aspecto diferencial:} é focado no CSound e não se propõe a ser um livro de fundamentos com descrição formal das características do som relacionado às estruturas musicais. 
         \end{itemize}
@@ -99,7 +99,7 @@ Este capítulo é dedicado aos trabalhos similares ou relacionados. Os livros ma
         \begin{itemize}
             \item {\bf Descrição:} de Curtis Roads, 1996, é já um clássico com algumas partes escritas por outros autores, como colaborações. 
             \item {\bf Aspecto complementar:} o capítulo "VII - Psychoacoustics" pode ser complementar à dissertação em algum detalhes e para aprofundamento.
-            \item {\bf Aspecto diferencial:} Os textos do livro são de alto nivel, sem preocupação central com o rigor, mas sim com apontamentos qualitativos e historicos das subáreas da música computacional. 
+            \item {\bf Aspecto diferencial:} Os textos do livro são de alto nível, sem preocupação central com o rigor, mas sim com apontamentos qualitativos e históricos das subáreas da música computacional. 
         \end{itemize}
     \item \emph{Music and Acoustics: From Instrument to Computer}
         \begin{itemize}
