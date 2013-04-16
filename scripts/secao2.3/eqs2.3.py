@@ -29,7 +29,16 @@ def v(f=200, d=2., tab=S_i, fv=2., nu=2., tabv=S_i):
 
 ############## 2.3.1 Afinação, intervalos, escalas e acordes
 
-### 2.76 Intervalos
+### Microtonalidade de quartos de tom
+### e sétimos de oitava
+# com
+epslon = 2**(1/12.)
+s1 = [0., 0.25, 1.75, 2., 2.25, 4., 5., 5.25]
+#ou
+epslon = 2**(1/7.)
+s2 = [0., 1., 2., 3., 4., 5., 6.]
+
+### Tabela 2.22: Intervalos
 I1j = 0.
 I2m = 1.
 I2M = 2.
@@ -62,14 +71,14 @@ def intervaloHarmonico(f, I):
 def intervaloMelodico(f, I):
     return n.hstack((v(f), v(f*2.**(I/12.))))
 
-### 2.77 Escalas simétricas
+### 2.82 Escalas simétricas
 Ec_i = [0., 1., 2., 3., 4., 5., 6., 7., 8., 9., 10., 11.]
 Et_i = [0., 2., 4., 6., 8., 10.]
 Etm_i = [0., 3., 6., 9.]
 EtM_i = [0., 4., 8.]
 Ett_i = [0., 6.]
 
-### 2.78 Escalas diatônicas
+### 2.83 Escalas diatônicas
 Em_i = [0., 2., 3., 5., 7., 8., 10.]
 Emlo_i = [1., 3., 5., 6., 8., 10.]
 EM_i = [0., 2., 4., 5., 7., 9., 11.]
@@ -78,18 +87,18 @@ Emf_i = [0., 1., 3., 5., 7., 8., 10.]
 Eml_i = [0., 2., 4., 6., 7., 9., 11.]
 Emmi_i = [0., 2., 4., 5., 7., 8., 10.]
 
-### 2.79 Padrão diatônico
+### 2.84 Padrão diatônico
 E_i_ = n.roll(n.array([2.,2.,1.,2.,2.,2.,1.]), n.random.randint(7.))
 E_i = n.cumsum(E_i_)-E_i_[0.]
 
 
-### 2.80 Escalas menores harmônica e melódica
+### 2.85 Escalas menores harmônica e melódica
 Em_i = [0., 2., 3., 5., 7., 8., 10.]
 Emh_i = [0., 2., 3., 5., 7., 8., 11.]
 Emm_i = [0.,2.,3.,5.,7.,9.,11.,12.,10.,8.,7.,5.,3.,2.,0.]
 
 
-### 2.81 Tríades
+### 2.86 Tríades
 AM_i = [0., 4., 7.]
 Am_i = [0., 3., 7.]
 Ad_i = [0., 3., 6.]
@@ -98,18 +107,10 @@ Aa_i = [0., 4., 8.]
 def comSetimam(A): return A+[10.]
 def comSetimaM(A): return A+[11.]
 
-### Microtonalidade de quartos de tom
-### e sétimos de oitava
-# com
-epslon = 2**(1/12.)
-s1 = [0., 0.25, 1.75, 2., 2.25, 4., 5., 5.25]
-#ou
-epslon = 2**(1/7.)
-s2 = [0., 1., 2., 3., 4., 5., 6.]
 
 
-############## 2.3.2 Rudimentos de harmonia
-### Figura 2.22
+############## 2.3.2 Harmonias atonal, tonal, expansão e modulação
+### Tabela 2.23
 def relativa(TT):
     """TT é tríade maior ou menor em posicão fechada e fundamental"""
     T = n.copy(TT)
@@ -173,7 +174,7 @@ class Mediana:
             T[2] = 9.  # retorna menor
         return T
 
-### Tônicas e funções principais
+### Funções principais
 tonicaM = [0., 4., 7.]
 tonicam = [0., 3., 7.]
 subM = [0., 5., 9.]
@@ -255,10 +256,14 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,\
 ### Veja peça Poli Hit Mia no Apêndice B
 
 
-############## 2.3.5 Estruturas direcionais
+############## 2.3.5 Repetição e variação: motivos e unidades maiores
+### Conceitos ubíquos
+
+
+############## 2.3.6 Estruturas direcionais
 ### Veja peça Dirracional no Apêndice B
 
 
-############## 2.3.6 Estruturas cíclicas
+############## 2.3.7 Estruturas cíclicas
 ### Veja as peças 3 Trios no Apêndice B
 ### e o PPEPPS no Apêndice C
