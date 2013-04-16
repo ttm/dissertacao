@@ -44,7 +44,7 @@ T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\lfloor \Delta . f_a \rfloor -1}
 
 Seja $\Lambda = \lfloor \Delta . f_a \rfloor$ o número de amostras da sequência, de forma que $T_i=\{t_i\}_0^{\Lambda-1}$.
 
-\subsection{Volume}
+\subsection{Volume}\label{subsec:volume}
 A sensação de volume sonoro depende da reverberação e distribuição dos harmônicos, dentre outras características trabalhadas na seção~\ref{varInternas}. Pode-se obter variações do volume através da potência da onda~\cite{Chowning}:
 
 \begin{equation}\label{eq:potencia}
@@ -162,7 +162,7 @@ ambos os harmônicos pares e ímpares e em grande quantidade. Para fins musicais
 Os harmônicos relativamente atenuados da onda triangular
 a fazem a mais funcional - dentre as citadas - para ser usada sem nenhum tratamento na síntese de notas musicais.
 
-Já a onda quadrada, pode ser usada na síntese
+Já a onda quadrada pode ser usada na síntese
 subtrativa que vise a imitar um clarinete. Este instrumento também só apresenta os
 componentes ímpares do espectro harmônico e a onda quadrada convém com sua energia abundante nas altas frequências.
 
@@ -472,7 +472,7 @@ DTI e DII especifica-se somente o ângulo horizontal (azimutal) $\theta$ dado po
 com $x,y$ tais como representados na figura~\ref{fig:spac}. Mesmo assim, há dificuldades quando $\theta$ incide sobre o chamado "cone de confusão" em que um mesmo par de especificações DTI, DII resultam de vários dos pontos 
 do cone. Nestes pontos, a inferência do ângulo azimutal depende especialmente da filtragem atenuante nos agudos, pois a cabeça interfere um tanto mais nas ondas mecânicas agudas do que nas graves.\cite{Heeger,hrtf}  Também pertinente à audição de fonte lateral, quando o som é grave o suficiente, há uma difração e a onda chega ao ouvido $\approx 0,7ms$ depois.\cite{floEsp}
 
-A figura~\ref{fig:spac} mostra também esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não foram encontradas na literatura visitada, mas pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.\cite{hrtf}
+A figura~\ref{fig:spac} mostra também esta sombra acústica do crânio, importante para a percepção do ângulo azimutal da fonte no cone de confusão. O cone em si não foi disposto na figura pois não é exatamente um cone e suas dimensões precisas não foram encontradas na literatura visitada e não são facilmente concebíveis, dadas as filtragens e a difração dependente do espectro do som em si. De toda forma, o cone de confusão pode ser entendido como um cone com o ápice no meio da cabeca e saindo por cada uma das orelhas.\cite{hrtf}
 
 Já a localização completa, incluindo distância e elevação da fonte sonora, é dada pela função de transferência de cabeça (HRTF - do inglês \emph{Head Related Transfer Function}).\cite{hrtf} Existem bases abertas e conhecidas de HRTF como a CIPIC e pode-se aplicar estas funções de transferência em um som por convolução (veja equação~\ref{eq:conv}).\cite{CIPIC} O corpo do indivíduo altera bastante as filtragens realizadas e existem técnicas para gerar HRTFs que sejam - como proposta - utilizáveis de forma universal.\cite{lazaSPA} 
 
@@ -487,7 +487,7 @@ Existem algumas modelagens de reverberação menos atreladas ao cálculo de cada
     \item Segunda banda: o médio e agudo possuem um decaimento progressivo e suave com flutuações estatísticas.
 \end{itemize}
 
-Smith III aponta que boas salas de concerto possuem um tempo total de reverberação de aproximadamente $1,9$ segundos. Aponta também o período das primeiras reflexões de $0,1$ segundos. Estas quantidades sugerem que, nas condições contempladas, há frentes de onda perceptíveis que se propagam até $652.08$ metros ($83.79k$ amostras em $f_a=44.1kHz$) antes de atingirem o ouvido. Além disso, as reflexões do som formam, após a propagação por $34.32$ metros ($4.41k$ amostras em $f_a=44.1kHz$ ), um emaranhado cujas incidências são pouco distintas na audição. Estas primeiras reflexões são particularmente importantes para a sensação de espaço. A primeira incidência é o som direto, descrito por DTI e DII das equações~\ref{eq:dti} e~\ref{eq:dii}. Admitindo que cada uma das primeiras reflexões, antes de chegar ao ouvido, se propagará, ao menos, $3-30m$ dependentes das dimensões da sala, a separação entre as primeiras reflexões é de, ao menos, $8-90$ milissegundos ($\approx 350-4000$ amostras em $f_a=44.1kHz$). Verifica-se experimentalmente que o número de reflexões aumenta em proporção quadrática  $ \approx k.n^2$. Apontamentos do uso de convoluções e filtragens para facilitar estas implementações estão na subseção~\ref{subsec:mus2}, especialmente nos parágrafos sobre reverberação.
+Smith III aponta que boas salas de concerto possuem um tempo total de reverberação de aproximadamente $1,9$ segundos. Aponta também o período das primeiras reflexões de $0,1$ segundos. Estas quantidades sugerem que, nas condições contempladas, há frentes de onda perceptíveis que se propagam até $652,08$ metros ($83,79k$ amostras em $f_a=44,1kHz$) antes de atingirem o ouvido. Além disso, as reflexões do som formam, após a propagação por $34,32$ metros ($4,41k$ amostras em $f_a=44,1kHz$ ), um emaranhado cujas incidências são pouco distintas na audição. Estas primeiras reflexões são particularmente importantes para a sensação de espaço. A primeira incidência é o som direto, descrito por DTI e DII das equações~\ref{eq:dti} e~\ref{eq:dii}. Admitindo que cada uma das primeiras reflexões, antes de chegar ao ouvido, se propagará, ao menos, $3-30m$ dependentes das dimensões da sala, a separação entre as primeiras reflexões é de, ao menos, $8-90$ milissegundos ($\approx 350-4000$ amostras em $f_a=44.1kHz$). Verifica-se experimentalmente que o número de reflexões aumenta em proporção quadrática  $ \approx k.n^2$. Apontamentos do uso de convoluções e filtragens para facilitar estas implementações estão na subseção~\ref{subsec:mus2}, especialmente nos parágrafos sobre reverberação.
 
 \subsection{Usos musicais}\label{subsec:basMus}
 
@@ -1355,15 +1355,33 @@ estabelecida pela convolução com impulsos é explorado na montagem \emph{Trenz
 
 \subsubsection{Fonte em movimento, receptor em movimento, efeito Doppler}
 
-Retomada a exposição da subseção~\ref{subsec:spac}, quando uma fonte ou um receptor está em movimento, suas características idealmente são calculadas amostra a amostra do sinal digital. As velocidades são decompostas com relação à direção de cada ouvido. Assim, dada a velocidade $v_s$ da fonte ($s$ de \emph{source}), positiva se a fonte se move no sentido de se afastar do receptor e a velocidade $v_r$ do receptor, positiva no sentido de se aproximar da fonte, a frequência é dada pela conhecida fórmula do efeito Doppler:
+Retomada a exposição da subseção~\ref{subsec:spac}, quando uma fonte ou um receptor está em movimento, suas características idealmente são atualizadas a cada amostra do sinal digital. As velocidades são decompostas com relação à direção de cada ouvido. Assim, dada a velocidade $v_s$ da fonte ($s$ de \emph{source}), positiva se a fonte se move no sentido de se afastar do receptor e a velocidade $v_r$ do receptor, positiva no sentido de se aproximar da fonte, a frequência é dada pela conhecida fórmula do efeito Doppler:
 
 \begin{equation}
-    f=\left(\frac{c+v_r}{c+v_s}\right)f_0
+    f=\left(\frac{v_{som}+v_r}{v_{som}+v_s}\right)f_0
 \end{equation}
 
-Com esta frequência e com as relações dadas pela nova DII da nova localização da fonte, pode-se realizar o efeito Doppler. Há um acréscimo para maior fidelidade ao fenômeno físico: um aumento da potência recebida. Pode-se pressupor que este aumento em potência é proporcional à velocidade relativa, que, a cada segundo, acrescenta aquele trecho percorrido, pela forma de onda, de potência: $\Delta P=P_0\left(\frac{v_r-v_s}{343,2}\right)$, com $P_0$ a potência do sinal.
+Com esta frequência e com as relações dadas pela nova DII da nova localização da fonte, pode-se realizar o efeito Doppler. Há um acréscimo para maior fidelidade ao fenômeno físico: um aumento da potência recebida. Pode-se entender que este aumento em potência é proporcional à velocidade relativa, que, a cada segundo, acrescenta aquele trecho percorrido, pela forma de onda, de potência: $\Delta P=P_0\left(\frac{v_r-v_s}{343,2}\right)$, com $P_0$ a potência do sinal.
 
-\subsubsection{Ruidos e filtragens}
+Assim, pode-se obter a amplitude e frequência de uma fonte em movimento.
+Esteja esta fonte à frente do receptor
+a uma distância horizontal de $y_0$ metros e altura $z_0$ metros. A distância é dada por
+$D_i=\left\{ d_i=\sqrt{ y_{i}^{2}+z_{0}^{2} } \right\}_0^{\Lambda-1}$
+onde $y_i=y_0+v_s-v_r$ se consideradas $v_s$ e $v_r$ horizontais. A amplitude muda com a distância e com o fator de potência citado acima (veja a subseção~\ref{subsec:volume} para a conversão de potência para amplitude):
+
+\begin{equation}
+    A_i=\left\{ \frac{z_0}{d_i}A_{\Delta P}\right\}_0^{\Lambda-1} = \left\{ \frac{z_0}{\sqrt{y_i^2+z_0^2}} \sqrt{\frac{v_r-v_s}{343,2}+1}  \,\right\}_0^{\Lambda-1}
+\end{equation}
+
+Observe que o fator alterador de amplitude devido à distância é par enquanto a o fator devido à variação de potência é antissimétrico com relação ao cruzamento da fonte e do receptor. Já a frequência tem uma progressão simétrica com relação à altura, ou seja, os mesmos semitons (ou frações) acrescentados na aproximação são decrescidos no afastamento. Além disso, a transição é abrupta caso a fonte e o receptor se cruzem com exatidão, caso contrário, há uma progressão monotônica. No caso considerado, em que há uma altura fixa $z_0$, é necessário observar a componente de velocidade na direção entre o observador e a fonte:
+
+\begin{equation}
+    F_i=\{f_i\}_0^{\Lambda-1}=\left\{\frac{v_{som} + v_r\frac{y_i}{\sqrt{z_0^2+y_i^2}}}{v_{som}+v_s\frac{y_i}{\sqrt{z_0^2+y_i^2}}}f_0\right\}_0^{\Lambda-1}
+\end{equation}
+
+No Apêndice~\ref{sec:cod2} está uma implementação em Python do efeito Doppler como descrito acima, com as alterações de frequência e amplitude, e com o cruzamento da fonte com o receptor.
+
+\subsubsection{Filtragens e ruídos (subseções~\ref{subsec:ruidos} e~\ref{subsec:filtros})}
 Com os filtros as possibilidades explodem ainda mais vertiginosamente. Pode-se convoluir um sinal para reverberá-lo, para
 remover algum ruído, para gerar distorções ou para tratamento com intuito estético mesmo. Por exemplo,
 a aplicação de um filtro passa banda em que deixa passar somente entre $1kHz$ e $3kHz$, resulta em sons
