@@ -375,7 +375,61 @@ a.wavwrite(T_i, "am.wav", f_a)  # escrita do som
 
 ############## 2.2.5 Usos musicais
 ### 2.73 Veja peça Tremolos, Vibratos e a Frequência
-### 2.74 ADSR - variação linear
+
+### Efeito Doppler
+v_r= 10 # receptor se move em direção à fonte com v_r m/s
+v_s=-80. # emissor se move em direção ao receptor com -v_s m/s
+v_som=343.2
+f_0=1000 # frequencia do emissor
+# frequência com o efeito Doppler:
+### 2.74 Frequência por efeito Doppler
+f=((v_som + v_r) / (v_som + v_s)) * f_0
+# quando o emissor e o receptor se cruzarem:
+f_=((v_som - v_r) / (v_som - v_s)) * f_0
+
+# distâncias iniciais:
+x_0=0 # emissor à frente
+y_0=200 # distante y_0 metros
+
+Delta=5. # duração em segundos
+Lambda=Delta*f_a # número de amostras
+# posições ao longo do tempo, X_i=n.zeros(Lambda)
+Y_i=y_0 - ((v_r-v_s)*Delta) * n.linspace(0,1,Lambda)
+
+# A cada amostra, é preciso calcular a DTI e a DII com X_i e Y_i
+# No caso, DTI e DII são == 0 pois a fonte está no meio.
+### 2.75 Amplitude relativa ao efeito Doppler
+# Por 2.28, assumindo z_0 metros acima da cabeça:
+z_0=2.
+D_i=( z_0**2+Y_i**2  )**0.5 # distância a cada amostra
+# Amplitude relativa do som em cada amostra devido à distância:
+A_i_=z_0/D_i 
+### Alteração da amplitude devido ao efeito Doppler:
+A_DP_i=( (v_r-v_s)/343.2+1 )**0.5
+A_DP_i_=( (-v_r+v_s)/343.2+1 )**0.5
+A_DP_i=(Y_i>0)*A_DP_i+(Y_i<0)*A_DP_i_
+A_i=A_i_ * A_DP_i
+
+# Os sinais das velocidades se invertem
+# no caso da fonte passar o receptor.
+# Portanto:
+coseno_i=(Y_i)/((Y_i**2+z_0**2)**0.5)
+F_i=( ( 343.2+v_r*coseno_i ) / ( 343.2+v_s*coseno_i ) )*f_0
+### coeficientes para a LUT
+D_gamma_i = F_i*Lt/f_a
+Gamma_i = n.cumsum(D_gamma_i)
+Gamma_i = n.array(Gamma_i, dtype=n.int)
+
+L_i = Tr_i  # Onda triangular
+### Som:
+Tdoppler_i = L_i[Gamma_i % Lt]
+Tdoppler_i*=A_i
+
+# Normalizando e gravando:
+Tdoppler_i=((Tdoppler_i-Tdoppler_i.min())/(Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
+a.wavwrite(Tdoppler_i, 'doopler.wav', f_a)
+
+### 2.75 ADSR - variação linear
 Delta = 5.  # duração total em segundos
 Delta_A = 0.1  # Ataque
 Delta_D = .3  # Decay
