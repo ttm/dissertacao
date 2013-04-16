@@ -386,7 +386,7 @@ f_0=1000 # frequencia do emissor
 # frequência com o efeito Doppler:
 ### 2.74 Frequência por efeito Doppler
 f=((v_som + v_r) / (v_som + v_s)) * f_0
-# quando o emissor e o receptor se cruzarem:
+# a partir do cruzamento entre o emissor e o receptor:
 f_=((v_som - v_r) / (v_som - v_s)) * f_0
 
 # distâncias iniciais:
@@ -418,13 +418,13 @@ A_i=A_i_ * A_DP_i
 ### 2.76 Progressão de frequência do efeito Doppler
 coseno_i=(Y_i)/((Y_i**2+z_0**2)**0.5)
 F_i=( ( 343.2+v_r*coseno_i ) / ( 343.2+v_s*coseno_i ) )*f_0
-### coeficientes para a LUT
+# coeficientes para a LUT
 D_gamma_i = F_i*Lt/f_a
 Gamma_i = n.cumsum(D_gamma_i)
 Gamma_i = n.array(Gamma_i, dtype=n.int)
 
 L_i = Tr_i  # Onda triangular
-### Som:
+# Som:
 Tdoppler_i = L_i[Gamma_i % Lt]
 Tdoppler_i*=A_i
 
@@ -432,7 +432,8 @@ Tdoppler_i*=A_i
 Tdoppler_i=((Tdoppler_i-Tdoppler_i.min())/(Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
 a.wavwrite(Tdoppler_i, 'doopler.wav', f_a)
 
-### Reverberação
+
+######## Reverberação
 # O primeiro período da reverberação:
 Delta1 = 0.15 # tipicamente E [0.1,0.2]
 Lambda1= int(Delta1*f_a)
@@ -445,12 +446,15 @@ P_i = (ii[:Lambda1]/float(Lambda1))**2.
 # incidências:
 R1_i_=n.random.random(Lambda1)<P_i
 A_i=10.**((-50./20)*(ii/Lambda))
+### 2.77 - Primeiro período da reverberação:
 R1_i=R1_i_*A_i[:Lambda1]*ruido_marrom[:Lambda1] # Primeiras incidências
 
 # Ruído marrom em decaimento exponencial para o segundo período:
 # -120dB até o final:
+### 2.78 - Segundo período da reverberação:
 Rm_i=ruido_marrom[Lambda1:Lambda]
 R2_i=Rm_i*A_i[Lambda1:Lambda]
+### 2.79 - Resposta ao impulso da reverberação
 R_i=n.hstack((R1_i,R2_i))
 R_i[0]=1. # resposta ao impulso está pronta
 
@@ -478,7 +482,7 @@ a.wavwrite(T_i, 'reverb.wav', f_a)
 a.wavwrite(R_i, 'RI_reverb.wav', f_a)
 
 
-### 2.75 ADSR - variação linear
+### 2.80 ADSR - variação linear
 Delta = 5.  # duração total em segundos
 Delta_A = 0.1  # Ataque
 Delta_D = .3  # Decay
@@ -503,7 +507,7 @@ ii = n.arange(Lambda-Lambda_R, Lambda, dtype=n.float)
 R = a_S-a_S*((ii-(Lambda-Lambda_R))/(Lambda_R-1))
 A_i = n.hstack((A_i, R))
 
-### 2.75 Realização do som com a envoltória
+### 2.81 Realização do som com a envoltória
 ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
@@ -511,7 +515,7 @@ T_i = Tr_i[Gamma_i % Lt]*(A_i)
 a.wavwrite(T_i, "adsr.wav", f_a)  # escrita do som em disco
 
 
-### 2.74 ADSR - variação Exponencial
+### 2.80 ADSR - variação Exponencial
 xi = 1e-2  # -180dB para iniciar o fade in e finalizar o fade out
 De = 2*100.  # duracao total (\Delta)
 DA = 2*20.  # duracao do ataque \Delta_A
@@ -519,16 +523,21 @@ DD = 2*20.  # duracao do decay \Delta_D
 DR = 2*20.  # duracao do release \Delta_R
 SS = .4  # fração da amplitude em que ocorre o sustain
 
-A = xi*(1./xi)**(n.arange(DA)/(DA-1))  # amostras do ataque
+Lambda = int(f_a*De)
+Lambda_A = int(f_a*DA)
+Lambda_D = int(f_a*DD)
+Lambda_R = int(f_a*DR)
+
+A = xi*(1./xi)**(n.arange(Lambda_A)/(Lambda_A-1))  # amostras do ataque
 A_i = n.copy(A)
-D = a_S**((n.arange(DA, DA+DD)-DA)/(DD-1))  # amostras do decay
+D = a_S**((n.arange(Lambda_A, Lambda_A+Lambda_D)-Lambda_A)/(Lambda_D-1))  # amostras do decay
 A_i = n.hstack((A_i, D))
-S = a_S*n.ones(De-DR-(DA+DD))  # amostras do sustain
+S = a_S*n.ones(Lambda-Lambda_R-(Lambda_A+Lambda_D))  # amostras do sustain
 A_i = n.hstack((A_i, S))
-R = (SS)*(xi/SS)**((n.arange(De-DR, De)+DR-De)/(DR-1))  # release
+R = (SS)*(xi/SS)**((n.arange(Lambda-Lambda_R, Lambda)+Lambda_R-Lambda)/(Lambda_R-1))  # release
 A_i = n.hstack((A_i,  R))
 
-### 2.75 Realização do som com a envoltória
+### 2.81 Realização do som com a envoltória
 ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
