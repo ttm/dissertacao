@@ -1,0 +1,14 @@
+\chapter{Análise sonora e musical}
+Este capítulo foi escrito para complementar a didática da dissertação pois há forte interesse em análise musical assistida por computador, tanto para a indústria, como para pesquisas acadêmicas e musicológicas. Assim, o texto a seguir é uma introdução rápida e deve ser apreciado como um conjunto despretencioso de apontamentos informais a conceitos básicos de análise de música em evidência com os recursos computacionais.
+
+\section{Espectro em frequência}\label{subsec:especFreq}
+Muitas vezes, se está preocupado com as componentes em frequência de um dado som ou estilo. Para tal, a transformada de Fourier é a solução de uso mais comum. A localização de energia no tempo e em frequência, por exemplo para observar as componentes do espectro no decorrer de uma sonoridade ou uma música, é geralmente feita com a transformada de Fourier janelada ou com a transformada \emph{wavelet} (transformada de ondeleta). Uma figura bidimensional da evolução do espectro no decorrer do tempo é o espectrograma (veja figura~\ref{fig:vibrato}). A transformada wavelet é bastante simples e computacionalmente barata, consistindo em um banco de filtros FIR. Por outro lado, o espectro apresentado não é senoidal, tão caro à cognição e à música. Além disso, a transformada wavelet é mais rígida com relação à resolução temporal e frequencial do que a transformada de Fourier janelada.
+
+Com a observação espectral, verifica-se a presença de formantes, detecta-se frequências fundamentais, calcula-se centróides, observa-se decaimento e aparecimento de harmônicas e ruído, para citar somente alguns exemplos. O vínculo direto do timbre com o espectro de um som, mesmo não se sabendo os mecanismos cognitivos envolvidos, é compreensão básica.
+
+\section{Eventos no tempo}\label{subsec:eventosTempo}
+Com o quadrado das amostras temporais é obtida uma medida da energia no trecho considerado. Variações abruptas de energia indicam ataques, o que pode ser informativo do ponto de vista rítmico e até como indicação de estilos ou técnicas. Os decaimentos são importantes musicalmente, mas suas detecções são secundárias para a análise. Dados os ataques ao longo da duração, é capital e capcioso (difícil) adequá-los a alguma métrica. Para detecção de ataques de instrumentos diferentes no mesmo áudio, pode-se, por exemplo, realizar a separação do áudio por faixas do espectro ou procurar um espectro já conhecido.
+
+\section{Análise de partituras}
+As partituras são registros musicais que usam símbolos consagrados. A extração de características musicais a partir das partituras, é de uso musicológico e classificatório. Estão em uso diferentes formatos para a utilização computacional destas informações (como o Kern) e, como exemplo de uso, pode-se obter a sequência de intervalos de altura de linhas melódicas que percorrem toda a música ou as durações relativas de suas notas.
+
