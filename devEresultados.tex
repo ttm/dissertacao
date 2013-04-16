@@ -1407,6 +1407,35 @@ diferentes em sons diferentes e seu código está no Apêndice~\ref{ap:chorus}. 
 \subsubsection{Reverberação}\label{subsubsec:reverb}
 Com a mesma nomenclatura da subseção~\ref{subsec:spac} sobre espacialização, a reverberação tardia pode ser modelada como a convolução com um trecho de ruído colorido rosa, marrom ou preto, em decaimento exponencial de amplitude com relação também ao tempo. Assim, a atenuação nos agudos e irregularidade suave na resposta em frequência são contempladas de forma bastante satisfatória.\cite{JOSPhy,guillaume} Linhas de atrasos podem ser adicionadas como prefixo ao ruído com o decaimento, assim comtemplando as duas partes temporais da reverberação: as primeiras reflexões e a reverberação tardia. Pode-se, para melhora de qualidade, calcular geometricamente a localização da última superfície em que cada frente de onda refletiu antes de chegar ao ouvido nos primeiros $100-200$ milissegundos e aplicar um filtro passa-baixas como em~\ref{subsec:filtros}. O ruído colorido pode ser introduzido gradualmente, desde o instante inicial dado pela incidência direta (i.e. sem reflexão alguma e dada pela DTI e DII), em \emph{fade-in}, atingindo o máximo no começo da 'reveberação tardia', quando as incidências geométricas perdem sua importância para as estatísticas do ruído em decaimento.
 
+Como um exemplo de implementação, seja $\Delta_1$ a duração do primeiro período e $\Delta_R$ a duração total da reverberação ($\Lambda_1=\Delta_1 f_a$, $\Lambda_R=\Delta_R f_a$). Pode-se
+associar uma probabilidade $p_i$ de uma reincidência do som na $i$-ésima amostra com amplitude em decaimento exponencial. Seguindo
+as indicações na subseção~\ref{subsec:spac}, a reverberação $R_i^1$ do primeiro período pode ser descrita desta forma:
+
+\begin{equation}
+    R_i^1=\left\{r_i^1\right\}_0^{\Lambda_1-1}\;:\;r_i^1=\left\{
+        \begin{array}{l l}
+            10^{\frac{V_{dB}}{20}\frac{i}{\Lambda_R-1}}\;  & \text{com probabilidade}\quad p_i=\left(\frac{i}{\Lambda_1}\right)^2 \\
+                                     0 \; & \text{com probabilidade}\quad 1-p_i \\
+        \end{array} \right.
+\end{equation}
+
+Onde $V_{dB}$ é o decaimento total considerado em decibels, tipicamente $-80dB$ ou $-120dB$.   Já a reverberação $R_i^2$, do segundo período, pode ser emulada por um ruído marrom $R_i^m$ (ou rosa $R_i^r$) em decaimento exponencial: 
+
+\begin{equation}
+    R_i^2=\left\{r_i^2\right\}_{\Lambda_1}^{\Lambda_R-1}=\left\{10^{\frac{V_{dB}}{20}\frac{i}{\Lambda_R-1}}\,.\,r_i^m\right\}_{\Lambda_1}^{\Lambda_R-1}
+\end{equation}
+
+Como:
+\begin{equation}
+    R_i=\left\{r_i\right\}_0^{\Lambda_R-1}\;:\;r_i=\left\{
+        \begin{array}{l l}
+            r_i^1\;  & \text{se }\quad i<\Lambda_1-1 \\
+                                     r_i^2 \; & \text{se}\quad \Lambda_1 \leq i < \Lambda_R-1 \\
+        \end{array} \right.
+\end{equation}
+
+a aplicação da reverberação representada por $R_i$ é a simples convolução de $R_i$ (chamada 'resposta ao impulso' da reverberação) com a sequência sonora $T_i$, tal como descrito na subseção~\ref{subsec:filtros}.
+
 A reverberação é conhecida por causar bastante interesse no ouvinte e tornar as sonoridades mais agradáveis. Além disso, a modificação do espaço em que são reverberadas a música, ou as sonoridades individualmente, constitui um macete (quase um clichê) para causar surpresa e interesse no ouvinte. 
 
 
