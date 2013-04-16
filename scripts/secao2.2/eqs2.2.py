@@ -213,7 +213,7 @@ a.wavwrite(r, 'branco.wav', f_a)
 
 
 ### 2.51 Ruído rosa
-# a cada oitava, perdemos 3dB
+# a cada oitava, perde-se 3dB
 fator = 10.**(-3/20.)
 alphai = fator**(n.log2(fi[i0:]/f0))
 
@@ -230,7 +230,7 @@ a.wavwrite(r, 'rosa.wav', f_a)
 
 
 ### 2.52 Ruído marrom
-# para cada oitava, perdemos 3dB
+# a cada oitava, perde-se 6dB
 fator = 10.**(-6/20.)
 alphai = fator**(n.log2(fi[i0:]/f0))
 c = n.copy(coefs)
@@ -245,6 +245,8 @@ ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
 a.wavwrite(r, 'marrom.wav', f_a)
+
+ruido_marrom=n.copy(r) # será usado para a reverberação
 
 
 ### 2.53 Ruído azul
@@ -399,7 +401,7 @@ Y_i=y_0 - ((v_r-v_s)*Delta) * n.linspace(0,1,Lambda)
 # A cada amostra, é preciso calcular a DTI e a DII com X_i e Y_i
 # No caso, DTI e DII são == 0 pois a fonte está no meio.
 ### 2.75 Amplitude relativa ao efeito Doppler
-# Por 2.28, assumindo z_0 metros acima da cabeça:
+# Assumindo z_0 metros acima da cabeça:
 z_0=2.
 D_i=( z_0**2+Y_i**2  )**0.5 # distância a cada amostra
 # Amplitude relativa do som em cada amostra devido à distância:
@@ -413,6 +415,7 @@ A_i=A_i_ * A_DP_i
 # Os sinais das velocidades se invertem
 # no caso da fonte passar o receptor.
 # Portanto:
+### 2.76 Progressão de frequência do efeito Doppler
 coseno_i=(Y_i)/((Y_i**2+z_0**2)**0.5)
 F_i=( ( 343.2+v_r*coseno_i ) / ( 343.2+v_s*coseno_i ) )*f_0
 ### coeficientes para a LUT
@@ -428,6 +431,52 @@ Tdoppler_i*=A_i
 # Normalizando e gravando:
 Tdoppler_i=((Tdoppler_i-Tdoppler_i.min())/(Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
 a.wavwrite(Tdoppler_i, 'doopler.wav', f_a)
+
+### Reverberação
+# O primeiro período da reverberação:
+Delta1 = 0.15 # tipicamente E [0.1,0.2]
+Lambda1= int(Delta1*f_a)
+Delta = 1.9 # duração total da reverberação
+Lambda=int(Delta*f_a)
+
+# Probabilidades de reincidência do som no primeiro período:
+ii=n.arange(Lambda)
+P_i = (ii[:Lambda1]/float(Lambda1))**2.
+# incidências:
+R1_i_=n.random.random(Lambda1)<P_i
+A_i=10.**((-50./20)*(ii/Lambda))
+R1_i=R1_i_*A_i[:Lambda1]*ruido_marrom[:Lambda1] # Primeiras incidências
+
+# Ruído marrom em decaimento exponencial para o segundo período:
+# -120dB até o final:
+Rm_i=ruido_marrom[Lambda1:Lambda]
+R2_i=Rm_i*A_i[Lambda1:Lambda]
+R_i=n.hstack((R1_i,R2_i))
+R_i[0]=1. # resposta ao impulso está pronta
+
+# Realização de um som para aplicar a reverberação:
+f_0 = 100.  # freq inicial em Hz
+f_f = 700.  # freq final em Hz
+Delta = 2.4  # duração
+Lambda = int(f_a*Delta)
+ii = n.arange(Lambda)
+
+# (usando 2.36 - variação exponencial)
+f_i = f_0*(f_f/f_0)**(ii/(float(Lambda)-1))
+# (usando 2.37 coeficientes para a LUT)
+D_gamma_i = f_i*Lt/f_a
+Gamma_i = n.cumsum(D_gamma_i)
+Gamma_i = n.array(Gamma_i, dtype=n.int)
+# (usando 2.38 som resultante)
+Tf0ff_i = L_i[Gamma_i % Lt]
+
+# Aplicação da reverberação
+T_i_=Tf0ff_i
+T_i=n.convolve(T_i_,R_i)
+T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
+a.wavwrite(T_i, 'reverb.wav', f_a)
+a.wavwrite(R_i, 'RI_reverb.wav', f_a)
+
 
 ### 2.75 ADSR - variação linear
 Delta = 5.  # duração total em segundos
