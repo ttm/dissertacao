@@ -18,3 +18,11 @@ e
 renato (ponto) fabbri _@_ GMAIL (ponto) com
 
 logs de aa +msc
+
+=====================
+Para obtenção do arquivo PDF atual:
+$ pdflatex dissertacao.tex
+$ bibtex dissertacao
+$ pdflatex dissertacao.tex
+$ pdflatex dissertacao.tex
+$ pdftk A=dissertacao.pdf B=ficha.pdf C=referencias-\ renato1.pdf cat A1-3 B1 A5-126 C1-7 A134-255 output dissertacaoCorrigida.pdf
