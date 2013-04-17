@@ -429,7 +429,8 @@ Tdoppler_i = L_i[Gamma_i % Lt]
 Tdoppler_i*=A_i
 
 # Normalizando e gravando:
-Tdoppler_i=((Tdoppler_i-Tdoppler_i.min())/(Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
+Tdoppler_i=((Tdoppler_i-Tdoppler_i.min()) /i \
+        (Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
 a.wavwrite(Tdoppler_i, 'doopler.wav', f_a)
 
 
@@ -530,7 +531,8 @@ Lambda_R = int(f_a*DR)
 
 A = xi*(1./xi)**(n.arange(Lambda_A)/(Lambda_A-1))  # amostras do ataque
 A_i = n.copy(A)
-D = a_S**((n.arange(Lambda_A, Lambda_A+Lambda_D)-Lambda_A)/(Lambda_D-1))  # amostras do decay
+# amostras do decay
+D = a_S**((n.arange(Lambda_A, Lambda_A+Lambda_D)-Lambda_A)/(Lambda_D-1))
 A_i = n.hstack((A_i, D))
 S = a_S*n.ones(Lambda-Lambda_R-(Lambda_A+Lambda_D))  # amostras do sustain
 A_i = n.hstack((A_i, S))
