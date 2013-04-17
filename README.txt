@@ -1,17 +1,10 @@
-Repo dedicado aa dissertação sobre composicao
-procedural.
+Repo dedicado à descrição psicofísica da música no áudio digital e implementações.
 
-Branches relevantes:
-* master - versao oficial
-* nocodigo - versao que mantem o código no texto por razões didáticas
-
-$ git clone git@git.scribtex.com:refabbri/msc.git
-$ git clone git://labmacambira.git.sourceforge.net/gitroot/labmacambira/dissertacao
+Versão atual no arquivo dissertacaoCorrigida.pdf. Link direto:
+https://github.com/ttm/dissertacao/blob/msc/dissertacaoCorrigida.pdf?raw=true
 
 Pastas relevantes:
-scripts: scripts de provas de conceito e figuras
-python_snippets: trechos de código que aplicam
-os conceitos em da dissertação.
+scripts: scripts de provas de conceito e figuras, com implementações de quase todas as equações da dissertação.
 figuras: figuras da dissertação.
 
 
@@ -24,7 +17,4 @@ http://webchat.freenode.net/?channels=#labmacambira
 e
 renato (ponto) fabbri _@_ GMAIL (ponto) com
 
-
-
-
-anotacoes no gnote MSC e logs de aa +msc
+logs de aa +msc
