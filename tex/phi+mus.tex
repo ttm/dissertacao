@@ -19,7 +19,7 @@
 \begin{document}
 \preprint{AIP/123-QED} 
 
-\title{Psychophysical description of musical elements in digital audio}
+\title{Psychophysics of musical elements in discrete-time representation of sound}
 
 \author{Renato Fabbri}
  \homepage{http://www.estudiolivre.org/el-user.php?view\_user=gk}
@@ -41,21 +41,46 @@ Instituto de F\'isica de S\~ao Carlos, Universidade de S\~ao Paulo (IFSC/USP)
 \date{\today}
 \begin{abstract}
 
-    The representation of the basic elements of music - such as notes, ornaments and intervalar structures - in terms of discrete audio signal is often used in software for music creation and design. Nevertheless, there is no unified approach that relates these elements to the sound discrete samples. In this article, each musical element is described by equations that represent the sonic time samples, which are all implemented in scripts within an open source software toolbox, referred to as \massa\ (Music and Audio in Sequences and Samples). The fundamental element, the musical note with duration, volume, pitch and timbre, is related quantitatively to the characteristics of the discrete-time signal. Internal variations, such as tremolos, vibratos and spectral fluctuations, are also considered, which enables the synthesis of notes inspired by real instruments and new sonorities. With this representation of notes, resources are provided for the generation of musical structures, such as rhythmic meter, pitch intervals and cycles. The efficacy of the natural representations was confirmed by the synthesis of small musical pieces using basic notes, incremented notes and notes in music. It is possible to synthesize whole albums through collage of the scripts and parameterization. 
-    The sample-based analitical description, and the paradigm of open source implementation, enables cientific experiments in precise and trustful ways. In fact, \massa\ has already been employed by external users for diverse purposes. From these, it is mentioned a not identified in literature acoustic effect recognized by diverse individuals in mailing lists and uses related do art and education.
+    The representation of the basic elements of music - such as notes, ornaments and intervalar structures - in terms of discrete audio signal is often used in software for music creation and design. Nevertheless, there is no unified approach that relates these elements to the sound discrete samples. In this article, each musical element is described by equations in sonic time samples, which are all implemented in scripts within an open source software toolbox, referred to as \massa\ (Music and Audio in Sequences and Samples). The fundamental element, the musical note with duration, volume, pitch and timbre, is related quantitatively to the characteristics of the discrete-time signal. Internal variations, such as tremolos, vibratos and spectral fluctuations, are also considered, which enables the synthesis of notes inspired by real instruments and new sonorities. With this representation of notes, resources are provided for the generation of musical structures, such as rhythmic meter, pitch intervals and cycles. The efficacy of these physical descriptions of basic musical elements was confirmed by the synthesis of small musical pieces within each frame: basic notes, incremented notes and notes in music. It is possible to synthesize whole albums through collage of the scripts and parameterization. 
+    The sample-based analitical description, and the paradigm of open source implementation, enables cientific experiments in precise and trustful ways. In fact, \massa\ has already been employed by external users for diverse purposes. Among these, it is mentioned an acoustic effect recognized by diverse individuals in mailing lists but not found in literature, and uses related to art and education.
 
 \end{abstract}
 \pacs{*43.66.-x,43.66.+y,05.10.-a} % PACS, the Physics and Astronomy
-\keywords{music, digital audio, statistics, psychophysics}
+\keywords{psychophysics, acoustics, statistics, signal processing, digital audio, music}
 \maketitle
 
 \section{\label{sec:level1}Introduction}
 
-\subsection{The Approach}
+Representing musical structures and artifices by it's discrete sound characteristics is the purpuse of this work. The results include mathematical relations and it's computer program implementations. Next section exposes the theoretical description, which is implemented as scripts in a one-to-one relation to the equations.
 
-The approach devised to study the evolution of music and philosophy is
-completely generic, and can be applied to any subject. It consists of
-the following steps:
+\subsection{Sound and digital audio}
+
+Sound is a longitudinal wave of mechanical pressure. The frequency bandwidth between $20Hz$ and $20kHz$ is appreciated by human hearing system with boudaries dependent on the person, climate conditions and sonic charachteristics itself~\cite{Roederer}. If considereded the speed of sound of $\approx 343.2 m/s$, this limits corresponds to $\frac{343.2}{20} = 17.16\,m$ and $\frac{343.2}{20000}=17.16\,mm$.
+
+Human perception of sound envolves captivation by bones, stomach, ears, tranfer functions of head and processing dorso and nervous system. Besides that, the ear is a dedicated organ to the capture of this waves. Its mechanism decomposes sound into its sinusoidal spectrum and delivers them to the nervous system. This sinusoidal components are crucial to musical fenomena, as one can observe in the composition of sounds with musical interest and in tunnings and scales. Subsection~\ref{subsec:dicNote} exposes the presence of sinusoids in discrete-time audio and charachterizes a basic musical note.
+
+The representation of sound is called audio (although these terms are often used without distinction), and this can be provenient from caption by microphones or from sythesis. Often enough, digital audio is specified by protocols that eases file storage and transfering, in cost of a direct representation or even some loss in quality. Standard representation of digital audio, on the other hand, consists of samples equally spaced by $\lambda_s$ durations in time, with each sample spacified by a sample number of bits. This is called the Pulse Code Modulation representation of sound (PCM). A PCM digital sound is charachterized by it's sampling frequency $f_s=\frac{1}{\lambda_s}$, also called sampling rate, and bit depth, which is the number of bits used of representing the amplitude of each sample. Figure~\ref{fig:PCM} shows $25$ samples of a PCM áudio with $4$ bits each. The $2^4=16$ steps for each sample, together with the regular spacing $\lambda_s$ between them, introduces a quantization error. This noise, caused by this errors, diminishes as these spacing diminishes.
+
+
+\begin{figure*}
+    \centering
+        \includegraphics[width=\textwidth]{figures/pcm}
+        \caption{Pulse Code Modulation (PCM) audio: an analogic signal is represented by 25 samples with 4 bits each.}
+        \label{fig:PCM}
+\end{figure*}
+
+
+
+
+By the Nyquist theorem, it is known that half the sampling frequency is the maximum frequency of the signal. Thus, it is necessary to have a sampling frequency at least twice the highest frequency heard by humans $f_s \geq 2\times 20kHz = 40kHz$. This is the basis for the use of the sampling frequencies $44.1kHz$ and $48kHz$, standards in Compact Disks (CD) and Broadcast systems (Radio and TV), respectively.
+
+\subsection{Sonic art and musical theory}
+
+A common definition for music is art in sound and silence. For the average listener - and a reasonable part of specialists -the notion of music presupposes rythmic and pitch organization such as explained in subsection~\ref{subsec:notesMusic}. Music from the twentieth century enlarged this traditional comprehension of music. This occured in concert music, specially in the concrete, electronic and electroacoustic styles. On the last decade of the century, it was evident that popular music has also incorporated sounds without defined pitch and temporal organization out of simple metrics. Even though, the note stands paradigmatic as a 'fundamental unit' of musical structures and, in practice, it can unfold in sounds that observe this recent developments. The definition and expansion of the musical note as the fundamental unit of music is approached in subsections~\ref{subsec:discNote} and~\ref{subsec:internalVar}, respectively. Subsection~\ref{subsec:notesMusic} tackles the organization of musical notes in a higher level~\cite{Wisnick,Webern,Lerdhal,Cook,Lacerda}.
+
+Musical theory embody topics as diverse as psicho-acoustics, cultural manifestations and formalisms. The section~\ref{sec:results} point this topics as needed and designate external complements~\cite{Zamacois,Schoenberg,microsound}.
+
+
 
 \begin{enumerate}
   \item{Given a subject (or area) to be studied, objects belonging to
