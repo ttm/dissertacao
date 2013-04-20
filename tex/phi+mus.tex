@@ -10,103 +10,46 @@
 \usepackage{bm}
 \usepackage{multirow}
 \usepackage{color}
+
+\newcommand{\massa}{{\large \textsc{massa}}}
+\newcommand{\mass}{{\large \textsc{mass}}}
+\newcommand{\figgus}{{\large \textsc{figgus}}}
+
+
 \begin{document}
 \preprint{AIP/123-QED} 
 
-\title{A quantitative approach to evolution of music
-  and philosophy}
-
-\author{Vilson Vieira}
- \homepage{http://automata.cc}
- \email{vilson@void.cc}
-  \affiliation{ 
-Instituto de F\'isica de S\~ao Carlos, Universidade de S\~ao Paulo (IFSC/USP)
-}
+\title{Psychophysical description of musical elements in digital audio}
 
 \author{Renato Fabbri}
  \homepage{http://www.estudiolivre.org/el-user.php?view\_user=gk}
  \email{renato.fabbri@gmail.com}
- \altaffiliation[Also at ]{IFSC-USP}
-
-\author{Gonzalo Travieso}
-  \email{gonzalo@ifsc.usp.br}
- \altaffiliation[Also at ]{IFSC-USP}
-
-\author{Osvaldo N. Oliveira Jr.}
-  \homepage{www.polimeros.ifsc.usp.br/professors/professor.php?id=4}
-  \email{chu@ifsc.usp.br}
- \altaffiliation[Also at ]{IFSC-USP}
+  \affiliation{ 
+Instituto de F\'isica de S\~ao Carlos, Universidade de S\~ao Paulo (IFSC/USP)
+}
 
 \author{Luciano da Fontoura Costa}
   \homepage{http://cyvision.ifsc.usp.br/~luciano/}
   \email{ldfcosta@gmail.com}
  \altaffiliation[Also at ]{IFSC-USP}
 
+ \author{Osvaldo N. Oliveira Jr.}
+  \homepage{www.polimeros.ifsc.usp.br/professors/professor.php?id=4}
+  \email{chu@ifsc.usp.br}
+ \altaffiliation[Also at ]{IFSC-USP}
+
 \date{\today}
 \begin{abstract}
-The development of new statistical and computational methods is
-increasingly making it possible to bridge the gap between hard
-sciences and humanities. In this study, we propose an approach based
-on a quantitative evaluation of attributes of objects in fields of
-humanities, from which concepts such as dialectics and opposition are
-formally defined mathematically. As case studies, we analyzed the
-temporal evolution of classical music and philosophy by obtaining data
-for 8 features characterizing the corresponding fields for 7
-well-known composers and philosophers, which were treated with
-multivariate statistics and pattern recognition methods. A bootstrap
-method was applied to avoid statistical bias caused by the small
-sample data set, with which hundreds of artificial composers and
-philosophers were generated, influenced by the 7 names originally
-chosen.  Upon defining indices for opposition, skewness and
-counter-dialectics, we confirmed the intuitive analysis of historians
-in that classical music evolved according to a master-apprentice
-tradition, while in philosophy changes were driven by
-opposition. Though these case studies were meant only to show the
-possibility of treating phenomena in humanities quantitatively,
-including a quantitative measure of concepts such as dialectics and
-opposition the results are encouraging for further application of the
-approach presented here to many other areas, since it is entirely
-generic.
+
+    The representation of the basic elements of music - such as notes, ornaments and intervalar structures - in terms of discrete audio signal is often used in software for music creation and design. Nevertheless, there is no unified approach that relates these elements to the sound discrete samples. In this article, each musical element is described by equations that represent the sonic time samples, which are all implemented in scripts within an open source software toolbox, referred to as \massa\ (Music and Audio in Sequences and Samples). The fundamental element, the musical note with duration, volume, pitch and timbre, is related quantitatively to the characteristics of the discrete-time signal. Internal variations, such as tremolos, vibratos and spectral fluctuations, are also considered, which enables the synthesis of notes inspired by real instruments and new sonorities. With this representation of notes, resources are provided for the generation of musical structures, such as rhythmic meter, pitch intervals and cycles. The efficacy of the natural representations was confirmed by the synthesis of small musical pieces using basic notes, incremented notes and notes in music. It is possible to synthesize whole albums through collage of the scripts and parameterization. 
+    The sample-based analitical description, and the paradigm of open source implementation, enables cientific experiments in precise and trustful ways. In fact, \massa\ has already been employed by external users for diverse purposes. From these, it is mentioned a not identified in literature acoustic effect recognized by diverse individuals in mailing lists and uses related do art and education.
+
 \end{abstract}
-\pacs{89.75.Fb,05.65.+b} % PACS, the Physics and Astronomy
-\keywords{arts, music, musicology, philosophy, pattern recognition, statistics}
+\pacs{*43.66.-x,43.66.+y,05.10.-a} % PACS, the Physics and Astronomy
+\keywords{music, digital audio, statistics, psychophysics}
 \maketitle
 
 \section{\label{sec:level1}Introduction}
-
-Philosophy and natural sciences were born together in the 6th century
-B.C. within Greek civilization~\cite{Russel}. Logic started with
-Aristotle, geometry with Thales and Euclid, arithmetic with
-Diophantus, while others created algebra, astronomy and politics, with
-all fields being part of a common knowledge
-space~\cite{Papineau}. What we know today as modern philosophy and
-science were not originally separate, and arts were also present
-almost universally in this space, not only as cultural expression. The
-harmonic properties of music were of interest to philosophers such as
-Pythagoras. Aristotle with his Poetics discussed a dramatic theory for
-theatre. In this multidisciplinary space, music was addressed with
-mathematics and science with philosophy. Quantitative methods were
-applied to explain humanities, while the scientific method had its
-origin in philosophy. The segregation of this space into philosophy,
-science and arts was inevitable in the scientific revolution, thus
-leading to its division into individual, independent areas. Although
-specific, these areas are growing in complexity and their domains
-overlap. Methods from specific areas are not sufficient to deal with
-their complexity.
-
-In this study, we cross the interdisciplinary borders and apply a
-quantitative method to philosophy and music, in an attempt to
-understand how humanities evolve. While philosophy and music have
-their history constantly analyzed and discussed by critics, the nature
-of their works --- text documents and music scores --- are difficult
-to analyze and interpretation is always subjective. Here we propose a
-generic approach to analyze features from any field in a quantitative
-manner. The approach, described in the next Section, was then applied
-to characterize composers of classical music and philosophers. The
-data collected from scores assigned to these composers and
-philosophers were treated with statistical and pattern recognition
-methods, with the conclusions drawn being then compared to the
-literature based on critics of music and philosophy.
 
 \subsection{The Approach}
 
