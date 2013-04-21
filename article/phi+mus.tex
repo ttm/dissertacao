@@ -80,7 +80,44 @@ A common definition for music is art in sound and silence. For the average liste
 
 Musical theory embody topics as diverse as psicho-acoustics, cultural manifestations and formalisms. The section~\ref{sec:results} point this topics as needed and designate external complements~\cite{Zamacois,Schoenberg,microsound}.
 
+\subsection{Computational implementation}
+The results presented in this article are implemented inf the form of scripts, i.e. small programs for better availability and validation of the models as acessible techology.  This constitute the \massa\ toolbox, available in public domain in an open Git repository~\cite{gitBook}. This scripts are written in Python and make use of external libraries Numpy and Scikits/Audiolab that performs calls to Fortran routines for better computational efficiency. Part of this code has been trascribed to JavaScript and native Python with readiness, what points to uses of this contribution in web browsers such as Firefox and Chromium~\cite{numpy, audiolab, tutpython, python}.
 
+This are all open technologies, that is, published in licenses that allows copy, distribution and use of any part for research and derivatives. This way, the work here presented is available and eases co-authorship processes~\cite{Raymond,Lessig}. 
+
+\subsection{Objectives}
+\label{subsec:objectives}
+The mais goal of this article is to present a concise set of relations among musical basic elements and sequences of PCM audio samples. The next section is a minimum text in which music elements are presented side-by-side with the discrete-time samples they result. As validation and sharing, implementations on computer code of these relations and little musical pieces where gathered the \massa\ toolbox, available online.
+
+Secondary objectives include presenting a framework of sound synthesis with control at sample level, with potential uses in psichoacoustical experiments and high-fidelity synthesis. The didatic presentation of the content favours use and apprehension on a problem which calls diverse topics to be tackled: signal processing, music and psycho-acoustics, to name just a few.
+
+\subsection{Related work}
+Due to the general interest, and number of knowledge areas involved, there is a number of books and computer implementations that are of interest or present similarities to what is presented in this work. A more detailed comparrison of them is pointed out in the bibliography~\cite{dissertacao}. There is almost no articles which could be found on the topic. In summary, there are computer implementations that use this analitycal descriptions implicitly, but there is no such a concise and mathemathical description of the processes implemented, as they aim to be libraries for sound and music. There are books on the topic that cover various aspects of effects and physical modeling, but none of them carry a concise description of musical elements and structures, but focus on aspects of musical sounds and ways to mimic traditional instruments.
+
+
+\section{Characterization of the discrete-time musical note}
+In diverse artistic and theoretical contexts, music is though of as being constituted by units called notes and this units taken as "atoms" that constitute music itself~\cite{Wisnick, Lovelock, Webern}.
+Today, this notes are undestood as a central element of certain musical paradigms. In a cognitive sense, the notes are seen as discretizations that eases and enrich the flow of information through music~\cite{Roederer, Lacerda}
+Canonically, a musical note posses at least duration, colume, pitch and tibre~\cite{Lacerda}. These are qualities which can be maneged quantitatively dictated by the evenly time spaced sound samples.
+
+All the relations on this section are implemented at the file \emph{eqs2.1.py} of the \massa\ toolbox. Musical pieces \emph{5 sonic portraits} and \emph{reduced-fi} are available online as proof of concept.
+
+\subsection{Duration}
+The sample frequency $f_s$ is defined as the number os samples in each second of the discrete-time signal. Be $T_i=\{t_i\}$ an ordered set of real samples separated by $\delta_s=1/f_s$ seconds. A Musical note od duration $\Delta$ seconds is presented as a sequence of $\lfloor \Delta . f_s \rfloor $ samples. That is, taken the integer part of the multiplication, it is admited an error of at most $-\lambda_a$ seconds, which, for musical porpuses, are usually fine, for $f_s=44.1kHz \;\;\Rightarrow\;\;\lambda_s=\frac{1}{44100}\approx 23$ microseconds. It is reasonable to state:
+
+
+\begin{equation}\label{eq:dur}
+T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\lfloor \Delta . f_a \rfloor -1}
+\end{equation}
+
+Be $\Lambda=\lfloor \Delta . f_a \rfloor$ the number of samples in the sequence, so that $T_i=\{t_i\}_0^{\Lambda-1}$.
+
+\subsection{Volume}\label{subsec:volume}
+The sensation of sound volume depends on reverberation and harmonic distribution, among other characteristics worked on section~\ref{sec:varInternas}. One can get variations on volume through the potency of the wave~\cite{Chowning}:
+
+\begin{equation}\label{eq:potencia}
+pot(T_i)=\frac{\sum_{i=0}^{\Lambda -1} t_i^2}{\Lambda}
+\end{equation} 
 
 \begin{enumerate}
   \item{Given a subject (or area) to be studied, objects belonging to
