@@ -178,6 +178,80 @@ The simplest case (and most important, as the following texts shows) in that of 
      S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(2\pi \frac{i}{\lambda_f} \bigr)  \Bigr\} = \Bigl\{ \sin\bigl(2\pi f \frac{i}{f_a}\bigr)  \Bigr\} 
 \end{equation}
 
+Where $\lambda_f=\frac{f_a}{f}=\frac{\delta_f}{\lambda_a}$  is the number of samples in the period.
+
+In a similar fashion, other waveforms are used in music because of its spectral qualities and simplicity. While the sinusoid is an isolated point in the spectrum, these waves present a succession of harmonic components. These waveforms are specified in equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square} are in figure~\ref{fig:formasDeOnda}.
+These artificial waveforms are traditionally used in music for synthesis and oscilatory control of variables, they also present diverse used outside music\cite{Openheim}.
+
+The sawtooth present all components of the harmonic series, with decreasing energy of $-6dB/octave$. The sequence of temporal samples can be described like this:
+
+\begin{equation}\label{sawTooth}
+     D^f_i=\left\{ d^f_i \right\}=\left\{ 2\frac{i\,\%\lambda_f}{\lambda_f} -1 \right\}
+\end{equation}
+
+The triangular waveform present only odd harminics falling with $-12dB/octave$:
+\begin{equation}\label{triangular}
+     T^f_i=\left\{ t^f_i \right\}=\left\{1- \left| 2 - 4\frac{i\,\%\lambda_f}{\lambda_f} \right| \right\}
+\end{equation}
+
+The square wave presets only odd harmonics falling at $-6dB/octave$:
+
+\begin{equation}\label{quadrada}
+     Q^f_i=\left\{ q^f_i \right\}= \left\{
+         \begin{array}{l l}
+              1 & \quad \text{for } \; \; (i\,\%\lambda_f)   <  \lambda_f /2  \\
+              -1 & \quad \text{otherwise}\\
+         \end{array} \right.
+\end{equation}
+
+The sawtooth is a common starting point for a subtractive synthesis, beacuse it has both odd and even harmonics with high energy. For musical intention, these waveforms are excessively rich in sharp harmonics and atenuant filtering on treble and midle parts of the spectrum is useful for reaching a more natural and pleasant sound. 
+The relativelly attenuated harmonics of the triangle wave makes it the more functional - among the listed ones - to be used in the synthesis of musical notes without any treatment.
+
+The square wave can be used in a subtractive synthesis the aims to mimic a clarinet. This instrument has only the odd harmonic components and the square wave is convenient with its abundant energy in high frequencies.
+
+\begin{figure*}
+    \centering
+        \includegraphics[width=\textwidth]{figures/waveForms}
+    \caption{Basic musical waveforms. The synthetic  waveforms are in (a) and the real waveforms are in (b).}
+        \label{fig:formasDeOnda}
+\end{figure*}
+
+Figure~\ref{fig:formasDeOnda} presents the waveforms described in equations  ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} and ~\ref{quadrada} for $\lambda_f=100$ (period of $100$ samples). If $f_s=44.1kHz$, as PCM standard in Compact Disks, the wave has fundamental frequency $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz$, an A4, just above the central "C", whatever the waveform is.
+
+The spectrum of each basic waveform is in figure~\ref{fig:espectroDeondas}. The isolated and exaclty harmonic components of the spectrum is a consequence of the fixed period usage. The sinusoid consists of a one and only node in spectrum, pure frequency. The sawtooh is the only with a complete harmonic series (odd and even components). Triangular and square waves has the same components (odd harmonics), decaing at $-12dB/octave$ and $-6dB/octave$ respectivelly.
+
+\begin{figure*}
+    \centering
+        \includegraphics[width=\textwidth]{figures/waveSpectrum}
+    \caption{Spectrum of basic artificial musical waveforms.}
+        \label{fig:espectroDeOndas}
+\end{figure*}
+
+The harmonic spectrum is formed by frequencies multiple from the fundamental frequency $f_n=(n+1)f_0$. As the human linear perception of pitch follows the a geometric progression of frequencies, the spectrum has notes different from the fundamental frequency. Additionally, the number of harmonics will be limited to the maximum frequency $f_s/2$ (by Nyquist's theorem).
+
+Musically crucial here is to internalize that energy in an component of frequency $f_n$ means an oscilation in the constitution of the sound, purely harmonic and in that frequency $f_n$. This energy, specificaly concentrated on the $f_n$ is separated by the ear to enter a cognitive level of processing (this separation is done in many species is mechanisms similar to the human cochlea)~\cite{Roederer}.
+The sinusoidal components are usually the main responsibles for the quality we call timbre. If they are not presented in harmonic proportions (small number relations), the sound is perceived as noisy or dissonant and not as a sonority with a univocally stablished fundamental frequency. Furthermore, the notion of absolute pitch in a complex sonority is based relies on the similarity of the spectrum to the harmonic series~\cite{Roederer}.
+
+In the case of a fixed length period and waveform, the spectrum is perfectly harmonic and static. Each waveform is compound of specific proportions of harmonic components and the greater the curvature of a the part, the greater the contribution of the part to the energy on the high harmonics. That can be seen on real sounds. The wave rotulated as ``sampled real sound'' in figure~\ref{fig:formasDeOnda} is a period of $\Lambda_f=114$ samples, extracted from a relatively well behaved real sound. The oboe wave was sampled of a A4 also in $44.1kHz$. The chose period for sampling was a relatively short, with $98$ samples, corresonds to the frequency $\frac{44100}{98}=450Hz$. It can be noticed, from the curvatures, the oboe's rich spectrum in high frequencies and the lower spectrum of the real sound.
+
+The sequence 
+$ R_i=\{ r_i \}_0^{\lambda_f-1}$ of samples in the real sound of figure~\ref{fig:formasDeOnda} can be taken as a basis for a sound $T_i^f$ din the following way: 
+
+\begin{equation}\label{sampleandoFormaDeOnda}
+     T^f_i=\{ t_i^f \}=\Bigl\{ r_{(i\,\%\lambda_{f})} \Bigr\}
+\end{equation}
+
+The resulting sound has a the momentary spectrum of the original sound. Because it is repeated in an identical form, the spectrum is perfectly harmonic, withoud noise and variations tipical of the natural phenomenon.  This can be seen in figure~\ref{fig:espectroOboe}, that show the spectrum of the original oboe note and a note with same duration and whose samples consists of the repetition of cycle of figure~\ref{fig:formasDeOnda}. The natural spectrum exibit variations in the frequencies of the harmonics, its intensities and some noise. The note made from the sampled period has a perfecly harmonic spectrum
+
+\begin{figure*}
+    \centering
+        \includegraphics[width=\textwidth]{figures/oboeNaturalSampledSpectrum}
+    \caption{Spectrum of the sonic waves of a natural oboe note and one made from a sampled period. The natural sound has fluctuations in the harmonics and in noise, while the sampled period note has a perfectly harmonic spectrum.}
+        \label{fig:espectroOboe}
+\end{figure*}
+
+
+
 \nocite{*}
 \bibliography{phi+mus}
 \end{document}
