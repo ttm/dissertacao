@@ -1,3 +1,4 @@
+# coding: utf-8
 import pylab as p, numpy as n
 
 # plotando polinomios

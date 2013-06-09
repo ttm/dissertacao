@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n, pylab as p, scikits.audiolab as a
 
 fa=44100 # frequência de amostragem
@@ -36,7 +36,7 @@ p.xlim(-2000,46100)
 p.xticks((0,10000,20000,30000,44000),(r"0",10000,20000,30000,44100))
 p.show()
 
-p.ylabel(u"frequência "+r"$ \in \; [0,\,\frac{f_a=44100}{2}=22050] \quad \rightarrow $", fontsize=16)
+p.ylabel(u"frequency "+r"$ \in \; [0,\,\frac{f_a=44100}{2}=22050] \quad \rightarrow $", fontsize=16)
 p.xlabel(r"$i\quad \rightarrow$",fontsize=26)
 
 

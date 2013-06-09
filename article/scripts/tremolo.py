@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n, pylab as p, scikits.audiolab as a
 
 fa=44100

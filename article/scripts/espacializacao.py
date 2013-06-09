@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n, pylab as p, Image
 
 im = Image.open('../figuras/cabeca.png')

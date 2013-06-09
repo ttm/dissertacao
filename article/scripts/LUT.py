@@ -1,10 +1,10 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import pylab as p, numpy as n
 ax=p.subplot(111)
 
 T=2**7
 #p.xlabel(r"$\gamma_i=i.f\frac{\widetilde{\Lambda}}{f_a}$", fontsize=26)
-p.xlabel(r"amostras $\rightarrow$", fontsize=26)
+p.xlabel(r"samples $\rightarrow$", fontsize=26)
 p.ylabel(r"amplitude $\rightarrow$", fontsize=26)
 p.plot(n.sin(n.linspace(0,2*n.pi,T, endpoint=False)),"ro",ms=3,label=r"$\{ \; \widetilde{l}_i \; \}_0^{ \widetilde{\Lambda} -1 }$")
 #int(155*f*T/fa)%T

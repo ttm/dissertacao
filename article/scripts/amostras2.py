@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
 import pylab as p, numpy as n, scikits.audiolab as a
@@ -17,7 +17,7 @@ p.xlim(-1.2,2)
 p.ylim(-1.1,1.1)
 
 p.ylabel(r"amplitude $\rightarrow$")
-p.xlabel(r"tempo $\rightarrow$")
+p.xlabel(r"time $\rightarrow$")
 p.show()
 
 

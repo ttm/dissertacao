@@ -1,3 +1,4 @@
+# coding: utf-8
 # para testar progressoes logaritmicas e outras
 import numpy as n, pylab as p
 

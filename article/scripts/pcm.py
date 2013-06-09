@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n, pylab as p, string
 
 # plotando um som em PCM de 4 bits de profundidade
@@ -12,10 +12,10 @@ b=n.sin(aa)+n.sin(4*aa)
 b*=.5
 b*=2**3-1 # 4 bits
 
-p.plot(aa,b,"g",lw=6,label=u"sinal analógico")
+p.plot(aa,b,"g",lw=6,label=u"analogical signal")
 
 c=n.round(b)
-p.plot(aa[::10],c[::10],'ro',ms=9,label="amostras digitais")
+p.plot(aa[::10],c[::10],'ro',ms=9,label="digital samples")
 
 def bits(i,n):
     return tuple(("0","1")[i>>j & 1] for j in xrange(n-1,-1,-1)) 
@@ -34,7 +34,7 @@ p.xlim(-.3,aa[::10][-1]+0.5)
 
 p.legend(prop={'size':26})
 
-p.xlabel(r"tempo $\rightarrow$",fontsize=20)
+p.xlabel(r"time $\rightarrow$",fontsize=20)
 p.ylabel(r"amplitude $\rightarrow$",fontsize=24)
 
 p.show()

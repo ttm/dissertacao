@@ -1,71 +1,71 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n
-import scikits.audiolab as a
+import wavfile
 
-f_a = 44100  # Hz, frequência de amostragem
+f_a = 44100  # Hz, sample rate
 
-############## 2.2.1 Tabela de busca (LUT)
-# tamanho da tabela: use par para não conflitar abaixo
-# e ao menos 1024
+############## 2.2.1 Wave table (LUT)
+# table size: use even to do not end in conflict
+# and at least 1024
 Lambda_tilde = Lt = 1024
 
-# Senoide
+# Sinusoid
 foo = n.linspace(0, 2*n.pi, Lt, endpoint=False)
-S_i = n.sin(foo)  # um período da senoide com T amostras
+S_i = n.sin(foo)  # a sinusoid period with T samples
 
-# Quadrada:
+# Square:
 Q_i = n.hstack((n.ones(Lt/2)*-1, n.ones(Lt/2)))
 
 # Triangular:
 foo = n.linspace(-1, 1, Lt/2, endpoint=False)
 Tr_i = n.hstack((foo, foo*-1))
 
-# Dente de Serra:
+# Sawtooth:
 D_i = n.linspace(-1, 1, Lt)
 
-# som real, importar período e
-# usar T correto: o número de amostras do período
-Rf_i = a.wavread("22686__acclivity__oboe-a-440_periodo.wav")[0]
+# real sound, import period and
+# use the right T: number of samples in the period
+Rf_i = wavfile.read("22686__acclivity__oboe-a-440_periodo.wav")[1]
 
 f = 110.  # Hz
-Delta = 3.4  # segundos
+Delta = 3.4  # seconds
 Lambda = int(Delta*f_a)
 
-# Amostras:
+# Samples:
 ii = n.arange(Lambda)
 
 ### 2.32 LUT
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
-# Pode-se usar S_i, Q_i, D_i ou qualquer período de som real
-# suficientemente grande
+# It is possible to use S_i, Q_i, D_i or any other period of the real sound
+# with a sufficient length
 L_i = Tr_i
 TfD_i = L_i[Gamma_i % Lt]
 
 
-############## 2.2.2 Variações incrementais de frequência e amplitude
-# VARIAÇÕES DE FREQUÊNCIA
-f_0 = 100.  # freq inicial em Hz
-f_f = 300.  # freq final em Hz
-Delta = 2.4  # duração
+############## 2.2.2 Incremental variations of frequency and amplitude
+# FREQUENCY VARIATIONS
+f_0 = 100.  # initial freq in Hz
+f_f = 300.  # final freq in Hz
+Delta = 2.4  # duration
 
 Lambda = int(f_a*Delta)
 ii = n.arange(Lambda)
-### 2.33 - variação linear
+### 2.33 - linear variation
 f_i = f_0+(f_f-f_0)*ii/(float(Lambda)-1)
-### 2.34 coeficientes para a LUT
+### 2.34 coefficients for wavetable
 D_gamma_i = f_i*Lt/f_a
 Gamma_i = n.cumsum(D_gamma_i)
 Gamma_i = n.array(Gamma_i, dtype=n.int)
-### 2.35 som resultante
+### 2.35 resulting sound
 Tf0ff_i = L_i[Gamma_i % Lt]
 
-#### 2.36 - variação exponencial
+#### 2.36 - exponential variation
 f_i = f_0*(f_f/f_0)**(ii/(float(Lambda)-1))
-### 2.37 coeficientes para a LUT
+### 2.37 coefficients for wavetable
 D_gamma_i = f_i*Lt/f_a
 Gamma_i = n.cumsum(D_gamma_i)
 Gamma_i = n.array(Gamma_i, dtype=n.int)
-### 2.38 som resultante
+### 2.38 resulting sound
 Tf0ff_i = L_i[Gamma_i % Lt]
 
 
@@ -209,7 +209,7 @@ f0 = fi[i0]
 ruido = n.fft.ifft(coefs)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'branco.wav', f_a)
+wavfile.write('branco.wav', f_a, r)
 
 
 ### 2.51 Ruído rosa
@@ -226,7 +226,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'rosa.wav', f_a)
+wavfile.write('rosa.wav', f_a, r)
 
 
 ### 2.52 Ruído marrom
@@ -244,7 +244,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'marrom.wav', f_a)
+wavfile.write('marrom.wav', f_a, r)
 
 ruido_marrom=n.copy(r) # será usado para a reverberação
 
@@ -264,7 +264,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'azul.wav', f_a)
+wavfile.write('azul.wav', f_a, r)
 
 
 ### 2.54 Ruido violeta
@@ -281,7 +281,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'violeta.wav', f_a)
+wavfile.write('violeta.wav', f_a, r)
 
 ### 2.55 Ruído preto
 # a cada oitava, perdemos mais que 6dB
@@ -297,7 +297,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'preto.wav', f_a)
+wavfile.write('preto.wav', f_a, r)
 
 
 ############## 2.2.5 Tremolo e vibrato, AM e FM
@@ -327,7 +327,7 @@ Gamma_i = n.array(Gamma_i, dtype=n.int)  # já os índices
 ### 2.60 som em si
 T_i = Tr_i[Gamma_i % Lt]  # busca dos índices na tabela
 
-a.wavwrite(T_i, "vibrato.wav", f_a)  # escrita do som
+wavfile.write("vibrato.wav", f_a, T_i)  # escrita do som
 
 
 Tt_i = n.copy(Tv_i)
@@ -338,7 +338,7 @@ A_i = 10**((V_dB/20)*Tt_i)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]
 T_i = T_i*A_i
-a.wavwrite(T_i, "tremolo.wav", f_a)  # escrita do som
+wavfile.write("tremolo.wav", f_a, T_i)  # escrita do som
 
 
 ### 2.63 - Espectro da FM, implementada em 2.66-70
@@ -361,7 +361,7 @@ Gamma_i = n.array(Gamma_i, dtype=n.int)  # já os índices
 ### 2.70 FM
 T_i = S_i[Gamma_i % Lt]  # busca dos índices na tabela
 
-a.wavwrite(T_i, "fm.wav", f_a)  # escrita do som
+wavfile.write("fm.wav", f_a, T_i)  # escrita do som
 
 
 Tam_i = n.copy(Tfm_i)
@@ -372,7 +372,7 @@ A_i = 1+alpha*Tam_i
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 ### 2.70 AM
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
-a.wavwrite(T_i, "am.wav", f_a)  # escrita do som
+wavfile.write("am.wav", f_a, T_i)  # escrita do som
 
 
 ############## 2.2.5 Usos musicais
@@ -429,9 +429,9 @@ Tdoppler_i = L_i[Gamma_i % Lt]
 Tdoppler_i*=A_i
 
 # Normalizando e gravando:
-Tdoppler_i=((Tdoppler_i-Tdoppler_i.min()) /i \
-        (Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
-a.wavwrite(Tdoppler_i, 'doopler.wav', f_a)
+Tdoppler_i=((Tdoppler_i-Tdoppler_i.min()) / \
+            (Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
+wavfile.write('doopler.wav', f_a, Tdoppler_i)
 
 
 ######## Reverberação
@@ -479,8 +479,8 @@ Tf0ff_i = L_i[Gamma_i % Lt]
 T_i_=Tf0ff_i
 T_i=n.convolve(T_i_,R_i)
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
-a.wavwrite(T_i, 'reverb.wav', f_a)
-a.wavwrite(R_i, 'RI_reverb.wav', f_a)
+wavfile.write('reverb.wav', f_a, T_i)
+wavfile.write('RI_reverb.wav', f_a, R_i)
 
 
 ### 2.80 ADSR - variação linear
@@ -513,7 +513,7 @@ ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
 
-a.wavwrite(T_i, "adsr.wav", f_a)  # escrita do som em disco
+wavfile.write("adsr.wav", f_a, T_i)  # escrita do som em disco
 
 
 ### 2.80 ADSR - variação Exponencial
@@ -544,4 +544,4 @@ ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
 
-a.wavwrite(T_i, "adsr_exp.wav", f_a)  # escrita do som em disco
+wavfile.write("adsr_exp.wav", f_a, T_i)  # escrita do som em disco

@@ -1,3 +1,4 @@
+# coding: utf-8
 import numpy as n, pylab as p
 
 tonica=n.array([0,4,7])

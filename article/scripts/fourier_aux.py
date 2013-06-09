@@ -1,3 +1,4 @@
+# coding: utf-8
 # abs: 0.889857529063, a1: -0.878235820903, b1: -0.143346659928, fas: 0.163221149167A
 import pylab as p, numpy as n
 f=n.fft.fft

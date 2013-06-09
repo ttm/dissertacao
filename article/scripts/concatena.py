@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n, pylab as p
 
 c=2
@@ -28,7 +28,7 @@ p.plot(d,'o')
 p.plot(range(len(d),len(d)+len(q)),q,'o')
 p.plot(range(len(d)+len(q),len(d)+len(q)+len(s)),s,'o')
 p.plot(n.hstack((d,q,s)))
-p.xlabel(r"tempo $\rightarrow$",fontsize=22)
+p.xlabel(r"time $\rightarrow$",fontsize=22)
 p.ylim(-1.5,1.5)
 p.xlim(-5,305)
 p.show()
