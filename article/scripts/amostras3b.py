@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
-import pylab as p, numpy as n, scikits.audiolab as a
+import pylab as p, numpy as n
 f=n.fft.fft
 
 #n3=n.random.rand(3)*2-1

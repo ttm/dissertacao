@@ -3,7 +3,7 @@ import numpy as n
 import wavfile
 
 ############## 2.1.1 Duration
-# the equation relatex the number of samples to sound duration
+# the equation relates the number of samples to sound duration
 f_a = 44100.  # sample rate
 Delta = 3.7   # duration of Delta in seconds
 

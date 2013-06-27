@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
-import pylab as p, numpy as n, scikits.audiolab as a
+import pylab as p, numpy as n
 f=n.fft.fft
 #a=[-1,1]
 #n2=n.random.rand(2)*2-1 # 2 amostras quaisquer E [-1,1]

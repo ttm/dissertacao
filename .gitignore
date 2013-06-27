@@ -9,5 +9,6 @@
 *.toc
 *.dvi
 *.bbl
+*.pyc
 python.sty
 pythonlisting.tex

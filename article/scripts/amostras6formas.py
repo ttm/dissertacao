@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
-import pylab as p, numpy as n, scikits.audiolab as a
+import pylab as p, numpy as n
 f=n.fft.fft
 
 #n6=n.random.rand(6)*2-1
@@ -15,7 +15,7 @@ triangular=n.hstack ((n.linspace(-1,1,T/2,endpoint=False),n.linspace(1,-1,T/2,en
 quadrada=n.hstack ((n.ones(T/2),n.ones(T/2)* -1))
 
 ondas=[senoide,dente,triangular,quadrada]
-ondas_n=[u"sinusoid","sawtooth","triangular","square"]
+ondas_n=[u"sinusoid","sawtooth","triangle","square"]
 
 for i in xrange(4):
     p.subplot(int("22"+str(i+1)))

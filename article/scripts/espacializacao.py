@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 import numpy as n, pylab as p, Image
 
-im = Image.open('../figuras/cabeca.png')
+im = Image.open('../../figuras/cabeca.png')
 
 height = im.size[1]
 
@@ -19,7 +19,7 @@ from matplotlib.offsetbox import TextArea, DrawingArea, OffsetImage, AnnotationB
 from matplotlib.cbook import get_sample_data
 
 #fn = get_sample_data("../figuras/cabeca.png")
-arr_lena = read_png("../figuras/cabeca.png")
+arr_lena = read_png("../../figuras/cabeca.png")
 
 imagebox = OffsetImage(arr_lena, zoom=0.2)
 
