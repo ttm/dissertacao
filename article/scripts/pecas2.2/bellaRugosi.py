@@ -1,5 +1,7 @@
-#-*- coding: utf8 -*-
-import numpy as n, scikits.audiolab as a
+# coding: utf-8 
+import numpy as n
+from scipy.io import wavfile as w
+
 H=n.hstack
 V=n.vstack
 
@@ -119,5 +121,8 @@ aa3=n.array(v(fv=.25/2.,f=200,nu=9,d=8.))
 
 aa=n.vstack(( aa, (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
 
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.int16(aa * float(2**15))
+
 print("BellaRugosiSdadE.wav escrito")
-a.wavwrite(aa,"BellaRugosiSdadE.wav",f_a)
+w.write("BellaRugosiSdadE.wav", f_a, aa)

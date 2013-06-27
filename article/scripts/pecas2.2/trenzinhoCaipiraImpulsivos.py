@@ -1,5 +1,7 @@
-#-*- coding: utf8 -*-
-import numpy as n, scikits.audiolab as a
+#-*- coding: utf-8 -*-
+import numpy as n
+from scipy.io import wavfile as w
+
 H=n.hstack
 V=n.vstack
 
@@ -109,7 +111,10 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(T_i,"TrenzinhoImpulsivo.wav",f_a) # escrita do som
+# most music players read only 16-bit wav files, so let's convert the array
+T_i = n.int16(T_i * float(2**15))
+
+w.write("TrenzinhoImpulsivo.wav",f_a,T_i) # escrita do som
 
 
 #################
@@ -130,8 +135,11 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
+# most music players read only 16-bit wav files, so let's convert the array
+T_i = n.int16(T_i * float(2**15))
+
 # escrita do som em disco
-a.wavwrite(T_i,"TrenzinhoImpulsivo2.wav",f_a)
+w.write("TrenzinhoImpulsivo2.wav",f_a,T_i)
 
 
 #################
@@ -155,8 +163,11 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-           "TrenzinhoImpulsivo3.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("TrenzinhoImpulsivo3.wav",f_a,aa)
 
 #################
 som1=adsr(v(tabv=Tr_i ,d=.3,fv=3.,nu=7.0,f=300.),10,10,-10.)
@@ -177,8 +188,11 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-           "TrenzinhoImpulsivo4.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("TrenzinhoImpulsivo4.wav",f_a,aa)
 
 ##################
 som1=adsr(v(tabv=Tr_i ,d=.3,fv=3.,nu=7.0,f=300.),10,10,-10.)
@@ -202,8 +216,11 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-           "TrenzinhoImpulsivo5.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("TrenzinhoImpulsivo5.wav",f_a,aa)
 
 #################
 som1=adsr(v(tabv=Tr_i ,d=.3,fv=3.,nu=7.0,f=300.),10,10,-10.)
@@ -227,8 +244,11 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-           "TrenzinhoImpulsivo6.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("TrenzinhoImpulsivo6.wav",f_a,aa)
 
 ##################
 som1=adsr(v(tabv=Tr_i ,d=.3,fv=3.,nu=7.0,f=300.),10,10,-10.)
@@ -253,8 +273,11 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-           "TrenzinhoImpulsivo7.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("TrenzinhoImpulsivo7.wav",f_a,aa)
 
 #################
 som1=adsr(v(tabv=Tr_i ,d=.3,fv=3.,nu=7.0,f=300.),10,10,-10.)
@@ -280,8 +303,12 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-           "TrenzinhoImpulsivo8.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("TrenzinhoImpulsivo8.wav",f_a,aa)
+
 #
 #################
 som1=adsr(v(tabv=Tr_i ,d=.3,fv=3.,nu=7.0,f=300.),10,10,-10.)
@@ -307,8 +334,11 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-           "TrenzinhoImpulsivo9.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("TrenzinhoImpulsivo9.wav",f_a,aa)
 
 som1=adsr(v(tabv=Tr_i ,d=.3,fv=3.,nu=7.0,f=300.),10,10,-10.)
 som2=adsr(v(tabv=Tr_i ,d=.2,fv=2.,nu=1.),10,10,-10.)
@@ -332,8 +362,11 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-           "TrenzinhoImpulsivo10.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("TrenzinhoImpulsivo10.wav",f_a,aa)
 
 
 som1=adsr(v(tabv=Tr_i ,d=.3,fv=3.,nu=7.0,f=300.),10,10,-10.)
@@ -366,7 +399,8 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),
-                 "TrenzinhoImpulsivo11.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
 
-
+w.write("TrenzinhoImpulsivo11.wav",f_a,aa)

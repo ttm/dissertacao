@@ -1,6 +1,6 @@
 # coding: utf-8
 import numpy as n
-import wavfile
+from scipy.io import wavfile as w
 
 ############## 2.1.1 Duration
 # the equation relates the number of samples to sound duration
@@ -12,7 +12,7 @@ Lambda = int(f_a*Delta)  # number of samples
 T_i = n.zeros(Lambda)  # silence with ~Delta, in seconds
 
 # write as a PCM file (WAV)
-wavfile.write('silence.wav', f_a, T_i)
+w.write('silence.wav', f_a, T_i)
 
 ############## 2.1.2 Volume
 Lambda = 100.  # 100 samples
@@ -56,7 +56,7 @@ Tf_i = n.array(list(cycle)*1000)  # 1000 cycles
 
 # normalizing to interval [-1, 1]
 Tf_i = ((Tf_i-Tf_i.min())/(Tf_i.max()-Tf_i.min()))*2.-1.
-wavfile.write('f_0.wav', f_a, T_i)
+w.write('f_0.wav', f_a, T_i)
 
 ############## 2.1.4 Timbre
 T = 100000.  # sample number of sequences
@@ -72,7 +72,7 @@ Tf_i = 1.-n.abs(2.-(4./lambda_f)*(ii % lambda_f))
 ### 2.13 Square
 Qf_i = ((ii % lambda_f) < (lambda_f/2))*2-1
 
-Rf_i = wavfile.read("22686__acclivity__oboe-a-440_periodo.wav")[1]
+Rf_i = w.read("22686__acclivity__oboe-a-440_periodo.wav")[1]
 ### 2.14 Sampled period
 Tf_i = Rf_i[n.int64(ii) % len(Rf_i)]
 
@@ -152,10 +152,10 @@ T2_i = n.hstack((n.zeros(Lambda_DTI), DII_a*T_i))
 T_i = n.hstack((T_i, n.zeros(Lambda_DTI)))
 
 som = n.vstack((T2_i, T_i)).T
-wavfile.write('estereo.wav', f_a, som)
+w.write('estereo.wav', f_a, som)
 # mirrored
 som = n.vstack((T_i, T2_i)).T
-wavfile.write('estereo2.wav', f_a, som)
+w.write('estereo2.wav', f_a, som)
 
 ### 2.29 Object angle
 theta = n.arctan(y/x)
@@ -182,9 +182,9 @@ T_i = T1_i+T2_i+T3_i
 # normalization
 T_i = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
 # writing file
-wavfile.write('mixados.wav', f_a, T_i)
+w.write('mixados.wav', f_a, T_i)
 
 ### 2.31 concatenation
 T_i = n.hstack((T1_i, T2_i, T3_i))
 # writing file
-wavfile.write('concatenados.wav', f_a, T_i)
+w.write('concatenados.wav', f_a, T_i)

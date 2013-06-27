@@ -1,6 +1,8 @@
-#-*- coding: utf8 -*-
-import numpy as n, scikits.audiolab as a
+#-*- coding: utf-8 -*-
+import numpy as n
 import random as r
+from scipy.io import wavfile as w
+
 H=n.hstack
 V=n.vstack
 
@@ -90,6 +92,9 @@ s=H(([adsr(v(tab=Tr_i,f=800.*2.**(ss),nu=0.5,d=.2,fv=20),
                             70.,100.,R=20.) for ss in s_]))
 s=((s-s.min())/(s.max()-s.min()))*2-1
 
-a.wavwrite(s,"dirracional.wav",f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+s = n.int16(s * float(2**15))
+
+w.write("dirracional.wav",f_a,s)
 
 

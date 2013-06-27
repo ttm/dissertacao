@@ -1,5 +1,7 @@
-#-*- coding: utf8 -*-
-import numpy as n, scikits.audiolab as a
+#-*- coding: utf-8 -*-
+import numpy as n
+from scipy.io import wavfile as w
+
 H=n.hstack
 V=n.vstack
 
@@ -81,7 +83,10 @@ s4=v(tabv=D_i)
 
 T_i=n.hstack((s, s1,s2,s3,s4))
 
-a.wavwrite(T_i,"chorusInfantil.wav",f_a) # escrita do som
+# most music players read only 16-bit wav files, so let's convert the array
+T_i = n.int16(T_i * float(2**15))
+
+w.write("chorusInfantil.wav",f_a,T_i) # escrita do som
 
 # soh nos vibratos
 s= v(d=8,)
@@ -92,7 +97,11 @@ s4=v(d=8,fv=3.,nu=.2)
 
 T_i=n.hstack((s+ s1+s2+s3+s4))
 T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
-a.wavwrite(T_i,"chorusInfantil2.wav",f_a) # escrita do som
+
+# most music players read only 16-bit wav files, so let's convert the array
+T_i = n.int16(T_i * float(2**15))
+
+w.write("chorusInfantil2.wav",f_a,T_i) # escrita do som
 
 # nos vibratos e variacoes de f
 amb=.2
@@ -104,7 +113,11 @@ s4=v(f=200.*2.**((n.random.random()-0.5)*amb),d=8,fv=3.,nu=.2)
 
 T_i=n.hstack((s+ s1+s2+s3+s4))
 T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
-a.wavwrite(T_i,"chorusInfantil3.wav",f_a) # escrita do som
+
+# most music players read only 16-bit wav files, so let's convert the array
+T_i = n.int16(T_i * float(2**15))
+
+w.write("chorusInfantil3.wav",f_a,T_i) # escrita do som
 
 
 # nos vibratos e variacoes de f
@@ -183,4 +196,8 @@ ss=n.hstack((ss,foobar,(foo+s+ s1+s2+s3+s4)*.5))
 
 T_i=ss
 T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
-a.wavwrite(T_i,"chorusInfantil4.wav",f_a) # escrita do som
+
+# most music players read only 16-bit wav files, so let's convert the array
+T_i = n.int16(T_i * float(2**15))
+
+w.write("chorusInfantil4.wav",f_a,T_i) # escrita do som

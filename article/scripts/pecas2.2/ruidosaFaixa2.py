@@ -1,5 +1,7 @@
-#-*- coding: utf8 -*-
-import numpy as n, scikits.audiolab as a
+#-*- coding: utf-8 -*-
+import numpy as n
+from scipy.io import wavfile as w
+
 H=n.hstack
 V=n.vstack
 
@@ -200,6 +202,10 @@ T_i=som
 
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
-a.wavwrite(n.hstack((T_i,T_i,T_i,T_i,T_i,T_i)),"ruidosaFaixa2.wav",f_a) # escrita do som
+# most music players read only 16-bit wav files, so let's convert the array
+aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
+aa = n.int16(aa * float(2**15))
+
+w.write("ruidosaFaixa2.wav",f_a,aa) # escrita do som
 
 

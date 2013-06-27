@@ -1,5 +1,6 @@
-#-*- coding: utf8 -*-
-import numpy as n, scikits.audiolab as aa
+#-*- coding: utf-8 -*-
+import numpy as n
+from scipy.io import wavfile as w
 
 # peça dedicada e expor as diferentes transições
 # de intensidade e altura
@@ -160,7 +161,10 @@ s=n.vstack((_e,_d)).T
 
 s=((s-s.min())/(s.max()-s.min()))*2-1
 
-aa.wavwrite(s,'trans1.wav',f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+s = n.int16(s * float(2**15))
+
+w.write('trans1.wav',f_a,s)
 
 
 # Exploracao sistemática dos tremolos:

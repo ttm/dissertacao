@@ -1,5 +1,7 @@
-#-*- coding: utf8 -*-
-import numpy as n, scikits.audiolab as a
+#-*- coding: utf-8 -*-
+import numpy as n
+from scipy.io import wavfile as w
+
 H=n.hstack
 V=n.vstack
 
@@ -192,4 +194,7 @@ for i in I_i:
 
 s=((s-s.min())/(s.max()-s.min()))*2.-1.
 
-a.wavwrite(s,"intervalosEntreAlturas.wav",f_a) # escrita do som
+# most music players read only 16-bit wav files, so let's convert the array
+s = n.int16(s * float(2**15))
+
+w.write("intervalosEntreAlturas.wav",f_a,s) # escrita do som

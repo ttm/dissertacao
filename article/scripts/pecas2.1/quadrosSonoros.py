@@ -1,6 +1,6 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n
-import scikits.audiolab as a
+from scipy.io import wavfile as w
 
 # Peça musical baseada em sons estáticos
 # são mixagens de sons básicos apresentados na seção 2.1
@@ -29,7 +29,11 @@ som += dente_aguda/80
 # normalição no intervalo [-1,1]
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
-a.wavwrite(som, "quadro1.wav", f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+som = n.int16(som * float(2**15))
+
+w.write("quadro1.wav",f_a,som)
+
 print(u"quadro 1 feito em quadro1.wav (mono), são %i amostras \
 em uma frequência de amostragem de %iHz" % (len(som), f_a))
 
@@ -45,7 +49,10 @@ for f in fs2:
 # normalizando no intervalo [-1,1]
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
-a.wavwrite(som, "quadro2.wav", f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+som = n.int16(som * float(2**15))
+
+w.write("quadro2.wav", f_a, som)
 print("quadro 2 feito em quadro2.wav (mono), são %i amostras \
 em uma frequência de amostragem de %iHz" % (len(som), f_a))
 
@@ -66,7 +73,10 @@ for f in fs3:
 som = n.vstack((som_d, som_e)).T
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
-a.wavwrite(som, "quadro3.wav", f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+som = n.int16(som * float(2**15))
+
+w.write("quadro3.wav", f_a, som)
 print("quadro 3 feito em quadro3.wav (estéreo), são %i amostras \
 em uma frequência de amostragem de %iHz" % (len(som), f_a))
 
@@ -99,7 +109,10 @@ for f in fs4:
 som += n.vstack((som_d, som_e)).T/60
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
-a.wavwrite(som, "quadro4.wav", f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+som = n.int16(som * float(2**15))
+
+w.write("quadro4.wav", f_a, som)
 print("quadro 4 feito em quadro4.wav (estéreo), são %i amostras \
 em uma frequência de amostragem de %iHz" % (len(som), f_a))
 
@@ -116,6 +129,9 @@ som_e = dente+n.sin(ii*43) + n.sin(ii*126.3)
 som = n.vstack((som_d, som_e)).T
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
-a.wavwrite(som, "quadro5.wav", f_a)
+# most music players read only 16-bit wav files, so let's convert the array
+som = n.int16(som * float(2**15))
+
+w.write("quadro5.wav", f_a, som)
 print("quadro 5 feito em quadro5.wav (estéreo), são %i amostras \
 em uma frequência de amostragem de %iHz" % (len(som), f_a))
