@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
 import pylab as p, numpy as n, scikits.audiolab as a, matplotlib as m
@@ -48,7 +48,7 @@ i=n.arange(len(onda))
 p.plot(i,onda,"yo",linewidth=3, label="sampled real sound")
 p.plot(i,onda,"y",linewidth=3)
 i=n.linspace(0,len(onda),len(onda2),endpoint=False)
-p.plot(i, onda2,"ko", linewidth=3, label=u"oboe 440Hz note period")
+p.plot(i, onda2,"ko", linewidth=3, label=u"oboe period at 440Hz")
 p.plot(i, onda2,"k", linewidth=3)
 p.xlim(0,onda.shape[0])
 p.ylim(-1.1,1.1)

@@ -1,6 +1,6 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n
-import scikits.audiolab as a
+from scipy.io import wavfile as w
 
 f_a = 44100  # Hz, frequência de amostragem
 
@@ -25,7 +25,7 @@ D_i = n.linspace(-1, 1, Lt)
 
 # som real, importar período e
 # usar T correto: o número de amostras do período
-Rf_i = a.wavread("22686__acclivity__oboe-a-440_periodo.wav")[0]
+Rf_i = w.read("22686__acclivity__oboe-a-440_periodo.wav")[1]
 
 f = 110.  # Hz
 Delta = 3.4  # segundos
@@ -209,7 +209,7 @@ f0 = fi[i0]
 ruido = n.fft.ifft(coefs)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'branco.wav', f_a)
+w.write('branco.wav', f_a, r)
 
 
 ### 2.51 Ruído rosa
@@ -226,7 +226,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'rosa.wav', f_a)
+w.write('rosa.wav', f_a, r)
 
 
 ### 2.52 Ruído marrom
@@ -244,7 +244,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'marrom.wav', f_a)
+w.write('marrom.wav', f_a, r)
 
 ruido_marrom=n.copy(r) # será usado para a reverberação
 
@@ -264,7 +264,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'azul.wav', f_a)
+w.write('azul.wav', f_a, r)
 
 
 ### 2.54 Ruido violeta
@@ -281,7 +281,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'violeta.wav', f_a)
+w.write('violeta.wav', f_a, r)
 
 ### 2.55 Ruído preto
 # a cada oitava, perdemos mais que 6dB
@@ -297,7 +297,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r, 'preto.wav', f_a)
+w.write('preto.wav', f_a, r)
 
 
 ############## 2.2.5 Tremolo e vibrato, AM e FM
@@ -327,7 +327,7 @@ Gamma_i = n.array(Gamma_i, dtype=n.int)  # já os índices
 ### 2.60 som em si
 T_i = Tr_i[Gamma_i % Lt]  # busca dos índices na tabela
 
-a.wavwrite(T_i, "vibrato.wav", f_a)  # escrita do som
+w.write("vibrato.wav", f_a, T_i)  # escrita do som
 
 
 Tt_i = n.copy(Tv_i)
@@ -338,7 +338,7 @@ A_i = 10**((V_dB/20)*Tt_i)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]
 T_i = T_i*A_i
-a.wavwrite(T_i, "tremolo.wav", f_a)  # escrita do som
+w.write("tremolo.wav", f_a, T_i)  # escrita do som
 
 
 ### 2.63 - Espectro da FM, implementada em 2.66-70
@@ -361,7 +361,7 @@ Gamma_i = n.array(Gamma_i, dtype=n.int)  # já os índices
 ### 2.70 FM
 T_i = S_i[Gamma_i % Lt]  # busca dos índices na tabela
 
-a.wavwrite(T_i, "fm.wav", f_a)  # escrita do som
+w.write("fm.wav", f_a, T_i)  # escrita do som
 
 
 Tam_i = n.copy(Tfm_i)
@@ -372,7 +372,7 @@ A_i = 1+alpha*Tam_i
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 ### 2.70 AM
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
-a.wavwrite(T_i, "am.wav", f_a)  # escrita do som
+w.write("am.wav", f_a, T_i)  # escrita do som
 
 
 ############## 2.2.5 Usos musicais
@@ -429,9 +429,9 @@ Tdoppler_i = L_i[Gamma_i % Lt]
 Tdoppler_i*=A_i
 
 # Normalizando e gravando:
-Tdoppler_i=((Tdoppler_i-Tdoppler_i.min()) /i \
+Tdoppler_i=((Tdoppler_i-Tdoppler_i.min()) / \
         (Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
-a.wavwrite(Tdoppler_i, 'doopler.wav', f_a)
+w.write('doopler.wav', f_a, Tdoppler_i)
 
 
 ######## Reverberação
@@ -479,8 +479,8 @@ Tf0ff_i = L_i[Gamma_i % Lt]
 T_i_=Tf0ff_i
 T_i=n.convolve(T_i_,R_i)
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
-a.wavwrite(T_i, 'reverb.wav', f_a)
-a.wavwrite(R_i, 'RI_reverb.wav', f_a)
+w.write('reverb.wav', f_a, T_i)
+w.write('RI_reverb.wav', f_a, R_i)
 
 
 ### 2.80 ADSR - variação linear
@@ -513,7 +513,7 @@ ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
 
-a.wavwrite(T_i, "adsr.wav", f_a)  # escrita do som em disco
+w.write("adsr.wav", f_a, T_i)  # escrita do som em disco
 
 
 ### 2.80 ADSR - variação Exponencial
@@ -544,4 +544,4 @@ ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
 
-a.wavwrite(T_i, "adsr_exp.wav", f_a)  # escrita do som em disco
+w.write("adsr_exp.wav", f_a, T_i)  # escrita do som em disco

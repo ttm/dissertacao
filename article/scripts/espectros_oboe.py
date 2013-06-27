@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
 import pylab as p, numpy as n, scikits.audiolab as a
@@ -31,7 +31,7 @@ p.plot(i[foo],p_a[foo],"o",label=u"sampled period")
 ii=list(i[foo])
 
 i=n.arange(oboe.shape[0])
-p.plot(i,o_a,label=u"natural oboe note")
+p.plot(i,o_a,label=u"note from a natural oboe")
 p.legend(loc="upper right",prop={'size':26})
 
 p.yticks((0,11000),(0,'11k'), fontsize="26")
@@ -40,8 +40,8 @@ p.xticks([0] + ii + [22000],[0] + ticks + [r"$\;\;22k$"], fontsize="22")
 
 p.xlim(0,22000,)
 p.ylim(-300,11000)
-p.ylabel(r'absolute value $\sqrt{a^2+b^2}$ of the complex component $\rightarrow$', fontsize="19")
-p.xlabel(u'frequency of the spectral component' + r'$\rightarrow$', fontsize="24")
+p.ylabel(r'absolute value $\sqrt{a^2+b^2}$ of complex component $\rightarrow$', fontsize="19")
+p.xlabel(u'spectrum component as frequency' + r'$\rightarrow$', fontsize="24")
 p.show()
 
 

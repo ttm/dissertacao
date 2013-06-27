@@ -1,4 +1,4 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
 import pylab as p, numpy as n, scikits.audiolab as a
@@ -73,7 +73,7 @@ p.xlim(0,16500)
 #p.xlim(0,T2*.56)
 p.ylim(-300,20000)
 p.ylabel(r'absolute value $\rightarrow$', fontsize=19)
-p.xlabel(r'espectrum component $\rightarrow$', fontsize=19)
+p.xlabel(r'spectrum component $\rightarrow$', fontsize=19)
 
 
 

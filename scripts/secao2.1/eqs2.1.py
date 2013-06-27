@@ -1,6 +1,6 @@
-#-*- coding: utf8 -*-
+#-*- coding: utf-8 -*-
 import numpy as n
-import scikits.audiolab as a
+from scipy.io import wavfile as w
 
 ############## 2.1.1 Duração
 # a equação relaciona o número de amostras à duração do som
@@ -12,7 +12,7 @@ Lambda = int(f_a*Delta)  # número de amostras
 T_i = n.zeros(Lambda)  # silêncio com ~ Delta segundos
 
 # escrita em disco como arquivo PCM (WAV no caso)
-a.wavwrite(T_i, "silencio.wav", f_a)
+w.write("silencio.wav", f_a, T_i)
 
 ############## 2.1.2 Volume
 Lambda = 100.  # 100 amostras
@@ -56,7 +56,7 @@ Tf_i = n.array(list(periodo)*1000)  # 1000 períodos
 
 # normalizando para convenção no intervalo [-1,1]
 Tf_i = ((Tf_i-Tf_i.min())/(Tf_i.max()-Tf_i.min()))*2.-1.
-a.wavwrite(Tf_i, "f_0.wav", f_a)  # escrita em disco
+w.write("f_0.wav", f_a, Tf_i)  # escrita em disco
 
 
 ############## 2.1.4 Timbre
@@ -73,7 +73,7 @@ Tf_i = 1.-n.abs(2.-(4./lambda_f)*(ii % lambda_f))
 ### 2.13 Onda quadrada
 Qf_i = ((ii % lambda_f) < (lambda_f/2))*2-1
 
-Rf_i = a.wavread("22686__acclivity__oboe-a-440_periodo.wav")[0]
+Rf_i = w.read("22686__acclivity__oboe-a-440_periodo.wav")[1]
 ### 2.14 Período amostrado
 Tf_i = Rf_i[n.int64(ii) % len(Rf_i)]
 
@@ -101,7 +101,7 @@ tau = (Lambda - Lambda % 2)/2 + Lambda % 2-1
 ### 2.18 Coeficientes equivalentes
 kk = n.arange(tau)
 F_k = C_k[1:tau+1]
-F2_k = C_k[Lambda-tau:Lambda-1][::-1]
+F2_k = C_k[Lambda-tau:Lambda][::-1]
 
 ### 2.19 Coeficientes equivalentes: módulos
 ab = n.abs(F_k)
@@ -153,10 +153,10 @@ T2_i = n.hstack((n.zeros(Lambda_DTI), DII_a*T_i))
 T_i = n.hstack((T_i, n.zeros(Lambda_DTI)))
 
 som = n.vstack((T2_i, T_i)).T
-a.wavwrite(som, "estereo.wav", f_a)
+w.write("estereo.wav", f_a, som)
 # espelhando
 som = n.vstack((T_i, T2_i)).T
-a.wavwrite(som, "estereo2.wav", f_a)
+w.write("estereo2.wav", f_a, som)
 
 ### 2.29 ângulo do objeto
 theta = n.arctan(y/x)
@@ -183,9 +183,9 @@ T_i = T1_i+T2_i+T3_i
 # normalização
 T_i = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
 # escrita em disco
-a.wavwrite(T_i, "mixados.wav", f_a)
+w.write("mixados.wav", f_a, T_i)
 
 ### 2.31 concatenação
 T_i = n.hstack((T1_i, T2_i, T3_i))
 # escrita em disco
-a.wavwrite(T_i, "concatenados.wav", f_a)
+w.write("concatenados.wav", f_a, T_i)
