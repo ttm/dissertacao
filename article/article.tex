@@ -172,22 +172,22 @@ The next section is a minimum text in which musical elements are presented side-
 
 \section{Characterization of the discrete-time musical note} \label{sec:discNote}
 
-In diverse artistic and theoretical contexts, music is though as being constituted by units called notes, and these units taken as "atoms" that constitute music itself~\cite{Wisnick, Lovelock, Webern}. (****nao entendi****, texto ruim)
+In diverse artistic and theoretical contexts, music is conceived as constituted by fundamental units called notes, ``atoms'' that constitute music itself~\cite{Wisnick, Lovelock, Webern}.
 Nowadays, these notes are understood as central elements of certain musical paradigms. In a cognitive perspective, the notes are seen as discretized elements that easy and enrich the flow of information through music~\cite{Roederer, Lacerda}.
-Canonically, the principal properties of a musical note are duration, volume, pitch and timbre~\cite{Lacerda}. These qualities can be managed quantitatively, dictated by the evenly time spaced sound samples.
+Canonically, the principal properties of a musical note are duration, volume, pitch and timbre~\cite{Lacerda}. These qualities can be managed quantitatively, dictated by the evenly time spaced sonic samples.
 
 All the relations described in this section are implemented at the file \emph{eqs2.1.py} of the \massa\ toolbox. Musical pieces \emph{5 sonic portraits} and \emph{reduced-fi} are also available online in order to corroborate the concepts.
 
 \subsection{Duration}
 
-The sample frequency $f_s$ is defined as the number of samples in each second of the discrete-time signal. Let $T_i=\{t_i\}$ be an ordered set of real samples separated by $\delta_s=1/f_s$ seconds. A musical note of duration $\Delta$ seconds is presented as a sequence of $\lfloor \Delta . f_s \rfloor $ samples. That is, taken the integer part of the multiplication, it is admitted an error of at most $-\lambda_a$ seconds, which are usually fine for musical purposes. Considering $f_s=44.1kHz \;\;\Rightarrow\;\;\lambda_s=\frac{1}{44100}\approx 23$ microseconds. It is reasonable to state that:
+The sample frequency $f_s$ is defined as the number of samples in each second of the discrete-time signal. Let $T_i=\{t_i\}$ be an ordered set of real samples separated by $\delta_s=1/f_s$ seconds. A musical note of duration $\Delta$ seconds is presented as a sequence $T_i^{\Delta}$ of $\lfloor \Delta . f_s \rfloor $ samples. That is, the integer part of the multiplication is considered, and an error of at most $\delta_s$ missing seconds is admitted, which is usually fine for musical purposes. As an example, if $f_s=44.1kHz \;\;\Rightarrow\;\;\lambda_s=\frac{1}{44100}\approx 23$ microseconds. Thus:
 
 
 \begin{equation}\label{eq:dur}
 T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\lfloor \Delta . f_a \rfloor -1}
 \end{equation}
 
-Being $\Lambda=\lfloor \Delta . f_a \rfloor$ the number of samples in the sequence, thus $T_i=\{t_i\}_0^{\Lambda-1}$.
+With $\Lambda=\lfloor \Delta . f_a \rfloor$, the number of samples in the sequence, the more condensed notation is $T_i^\Delta=\{t_i\}_0^{\Lambda-1}$.
 
 \subsection{Volume}\label{subsec:volume}
 
@@ -204,8 +204,8 @@ V_{dB}=10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)}
 \end{equation}
 
 The quantity $V_{dB}$ has the decibel unit ($dB$). 
-For each $10dB$ it is associated a "doubled volume".
-Handy references are the $10dB$ for each step in the intensity scale: \emph{pianissimo}, \emph{piano}, \emph{mezzoforte}, \emph{forte} e \emph{fortissimo}. Other useful references are that equivalent in $dB$ of doubling amplitude or potency:
+For each $10dB$ it is associated a ``doubled volume''.
+A handy reference is $10dB$ for each step in the intensity scale: \emph{pianissimo}, \emph{piano}, \emph{mezzoforte}, \emph{forte} e \emph{fortissimo}. Other useful references are $dB$ values related to double amplitude or potency:
 
 \begin{equation}\label{eq:ampVol}
 \begin{split}
@@ -219,16 +219,16 @@ pot(T^{'}_i)=2 pot(T_i) \Rightarrow \\ \Rightarrow V^{'}_{dB}=10log_{10} 2 \appr
 \end{split}
 \end{equation}
 
-and the amplitude gain for a sequence whose volume has been doubled ($10dB$) is:
+and the amplitude gain for a sequence whose volume has been doubled ($10dB$):
 
 \begin{equation}\label{eq:dobraVol}
 \begin{split}
 10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \\ \Rightarrow \quad \sum_{i=0}^{\lfloor \Delta.f_a \rfloor -1}t^{'2}_i=10\sum_{i=0}^{\Lambda-1}t_i^2=\sum_{i=0}^{\Lambda-1}(\sqrt{10}.t_i)^2 \\
-\therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3,16t_i
+\therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3.16t_i
 \end{split}
 \end{equation}
 
-Thus, it is necessary a little bit more than triplicate the amplitude for a doubled volume. These values are guides for increasing or decreasing the absolute values on the sample sequences with musical purposes. The conversion from decibels to amplitude gain (or attenuation) is straightforward:
+As shown, it is necessary an amplitude increase by a bit more than a factor of 3 for a doubled volume. These values are guides for increasing or decreasing the absolute values on the sample sequences with musical purposes. The conversion from decibels to amplitude gain (or attenuation) is straightforward:
 
 \begin{equation}\label{ampDec}
 A = 10^{\frac{V_{dB}}{20}}
@@ -238,32 +238,32 @@ where $A$ is the multiplicative factor that relates the amplitudes before and af
 
 \subsection{Pitch}
 
-As explained in the previous subsections, the musical particle (note) is a sequence $T_i$ in which duration and volume corresponds to the size of sequence and the amplitude of its samples. The pitch is specified by the fundamental frequency $f_0$ whose cycle has duration $\delta_{f_0}=1/f_0$. This duration, multiplied by the sampling frequency $f_s$ results on the number of samples per cycle: $\lambda_{f_0}=f_a . \delta_{f_0} =f_a/f_0$.
+As exposed in the previous subsections, to a note corresponds a sequence $T_i$ in which duration and volume are directly related to the size of the sequence and the amplitude of its samples, respectively. The pitch is specified by the fundamental frequency $f_0$ whose cycle has duration $\delta_{f_0}=1/f_0$. This duration, multiplied by the sampling frequency $f_s$ results on the number of samples per cycle: $\lambda_{f_0}=f_s . \delta_{f_0} =f_a/f_0$.
 
-For didactic reasons, be $f_0$ such that it divides $f_s$ and $\lambda_{f_0}$ results an integer. If $T_i^f$ is a sonic sequence of fundamental frequency $f$, then:
+For didactic reasons, be $f_0$ such that it divides $f_s$ and $\lambda_{f_0}$ results integer. If $T_i^f$ is a sonic sequence of fundamental frequency $f$, then:
 
 \begin{equation}\label{periodicidade}
      T^f_i=\left\{ t_i^f \right\}=\left\{ t^f_{i+\lambda_{f}}  \right\}= \left\{ t^f_{i+\frac{f_a}{f}} \right\}
 \end{equation}
 
-In the next section, frequencies $f$ that does not divide $f_s$ will be considered. We will see that this restriction does not imply in lost of generality of this section's content.
+In the next section, frequencies $f$ that does not divide $f_s$ will be considered. This restriction does not imply in lost of generality of this section's content.
 
 \subsection{Timbre}
 
-While the wave period corresponds to the fundamental frequency, the trajectory of the wave inside the period - called the waveform - defines a harmonic spectrum and, thus, a timbre\footnote{Timbre is a subjective and complex characteristic. Physically, the timbre is multidimensional and given by the temporal dynamics behavior of energy in the spectral components that are harmonic or noisy. Beyond that, the word timbre is used to designate different things: one same note has different timbres, a same instrument has different timbres, two instruments of the same family have, at the same time, the same timbre that blends them in the same family, and different timbres as they are different instruments. It is worth to mention that timbre is not always manifested in spectral traces, since cultural or circumstantial aspects alter our perception of timbre}. Musically, it matters that sonic spectra with minimum differences can result in timbres with crucial expressive differences and, consequently, different timbres can be produced by using different spectra\cite{Roederer}.
+In a sound with harmonic spectrum, the (wave) period corresponds to the duration of the cycle, given by the inverse of the fundamental frequency. The trajectory of the wave inside the period - called the waveform - defines a harmonic spectrum and, thus, a timbre\footnote{Timbre is a subjective and complex characteristic. Physically, the timbre is multidimensional and given by the temporal dynamics of energy in the spectral components that are harmonic or noisy. Beyond that, the word timbre is used to designate different things: one same note has different timbres, a same instrument has different timbres, two instruments of the same family have, at the same time, the same timbre that blends them in the same family, and different timbres as they are different instruments. It is worth to mention that timbre is not always manifested in spectral traces, since cultural or circumstantial aspects alter our perception of timbre}. Musically, it matters that sonic spectra with minimum differences can result in timbres with crucial expressive differences and, consequently, different timbres can be produced by using different spectra\cite{Roederer}.
 
-The simplest (and most important case, as we will see in the following) is the spectrum that consists of only of the fundamental frequency $f$. This defines the sinusoid: a frequency in pure oscillatory movement called 'simple harmonic movement'. Let $S_i^f$ be a sequence whose samples $s_i^f$ describes a sinusoid of frequency $f$:
+The simplest case is the spectrum that consists of only of the fundamental frequency $f$. This defines the sinusoid: a frequency in pure oscillatory movement called `simple harmonic movement'. Be $S_i^f$ a sequence whose samples $s_i^f$ describes a sinusoid of frequency $f$:
 
-\begin{equation}\label{senoide}
-     S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(2\pi \frac{i}{\lambda_f} \bigr)  \Bigr\} = \Bigl\{ \sin\bigl(2\pi f \frac{i}{f_a}\bigr)  \Bigr\} 
+\begin{equation}\label{sinusoid}
+     S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(2\pi \frac{i}{\lambda_f} \bigr)  \Bigr\} = \Bigl\{ \sin\bigl(2\pi f \frac{i}{f_s}\bigr)  \Bigr\} 
 \end{equation}
 
-where $\lambda_f=\frac{f_a}{f}=\frac{\delta_f}{\lambda_a}$  is the number of samples in the period.
+where $\lambda_f=\frac{f_s}{f}=\frac{\delta_f}{\lambda_s}$  is the number of samples in the period.
 
-In a similar fashion, other waveforms are applied in music considering their spectral qualities and simplicity. While the sinusoid is an isolated point in the spectrum, these additional waves present a succession of harmonic components of the sinusoid. These waveforms are specified in equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square} and illustrated in Figure~\ref{fig:formasDeOnda}.
-Although the artificial waveforms are traditionally used in music for synthesis and oscillatory control of variables, they are also useful outside music context\cite{Openheim}.
+In a similar fashion, other waveforms are applied in music for their spectral qualities and simplicity. While the sinusoid is an isolated point in the spectrum, these waves present a succession of harmonic components. These waveforms are specified in equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square} and illustrated in Figure~\ref{fig:formasDeOnda}.
+These artificial waveforms are traditionally used in music for synthesis and oscillatory control of variables. They are also useful outside musical contexts\cite{Openheim}.
 
-The sawtooth presents all components of the harmonic series with decreasing energy of $-6dB/octave$. The sequence of temporal samples can be described as following:
+The sawtooth presents all components of the harmonic series with decreasing energy of $-6dB/octave$. The sequence of temporal samples can be described as:
 
 \begin{equation}\label{sawTooth}
      D^f_i=\left\{ d^f_i \right\}=\left\{ 2\frac{i\,\%\lambda_f}{\lambda_f} -1 \right\}
@@ -274,12 +274,9 @@ The triangular waveform present only odd harmonics falling with $-12dB/octave$:
      T^f_i=\left\{ t^f_i \right\}=\left\{1- \left| 2 - 4\frac{i\,\%\lambda_f}{\lambda_f} \right| \right\}
 \end{equation}
 
-The sawtooth is a common starting point for a subtractive synthesis, because it has both odd and even harmonics with high energy. For musical intention, these waveforms are excessively rich in sharp harmonics, and attenuator filtering on treble and middle parts of the spectrum is specially useful for reaching a more natural and pleasant sound. 
-The relatively attenuated harmonics of the triangle wave makes it the more functional - among the listed ones - to be used in the synthesis of musical notes without any treatment.
-
 The square wave preservers only odd harmonics falling at $-6dB/octave$:
 
-\begin{equation}\label{quadrada}
+\begin{equation}\label{square}
      Q^f_i=\left\{ q^f_i \right\}= \left\{
          \begin{array}{l l}
               1 & \quad \text{for } \; \; (i\,\%\lambda_f)   <  \lambda_f /2  \\
@@ -287,18 +284,22 @@ The square wave preservers only odd harmonics falling at $-6dB/octave$:
          \end{array} \right.
 \end{equation}
 
+
 The square wave can be used in a subtractive synthesis with the purposes of mimicking a clarinet. This instrument has only the odd harmonic components and the square wave is convenient with its abundant energy in high frequencies.
+The sawtooth is a common starting point for a subtractive synthesis, because it has both odd and even harmonics with high energy. In general, these waveforms are appreciated as excessively rich in sharp harmonics, and attenuator filtering on treble and middle parts of the spectrum is specially useful for reaching a more natural and pleasant sound. 
+The relatively attenuated harmonics of the triangle wave makes it the more functional - among the listed ones - to be used in the synthesis of musical notes without any treatment. The sinusoid is often a nice choice, but a problematic one. While pleasant if not loud in a very high pitch (above 500Hz, it requires careful dosage), the pitch is not accuratly detected, specially in low frequencies. It requires a big amplitude to give sinusoid volume, if compared to other waveforms. Both particularities are seen as a consequence of the non-existence of pure sinusoidal sounds in nature~\ref{roederer}.
+
 
 \begin{figure*}
     \centering
-        \includegraphics[width=\columnwidth]{figures/waveForms}
+        \includegraphics[width=\textwidth]{figures/waveForms}
     \caption{Basic musical waveforms: (a) the synthetic  waveforms; (b) the real waveforms.}
         \label{fig:formasDeOnda}
 \end{figure*}
 
-Figure~\ref{fig:formasDeOnda} presents the waveforms described in equations  ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} and ~\ref{quadrada} for $\lambda_f=100$ (period of $100$ samples). If $f_s=44.1kHz$, a PCM standard in Compact Disks, the wave has fundamental frequency $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz$, reflecting the A4, just above the central "C", whatever the waveform is.
+Figure~\ref{fig:formasDeOnda} presents the waveforms described in equations  ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} and ~\ref{quadrada} for $\lambda_f=100$ (period of $100$ samples). If $f_s=44.1kHz$, the PCM standard in Compact Disks, the wave has fundamental frequency $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz$, around A4, just above the central "C", whatever the waveform is.
 
-The spectrum of each basic waveform is in Figure~\ref{fig:espectroDeondas}. The isolated and exactly harmonic components of the spectrum is a consequence of the fixed period usage. The sinusoid consists of a one and only node in spectrum (**esquisito o texto**), pure frequency. As we said before, the sawtooth is the only waveform with a complete harmonic series (odd and even components). Triangular and square waves has the same components (odd harmonics), decaying at $-12dB/octave$ and $-6dB/octave$, respectively.
+The spectrum of each basic waveform is in Figure~\ref{fig:espectroDeOndas}. The isolated and exactly harmonic components of the spectrum is a consequence of the fixed period usage. The sinusoid consists of an one and only node in the spectrum, pure frequency. The figure exibit the spectra described: the sawtooth is the only waveform with a complete harmonic series (odd and even components); triangular and square waves has the same components (odd harmonics), decaying at $-12dB/octave$ and $-6dB/octave$, respectively.
 
 \begin{figure*}
     \centering
@@ -307,9 +308,9 @@ The spectrum of each basic waveform is in Figure~\ref{fig:espectroDeondas}. The 
         \label{fig:espectroDeOndas}
 \end{figure*}
 
-The harmonic spectrum is formed by frequencies that are multiple from the fundamental frequency $f_n=(n+1)f_0$. As the human linear perception of pitch follows  a geometric progression of frequencies, the spectrum has notes different from the fundamental frequency. Additionally, the number of harmonics will be limited to the maximum frequency $f_s/2$ (by Nyquist's theorem).
+The harmonic spectrum is formed by frequencies that are multiple of the fundamental frequency $f_n=(n+1)f_0$. As the human linear perception of pitch follows  a geometric progression of frequencies, the spectrum has notes different from the fundamental frequency (see equation~\ref{eq:serieHarmonica}). Additionally, the number of harmonics will be limited by the Nyquist frequency $f_s/2$.
 
-From a musical perspective, to internalize that energy in a component of frequency $f_n$ means an oscillation in the constitution of the sound, purely harmonic and in that frequency $f_n$. This energy, specifically concentrated on the $f_n$, is separated by the ear to enter in a cognitive level of processing (this separation is done in many species with mechanisms similar to the human cochlea~\cite{Roederer}).
+From a musical perspective, it is critical to internalize that energy in a component of frequency $f_n$ means an oscillation in the constitution of the sound, purely harmonic and in that frequency $f_n$. This energy, specifically concentrated on the frequency $f_n$, is separated by the ear for further cognitive processes (this separation is done in many species with mechanisms similar to the human cochlea~\cite{Roederer}).
 
 The sinusoidal components are usually the main responsible for the timbre quality. If they are not presented in harmonic proportions (small number relations), the sound is perceived as noisy or dissonant, in opposite of a sonority with a unequivocally established fundamental frequency when they are present. Furthermore, the notion of absolute pitch in a complex sonority is based relies on the similarity of the spectrum to the harmonic series~\cite{Roederer} (**nao entendi o q vcs querem dizer**).
 
@@ -1612,6 +1613,21 @@ The minor scales has two additional forms, named melodic and harmonic:
 The ascending and descending contour of the melodic minor scale is necessary for the existence of the leading tone (seventh and last degree, separated by one semitone of the octave, enhances the tonic polarization) in the ascending trajectory, which is not necessary in the descending mode, since it recovers the normal form. The harmonic scale presents the leading tone but does not avoid the augmented second interval between the sixth and seventh degrees. In addition, it does not need to cover a melodic trajectory, just having to present the leading tone, crucial to the tonal system (the leading tone tends to the tonic, asserting it)~\cite{Harmonia}. 
 Other scales can be represented in a similar form, like the pentatonic and the
 modes of limited transposition by Messiaen~\cite{Messiaen}. 
+
+Although not a scale, the harmonic series is often used as such. Besides, this point is a convenient moment to put it plain simple:
+
+\begin{equation}\label{eq:serieHarmonica}
+\begin{split}
+H_i = \{h_i\}_0^{19}=\{ & 0,12,19+0.02,  24,28-0.14, 31+0.2, 34-0.31, \\
+                     & 36, 38+0.04,40-0.14, 42-0.49, 43+0.02, \\
+                     & 44+0.41, 46-0.31, 47-0.12, \\
+                     & 48, 49+0.05, 50+0.04, 51-0.02, 52-0.14   \}
+\end{split}
+\end{equation}
+
+
+
+This scale is composed of the frequencies on harmonic spectra. Nature exhibits this frequencies within sounds and with all kinds of distortions.
 
 
 \subsubsection{Chords}\label{subsec:acordes}
