@@ -6,7 +6,7 @@ f=n.fft.fft
 
 #n4=n.random.rand(4)*2-1
 n4=n.array([ 0.58003705, -0.30828309, -0.29797696, -0.99219078])
-#p.plot(n4,"bo")
+p.plot(n4,"bo")
 
 ff=f(n4)
 

@@ -85,45 +85,42 @@ As shown, it is possible to synthesize whole albums through collage of scripts a
 
 \section{\label{sec:level1}Introduction}
 
-Music is commonly defined as the art made by sounds and silences. Sound is the longitudinal wave of mechanical pressure. The frequency bandwidth between $20Hz$ and $20kHz$ is appreciated by the human hearing system with boundaries dependent on the person, climate conditions and sonic characteristics themselves~\cite{Roederer}. Considered the speed of sound as $\approx 343.2 m/s$, these limits imply wavelengths of $\frac{343.2}{20} = 17.16\,m$ and $\frac{343.2}{20000}=17.16\,mm$.
+Music is commonly defined as the art made by sounds and silences. Sound is the longitudinal wave of mechanical pressure. The frequency bandwidth between $20Hz$ and $20kHz$ is appreciated by the human hearing system with boundaries dependent on the person, climate conditions and sonic characteristics themselves~\cite{Roederer}. Considered the speed of sound as $\approx 343.2 m/s$, these limits corresponds to wavelengths of $\frac{343.2}{20} = 17.16\,m$ and $\frac{343.2}{20000}=17.16\,mm$.
 
-Human perception of sound involves captivation by bones, stomach, ears, transfer functions of head and torso, and processing by the nervous system~\cite{}. Besides that, the ear is a dedicated organ for the appreciation of these waves. Its mechanism decomposes sound into its sinusoidal spectrum and delivers to the nervous system. The sinusoidal components are crucial to musical phenomena, as one can perceive in the composition of sounds of musical interest (such as harmonic sounds and noises, seen in sections~\ref{sec:discNote} and~\ref{sec:internalVar}), and sonic structures of musical interest (such as tunings and scales, in section~\ref{sec:notesMusic}). 
+Human perception of sound involves captivation by bones, stomach, ears, transfer functions of head and processing torso and nervous system~\cite{}. Besides that, the ear is a dedicated organ responsible for the capture of these waves. Its mechanism decomposes sound into its sinusoidal spectrum and delivers them to the nervous system. The sinusoidal components are crucial to musical phenomena, as one can perceive the composition of sounds according to a specific musical interest, e.g., tunings and scales. 
 
-The representation of sound is commonly called audio (although these terms are often used without distinction). Audio expresses waves prominent from the capture of microphones or from direct synthesis, although these sources entangle as captured sounds are processed to generate new sonorities. Digital audio specified by protocols that eases file transfering and storage often imply a quality loss. Standard representation of digital audio, on the other hand, assures perfect reconstruction of the analog wave, within any convenient precision. This paradigm consists of equally spaced samples, by $\lambda_s$ durations, each specified by a fixed number of bits. This is the Pulse Code Modulation (PCM) representation of sound. A sound in PCM audio is characterized by a sampling frequency $f_s=\frac{1}{\lambda_s}$ (also called the sampling rate), which is the number of samples used for representing a second of sound; and by a bit depth, which is the number of bits used for representing the amplitude of each sample. Figure~\ref{fig:PCM} shows $25$ samples of a PCM audio with $4$ bits each. The fixed $2^4=16$ values for the amplitude of each sample, with the regular spacing $\lambda_s$, yields the quantization error or noise. This noise diminishes as bit depth increases.
+The representation of sound is commonly called audio (although these terms are often used without distinction). Audio expresses the waveform prominent from the capture of microphones or from synthesis. In order to account for the corresponding digital representation, digital audio is specified by protocols that eases file storage and transferring, usually with low loss of quality. Standard representation of digital audio consists of equally spacing samples by $\lambda_s$ durations in time, where each sample is specified by a sample number of bits. This process is called the Pulse Code Modulation (PCM) representation of sound. A PCM digital sound is characterized by it's sampling frequency $f_s=\frac{1}{\lambda_s}$ (also called the sampling rate), and by a bit depth, which is the number of bits used for representing the amplitude of each sample. With the purposes of illustrating this idea, Figure~\ref{fig:PCM} shows $25$ samples of a PCM audio with $4$ bits each. The $2^4=16$ possible steps for each sample, together with the regular spacing $\lambda_s$ between them, establish what is named as quantization error. The noise prominent of these errors diminishes conforming the spacing also does.
 
 \begin{figure*}
     \centering
-        \includegraphics[width=\textwidth]{figures/pcm}
+        \includegraphics[width=\textwidth]{pcm}
         \caption{Pulse Code Modulation (PCM) audio: an analogical signal is represented by 25 samples with 4 bits each.}
         \label{fig:PCM}
 \end{figure*}
 
-The Nyquist theorem~\cite{} states that the sampling frequency is twice the maximum frequency of the represented signal. Thus, for general musical purposes, it is necessary to have samples in a rate at least twice the highest frequency heard by humans, that is, $f_s \geq 2\times 20kHz = 40kHz$. This is the fundamental reason for the adoption of sampling frequencies like $44.1kHz$ and $48kHz$, standards in Compact Disks (CD) and broadcast systems (radio and television), respectively.
+The Nyquist theorem~\cite{} says that half of the sampling frequency is the maximum frequency of the signal. Thus, it is necessary to have a sampling frequency at least twice the highest frequency heard by humans, that is, $f_s \geq 2\times 20kHz = 40kHz$. This configures the basis for the use of sampling frequencies like $44.1kHz$ and $48kHz$, standards in Compact Disks (CD) and Broadcast systems (Radio and TV), respectively.
 
-Within this framework, musical notes can be characterized. The note still stands paradigmatic as the 'fundamental unit' of musical structures and, in practice, it can unfold into sounds that uphold other approaches\footnote{Music from the twentieth century enlarged this traditional comprehension of music. This occurred in the concert music, specially in the concrete, electronic and electroacoustic styles. On the last decade of the century, it became evident that popular music had also incorporated sounds without defined pitch and temporal organization, to name a few of simple characteristics.}. 
-Notes are also convenient for another reason: the average listener -- and considerable part of the specialists -- presupposes rhythmic and pitch organization (made explicit in section~\ref{sec:notasMusic}) as fundamental musical properties, and these are developed in traditional musical theory in terms of notes.
+For the average listener -- and a reasonable part of specialists -- the notion of music presupposes rhythmic and pitch organization. I a simple  way, rhythm can be described as recurring pattern produced by notes differing in duration, pause (silence) and intensity. Pitch configures the perceptual attribute that allows sounds to be organized in a frequency-related scale~\cite{}. Music from the twentieth century enlarged this traditional comprehension of music. This occurred in the concert music, specially in the concrete, and in both electronic and electroacoustic styles. On the last decade of the century, it became evident that popular music had also incorporated sounds without defined pitch and temporal organization, to name a few of simple metrics. Even though, the note still stands paradigmatic as a 'fundamental unit' of musical structures and, in practice, it can unfold in sounds that observe this recent developments (**not clear here**). 
 
 \subsection{Contributions and paper organization}
 
-This article aims at representing musical structures and artifices by their discrete-time sonic characteristics. Results include mathematical relations, usually in terms of samples, and their direct computer program implementations. Despite the general interests involved, there are few books and computer implementations that tackle the subject. These mainly focus on computer implementations and ways to mimic traditional instruments, with scattered mathematical formalisms. A compilation of the works and their contributions is in the bibliography~\cite{dissertacao}. To the best of the author's knowledge, there is a lack of articles on the topic. Moreover, although current computer implementations use the analytical descriptions presented in this study in a implicit manner, it seems that there has been no concise and mathematical description of the processes implemented. 
+This paper purposes to represent musical structures and artifices by their discrete sound characteristics. The results include mathematical relations and their computer program implementations. Despite the general interest and number of knowledge areas involved, there are only a few number of books and computer implementations that tackle the subjects presented in this work. However, they mainly focus on aspects of musical sounds and ways to mimic traditional instruments. A detailed compilation of them is pointed out in the bibliography~\cite{dissertacao}. To the best of the author's knowledge, there is a lack of articles on the topic. Moreover, although current computer implementations use the analytical descriptions presented in this study in a implicitly manner, it seems that there is not a concise and mathematical description of the processes implemented, as they aim here to be further used as libraries for sound and music. 
 
-In order to address this concise description of musical elements and structures, in terms of the digitilized sound, the objectives of this paper are:
+In order to address the concise description of musical elements and structures, the objectives of this paper are:
 
 \begin{enumerate}
 
 \item Present a concise set of relations among musical basic elements and sequences of PCM audio samples. 
 
-\item Introduce a framework of sound synthesis with control at sample level and with potential uses in psycho-acoustical experiments and high-fidelity synthesis.
+\item Introduce a framework of sound synthesis with control at sample level and with potential uses in psycho-acoustical experiments and high-fidelity synthesis. The didactic presentation of the content favors its apprehension and usage. It is worthwhile to mention that this subject comprises diverse topics on signal processing, music and psycho-acoustics. 
 
-\item Provide the accessibility of the developed framework. The analytic relations presented in this article are implemented as public domain scripts, i.e. small computer programs using accessible technologies for better distribution and validation. This constitute the \massa\ toolbox, available in an open Git repository~\cite{gitBook}. These scripts are written in Python and make use of external libraries, such as Numpy that performs calls to Fortran routines for better computational efficiency. Part of the scripts have been transcribed to JavaScript and native Python with readiness, what favors their use in Web browsers such as Firefox and Chromium~\cite{numpy, audiolab, tutpython, python}. Furthermore, these are all open technologies, that is, published using licenses that allow copy, distribution and use of any part for research and derivatives. This way, the work presented here is embedded in recommended practices for availability and eases co-authorship processes~\cite{Raymond,Lessig}.
-
-\item To provide a didactic presentation of the content to favor its apprehension and usage. It is worthwhile to mention that this subject comprises diverse topics on signal processing, music, psycho-acoustics and programming.
+\item Provide the accessibility of the developed framework. The topics presented in this article are implemented as scripts, i.e. small computer programs using accessible technologies for better distribution and validation. This constitute the \massa\ toolbox, available in public domain in an open Git repository~\cite{gitBook}. The scripts are written in Python and make use of external libraries such as Numpy and Scikits/Audiolab, that performs calls to Fortran routines for better computational efficiency. Part of the scripts have been transcribed to JavaScript and native Python with readiness, what favors their use in Web browsers such as Firefox and Chromium~\cite{numpy, audiolab, tutpython, python}. Furthermore, these are all open technologies, that is, published using licenses that allows copy, distribution and use of any part for research and derivatives. This way, the work presented here is available and eases co-authorship processes~\cite{Raymond,Lessig}. 
 
 \end{enumerate}
 
-The remaining parts of this work are organized as follows: section~\ref{sec:discNote} characterizes the basic musical note; internals of the musical note is further developed in section~\ref{sec:internalVar}; section~\ref{sec:notesMusic} tackles the organization of musical notes in higher levels of musical structure~\cite{Wisnick,Webern,Lerdhal,Cook,Lacerda}. As these descriptions embody topics such as psycho-acoustics, cultural traditions, formalisms and protocols, the text points to external complements as needed~\cite{Zamacois,Schoenberg,microsound}.
+The remaining parts of this work are organized as follows: section~\ref{sec:dicNote} exposes the presence of sinusoid in discrete-time audio and characterizes a basic musical note; the definition and expansion of the musical note as the essential unit of music is further approached in sections~\ref{sec:discNote} and~\ref{sec:internalVar}, respectively; section~\ref{sec:notesMusic} tackles the organization of musical notes in a higher level~\cite{Wisnick,Webern,Lerdhal,Cook,Lacerda}. Musical theory embody diverse topics as psycho-acoustics, cultural manifestations and formalisms. The section~\ref{sec:results} points out these topics as needed and designate external complements~\cite{Zamacois,Schoenberg,microsound}.
 
-The next section is a minimum text in which musical elements are presented side-by-side with the discrete-time samples they result. In order to account for validation and sharing, implementations on computer code of each one of these relations are gathered in the \massa\ toolbox together with little musical montage resulting from them.
+The next section is a minimum text in which music elements are presented side-by-side with the discrete-time samples they result. In order to account for validation and sharing, implementations on computer code of these relations and little musical pieces resulting from them are gathered in the \massa\ toolbox, online available.
 
 %Representing musical structures and artifices by it's discrete sound characteristics is the purpose of this work. The results include mathematical relations and it's computer program implementations. Next section exposes the theoretical description, which is implemented as scripts in a one-to-one relation to the equations.
 
@@ -172,22 +169,22 @@ The next section is a minimum text in which musical elements are presented side-
 
 \section{Characterization of the discrete-time musical note} \label{sec:discNote}
 
-In diverse artistic and theoretical contexts, music is conceived as constituted by fundamental units called notes, ``atoms'' that constitute music itself~\cite{Wisnick, Lovelock, Webern}.
+In diverse artistic and theoretical contexts, music is though as being constituted by units called notes, and these units taken as "atoms" that constitute music itself~\cite{Wisnick, Lovelock, Webern}. (****nao entendi****, texto ruim)
 Nowadays, these notes are understood as central elements of certain musical paradigms. In a cognitive perspective, the notes are seen as discretized elements that easy and enrich the flow of information through music~\cite{Roederer, Lacerda}.
-Canonically, the principal properties of a musical note are duration, volume, pitch and timbre~\cite{Lacerda}. These qualities can be managed quantitatively, dictated by the evenly time spaced sonic samples.
+Canonically, the principal properties of a musical note are duration, volume, pitch and timbre~\cite{Lacerda}. These qualities can be managed quantitatively, dictated by the evenly time spaced sound samples.
 
 All the relations described in this section are implemented at the file \emph{eqs2.1.py} of the \massa\ toolbox. Musical pieces \emph{5 sonic portraits} and \emph{reduced-fi} are also available online in order to corroborate the concepts.
 
 \subsection{Duration}
 
-The sample frequency $f_s$ is defined as the number of samples in each second of the discrete-time signal. Let $T_i=\{t_i\}$ be an ordered set of real samples separated by $\delta_s=1/f_s$ seconds. A musical note of duration $\Delta$ seconds is presented as a sequence $T_i^{\Delta}$ of $\lfloor \Delta . f_s \rfloor $ samples. That is, the integer part of the multiplication is considered, and an error of at most $\delta_s$ missing seconds is admitted, which is usually fine for musical purposes. As an example, if $f_s=44.1kHz \;\;\Rightarrow\;\;\lambda_s=\frac{1}{44100}\approx 23$ microseconds. Thus:
+The sample frequency $f_s$ is defined as the number of samples in each second of the discrete-time signal. Let $T_i=\{t_i\}$ be an ordered set of real samples separated by $\delta_s=1/f_s$ seconds. A musical note of duration $\Delta$ seconds is presented as a sequence of $\lfloor \Delta . f_s \rfloor $ samples. That is, taken the integer part of the multiplication, it is admitted an error of at most $-\lambda_a$ seconds, which are usually fine for musical purposes. Considering $f_s=44.1kHz \;\;\Rightarrow\;\;\lambda_s=\frac{1}{44100}\approx 23$ microseconds. It is reasonable to state that:
 
 
 \begin{equation}\label{eq:dur}
 T_{i}^{\Delta}={\{t_i\}}_{i=0}^{\lfloor \Delta . f_a \rfloor -1}
 \end{equation}
 
-With $\Lambda=\lfloor \Delta . f_a \rfloor$, the number of samples in the sequence, the more condensed notation is $T_i^\Delta=\{t_i\}_0^{\Lambda-1}$.
+Being $\Lambda=\lfloor \Delta . f_a \rfloor$ the number of samples in the sequence, thus $T_i=\{t_i\}_0^{\Lambda-1}$.
 
 \subsection{Volume}\label{subsec:volume}
 
@@ -204,8 +201,8 @@ V_{dB}=10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)}
 \end{equation}
 
 The quantity $V_{dB}$ has the decibel unit ($dB$). 
-For each $10dB$ it is associated a ``doubled volume''.
-A handy reference is $10dB$ for each step in the intensity scale: \emph{pianissimo}, \emph{piano}, \emph{mezzoforte}, \emph{forte} e \emph{fortissimo}. Other useful references are $dB$ values related to double amplitude or potency:
+For each $10dB$ it is associated a "doubled volume".
+Handy references are the $10dB$ for each step in the intensity scale: \emph{pianissimo}, \emph{piano}, \emph{mezzoforte}, \emph{forte} e \emph{fortissimo}. Other useful references are that equivalent in $dB$ of doubling amplitude or potency:
 
 \begin{equation}\label{eq:ampVol}
 \begin{split}
@@ -219,16 +216,16 @@ pot(T^{'}_i)=2 pot(T_i) \Rightarrow \\ \Rightarrow V^{'}_{dB}=10log_{10} 2 \appr
 \end{split}
 \end{equation}
 
-and the amplitude gain for a sequence whose volume has been doubled ($10dB$):
+and the amplitude gain for a sequence whose volume has been doubled ($10dB$) is:
 
 \begin{equation}\label{eq:dobraVol}
 \begin{split}
 10log_{10}\frac{pot(T^{'}_i)}{pot(T_i)} = 10 \quad \Rightarrow \\ \Rightarrow \quad \sum_{i=0}^{\lfloor \Delta.f_a \rfloor -1}t^{'2}_i=10\sum_{i=0}^{\Lambda-1}t_i^2=\sum_{i=0}^{\Lambda-1}(\sqrt{10}.t_i)^2 \\
-\therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3.16t_i
+\therefore \quad t^{'}_i=\sqrt{10}t_i \quad \Rightarrow \quad t^{'}_i \approx 3,16t_i
 \end{split}
 \end{equation}
 
-As shown, it is necessary an amplitude increase by a bit more than a factor of 3 for a doubled volume. These values are guides for increasing or decreasing the absolute values on the sample sequences with musical purposes. The conversion from decibels to amplitude gain (or attenuation) is straightforward:
+Thus, it is necessary a little bit more than triplicate the amplitude for a doubled volume. These values are guides for increasing or decreasing the absolute values on the sample sequences with musical purposes. The conversion from decibels to amplitude gain (or attenuation) is straightforward:
 
 \begin{equation}\label{ampDec}
 A = 10^{\frac{V_{dB}}{20}}
@@ -238,32 +235,32 @@ where $A$ is the multiplicative factor that relates the amplitudes before and af
 
 \subsection{Pitch}
 
-As exposed in the previous subsections, to a note corresponds a sequence $T_i$ in which duration and volume are directly related to the size of the sequence and the amplitude of its samples, respectively. The pitch is specified by the fundamental frequency $f_0$ whose cycle has duration $\delta_{f_0}=1/f_0$. This duration, multiplied by the sampling frequency $f_s$ results on the number of samples per cycle: $\lambda_{f_0}=f_s . \delta_{f_0} =f_a/f_0$.
+As explained in the previous subsections, the musical particle (note) is a sequence $T_i$ in which duration and volume corresponds to the size of sequence and the amplitude of its samples. The pitch is specified by the fundamental frequency $f_0$ whose cycle has duration $\delta_{f_0}=1/f_0$. This duration, multiplied by the sampling frequency $f_s$ results on the number of samples per cycle: $\lambda_{f_0}=f_a . \delta_{f_0} =f_a/f_0$.
 
-For didactic reasons, be $f_0$ such that it divides $f_s$ and $\lambda_{f_0}$ results integer. If $T_i^f$ is a sonic sequence of fundamental frequency $f$, then:
+For didactic reasons, be $f_0$ such that it divides $f_s$ and $\lambda_{f_0}$ results an integer. If $T_i^f$ is a sonic sequence of fundamental frequency $f$, then:
 
 \begin{equation}\label{periodicidade}
      T^f_i=\left\{ t_i^f \right\}=\left\{ t^f_{i+\lambda_{f}}  \right\}= \left\{ t^f_{i+\frac{f_a}{f}} \right\}
 \end{equation}
 
-In the next section, frequencies $f$ that does not divide $f_s$ will be considered. This restriction does not imply in lost of generality of this section's content.
+In the next section, frequencies $f$ that does not divide $f_s$ will be considered. We will see that this restriction does not imply in lost of generality of this section's content.
 
 \subsection{Timbre}
 
-In a sound with harmonic spectrum, the (wave) period corresponds to the duration of the cycle, given by the inverse of the fundamental frequency. The trajectory of the wave inside the period - called the waveform - defines a harmonic spectrum and, thus, a timbre\footnote{Timbre is a subjective and complex characteristic. Physically, the timbre is multidimensional and given by the temporal dynamics of energy in the spectral components that are harmonic or noisy. Beyond that, the word timbre is used to designate different things: one same note has different timbres, a same instrument has different timbres, two instruments of the same family have, at the same time, the same timbre that blends them in the same family, and different timbres as they are different instruments. It is worth to mention that timbre is not always manifested in spectral traces, since cultural or circumstantial aspects alter our perception of timbre}. Musically, it matters that sonic spectra with minimum differences can result in timbres with crucial expressive differences and, consequently, different timbres can be produced by using different spectra\cite{Roederer}.
+While the wave period corresponds to the fundamental frequency, the trajectory of the wave inside the period - called the waveform - defines a harmonic spectrum and, thus, a timbre\footnote{Timbre is a subjective and complex characteristic. Physically, the timbre is multidimensional and given by the temporal dynamics behavior of energy in the spectral components that are harmonic or noisy. Beyond that, the word timbre is used to designate different things: one same note has different timbres, a same instrument has different timbres, two instruments of the same family have, at the same time, the same timbre that blends them in the same family, and different timbres as they are different instruments. It is worth to mention that timbre is not always manifested in spectral traces, since cultural or circumstantial aspects alter our perception of timbre}. Musically, it matters that sonic spectra with minimum differences can result in timbres with crucial expressive differences and, consequently, different timbres can be produced by using different spectra\cite{Roederer}.
 
-The simplest case is the spectrum that consists of only of the fundamental frequency $f$. This defines the sinusoid: a frequency in pure oscillatory movement called `simple harmonic movement'. Be $S_i^f$ a sequence whose samples $s_i^f$ describes a sinusoid of frequency $f$:
+The simplest (and most important case, as we will see in the following) is the spectrum that consists of only of the fundamental frequency $f$. This defines the sinusoid: a frequency in pure oscillatory movement called 'simple harmonic movement'. Let $S_i^f$ be a sequence whose samples $s_i^f$ describes a sinusoid of frequency $f$:
 
-\begin{equation}\label{sinusoid}
-     S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(2\pi \frac{i}{\lambda_f} \bigr)  \Bigr\} = \Bigl\{ \sin\bigl(2\pi f \frac{i}{f_s}\bigr)  \Bigr\} 
+\begin{equation}\label{senoide}
+     S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(2\pi \frac{i}{\lambda_f} \bigr)  \Bigr\} = \Bigl\{ \sin\bigl(2\pi f \frac{i}{f_a}\bigr)  \Bigr\} 
 \end{equation}
 
-where $\lambda_f=\frac{f_s}{f}=\frac{\delta_f}{\lambda_s}$  is the number of samples in the period.
+where $\lambda_f=\frac{f_a}{f}=\frac{\delta_f}{\lambda_a}$  is the number of samples in the period.
 
-In a similar fashion, other waveforms are applied in music for their spectral qualities and simplicity. While the sinusoid is an isolated point in the spectrum, these waves present a succession of harmonic components. These waveforms are specified in equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square} and illustrated in Figure~\ref{fig:formasDeOnda}.
-These artificial waveforms are traditionally used in music for synthesis and oscillatory control of variables. They are also useful outside musical contexts\cite{Openheim}.
+In a similar fashion, other waveforms are applied in music considering their spectral qualities and simplicity. While the sinusoid is an isolated point in the spectrum, these additional waves present a succession of harmonic components of the sinusoid. These waveforms are specified in equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square} and illustrated in Figure~\ref{fig:formasDeOnda}.
+Although the artificial waveforms are traditionally used in music for synthesis and oscillatory control of variables, they are also useful outside music context\cite{Openheim}.
 
-The sawtooth presents all components of the harmonic series with decreasing energy of $-6dB/octave$. The sequence of temporal samples can be described as:
+The sawtooth presents all components of the harmonic series with decreasing energy of $-6dB/octave$. The sequence of temporal samples can be described as following:
 
 \begin{equation}\label{sawTooth}
      D^f_i=\left\{ d^f_i \right\}=\left\{ 2\frac{i\,\%\lambda_f}{\lambda_f} -1 \right\}
@@ -274,9 +271,12 @@ The triangular waveform present only odd harmonics falling with $-12dB/octave$:
      T^f_i=\left\{ t^f_i \right\}=\left\{1- \left| 2 - 4\frac{i\,\%\lambda_f}{\lambda_f} \right| \right\}
 \end{equation}
 
+The sawtooth is a common starting point for a subtractive synthesis, because it has both odd and even harmonics with high energy. For musical intention, these waveforms are excessively rich in sharp harmonics, and attenuator filtering on treble and middle parts of the spectrum is specially useful for reaching a more natural and pleasant sound. 
+The relatively attenuated harmonics of the triangle wave makes it the more functional - among the listed ones - to be used in the synthesis of musical notes without any treatment.
+
 The square wave preservers only odd harmonics falling at $-6dB/octave$:
 
-\begin{equation}\label{square}
+\begin{equation}\label{quadrada}
      Q^f_i=\left\{ q^f_i \right\}= \left\{
          \begin{array}{l l}
               1 & \quad \text{for } \; \; (i\,\%\lambda_f)   <  \lambda_f /2  \\
@@ -284,37 +284,33 @@ The square wave preservers only odd harmonics falling at $-6dB/octave$:
          \end{array} \right.
 \end{equation}
 
-
 The square wave can be used in a subtractive synthesis with the purposes of mimicking a clarinet. This instrument has only the odd harmonic components and the square wave is convenient with its abundant energy in high frequencies.
-The sawtooth is a common starting point for a subtractive synthesis, because it has both odd and even harmonics with high energy. In general, these waveforms are appreciated as excessively rich in sharp harmonics, and attenuator filtering on treble and middle parts of the spectrum is specially useful for reaching a more natural and pleasant sound. 
-The relatively attenuated harmonics of the triangle wave makes it the more functional - among the listed ones - to be used in the synthesis of musical notes without any treatment. The sinusoid is often a nice choice, but a problematic one. While pleasant if not loud in a very high pitch (above 500Hz, it requires careful dosage), the pitch is not accuratly detected, specially in low frequencies. It requires a big amplitude to give sinusoid volume, if compared to other waveforms. Both particularities are seen as a consequence of the non-existence of pure sinusoidal sounds in nature~\ref{roederer}.
-
 
 \begin{figure*}
     \centering
-        \includegraphics[width=\textwidth]{figures/waveForms_}
+        \includegraphics[width=\columnwidth]{waveForms}
     \caption{Basic musical waveforms: (a) the synthetic  waveforms; (b) the real waveforms.}
         \label{fig:formasDeOnda}
 \end{figure*}
 
-Figure~\ref{fig:formasDeOnda} presents the waveforms described in equations  ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} and ~\ref{quadrada} for $\lambda_f=100$ (period of $100$ samples). If $f_s=44.1kHz$, the PCM standard in Compact Disks, the wave has fundamental frequency $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz$, around A4, just above the central "C", whatever the waveform is.
+Figure~\ref{fig:formasDeOnda} presents the waveforms described in equations  ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} and ~\ref{quadrada} for $\lambda_f=100$ (period of $100$ samples). If $f_s=44.1kHz$, a PCM standard in Compact Disks, the wave has fundamental frequency $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz$, reflecting the A4, just above the central "C", whatever the waveform is.
 
-The spectrum of each basic waveform is in Figure~\ref{fig:espectroDeOndas}. The isolated and exactly harmonic components of the spectrum is a consequence of the fixed period usage. The sinusoid consists of an one and only node in the spectrum, pure frequency. The figure exibit the spectra described: the sawtooth is the only waveform with a complete harmonic series (odd and even components); triangular and square waves has the same components (odd harmonics), decaying at $-12dB/octave$ and $-6dB/octave$, respectively.
+The spectrum of each basic waveform is in Figure~\ref{fig:espectroDeondas}. The isolated and exactly harmonic components of the spectrum is a consequence of the fixed period usage. The sinusoid consists of a one and only node in spectrum (**esquisito o texto**), pure frequency. As we said before, the sawtooth is the only waveform with a complete harmonic series (odd and even components). Triangular and square waves has the same components (odd harmonics), decaying at $-12dB/octave$ and $-6dB/octave$, respectively.
 
 \begin{figure*}
     \centering
-        \includegraphics[width=\columnwidth]{figures/waveSpectrum}
+        \includegraphics[width=\columnwidth]{waveSpectrum}
     \caption{Spectrum of basic artificial musical waveforms.}
         \label{fig:espectroDeOndas}
 \end{figure*}
 
-The harmonic spectrum is composed of frequencies $f_n$ that are multiples of the fundamental frequency: $f_n=(n+1)f_0$. As the human linear perception of pitch follows  a geometric progression of frequencies, the spectrum has notes different from the fundamental frequency (see equation~\ref{eq:serieHarmonica}). Additionally, the number of harmonics will be limited by the Nyquist frequency $f_s/2$.
+The harmonic spectrum is formed by frequencies that are multiple from the fundamental frequency $f_n=(n+1)f_0$. As the human linear perception of pitch follows  a geometric progression of frequencies, the spectrum has notes different from the fundamental frequency. Additionally, the number of harmonics will be limited to the maximum frequency $f_s/2$ (by Nyquist's theorem).
 
-From a musical perspective, it is critical to internalize that energy in a component of frequency $f_n$ means an oscillation in the constitution of the sound, purely harmonic and in that frequency $f_n$. This energy, specifically concentrated on the frequency $f_n$, is separated by the ear for further cognitive processes (this separation is done in many species with mechanisms similar to the human cochlea~\cite{Roederer}).
+From a musical perspective, to internalize that energy in a component of frequency $f_n$ means an oscillation in the constitution of the sound, purely harmonic and in that frequency $f_n$. This energy, specifically concentrated on the $f_n$, is separated by the ear to enter in a cognitive level of processing (this separation is done in many species with mechanisms similar to the human cochlea~\cite{Roederer}).
 
-The sinusoidal components are usually the main responsibles for timbre qualities. If they are not presented in harmonic proportions (small number relations), the sound is perceived as noisy or dissonant, in opposition to sonorities with an unequivocally established fundamental. Furthermore, the notion of absolute pitch relies on the similarity of the spectrum to the harmonic series~\cite{Roederer}. 
+The sinusoidal components are usually the main responsible for the timbre quality. If they are not presented in harmonic proportions (small number relations), the sound is perceived as noisy or dissonant, in opposite of a sonority with a unequivocally established fundamental frequency when they are present. Furthermore, the notion of absolute pitch in a complex sonority is based relies on the similarity of the spectrum to the harmonic series~\cite{Roederer} (**nao entendi o q vcs querem dizer**).
 
-In the case of a fixed length period and waveform, the spectrum is perfectly harmonic and static and  each waveform is compound of specific proportions of harmonic components. High  curvatures are sign of high harmonics in the wave. Figure~\ref{fig:formasDeOnda} depicts a wave, labeled as ``sampled real sound'', with a period of $\Lambda_f=114$ samples, extracted from a relatively well behaved recorded sound. The oboe wave was also sampled in $44.1kHz$. The chosen period for sampling was relatively short, with $98$ samples, and corresponds to the frequency $\frac{44100}{98}=450Hz$, which corresponds to a slightly out-of-tune A4 pitch. One can notice from the curvatures: the oboe's rich spectrum in high frequencies and the lower spectrum of the real sound.
+In the case of a fixed length period and waveform, the spectrum is perfectly harmonic and static. Each waveform is compound of specific proportions of harmonic components and the greater the curvature of the part, the greater the contribution of the part to the energy on the high harmonics. This aspect can be seen on real sounds. The wave labeled as ``sampled real sound'' in Figure~\ref{fig:formasDeOnda} has a period of $\Lambda_f=114$ samples, extracted from a relatively well behaved real sound. The oboe wave was sampled for A4 also in $44.1kHz$. The chose period for sampling was a relatively short one, with $98$ samples, and corresponds to the frequency $\frac{44100}{98}=450Hz$. It can be noticed from the curvatures, the oboe's rich spectrum in high frequencies and the lower spectrum of the real sound.
 
 The sequence 
 $ R_i=\{ r_i \}_0^{\lambda_f-1}$ of samples in the real sound of Figure~\ref{fig:formasDeOnda} can be taken as basis for a sound $T_i^f$ in the following way: 
@@ -323,12 +319,12 @@ $ R_i=\{ r_i \}_0^{\lambda_f-1}$ of samples in the real sound of Figure~\ref{fig
      T^f_i=\{ t_i^f \}=\Bigl\{ r_{(i\,\%\lambda_{f})} \Bigr\}
 \end{equation}
 
-The resulting sound has the momentary spectrum of the original waveform. As a consequence of its repetition in an identical form, the spectrum is perfectly harmonic, without noise and with variations typical of the natural phenomenon. This can be observed in Figure~\ref{fig:espectroOboe}, that shows the spectrum of the original oboe note and a note with same duration and whose samples consists of the repetition of cycle of Figure~\ref{fig:formasDeOnda}. Summing up, the natural spectrum exhibits variations in the frequencies of the harmonics, in their intensities and some noise, while the note made from the sampled period has a perfectly harmonic spectrum.
+The resulting sound has the momentary spectrum of the original sound. Consequence of its repetition in an identical form, the spectrum is perfectly harmonic, without noise and with variations typical of the natural phenomenon. This can be observed in Figure~\ref{fig:espectroOboe}, that shows the spectrum of the original oboe note and a note with same duration and whose samples consists of the repetition of cycle of Figure~\ref{fig:formasDeOnda}. The natural spectrum exhibits variations in the frequencies of the harmonics, in their intensities and some noise. The note made from the sampled period has a perfectly harmonic spectrum.
 
 \begin{figure*}
     \centering
-        \includegraphics[width=\columnwidth]{figures/oboeNaturalSampledSpectrum}
-    \caption{Spectrum of the sonic waves of a natural oboe note and from a sampled period. The natural sound has fluctuations in the harmonics and in its noise, while the sampled period note has a perfectly harmonic spectrum.}
+        \includegraphics[width=\columnwidth]{oboeNaturalSampledSpectrum}
+    \caption{Spectrum of the sonic waves of a natural oboe note and one made from a sampled period. The natural sound has fluctuations in the harmonics and in its noise, while the sampled period note has a perfectly harmonic spectrum.}
         \label{fig:espectroOboe}
 \end{figure*}
 
@@ -336,16 +332,15 @@ The resulting sound has the momentary spectrum of the original waveform. As a co
 
 \subsection{Spectrum at sampled sound}
 
-The presence and behavior of these sinusoidal components in the discretized sound have some particularities. Considering a signal $T_i$ and its corresponding Fourier decomposition $\mathcal{F}\langle T_i\rangle=C_i=\{c_i\}_0^{\Lambda-1}$, the recomposition is the sum of the frequency components as time samples\footnote{It is important to note that the factor $\frac{1}{\Lambda}$ could be distributed among the Fourier transform and its reconstruction, as preferred.}:
+The presence and behavior of these sinusoidal components in the discretized sound have some particularities. Considering a signal $T_i$ and its corresponding Fourier decomposition $\mathcal{F}\langle T_i\rangle=C_i=\{c_i\}_0^{\Lambda-1}$, the recomposition is the sum of the frequencies components as time samples\footnote{It is important to note that the factor $\frac{1}{\Lambda}$ could be distributed among the Fourier transform and its reconstruction, as preferred.}:
 
-\begin{equation}\label{recomposicaoFourier}
-\begin{split}
-t_i = & \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}c_ke^{j \frac{2\pi k}{\Lambda} i } \\ 
-    = & \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}(a_k+ j . b_k)\left[cos(w_k i)   +j . sen(w_k i)\right]
-\end{split}
-\end{equation}
+\begin{multline}\label{recomposicaoFourier}
+t_i = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}c_ke^{j \frac{2\pi k}{\Lambda} i } \\ = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}(a_k+ j . b_k)\left[cos(w_k i)   +j . sen(w_k i)\right]
+\end{multline}
 
-where $c_k = a_k + j . b_k$ defines the amplitude and phase of each frequency: $w_k=\frac{2\pi}{\Lambda}k$ in radians or $f_k=w_k\frac{f_a}{2\pi}=\frac{f_a}{\Lambda}k$ in Hertz, taking into account the respective limits in $\pi$ and in $\frac{f_a}{2}$ given by the Nyquist Theorem. As can be inferred, $j$ is the complex number, with $j^2=-1$.
+where $c_k = a_k + j . b_k$ defines the amplitude and phase of each frequency: $w_k=\frac{2\pi}{\Lambda}k$ in radians or $f_k=w_k\frac{f_a}{2\pi}=\frac{f_a}{\Lambda}k$ in Hertz, taking into account the respective limits in $\pi$ and in $\frac{f_a}{2}$ given by the Nyquist Theorem. 
+
+Equation~\ref{recomposicaoFourier} shows how the imaginary term $c_k$ adds a phase to the real sinusoid. For example, the imaginary terms $b_k$ from the Fourier spectral decomposition make possible the phase sweep $\left[-\frac{\pi}{2},+\frac{\pi}{2}\right]$ given by $tg^{-1}\left(\frac{b_k}{a_k}\right)$ which has this image. The signal from $a_k$ specifies the right and left side of the trigonometric circle, complementing the phase sweeping: $\left[-\frac{\pi}{2},+\frac{\pi}{2}\right] \cup \left[\frac{\pi}{2},\frac{3\pi}{2}\right]\equiv [2\pi]$.
 
 For a sound signal, samples $t_i$ are real and are given by the real part of equation~\ref{recomposicaoFourier}:
 
@@ -356,58 +351,54 @@ t_i& = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}\left[a_k cos(w_k i) -b_k sen(w_k 
 \end{split}
 \end{equation}
 
-Equation~\ref{moduloEfase} shows how the imaginary term of $c_k$ adds a phase to the real sinusoid: the terms $b_k$ enables the phase sweep $\left[-\frac{\pi}{2},+\frac{\pi}{2}\right]$ given by $tg^{-1}\left(\frac{b_k}{a_k}\right)$ which has this image. The terms $a_k$ specifies the right or left side of the trigonometric circle, which completes the phase domain: $\left[-\frac{\pi}{2},+\frac{\pi}{2}\right] \cup \left[\frac{\pi}{2},\frac{3\pi}{2}\right]\equiv [2\pi]$.
-
-
-
  \begin{figure}[h!]
      \centering
-         \includegraphics[width=\columnwidth]{figures/amostras2c__}
-     \caption{Oscillation of 2 samples (maximum frequency for any $f_a$). The first coefficient reflects a detachment (\emph{offset} or \emph{bias}) and the second coefficient specifies the oscillation amplitude.}
+         \includegraphics[width=\columnwidth]{amostras2c__}
+     \caption{Oscillation for 2 samples (maximum frequency for any $f_a$). The first coefficient reflects a detachment (\emph{offset} or \emph{bias}) and the second coefficient specifies the oscillation amplitude.}
          \label{fig:amostras2}
  \end{figure}
 
-Figure~\ref{fig:amostras2} shows two samples and its spectral components. In this case, the Fourier decomposition has one unique pair of coefficients $\{c_k=a_k-j.b_k\}_0^{\Lambda-1=1}$ relative to frequencies $\{f_k\}_0^1=\left\{w_k\frac{f_a}{2\pi}\right\}_0^1=\left\{k\frac{f_a}{\Lambda=2}\right\}_0^1=\left\{0,\frac{f_a}{2}=f_{\text{max}}\right\}$
-with energies $e_k=\frac{(c_k)^2}{\Lambda=2}$. The role of amplitudes $a_k$ is clearly observed with $\frac{a_0}{2}$, the fixed offset\footnote{Also called \emph{bias}.} and $\frac{a_1}{2}$, oscillation amplitude with frequency given by the relation $f_k=k \frac{f_a}{\Lambda=2}$.
-This case have special relevance. It is necessary at least 2 samples to represent an oscillation and it yields the Nyquist frequency $f_{\text{max}}=\frac{f_a}{2}$, which is the maximum frequency in a sound sampled with $f_a$ samples per second\footnote{Any sampled signal has this property, not only the digitalized sound.}.
+Figure~\ref{fig:amostras2} shows two samples and its spectral components. In this case, the Fourier decomposition has one unique pair of coefficients $\{c_k=a_k-j.b_k\}_0^{\Lambda-1=1}$ relatives to frequencies $\{f_k\}_0^1=\left\{w_k\frac{f_a}{2\pi}\right\}_0^1=\left\{k\frac{f_a}{\Lambda=2}\right\}_0^1=\left\{0,\frac{f_a}{2}=f_{\text{max}}\right\}$
+with energies $e_k=\frac{(c_k)^2}{\Lambda=2}$. The role of amplitudes $a_k$ is clearly observed with $\frac{a_0}{2}$, the fixed detachment\footnote{Also called \emph{bias} or \emph{offset}.} and $\frac{a_1}{2}$, oscillation own amplitude given by the relation $f_k=k \frac{f_a}{\Lambda=2}$.
+This case have special relevance. It is necessary the of 2 samples to represent an oscillation and it yields the Nyquist frequency $f_{\text{max}}=\frac{f_a}{2}$. That is the maximum frequency in a sound sampled with $f_a$ samples per second\footnote{Any sampled signal has this property, not only the digitalized sound.}.
 
-All fixed sequences $T_i$ of only $3$ samples also have just $1$ frequency, since their first harmonic has $1,5$ samples and exceeds the bottom limit of 2 samples, i.e.\ the frequency of the harmonic would exceed the Nyquist frequency:  $\; \frac{2. f_a}{3} > \frac{f_a}{2} $. 
+All fixed sequences $T_i$ of only $3$ samples also have just $1$ frequency, since their first harmonic has $1,5$ samples and exceeds the bottom limit of 2 samples, e.g.\ the frequency of the harmonic would exceed the Nyquist frequency:  $\; \frac{2. f_a}{3} > \frac{f_a}{2} $. 
 The coefficients $\{c_k\}_0^{\Lambda-1=2}$ are present in 3 frequency components. One is relative to zero frequency ($c_0$), and the other two ($c_1$ and $c_2$) have the same role for the reconstruction of sinusoid with $f=f_a/3$.
 
  \begin{figure}[h!]
      \centering
-         \includegraphics[width=\columnwidth]{figures/amostras3b}
+         \includegraphics[width=\columnwidth]{amostras3b}
      \caption{Three fixed samples presents only one non-null frequency. $c_1=c_2^*$ and $w_1 \equiv w_2$.}
          \label{fig:amostras3}
  \end{figure}
 
-$\Lambda$ real samples $t_i$ result in $\Lambda$ complex coefficients $c_k=a_k+j.b_k$. The coefficients $c_k$ are equivalent two by two, corresponding to the same frequencies and with same contribution to its reconstruction. They are complex conjugates: $a_{k1}=a_{k2}$ and $b_{k1}=-b_{k2}$ and, as a consequence, the modules are equal and phases have opposite signs. Remembering that $f_k = k\frac{f_a}{\Lambda}, \; k \in \left\{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \right\} $. When $k > \frac{\Lambda}{2}$, the frequency $f_k$ is mirrored by $\frac{f_a}{2}$ in this way: $f_k=\frac{f_a}{2} - (f_k-\frac{f_a}{2})=f_a-f_k=f_a - k\frac{f_a}{\Lambda}=(\Lambda-k)\frac{f_a}{\Lambda} \;\;\;\; \Rightarrow \;\;\;\; f_k\equiv f_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda$. 
+$\Lambda$ real samples $t_i$ result in $\Lambda$ complex coefficients $c_k=a_k+j.b_k$. The coefficients $c_k$ are equivalent two by two, corresponding to the same frequencies and with same relevance\footnote{Equal real part and imaginary with inverse order: $a_{k1}=a_{k2}$ and $b_{k1}=-b_{k2}$. As consequence the modules are equal and phases have inverse order.}. Remembering that $f_k = k\frac{f_a}{\Lambda}, \; k \in \left\{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \right\} $. When $k > \frac{\Lambda}{2}$, the frequency $f_k$ is mirrored by $\frac{f_a}{2}$ in this way: $f_k=\frac{f_a}{2} - (f_k-\frac{f_a}{2})=f_a-f_k=f_a - k\frac{f_a}{\Lambda}=(\Lambda-k)\frac{f_a}{\Lambda} \;\;\;\; \Rightarrow \;\;\;\; f_k\equiv f_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda$. 
 
-The same can be observed with $w_k=f_k.\frac{2\pi}{f_a}$ and the periodicity $2\pi$: it follows that $w_k=-w_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda$. Given the cosine (an even function) and the inverse tangent (an odd function), the components in $w_k$ and $w_{\Lambda-k}$ contribute with coefficients $c_k$ and $c_{\Lambda-k}$ in the reconstruction of the real samples.
+The same could be observed in $w_k=f_k.\frac{2\pi}{f_a}$ and considering the periodicity $2\pi$, it results in $w_k=-w_{\Lambda-k}$. Given the cosine as an even function and the inverse tangent as an odd function, the components in $w_k$ and $w_{\Lambda-k}$ sums up in the equation that reconstructs the real samples, yielding equation~\ref{recomposicaoFourier}.
 
-In other words, in a decomposition of $\Lambda$ samples, the $\Lambda$ frequency components $\{c_i\}_0^{\Lambda-1}$ are equivalents in pairs,
-except for $f_0$, and, when $\Lambda$ is even, for $f_{\Lambda/2}=f_{\text{max}}=\frac{f_a}{2}$. Both components are isolated, i.e.\ there is one and only component in frequency $f_0$ or $f_{\Lambda/2}$ (if even $\Lambda$). 
-One can verify this assertion considering $k=0$ and $k=\Lambda/2$. Uncoiled: $f_{\Lambda/2}=f_{(\Lambda-\Lambda/2) = \Lambda/2}$ and $f_0=f_{(\Lambda-0)=\Lambda}=f_0$.
-Furthermore, these two frequencies (zero and Nyquist frequency) does not have phase variation, being their coefficients strictly real. In this way, it is possible to conclude the number $\tau$ of equivalent coefficient pairs:
+In other words, in a decomposition of $\Lambda$ samples, the $\Lambda$ given frequencies components $\{c_i\}_0^{\Lambda-1}$ are equivalents in pairs.
+Except for $f_0$, and when having an even $\Lambda$, from $f_{\Lambda/2}=f_{\text{max}}=\frac{f_a}{2}$ both components are isolated, e.g.\ there is any other component in frequency $f_0$ or $f_{\Lambda/2}$ (if even $\Lambda$) regarding itself. 
+It is true because $f_{\Lambda/2}=f_{(\Lambda-\Lambda/2) = \Lambda/2}$ and $f_0=f_{(\Lambda-0)=\Lambda}=f_0$.
+Furthermore, these two frequencies (zero and maximum frequency) are not represented having phase variation, being strictly real. In this way, it is possible to conclude the number $\tau$ of equivalent coefficient pairs:
 
 \begin{equation}\label{coefsPareados}
 \tau = \frac{\Lambda - \Lambda \% 2}{2} +\Lambda \% 2 -1
 \end{equation}
 
-This discussion makes clear the equivalences ~\ref{equivalenciasFreqs}, ~\ref{equivalenciasModulos} and ~\ref{equivalenciasFases}:
+This make clear visible the equivalences ~\ref{equivalenciasFreqs}, ~\ref{equivalenciasModulos} and ~\ref{equivalenciasFases}:
 
 \begin{equation}\label{equivalenciasFreqs}
 f_{k}\equiv f_{\Lambda-k}\;, \;\; w_{k}\equiv-w_{\Lambda-k}\;\;\;, \quad \;\; \forall \quad 1 \leq k \leq \tau  
 \end{equation}
 
-\begin{figure*}
+\begin{figure}[h!]
     \centering
-        \includegraphics[width=\textwidth]{figures/amostras4___}
-    \caption{Frequency components for 4 samples.}
+        \includegraphics[width=\columnwidth]{amostras4__}
+    \caption{Frequential components for 4 samples.}
         \label{fig:amostras4}
-\end{figure*}
+\end{figure}
 
-$T_i \; \Rightarrow \; a_k = a_{\Lambda -k}\;\;$ and $\;\;b_k = - b_{\Lambda -k}$, and thus:
+Having $a_k = a_{\Lambda -k}\;\;$ and $\;\;b_k = - b_{\Lambda -k}$:
 
 \begin{equation}\label{equivalenciasModulos}
 \sqrt{a_k^2 + b_k^2} = \sqrt{a_{\Lambda - k}^2 + b_{\Lambda -k}^2} \;\;, \quad \;\; \forall \quad 1 \leq k \leq \tau  \\
@@ -419,39 +410,39 @@ tg^{-1}\left(\frac{b_k}{a_k}\right)=-tg^{-1}\left(\frac{b_{\Lambda -k}}{a_{\Lamb
 
 with $k \in \mathbb{N}$.
 
-To expose the general case for components combination in each sample $t_i$, one can gather relations in equation~\ref{moduloEfase} for the real signal reconstruction, relations of modules~\ref{equivalenciasModulos} and phases equivalences~\ref{equivalenciasFases}, the number of paired coefficients~\ref{coefsPareados}, and equivalence of paired frequencies~\ref{equivalenciasFreqs}:
+The equation~\ref{moduloEfase} for the real signal reconstruction, the modules and phases equivalences~\ref{equivalenciasModulos} and~\ref{equivalenciasFases}, the number of paired coefficients~\ref{coefsPareados}, and equivalence of paired frequencies~\ref{equivalenciasFreqs} expose a general case for components combination in each sample $t_i$:
 
 \begin{multline}\label{eq:reconsCompleta}
 t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]+ \\ \frac{ a_{\Lambda/2}}{\Lambda}.(1-\Lambda\% 2)
 \end{multline}
 
-with $a_{\Lambda/2}=0$ if $\Lambda$ odd.
-
-\begin{figure*}
+\begin{figure}[h!]
     \centering
-        \includegraphics[width=\textwidth]{figures/amostras4formas__}
-    \caption{Basic wave forms with 4 samples.}
+        \includegraphics[width=\columnwidth]{amostras4formas__}
+    \caption{Basic wave forms for 4 samples.}
         \label{fig:formas4}
-\end{figure*}
+\end{figure}
 
-With 4 samples it is possible to represent 1 or 2 frequencies in any proportions (i.e. with independence). Figure~\ref{fig:amostras4} depicts the basic waveforms with 4 samples and its two (possible) components. The individual contributions sum to the original waveform and a brief inspection reveals the major curvatures resulting from the higher frequency, while the fixed offset is captured in the zero frequency component.
+Therefore, as in Figure~\ref{fig:amostras3}, the Fourier transform of 3 samples have 2 frequencies coefficients with same amount of energy in the same frequency.
 
-\begin{figure*}
-    \centering
-        \includegraphics[width=\textwidth]{figures/amostras6_}
-    \caption{Frequency components for 6 samples: 4 sinusoids, one of them is the \emph{bias} with zero frequency.}
-        \label{fig:amostras6}
-\end{figure*}
-
-Figure~\ref{fig:formas4} shows the harmonics for the basic waveforms of equations~\ref{senoide},~\ref{denteDeSerra},~\ref{triangular} and~\ref{quadrada} for the case of 4 samples. There is only 1 sinusoid for each waveform, with the exception of the sawtooth, which has even harmonics.
-
-Figure~\ref{fig:amostras6} presents the sinusoidal decomposition for 6 samples and figure~\ref{fig:formas6} presents the decomposition of the basic wave forms.
-In this case, the waveforms have spectra with fundamental differences: square and triangular have the same components but with different proportions, while the sawtooth have an extra component.
+With 4 samples it is possible to represent 1 or 2 frequencies with any proportions. Figure~\ref{fig:amostras4} depicts wave forms for 4 samples and its respective two components. The individual contributions sums together yielding the original wave form and a brief inspection reveals the major curvatures resulting from the higher frequency, while a fixed detachment of component summation results from the zero frequency component.
 
 \begin{figure}[h!]
     \centering
-        \includegraphics[width=\columnwidth]{figures/amostras6formas__}
-    \caption{Basic waveforms with 6 samples: triangular and square waveforms have odd harmonics, with different proportions and phases; the sawtooth has even harmonics.}
+        \includegraphics[width=\columnwidth]{amostras6}
+    \caption{Frequencies components for 6 samples: 3 sinusoid sums with \emph{bias}.}
+        \label{fig:amostras6}
+\end{figure}
+
+Figure~\ref{fig:formas4} shows the harmonics for 4 samples in basic wave forms of equations ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} and ~\ref{quadrada}. Their conjunction results in only 1 sinusoid, with exception to sawtooth wave, which have even harmonics.
+
+Figure~\ref{fig:amostras6} presents a sinusoidal decomposition for the 6 samples case and Figure~\ref{fig:formas6} presents the decomposition of the basic wave forms.
+In this case all wave forms are different in spectrum: square and triangular ones have the same components but with different proportions, while the sawtooth have an extra component.
+
+\begin{figure}[h!]
+    \centering
+        \includegraphics[width=\columnwidth]{amostras6formas__}
+    \caption{Basic wave forms for 6 samples: triangular and square wave forms have odd harmonics, with different proportions and phases; the sawtooth wave also has even harmonics.}
         \label{fig:formas6}
 \end{figure}
 
@@ -486,7 +477,7 @@ It is believed that the perception of spatial localization of sound occurs in ou
 
 \begin{figure}[h!]
     \centering
-        \includegraphics[width=.5\textwidth]{figures/espacializacao___}
+        \includegraphics[width=.5\textwidth]{espacializacao___}
     \caption{Detection of sound source spatial localization: schema used to calculate Interaural Time Difference (ITD) and Interaural Intensity Difference (IID).}
     \label{fig:spac}
 \end{figure}
@@ -563,7 +554,7 @@ Once we have well defined the basic note, it is time to build musical structures
 
 \begin{figure}[h!]
     {\centering
-        \includegraphics[width=\columnwidth]{figures/mixagem}}
+        \includegraphics[width=\columnwidth]{mixagem}}
     \caption{Mixing of three sound sequences. The amplitudes are directly overlapped.}
         \label{fig:mixagem}
 \end{figure}
@@ -582,7 +573,7 @@ This mechanism is demonstrated in Figure~\ref{fig:concatenacao} with same sequen
 
 \begin{figure}[h!]
 {    \centering
-        \includegraphics[width=\columnwidth]{figures/concatenacao}}
+        \includegraphics[width=\columnwidth]{concatenacao}}
     \caption{Concatenation of three sound sequences by temporal overlap of its samples.}
         \label{fig:concatenacao}
 \end{figure}
@@ -611,7 +602,7 @@ In music its usage transcends the former, simplifying operations and making poss
 
 \begin{figure}[h!]
     \centering
-        \includegraphics[width=\columnwidth]{figures/lut}
+        \includegraphics[width=\columnwidth]{lut}
     \caption{Search procedure in an indexed array (known as \emph{Lookup Table}) to synthesize sounds in different frequency using an unique waveform with high resolution.}
         \label{fig:lut}                                                                                                            
 \end{figure}
@@ -679,7 +670,7 @@ Therefore, $f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
 
 \begin{figure}[h!]
      \centering
-         \includegraphics[width=\columnwidth]{figures/transicao}
+         \includegraphics[width=\columnwidth]{transicao}
      \caption{Intensity transitions to different values of $\alpha$ (see equations~\ref{seqAmp} and ~\ref{transAmp}).}
          \label{fig:transicao}
 \end{figure}
@@ -730,7 +721,7 @@ This subsection is limited to a description of the procedure in sequences by con
 
 \begin{figure}[h!]
      \centering
-         \includegraphics[width=\columnwidth]{figures/convolucao}
+         \includegraphics[width=\columnwidth]{convolucao}
      \caption{Graphical interpretation of convolution. Each resulting sample is the sum of the previous samples of a signal, with each one multiplied by the retrograde sequence of samples from the other signal.}
          \label{fig:conv}
 \end{figure}
@@ -758,7 +749,7 @@ In Figure~\ref{fig:delays} it is possible to observe the shifting caused by conv
 
 \begin{figure}[h!]
     \centering
-        \includegraphics[width=\columnwidth]{figures/delays}
+        \includegraphics[width=\columnwidth]{delays}
     \caption{Convolution with impulse: shifting (a), delay lines (b) and granular synthesis~(c). Disposed in increasing order of its pulse density.}
         \label{fig:delays}
 \end{figure}
@@ -792,7 +783,7 @@ Both possibilities are explored by the referenced studies, in special~\cite{JOSF
 
 \begin{figure}[h!]
     \centering
-        \includegraphics[width=\columnwidth]{figures/iir}
+        \includegraphics[width=\columnwidth]{iir}
     \caption{Modules for the frequency response (a), (b), (c) and (d) for IIR filters of equations~\ref{eq:passa-baixas}, \ref{eq:passa-altas}, \ref{eq:passa-banda} and \ref{eq:rejeita-banda} respectively, considering different cutoff frequencies, center frequencies and band width.}
         \label{fig:iir}
 \end{figure}
@@ -878,7 +869,7 @@ The spectral distribution should be done with care because, if it uses the same 
 
 \begin{figure}[htpq!]
      \centering
-         \includegraphics[width=\columnwidth]{figures/ruidos}
+         \includegraphics[width=\columnwidth]{ruidos}
      \caption{Colors of noise generated by equations~\ref{eq:branco}, \ref{eq:rosa}, \ref{eq:marrom}, \ref{eq:azul} and \ref{eq:violeta}: resulting spectrum and waveforms.}
          \label{fig:ruidos}
 \end{figure}
@@ -987,7 +978,7 @@ For the general case, the vibrato is described as follows:
 
 \begin{figure}[h!]
      \centering
-         \includegraphics[width=\columnwidth]{figures/vibrato}
+         \includegraphics[width=\columnwidth]{vibrato}
      \caption{Spectrogram of a sound with sinusoidal vibrato of $3Hz$ and one octave depth in a $1000Hz$ sawtooth wave (considering $f_a=44.1kHz$).}
          \label{fig:vibrato}
 \end{figure}
@@ -1020,7 +1011,7 @@ The music piece \emph{Vibra e treme} explores those possibilities given by tremo
 
 \begin{figure}[h!]
      \centering
-         \includegraphics[width=\columnwidth]{figures/tremolo}
+         \includegraphics[width=\columnwidth]{tremolo}
      \caption{Tremolo with a depth of $V_{dB}=12dB$ with a sawtooth waveform as its oscillatory pattern with $f'=1.5Hz$ in a sine of $f=40Hz$ (considering a sample frequency of $f_a=44,1kHz$).}
          \label{fig:tremolo}
 \end{figure}
@@ -1366,7 +1357,7 @@ Appendix~\ref{ap:ada} and in \massa, explores many configurations of the ADSL en
 
 \begin{figure}[htpq!]
     \centering
-        \includegraphics[width=\columnwidth]{figures/adsr}
+        \includegraphics[width=\columnwidth]{adsr}
     \caption{An ADSR envelope (\emph{Attack, Decay, Sustain, Release}) applied
         to an arbitrary sound sequence. The linear variation of the amplitude is
         above. Below the amplitude variation is exponential.}
@@ -1496,7 +1487,7 @@ as~\cite{Roederer,Wisnick}:
 \begin{itemize}
                 \item Intervals as number of ratios between notes: first
                 (unison), second, third, forth, fifth, sixth, seventh and
-                eighth. The ninth, tenth, eleventh, etc, are compound                       intervals made by one or more octaves + a interval inside the                 octave, which characterizes the compound interval. The                        intervals are represented by the numeric digits, e.g. 1, 3, 5                 are a unison, a third and a fifth, respectively.
+                eighth. The ninth, tenth, eleventh, etc, are compound 						intervals made by one or more octaves + a interval inside the 				  octave, which characterizes the compound interval. The 						intervals are represented by the numeric digits, e.g. 1, 3, 5 				  are a unison, a third and a fifth, respectively.
 
                 \item Qualities of each interval: the perfect consonances --
                 i.e.\ unison, forth, fifth and octave -- are 'perfect'. The
@@ -1506,7 +1497,7 @@ as~\cite{Roederer,Wisnick}:
 
                 \item The perfect fourth is both perfect consonance or
                 dissonance according to the context and theoretical
-                background. As general rule, it can be considered as                        consonance except when it is used as passage to resolve a                   fifth or a third.
+                background. As general rule, it can be considered as 						consonance except when it is used as passage to resolve a 					fifth or a third.
 
                 \item Tritone is dissonance in Western music because
                 it characterizes the ``dominant'' in the tonal system (see
@@ -1517,13 +1508,13 @@ as~\cite{Roederer,Wisnick}:
                 minor interval. A minor interval increased by one semitone
                 results in a major interval.
 
-                \item A perfect interval (unison, perfect forth, perfect                    fifth, perfect octave), or a major interval (major second M2,                 major third M3, major sixth M6 or major seventh M7), increased                 by one semitone results in an augmented interval (e.g.\                    augmented third aug3 with five semitones). The augmented forth                 is also called tritone (aug4 ~ tri ~ TT).
+                \item A perfect interval (unison, perfect forth, perfect 					fifth, perfect octave), or a major interval (major second M2, 				  major third M3, major sixth M6 or major seventh M7), increased 				 by one semitone results in an augmented interval (e.g.\ 					augmented third aug3 with five semitones). The augmented forth 				   is also called tritone (aug4 ~ tri ~ TT).
 
                 \item A perfect interval or a minor interval (minor second m2,
                 minor third m3, minor sixth m6 or minor seventh m7), decreased
-                by one semitone results in a diminished interval. The                       diminished fifth is also called tritone (dim5 ~ tri ~ TT).
+                by one semitone results in a diminished interval. The 					    diminished fifth is also called tritone (dim5 ~ tri ~ TT).
 
-                \item An augmented interval increased by one semitone results                 in a 'doubly augmented' interval and a diminished interval
+                \item An augmented interval increased by one semitone results 				  in a 'doubly augmented' interval and a diminished interval
                 decreased by one semitone results in a 'doubly diminished'
                 interval.
 
@@ -1531,17 +1522,17 @@ as~\cite{Roederer,Wisnick}:
                 interval.
 
                 \item Notes played as a sequence in time configure a
-                melodic interval. The order of the notes: considering first                 the lowest note or the highest note, results in an ascending                 or descending interval, respectively.
+                melodic interval. The order of the notes: considering first 				the lowest note or the highest note, results in an ascending 				 or descending interval, respectively.
 
                 \item If the lower pitch is raised one octave, or if
                 the upper pitch is lowered one octave below, the interval is
-                inverted. When summed to its inversion an interval results in                 9 (e.g.\ m7 is inverted to M2: $m7+M2=9$). An inverted major
-                interval results in a minor interval and vice-versa. An                     inverted augmented interval results in a diminished interval                 and vice-versa (like a doubly augmented results in a doubly
-                diminished and vice-verse). An inverted perfect interval                    results in a perfect interval as well.
+                inverted. When summed to its inversion an interval results in 				  9 (e.g.\ m7 is inverted to M2: $m7+M2=9$). An inverted major
+                interval results in a minor interval and vice-versa. An 				    inverted augmented interval results in a diminished interval 				 and vice-versa (like a doubly augmented results in a doubly
+                diminished and vice-verse). An inverted perfect interval 					results in a perfect interval as well.
 
                 \item An interval higher than an octave is called a 'compound
                 interval' and is classified like the interval between the same
-                notes but in the same octave. They are also specified adding a                 7 to the interval: P11 is an octave plus a forth ($7 + P4 =                  P11$), M9 is an octave plus a major second ($7 + M2 = M9$).
+                notes but in the same octave. They are also specified adding a 				   7 to the interval: P11 is an octave plus a forth ($7 + P4 = 					P11$), M9 is an octave plus a major second ($7 + M2 = M9$).
 \end{itemize}
 
 The augmented/diminished intervals and the doubly augmented/doubly diminished intervals are consequences of the tonal system. The scale degrees (subsection~\ref{subsec:escalas}) generally determine different pitches, with
@@ -1618,22 +1609,6 @@ The minor scales has two additional forms, named melodic and harmonic:
 The ascending and descending contour of the melodic minor scale is necessary for the existence of the leading tone (seventh and last degree, separated by one semitone of the octave, enhances the tonic polarization) in the ascending trajectory, which is not necessary in the descending mode, since it recovers the normal form. The harmonic scale presents the leading tone but does not avoid the augmented second interval between the sixth and seventh degrees. In addition, it does not need to cover a melodic trajectory, just having to present the leading tone, crucial to the tonal system (the leading tone tends to the tonic, asserting it)~\cite{Harmonia}. 
 Other scales can be represented in a similar form, like the pentatonic and the
 modes of limited transposition by Messiaen~\cite{Messiaen}. 
-
-Although not a scale, the harmonic series is often used as such. Besides, this point is a convenient moment to put it plain simple:
-
-\begin{equation}\label{eq:serieHarmonica}
-\begin{split}
-H_i = & \{h_i\}_0^{19}= \\
-      & \{ 0,12,19+0.02,  24,28-0.14, 31+0.2, 34-0.31, \\
-                     & 36, 38+0.04,40-0.14, 42-0.49, 43+0.02, \\
-                     & 44+0.41, 46-0.31, 47-0.12, \\
-                     & 48, 49+0.05, 50+0.04, 51-0.02, 52-0.14   \}
-\end{split}
-\end{equation}
-
-
-
-This scale is composed of the frequencies on harmonic spectra. Nature exhibits this frequencies within sounds and with all kinds of distortions.
 
 
 \subsubsection{Chords}\label{subsec:acordes}
@@ -1858,7 +1833,7 @@ among others -- outlined such similar synthesis.
 
 \begin{figure}[h!]
     \centering
-        \includegraphics[width=\columnwidth]{figures/movContraponto}
+        \includegraphics[width=\columnwidth]{movContraponto}
     \caption{Different motions of counterpoint aiming to preserve independence
         between voices. There are 3 types of motions: direct, contrary and
         oblique. The parallel motion is a type of direct motion.}
@@ -1929,7 +1904,7 @@ A schematic exposition is shown in Figure~\ref{fig:pulsoSubAgl}.
 
 \begin{figure}[h!]
     \centering
-        \includegraphics[width=\columnwidth]{figures/metricaMusical}
+        \includegraphics[width=\columnwidth]{metricaMusical}
     \caption{Divisions and grouping in bars for the music pulse to establish a rhythmic
         metric. Divisions of the quarter note, established as the
         pulse, is presented in the left. The time signature whose specifies the same
@@ -2128,7 +2103,7 @@ the arc consists only of the reference structure~\cite{Schoenberg}.
 
 \begin{figure}[h!]
     \centering
-        \includegraphics[width=\columnwidth]{figures/climax}
+        \includegraphics[width=\columnwidth]{climax}
         \caption{Canonical distinctions of musical climax in a given melody and
         other domains. The considered possibilities are: climax at beginning,
         climax at first half, climax at middle, climax at second half and climax
@@ -2344,5 +2319,5 @@ Future works include the application of the reported results in machine learning
 
 
 \nocite{*}
-\bibliography{article}
+\bibliography{phi+mus}
 \end{document}
