@@ -774,24 +774,24 @@ In figure~\ref{fig:delays} it is possible to observe the shift caused by convolu
 
 \subsubsection{Infinite impulse response (IIR) filters}
 
-This class of filters is known by the acronym IIR. They are characterized by having an infinite time representation, i.e.\ the impulse response does not converges to zero. Its application is usually made by the following equation:
+This class of filters, known by the acronym IIR, are characterized by having an infinite time representation, i.e.\ the impulse response does not converge to zero. Its application is usually made by the following equation:
 
 \begin{equation}\label{eq:diferencas}
  t_i' = \frac{1}{b_0}\left ( \sum_{j=0}^Ja_j . t_{i-j} + \sum_{k=1}^Kb_k . t_{i-k}' \right )
 \end{equation}
 
-\noindent with $b_0=1$ in the most cases it is possible to normalize the variables: $a_j'=\frac{a_j}{b_0}$ and $b_k'=\frac{b_k}{b_0} \Rightarrow b_0' = 1$.
-Equation~\ref{eq:diferencas} is called 'difference equation' because the resulting samples $\left\{t_i'\right\}$ are given by differences between the original samples $\{t_i\}$ and the previous resulting ones $\left\{t_{i-k}'\right\}$.
+In the most cases it is possible to normalize the variables: $a_j'=\frac{a_j}{b_0}$ and $b_k'=\frac{b_k}{b_0} \Rightarrow b_0' = 1$.
+Equation~\ref{eq:diferencas} is called `difference equation' because the resulting samples $\left\{t_i'\right\}$ are given by differences between original samples $\{t_i\}$ and previous resulting ones $\left\{t_{i-k}'\right\}$.
 
-There are many methods and tools to prepare IIR filters. The following texts list a selection of them for didactic purpose and to make easy future consulting. They are well behaved filters whose aspects are described in Figure~\ref{fig:iir}.
+There are many methods and tools to obtain IIR filters. The text bellow lists a selection of them for didactic purposes and as a reference. They are well behaved filters whose aspects are described in figure~\ref{fig:iir}.
 
-Considering filters with simple order, the cutoff frequency $f_c$ is the position where the filter performs an attenuation of $-3dB \approx 0.707 $ in the original amplitude.
-For band-pass and band-reject (or 'notch') filters, this attenuation results on two specifications: $f_c$ (in this case, referred as 'center frequency') band width $bw$,
-in both frequencies $f_c \pm bw$ there is an attenuation of $\approx 0.707$ in the original amplitude.
-There is sound amplification in band-pass and band-reject filters when the cutoff frequency is low and the band width is large enough. In trebles those filters present only a shift in the expected waveform, expanding the envelope to the bass side of the band.
+For filters of simple order, the cutoff frequency $f_c$ is where the filter performs an attenuation of $-3dB \approx 0.707 $ of the original amplitude.
+For band-pass and band-reject (or 'notch') filters, this attenuation has two specifications: $f_c$ (in this case, the `center frequency') and bandwidth $bw$.
+In both frequencies $f_c \pm bw$ there is an attenuation of $\approx 0.707$ of the original amplitude.
+There is sound amplification in band-pass and band-reject filters when the cutoff frequency is low and the band width is large enough. In trebles, those filters present only a deviation of the expected profile, expanding the envelope to the bass.
 
-For filters whose frequency responses have other envelopes (for the module), it is possible to create chains and apply them successively. Another possibility is to use some biquad 'filter receipt'\footnote{Short for 'biquadratic': its transfer function has two poles and two zeros, i.e. its first direct form consists of two quadratic polynomials forming the fraction: $\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1- b_1.z^{-1} -b_2 . z^{-2}}$.} or procedures for the calculation of coefficients of Chebichev filters\footnote{Butterworth and Elliptical filters can be considered as specific cases of Chebichev filters.\cite{Openheim,smith}}.
-Both possibilities are explored by the referenced studies, in special~\cite{JOSFM,smith}, and the collection of filters maintained by the \emph{Music-DSP} community from University of Columbia.\cite{music-dsp,Openheim}
+For filters with other frequency responses, it is possible to apply them successively. Another possibility is to use a biquad 'filter receipt'\footnote{Short for 'biquadratic': its transfer function has two poles and two zeros, i.e. its first direct form consists of two quadratic polynomials forming the fraction: $\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1- b_1.z^{-1} -b_2 . z^{-2}}$.} or the calculation of Chebichev filter coefficients\footnote{Butterworth and Elliptical filters can be considered as special cases of Chebichev filters~\cite{Openheim,smith}.}.
+Both alternatives are explored by referenced studies, in special~\cite{JOSFM,smith}, and by the collection of filters maintained by the \emph{Music-DSP} community of the Columbia University .\cite{music-dsp,Openheim}
 
 
 \begin{enumerate}
