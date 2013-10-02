@@ -653,8 +653,8 @@ Consider a note with duration $\Delta = \frac{\Lambda}{f_a}$, in which the frequ
 
 \begin{equation}\label{indiceLinear}
 \begin{split}
- \Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i= \left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   = \\
-=  \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{j}{\Lambda-1} \right ] \right \rfloor 
+ \Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i= \left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor \\
+\gamma_i=  \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{j}{\Lambda-1} \right ] \right \rfloor 
 \end{split}
 \end{equation}
 
@@ -665,19 +665,21 @@ Consider a note with duration $\Delta = \frac{\Lambda}{f_a}$, in which the frequ
 where $\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a}$ is the LUT increment between two samples given the sound frequency of the first sample.
 Therefore, it is handy to calculate the elements $t_i^{\;\overline{f_0,f_{\Lambda-1}}}$ by means of the period $\left\{\widetilde{l}_i\right\}_0^{\Lambda-1}$.
 
-The equations~\ref{freqLinear}, \ref{indiceLinear} and \ref{serieAmostralLin} are related with the linear progression of the frequency. We recall that, for the general case, the frequency progression \emph{perceived} as linear follows an exponential progression\footnote{In other words, a geometric progression of frequency is perceived as an arithmetic progression of pitch.}.
-It is possible to write this such that: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ where  $n_8=\log_2\frac{f_{\Lambda-1}}{f_0}$ is the number of octaves between $f_0$ and $f_{\Lambda-1}$.
+The equations~\ref{freqLinear},~\ref{indiceLinear} and~\ref{serieAmostralLin} are related with the linear progression of the frequency. As stated above, the frequency progression \emph{perceived} as linear follows an exponential progression, i.e. a geometric progression of frequency is perceived as an arithmetic progression of pitch.
+It is possible to write: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ where  $n_8=\log_2\frac{f_{\Lambda-1}}{f_0}$ is the number of octaves between $f_0$ and $f_{\Lambda-1}$.
 Therefore, $f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
  f_0 . 2^{\log_2\left ( \frac{f_{\Lambda-1}}{f_0} \right )^{\frac{i}{\Lambda-1}}}=
- f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}$. Accordingly, the transition equations of linear frequency for the human ear are given by:
+ f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}}$. Accordingly, the equations for linear pitch transition are:
 
-\begin{multline}\label{freqExponencial}
- F_i=\{f_i\}_0^{\Lambda-1}= \\ \left\{f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right\}_0^{\Lambda-1}
-\end{multline}
+\begin{equation}\label{freqExponencial}
+ F_i=\{f_i\}_0^{\Lambda-1}=  \left\{f_0 \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{i}{\Lambda -1}} \right\}_0^{\Lambda-1}
+\end{equation}
 
-\begin{multline}\label{indiceExponencial}
- \Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \\ \quad \gamma_i=\left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i} f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{j}{\Lambda -1}} \right \rfloor
-\end{multline}
+\begin{equation}\label{indiceExponencial}
+\begin{split}
+ \Delta_{\gamma_i}= f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow  \quad \gamma_i= & \left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor \\ \gamma_i = & \left \lfloor \sum_{j=0}^{i} f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{j}{\Lambda -1}} \right \rfloor
+\end{split}
+\end{equation}
 
 \begin{equation}\label{serieAmostralLog}
  \left\{t_i^{\;\overline{f_0,\,f_{\Lambda-1}}}\right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\,\right\}_0^{\Lambda-1}
@@ -690,41 +692,44 @@ Therefore, $f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
          \label{fig:transicao}
 \end{figure}
 
-The term $\frac{i}{\Lambda-1}$ looks up the interval $[0,1]$ and it is possible to power it to a value in such a way that the beginning of the transition will be smoother or steeper.
-This procedure is useful for energy variations of a vibratory wave to change the volume intensity\footnote{The volume change (psychophisical quality) is consequence of different sound characteristics like reverberation and concentration of treble harmonics, among which is wave energy. Wave energy is the easiest one to modify (see Equation~\ref{eq:potencia}) and it can vary in many ways. The most simple way consists of modifying the amplitude by multiplying the whole sequence by a real number. The increased energy without amplitude variation is the \emph{sound compression}, useful nowadays for music production~\cite{guillaume}}. It is sufficient to multiply the original sequence (being it generated or predetermined) by the sequence $a_{\Lambda-1}^{\left( \frac{i}{\Lambda-1} \right )^\alpha}$, where $\alpha$ is the given coefficient and $a_{\Lambda-1}$ is a fraction of the original amplitude, which is the aimed value to change until the end of transition.
+The term $\frac{i}{\Lambda-1}$ convers the interval $[0,1]$ and it is possible to power it to a value in such a way that the beginning of the transition will be smoother or steeper.
+This procedure is useful for energy variations with the purpose of changing the volume\footnote{The volume (psychophysical quality) is consequence of different sound characteristics, like reverberation and concentration of high harmonics, among which is wave total energy. Wave energy is the easy to modify (see Equation~\ref{eq:potencia}) and it can vary in many ways. The simplest way consists of modifying the amplitude by multiplying the whole sequence by a real number. The increase of energy without amplitude variation is the \emph{sound compression}, quite popular nowadays for music production~\cite{guillaume}}. It is sufficient to multiply the original sequence by the sequence $a_{\Lambda-1}^{\left( \frac{i}{\Lambda-1} \right )^\alpha}$, where $\alpha$ is the given coefficient and $a_{\Lambda-1}$ is a fraction of the original amplitude, which is the value to be reached at the end of transition.
 
 Thus, for amplitude variations:
 
-\begin{multline}\label{seqAmp}
- \{a_i\}_0^{\Lambda-1}=\left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}= \\ \left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ com } a_0=1
-\end{multline}
-
+\begin{equation}\label{seqAmp}
+\begin{split}
+ \{a_i\}_0^{\Lambda-1}= & \left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}= \\ = & \left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ (with } a_0=1 \text{)}
+\end{split}
+\end{equation}
+and
 \begin{equation}\label{transAmp}
- T_i^{'}=T_i \odot A_i = \{t_i . a_i\}_0^{\Lambda-1}=\left \{ t_i . (a_{\Lambda-1} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
+\begin{split}
+ T_i^{'}=T_i \odot A_i = & \{t_i . a_i\}_0^{\Lambda-1} \\ = & \left \{ t_i . (a_{\Lambda-1} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
+\end{split}
 \end{equation}
 
-It is possible to take $a_0=1$ in order to start a new sequence with the original amplitude and then keep changing it with the following samples.
-This restriction makes $a_{\Lambda-1}$ the amplitude variation term.
-If $\alpha=1$, the amplitude variation follows the geometric progression whose defines the linear progression. Figure~\ref{fig:transicao} shows the transitions between values 1 and 2 and for different values of $\alpha$, a gain of $\approx 6dB$ as given by equation~\ref{eq:ampVol}.
+It is often convenient to have $a_0=1$ in order to start a new sequence with the original amplitude and then progressively change it.
+If $\alpha=1$, the amplitude variation follows the geometric progression whose defines the linear variation of volume. Figure~\ref{fig:transicao} depicts transitions between values 1 and 2 and for different values of $\alpha$, a gain of $\approx 6dB$ as given by equation~\ref{eq:ampVol}.
 
-An special attention should be driven while considering $a=0$.
-In equation~\ref{seqAmp}, $a_0=0$ results in a division by zero and if $a_{\Lambda-1}=0$, there will be multiplication by zero. Both cases make the procedure useless, once no number different of zero can be represented as a ratio in relation of zero. It is possible to solve this dilemma choosing a number that is small enough like $-80dB\;\Rightarrow a=10^{\frac{-80}{20}}=10^{-4}$ as the minimum volume for a \emph{fade in} ($a_0=10^{-4}$) or for a \emph{fade out} ($a_{\Lambda-1}=10^{-4}$).
+Special attention should be dedicated while considering $a=0$.
+In equation~\ref{seqAmp}, $a_0=0$ results in a division by zero and if $a_{\Lambda-1}=0$, there will be multiplication by zero. Both cases make the procedure useless, once no number different from zero can be represented as a ratio in relation of zero. It is possible to solve this dilemma choosing a number that is small enough like $-80dB\;\Rightarrow a=10^{\frac{-80}{20}}=10^{-4}$ as the minimum volume for a \emph{fade in} ($a_0=10^{-4}$) or for a \emph{fade out} ($a_{\Lambda-1}=10^{-4}$). A linear fade can be used to reach zero amplitude. Another common solution is the use of the quartic polynomial term $x^4$, as it reaches zero without these difficulties and gets reasonably close to the curve with $\alpha=1$ as it withdraws from zero~\cite{Cook}.
 
-For linear amplification -- but not linear to perception -- it is sufficient to use an appropriate sequence $\{a_i\}$:
+For linear amplification -- but not linear perception -- it is sufficient to use an appropriate sequence $\{a_i\}$:
 
 \begin{equation}\label{seqAmpLin}
 a_i=a_0 + (a_{\Lambda-1}-a_0)\frac{i}{\Lambda-1}
 \end{equation}
 
-Here the conversation between decibels and amplitude is convenient. In this way, the equations~\ref{ampDec} and \ref{transAmp} specify a transition of $V_{dB}$ decibels:
+Here the convertion between decibels and amplitude is convenient. In this way, the equations~\ref{ampDec} and \ref{transAmp} specify a transition of $V_{dB}$ decibels:
 
 \begin{equation}\label{seqAmpDB}
 T_i^{'}=\left\{ t_i 10^{\frac{V_{dB}}{20}\left( \frac{i}{\Lambda-1} \right)^\alpha} \right\}_0^{\Lambda-1}
 \end{equation}
 
-\noindent for the general case of amplitude variations following a geometric progression. The greater the value of $\alpha$, the smoother the sound introduction and more intense its end. $\alpha>1$ results in volume transitions commonly called \emph{slow fade}, while $\alpha<1$ results in \emph{fast fade}.\cite{guillaume}
+\noindent for the general case of amplitude variations following a geometric progression. The greater the value of $\alpha$, the smoother the sound introduction and more intense its end. $\alpha>1$ results in volume transitions commonly called \emph{slow fade}, while $\alpha<1$ results in \emph{fast fade}\cite{guillaume}.
 
-The linear transitions will be used for AM and FM synthesis and for applications of logarithmic transitions for tremolos and vibratos. A non-oscillatory exploration of those variations is in the music piece \emph{Transita para metro}, which code is in Appendix~\ref{ap:transita} and online at \massa.\cite{MASSA}
+The linear transitions will be used for AM and FM synthesis, while logarithmic transitions are proper tremolos and vibratos, as developed in subsection~\ref{subsec:tvaf}. A non-oscillatory exploration of these variations is in the music piece \emph{Transita para metro}, which code is online as part of the \massa\ toolbox\cite{MASSA}.
 
 
 \subsection{Application of Digital Filters}\label{subsec:filtros}
