@@ -791,12 +791,7 @@ In both frequencies $f_c \pm bw$ there is an attenuation of $\approx 0.707$ of t
 There is sound amplification in band-pass and band-reject filters when the cutoff frequency is low and the band width is large enough. In trebles, those filters present only a deviation of the expected profile, expanding the envelope to the bass.
 
 For filters with other frequency responses, it is possible to apply them successively. Another possibility is to use a biquad 'filter receipt'\footnote{Short for 'biquadratic': its transfer function has two poles and two zeros, i.e. its first direct form consists of two quadratic polynomials forming the fraction: $\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1- b_1.z^{-1} -b_2 . z^{-2}}$.} or the calculation of Chebichev filter coefficients\footnote{Butterworth and Elliptical filters can be considered as special cases of Chebichev filters~\cite{Openheim,smith}.}.
-Both alternatives are explored by referenced studies, in special~\cite{JOSFM,smith}, and by the collection of filters maintained by the \emph{Music-DSP} community of the Columbia University .\cite{music-dsp,Openheim}
-
-
-\begin{enumerate}
-  \item Low-pass with simple pole and module of the frequency response in the upper left corner of Figure~\ref{fig:iir}. The general equation has as reference by the cutoff frequency $f_c \in (0,\frac{1}{2})$, fraction of the sample frequency $f_a$ that there is approximately an attenuation of $3dB$.
-  The coefficients $a_0$ and $b_1$ of the IIR filter are given by means of the intermediate variable $x \in [e^{-\pi},1]$:
+Both alternatives are explored by referenced studies, in special~\cite{JOSFM,smith}, and by the collection of filters maintained by the \emph{Music-DSP} community of the Columbia University~\cite{music-dsp,Openheim}.
 
 \begin{figure}[h!]
     \centering
@@ -804,6 +799,11 @@ Both alternatives are explored by referenced studies, in special~\cite{JOSFM,smi
     \caption{Modules for the frequency response (a), (b), (c) and (d) for IIR filters of equations~\ref{eq:passa-baixas}, \ref{eq:passa-altas}, \ref{eq:passa-banda} and \ref{eq:rejeita-banda} respectively, considering different cutoff frequencies, center frequencies and band width.}
         \label{fig:iir}
 \end{figure}
+
+
+\begin{enumerate}
+  \item Low-pass with a simple pole, module of the frequency response in the upper left corner of figure~\ref{fig:iir}. The general equation has the cutoff frequency $f_c \in (0,\frac{1}{2})$, fraction of the sample frequency $f_s$ in which occurs an attenuation of $3dB$.
+  The coefficients $a_0$ and $b_1$ of the IIR filter are given by means of the intermediate variable $x \in [e^{-\pi},1]$:
 
 \begin{equation}\label{eq:passa-baixas}
  \begin{split}
@@ -813,7 +813,7 @@ Both alternatives are explored by referenced studies, in special~\cite{JOSFM,smi
  \end{split}
 \end{equation}
 
-  \item High-pass filter with simple pole and modules of its frequency responses at the upper right corner of Figure~\ref{fig:iir}. The general equation with cutoff frequency $f_c \in (0,\frac{1}{2})$ is calculated by means of the intermediate variable $x \in [e^{-\pi},1]$:
+  \item High-pass filter with a simple pole,  module of its frequency responses at the upper right corner of figure~\ref{fig:iir}. The general equation with cutoff frequency $f_c \in (0,\frac{1}{2})$ is calculated by means of the intermediate variable $x \in [e^{-\pi},1]$:
 
 \begin{equation}\label{eq:passa-altas}
  \begin{split}
@@ -827,9 +827,8 @@ Both alternatives are explored by referenced studies, in special~\cite{JOSFM,smi
 %\item Passa-banda
 %\item Rejeita-banda
 
-\item Notch filter. This filter is parametrized by a center frequency\footnote{Attention with the cutoff frequency $f_c$ in low-pass and high-pass filters.} $f_c$ and band width $bw$ -- $f_c \pm bw$ that results in $0.707$ of the amplitude, i.e. attenuation of $3dB$ -- both given as fractions of $f_a$, therefore $f,\; bw \in (0,0.5)$.
-
-In order to simplify, consider the auxiliary variables $K$ and $R$ defined as:
+\item Notch filter. This filter is parametrized by a center frequency $f_c$ and bandwidth $bw$, both given as fraction of $f_s$, therefore $f,\; bw \in (0,0.5)$. Both frequencies $f_c \pm bw$ has $\approx 0.707$ of the amplitude, i.e. attenuation of $3dB$.
+Auxiliary variables $K$ and $R$ are defined as:
 
 \begin{equation}\label{eq:varAux}
  \begin{split}
@@ -838,7 +837,7 @@ In order to simplify, consider the auxiliary variables $K$ and $R$ defined as:
  \end{split}
 \end{equation}
 
-The band-pass filter in the lower left corner of Figure~\ref{fig:iir} has the following coefficients in equation~\ref{eq:diferencas}:
+The band-pass filter in the lower left corner of figure~\ref{fig:iir} has the following coefficients:
 
 \begin{equation}\label{eq:passa-banda}
  \begin{split}
@@ -850,7 +849,7 @@ The band-pass filter in the lower left corner of Figure~\ref{fig:iir} has the fo
  \end{split}
 \end{equation}
 
-The coefficients of band-reject filter are:
+The coefficients of band-reject filter, depicted in the lower right of figure~\ref{fig:iir}, are:
 
 \begin{equation}\label{eq:rejeita-banda}
  \begin{split}
@@ -861,8 +860,6 @@ The coefficients of band-reject filter are:
  b_2 & =  -R^2
 \end{split}
 \end{equation}
-
-\noindent with the module of its frequency response represented in the lower left corner of the Figure~\ref{fig:iir}.
 
 %\item Biquad: pela especificação de uma frequência central, da qualidade
 %e da intensidade do filtro, este filtro é simples e usual para áudio,
@@ -875,7 +872,7 @@ The coefficients of band-reject filter are:
 \subsection{Noise}\label{subsec:ruidos}
 
 Generally, sounds without a defined pitch are called noise~\cite{Lacerda}.
-They are important parts of the musical sounds with undefined pitch like the noise present in piano notes, violin, etc. Besides that, the majority of percussion instruments do not have defined pitch and their sounds are generally comprehended as noise~\cite{Roederer}. In electronic music, including electro-acoustic and dance genres, noise has diversified use, and commonly characterizes the music style~\cite{Cook}. 
+They are important musical sounds, as noise present in piano notes, violin, etc. Besides that, the majority of percussion instruments do not have precise pitch and their sounds are generally comprehended as noise~\cite{Roederer}. In electronic music, including electro-acoustic and dance genres, noise has diverse uses, and frequently characterizes the music style~\cite{Cook}. 
 
 The absence of a defined pitch is due to the absence of a harmonic organization in the sinusoidal components that compose the sound.
 In this way, there are many ways to generate noise.
