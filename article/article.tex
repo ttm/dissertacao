@@ -601,66 +601,69 @@ With the basic musical digital note carefully described, the next section develo
 
 \section{Variation in the basic musical note}\label{sec:internalVar}
 
-The basic digital music note defined in section~\ref{sec:notaDisc} has following parameters: duration, pitch, intensity (volume) and timbre. This is a useful and paradigmatic modeling but does not covers all the aspects regarding a musical note.
+The basic digital music note defined in section~\ref{sec:notaDisc} has following parameters: duration, pitch, intensity (volume) and timbre. This is a useful and paradigmatic model, but does not exhaust all the aspects of a musical note.
 
-At first place, the characteristics of the note are modified along the duration of the note itself~\cite{Chowning}. For example, a note played in a piano with duration of 3 seconds has abrupt intensity at its beginning time of execution. Then, it behaves with progressively decays, spectrum variations, presenting harmonics decaying before others and presenting harmonics showing up along the time.
-Those variations are not mandatory but they are guidance from sound synthesis to musical uses, because it suitable reflects how sounds are represented in nature\footnote{The gold tip here is: to make a sound that incites interest by itself, do internal variations on it~\cite{Roederer}.}.
-To explore all the possible ways which those variations occur is out of the scope of this study, given the considerably sensibility of the human ear and the complexity of our sound cognition. In the following we point out primary resources to produce those characteristic variations in the basic note. It is worthwhile to mention that all the described relations in the following section are currently implemented in Python at Appendix~\ref{sec:cod2}. The music pieces \emph{Transita para metro}, \emph{Vibra e treme}, \emph{Tremolos, vibratos e a frequência}, \emph{Trenzinho de caipiras impulsivos}, \emph{Ruidosa faixa}, \emph{Bela rugosi}, \emph{Chorus infantil}, \emph{ADa e SaRa} are listed in Appendices~\ref{ap:transita}, \ref{ap:vibra}, \ref{ap:tremolos}, \ref{ap:trenzinho}, \ref{ap:ruidosa}, \ref{ap:bela}, \ref{ap:chorus} and \ref{ap:ada}. The code is also part of the toolbox \massa, available online.\cite{MASSA}
+First of all, characteristics of the note modifie along the note itself~\cite{Chowning}. For example, a 3 seconds piano note has intensity with abrupt rise at beginning and progressive decay, has spectrum variations with harmonics decaying some others that emerge along time.
+These variations are not mandatory but sound synthesis guidance for musical uses, as it reflects how sounds appear in nature. This is so considered to be true, that there is a rule of thumb: to make a sound that incites interest by itself, do internal variations on it~\cite{Roederer}.
+To explore all the ways in which variations occur within a note is out of the scope of any work, given the sensibility of the human ear and the complexity of human sound cognition. In the following, primary resources are presented to produce variations in the basic note. It is worthwhile to recall that all the relations in this and other sections are implemented in Python and published as the public domain \massa\ toolbox. The musical pieces \emph{Transita para metro}, \emph{Vibra e treme}, \emph{Tremolos, vibratos e a frequência}, \emph{Trenzinho de caipiras impulsivos}, \emph{Ruidosa faixa}, \emph{Bela rugosi}, \emph{Chorus infantil}, \emph{ADa e SaRa} were made to validate and illustrate concepts of this section. The code that synthesizes these pieces are also part of the toolbox\cite{MASSA}.
  
 \subsection{Lookup Table}\label{subsec:lookup}
 
-The \emph{Lookup Table} (or simply LUT), is a data structure array which substitutes continuous and repetitive calculation by indexed access. It is frequently used to reduce computational complexity and to make possible the use of functions without the possibility of direct calculation, as the data sampled from nature.
-In music its usage transcends the former, simplifying operations and making possible to use a single wave period to synthesize sounds in the whole audible spectrum, no matter what kind of wave was originally sampled.
+The \emph{Lookup Table} (or simply LUT), is an array for indexed operations which substitutes continuous and repetitive calculation. It is used to reduce computational complexity and to use functions without direct calculation, as data sampled from nature.
+In music its usage transcends these applications, as it simplifies many operations and makes possible the use a single wave period to synthesize sounds in the whole audible spectrum, with any waveform.
 
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\columnwidth]{figures/lut}
-    \caption{Search procedure in an indexed array (known as \emph{Lookup Table}) to synthesize sounds in different frequency using an unique waveform with high resolution.}
+    \caption{Search in the \emph{lookup table} to synthesize sounds in different frequencies using an unique waveform with high resolution.}
         \label{fig:lut}                                                                                                            
 \end{figure}
 
-Being $\widetilde{\Lambda}$ the wave period size and $\widetilde{L_i} = \left\{\, \widetilde{l}_i \,\right\}_0^{\widetilde{\Lambda} -1}$ the elements $\widetilde{l_i}$ of any wave period (refer to Equation~\ref{periodoUnico}), a sequence $T_i^{f,\,\Delta}$ with samples of a sound with frequency $f$ and duration $\Delta$ can be obtained by means of $\widetilde{L_i}$ as:
+Be $\widetilde{\Lambda}$ the wave period in samples and $\widetilde{L_i} = \left\{\, \widetilde{l}_i \,\right\}_0^{\widetilde{\Lambda} -1}$ the samples $\widetilde{l_i}$ (refer to Equation~\ref{periodoUnico}), a sequence $T_i^{f,\,\Delta}$ with samples of a sound with frequency $f$ and duration $\Delta$ can be obtained by means of $\widetilde{L_i}$:
 
-\begin{multline}\label{eq:lut}
-T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \\ \text{where} \;\; \gamma_i = \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
-\end{multline}
+\begin{equation}\label{eq:lut}
+\begin{split}
+T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = & \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \\ \text{where} \;\; \gamma_i = & \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
+\end{split}
+\end{equation}
 
-In other words, with the right LUT indexes ($\gamma_i\%\widetilde{\Lambda}$) it is possible to synthesize a sound with any frequency. Figure~\ref{fig:lut} illustrates the calculation of a $\{t_i\}$ sample from $\left\{\,\widetilde{l}_i\,\right\}$ for a frequency of $f=200Hz$, $\widetilde{\Lambda}=128$ and considering the sample rate as $f_a=44.1kHz$.
+In other words, with the right LUT indexes ($\gamma_i\%\widetilde{\Lambda}$) it is possible to synthesize sounds at any frequency. Figure~\ref{fig:lut} illustrates the calculation of $\{t_i\}$ sample from $\left\{\,\widetilde{l}_i\,\right\}$ for $f=200Hz$, $\widetilde{\Lambda}=128$ and adopting the sample rate of $f_s=44.1kHz$.
 Though this is not a practical configuration (as assigned below), it makes possible a graphical visualization of the procedure.
 
 The calculation of the integer $\gamma_i$ introduces noise which decreases as $\widetilde{\Lambda}$ increases.
-In order to use this calculation in sound synthesis, with $f_a=44.1 kHz$ the standard guidelines suggest the use of $\widetilde{\Lambda} = 1024$ samples, since it does not produce relevant noise considering the audible spectrum. The round or interpolation method are not decisive in this process~\cite{Geiger}.
+In order to use this calculation in sound synthesis, with $f_s=44.1 kHz$, the standard guidelines suggests the use of $\widetilde{\Lambda} = 1024$ samples, since it does not produce relevant noise on the audible spectrum. The rounding or interpolation method are not decisive in this process~\cite{Geiger}.
 
-The expression defining the variable $\gamma_i$ can be understood as $f_a$ being summed to $i$ at each $1$ second.
-If $i$ is divided by the sample frequency, it results in $\frac{i}{f_a}$,
-which is incremented in $1$ at each $1$ second. Multiplied by the period length it results in $i \frac{\widetilde{\Lambda}}{f_a}$ that look up the period in $1$ second. Finally, with frequency $f$ it results in $i . f \frac{\widetilde{\Lambda}}{f_a}$ which complements $f$ lookups of the period $\widetilde{\Lambda}$ in $1$ second, i.e., the resulting sequence presents the fundamental frequency $f$.
+The expression defining the variable $\gamma_i$ can be understood as $f_s$ being added to $i$ at each second.
+If $i$ is divided by the sample frequency, $\frac{i}{f_a}$
+is incremented in $1$ at each second. Multiplied by the period, it results in $i \frac{\widetilde{\Lambda}}{f_a}$, which covers the period in each second. Finally, with frequency $f$ it results in $i . f \frac{\widetilde{\Lambda}}{f_a}$ which completes $f$ periods $\widetilde{\Lambda}$ in $1$ second, i.e. the resulting sequence presents the fundamental frequency $f$.
 
-There are important considerations here: it is possible to use any value for $f$, the limits exist only in the loud frequencies when the size of table  $\widetilde{\Lambda}$ is not sufficient enough considering the sample rate $f_a$. The lookup table procedure is computationally costless and replaces the calculations by simple indexed searches (what is generally understood as an optimization process). Unless otherwise stated, this procedure will be used along all the text for every applicable case.
-
-LUTs are broadly used in computational implementations for music. A classical usage of LUTs is known as \emph{Wavetable Synthesis}, which consists of many LUTs used together to generate a music note quasi-periodic~\cite{Cook,Wavetable}.
+There are important considerations here: it is possible to use practically any frequency $f$. Limits exist only in low frequencies when the size of the table  $\widetilde{\Lambda}$ is not sufficient for the sample rate $f_a$. The lookup procedure is virtually costless and replaces calculations by simple indexed searches (what is generally understood as an optimization process). Unless otherwise stated, this procedure will be used along all the text for every applicable case.
+LUTs are broadly used in computational implementations for music. A classical usage of LUTs is known as \emph{Wavetable Synthesis}, which consists of many LUTs used together to generate a quasi-periodic music note~\cite{Cook,Wavetable}.
 
 \subsection{Incremental Variations of Frequency and Intensity}\label{subsec:vars}
 
-Following the Weber and Fechner~\cite{Weber-Fechner} law, the human perception has a logarithmic relation with the causing stimulus. In other words, a stimulus following a exponential progression is perceived as linear.
-For didactic reasons and given its use in AM and FM synthesis (refer to subsection~\ref{subsec:tvaf}), the linear variation is discussed first.
+As stated by the Weber and Fechner~\cite{Weber-Fechner} law, the human perception has a logarithmic relation with the stimulus. In other words, the exponential progression of a stimulues is perceived as linear.
+For didactic reasons, and given its use in AM and FM synthesis (subsection~\ref{subsec:tvaf}), linear variation is discussed first.
 
-Considering the note with duration $\Delta = \frac{\Lambda}{f_a}$, the frequency $f=f_i$ varies linearly from $f_0$ to $f_{\Lambda -1}$. In this way, it is possible to define the following:
+Consider a note with duration $\Delta = \frac{\Lambda}{f_a}$, in which the frequency $f=f_i$ varies linearly from $f_0$ to $f_{\Lambda -1}$. Thus:
 
 \begin{equation}\label{freqLinear}
  F_i=\{f_i\}_0^{\Lambda-1}=\left\{f_0 + (f_{\Lambda-1}-f_0)\frac{i}{\Lambda-1} \right\}_0^{\Lambda-1}
 \end{equation}
 
-\begin{multline}\label{indiceLinear}
- \Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i= \\ \left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   =\left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{j}{\Lambda-1} \right ] \right \rfloor 
-\end{multline}
+\begin{equation}\label{indiceLinear}
+\begin{split}
+ \Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i= \left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor   = \\
+=  \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{j}{\Lambda-1} \right ] \right \rfloor 
+\end{split}
+\end{equation}
 
 \begin{equation}\label{serieAmostralLin}
  \left\{t_i^{\;\overline{f_0,\, f_{\Lambda-1}}}\right\}_0^{\Lambda-1}=\left\{\,\widetilde{l}_{\gamma_i \% \widetilde{\Lambda}}\,\right\}_0^{\Lambda-1}
 \end{equation}
 
-where $\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a}$ is the LUT increment between two samples given the sound frequency in the first sample.
-
-Thus, it is possible to calculate the elements $t_i^{\;\overline{f_0,f_{\Lambda-1}}}$ having the period $\left\{\widetilde{l}_i\right\}_0^{\Lambda-1}$.
+where $\Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a}$ is the LUT increment between two samples given the sound frequency of the first sample.
+Therefore, it is handy to calculate the elements $t_i^{\;\overline{f_0,f_{\Lambda-1}}}$ by means of the period $\left\{\widetilde{l}_i\right\}_0^{\Lambda-1}$.
 
 The equations~\ref{freqLinear}, \ref{indiceLinear} and \ref{serieAmostralLin} are related with the linear progression of the frequency. We recall that, for the general case, the frequency progression \emph{perceived} as linear follows an exponential progression\footnote{In other words, a geometric progression of frequency is perceived as an arithmetic progression of pitch.}.
 It is possible to write this such that: $f_i=f_0 . 2^{\frac{i}{\Lambda-1} n_8}$ where  $n_8=\log_2\frac{f_{\Lambda-1}}{f_0}$ is the number of octaves between $f_0$ and $f_{\Lambda-1}$.
