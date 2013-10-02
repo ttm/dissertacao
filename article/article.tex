@@ -1144,9 +1144,9 @@ T_i^{f,\,AM(f',\,\alpha)}=\left\{ t_i^{f,\,AM(f',\,\alpha)} \right\}_0^{\Lambda-
 \end{multline}
 
 
-\subsection{Musical usage}\label{subsec:mus2}
+\subsection{Musical usages}\label{subsec:mus2}
 
-At this point, the musical possibilities has exploded. All characteristics, like pitch (given by frequency), timbre (given by the waveform, filters and noise), volume (manipulated by intensity) and duration (given by the number of samples), can be considered in an absolute form or treated during duration of sound (with the exception of the duration itself, clearly).
+At this point, the musical possibilities exploded. All characteristics, like pitch (given by frequency), timbre (given by the waveform, filters and noise), volume (manipulated by intensity) and duration (given by the number of samples), can be considered in an absolute form or treated during duration of sound (clearly, with the exception of duration itself).
 
 The following musical usages comprehend a collection of possibilities
 with the purpose of exemplifying types of sound manipulation that result in
@@ -1155,12 +1155,12 @@ musical material. Some of them are deeply discussed in the next section.
 
 \subsubsection{Relations between characteristics}
 
-Another interesting possibility is to use the relations between parameters of
-tremolo and vibrato, and some parameters of the basic note like frequency. In
-this way, it is possible to say that vibrato frequency is proportionally
-different from pitch, or the tremolo depth is inversely proportional to
+An interesting possibility is to use relations between parameters of
+a tremolo or vibrato, and some parameters of the basic note like frequency. In
+this way, it is possible to have a vibrato frequency proportional
+to note pitch, or a tremolo depth inversely proportional to
 pitch. Therefore, with equations \ref{vbrGamma}, \ref{vbrF} and \ref{trA}, it is
-possible to define:
+perfectly possible to arbitrate:
 
 \begin{equation}\label{eq:vinculos}
 \begin{split}
@@ -1170,35 +1170,34 @@ V_{dB} & = func_c(f)
 \end{split}
 \end{equation}
 
-\noindent with $f^{vbr}$ and $f^{tr}$ as $f'$ in the referenced equations. They can also be associated with the vibrato and tremolo oscillation frequency in
+\noindent with $f^{vbr}$ and $f^{tr}$ as $f'$ in the referenced equations. They can also be associated with vibrato and tremolo oscillation frequency of
 equation~\ref{vbrGamma}. 
+ $\nu$ and $V_{dB}$ are the respective depth values of vibrato and
+tremolo. Functions $func_a$, $func_b$ and $func_c$ are arbitrary and dependent
+on musical intentions. The music piece \emph{Tremolos, vibratos e a
+frequência} explores such bonds and exhibit variations in the oscillation
+waveform with the purpose of building a \emph{musical
+language} (details in the next section). The corresponding code is on
+is also available online as part of the \massa\ toolbox.
 
-Besides that, $\nu$ and $V_{dB}$ are the respective depth values of vibrato and
-tremolo. Functions $func_a$, $func_b$ and $func_c$ are arbitrary and dependents
-on the musical intentions. The music piece \emph{Tremolos, vibratos e a
-frequência} explores such characteristics and shows variations in the oscillation
-waveform with specific relations with the purpose of building a \emph{musical
-language}\footnote{Details in the next section.}. The corresponding code is on
-Appendix~\ref{ap:tremolos} and it is also available online as part of the \massa
-toolbox.
-
-About convolution it is possible to use a musical pulse as duration -- like a BPM
-pulse -- and to distribute impulses during this original pulse, aiming at
-establishing metrics and rhythms\footnote{It is important to remember that the
-convolution with a impulse results in a sound shifted to the moment that the
-impulse occurred}.
+\subsubsection{Convolution for rhythm and meter}
+It is possible to use a musical pulse -- such as specified by a BPM
+tempo mark -- and to place an impulse at the start of each beat, with the purpose of
+establishing metric and rhythms: the
+convolution with an impulse shifts the sound to where
+the impulse.
 For example, two impulses equally spaced builds a binary division into the
-pulse. Two signals, one with 2 pulses and another with 3 pulses, both with
-equally spaced impulses in the pulse duration, results in the pulse
-maintenance with a rhythmic mark that is possible to use as binary or ternary
-divisions in many ethnic or traditions music styles~\cite{Gramani}. 
-The absolute values of the impulses results in proportions among the
-amplitudes of the convoluted signals.
-Using convolution with impulses as a metric is explored in the
-music piece \emph{Trenzinho de caipiras impulsivos}. The features
-embrace the creation of 'sound amalgam' based on granular synthesis and this
-piece provides a link to the next section. Refer specially to the
-Figure~\ref{fig:pulsoSubAgl}. The source code of the music piece is included in the section~\ref{ap:trenzinho} and online as well (\massa toolbox).
+pulse. Two signals, one with 2 impulses and another with 3 impulses, both 
+equally spaced in the pulse duration, yields the pulse
+maintenance with a rhythmic trace in which is easy to use binary or ternary
+divisions of the pulse, as found in many ethnic or traditional music styles~\cite{Gramani}. 
+Absolute values of the impulses implyes in proportions among the
+amplitudes of the sonic incidences.
+The use of convolution with impulses in this context is explored in the
+music piece \emph{Trenzinho de caipiras impulsivos}. These features
+embrace the creation of `sound amalgams' based on granular synthesis, for now refer specially to the
+figure~\ref{fig:pulsoSubAgl}. This piece is a link to next section contents. 
+The source code of the music piece is online, as part of the \massa toolbox.
 
 \subsubsection{Moving audio source and receptor, Doppler effect}
 
