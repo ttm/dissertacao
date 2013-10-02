@@ -734,47 +734,45 @@ The linear transitions will be used for AM and FM synthesis, while logarithmic t
 
 \subsection{Application of Digital Filters}\label{subsec:filtros}
 
-This subsection is limited to a description of the procedure in sequences by convolution and differential equations, and the immediate applications. Its complexity exceeds to the scope of this study\footnote{The implementation of filters comprehends an area of recognized complexity with dedicated literature and software implementations. We recommended the reader to consult the bibliography~\cite{Openheim,smith}.}. The filters application can be part of the synthesis process or made individually as part of processes commonly called sound treatment.
-
-\begin{itemize}
-  \item  Convolution and finite impulse response (FIR) filters
+This subsection is limited to a description of sequences processing, by convolution and differential equations, and immediate applications, as its complexity escapes the scope of this study\footnote{The implementation of filters comprehends an area of recognized complexity, with dedicated literature and software implementations. The reader is welcome to visit the bibliography for further discussion~\cite{Openheim,smith}.}. Filter applications can be part of the synthesis process or made subsequently as part of processes commonly called ``sound treatment''.
+\subsubsection{Convolution and finite impulse response (FIR) filters}
 
 \begin{figure}[h!]
      \centering
          \includegraphics[width=\columnwidth]{figures/convolucao}
-     \caption{Graphical interpretation of convolution. Each resulting sample is the sum of the previous samples of a signal, with each one multiplied by the retrograde sequence of samples from the other signal.}
+     \caption{Graphical interpretation of convolution. Each resulting sample is the sum of the previous samples of a signal, with each one multiplied by the retrograde of the other sequence.}
          \label{fig:conv}
 \end{figure}
 
-Filters applied by means of convolution are known by acronym FIR (Finite Impulse Response) and are characterized by having a time finite sample representation. This sample representation is called 'impulse response' $\{h_i\}$. The FIR filters are applied to the time domain of the digital sound by means of convolution with the respective impulse response of the filter\footnote{It is possible to apply the filter in the frequency domain multiplying the Fourier coefficients of both sound and the impulse response, and then performing the inverse Fourier transform in the resulting spectrum.\cite{Openheim}}. For this study, the convolution is defined as:
+Filters applied by means of convolution are known by the acronym FIR (Finite Impulse Response) and are characterized by having a finite sample representation. This sample representation is called `impulse response' $\{h_i\}$. FIR filters are applied in the time domain of digital sound by means of convolution with the respective impulse response of the filter\footnote{It is possible to apply the filter in the frequency domain multiplying the Fourier coefficients of both sound and the impulse response, and then performing the inverse Fourier transform in the resulting spectrum.\cite{Openheim}}. For the purposes of this work, the convolution is defined as:
 
-\begin{multline}\label{eq:conv}
+\begin{equation}\label{eq:conv}
  \begin{split}
- \left\{t_i'\right\}_0^{\Lambda_t+\Lambda_h-2\; = \;\Lambda_{t\, '}-1} =\{(T_j*H_j)_i\}_0^{\Lambda_{t \, '}-1} & = \\ \left \{ \sum_{j=0}^{min(\Lambda_h-1,i)}h_{j} . t_{i-j} \right \}_0^{\Lambda_{t\, '}-1} 
-     & = \\ \left \{ \sum_{j=max(i+1-\Lambda_h,0)}^{i}t_j . h_{i-j} \right \}_0^{\Lambda_{t\, '}-1}
+ \left\{t_i'\right\}_0^{\Lambda_t+\Lambda_h-2\; = \;\Lambda_{t\, '}-1} = & \{(T_j*H_j)_i\}_0^{\Lambda_{t \, '}-1} \\ = & \left \{ \sum_{j=0}^{min(\Lambda_h-1,i)}h_{j} t_{i-j} \right \}_0^{\Lambda_{t\, '}-1} 
+     \\ = & \left \{ \sum_{j=max(i+1-\Lambda_h,0)}^{i}t_j h_{i-j} \right \}_0^{\Lambda_{t\, '}-1}
  \end{split}
-\end{multline}
+\end{equation}
 
-\noindent where $t_i=0$ for the samples not given beforehand.
-In other words, the sound $\{t_i'\}$ resulting from the convolution of $\{t_i\}$ with the given impulse response $\{h_i\}$ has each $i$-th sample $t_i$ overwritten by the sum of its last $\Lambda_h$ samples $\{t_{i-j}\}_{j=0}^{\Lambda_h-1}$ multiplied one-by-one by samples of the another impulse response $\{h_i\}_0^{\Lambda_h-1}$. This procedure is illustrated in Figure~\ref{fig:conv}, where the impulse response $\{h_i\}$ is traveled by its retrograde form, and $t_{12}'$ and $t_{32}'$ are two calculated samples using the convolution given by $(T_j*H_j)_i=t_i'$. The resulting signal always has the length of $\Lambda_t+\Lambda_h -1=\Lambda_{t'}$.
+\noindent where $t_i=0$ for the samples not given.
+In other words, the sound $\{t_i'\}$, resulting from the convolution of $\{t_i\}$, with the impulse response $\{h_i\}$, has each $i$-th sample $t_i$ overwritten by the sum of its last $\Lambda_h$ samples $\{t_{i-j}\}_{j=0}^{\Lambda_h-1}$ multiplied one-by-one by samples of the impulse response $\{h_i\}_0^{\Lambda_h-1}$. This procedure is illustrated in Figure~\ref{fig:conv}, where the impulse response $\{h_i\}$ is in its retrograde form, and $t_{12}'$ and $t_{32}'$ are two calculated samples using the convolution given by $(T_j*H_j)_i=t_i'$. The final signal always has the length of $\Lambda_t+\Lambda_h -1=\Lambda_{t'}$.
 
-With this procedure it is possible to apply reverbs, equalizers, \emph{delays} to name a few of a variety of other filters for sound processing, as well as musical/artistic effects.
+With this procedure it is possible to apply reverberators, equalizers, \emph{delays}, to name a few of a variety of other filters for sound processing and to obtain musical/artistic effects.
 
-The impulse response can be provided by physical measures or by pure synthesis. An impulse response for reverb application can be obtained by sound recording of the environment when someone triggers a snap which resembles an impulse or a sinusoidal lookup whose Fourier transform approximates its frequency response. Both are impulse responses which, properly convoluted with the sound sequence, result in the own sequence with a reverberation that resembles the physical one in the original environment where the measure happened~\cite{Cook}.
+The impulse response can be provided by physical measures or by pure synthesis. An impulse response for a reverberation application, for example, can be obtained by sound recording of the environment when someone triggers a snap which resembles an impulse, or obtained by a sinusoidal sweep whose Fourier transform approximates its frequency response. Both are impulse responses which, properly convoluted with the sound sequence, result in the own sound with a reverberation that resembles the original environment where the measure was made~\cite{Cook}.
 
-The inverse Fourier transform of an envelope even and real is equivalent to a impulse response of a FIR filter. It performs a frequency filtering with the envelope. The greater the number of samples, the higher the envelope resolution and the computational complexity as well. The convolution is recognized as computationally expensive.
+The inverse Fourier transform of an even and real envelope is an impulse response of a FIR filter. Convoluted with a sound, it performs the frequency filtering specified by the envelope. The greater the number of samples, the higher the envelope resolution and the computational complexity, which should often be weighted, for the convolution is expensive.
 
-An important property is the time shift caused by convolution with a shifted impulse. Despite computationally expensive, it is possible to create \emph{delay lines} by means of sound convolution with an impulse response that has an impulse to each relapse of sound.
-In Figure~\ref{fig:delays} it is possible to observe the shifting caused by convolution with each impulse. Depending on the intensity of the impulses, the result is perceived in rhythm (around 20 impulses by second) or in pitch (around 20-40 impulses by second). In the last case, the processes resemble granular synthesis, delays, reverbs and equalization.
+An important property is the time shift caused by convolution with a shifted impulse. Despite computationally expensive, it is possible to create \emph{delay lines} by means of sound convolution with an impulse response that has an impulse for each reincidence of the sound.
+In figure~\ref{fig:delays} it is possible to observe the shift caused by convolution with an impulse. Depending on the intensity of the impulses, the result is perceived as rhythm (from an impulse for each couple of seconds to about 20 impulses per second) or as pitch (from about 20 impulses per second and higher frequencies). In the latter case, the process resembles granular synthesis, reverbs and equalization.
 
 \begin{figure}[h!]
     \centering
         \includegraphics[width=\columnwidth]{figures/delays}
-    \caption{Convolution with impulse: shifting (a), delay lines (b) and granular synthesis~(c). Disposed in increasing order of its pulse density.}
+    \caption{Convolution with the impulse: shifting (a), delay lines (b) and granular synthesis~(c). Disposed in increasing order of its pulse density.}
         \label{fig:delays}
 \end{figure}
 
-\item Infinite impulse response (IIR) filters
+\subsubsection{Infinite impulse response (IIR) filters}
 
 This class of filters is known by the acronym IIR. They are characterized by having an infinite time representation, i.e.\ the impulse response does not converges to zero. Its application is usually made by the following equation:
 
@@ -795,7 +793,6 @@ There is sound amplification in band-pass and band-reject filters when the cutof
 For filters whose frequency responses have other envelopes (for the module), it is possible to create chains and apply them successively. Another possibility is to use some biquad 'filter receipt'\footnote{Short for 'biquadratic': its transfer function has two poles and two zeros, i.e. its first direct form consists of two quadratic polynomials forming the fraction: $\mathbb{H}(z)=\frac{a_0+a_1.z^{-1}+a_2.x^{-2}}{1- b_1.z^{-1} -b_2 . z^{-2}}$.} or procedures for the calculation of coefficients of Chebichev filters\footnote{Butterworth and Elliptical filters can be considered as specific cases of Chebichev filters.\cite{Openheim,smith}}.
 Both possibilities are explored by the referenced studies, in special~\cite{JOSFM,smith}, and the collection of filters maintained by the \emph{Music-DSP} community from University of Columbia.\cite{music-dsp,Openheim}
 
-\end{itemize}
 
 \begin{enumerate}
   \item Low-pass with simple pole and module of the frequency response in the upper left corner of Figure~\ref{fig:iir}. The general equation has as reference by the cutoff frequency $f_c \in (0,\frac{1}{2})$, fraction of the sample frequency $f_a$ that there is approximately an attenuation of $3dB$.
