@@ -1202,115 +1202,118 @@ The source code of the music piece is online, as part of the \massa toolbox.
 
 \subsubsection{Moving source and receptor, Doppler effect}
 
-Summarizing the exposition in subsection~\ref{subsec:spac}: when an audio source
-and a receptor are moving, their characteristics are ideally updated at each
-sample of the digital signal. The speeds are decomposed in relation of each ear
-direction. In this way, given the audio source speed (or velocity) $v_s$, that
-is positive if the source moves away from receptor, and receptor speed $v_r$,
-that is positive when it gets closer of the audio source, the frequency is given
-by the well known Doppler effect:
+Retaken the exposition in subsection~\ref{subsec:spac}, when an audio source
+or receptor is moving, its characteristics are ideally updated at each
+sample of the digital signal. Speed components should be found for each ear.
+In this way, given the audio source speed (or velocity) $v_s$,
+with positive values if the source moves away from receptor, and receptor speed $v_r$,
+positive when it gets closer to audio source, the frequency is given
+by the well known Doppler shift:
 
 \begin{equation}\label{eq:fDoppler}
     f=\left(\frac{v_{sound}+v_r}{v_{sound}+v_s}\right)f_0
 \end{equation}
 
-With this frequency and relations given by the new IID from the new source
+With both frequencies $f$ and $f_0$, and the IID from the new source
 position, it is possible to create the Doppler effect. There is an addendum to
 improve the fidelity of the physical phenomena: to increase the received
-potency. It is possible to understand this potency gain as being proportional to the relative speed that, in each second, adds the traversed period, by means of a waveform with potency: $\Delta P=P_0\left(\frac{v_r-v_s}{343,2}\right)$, where $P_0$ represents the signal potency.
+potency. It is possible to understand this potency gain as being proportional 
+to the wave shrinking or expansion: $\Delta P=P_0\left(\frac{v_r-v_s}{343.2}\right)$,
+ where $P_0$ is signal potency and $P$ the potency at receptor.
 
-In this way it is possible to obtain both amplitude and frequency of a moving
+In this way, it is possible to obtain both amplitude and frequency of a moving
 audio source. Being this audio source in front of receptor with $y_0$ meters of horizontal distance and $z_0$ meters of height, the distance is given by
 $D_i=\left\{ d_i=\sqrt{ y_{i}^{2}+z_{0}^{2} } \right\}_0^{\Lambda-1}$,
-where $y_i=y_0+v_s-v_r$ if considering $v_s$ and $v_r$ both in
-horizon. Amplitude changes with the distance and with the potency factor cited
+where $y_i=y_0+(v_s-v_r)\frac{i}{f_s}$ with $v_s$ and $v_r$ both
+horizontal, having null non-$y$ components. Amplitude changes with the distance and with the potency factor cited
 above (see subsection~\ref{subsec:volume} for potency to amplitude conversion).
 
 \begin{equation}\label{eq:aDoppler}
     A_i=\left\{ \frac{z_0}{d_i}A_{\Delta P}\right\}_0^{\Lambda-1} = \left\{ \frac{z_0}{\sqrt{y_i^2+z_0^2}} \sqrt{\frac{v_r-v_s}{343,2}+1}  \,\right\}_0^{\Lambda-1}
 \end{equation}
 
-Observe that the factor which changes the amplitude (caused by the distance) is even, while the factor caused by the potency variation is antisymmetric in
-relation to the crossing of source with receptor. The frequency has a symmetric progression in relation to pitch. In other words, the same semitones (or fractions) added during the approach are decreased during the departure. Besides that, the transition becomes steep if both source and receptor intersects each other exactly at the same point, otherwise, there is a monotonic progression. In the given case, where there is a static height $z_0$, it is necessary to observe the speed component in the direction between the observer and audio source:
+The amplitude change caused by the distance is even, while the change caused by the potency variation is antisymmetric in
+relation to the crossing of source with receptor. The frequency has a symmetric progression in relation to pitch. In other words, the same semitones (or fractions) added during the approach are decreased during the departure. Besides that, the transition is abrupt if source and receptor intersect with zero distance, otherwise, there is a monotonic progression. In the given case, where there is a static height $z_0$, observed the speed component in the direction given by observer and source positions, the frequencies $F_i$ at the observer is given by:
 
 \begin{equation}\label{eq:ffDoppler}
     F_i=\{f_i\}_0^{\Lambda-1}=\left\{\frac{v_{sound} + v_r\frac{y_i}{\sqrt{z_0^2+y_i^2}}}{v_{sound}+v_s\frac{y_i}{\sqrt{z_0^2+y_i^2}}}f_0\right\}_0^{\Lambda-1}
 \end{equation}
 
-In the Appendix~\ref{sec:cod2} there is a Python implementation of the Doppler
-effect as describe above, also considering the intersection between audio source and receptor.
+There is a Python implementation of the Doppler
+effect as describe above, and also considering the intersection between audio source and receptor,
+at the \massa\ toolbox~\cite{massa}.
 
 
-\subsubsection{Filter and noises (subsections~\ref{subsec:ruidos} and~\ref{subsec:filtros})}
+\subsubsection{Filters and noises (subsections~\ref{subsec:ruidos} and~\ref{subsec:filtros})}
 
-Using filters the possibilities are many. It is possible to
-convolve a signal to reverberate it, to remove its noise, to generate
-distortions or to treat the audio with aesthetically manipulation in mind. For
-example, it is possible to simulate sounds from and old television if a
-band-pass filter is applied to accept just sound between $1kHz$ and $3kHz$. Or
-if someone removes (with some precision) just the frequency of electric
-oscillation (usually $50Hz$ or $60Hz$) and the harmonics, it will remove noises
-caused by audio devices. A more musical application is to perform filtering in
+With the use of filters, the possibilities are even wider.
+Convolve a signal to have a reverberated version of it, to remove its noise, to
+distort or to treat the audio aesthetically in other ways. For
+example, it is possible to simulate sounds as if originated in an old television or telefone,
+by the use of a band-pass filter, allowing only frequencies between $1kHz$ and $3kHz$.
+By rejecting the frequency of electric oscillation (usually $50Hz$ or $60Hz$) and harmonics, one can remove noises
+caused by audio devices connected to a usual power suply. A more musical application is to perform filtering in
 specific bands and to use those bands as an additional parameter to the notes.
 
 Inspired by traditional music instruments, it is possible to apply a
-time-dependent filter~\cite{Roederer}. Chains of those filters can perform
+time-dependent filter~\cite{Roederer}. Chains of these filters can perform
 complex and more accurate filtering routines. The music piece \emph{Ruidosa
-faixa} explores those features by using filters and many kinds of noise
-synthesis. The source code is in Appendix~\ref{ap:ruidosa} and is available
-online as part of \massa.
+faixa} explores filters and many kinds and noise
+synthesis. The source code is available
+online as part of \massa\ toolbox.
 
-When used together the features can create an effect known
-as \emph{chorus}. Based on what happens in a singers choir, in this
-effect the sound is performed using small and potentially arbitrary
+A sound can be altered through different filtering and then mixed to create an effect known
+as \emph{chorus}. Based on what happens in a choir of singers,
+the sound is performed using small and potentially arbitrary
 modifications of parameters like center frequency, presence (or absence) of
 vibrato or tremolo and its characteristics, equalization, volume, etc. As a
 final result, those versions of the original sound are mixed together (see
 equation~\ref{eq:mixagem}). The music piece \emph{Chorus infantil} implements a
-chorus in many ways with different sounds and its source code is listed in
-Appendix~\ref{ap:chorus}. The script is also available in the \massa toolbox.
+chorus in many ways with different sounds and its source code is also available in the \massa\ toolbox.
 
 
 \subsubsection{Reverberation}\label{subsubsec:reverb}
 
-Using the same spatialization terms of subsection~\ref{subsec:spac}, the
-late reverberation can be modeled as a convolution with a period of pink, brown
-or black noise, with exponential decay of amplitude and time related. In
-this way, the treble attenuation and irregular smooth in the frequency response
-are contemplated with great success. Delay lines can be added as prefix to noise
+Using the same terms of subsection~\ref{subsec:spac}, the
+late reverberation can be achieved by a convolution with a section of pink, brown
+or black noise, with exponential decay of amplitude along time.
+Delay lines can be added as a prefix to the noise
 with the decay, and this contemplates both time parts of the reverberation: the
-first reflections and the late reverberation. It is possible to improve the ??
-quality by calculating the geometric localization of the last surface where each
-wave front reflected before reach the ear in the fairest $100-200$ milliseconds. Then, one could apply a low-pass filter as described in subsection~\ref{subsec:filtros}. The colored
-noise can be gradually introduced since the initial moment gives direct
-incidence (i.e.\ without any reflection and given by ITD and IID),
-with \emph{fade-in}, reaching its maximum at the beginning of the 'late
-reverberation', when the geometric incidences loses their importance to the
-statistics properties of the noise decay.
+first reflections and the late reverberation. It is possible to improve the
+quality by calculating the geometric trajectory and (mainly low-pass, subsection~\ref{subsec:filtros}) filtering by each surface where
+wavefront reflected before reaching the ear in the first $100-200$ milliseconds.
+The colored noise can be gradually introduced with a \emph{fade-in}: the initial moment given by direct
+incidence of sound (i.e.\ without any reflection and given by ITD and IID),
+reaching its maximum at the beginning of the 'late
+reverberation', when the geometric incidences loses their relevance to the
+statistical properties of noise decay.
 
-As an example, consider $\Delta_1$ as the duration of the first period and $\Delta_R$ as the duration of total reverberation ($\Lambda_1=\Delta_1 f_s$, $\Lambda_R=\Delta_R
-f_s$). It is possible to add a probability $p_i$ of a sound reincidencing in the
-$i$-th sample with amplitude with exponential decay. Following
+As an example, consider $\Delta_1$ as the duration of the first section and $\Delta_R$ as the duration of total reverberation ($\Lambda_1=\Delta_1 f_s$, $\Lambda_R=\Delta_R
+f_s$). Be $p_i$ the probability of a sound to repeat in the
+$i$-th sample. Amplitude falls with exponential decay. Following
 subsection~\ref{subsec:spac}, the reverberation $R_i^1$ of the first period can
 be described as:
 
-\begin{multline}\label{eq:p1rev}
-    R_i^1=\left\{r_i^1\right\}_0^{\Lambda_1-1}\;: \\ \;r_i^1=\left\{
+\begin{equation}\label{eq:p1rev}
+\begin{split}
+    R_i^1=\left\{r_i^1\right\}_0^{\Lambda_1-1}\;:\quad\quad\quad\quad\quad\quad\quad\quad \\ 
+\;r_i^1=\left\{
         \begin{array}{l l}
             10^{\frac{V_{dB}}{20}\frac{i}{\Lambda_R-1}}\;  & \text{with probability}\quad p_i=\left(\frac{i}{\Lambda_1}\right)^2 \\
                                      0 \; & \text{with probability}\quad 1-p_i \\
         \end{array} \right.
-\end{multline}
+\end{split}
+\end{equation}
 
 \noindent where $V_{dB}$ is the total decay in decibels, typically $-80dB$ or
         $-120dB$. Reverberation $R_i^2$ of the second period can be emulated by a
-        brown noise $R_i^m$ (or by a pink noise $R_i^r$) with exponential decay:
+        brown noise $R_i^m$ (or by a pink noise $R_i^r$) with exponential amplitude decay of the waveform:
 
 \begin{equation}\label{eq:p2rev}
     R_i^2=\left\{r_i^2\right\}_{\Lambda_1}^{\Lambda_R-1}=\left\{10^{\frac{V_{dB}}{20}\frac{i}{\Lambda_R-1}}\,.\,r_i^m\right\}_{\Lambda_1}^{\Lambda_R-1}
 \end{equation}
 
-\noindent like:
+Considered:
 
 \begin{equation}\label{eq:rev}
     R_i=\left\{r_i\right\}_0^{\Lambda_R-1}\;:\;r_i=\left\{
@@ -1321,38 +1324,40 @@ be described as:
         \end{array} \right.
 \end{equation}
 
-\noindent the reverberation represented by $R_i$ can be applied as simple
+\noindent, a reverberated auralization of a sound can be achieved by simple
         convolution of $R_i$ (called reverberation 'impulse response') with the sound sequence $T_i$ as described in subsection~\ref{subsec:filtros}.
 
-Reverberation is well known by causing great interest in the listeners and to provide more enjoyable sonorities. Besides that, modifications in the reverb
-space consists of a tricking (almost a \textit{clich\'{e}}) to induce surprise and interest in the listener.
+Reverberation is well known by causing great interest in the listeners and to provide more enjoyable sonorities. Besides that, modifications in the reverberation space consists on a common resource (almost a \textit{clich\'{e}}) to surprise and attract the listener. An implementation of the reverb recipe described is on the \massa\ toolbox~\cite{massa}
 
 
 \subsubsection{ADSR Envelopes}
 
 The volume variation along the duration of sound is crucial to our timbre
-perception. The volume envelope, known as ADSR (\emph{Attack-Decay-Sustain-Release}), has many implementations in both hardware and software synthesizers. A pioneer implementation can be found in the Hammond
+perception. The volume envelope known as ADSR (\emph{Attack-Decay-Sustain-Release}), 
+has many implementations in both hardware and software synthesizers. 
+A pioneer implementation can be found in the Hammond
 Novachord synthesizer of 1938 and some variants are cited below~\cite{ADSR}.
 
-The stochastic ADSR envelope is characterized by 4 parameters: attack duration
-(time to sound reaches its maximum volume), decay duration (follows the attack
-immediately), level of sustain volume (in which the volume remains stable after the decay) and release duration (after sustain, this is the duration until the volume decays to zero). Note that the sustain duration is not specified because it is the difference between the duration itself and the durations of attack, decay and sustain.
+The scholastic ADSR envelope is characterized by 4 parameters: attack duration
+(time in which sound reaches its maximum amplitude), decay duration (follows the attack
+immediately), level of sustain volume (in which the volume remains stable after the decay) and release duration (after sustain section, this is the duration needed for amplitude to reach zero or final value).
+Note that the sustain duration is not specified because it is the difference between the duration itself and the durations of attack, decay and sustain.
 
-It is possible to apply the ADSR envelope with durations $\Delta_A$, $\Delta_D$ and $\Delta_R$, with total duration $\Delta$ and sustain level $a_S$, given by the fraction of the maximum amplitude, as a sound sequence $t_i$ defined as:
+The ADSR envelope with durations $\Delta_A$, $\Delta_D$ and $\Delta_R$, with total duration $\Delta$ and sustain level $a_S$, given by the fraction of the maximum amplitude, to be aplyed to any sound sequence $T_i=\{t_i\}$, can be presented as:
 
-\begin{multline}\label{eq:adsr}
-%\begin{split}
-\{a_i\}_0^{\Lambda_A-1}  = \left\{\xi\left(\frac{1}{\xi}\right)^{\frac{i}{\Lambda_A-1}}\right\}_0^{\Lambda_A-1} \;\; \text{or} \;\;\quad \left\{\frac{i}{\Lambda_A-1}\right\}_0^{\Lambda_A}\\
-\{a_i\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} =\left\{a_S^{\frac{i-\Lambda_A}{\Lambda_D-1}}  \right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} \;\;\quad \quad\quad \\ \text{or} \quad\;\; \left\{1-(1-a_S)\frac{i-\Lambda_A}{\Lambda_D-1}\right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1}\\
-\{ a_i \}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} =\left\{ a_S \right\}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} \\
-\{ a_i \}_{\Lambda-\Lambda_R}^{\Lambda-1}  =\left\{ a_S\left(\frac{\xi}{a_S} \right)^{\frac{i-(\Lambda-\Lambda_R)}{\Lambda_R-1}} \right\}_{\Lambda-\Lambda_R}^{\Lambda-1} \quad\;\; \\ \text{or} \quad\;\; \left\{ a_S - a_S\frac{i+\Lambda_R-\Lambda}{\Lambda_R-1}\right\}_{\Lambda-\Lambda_R}^{\Lambda-1} 
-%\end{split}
-\end{multline}
+\begin{equation}\label{eq:adsr}
+\begin{split}
+\{a_i\}_0^{\Lambda_A-1}  = & \left\{\xi\left(\frac{1}{\xi}\right)^{\frac{i}{\Lambda_A-1}}\right\}_0^{\Lambda_A-1} \quad \text{ or }\\ = & \left\{\frac{i}{\Lambda_A-1}\right\}_0^{\Lambda_A}\\
+\{a_i\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} = & \left\{a_S^{\frac{i-\Lambda_A}{\Lambda_D-1}}  \right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1} \quad \text{ or } \\ = &  \left\{1-(1-a_S)\frac{i-\Lambda_A}{\Lambda_D-1}\right\}_{\Lambda_A}^{\Lambda_A+\Lambda_D-1}\\
+\{ a_i \}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} = & \left\{ a_S \right\}_{\Lambda_A+\Lambda_D}^{\Lambda-\Lambda_R-1} \\
+\{ a_i \}_{\Lambda-\Lambda_R}^{\Lambda-1}  = & \left\{ a_S\left(\frac{\xi}{a_S} \right)^{\frac{i-(\Lambda-\Lambda_R)}{\Lambda_R-1}} \right\}_{\Lambda-\Lambda_R}^{\Lambda-1} \quad \text{ or } \\ = &  \left\{ a_S - a_S\frac{i+\Lambda_R-\Lambda}{\Lambda_R-1}\right\}_{\Lambda-\Lambda_R}^{\Lambda-1} 
+\end{split}
+\end{equation}
 
 
 \noindent with $\Lambda_X=\lfloor \Delta . f_s \rfloor\;\;\forall\;\; X \; \in
-(A,D,R,\;)$ and being $\xi$ a small value that provides a satisfactory \emph{fade in} and \emph{fade out}, e.g.\ $\xi=10^{\frac{-80}{20}}=10^{-4}\;$ or $\;\xi=10^{\frac{-40}{20}}=10^{-2}$. The lower the $\xi$, the slower the \emph{fade}, like the $\alpha$ illustrated in Figure~\ref{fig:transicao}. The terms in the right side of the equation~\ref{eq:adsr} attend for both introduction and ending of sound from the zero intensity because they are linear. Schematically, Figure~\ref{fig:adsr} shows the ADSR envelope, a classical implementation that supports many variations. For example, between attack and decay it is possible to add an extra partition where the maximum amplitude stays. Another common example is the use of more elaborated tracings to attack or decay. The music piece \emph{ADa e SaRa}, available both in
-Appendix~\ref{ap:ada} and in \massa, explores many configurations of the ADSL envelope.
+(A,D,R,\;)$ and being $\xi$ a small value that provides a satisfactory \emph{fade in} and \emph{fade out}, e.g.\ $\xi=10^{\frac{-80}{20}}=10^{-4}\;$ or $\;\xi=10^{\frac{-40}{20}}=10^{-2}$. The lower the $\xi$, the slower the \emph{fade}, like the $\alpha$ illustrated in Figure~\ref{fig:transicao}. The stated second in equations~\ref{eq:adsr} attend both introduction and ending of sound from zero intensity because they are linear. Schematically, figure~\ref{fig:adsr} shows the ADSR envelope in a classical implementation that supports many variations. For example, between attack and decay it is possible to add an extra partition where the maximum amplitude remains for more than a peak. Another common example is the use of more elaborated tracings of attack or decay. The music piece \emph{ADa e SaRa}, available 
+in \massa, explores many configurations of the ADSL envelope.
 
 \begin{equation}\label{eq:adsrApl}
 \left\{t_i^{ADSR}\right\}_0^{\Lambda-1} =\{t_i . a_i\}_0^{\Lambda-1}
@@ -1363,7 +1368,7 @@ Appendix~\ref{ap:ada} and in \massa, explores many configurations of the ADSL en
         \includegraphics[width=\columnwidth]{figures/adsr}
     \caption{An ADSR envelope (\emph{Attack, Decay, Sustain, Release}) applied
         to an arbitrary sound sequence. The linear variation of the amplitude is
-        above. Below the amplitude variation is exponential.}
+        above, in blue. Below the amplitude variation is exponential.}
         \label{fig:adsr}
 \end{figure}
 
