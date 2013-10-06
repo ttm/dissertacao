@@ -1466,13 +1466,17 @@ is part of \massa\ toolbox.
 
 \subsubsection{Intervals}\label{subsec:intervalos}
 
-Using the ratio $\varepsilon=2^{\frac{1}{12}}$ between the note frequencies
-(i.e.\ one semitone) the intervals in the twelve note system can be represented by integers. Table~\ref{eq:intervalos} summarizes the characteristics of each interval: its traditional nomenclature, consonance and
-dissonance properties, and number of semitones per interval.
+Using the ratio $\varepsilon=2^{\frac{1}{12}}$ between note frequencies
+(i.e.\ one semitone) the intervals in the twelve note system can be represented by integers.
+Table~\ref{eq:intervalos} summarizes each interval:
+ its traditional nomenclature, consonance and
+dissonance properties, and number of semitones.
 
 \begin{table*}[htpq!]
 \centering
-\caption{The music intervals together with their traditional notation, basic classification for dissonance and consonance, and number of semitones. Perfect (P) unison, fifths and octaves are the perfect consonances. Major (M) and minor (m) thirds and sixths are the imperfect consonances. Minor seconds and major sevenths are the harsh dissonances. Major seconds and minor sevenths are the mild dissonances. Perfect fourth is the first special case, being a perfect consonance when considering it as the inversion of the perfect fifth and a dissonance or a imperfect consonance otherwise. The second special case is the tritone (A4 or aug4, d5 or dim5, tri,TT). This interval is consonant in some cultures. For tonal music, the tritone indicates dominant and searches for its resolution in a third or sixth. Due to this instability it is considered a dissonance interval.}
+\caption{Music intervals together with their traditional notation, basic classification for dissonance and consonance, and number of semitones. Unison, fifth and octave are the perfect (P) consonances. Major (M) and minor (m) thirds and sixths are the imperfect consonances. Minor seconds and major sevenths are the harsh dissonances. Major seconds and minor sevenths are the mild dissonances. Perfect fourth is a special case, being a perfect consonance when considered as an inversion of the perfect fifth and a dissonance or a imperfect consonance otherwise. The second special case is the tritone (A4 or aug4, d5 or dim5, tri, TT). This interval is consonant in some cultures.
+For tonal music, the tritone indicates dominant and seeks urgent resolution in a third or sixth.
+Due to this instability it is considered a dissonant interval.}
 \begin{tabular}{| c | c | c | }\hline
     \multicolumn{3}{|c|}{\bf consonances}  \\\hline
    & traditional notation & number of semitones \\
@@ -1484,112 +1488,146 @@ dissonance properties, and number of semitones per interval.
  brandas: & M2, m7 & 2, 10 \\\hline\hline
     \multicolumn{3}{|c|}{\bf special cases} \\\hline
  & traditional notation & number of semitones \\
- consonance or dissonance: & P4 & P5 \\
+ consonance or dissonance: & P4 & 5 \\
  dissonance in Western tradition: & tritone, aug4, dim5 & 6 \\\hline
 \end{tabular}\label{eq:intervalos}
 \end{table*}
 
-The nomenclature is based both in impositions and for convenience of the tonal system and practical aspects of note manipulation and can be specified
-as~\cite{Roederer,Wisnick}:
+The nomenclature, based on conveniences for tonal music and practical aspects of note manipulation, can be specified
+as follows~\cite{Roederer,Wisnick}:
 
 \begin{itemize}
-                \item Intervals as number of ratios between notes: first
+                \item Intervals are seen first by the as number of steps between notes: first
                 (unison), second, third, forth, fifth, sixth, seventh and
-                eighth. The ninth, tenth, eleventh, etc, are compound                       intervals made by one or more octaves + a interval inside the                 octave, which characterizes the compound interval. The                        intervals are represented by the numeric digits, e.g. 1, 3, 5                 are a unison, a third and a fifth, respectively.
+                eighth (octave). The ninth, tenth, eleventh, etc, are compound  
+                intervals made by one or more octaves plus a ``simple'' interval inside the
+                octave, which characterizes the compound interval. The
+                intervals are represented by numeric digits, e.g. 1, 3, 5
+                are a unison, a third and a fifth, respectively.
 
-                \item Qualities of each interval: the perfect consonances --
+                \item Qualities of each interval: perfect consonances --
                 i.e.\ unison, forth, fifth and octave -- are 'perfect'. The
                 imperfect consonances -- i.e.\ thirds and sixths -- and
                 dissonances -- i.e.\ seconds and sevenths -- can be major and
                 minor. Exception for the tritone.
 
-                \item The perfect fourth is both perfect consonance or
-                dissonance according to the context and theoretical
-                background. As general rule, it can be considered as                        consonance except when it is used as passage to resolve a                   fifth or a third.
+                \item The perfect fourth can be a perfect consonance or
+                a dissonance according to the context and theoretical
+                background. As a general rule, it can be considered
+                a consonance except when it resolves into a
+                fifth or a third with movimentation of just one note .
 
-                \item Tritone is dissonance in Western music because
-                it characterizes the ``dominant'' in the tonal system (see
+                \item Tritone is a dissonance in Western music because
+                it characterizes the ``dominant'' chord in the tonal system (see
                 subsection~\ref{subsec:harmonia}) and represents the
-                instability. Some cultures chant the interval as consonance. 
+                instability. Some cultures have the interval as a consonance,
+                using it in melodies and chants as a stable interval. 
 
                 \item A major interval decreased by one semitone results in a
                 minor interval. A minor interval increased by one semitone
                 results in a major interval.
 
-                \item A perfect interval (unison, perfect forth, perfect                    fifth, perfect octave), or a major interval (major second M2,                 major third M3, major sixth M6 or major seventh M7), increased                 by one semitone results in an augmented interval (e.g.\                    augmented third aug3 with five semitones). The augmented forth                 is also called tritone (aug4 ~ tri ~ TT).
+                \item A perfect interval (unison, perfect forth, perfect
+                fifth, perfect octave), or a major interval (major second M2,
+                major third M3, major sixth M6 or major seventh M7), increased
+                by one semitone results in an augmented interval (e.g.\
+                augmented third aug3 with five semitones). The augmented forth
+                is also called tritone (aug4 ~ tri ~ TT).
 
                 \item A perfect interval or a minor interval (minor second m2,
                 minor third m3, minor sixth m6 or minor seventh m7), decreased
-                by one semitone results in a diminished interval. The                       diminished fifth is also called tritone (dim5 ~ tri ~ TT).
+                by one semitone results in a diminished interval. The
+                diminished fifth is also called tritone (dim5 ~ tri ~ TT).
 
-                \item An augmented interval increased by one semitone results                 in a 'doubly augmented' interval and a diminished interval
-                decreased by one semitone results in a 'doubly diminished'
+                \item An augmented interval increased by one semitone results
+                 in a `doubly augmented' interval and a diminished interval
+                decreased by one semitone results in a `doubly diminished'
                 interval.
 
                 \item Notes played simultaneously configure a harmonic
                 interval.
 
                 \item Notes played as a sequence in time configure a
-                melodic interval. The order of the notes: considering first                 the lowest note or the highest note, results in an ascending                 or descending interval, respectively.
+                melodic interval. The order of the notes: first
+                the lowest note or the highest note, results in an ascending
+                 or descending interval, respectively.
 
                 \item If the lower pitch is raised one octave, or if
-                the upper pitch is lowered one octave below, the interval is
-                inverted. When summed to its inversion an interval results in                 9 (e.g.\ m7 is inverted to M2: $m7+M2=9$). An inverted major
-                interval results in a minor interval and vice-versa. An                     inverted augmented interval results in a diminished interval                 and vice-versa (like a doubly augmented results in a doubly
-                diminished and vice-verse). An inverted perfect interval                    results in a perfect interval as well.
+                the upper pitch is lowered one octave, the interval is
+                inverted. The sum of an interval and its inversion is
+                9 (e.g.\ m7 is inverted to M2: $m7+M2=9$). An inverted major
+                interval results in a minor interval and vice-versa. An
+                inverted augmented interval results in a diminished interval
+                and vice-versa (inverting a doublyi-augmented results in a
+                doubly-diminished and vice-verse, etc.).
+                An inverted perfect interval results in a perfect interval as well.
 
                 \item An interval higher than an octave is called a 'compound
                 interval' and is classified like the interval between the same
-                notes but in the same octave. They are also specified adding a                 7 to the interval: P11 is an octave plus a forth ($7 + P4 =                  P11$), M9 is an octave plus a major second ($7 + M2 = M9$).
+                notes but in the same octave. They are also reached by adding a
+                7 to the interval: P11 is an octave plus a forth ($7 + P4 = P11$),
+                M9 is an octave plus a major second ($7 + M2 = M9$).
 \end{itemize}
 
-The augmented/diminished intervals and the doubly augmented/doubly diminished intervals are consequences of the tonal system. The scale degrees (subsection~\ref{subsec:escalas}) generally determine different pitches, with
-specific uses and functions. Henceforth, in a \textit{C flat} major scale, the tonic -- first degree -- is \textit{C flat}, not \textit{B}, and the leading tone -- seventh degree -- is \textit{B flat}, not \textit{A sharp} or \textit{C double flat}. In a similar way, the second degree of a scale can be one semitone far from the first degree like the leading tone (seventh degree at one ascending semitone from the first degree), where there is a diminished third between the two semitones of the seventh and second scale degrees, consequence of the first degree be between the near two degrees: the second and the leading note~\cite{Lacerda}.
+The augmented/diminished intervals and the doubly augmented/doubly diminished intervals are consequences of the tonal system.
+Scale degrees (subsection~\ref{subsec:escalas}) are in fact different pitches, with
+specific uses and functions. Henceforth, in a \textit{C flat} major scale, the tonic -- first degree -- is \textit{C flat}, not \textit{B}, and the leading tone -- seventh degree -- is \textit{B flat}, not \textit{A sharp} or \textit{C double flat}. In a similar way, the second degree of a scale can be one semitone from first degree, like the leading tone (seventh degree at one ascending semitone from the first degree), where there is a diminished third between the two semitones of the seventh and second scale degrees~\cite{Lacerda}.
 
-The descriptions presented here summarizes the traditional theory of the music
+The descriptions presented summarizes the traditional theory of the music
 intervals~\cite{Lacerda}. The music piece \emph{Intervalos entre alturas}
-explores these intervals in a independently and conjunction manner. The reader is invited to see the source code in Appendix~\ref{ap:intervalos} and available online in the \massa toolbox~\cite{MASSA}.
-
+explores these intervals in both independent and related manners. 
+The source code is available online in the \massa\ toolbox~\cite{MASSA}.
 
 \subsubsection{Scales}\label{subsec:escalas}
 
-Basically speaking, scale is a set of ordered pitches. Usually, scales repeat at each octave. The ascending sequence with all notes from the octave division in 12 equal intervals, separated by ratio $\varepsilon=2^{\frac{1}{12}}$, is known as the chromatic scale with equal temperament. There are 5 perfect symmetric divisions of the octave within the chromatic scale. These divisions are considered as scales by the easily and peculiar use they provide. Considering the integers that the factor $\varepsilon=2^{\frac{1}{12}}$ is powered to multiply $f_0$, the scales are the following:
+A scale is an ordered set of pitches. Usually, scales repeat at each octave. 
+The ascending sequence with all notes from the octave division in 12 equal intervals, 
+separated by the ratio $\varepsilon=2^{\frac{1}{12}}$, is known as the chromatic scale with equal temperament.
+There are 5 perfectly symmetric divisions of the octave within the chromatic scale. 
+These divisions are considered scales by easy and peculiar uses they provide.
+Considering integers $e_i$ used as powers of the factor $\varepsilon=2^{\frac{1}{12}}$
+to multiply lower note frequency ($f=\varepsilon^{e_i} f_0$),
+the scales are as follows:
 
-\begin{multline}\label{escSim}
-%\begin{split}
-\text{chromatic}  = E_i^c = \\ = \{e_i^c\}_0^{11} =  \{0,1,2,3,4,5,6,7,8,9,10,11\} = \{i\}_0^{11}\\
-\text{whole tones}  = E_i^t = \{e_i^t\}_0^{5} = \{0,2,4,6,8,10\} = \{2.i\}_0^{5} \\
-\text{minor thirds}  = E_i^{tm} = \{e_i^{tm}\}_0^{3} = \{0,3,6,9\} = \{3.i\}_0^3 \\
-\text{major thirds}  = E_i^{tM} = \{e_i^{tM}\}_0^{2} = \{0,4,8\} = \{4.i\}_0^2\\
-\text{tritones}  = E_i^{tt} = \{e_i^{tt}\}_0^{1} = \{ 0, 6 \} = \{6.i\}_0^1
-%\end{split}
-\end{multline}
+\begin{equation}\label{escSim}
+\begin{split}
+\text{chromatic}    & = E_i^c = \{e_i^c\}_0^{11} = \\
+                    & =  \{0,1,2,3,4,5,6,7,8,9,10,11\} = \{i\}_0^{11}\\
+\text{whole tones}  & = E_i^t = \{e_i^t\}_0^{5} = \{0,2,4,6,8,10\} = \{2.i\}_0^{5} \\
+\text{minor thirds} & = E_i^{tm} = \{e_i^{tm}\}_0^{3} = \{0,3,6,9\} = \{3.i\}_0^3 \\
+\text{major thirds} & = E_i^{tM} = \{e_i^{tM}\}_0^{2} = \{0,4,8\} = \{4.i\}_0^2\\
+\text{tritones}     & = E_i^{tt} = \{e_i^{tt}\}_0^{1} = \{ 0, 6 \} = \{6.i\}_0^1
+\end{split}
+\end{equation}
 
 Therefore, the third note of the whole tone scale with $f_0=200Hz$
 is $f_3=\varepsilon^{e_3^t} . f_0 = 2^{\frac{6}{12}} . 200 \approxeq 282.843
-Hz$. These 'scales' or patterns generate stable structures by their intern
-symmetries and can be repeated in a efficient and sustained way. Section~\ref{estCic} specially discusses the symmetries. 
+Hz$. These `scales', or patterns, generate stable structures by their intern
+symmetries and can be repeated in an efficient and sustained way.
+Section~\ref{estCic} specially discusses symmetries. 
 The music piece \emph{Cristais} exposes each one of these scales, in both melodic and
-harmonic counterpart and the corresponding source code is presented in Appendix~\ref{ap:cristais} and as
-part of \massa.
+harmonic counterpart and their source code is part of \massa\ toolbox.
 
-The diatonic scales are:
+Diatonic modes are:
 
-\begin{multline}\label{eq:escalas}
-%\begin{split}
-\text{natural minor} = \text{aeolian mode}  = \\ = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
-\text{locrian mode}  = E_i^{mlo} = \{e_i^{mlo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
-\text{major}  = \text{ionian mode}  =  E_i^M = \{e_i^M\}_0^6 = \{0,2,4,5,7,9,11\} \\
-\text{dorian mode}  = E_i^{md} = \{e_i^{md}\}_0^6 = \{0,2,3,5,7,9,10\} \\
-\text{phrygian mode}  = E_i^{mf} = \{e_i^{mf}\}_0^6 = \{0,1,3,5,7,8,10\} \\
-\text{lydian mode}  = E_i^{ml}=\{e_i^{ml}\}_0^6 = \{0,2,4,6,7,9,11\} \\
-\text{mixolydian mode} = E_i^{mmi} = \{e_i^{mmi}\}_0^6 = \{0,2,4,5,7,9,10\}
-%\end{split}
-\end{multline}
+\begin{equation}\label{eq:escalas}
+\begin{split}
+\text{aeolian}    & = \text{natural minor scale} = \\
+                  & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
+\text{locrian}    & = E_i^{mlo} = \{e_i^{mlo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
+\text{ionian}     & = \text{major scale} =  \\
+                       & = E_i^M = \{e_i^M\}_0^6 = \{0,2,4,5,7,9,11\} \\
+\text{dorian}     & = E_i^{md} = \{e_i^{md}\}_0^6 = \{0,2,3,5,7,9,10\} \\
+\text{phrygian}   & = E_i^{mf} = \{e_i^{mf}\}_0^6 = \{0,1,3,5,7,8,10\} \\
+\text{lydian}     & = E_i^{ml}=\{e_i^{ml}\}_0^6 = \{0,2,4,6,7,9,11\} \\
+\text{mixolydian} & = E_i^{mmi} = \{e_i^{mmi}\}_0^6 = \{0,2,4,5,7,9,10\}
+\end{split}
+\end{equation}
 
-\noindent They have only the major, minor and perfect intervals. The unique exception is the tritone that is presented as a augmented forth or diminished fifth.
+\noindent They have only major, minor and perfect intervals.
+The unique exception is the tritone that is presented as an augmented forth or a diminished fifth.
 
-All the diatonic scales follow a pattern of successive intervals \textit{tone,
+Diatonic scales follow a circular pattern of successive intervals \textit{tone,
 tone, semitone, tone, tone, tone, semitone}. Thus, it is possible to write:
 
 \begin{equation}\label{eq:relacaoDia}
@@ -1601,24 +1639,34 @@ e_i & =d_{(i+\kappa)\%7}+e_{i-1} \quad for \;\;  i > 0
 \end{equation}
 
 \noindent with $\kappa \in \mathbb{N}$. For each mode there is only one value
-for $\kappa \in [0,6]$. For example, a brief inspection reveals that
+for $\kappa \in [0,6]$ by which $\{e_i\}$ matches. 
+For example, a brief inspection reveals that
 $e_i^{ml}=d_{(i+2)\%7}+e_{i-1}^{ml}$. Then, $\kappa=2$ for the lydian mode.
 
 The minor scales has two additional forms, named melodic and harmonic:
 
-\begin{multline}\label{eq:escalasMenores}
-%\begin{split}
-\text{natural minor (same as above)}  = \\ = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
-\text{harmonic minor}  = E_i^{mh} = \{e_i^{mh}\}_0^6 = \{0,2,3,5,7,8,11\} \\
-\text{melodic minor}  = \\ = E_i^{mm} = \{e_i^{mm}\}_0^{14} = \{0,2,3,5,7,9,11,12,10,8,7,5,3,2,0\} \\
-%\end{split}
-\end{multline}
+\begin{equation}\label{eq:escalasMenores}
+\begin{split}
+\text{natural minor}&  = E_i^m = \{e_i^m\}_0^6 = \\
+                                           &  = \{0,2,3,5,7,8,10\} \\
+\text{harmonic minor}                      &  = E_i^{mh} = \{e_i^{mh}\}_0^6 = \\
+                                           &  = \{0,2,3,5,7,8,11\} \\
+\text{melodic minor}                       &  = E_i^{mm} = \{e_i^{mm}\}_0^{14} = \\
+                                           &  = \{0,2,3,5,7,9,11,12,10,8,7,5,3,2,0\} \\
+\end{split}
+\end{equation}
 
-The ascending and descending contour of the melodic minor scale is necessary for the existence of the leading tone (seventh and last degree, separated by one semitone of the octave, enhances the tonic polarization) in the ascending trajectory, which is not necessary in the descending mode, since it recovers the normal form. The harmonic scale presents the leading tone but does not avoid the augmented second interval between the sixth and seventh degrees. In addition, it does not need to cover a melodic trajectory, just having to present the leading tone, crucial to the tonal system (the leading tone tends to the tonic, asserting it)~\cite{Harmonia}. 
+The different ascending and descending contour of the melodic minor scale is required
+by the leading tone (seventh and last degree, separated by 
+one semitone from the octave, enhances tonic polarization) in the ascending
+ trajectory, which is not necessary in the descending mode, and therefore it recovers the normal form.
+The harmonic scale presents the leading tone but does not avoid the augmented second
+between the sixth and seventh degrees, it does not consider the melodic trajectory~\cite{Harmonia}. 
 Other scales can be represented in a similar form, like the pentatonic and the
 modes of limited transposition by Messiaen~\cite{Messiaen}. 
 
-Although not a scale, the harmonic series is often used as such. Besides, this point is a convenient moment to put it plain simple:
+Although not a scale, the harmonic series is often used as such.
+Besides, this point is a convenient moment to put it plain simple:
 
 \begin{equation}\label{eq:serieHarmonica}
 \begin{split}
@@ -1630,9 +1678,7 @@ H_i = & \{h_i\}_0^{19}= \\
 \end{split}
 \end{equation}
 
-
-
-This scale is composed of the frequencies on harmonic spectra. Nature exhibits this frequencies within sounds and with all kinds of distortions.
+In this scale, the frequency of $i-th$ note $h_i$ the frequency of $i-th$ harmonic $f=\varepsilon^{h_i} f_0$from the spectra generated by $f_0$. Nature exhibits this frequencies within sounds and with all kinds of distortions.
 
 
 \subsubsection{Chords}\label{subsec:acordes}
