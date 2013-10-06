@@ -1384,84 +1384,84 @@ in \massa, explores many configurations of the ADSL envelope.
 %\clearpage
 
 
-\section{Notes organization in music}\label{notasMusica} \label{sec:notesMusic}
+\section{Organization of notes in music}\label{notasMusica} \label{sec:notesMusic}
 
-Consider $ S_j=\left\{  s_j=T_i^j=\{t_i^j\}_{i=0}^{\Lambda_j-1} \right\}_{j=0}^{H-1} $ as the sequence $S_j$ of $H$ musical events $s_j$. In addition, $S_j$, called a 'musical structure', as composed by events $s_j$ which are musical structure themselves, e.g.\ notes. This section is dedicated to techniques that make $S_j$ interesting and enjoyable for audition.
+Consider $ S_j=\left\{  s_j=T_i^j=\{t_i^j\}_{i=0}^{\Lambda_j-1} \right\}_{j=0}^{H-1} $, the sequence $S_j$ of $H$ musical events $s_j$. Be $S_j$ a `musical structure', composed by events $s_j$ which are musical structures themselves, e.g.\ notes. This section is dedicated to techniques that make $S_j$ interesting and enjoyable for audition.
 
-The elements of $S_j$ can be overlapped by mixing them together as in
-equation~\ref{eq:mixagem} and Figure~\ref{fig:mixagem}, building intervals
-and chords. This scenery reflects the 'vertical thought' in music. On the other hand, the concatenation of $S_j$
-as in equation~\ref{eq:concatenacao} and in Figure ~\ref{fig:concatenacao},
+The elements of $S_j$ can be overlapped by mixing them together, as in
+equation~\ref{eq:mixagem} and figure~\ref{fig:mixagem}, for building intervals
+and chords. This reflects the `vertical thought' in music. On the other hand, the concatenation of the events
+in $S_j$, as in equation~\ref{eq:concatenacao} and in figure ~\ref{fig:concatenacao},
 builds melodic sequences and rhythms, which are associated with the musical
-'horizontal thought' in music. The fundamental frequency $f$ and the beginning moment
-(attack) are generally the most important characteristics of the elements in
-$S_j$. Such characteristics make possible the creation of music made by pitches (both
+`horizontal thought'. The fundamental frequency $f$ and the starting moment
+(attack) are generally the most important characteristics of the elements $s_j$ in
+$S_j$. This makes possible the creation of music made by pitches (both
 harmony and melody) and by the presence of temporal metrics and rhythms.
 
 \subsection{Tuning, intervals, scales and chords}\label{subsec:afinacao}
 
-Here we describe characteristics in music related to harmony and melody.
-
 \subsubsection{Tuning}
 
 Doubling the frequency is equivalent to ascending one octave ($f=2f_0$).
-The octave division in twelve notes is the canon of classical western music, although its usage has also been observed
+The octave division in twelve steps is the canon of classical western music.
+Its usage has also been observed
 outside western tradition, like ceremonial/religious and ethnic context~\cite{Wisnick}.
-
-The factor given by $\varepsilon=2^{\frac{1}{12}}$ defines a semitone. It builds a note
-grid along the hearing spectrum. Fixing a frequency $f$, all the possible
-fundamental frequencies stay separated by intervals that are multiples of
-$\varepsilon$. Twelve semitones (or half steps), equidistant to the human ear, make an
-octave. Therefore, if $f=2^{\frac{1}{12}}f_0$, there is a semitone between
+In this system, ideally, the factor given by $\varepsilon=2^{\frac{1}{12}}$ defines a semitone.
+A note grid along the hearing spectrum in which, given the frequency $f$, all the possible
+fundamental frequencies are separated by intervals, multiples of
+$\varepsilon$. Twelve semitones (or half steps), equidistant to the human ear, reaches an
+octave, equivalent to human year. Therefore, if $f=2^{\frac{1}{12}}f_0$, there is a semitone between
 $f_0$ and $f$.
 
-This absolute accuracy is common in computational implementations. For the real
-music instruments, however, there are deviations of those frequencies in order to make
-the harmonics of corresponding notes more compatible. Besides that, the fixed reference
+This absolute accuracy is common in computational implementations. Real
+music instruments, however, exhibit deviations in order to make compatible
+deviations from the harmonics of notes. Besides that, the fixed reference
 $\varepsilon=2^{\frac{1}{12}}$ characterizes an equally tempered tuning. There
-are tunings which respective intervals are ratios of low-order integers, originally based
-on observations of physical behaviors. First of these tunings were formalized
-around two thousand years before the existence of an equal temperament~\cite{Roederer}.
-
-Two iconic tunings:
+are tunings in which intervals are ratios of low-order integers, based
+on observations of physical phenomena. These tunings were first formalized
+around two thousand years before the arrival of the equal temperament~\cite{Roederer}.
+). Two emblematic tunings are:
 
 \begin{itemize}
-    \item The {\bf just intonation} is defined as notes of the diatonic scale
-    that are associated with ratios of low-order integers that defines the harmonic
-    series. The basic ratios are the same in the Ionian mode (white piano keys
-    from \do to \do (see below in subsection~\ref{subsec:escalas}): 1, 9/8, 5/4,
-    4/3, 3/2, 5/3, 15/8, 2/1). 
-    The intervals are considered as notes in a scale together with the following: the
-    semitone 16/15, the 'minor tone' 10/9, and the 'major tone' 9/8. There are
-    many ways to perform the division of the 12 notes.
+    \item The {\bf just intonation}, defined by association of diatonic scale notes
+    with ratios of low-order integers, as found in the harmonic
+    series. Considered the ionian mode, the white piano keys
+    from C to C, as seen below in subsection~\ref{subsec:escalas}, i.e. intervals 1, 2M, 3M, 4J, 5J, 6M, 7M, 8,
+    are considered ratios of frequency: 1, 9/8, 5/4
+    4/3, 3/2, 5/3, 15/8, 2/1. 
+    The following intervals are also considered: the
+    semitone 16/15, the 'minor tone' 10/9, and the 'major tone' 9/8.
+    There are many ways to perform the division of the 12 notes in the just intonation.
 
-    \item The {\bf Pythagorean tuning} is based on the interval 3/2 (perfect
-    fifth). The Ionian mode becomes: 1, 9/8, 81/64, 4/3, 3/2, 27/16, 243/128,
-    2/1. The intervals are also considered as notes in a scale. Besides the
-    intervals in the mode, it is also used the minor second 256/243, the minor
+    \item The {\bf Pythagorean tuning}, based on the interval 3/2 (perfect
+    fifth). The Ionian mode ratios becomes: 1, 9/8, 81/64, 4/3, 3/2, 27/16, 243/128,
+    2/1. These intervals are also considered to yield notes in a scale. Besides the
+    intervals in the mode, also used are the minor second 256/243, the minor
     third 32/27, the augmented fourth 729/512, the diminished fifth 1024/729,
     the minor sixth 128/81 and the minor seventh 16/9. 
 \end{itemize}
 
-In order to attends for micro-tonality\footnote{Micro-tonality is the use of intervals less
+In order to attend for micro-tonality\footnote{Micro-tonality is the use of intervals less
 than one semitone and have ornamental and structuring functionalities in music. The
-division of the octave in $12$ notes is motivated by physical fundamentals but it is also
-a \emph{convention} adopted even by western classical music. Other tunings are
-present. To cite one example, the traditional Thai music uses a octave
+division of the octave in $12$ notes is motivated by physical fundaments but also
+a \emph{convention} adopted too by western classical music. Other tunings are
+incident. To point only one example, the traditional Thai music uses an octave
 division in seven notes equally spaced ($\varepsilon=2^{\frac{1}{7}}$),
-resulting in intervals that have little in common with the intervals in the
+which allows intervals that have little in common with the intervals in the
 diatonic scale~\cite{Wisnick}}. It is possible to use non-integer real values as
-pitch sequences or even to maintain the integer values and change the factor $\varepsilon=2^{\frac{1}{12}}$. For example, 
+factors of $\varepsilon=2^{\frac{1}{12}}$ between frequencies, 
+or to maintain integer values and change $\varepsilon$. For example, 
 a tuning really near of the harmonic series
-itself is proposed with the division of the octave in $53$ notes:
-$\varepsilon_2=2^{\frac{1}{53}}$~\cite{microtonalidade}.
-In that division the notes are related by means of integers with
-$\varepsilon_2$. Note that if $S_i$ is a pitch sequence related by means of
-$\varepsilon_1$, a mapping for all the notes related by $\varepsilon_2$ defines
+itself is proposed with the equal division of the octave in $53$ notes:
+$\varepsilon_2=2^{\frac{1}{53}}$.~\cite{microtonalidade}
+In this division, notes are related by means of integers, factors of
+$\varepsilon_2$ relating frequencies by a valid interval.
+ Note that if $S_i$ is a pitch sequence related by means of
+$\varepsilon_1$, a direct mapping for notes related by $\varepsilon_2$ is 
 a new sequence $S_i'=\left\{s_i'\right\}=\left\{
 s_i \frac{\varepsilon_1}{\varepsilon_2}\right\}$. The music piece \emph{Micro
-tom} explores this micro-tonal features and its code is in
-Appendix~\ref{ap:micro} and is part of \massa.
+tom} explores microtonal features and its code
+is part of \massa\ toolbox.
 
 
 \subsubsection{Intervals}\label{subsec:intervalos}
