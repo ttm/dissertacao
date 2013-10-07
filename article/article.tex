@@ -182,7 +182,8 @@ The next section is a minimum text in which musical elements are presented side-
 %Due to the general interest, and number of knowledge areas involved, there is a number of books and computer implementations that are of interest or present similarities to what is presented in this work. A more detailed comparison of them is pointed out in the bibliography~\cite{dissertacao}. There is almost no articles which could be found on the topic. In summary, there are computer implementations that use this analytical descriptions implicitly, but there is no such a concise and mathematical description of the processes implemented, as they aim to be libraries for sound and music. There are books on the topic that cover various aspects of effects and physical modeling, but none of them carry a concise description of musical elements and structures, but focus on aspects of musical sounds and ways to mimic traditional instruments.
 
 
-\section{Characterization of the discrete-time musical note} \label{sec:discNote}
+\section{Characterization of the discrete-time musical note} \label{sec:discNote}\label{sec:notaDisc}
+
 
 In diverse artistic and theoretical contexts, music is conceived as constituted by fundamental units called notes, ``atoms'' that constitute music itself~\cite{Wisnick, Lovelock, Webern}.
 Nowadays, these notes are understood as central elements of certain musical paradigms. In a cognitive perspective, the notes are seen as discretized elements that easy and enrich the flow of information through music~\cite{Roederer, Lacerda}.
@@ -231,7 +232,7 @@ pot(T^{'}_i)=2 pot(T_i) \Rightarrow \\ \Rightarrow V^{'}_{dB}=10log_{10} 2 \appr
 \end{split}
 \end{equation}
 
-and the amplitude gain for a sequence whose volume has been doubled ($10dB$):
+\noindent and the amplitude gain for a sequence whose volume has been doubled ($10dB$):
 
 \begin{equation}\label{eq:dobraVol}
 \begin{split}
@@ -246,7 +247,7 @@ As shown, it is necessary an amplitude increase by a bit more than a factor of 3
 A = 10^{\frac{V_{dB}}{20}}
 \end{equation}
 
-where $A$ is the multiplicative factor that relates the amplitudes before and after the amplification.
+\noindent where $A$ is the multiplicative factor that relates the amplitudes before and after the amplification.
 
 \subsection{Pitch}
 
@@ -299,7 +300,7 @@ The square wave preservers only odd harmonics falling at $-6dB/octave$:
 
 The square wave can be used in a subtractive synthesis with the purposes of mimicking a clarinet. This instrument has only the odd harmonic components and the square wave is convenient with its abundant energy in high frequencies.
 The sawtooth is a common starting point for a subtractive synthesis, because it has both odd and even harmonics with high energy. In general, these waveforms are appreciated as excessively rich in sharp harmonics, and attenuator filtering on treble and middle parts of the spectrum is specially useful for reaching a more natural and pleasant sound. 
-The relatively attenuated harmonics of the triangle wave makes it the more functional - among the listed ones - to be used in the synthesis of musical notes without any treatment. The sinusoid is often a nice choice, but a problematic one. While pleasant if not loud in a very high pitch (above 500Hz, it requires careful dosage), the pitch is not accuratly detected, specially in low frequencies. It requires a big amplitude to give sinusoid volume, if compared to other waveforms. Both particularities are seen as a consequence of the non-existence of pure sinusoidal sounds in nature~\ref{roederer}.
+The relatively attenuated harmonics of the triangle wave makes it the more functional - among the listed ones - to be used in the synthesis of musical notes without any treatment. The sinusoid is often a nice choice, but a problematic one. While pleasant if not loud in a very high pitch (above 500Hz, it requires careful dosage), the pitch is not accuratly detected, specially in low frequencies. It requires a big amplitude to give sinusoid volume, if compared to other waveforms. Both particularities are seen as a consequence of the non-existence of pure sinusoidal sounds in nature~\cite{Roederer}.
 
 
 \begin{figure*}
@@ -309,13 +310,13 @@ The relatively attenuated harmonics of the triangle wave makes it the more funct
         \label{fig:formasDeOnda}
 \end{figure*}
 
-Figure~\ref{fig:formasDeOnda} presents the waveforms described in equations  ~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} and ~\ref{quadrada} for $\lambda_f=100$ (period of $100$ samples). If $f_s=44.1kHz$, the PCM standard in Compact Disks, the wave has fundamental frequency $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz$, around A4, just above the central "C", whatever the waveform is.
+Figure~\ref{fig:formasDeOnda} presents the waveforms described in equations  ~\ref{sinusoid}, ~\ref{sawTooth}, ~\ref{triangular} and ~\ref{square} for $\lambda_f=100$ (period of $100$ samples). If $f_s=44.1kHz$, the PCM standard in Compact Disks, the wave has fundamental frequency $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz$, around A4, just above the central "C", whatever the waveform is.
 
 The spectrum of each basic waveform is in Figure~\ref{fig:espectroDeOndas}. The isolated and exactly harmonic components of the spectrum is a consequence of the fixed period usage. The sinusoid consists of an one and only node in the spectrum, pure frequency. The figure exibit the spectra described: the sawtooth is the only waveform with a complete harmonic series (odd and even components); triangular and square waves has the same components (odd harmonics), decaying at $-12dB/octave$ and $-6dB/octave$, respectively.
 
 \begin{figure*}
     \centering
-        \includegraphics[width=\columnwidth]{figures/waveSpectrum}
+        \includegraphics[width=\textwidth]{figures/waveSpectrum}
     \caption{Spectrum of basic artificial musical waveforms.}
         \label{fig:espectroDeOndas}
 \end{figure*}
@@ -339,7 +340,7 @@ The resulting sound has the momentary spectrum of the original waveform. As a co
 
 \begin{figure*}
     \centering
-        \includegraphics[width=\columnwidth]{figures/oboeNaturalSampledSpectrum}
+        \includegraphics[width=\textwidth]{figures/oboeNaturalSampledSpectrum}
     \caption{Spectrum of the sonic waves of a natural oboe note and from a sampled period. The natural sound has fluctuations in the harmonics and in its noise, while the sampled period note has a perfectly harmonic spectrum.}
         \label{fig:espectroOboe}
 \end{figure*}
@@ -455,7 +456,7 @@ With 4 samples it is possible to represent 1 or 2 frequencies in any proportions
         \label{fig:amostras6}
 \end{figure*}
 
-Figure~\ref{fig:formas4} shows the harmonics for the basic waveforms of equations~\ref{senoide},~\ref{denteDeSerra},~\ref{triangular} and~\ref{quadrada} for the case of 4 samples. There is only 1 sinusoid for each waveform, with the exception of the sawtooth, which has even harmonics.
+Figure~\ref{fig:formas4} shows the harmonics for the basic waveforms of equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square} for the case of 4 samples. There is only 1 sinusoid for each waveform, with the exception of the sawtooth, which has even harmonics.
 
 Figure~\ref{fig:amostras6} presents the sinusoidal decomposition for 6 samples and figure~\ref{fig:formas6} presents the decomposition of the basic wave forms.
 In this case, the waveforms have spectra with fundamental differences: square and triangular have the same components but with different proportions, while the sawtooth have an extra component.
@@ -476,7 +477,7 @@ Be $f$ such that it divides $f_a$\footnote{As pointed before, this limitation si
 T_i^{f,\; \Delta}=\{t_{i \, \% \lambda_f} \}_0^{\Lambda-1}= \left \{t^f_{i \; \% \left( \frac{f_a}{f} \right) } \right \}_0^{\Lambda-1}
 \end{equation}
 
-The note by itself does not specify a timbre. Nevertheless, it is necessary to choose a waveform for the samples $t_i$ to have a value. An unique period from the basic waveforms can be used to specify the note, where $\lambda_f=\frac{f_a}{f}$ is the number of samples at the period. Here, $L_i^{f,\, \delta_f} $ is the sequence that describes a period of the waveform $L_i^f \in \{S_i^f,Q_i^f,T_i^f,D_i^f,R_i^f \}$ with duration $\delta_f=1/f$ (as given by equations~\ref{senoide}, ~\ref{denteDeSerra}, ~\ref{triangular} and ~\ref{quadrada}) and $R_i^f$ is a sampled real waveform:
+The note by itself does not specify a timbre. Nevertheless, it is necessary to choose a waveform for the samples $t_i$ to have a value. An unique period from the basic waveforms can be used to specify the note, where $\lambda_f=\frac{f_a}{f}$ is the number of samples at the period. Here, $L_i^{f,\, \delta_f} $ is the sequence that describes a period of the waveform $L_i^f \in \{S_i^f,Q_i^f,T_i^f,D_i^f,R_i^f \}$ with duration $\delta_f=1/f$ (as given by equations~\ref{sinusoid}, ~\ref{sawTooth}, ~\ref{triangular} and ~\ref{square}) and $R_i^f$ is a sampled real waveform:
 
 \begin{equation}\label{periodoUnico}
 L_i^{f , \delta_f } = \left\{ l_i^f \right\}_0^{\delta_f . f_a -1}=\left\{ l_i^f \right\}_0^{\lambda_f-1}
@@ -611,7 +612,8 @@ With the basic musical digital note carefully described, the next section develo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Variation in the basic musical note}\label{sec:internalVar}
+\section{Variation in the basic musical note}\label{sec:internalVar}\label{sec:varInternas}
+
 
 The basic digital music note defined in section~\ref{sec:notaDisc} has following parameters: duration, pitch, intensity (volume) and timbre. This is a useful and paradigmatic model, but does not exhaust all the aspects of a musical note.
 
@@ -1209,7 +1211,7 @@ The use of convolution with impulses in this context is explored in the
 music piece \emph{Trenzinho de caipiras impulsivos}. These features
 embrace the creation of `sound amalgams' based on granular synthesis, for now refer specially to the
 figure~\ref{fig:pulsoSubAgl}. This piece is a link to next section contents. 
-The source code of the music piece is online, as part of the \massa toolbox.
+The source code of the music piece is online, as part of the \massa\ toolbox\cite{MASSA}.
 
 
 \subsubsection{Moving source and receptor, Doppler effect}
@@ -1253,7 +1255,7 @@ relation to the crossing of source with receptor. The frequency has a symmetric 
 
 There is a Python implementation of the Doppler
 effect as describe above, and also considering the intersection between audio source and receptor,
-at the \massa\ toolbox~\cite{massa}.
+at the \massa\ toolbox~\cite{MASSA}.
 
 
 \subsubsection{Filters and noises (subsections~\ref{subsec:ruidos} and~\ref{subsec:filtros})}
@@ -1339,7 +1341,7 @@ Considered:
 \noindent, a reverberated auralization of a sound can be achieved by simple
         convolution of $R_i$ (called reverberation 'impulse response') with the sound sequence $T_i$ as described in subsection~\ref{subsec:filtros}.
 
-Reverberation is well known by causing great interest in the listeners and to provide more enjoyable sonorities. Besides that, modifications in the reverberation space consists on a common resource (almost a \textit{clich\'{e}}) to surprise and attract the listener. An implementation of the reverb recipe described is on the \massa\ toolbox~\cite{massa}
+Reverberation is well known by causing great interest in the listeners and to provide more enjoyable sonorities. Besides that, modifications in the reverberation space consists on a common resource (almost a \textit{clich\'{e}}) to surprise and attract the listener. An implementation of the reverb recipe described is on the \massa\ toolbox~\cite{MASSA}
 
 
 \subsubsection{ADSR Envelopes}
@@ -2390,14 +2392,14 @@ Another interesting example is the simultaneous
 presence of rhythms in different metrics, constituting what is
 called \emph{polyrhythm}. The music piece \emph{Poli-hit mia} explores these
 simultaneous metrics by impulse trains convolved with notes.
-Its source code is online as part of \massa\ toolbox~\cite{massa}.
+Its source code is online as part of \massa\ toolbox~\cite{MASSA}.
 
 Microtonal scales are important for 20th
 century music~\cite{microtonalidade} and present diverse remarkable results, e.g.
 fourths of tone in the Indian music. The musical sequence \emph{MicroTom}
 explores these resources, including microtonal melodies and microtonal harmonies
 with many notes in a very reduced note scope. Its code is 
-available online in \massa\ toolbox~\cite{massa}.
+available online in \massa\ toolbox~\cite{MASSA}.
 
 As in subsection~\ref{subsec:mus2}, relations between
 parameters are powerful ways to acquire musical pieces.
@@ -2436,7 +2438,7 @@ interfaces for the generation of noise and other high fidelity sounds and musica
 and for artistic and didactic purposes. The incorporation of programming skills is facilitated by visual aids, which
 was explored by \emph{live-coding} practices and courses based on this framework, with success.
 
-This work systematically investigates the parameterization issues (like the tremolo, ADSR, etc.) in a high fidelity, which has significant artistic utility. Such detailed analytical descriptions, together with the computational implementations, have not been covered before in the literature, such as reviewed in ~\ref{dissertacao}. 
+This work systematically investigates the parameterization issues (like the tremolo, ADSR, etc.) in a high fidelity, which has significant artistic utility. Such detailed analytical descriptions, together with the computational implementations, have not been covered before in the literature, such as reviewed in ~\cite{dissertacao}. 
 
 The free software license and online availability of the exposed content as hypertext, 
 with the respective codes and sonic examples, strongly facilitates future collaborations and the generation of sub-products in a co-authorship fashion.
