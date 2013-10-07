@@ -2244,57 +2244,61 @@ of \massa\ toolbox~\cite{MASSA}.
 
 \subsection{Cyclic structures}\label{estCic}
 
-The philosophical understanding that the human thought is based on the perception of
-similarities, differences, stimuli and objects, places the symmetries
-at the core of the cognitive process~\cite{Deleuze}. Mathematically, symmetries
-are algebraic finite groups, and a finite group is always isomorphic to a permutation
-group. It is possible to say that permutations represent any symmetry in a
-finite system (precisa de uma referência aqui). In music, permutations are ubiquitous and considerably present in techniques, which confirms their central role. The successive application of permutations generates cyclic arcs~\cite{change,Zamacois,permMusic}. Two academic studies were dedicated to this end, aiming at generating music structures~\cite{figgusOriginal, figgusEspacializacao}.
+The philosophical understanding that human thought is founded on the concept of
+similarities and differences (e.g. perceived in stimuli and objects), places symmetries
+at the core of cognitive processes~\cite{Deleuze}. Mathematically, symmetries
+are algebraic groups, and a finite group is always isomorphic to a permutation
+group (by Cayley's theorem). 
+In a way, this states that permutations represent any symmetry in a
+finite system~\cite{grupos,gruposFascination}.
+In music, permutations are ubiquitous and present in scholastic techniques,
+ which confirms their central role. 
+The successive application of permutations generates cyclic arcs~\cite{change,Zamacois,permMusic}. 
+Two academic studies were dedicated to generating musical structures~\cite{figgusOriginal, figgusEspacializacao}.
 
 Any permutation set can be used as a generator of algebraic groups~\cite{permMusic}.
 The properties defining a group $G$ are:
 
-\begin{multline}\label{eq:groups}
-%\begin{split}
-\forall \;\; p_1,p_2 \in G \Rightarrow\quad\;\; p_1 \bullet p_2  =
-p_3 \in G \\ \;\;\;\text{(closure property)} \\
-\forall \;\; p_1,p_2,p_3 \in G \Rightarrow\quad (p_1\bullet p_2)\bullet p_3  =
-p_1\bullet (p_2\bullet p_3)\quad\;  \\ \text{(associativity property)} \\
-\exists \;\; e \in G :\; p \bullet e  = e \bullet
-p \;\;\;\; \forall p \in G  \quad \\ \text{(identity element property)} \\
-\forall \;\; p \in G, \;\exists\; p^{-1} :\quad\;  p\bullet p^{-1} 
-=p^{-1}\bullet p = e \\ \; \text{(inverse element property)}
-%\end{split}
-\end{multline}
+\begin{equation}\label{eq:groups}
+\begin{split}
+\forall \;\; p_1,p_2 \in G \Rightarrow  \quad   & p_1 \bullet p_2  = p_3 \in G \\ 
+     & \text{(closure property)} \\
+\forall \;\; p_1,p_2,p_3 \in G \Rightarrow \quad & (p_1\bullet p_2)\bullet p_3  = p_1\bullet (p_2\bullet p_3) \\
+     & \text{(associativity property)} \\
+\exists \;\; e \in G :                  \quad    & p \bullet e  = e \bullet p \;\;\;\; \forall p \in G  \\ 
+     &  \text{(identity element existence)} \\
+\forall \;\; p \in G, \;\exists\; p^{-1} :\quad  &  p\bullet p^{-1}i =p^{-1}\bullet p = e \\
+     &  \text{(inverse element existence)}
+\end{split}
+\end{equation}
 
-From the first property it is possible to conclude that any permutation can be
-operated with another permutation. In fact, it is possible to apply a
+From the first property follows that two permutations act as one permutation.
+In fact, it is possible to apply a
 permutation $p_1$ and another permutation $p_2$, and, comparing both initial and final
-orderings, results in another permutation $p_3$.
+orderings, observe another permutation $p_3$.
 
 Every element $p$ operated with itself a sufficient number of times $n$ reaches
 the identity element $p^n=e$ (otherwise the group would be infinite, generated
-by $p$). The lower $n\;:\;p^n=e$ is called the element order. Thus, a finite
+by $p$). The lower $n\;:\;p^n=e$ is the element order. Thus, a finite
 permutation $p$, successively applied, reaches the initial ordering of its
-elements, making a cycle. This cycle, if used as parameter of music notes,
-implies in a cyclic musical arc.
+elements, and makes a cycle. This cycle, if used for parameters of musical notes or structures,
+yields a cyclic musical arc.
 
 These arcs can be established by using a set of different permutations. As a historic
-example, the tradition called \emph{change ringing} conceives the music through
+example, the \emph{change ringing} tradition conceives music through
 bells played one after other and then played again, but in a different
 order. This process repeats until it reaches the initial ordering. The set of
 different traversed orderings is a \emph{peal}. Table~\ref{tab:change}
-represents one traditional \emph{peal} for 3 bells (1, 2 and 3) which explores
+presents a traditional \emph{peal}, named ``Hunt'', for 3 bells (\textcolor{red}{1}, \textcolor{blue}{2} and \textcolor{green}{3}), which explores
 all possible orderings. Each line indicates one bell ordering to be
-played. Permutations occur between each line. In this case, the music structure
-consists of permutations by itself and some different permutations operate due to
-the cyclic behavior.
+played. Permutations occur between each line. In this case, music structure
+consists of permutations itself and some different permutations operate in the
+cyclic behavior.
 
 \begin{table}[htpq!]
 \centering
-\caption{Change Ringing: Standard \emph{peal} for 3 bells. Permutations
-occur between each line. Each line is a bell ordering and each ordering is played
-        a line a time.} 
+\caption{Change Ringing: Traditional \emph{peal} for 3 bells. Permutations
+occur between each line. Each line is a bell ordering and each ordering is played at a time.} 
 \begin{tabular}{l c r}
 \textcolor{red}{1} & \textcolor{blue}{2} & \textcolor{green}{3} \\
 \textcolor{blue}{2} & \textcolor{red}{1} & \textcolor{green}{3} \\
@@ -2308,35 +2312,44 @@ occur between each line. Each line is a bell ordering and each ordering is playe
 \end{table}
 
 The use of permutations in music can be summarized in the following way:
-consider $S_i=\{s_i\}$ as a sequence of musical events $s_i$ (e.g.\ notes), and a
+with $S_i=\{s_i\}$ a sequence of musical events $s_i$ (e.g.\ notes), and a
 permutation $p$. $S_i'=p(S_i)$ comprises the same elements of $S_i$ but in a
-different order. The permutations can be written based on two notations: cyclic or
+different order. Permutations has two notations: cyclic and
 natural. The natural notation basically comprehends the order of the resulting indexes from
 the permutation. Thus, agreed the original ordering given the sequence of its
 indexes $[0\;1\;2\;3\;4\;5\;...]$, the permutation is noted by the sequence it
-produces (ex. $[1\;3\;7\;0\;...]$). In the cyclic notation, permutation is the
-changing of one element by the posterior one, and the last element by the first one.
+produces (ex. $[1\;3\;7\;0\;...]$). In the cyclic notation, a permutation consists
+of swaps by elements and its posteriors, and the last element by the first one.
+E.g. $(1,2,5)(3,4)$ in cyclic notation is equivalent to $[0,2,5,4,3,1]$ in natural notation.
 
-It is not necessary to permute elements of $S_i$, but only some
-characteristics. In this way, being $p^f$ a permutation in frequency and $S_i$ a
+In the auralization of a permutation, it is not necessary to permute elements of $S_i$,
+but only some characteristic. In this way, being $p$ a permutation and $S_i$ a
 sequence of basic notes as exposed in the end of section~\ref{notaBasica}, the
-new sequence $S_i'=p^f(S_i)=\left\{s_i^{p(f)}\right\}$ consists of the same
+sequence $S_i'=p^f(S_i)=\left\{s_i^{p(f)}\right\}$ consists of the same
 music notes, respecting same order and maintaining the same characteristics, but with the
-fundamental frequencies permuted following the pattern that $p^f$ presents.
+fundamental frequencies permuted following the pattern that $p$ presents.
 
-It is worthwhile to mention two subtleties of this procedure. First, the permutation $p$ does not have to involve all elements of $S_i$, i.e.\ it can operate in subsets of $S_i$. Second,  the elements $s_i$ do not have to be entirely executed at each state access. To exemplify,
-consider $S_i$ as a sequence of music notes $s_i$. If $i$ goes from $0$ to $n$, and
+Two subtleties of this procedure. 
+First, a permutation $p$ is not restricted to involve all elements of $S_i$,
+i.e.\ it can operate in a subset of $S_i$.
+Second,  not all elements $s_i$ need to be executed at each access to $S_i$.
+To exemplify, be $S_i$ a sequence of music notes $s_i$. 
+If $i$ goes from $0$ to $n$, and
 $n>4$, at each measure of $4$ notes it is possible to execute the first $4$
-notes. The other notes of $S_i$ can occur in measures where permutations set
-aside those notes to the first four notes of $S_i$.
+notes. The other notes of $S_i$ can occur in measures where permutations 
+allocate those notes to the first four events $s'_i$ of $S'_i$.
 
-Each one of the permutations $p_i$ described above relates the note dimensions where it operates (frequency, duration, \emph{fades},
-intensity, etc) and the period of incidence (at how much access a permutation is
+It is inalienable to each permutations $p_i$ described above:
+1) note dimensions where it operates (frequency, duration, \emph{fades},
+intensity, etc); and
+2) the period of incidence (how much consults before a permutation is
 applied). During realization of notes in $S_i$, an easy and coherent form is to
-execute the first $n$ notes\footnote{The execution of disjoint notes of $S_i$
-equals to modify the permutation and to execute the first notes.}.
+execute the first $n$ notes, the execution of disjoint sets of $S_i$
+equals modifying the permutation and executing the first $n$ notes.
 
-Appendix~\ref{cap:FIGGUScode} and \massa present the computational implementation about permutations~\cite{MASSA,figgusOriginal,figgusEspacializacao}.
+The \massa\ toolbox presents a computational implementation that isolates
+permutation aplication to sonic characteristics, in order to deliver
+musical structures~\cite{MASSA,figgusOriginal,figgusEspacializacao}.
 
 \subsection{Musical idiom?}
 
@@ -2393,10 +2406,6 @@ demystification create aesthetically possibilities for both sharing and educatio
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
