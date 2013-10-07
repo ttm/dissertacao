@@ -2191,50 +2191,56 @@ directional and cyclic arcs.
 
 \subsection{Directional structures}\label{subsec:dir}
 
-The arcs can be decomposed in two convergent sequences: the first arc reaches the
-apex and the second arc returns from the apex to the start region. This apex is called climax by traditional music theory. It is
+The arcs can be decomposed in two convergent sequences: the first reaches the
+apex and the second returns from apex to start region.
+This apex is called climax by traditional music theory. It is
 possible to differ between arcs whose climax are placed at the beginning, middle, end,
 and at the first and second half of the considered duration. These structures are
-shown in Figure~\ref{fig:climax}. The parameter of variation does not exist, thus
-the arc consists only of the reference structure~\cite{Schoenberg}.
+shown in figure~\ref{fig:climax}. The varying parameter can be unexistent, a case in which
+the arc consists only of a reference structure~\cite{Schoenberg}.
 
 \begin{figure}
     \centering
         \includegraphics[width=\columnwidth]{figures/climax}
         \caption{Canonical distinctions of musical climax in a given melody and
-        other domains. The considered possibilities are: climax at beginning,
+        other domains. Considered possibilities are: climax at beginning,
         climax at first half, climax at middle, climax at second half and climax
-        at the end. The y-axis is not properly specified since there exist no
-        real parametric variation and, therefore, the structure is a reference.}
+        at the end. The x and y-axis is not properly specified since the parameters
+        can be non-existent, as in a reference structure.}
         \label{fig:climax}
 \end{figure}
 
-Consider $S_i=\{s_i\}_0^{H-1}$ as an increasing sequence. The sequence
-$R_i=\{r_i\}_0^{2H -2}=\left\{s_{(H-1-|H-1-i|)}\right\}_0^{2H-2}$ is a sequence
-that presents a perfect profiteer symmetry, i.e.\ the second half is the
-mirrored version of the former. Following the musical concepts, the climax is
-localized in the middle of the sequence. It is possible to modify this
-fact using sequences with different sizes. All the mathematical theory of
+Consider the $S_i=\{s_i\}_0^{H-1}$ increasing sequence. The sequence
+$R_i=\{r_i\}_0^{2H -2}=\left\{s_{(H-1-|H-1-i|)}\right\}_0^{2H-2}$
+presents perfect specular symmetry, i.e.\ the second half is the
+mirrored version of the first. In musical terms, the climax is
+in the middle of the sequence. It is possible to modify this
+by using sequences with different sizes. All the mathematics of
 sequences, already well established and taught routinely in calculus courses, can be
-used to generate those arcs~\cite{Guidorizzo,Schoenberg}. 
-Theoretically, when applied to any characteristic of music events, these sequences produce arcs, since they imply the deviation and return of an initial
-parametrization. Henceforth, it is possible to have a
-number of distinct arcs, with different sizes and climax for a same sequence of events. This is an interesting and useful resource, and the correlation of arcs results in coherence~\cite{Salzer}.
+used to generate these arcs~\cite{Guidorizzo,Schoenberg}. 
+Theoretically, when applied to any characteristic of musical events, 
+these sequences produce arcs, since they imply a deviation and return of an initial
+parametrization.
+Henceforth, it is possible for an only sequence to have
+numberous distinct arcs, with different sizes and climax. 
+This is an interesting and useful resource, and the correlation of arcs yields coherence~\cite{Salzer}.
 
-Historically (and practically nowadays), the golden ratio and the Fibonacci sequence have special importance. The Lucas sequence allows the generalization of
-Fibonacci sequence, making it easy to understand. Given any two numbers $x_0$
+In practice, and historically, there is special incidence and use of the golden ratio.
+The Lucas sequence allows the generalization of
+Fibonacci sequence, making it easy to follow. Given any two numbers $x_0$
 and $x_1$, the Lucas sequence can be obtained as: $x_n=x_{n-1}+x_{n-2}$. The greater $n$ is, the more $\frac{x_{n}}{x_{n_1}}$ approaches the golden ratio:
 $1.61803398875...$. The sequence converges fast even with high discrepant
 initial values. Being $x_0=1$ and $x_1=100$, and $y_n=\frac{x_n}{x_{n+1}}$ an
-auxiliary sequence, the error occurring in the first values with
-relation to the golden ratio is, approximately, $\{ e_n \}
+auxiliary sequence, the error for the fraction of first values with
+respect to the golden ratio is, approximately, $\{ e_n \}
 =\left\{100\frac{y_n}{1.61803398875}-100 \right\}_1^{10}=\{6080.33, -37.57, 23,
 -7.14, 2.937, -1.09, 0.42, -0.1601, \\ 0.06125, -0.02338\}$. The Fibonacci sequence
-presents about the same error progression but starts right at the second step since $\frac{1}{1}\approx\frac{101}{100}$.
+presents exactly the same error progression, but starts at the second step of the most discrepant
+case ($\frac{1}{1}\approx\frac{100+1 = 101}{100}$).
 
 The music piece \emph{Dirracional} exposes the use of arcs into directional structures.
-Its source code is included in Appendix~\ref{ap:dirracional} and available online as part
-of \massa~\cite{MASSA}.
+Its source code is available online as part
+of \massa\ toolbox~\cite{MASSA}.
 
 \subsection{Cyclic structures}\label{estCic}
 
