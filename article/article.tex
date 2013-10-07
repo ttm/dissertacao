@@ -2073,19 +2073,21 @@ The music piece \emph{Poli Hit Mia} explorers different metrics (available as pa
 
 \subsection{Repetition and variation: motifs and larger units}\label{subsec:motivos}
 
-Given the basic music structures, either frequential (chords and scales) or
-rhythmic (beat divisions and simple, compound and complex grouping), it is
-natural to organize these structures in a cohesive way~\cite{Boulez}. To this end,
-the concept of arcs are fundamental: we make an arc by departing from a place (music unit) and going to another one. The audition of melodic and harmonic lines is pervaded as
-musical arcs thanks to the cognitive nature of the musical hearing. It is
-possible to consider the note as the smaller arc, and each motif (definir motif aqui? nao foi falado ainda) and melody as another arc. Each time, beat subdivision, measure and music
-section constitutes an arc. A music in which the arcs do not present consistency by
-themselves, can be understood as a music with no cohesion. The coherence feeling
-comes, mostly, from the skilled manipulation of arcs in a music piece.
+Given the basic musical structures, both frequential (chords and scales) and
+rhythmic (simple, compound and complex beat divisions and agglomerations), it is
+natural to present these structures in a coherent and meaningful way~\cite{Boulez}.
+For such, the concept of arcs is fundamental: by departing from a place and returning,
+an arc is made. The audition of melodic and harmonic lines is permeated by
+musical arcs due to cognitive nature of the musical hearing. 
+The note can be considered the smaller arc, and each motif and melody as an arc as well.
+Each beat and subdivision, each measure and music
+section, constitutes an own arc. A music in which the arcs do not present consistency with one another,
+can be understood as a music with no coherence. Coherence impression
+comes, mostly, from the skilled handling of arcs in a music piece.
 
-Musical arcs are abstract structures and liable of basic operations. An spectral
+Musical arcs are abstract structures and liable of basic operations. A spectral
 arc, like a chord, can be inverted, enlarged and permuted, to cite some
-examples. Temporal arcs, like a melody, a motif, a measure or a note are also
+examples. Temporal arcs, like a melody, a motif, a measure or a note, are also
 capable of variations. Remembering that
 $S_j=\left\{s_j=T_i^j=\{t_i^{j}\}_0^{\Lambda_j-1}\right\}_0^{H-1}$ is a sequence
 of $H$ musical events $s_j$, each event with its $\Lambda_j$ samples $t_i^j$
@@ -2099,7 +2101,7 @@ can be described as:
     a music:
     $\left\{s_j'\right\}=\left\{s_j^{\Gamma'}\right\}=\left\{s_j^{\Gamma+\delta}\right\}$
     where $\Gamma$ is the duration between the beginning of the piece (or considered
-    period) and the first event $s_0$ of original structure $S_j$. Observe that
+    section) and the first event $s_0$ of original structure $S_j$. Observe that
     $\delta$ is the time offset of the displacement.
 
     \item Temporal expansion or contraction is a change in duration of each
@@ -2109,35 +2111,34 @@ can be described as:
     \item Temporal reversion consists of generating a sequence with elements
     in reverse order of the original sequence $S_j$, thus: $S_j'=\left\{s_j'\right\}_0^{H-1}=\left\{s_{(H-j-1)}\right\}_0^{H-1}$.
 
-    \item Pitch translation is a displacement $\tau$ of a material for a
-        different pitch $\Xi'=\Xi + \tau$. It is a variation that changes pitch
+    \item Pitch translation, or transposition, is a displacement $\tau$ of the material to a
+        different pitch $\Xi=\Xi_0 + \tau$. It is a variation that changes pitch
         localization of material:
         $\left\{s_j'\right\}=\left\{s_j^{\Xi'}\right\}=\left\{s_j^{\Xi+\tau}\right\}$
-        where $\Xi$ is the pitch of a period $S_j$ or of an event $s_0$ of the
-        original structure $S_j$. Observe that $\tau$ is the pitch offset of the
-        displacement. If $\tau$ is given in semitones, the displacement in
-        frequency is $\tau_f=f_0.2^{\frac{\tau}{12}}$ where $f_0$ results from
-        the adoption of some reference: $f_0=\Xi_{f_0}Hz\;\sim \Xi_0$ absolute
-        value of pitch. For the frequency of any pitch value: $\Xi_f=\Xi_{f_0}.2^{\frac{\Xi-\Xi_0}{12}}$. 
-        For the pitch of any frequency value: $\Xi=\Xi_0 +12
-        . \log_2\left(\frac{\Xi_f}{\Xi_{f_0}}\right)$.  
+        where $\Xi_0$ is a reference value, such as the pitch of a section $S_j$ or of the first event $s_0$.
+        If $\tau$ is given in semitones, the displacement in
+        frequency is $\tau_f=f_0.2^{\frac{\tau}{12}}$ where $f_0$ is the
+        reference frequency value: $f_0=\Xi_{f_0}Hz\;\sim \Xi$ absolute
+        value of pitch. The frequency of any pitch value is $f=f_0.2^{\frac{\tau}{12}}$s; 
+        and the pitch of any frequency is: $\Xi=\Xi_0 +12
+        \log_2\left(\frac{f}{f_0}\right)$.  
         In the MIDI protocol, $\Xi_{f_0}=55Hz$ while pitch $\Xi_0=33$ marks
-        a \textit{A 1}, another reference point is $\Xi_{f_0}=440Hz$ which
-        corresponds to $\Xi_0=69$. The unit difference is equal for semitones.
-        It is not possible to say that the unit is the semitone because $\Xi=1$
-        is not a semitone, but a note with an audible frequency as rhythm, with
-        less than 9 occurrences each second (see Table~\ref{tab:duracoes}).
+        a \textit{A 1}. Another good MIDI reference is $\Xi_{f_0}=440Hz$ and
+        $\Xi_0=69$. The difference ($\Xi_1 - \Xi_2$) is measured in semitones.
+        $\Xi$ is not a measure in semitones: $\Xi=1$ is not a semitone,
+        it is a note with an audible frequency as rhythm, with
+        less than 9 occurrences each second (see table~\ref{tab:duracoes}).
 
-        \item Interval inversion is the inversion traversed by
-        the material. The inversion is strict if the number of semitones is
-        being used as a reference for the operation:
+        \item Interval inversion is: 1) the inversion of note pitch order, within octave equivalence, such as exposed in~\ref{subsec:intervalos}, and $S_j'=\{s_j'\}_0^{H-1}=\left\{s_j^{\varepsilon. f_0}\right\}$ with selective $s_j=2,\;1/2,\;\text{or}\;1$; or 2) the inversion of interval orientation.
+        In the former case, the number of semitones
+        is preserved in the ``strict invertion'':
         $S_j'=\{s_j'\}_0^{H-1}=\left\{s_j^{-\varepsilon_j . f_0}\right\}$, where
-        $\varepsilon_j$ is the factor between the event frequency $s_j$ and the
+        $\varepsilon_j$ is the factor between the frequency of event $s_j$ and the
         frequency of $s_0$. The inversion is said tonal if the distances are
-        considered in terms of degree number of the scale $E_k$:
-        $S_j'=\{s_j'\}_0^{H-1}=\left\{s_j^{-\varepsilon^{\left(e_{\left(j_e\right)}\right)}
-        . f_0}\right\}_0^{H-1}$ where $j_e=e_{j}^{inv}$ is the index $k=j_e$ in
-        $E_k$ of the note of event $s_j$.
+        considered in terms of the diaonic scale $E_k$:
+        $S_j'=\{s_j'\}_0^{H-1}=\left\{s_j^{2^{\left(\frac{12-e_{\left(7-j_e\right)}}{12}\right)}
+        . f_0}\right\}_0^{H-1}$ where $j_e$ is the index in
+        $E_k$ of the note $s_j$. 
 
         \item Rotation of musical elements is the transference of the last
         element to the position of the first element, and the displacement of
