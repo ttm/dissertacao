@@ -93,7 +93,7 @@ s=H(([adsr(v(tab=Tr_i,f=800.*2.**(ss),nu=0.5,d=.2,fv=20),
 s=((s-s.min())/(s.max()-s.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-s = n.int16(s * float(2**15))
+s = n.int16(s * float(2**15-1))
 
 w.write("dirracional.wav",f_a,s)
 

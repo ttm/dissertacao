@@ -103,6 +103,6 @@ s=H((s,s1,s2,s3,s1,  s1,s4,s3,s1,  s1,s4,s3,s5, s5,s2,s3,s1  ))
 s=((s-s.min())/(s.max()-s.min()))*2.-1.
 
 # most music players read only 16-bit wav files, so let's convert the array
-s = n.int16(s * float(2**15))
+s = n.int16(s * float(2**15-1))
 
 w.write("acordeCedo.wav",f_a, s) # escrita do som
