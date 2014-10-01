@@ -56,6 +56,7 @@ Tf_i = n.array(list(periodo)*1000)  # 1000 períodos
 
 # normalizando para convenção no intervalo [-1,1]
 Tf_i = ((Tf_i-Tf_i.min())/(Tf_i.max()-Tf_i.min()))*2.-1.
+Tf_i_= n.int16(Tf_i * float(2**15-1))
 w.write("f_0.wav", f_a, Tf_i)  # escrita em disco
 
 
@@ -152,7 +153,12 @@ T_i = 1-n.abs(2-(4./lambda_f)*(ii % lambda_f))  # triangular
 T2_i = n.hstack((n.zeros(Lambda_DTI), DII_a*T_i))
 T_i = n.hstack((T_i, n.zeros(Lambda_DTI)))
 
-som = n.vstack((T2_i, T_i)).T
+T_i_ = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2.-1.
+T_i_= n.int16(T_i_ * float(2**15-1))
+T_i2_ = ((T2_i-T2_i.min())/(T2_i.max()-T2_i.min()))*2.-1.
+T2_i_= n.int16(T2_i_ * float(2**15-1))
+
+som = n.vstack((T2_i_, T_i_)).T
 w.write("estereo.wav", f_a, som)
 # espelhando
 som = n.vstack((T_i, T2_i)).T
@@ -182,10 +188,12 @@ T3_i = (T3_i/T3_i.max())*2-1
 T_i = T1_i+T2_i+T3_i
 # normalização
 T_i = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
+T_i_= n.int16(T_i * float(2**15-1))
 # escrita em disco
-w.write("mixados.wav", f_a, T_i)
+w.write("mixados.wav", f_a, T_i_)
 
 ### 2.31 concatenação
 T_i = n.hstack((T1_i, T2_i, T3_i))
+T_i_= n.int16(T_i * float(2**15-1))
 # escrita em disco
-w.write("concatenados.wav", f_a, T_i)
+w.write("concatenados.wav", f_a, T_i_)

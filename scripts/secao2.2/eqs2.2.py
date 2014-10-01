@@ -209,7 +209,7 @@ f0 = fi[i0]
 ruido = n.fft.ifft(coefs)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-r = n.int16(aa * float(2**15-1))
+r = n.int16(r * float(2**15-1))
 w.write('branco.wav', f_a, r)
 
 
@@ -227,7 +227,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
-r = n.int16(aa * float(2**15-1))
+r = n.int16(r * float(2**15-1))
 w.write('rosa.wav', f_a, r)
 
 
@@ -246,6 +246,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
+r = n.int16(r * float(2**15-1))
 w.write('marrom.wav', f_a, r)
 
 ruido_marrom=n.copy(r) # será usado para a reverberação
@@ -266,6 +267,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
+r = n.int16(r * float(2**15-1))
 w.write('azul.wav', f_a, r)
 
 
@@ -283,6 +285,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
+r = n.int16(r * float(2**15-1))
 w.write('violeta.wav', f_a, r)
 
 ### 2.55 Ruído preto
@@ -299,6 +302,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
+r = n.int16(r * float(2**15-1))
 w.write('preto.wav', f_a, r)
 
 
@@ -329,7 +333,9 @@ Gamma_i = n.array(Gamma_i, dtype=n.int)  # já os índices
 ### 2.60 som em si
 T_i = Tr_i[Gamma_i % Lt]  # busca dos índices na tabela
 
-w.write("vibrato.wav", f_a, T_i)  # escrita do som
+T_i = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
+T_i_= n.int16(T_i * float(2**15-1))
+w.write("vibrato.wav", f_a, T_i_)  # escrita do som
 
 
 Tt_i = n.copy(Tv_i)
@@ -340,7 +346,9 @@ A_i = 10**((V_dB/20)*Tt_i)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]
 T_i = T_i*A_i
-w.write("tremolo.wav", f_a, T_i)  # escrita do som
+T_i = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
+T_i_= n.int16(T_i * float(2**15-1))
+w.write("tremolo.wav", f_a, T_i_)  # escrita do som
 
 
 ### 2.63 - Espectro da FM, implementada em 2.66-70
@@ -363,7 +371,9 @@ Gamma_i = n.array(Gamma_i, dtype=n.int)  # já os índices
 ### 2.70 FM
 T_i = S_i[Gamma_i % Lt]  # busca dos índices na tabela
 
-w.write("fm.wav", f_a, T_i)  # escrita do som
+T_i = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
+T_i_= n.int16(T_i * float(2**15-1))
+w.write("fm.wav", f_a, T_i_)  # escrita do som
 
 
 Tam_i = n.copy(Tfm_i)
@@ -374,6 +384,8 @@ A_i = 1+alpha*Tam_i
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 ### 2.70 AM
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
+T_i = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
+T_i= n.int16(T_i * float(2**15-1))
 w.write("am.wav", f_a, T_i)  # escrita do som
 
 
@@ -433,7 +445,10 @@ Tdoppler_i*=A_i
 # Normalizando e gravando:
 Tdoppler_i=((Tdoppler_i-Tdoppler_i.min()) / \
         (Tdoppler_i.max()-Tdoppler_i.min()))*2.-1
-w.write('doopler.wav', f_a, Tdoppler_i)
+T_i=Tdoppler_i
+T_i = ((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
+T_i= n.int16(T_i * float(2**15-1))
+w.write('doopler.wav', f_a, T_i)
 
 
 ######## Reverberação
@@ -481,8 +496,12 @@ Tf0ff_i = L_i[Gamma_i % Lt]
 T_i_=Tf0ff_i
 T_i=n.convolve(T_i_,R_i)
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
+T_i= n.int16(T_i * float(2**15-1))
 w.write('reverb.wav', f_a, T_i)
-w.write('RI_reverb.wav', f_a, R_i)
+T_i=R_i
+T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
+T_i= n.int16(T_i * float(2**15-1))
+w.write('RI_reverb.wav', f_a, T_i)
 
 
 ### 2.80 ADSR - variação linear
@@ -515,6 +534,8 @@ ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
 
+T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
+T_i= n.int16(T_i * float(2**15-1))
 w.write("adsr.wav", f_a, T_i)  # escrita do som em disco
 
 
@@ -546,5 +567,6 @@ ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
 
-aa = n.int16(aa * float(2**15-1))
+T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
+T_i= n.int16(T_i * float(2**15-1))
 w.write("adsr_exp.wav", f_a, T_i)  # escrita do som em disco
