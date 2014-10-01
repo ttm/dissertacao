@@ -102,7 +102,7 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,\
         if seguinte_cf-atual_cf>0:
             mov="asc"
         elif seguinte_cf-atual_cf<0:
-            mov="asc"
+            mov="des"
         else:
             mov="obl"
 
@@ -131,7 +131,7 @@ def contraNotaNotaSup(alturas=[0,2,4,5,5,0,2,0,2,2,2,0,7,\
 
             if mt == "direto": # mov direto
                 # n aceita intervalo perfeito
-                if nota-seguinte_cf in (0,7,8,12):
+                if nota-seguinte_cf in (0,7,12):
                     possiveis.remove(nota)
         ok=0
         while not ok:

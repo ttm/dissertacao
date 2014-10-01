@@ -30,7 +30,7 @@ som += dente_aguda/80
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-som = n.int16(som * float(2**15))
+som = n.int16(som * float(2**15-1))
 
 w.write("quadro1.wav",f_a,som)
 
@@ -50,7 +50,7 @@ for f in fs2:
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-som = n.int16(som * float(2**15))
+som = n.int16(som * float(2**15-1))
 
 w.write("quadro2.wav", f_a, som)
 print("quadro 2 feito em quadro2.wav (mono), são %i amostras \
@@ -74,7 +74,7 @@ som = n.vstack((som_d, som_e)).T
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-som = n.int16(som * float(2**15))
+som = n.int16(som * float(2**15-1))
 
 w.write("quadro3.wav", f_a, som)
 print("quadro 3 feito em quadro3.wav (estéreo), são %i amostras \
@@ -110,7 +110,7 @@ som += n.vstack((som_d, som_e)).T/60
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-som = n.int16(som * float(2**15))
+som = n.int16(som * float(2**15-1))
 
 w.write("quadro4.wav", f_a, som)
 print("quadro 4 feito em quadro4.wav (estéreo), são %i amostras \
@@ -130,7 +130,7 @@ som = n.vstack((som_d, som_e)).T
 som = ((som - som.min())/(som.max()-som.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-som = n.int16(som * float(2**15))
+som = n.int16(som * float(2**15-1))
 
 w.write("quadro5.wav", f_a, som)
 print("quadro 5 feito em quadro5.wav (estéreo), são %i amostras \

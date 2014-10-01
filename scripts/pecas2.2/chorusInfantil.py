@@ -84,7 +84,7 @@ s4=v(tabv=D_i)
 T_i=n.hstack((s, s1,s2,s3,s4))
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("chorusInfantil.wav",f_a,T_i) # escrita do som
 
@@ -99,7 +99,7 @@ T_i=n.hstack((s+ s1+s2+s3+s4))
 T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("chorusInfantil2.wav",f_a,T_i) # escrita do som
 
@@ -115,7 +115,7 @@ T_i=n.hstack((s+ s1+s2+s3+s4))
 T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("chorusInfantil3.wav",f_a,T_i) # escrita do som
 
@@ -198,6 +198,6 @@ T_i=ss
 T_i=((T_i-T_i.min())/(T_i.max()-T_i.min()))*2-1
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("chorusInfantil4.wav",f_a,T_i) # escrita do som

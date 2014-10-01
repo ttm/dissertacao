@@ -133,6 +133,6 @@ s=H((s,foo,foo,foo,foo,foo,foo,foo))
 s=((s-s.min())/(s.max()-s.min()))*2.-1.
 
 # most music players read only 16-bit wav files, so let's convert the array
-s = n.int16(s * float(2**15))
+s = n.int16(s * float(2**15-1))
 
 w.write("microTom.wav",f_a,s)

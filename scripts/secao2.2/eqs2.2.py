@@ -209,6 +209,7 @@ f0 = fi[i0]
 ruido = n.fft.ifft(coefs)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
+r = n.int16(aa * float(2**15-1))
 w.write('branco.wav', f_a, r)
 
 
@@ -226,6 +227,7 @@ c[Lambda/2+1:] = n.real(c[1:Lambda/2])[::-1] - 1j * \
 ruido = n.fft.ifft(c)
 r = n.real(ruido)
 r = ((r-r.min())/(r.max()-r.min()))*2-1
+r = n.int16(aa * float(2**15-1))
 w.write('rosa.wav', f_a, r)
 
 
@@ -544,4 +546,5 @@ ii = n.arange(Lambda, dtype=n.float)
 Gamma_i = n.array(ii*f*Lt/f_a, dtype=n.int)
 T_i = Tr_i[Gamma_i % Lt]*(A_i)
 
+aa = n.int16(aa * float(2**15-1))
 w.write("adsr_exp.wav", f_a, T_i)  # escrita do som em disco

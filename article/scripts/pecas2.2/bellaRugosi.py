@@ -9,7 +9,7 @@ f_a = 44100. # Hz, frequência de amostragem
 
 # Tamanho da LUT > 2**10 para usar também em oscilacoes
 # de comprimento de onda grandes (LFO)
-Lambda_tilde=Lt=(2.**5)*1024.
+Lambda_tilde=Lt=(2.**5)*(2**10)
 # Senoide
 foo=n.linspace(0,2*n.pi,Lt,endpoint=False)
 S_i=n.sin(foo) # um período da senóide com T amostras
@@ -126,3 +126,9 @@ aa = n.int16(aa * float(2**15))
 
 print("BellaRugosiSdadE.wav escrito")
 w.write("BellaRugosiSdadE.wav", f_a, aa)
+
+
+
+
+
+

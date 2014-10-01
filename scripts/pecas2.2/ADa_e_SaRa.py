@@ -81,7 +81,7 @@ T_i=n.hstack((n.zeros(f_a),adsr(v(tabv=Tr_i ,d=2.,fv=10.,nu=7.0),10,10,-5.),T))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("ADa_e_SaRa.wav",f_a,T_i) # escrita do som
 
@@ -106,7 +106,7 @@ T_i=n.hstack((T_i,T,T1,T2,T3))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("ADa_e_SaRa2.wav",f_a,T_i) # escrita do som
 
@@ -131,7 +131,7 @@ T_i=n.hstack((T_i,T,T1,T2,T3))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("ADa_e_SaRa3.wav",f_a,T_i) # escrita do som
 
@@ -156,7 +156,7 @@ T_i=n.hstack((T_i,T,T1,T2,T3))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("ADa_e_SaRa4.wav",f_a,T_i) # escrita do som
 
@@ -178,7 +178,7 @@ T_i=n.hstack((T_i,T,T1,T2,T3))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("ADa_e_SaRa5.wav",f_a,T_i) # escrita do som
 
@@ -193,7 +193,7 @@ T_i=n.hstack((n.zeros(f_a),T1,T2,T3,T4))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("ADa_e_SaRa6.wav",f_a,T_i) # escrita do som
 
@@ -216,6 +216,6 @@ T_i=n.hstack((T_i,T1,T2,T3,T4))
 T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 # most music players read only 16-bit wav files, so let's convert the array
-T_i = n.int16(T_i * float(2**15))
+T_i = n.int16(T_i * float(2**15-1))
 
 w.write("ADa_e_SaRa7.wav",f_a, T_i) # escrita do som

@@ -211,7 +211,7 @@ T_i=(T_i-T_i.min())/(T_i.max()-T_i.min())
 
 # most music players read only 16-bit wav files, so let's convert the array
 aa = n.hstack((T_i,T_i,T_i,T_i,T_i,T_i))
-aa = n.int16(aa * float(2**15))
+aa = n.int16(aa * float(2**15-1))
 
 w.write("ruidosaFaixa3.wav",f_a,aa) # escrita do som
 

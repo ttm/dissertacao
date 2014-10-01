@@ -74,7 +74,7 @@ dd=v()
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.hstack((aa,bb,cc,dd))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr.wav",f_a,AA)
 
@@ -85,7 +85,7 @@ dd=v()
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.hstack((aa,bb,cc,dd))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr2.wav",f_a,AA)
 
@@ -96,7 +96,7 @@ dd=v()
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.hstack((aa,bb,cc,dd))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr3.wav",f_a,AA)
 
@@ -107,7 +107,7 @@ dd=v(tabv=D_i)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.hstack((aa,bb,cc,dd))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr4.wav",f_a,AA)
 
@@ -118,7 +118,7 @@ dd=v(tabv=Q_i)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.hstack((aa,bb,cc,dd))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr5.wav",f_a,AA)
 
@@ -132,7 +132,7 @@ dd=v(tabv=Tr_i)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.hstack((aa,aa2,aa3,aa4,bb,cc,dd))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr6.wav",f_a,AA)
 
@@ -146,7 +146,7 @@ dd=(v(tabv=Tr_i,d=7)+v(d=7))*.5
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.hstack((aa,aa2,aa3,aa4,bb,cc,dd))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr7.wav",f_a,AA)
 
@@ -162,7 +162,7 @@ dd2=v(d=7)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr8.wav",f_a,AA)
 
@@ -178,7 +178,7 @@ dd2=v(tabv=D_i,d=7)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr9.wav",f_a,AA)
 
@@ -194,7 +194,7 @@ dd2=v(tabv=D_i,d=7,fv=20.)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = V((H((aa2,aa4,bb,cc2,dd2)), H((aa,aa3,bb,cc,dd)))).T
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr10.wav",f_a,AA)
 
@@ -215,7 +215,7 @@ dd10=v(tabv=D_i,d=2,fv=20.)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = V((H((dd,dd3,dd5,dd7,dd9)),H((dd2,dd4,dd6,dd8,dd10)))).T
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr11.wav",f_a,AA)
 
@@ -224,7 +224,7 @@ aa1=n.array(list(v(tabv=Q_i,fv=.5,f=200,nu=7))*5)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.hstack(( (zz+aa1).T*.5, (zz+aa1).T*.5))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr12.wav",f_a,AA)
 
@@ -235,7 +235,7 @@ aa3=n.array(list(v(tabv=Tr_i,fv=.5,f=200,nu=7))*4)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr13.wav",f_a,AA)
 
@@ -261,7 +261,7 @@ aa3=n.array(list(v(tabv=Tr_i,fv=.5,f=200,nu=19))*4)
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr14.wav",f_a,AA)
 
@@ -287,7 +287,7 @@ aa3=n.array(v(tabv=Tr_i,fv=.25,f=200,nu=9.,d=8.))
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr15.wav",f_a,AA)
 
@@ -313,7 +313,7 @@ aa3=n.array(v(tabv=Tr_i,fv=.25/2.,f=200,nu=9,d=8.))
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr16.wav",f_a,AA)
 
@@ -340,7 +340,7 @@ aa3=n.array(v(fv=.25/2.,f=200,nu=9,d=8.))
 
 # most music players read only 16-bit wav files, so let's convert the array
 AA = n.vstack(( (zz+aa1).T*.5, (zz+aa2).T*.5,(zz+aa3).T*.5))
-AA = n.int16(AA * float(2**15))
+AA = n.int16(AA * float(2**15-1))
 
 w.write("vbr17.wav",f_a,AA)
 
