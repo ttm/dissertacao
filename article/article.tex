@@ -23,6 +23,7 @@
 \usepackage{xcolor}
 \usepackage{enumerate}
 \usepackage{float}
+\usepackage{hyperref}
 
 \newcommand{\massa}{{\large \textsc{massa}}}
 \newcommand{\mass}{{\large \textsc{mass}}}
@@ -58,15 +59,15 @@ Instituto de F\'isica de S\~ao Carlos, Universidade de S\~ao Paulo (IFSC/USP)
  \altaffiliation[Instituto de Ci\^encias Matem\'aticas e de Computa\c{c}\~ao ]{ICMC-USP}
 
 
-\author{Luciano da Fontoura Costa}
-  \homepage{http://cyvision.ifsc.usp.br/~luciano/}
-  \email{ldfcosta@gmail.com}
- \altaffiliation[Also at ]{IFSC-USP}
-
- \author{Osvaldo N. Oliveira Jr.}
-  \homepage{www.polimeros.ifsc.usp.br/professors/professor.php?id=4}
-  \email{chu@ifsc.usp.br}
- \altaffiliation[Also at ]{IFSC-USP}
+%\author{Luciano da Fontoura Costa}
+%  \homepage{http://cyvision.ifsc.usp.br/~luciano/}
+%  \email{ldfcosta@gmail.com}
+% \altaffiliation[Also at ]{IFSC-USP}
+%
+% \author{Osvaldo N. Oliveira Jr.}
+%  \homepage{www.polimeros.ifsc.usp.br/professors/professor.php?id=4}
+%  \email{chu@ifsc.usp.br}
+% \altaffiliation[Also at ]{IFSC-USP}
 
 \date{\today}
 \begin{abstract}
@@ -99,7 +100,7 @@ As shown, it is possible to synthesize whole albums through collage of scripts a
 
 Music is commonly defined as the art made by sounds and silences. Sound is the longitudinal wave of mechanical pressure. The frequency bandwidth between $20Hz$ and $20kHz$ is appreciated by the human hearing system with boundaries dependent on the person, climate conditions and sonic characteristics themselves~\cite{Roederer}. Considered the speed of sound as $\approx 343.2 m/s$, these limits imply wavelengths of $\frac{343.2}{20} = 17.16\,m$ and $\frac{343.2}{20000}=17.16\,mm$.
 
-Human perception of sound involves captivation by bones, stomach, ears, transfer functions of head and torso, and processing by the nervous system~\cite{}. Besides that, the ear is a dedicated organ for the appreciation of these waves. Its mechanism decomposes sound into its sinusoidal spectrum and delivers to the nervous system. The sinusoidal components are crucial to musical phenomena, as one can perceive in the composition of sounds of musical interest (such as harmonic sounds and noises, seen in sections~\ref{sec:discNote} and~\ref{sec:internalVar}), and sonic structures of musical interest (such as tunings and scales, in section~\ref{sec:notesMusic}). 
+Human perception of sound involves captivation by bones, stomach, ears, transfer functions of head and torso, and processing by the nervous system~\cite{Roederer}. Besides that, the ear is a dedicated organ for the appreciation of these waves. Its mechanism decomposes sound into its sinusoidal spectrum and delivers to the nervous system. The sinusoidal components are crucial to musical phenomena, as one can perceive in the composition of sounds of musical interest (such as harmonic sounds and noises, exposed in sections~\ref{sec:discNote} and~\ref{sec:internalVar}), and sonic structures of musical interest (such as tunings and scales, in section~\ref{sec:notesMusic}). 
 
 The representation of sound is commonly called audio (although these terms are often used without distinction). Audio expresses waves prominent from the capture of microphones or from direct synthesis, although these sources entangle as captured sounds are processed to generate new sonorities. Digital audio specified by protocols that eases file transfering and storage often imply a quality loss. Standard representation of digital audio, on the other hand, assures perfect reconstruction of the analog wave, within any convenient precision. This paradigm consists of equally spaced samples, by $\lambda_s$ durations, each specified by a fixed number of bits. This is the Pulse Code Modulation (PCM) representation of sound. A sound in PCM audio is characterized by a sampling frequency $f_s=\frac{1}{\lambda_s}$ (also called the sampling rate), which is the number of samples used for representing a second of sound; and by a bit depth, which is the number of bits used for representing the amplitude of each sample. Figure~\ref{fig:PCM} shows $25$ samples of a PCM audio with $4$ bits each. The fixed $2^4=16$ values for the amplitude of each sample, with the regular spacing $\lambda_s$, yields the quantization error or noise. This noise diminishes as bit depth increases.
 
@@ -112,7 +113,7 @@ The representation of sound is commonly called audio (although these terms are o
 
 The Nyquist theorem~\cite{} states that the sampling frequency is twice the maximum frequency of the represented signal. Thus, for general musical purposes, it is necessary to have samples in a rate at least twice the highest frequency heard by humans, that is, $f_s \geq 2\times 20kHz = 40kHz$. This is the fundamental reason for the adoption of sampling frequencies like $44.1kHz$ and $48kHz$, standards in Compact Disks (CD) and broadcast systems (radio and television), respectively.
 
-Within this framework, musical notes can be characterized. The note still stands paradigmatic as the 'fundamental unit' of musical structures and, in practice, it can unfold into sounds that uphold other approaches\footnote{Music from the twentieth century enlarged this traditional comprehension of music. This occurred in the concert music, specially in the concrete, electronic and electroacoustic styles. On the last decade of the century, it became evident that popular music had also incorporated sounds without defined pitch and temporal organization, to name a few of simple characteristics.}. 
+Within this framework, musical notes can be characterized. The note still stands paradigmatic as the 'fundamental unit' of musical structures and, in practice, it can unfold into sounds that uphold other approaches\footnote{Music from the twentieth century enlarged this traditional comprehension of music. This occurred in the concert music, specially in the concrete, electronic and electroacoustic styles. On the last decade of the twentieth century, it became evident that popular music had also incorporated sounds without defined pitch and temporal organization, to name a few of simple characteristics.}. 
     Notes are also convenient for another reason: the average listener -- and considerable part of the specialists -- presupposes rhythmic and pitch organization (made explicit in section~\ref{sec:notesMusic}) as fundamental musical properties, and these are developed in traditional musical theory in terms of notes.
 
 \subsection{Contributions and paper organization}
@@ -133,7 +134,7 @@ In order to address this concise description of musical elements and structures,
 
 \end{enumerate}
 
-The remaining parts of this work are organized as follows: section~\ref{sec:discNote} characterizes the basic musical note; internals of the musical note is further developed in section~\ref{sec:internalVar}; section~\ref{sec:notesMusic} tackles the organization of musical notes in higher levels of musical structure~\cite{Wisnick,Webern,Lerdhal,Cook,Lacerda}. As these descriptions embody topics such as psycho-acoustics, cultural traditions, formalisms and protocols, the text points to external complements as needed~\cite{Zamacois,Schoenberg,microsound}.
+The remaining parts of this work are organized as follows: section~\ref{sec:discNote} characterizes the basic musical note; section~\ref{sec:internalVar} further develops internals of the musical note; section~\ref{sec:notesMusic} tackles the organization of musical notes in higher levels of musical structure~\cite{Wisnick,Webern,Lerdhal,Cook,Lacerda}. As these descriptions embody topics such as psycho-acoustics, cultural traditions, formalisms and protocols, the text points to external complements as needed~\cite{Zamacois,Schoenberg,microsound}.
 
 The next section is a minimum text in which musical elements are presented side-by-side with the discrete-time samples they result. In order to account for validation and sharing, implementations on computer code of each one of these relations are gathered in the \massa\ toolbox together with little musical montage resulting from them.
 
@@ -263,7 +264,7 @@ In the next section, frequencies $f$ that does not divide $f_s$ will be consider
 
 \subsection{Timbre}
 
-In a sound with harmonic spectrum, the (wave) period corresponds to the duration of the cycle, given by the inverse of the fundamental frequency. The trajectory of the wave inside the period - called the waveform - defines a harmonic spectrum and, thus, a timbre\footnote{Timbre is a subjective and complex characteristic. Physically, the timbre is multidimensional and given by the temporal dynamics of energy in the spectral components that are harmonic or noisy. Beyond that, the word timbre is used to designate different things: one same note has different timbres, a same instrument has different timbres, two instruments of the same family have, at the same time, the same timbre that blends them in the same family, and different timbres as they are different instruments. It is worth to mention that timbre is not always manifested in spectral traces, since cultural or circumstantial aspects alter our perception of timbre}. Musically, it matters that sonic spectra with minimum differences can result in timbres with crucial expressive differences and, consequently, different timbres can be produced by using different spectra\cite{Roederer}.
+In a sound with harmonic spectrum, the (wave) period corresponds to the duration of the cycle, given by the inverse of the fundamental frequency. The trajectory of the wave inside the period - called the waveform - defines a harmonic spectrum and, thus, a timbre\footnote{Timbre is a subjective and complex characteristic. Physically, the timbre is multidimensional and given by the temporal dynamics of energy in the spectral components that are harmonic or noisy. Beyond that, the word timbre is used to designate different things: one same note can have (be produced with) different timbres, an instrument has different timbres, two instruments of the same family have, at the same time, the same timbre that blends them in the same family, and different timbres as they are different instruments. It is worth to mention that timbre is not always manifested in spectral traces, since cultural or circumstantial aspects alter our perception of timbre}. Sonic spectra with minimum differences can result in timbres with crucial expressive differences and, consequently, different timbres can be produced using different spectra\cite{Roederer}.
 
 The simplest case is the spectrum that consists of only of the fundamental frequency $f$. This defines the sinusoid: a frequency in pure oscillatory movement called `simple harmonic movement'. Be $S_i^f$ a sequence whose samples $s_i^f$ describes a sinusoid of frequency $f$:
 
@@ -273,7 +274,7 @@ The simplest case is the spectrum that consists of only of the fundamental frequ
 
 where $\lambda_f=\frac{f_s}{f}=\frac{\delta_f}{\lambda_s}$  is the number of samples in the period.
 
-In a similar fashion, other waveforms are applied in music for their spectral qualities and simplicity. While the sinusoid is an isolated point in the spectrum, these waves present a succession of harmonic components. These waveforms are specified in equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square} and illustrated in Figure~\ref{fig:formasDeOnda}.
+In a similar fashion, other waveforms are applied in music for their spectral qualities and simplicity. While the sinusoid is an isolated point in the spectrum, these waves present a succession of harmonic components. These waveforms are specified in equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square}, illustrated in Figure~\ref{fig:formasDeOnda}.
 These artificial waveforms are traditionally used in music for synthesis and oscillatory control of variables. They are also useful outside musical contexts\cite{Openheim}.
 
 The sawtooth presents all components of the harmonic series with decreasing energy of $-6dB/octave$. The sequence of temporal samples can be described as:
@@ -312,7 +313,7 @@ The relatively attenuated harmonics of the triangle wave makes it the more funct
 
 Figure~\ref{fig:formasDeOnda} presents the waveforms described in equations  ~\ref{sinusoid}, ~\ref{sawTooth}, ~\ref{triangular} and ~\ref{square} for $\lambda_f=100$ (period of $100$ samples). If $f_s=44.1kHz$, the PCM standard in Compact Disks, the wave has fundamental frequency $f=\frac{f_a}{\lambda_f}=\frac{44100}{100} = 441 \; Herz$, around A4, just above the central "C", whatever the waveform is.
 
-The spectrum of each basic waveform is in Figure~\ref{fig:espectroDeOndas}. The isolated and exactly harmonic components of the spectrum is a consequence of the fixed period usage. The sinusoid consists of an one and only node in the spectrum, pure frequency. The figure exibit the spectra described: the sawtooth is the only waveform with a complete harmonic series (odd and even components); triangular and square waves has the same components (odd harmonics), decaying at $-12dB/octave$ and $-6dB/octave$, respectively.
+The spectrum of each basic waveform is in Figure~\ref{fig:espectroDeOndas}. The isolated and exactly harmonic components of the spectrum is a consequence of the fixed period usage. The sinusoid consists of an unique node in the spectrum, pure frequency. The figure exibit the spectra described: the sawtooth is the only waveform with a complete harmonic series (odd and even components); triangular and square waves has the same components (odd harmonics), decaying at $-12dB/octave$ and $-6dB/octave$, respectively.
 
 \begin{figure*}
     \centering
@@ -327,7 +328,7 @@ From a musical perspective, it is critical to internalize that energy in a compo
 
 The sinusoidal components are usually the main responsibles for timbre qualities. If they are not presented in harmonic proportions (small number relations), the sound is perceived as noisy or dissonant, in opposition to sonorities with an unequivocally established fundamental. Furthermore, the notion of absolute pitch relies on the similarity of the spectrum to the harmonic series~\cite{Roederer}. 
 
-In the case of a fixed length period and waveform, the spectrum is perfectly harmonic and static and  each waveform is compound of specific proportions of harmonic components. High  curvatures are sign of high harmonics in the wave. Figure~\ref{fig:formasDeOnda} depicts a wave, labeled as ``sampled real sound'', with a period of $\Lambda_f=114$ samples, extracted from a relatively well behaved recorded sound. The oboe wave was also sampled in $44.1kHz$. The chosen period for sampling was relatively short, with $98$ samples, and corresponds to the frequency $\frac{44100}{98}=450Hz$, which corresponds to a slightly out-of-tune A4 pitch. One can notice from the curvatures: the oboe's rich spectrum in high frequencies and the lower spectrum of the real sound.
+In the case of a fixed length period and waveform, the spectrum is perfectly harmonic and static, and each waveform is compound of specific proportions of harmonic components. High  curvatures are sign of high harmonics in the wave. Figure~\ref{fig:formasDeOnda} depicts a wave, labeled as ``sampled real sound'', with a period of $\Lambda_f=114$ samples, extracted from a relatively well behaved recorded sound. The oboe wave was also sampled in $44.1kHz$. The chosen period for sampling was relatively short, with $98$ samples, and corresponds to the frequency $\frac{44100}{98}=450Hz$, which corresponds to a slightly out-of-tune A4 pitch. One can notice from the curvatures: the oboe's rich spectrum in high frequencies and the lower spectrum of the real sound.
 
 The sequence 
 $ R_i=\{ r_i \}_0^{\lambda_f-1}$ of samples in the real sound of Figure~\ref{fig:formasDeOnda} can be taken as basis for a sound $T_i^f$ in the following way: 
@@ -336,7 +337,7 @@ $ R_i=\{ r_i \}_0^{\lambda_f-1}$ of samples in the real sound of Figure~\ref{fig
      T^f_i=\{ t_i^f \}=\Bigl\{ r_{(i\,\%\lambda_{f})} \Bigr\}
 \end{equation}
 
-The resulting sound has the momentary spectrum of the original waveform. As a consequence of its repetition in an identical form, the spectrum is perfectly harmonic, without noise and with variations typical of the natural phenomenon. This can be observed in Figure~\ref{fig:espectroOboe}, that shows the spectrum of the original oboe note and a note with same duration and whose samples consists of the repetition of cycle of Figure~\ref{fig:formasDeOnda}. Summing up, the natural spectrum exhibits variations in the frequencies of the harmonics, in their intensities and some noise, while the note made from the sampled period has a perfectly harmonic spectrum.
+The resulting sound has the momentary spectrum of the original waveform. As a consequence of its repetition in an identical form, the spectrum is perfectly harmonic, without noise and with variations typical of the natural phenomenon. This can be observed in Figure~\ref{fig:espectroOboe}, that shows the spectrum of the original oboe note and a note with same duration, whose samples consists of the repetition of cycle of Figure~\ref{fig:formasDeOnda}. Summing up, the natural spectrum exhibits variations in the frequencies of the harmonics, in their intensities and some noise, while the note made from the sampled period has a perfectly harmonic spectrum.
 
 \begin{figure*}
     \centering
@@ -373,12 +374,12 @@ Equation~\ref{moduloEfase} shows how the imaginary term of $c_k$ adds a phase to
 
 
 
- \begin{figure}[h!]
+ \begin{figure*}
      \centering
-         \includegraphics[width=\columnwidth]{figures/amostras2c__}
+         \includegraphics[width=\textwidth]{figures/amostras2c__}
      \caption{Oscillation of 2 samples (maximum frequency for any $f_a$). The first coefficient reflects a detachment (\emph{offset} or \emph{bias}) and the second coefficient specifies the oscillation amplitude.}
          \label{fig:amostras2}
- \end{figure}
+ \end{figure*}
 
 Figure~\ref{fig:amostras2} shows two samples and its spectral components. In this case, the Fourier decomposition has one unique pair of coefficients $\{c_k=a_k-j.b_k\}_0^{\Lambda-1=1}$ relative to frequencies $\{f_k\}_0^1=\left\{w_k\frac{f_a}{2\pi}\right\}_0^1=\left\{k\frac{f_a}{\Lambda=2}\right\}_0^1=\left\{0,\frac{f_a}{2}=f_{\text{max}}\right\}$
 with energies $e_k=\frac{(c_k)^2}{\Lambda=2}$. The role of amplitudes $a_k$ is clearly observed with $\frac{a_0}{2}$, the fixed offset\footnote{Also called \emph{bias}.} and $\frac{a_1}{2}$, oscillation amplitude with frequency given by the relation $f_k=k \frac{f_a}{\Lambda=2}$.
@@ -387,12 +388,12 @@ This case have special relevance. It is necessary at least 2 samples to represen
 All fixed sequences $T_i$ of only $3$ samples also have just $1$ frequency, since their first harmonic has $1,5$ samples and exceeds the bottom limit of 2 samples, i.e.\ the frequency of the harmonic would exceed the Nyquist frequency:  $\; \frac{2. f_a}{3} > \frac{f_a}{2} $. 
 The coefficients $\{c_k\}_0^{\Lambda-1=2}$ are present in 3 frequency components. One is relative to zero frequency ($c_0$), and the other two ($c_1$ and $c_2$) have the same role for the reconstruction of sinusoid with $f=f_a/3$.
 
- \begin{figure}[h!]
+ \begin{figure*}
      \centering
-         \includegraphics[width=\columnwidth]{figures/amostras3b}
+         \includegraphics[width=\textwidth]{figures/amostras3b}
      \caption{Three fixed samples presents only one non-null frequency. $c_1=c_2^*$ and $w_1 \equiv w_2$.}
          \label{fig:amostras3}
- \end{figure}
+ \end{figure*}
 
 $\Lambda$ real samples $t_i$ result in $\Lambda$ complex coefficients $c_k=a_k+j.b_k$. The coefficients $c_k$ are equivalent two by two, corresponding to the same frequencies and with same contribution to its reconstruction. They are complex conjugates: $a_{k1}=a_{k2}$ and $b_{k1}=-b_{k2}$ and, as a consequence, the modules are equal and phases have opposite signs. Remembering that $f_k = k\frac{f_a}{\Lambda}, \; k \in \left\{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \right\} $. When $k > \frac{\Lambda}{2}$, the frequency $f_k$ is mirrored by $\frac{f_a}{2}$ in this way: $f_k=\frac{f_a}{2} - (f_k-\frac{f_a}{2})=f_a-f_k=f_a - k\frac{f_a}{\Lambda}=(\Lambda-k)\frac{f_a}{\Lambda} \;\;\;\; \Rightarrow \;\;\;\; f_k\equiv f_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda$. 
 
@@ -461,12 +462,12 @@ Figure~\ref{fig:formas4} shows the harmonics for the basic waveforms of equation
 Figure~\ref{fig:amostras6} presents the sinusoidal decomposition for 6 samples and figure~\ref{fig:formas6} presents the decomposition of the basic wave forms.
 In this case, the waveforms have spectra with fundamental differences: square and triangular have the same components but with different proportions, while the sawtooth have an extra component.
 
-\begin{figure}[h!]
+\begin{figure*}
     \centering
-        \includegraphics[width=\columnwidth]{figures/amostras6formas__}
+        \includegraphics[width=\textwidth]{figures/amostras6formas__}
     \caption{Basic waveforms with 6 samples: triangular and square waveforms have odd harmonics, with different proportions and phases; the sawtooth has even harmonics.}
         \label{fig:formas6}
-\end{figure}
+\end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The basic note}\label{notaBasica}
@@ -491,7 +492,7 @@ T_i^{f,\; \Delta}=\left\{t_i^f\right\}_0^{\lfloor f_a . \Delta \rfloor -1}=\left
 
 \subsection{Spatial localization and spatialization}\label{subsec:spac}
 
-Although it is not one of its four basic properties, a musical note always has a spatial localization: the note source position at the ordinary physical space. The existence of an environment that reverberates the note is the matter of 'spatialization'. Both fields, spatialization and spatial localization, are widely valued by audiophiles and music industry~\cite{floEsp}. 
+Although it is not one of its four basic properties, a musical note always has a spatial localization: the note source position at the ordinary physical space. The reverberation the environment in which sound occurs is the matter of \emph{spatialization}. Both fields, spatialization and spatial localization, are widely valued by audiophiles and music industry~\cite{floEsp}. 
 
 \subsubsection{Spatial localization}
 
@@ -618,7 +619,7 @@ With the basic musical digital note carefully described, the next section develo
 The basic digital music note defined in section~\ref{sec:notaDisc} has following parameters: duration, pitch, intensity (volume) and timbre. This is a useful and paradigmatic model, but does not exhaust all the aspects of a musical note.
 
 First of all, characteristics of the note modifie along the note itself~\cite{Chowning}. For example, a 3 seconds piano note has intensity with abrupt rise at beginning and progressive decay, has spectrum variations with harmonics decaying some others that emerge along time.
-These variations are not mandatory but sound synthesis guidance for musical uses, as it reflects how sounds appear in nature. This is so considered to be true, that there is a rule of thumb: to make a sound that incites interest by itself, do internal variations on it~\cite{Roederer}.
+These variations are not mandatory, but sound synthesis guidance for musical uses, as it reflects how sounds appear in nature. This is so considered to be true, that there is a rule of thumb: to make a sound that incites interest by itself, do internal variations on it~\cite{Roederer}.
 To explore all the ways in which variations occur within a note is out of the scope of any work, given the sensibility of the human ear and the complexity of human sound cognition. In the following, primary resources are presented to produce variations in the basic note. It is worthwhile to recall that all the relations in this and other sections are implemented in Python and published as the public domain \massa\ toolbox. The musical pieces \emph{Transita para metro}, \emph{Vibra e treme}, \emph{Tremolos, vibratos e a frequência}, \emph{Trenzinho de caipiras impulsivos}, \emph{Ruidosa faixa}, \emph{Bela rugosi}, \emph{Chorus infantil}, \emph{ADa e SaRa} were made to validate and illustrate concepts of this section. The code that synthesizes these pieces are also part of the toolbox\cite{MASSA}.
  
 \subsection{Lookup Table}\label{subsec:lookup}
@@ -1012,7 +1013,11 @@ For the general case, the vibrato is described as follows:
 
 For the proper realization of the vibrato, it is important to pay attention to both tables and sequences.
 Table $\widetilde{M}_i$ with length $\widetilde{\Lambda}_M$ and the sequence with indices $\gamma_i'$ make the sequence $t_i'$ which is the oscillation pattern in the frequency while table $\widetilde{L}_i$ with length $\widetilde{\Lambda}$ and the sequence with indices $\gamma_i$ make $t_i$ which is the sound itself.
-Variables $\mu$ and $\nu$ quantify the vibrato intensity: $\mu$ is a direct measure of how many Hertz are involved in the upper limit of the oscillation while $\nu$ is the direct measure of how many semitones (or half steps) are involved in the oscillation ($2\nu$ is the number of semitones between the upper and lower peaks of frequency oscillations of the sound $\{t_i\}$ caused by the vibrato).
+Variables $\mu$ and $\nu$ quantify the vibrato intensity:
+\begin{itemize}
+    \item $\mu$ is a direct measure of how many Hertz are involved in the upper limit of the oscillation, while
+    \item $\nu$ is the direct measure of how many semitones (or half steps) are involved in the oscillation ($2\nu$ is the number of semitones between the upper and lower peaks of frequency oscillations of the sound $\{t_i\}$ caused by the vibrato).
+\end{itemize}
 It is convenient to use $\nu=\log_{2}\frac{f+\mu}{f} $ in this case because the maximum frequency increase is not equivalent to the maximum frequency diminish, but the semitone variation remains.
 
 Figure~\ref{fig:vibrato} is the spectrogram of an artificial vibrato for a note with $1000Hz$ (between a \emph{B} and a \emph{C}), in which pitch deviation reaches one octave above and one below. Practically any waveform can be used to generate a sound and the vibrato oscillation pattern, with virtually any oscillation frequency and pitch deviation\footnote{The pitch deviation is called 'vibrato depth' and is generally given as semitones or cents, as convenient}.
@@ -1766,7 +1771,7 @@ is a set of notes, tonal harmonies arise if not avoided~\cite{harmEXT}.
 In fact, the techniques around atonal music aim at structures for avoiding
 direct relation with modes and tonality. Manifesting such structures
 are of such difficulty that the dodecafonism arouse. 
-The purpose of dedocafonism is to use a set of notes (ideally 12 notes),
+The purpose of dodecafonism is to use a set of notes (ideally 12 notes),
 and to perform each note, one by one, in the same
 order. In this context, the tonic becomes difficult to be stablished. Nevertheless, the
 Western hearing searches for tonal traces in music and easily finds them by
@@ -1811,7 +1816,7 @@ degree) on any note, and can be major (with the same notes of Ionian mode) or
 minor (same notes as Eolian mode, 'natural minor', which has both
 harmonic and melodic versions, see equations~\ref{eq:escalasMenores}). The
 scale is the base for triads, each with its root in a degree: $\hat{1},\hat{2},\hat{3},\hat{4},\hat{5},\hat{6},\hat{7}$. 
-To build triads, the third and the fifth note above the root is considered together with the root (or fundamental).
+To build triads, the third and the fifth notes above the root is considered together with the root (or fundamental).
 $\hat{1},\hat{3},\hat{5}$ is the first degree chord,
  built on top of scale's first degree and central for tonal music. The chords
 of the fifth degree $\hat{5},\hat{7},\hat{2}$ ($\hat{7}$ sharp when a minor
