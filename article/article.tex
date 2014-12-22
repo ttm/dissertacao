@@ -52,6 +52,12 @@ Instituto de F\'isica de S\~ao Carlos, Universidade de S\~ao Paulo (IFSC/USP)
   \email{vilson@void.cc}
  \altaffiliation[Also at ]{IFSC-USP}
 
+\author{Antônio Pessoti}
+  \homepage{}
+  \email{debcris.cor@gmail.com}
+ \altaffiliation[Instituto de Ci\^encias Matem\'aticas e de Computa\c{c}\~ao ]{ICMC-USP}
+
+
 
 \author{D\'ebora Corr\^ea}
   \homepage{}
@@ -111,7 +117,7 @@ The representation of sound is commonly called audio (although these terms are o
         \label{fig:PCM}
 \end{figure*}
 
-The Nyquist theorem~\cite{} states that the sampling frequency is twice the maximum frequency of the represented signal. Thus, for general musical purposes, it is necessary to have samples in a rate at least twice the highest frequency heard by humans, that is, $f_s \geq 2\times 20kHz = 40kHz$. This is the fundamental reason for the adoption of sampling frequencies like $44.1kHz$ and $48kHz$, standards in Compact Disks (CD) and broadcast systems (radio and television), respectively.
+The Nyquist theorem~\cite{Openheim} states that the sampling frequency is twice the maximum frequency of the represented signal. Thus, for general musical purposes, it is necessary to have samples in a rate at least twice the highest frequency heard by humans, that is, $f_s \geq 2\times 20kHz = 40kHz$. This is the fundamental reason for the adoption of sampling frequencies like $44.1kHz$ and $48kHz$, standards in Compact Disks (CD) and broadcast systems (radio and television), respectively.
 
 Within this framework, musical notes can be characterized. The note still stands paradigmatic as the 'fundamental unit' of musical structures and, in practice, it can unfold into sounds that uphold other approaches\footnote{Music from the twentieth century enlarged this traditional comprehension of music. This occurred in the concert music, specially in the concrete, electronic and electroacoustic styles. On the last decade of the twentieth century, it became evident that popular music had also incorporated sounds without defined pitch and temporal organization, to name a few of simple characteristics.}. 
     Notes are also convenient for another reason: the average listener -- and considerable part of the specialists -- presupposes rhythmic and pitch organization (made explicit in section~\ref{sec:notesMusic}) as fundamental musical properties, and these are developed in traditional musical theory in terms of notes.
@@ -134,7 +140,7 @@ In order to address this concise description of musical elements and structures,
 
 \end{enumerate}
 
-The remaining parts of this work are organized as follows: section~\ref{sec:discNote} characterizes the basic musical note; section~\ref{sec:internalVar} further develops internals of the musical note; section~\ref{sec:notesMusic} tackles the organization of musical notes in higher levels of musical structure~\cite{Wisnick,Webern,Lerdhal,Cook,Lacerda}. As these descriptions embody topics such as psycho-acoustics, cultural traditions, formalisms and protocols, the text points to external complements as needed~\cite{Zamacois,Schoenberg,microsound}.
+The remaining parts of this work are organized as follows: section~\ref{sec:discNote} characterizes the basic musical note; section~\ref{sec:internalVar} further develops internals of the musical note; section~\ref{sec:notesMusic} tackles the organization of musical notes in higher levels of musical structure~\cite{Wisnick,Webern,Lerdahl,Cook,Lacerda}. As these descriptions embody topics such as psycho-acoustics, cultural traditions, formalisms and protocols, the text points to external complements as needed~\cite{Zamacois,Schoenberg,microsound}.
 
 The next section is a minimum text in which musical elements are presented side-by-side with the discrete-time samples they result. In order to account for validation and sharing, implementations on computer code of each one of these relations are gathered in the \massa\ toolbox together with little musical montage resulting from them.
 
@@ -2269,7 +2275,7 @@ at the core of cognitive processes~\cite{Deleuze}. Mathematically, symmetries
 are algebraic groups, and a finite group is always isomorphic to a permutation
 group (by Cayley's theorem). 
 In a way, this states that permutations represent any symmetry in a
-finite system~\cite{grupos,gruposFascination}.
+finite system~\cite{gruposFascination}.
 In music, permutations are ubiquitous and present in scholastic techniques,
  which confirms their central role. 
 The successive application of permutations generates cyclic arcs~\cite{change,Zamacois,permMusic}. 
