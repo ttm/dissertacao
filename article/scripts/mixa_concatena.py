@@ -36,5 +36,7 @@ p.text(46,11.4-e-2,"=",fontsize=78)
 p.xticks((),())
 p.yticks((),())
 
+p.xlabel(r"time $\rightarrow$",fontsize=22)
+p.ylabel(r"amplitude $\rightarrow$",fontsize=22)
 
 p.show()

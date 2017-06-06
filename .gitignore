@@ -12,3 +12,5 @@
 *.pyc
 python.sty
 pythonlisting.tex
+*.swp
+*.out

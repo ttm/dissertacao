@@ -8,7 +8,7 @@ def lp(fc, npoints=1000):
     b1=x
     # aplicação da equação a diferenças
     sinal=[a0]
-    for i in xrange(npoints):
+    for i in range(npoints):
         sinal.append(sinal[-1]*b1)
     # cálculo do espectro
     fft=n.fft.fft(sinal)
@@ -23,7 +23,7 @@ def hp(fc, npoints=1000):
     sinal=[a0]
     sinal+=[a1+sinal[-1]*b1]
     # aplicação da equação a diferenças
-    for i in xrange(npoints):
+    for i in range(npoints):
         sinal.append(sinal[-1]*b1)
     # cálculo do espectro
     fft=n.fft.fft(sinal)
@@ -46,7 +46,7 @@ def notch(f,bw,ftype='bs'):
         sinal=[a0]
         sinal+=[a1+sinal[-1]*b1]
         sinal+=[a2+sinal[-1]*b1+sinal[-2]*b2]
-        for i in xrange(44100):
+        for i in range(44100):
             sinal.append(sinal[-1]*b1+sinal[-2]*b2)
         fft=n.fft.fft(sinal)
         m=n.abs(fft)
@@ -65,7 +65,7 @@ def notch(f,bw,ftype='bs'):
         sinal=[a0]
         sinal+=[a1+sinal[-1]*b1]
         sinal+=[a2+sinal[-1]*b1+sinal[-2]*b2]
-        for i in xrange(44100):
+        for i in range(44100):
             sinal.append(sinal[-1]*b1+sinal[-2]*b2)
         fft=n.fft.fft(sinal)
         m=n.abs(fft)
@@ -78,7 +78,7 @@ fcs=[0.0000001,0.000001,0.002,0.01,0.3]
 poss=[(2,-30),(3,-22),(4,-18),(5,-10),(5.5,-4.55)]
 N=1000
 ds=fa/N
-fs=[i*ds for i in xrange(1,N/2+1)]
+fs=[i*ds for i in range(1,N//2+1)]
 fs=n.log2(fs)
 fs=n.hstack(([2*fs[0]-fs[1]],fs))
 p.plot((fs[0],fs[0]),(-100,100),'c',linewidth=3)
@@ -177,17 +177,6 @@ p.xlim(0,len(m)/2)
 #p.ylim(0,2.5)
 p.title("Passa banda de polo duplo")
 p.legend(loc="upper right", labelspacing=0,prop={'size':16})
-
-
-
-
-
-
-
-
-
-
-
 p.show()
 
 

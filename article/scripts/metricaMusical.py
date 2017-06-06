@@ -15,8 +15,8 @@ ax2=ax1.twinx()
 ordem=[0,1,4,2,-1,5,-2,3,6]
 colors=['g','b','r','b','k','r','k','b','r']
 
-for i in xrange(9):
-    for j in xrange(i+1):
+for i in range(9):
+    for j in range(i+1):
         p.plot((j*resolucao/(i+1), (j+1)*resolucao/(i+1)-2),(ordem[i],ordem[i]),c=colors[i%len(colors)], linewidth=3)
 
 p.plot((-1000,-1000),'r',linewidth=3,label=u'composed measures, ternary divisions, perfect mode')
