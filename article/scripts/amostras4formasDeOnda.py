@@ -17,8 +17,11 @@ quadrada=n.hstack ((n.ones(T/2),n.ones(T/2)* -1))
 ondas=[senoide,dente,triangular,quadrada]
 ondas_n=[u"sinusoid","sawtooth","triangle","square"]
 
-for i in xrange(4):
-    p.subplot(int("22"+str(i+1)))
+fig=p.figure(figsize=(12.,6.))
+fig.subplots_adjust(left=0.04,bottom=0.13,right=0.99,top=0.95,wspace=0.14, hspace=0.37)
+subs=[]
+for i in range(4):
+    subs.append(fig.add_subplot(int("22"+str(i+1))))
     p.title(ondas_n[i])
     n4=ondas[i]
     p.plot(n4,"bo")
@@ -45,9 +48,6 @@ for i in xrange(4):
     else: fas2=0
     if a2<0: fas2+=n.pi # segundo e terceiro quadrantes somam pi
     print("abs: %s, a2: %s, b2: %s, fas2: %s" % (ab2,a2,b2,fas2))
-
-
-
 
     fr1=(2*n.pi/4)/2 #ciclo em 4 * \delta_a, metade do intervalo angular 
     fr2=1/2. # metade de \delta_a
@@ -76,8 +76,11 @@ for i in xrange(4):
 
     p.xlim(-1.2,4.2)
     p.ylim(-1.49,1.49)
-    p.xticks((-1,0,1,2,3,4),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$"))
-
-#p.ylabel(r"amplitude $\rightarrow$")
-#p.xlabel(r"tempo $\rightarrow$")
+    p.yticks((),())
+    p.xticks((-1,0,1,2,3,4),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$"),
+            size=17)
+subs[0].set_ylabel(r"amplitude $\rightarrow$",
+            {"y": -.1, "fontsize": 20})
+subs[2].set_xlabel(r"time $\rightarrow$", {"x": 1.11, "fontsize": 20})
+p.savefig("../figures/amostras4formas___.png")
 p.show()

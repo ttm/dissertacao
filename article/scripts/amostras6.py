@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
-# 
+
 import pylab as p, numpy as n
 f=n.fft.fft
 
@@ -8,6 +8,8 @@ f=n.fft.fft
 n6=n.array([ 0.44178618,  0.69018945,  0.57835189,  0.79639228, -0.58067352,-0.38490177])
 #n8=n.array([-0.22746437,  0.4079638 ,  0.8548025 , -0.19153126,  0.68216695,0.45399424, -0.81023872, -0.85826893])
 #n4=n.array([ 0.58003705, -0.30828309, -0.29797696, -0.99219078])
+p.figure(figsize=(12.,6.))
+p.subplots_adjust(left=0.08,bottom=0.12,right=0.99,top=0.99)
 p.plot(n6,"bo")
 
 ff=f(n6)
@@ -69,13 +71,17 @@ p.plot(iii,ssss,"c",label=r"$\frac{a_3}{6}cos\left(\frac{2\pi . 3 }{6}i \right)$
 #p.plot(iii,sssss,"y",label=r"$\frac{a_4}{8}cos\left(\frac{2\pi . 4 }{8}i \right)$")
 #p.plot(iii,ss,"r--", label=r"$\frac{1}{4}\sqrt{a_2^2 + b_2^2}cos\left(\frac{2\pi . 2 }{\Lambda}i - tg^{-1}\left(\frac{b_2}{a_2}\right)\right)$")
 
-p.legend(loc="upper right")
+p.legend(loc="upper right", fontsize=20)
 
-p.xlim(-1.2,6.2)
-p.ylim(-1.1,1.1)
 
-p.xticks((-1,0,1,2,3,4,5,6),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$",r"$5\delta_a$",r"$6\delta_a$"))
+# p.yticks((-0.5,0,0.5,1.0), size=15)
+p.yticks((),())
+p.xticks((-1,0,1,2,3,4,5,6),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$",r"$5\delta_a$",r"$6\delta_a$"),
+        size=20)
 
-p.ylabel(r"amplitude $\rightarrow$")
-p.xlabel(r"time $\rightarrow$")
+p.ylabel(r"amplitude $\rightarrow$", fontsize=19)
+p.xlabel(r"time $\rightarrow$", fontsize=19)
+p.xlim(-.6,7.4)
+p.ylim(-.8,1.7)
+p.savefig("../figures/amostras6__.png")
 p.show()

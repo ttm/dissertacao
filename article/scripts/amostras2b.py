@@ -3,6 +3,8 @@
 # 
 import pylab as p, numpy as n
 f=n.fft.fft
+p.figure(figsize=(10.,5.))
+p.subplots_adjust(left=0.17,bottom=0.15,right=0.97,top=0.97)
 #a=[-1,1]
 #n2=n.random.rand(2)*2-1 # 2 amostras quaisquer E [-1,1]
 n2=n.array([-0.45599766,  0.77080613])
@@ -10,7 +12,7 @@ ff=f(n2)
 #-1 * cos(n.pi*l)
 p.plot([0,1],n2,"bo")
 
-# Primeiro componente, 0Hz
+# Primeira componente, 0Hz
 a0=n.real(ff[0]) 
 b0=n.imag(ff[0]) # sempre zero
 
@@ -33,7 +35,9 @@ p.plot(iii,s,"m--") # plotada a senóide passando pelas amostras
 
 p.xticks((-1,0,1,2),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$"), size=20)
 # valores cruciais em y
-p.yticks((0,a0/2-ab1/2,a0/2,a0/2+ab1/2), ('0',r'$\frac{a_0-|a_1|}{2}$',r'$\frac{a_0}{2}$',r'$\frac{a_0+|a_1|}{2}$'), color = 'k', size = 23)
+p.yticks((a0/2-ab1/2,a0/2,a0/2+ab1/2),
+        (r'$\frac{a_0-|a_1|}{2}$',r'$\frac{a_0}{2}$',r'$\frac{a_0+|a_1|}{2}$'),
+        color = 'k', size = 33)
 p.plot((-10,10),(a0/2,)*2,"k--")
 p.plot((-10,10),(a0/2-ab1/2,)*2,"k--")
 p.plot((-10,10),(a0/2+ab1/2,)*2,"k--")
@@ -56,5 +60,5 @@ p.ylim(-1.1,1.1)
 
 p.ylabel(r"amplitude $\rightarrow$", fontsize=19)
 p.xlabel(r"time $\rightarrow$", fontsize=19)
+p.savefig("../figures/amostras2c___.png")
 p.show()
-

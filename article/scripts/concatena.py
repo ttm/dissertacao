@@ -21,20 +21,18 @@ s=n.linspace(0,10*2*n.pi,200,endpoint=False)
 s=n.sin(s)[:len(s)/c]
 e=5.0
 ee=4
+#p.plot(n.hstack((d,q,s)),'o')
+p.figure(figsize=(10.,5.))
 p.xticks((),())
 p.yticks((),())
-#p.plot(n.hstack((d,q,s)),'o')
-p.plot(d,'o')
-p.plot(range(len(d),len(d)+len(q)),q,'o')
-p.plot(range(len(d)+len(q),len(d)+len(q)+len(s)),s,'o')
+p.subplots_adjust(left=0.05,bottom=0.08,right=0.97,top=0.97)
+p.plot(d,'o',ms=3)
+p.plot(range(len(d),len(d)+len(q)),q,'o', ms=3)
+p.plot(range(len(d)+len(q),len(d)+len(q)+len(s)),s,'o', ms=3)
 p.plot(n.hstack((d,q,s)))
 p.xlabel(r"time $\rightarrow$",fontsize=22)
 p.ylabel(r"amplitude $\rightarrow$",fontsize=22)
-p.ylim(-1.5,1.5)
+p.ylim(-1.1,1.1)
 p.xlim(-5,305)
+p.savefig("../figures/concatenacao__.png")
 p.show()
-
-
-
-
-

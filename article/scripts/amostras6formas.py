@@ -17,8 +17,11 @@ quadrada=n.hstack ((n.ones(T/2),n.ones(T/2)* -1))
 ondas=[senoide,dente,triangular,quadrada]
 ondas_n=[u"sinusoid","sawtooth","triangle","square"]
 
-for i in xrange(4):
-    p.subplot(int("22"+str(i+1)))
+fig=p.figure(figsize=(12.,6.))
+fig.subplots_adjust(left=0.04,bottom=0.13,right=0.99,top=0.95,wspace=0.14, hspace=0.37)
+subs=[]
+for i in range(4):
+    subs.append(fig.add_subplot(int("22"+str(i+1))))
 #n4=n.array([ 0.58003705, -0.30828309, -0.29797696, -0.99219078])
     p.title(ondas_n[i])
     n6=ondas[i]
@@ -89,8 +92,14 @@ for i in xrange(4):
     p.xlim(-1.2,6.2)
     p.ylim(-1.45,1.45)
 
-    p.xticks((-1,0,1,2,3,4,5,6),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$",r"$5\delta_a$",r"$6\delta_a$"))
+    p.yticks((),())
+    p.xticks((-1,0,1,2,3,4,5,6),(r"$-\delta_a$",r"$0$",r"$\delta_a$",r"$2\delta_a$",r"$3\delta_a$",r"$4\delta_a$",r"$5\delta_a$",r"$6\delta_a$"),
+            size=15)
+subs[0].set_ylabel(r"amplitude $\rightarrow$",
+            {"y": -.1, "fontsize": 20})
+subs[2].set_xlabel(r"time $\rightarrow$", {"x": 1.11, "fontsize": 20})
 
     #p.ylabel(r"amplitude $\rightarrow$")
     #p.xlabel(r"tempo $\rightarrow$")
+p.savefig("../figures/amostras6formas___.png")
 p.show()
