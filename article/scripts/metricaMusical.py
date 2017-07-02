@@ -3,7 +3,8 @@ import numpy as n, pylab as p
 
 resolucao=9*8 # 72
 #axL = p.subplot(2,1,1)
-fig=p.figure()
+fig = p.figure(figsize=(10.,5.))
+p.subplots_adjust(left=0.21,bottom=0.08,right=0.92,top=0.99)
 ax1=fig.add_subplot(111)
 ax2=ax1.twinx()
 
@@ -22,11 +23,11 @@ for i in range(9):
 p.plot((-1000,-1000),'r',linewidth=3,label=u'composed measures, ternary divisions, perfect mode')
 p.plot((-1000,-1000),'b',linewidth=3,label=u'simple measures, binary divisions, imperfect mode')
 p.plot((-1000,-1000),'k',linewidth=3,label=u'complex measures in 5 and 7, triplets of 5 and 7')
-p.legend(loc="upper right")
+p.legend(loc="upper center")
 
 
-ax1.set_ylim(-3,8)
-ax2.set_ylim(-3,8)
+ax1.set_ylim(-2.5,8.8)
+ax2.set_ylim(-2.5,8.8)
 p.xlim(-4,74)
 
 ax1.set_xticks(())
@@ -37,7 +38,8 @@ ax1.set_yticks((-2,-1,0,1,2,3,4,5,6))
 ax1.set_yticklabels((r"$seven\;fourths$",r"$five\;fourths$",r"$one\;fourth$",r"$two\;fourths$",r"$four\;fourths$",r"$eighth\;fourths$", r"$three\;fourths$",r"$six\;eighths$",r"$nine\;eighths$"), fontsize=18)
 
 ax2.set_yticks((-2,-1,0,1,2,3,4,5,6))
-ax2.set_yticklabels((r"$\binom{7}{4}$",r"$\binom{5}{4}$",r"$\binom{1}{4}$",r"$\binom{2}{4}$",r"$\binom{4}{4}$",r"$\binom{8}{4}$",r"$\binom{3}{4}$",r"$\binom{6}{8}$",r"$\binom{9}{8}$"), fontsize=22)
+ax2.set_yticklabels((r"$\binom{7}{4}$",r"$\binom{5}{4}$",r"$\binom{1}{4}$",r"$\binom{2}{4}$",r"$\binom{4}{4}$",r"$\binom{8}{4}$",r"$\binom{3}{4}$",r"$\binom{6}{8}$",r"$\binom{9}{8}$"),
+        fontsize=18)
 #axR=p.subplot(2,1,2,sharex=axL, frameon=False)
 #axR.yaxis.set_label_position("right")
 
@@ -49,5 +51,6 @@ ax2.set_yticklabels((r"$\binom{7}{4}$",r"$\binom{5}{4}$",r"$\binom{1}{4}$",r"$\b
 
 #p.ylabel(r"amplitude $\rightarrow$")
 ax1.set_xlabel(r"time $\rightarrow$",fontsize=22)
+p.savefig("../figures/metricaMusical__.png")
 p.show()
 

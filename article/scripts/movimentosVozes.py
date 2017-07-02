@@ -2,7 +2,7 @@
 import numpy as n, pylab as p
 
 p.figure(figsize=(10.,5.))
-p.subplots_adjust(left=0.17,bottom=0.15,right=0.97,top=0.97)
+p.subplots_adjust(left=0.04,bottom=0.08,right=0.95,top=0.99)
 ax = p.subplot(111)
 
 ##### movimentos discernidos no contraponto
@@ -67,16 +67,16 @@ for n1,n2 in zip(voz1,voz2):
 
 
 
-p.plot((1000,1000),(n1,n1),'b',lw=6, label=u"melodic line 1")
-p.plot((1000,1000),(n2,n2),'g',lw=6, label=u"melodic line 2")
-p.legend(loc="upper right",prop={'size':22})
+p.plot((1000,1000),(n1,n1),'b',lw=6, label=u"voice 1")
+p.plot((1000,1000),(n2,n2),'g',lw=6, label=u"voice 2")
+p.legend(loc="upper right",prop={'size':14})
 
 p.ylim(-10,3.6)
 p.xlim(-0.2,3.8)
 
-p.yticks((-8,-4,1),(u"oblique",u"opposite","direct"),rotation="90",fontsize=22)
+p.yticks((-8,-4,1),(u"oblique",u"contrary","direct"),rotation="90",fontsize=16, fontweight='bold')
 
-p.text(2.8,-1.6,"parallel\nmovement",fontsize="17")
+p.text(2.8,-1.6,"parallel\nmovement",fontsize="14")
 
 for line in ax.get_xticklines() + ax.get_yticklines():
     line.set_markersize(0)
@@ -89,5 +89,6 @@ ax2.set_ylabel(r"$\log(freq)$ $\rightarrow$",fontsize=26)
 p.ylim(-10,3.6)
 p.yticks(())
 
+p.savefig("../figures/movContraponto_.png")
 p.show()
 

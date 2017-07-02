@@ -42,6 +42,3 @@ p.ylabel(u"frequency "+r"$ \in \; [0,\,\frac{f_a=44100}{2}=22050] \, \rightarrow
 p.xlabel(r"samples $\quad \rightarrow$",fontsize=26)
 p.savefig("../figures/vibrato_.png")
 p.show()
-
-
-
