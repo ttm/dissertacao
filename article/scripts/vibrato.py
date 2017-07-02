@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-import numpy as n, pylab as p, scikits.audiolab as a
+import numpy as n, pylab as p#, scikits.audiolab as a
 
 fa=44100 # frequência de amostragem
 Dv=2048 # tamanho da tabela do vibrato
@@ -24,19 +24,24 @@ tab=n.linspace(-1,1,D) # dente de serra
 dD=fi*(D/float(fa)) # a movimentação na tabela por amostra
 gi=n.cumsum(dD,0,n.int) # a movimentação na tabela total, já os índices
 ti=tabv[gi%D] # busca dos índices na tabela
-a.wavwrite(ti,"vibrato.wav",fa) # escrita do som
+# a.wavwrite(ti,"vibrato.wav",fa) # escrita do som
 
 gi=n.array(  ii * (D/float(fa)) * f  , n.int ) % Dv
 t=tabv[ gi ]
-a.wavwrite(t,"original.wav",fa)
+# a.wavwrite(t,"original.wav",fa)
 
+p.figure(figsize=(10.,5.))
+p.subplots_adjust(left=0.17,bottom=0.15,right=0.97,top=0.97)
 p.specgram(ti-ti.mean())
 p.colorbar()
 p.xlim(-2000,46100)
-p.xticks((0,10000,20000,30000,44000),(r"0",10000,20000,30000,44100))
+p.xticks((0,10000,20000,30000,44000),(r"0",10000,20000,30000,44100),
+        fontsize=16)
+p.yticks(fontsize=16)
+p.ylabel(u"frequency "+r"$ \in \; [0,\,\frac{f_a=44100}{2}=22050] \, \rightarrow $", fontsize=19)
+p.xlabel(r"samples $\quad \rightarrow$",fontsize=26)
+p.savefig("../figures/vibrato_.png")
 p.show()
 
-p.ylabel(u"frequency "+r"$ \in \; [0,\,\frac{f_a=44100}{2}=22050] \quad \rightarrow $", fontsize=16)
-p.xlabel(r"$i\quad \rightarrow$",fontsize=26)
 
 

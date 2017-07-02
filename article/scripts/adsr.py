@@ -1,6 +1,8 @@
 #-*- coding: utf-8 -*-
 import numpy as n, pylab as p
 
+fig=p.figure(figsize=(10.,5.))
+p.subplots_adjust(left=0.09,bottom=0.15,right=0.95,top=0.81)
 ax=p.subplot(111)
 p.xlabel(r"time $\rightarrow$",fontsize=19)
 p.ylabel(r"amplitude $\rightarrow$", fontsize=19)
@@ -37,24 +39,24 @@ p.plot(n.arange(DA,DA+DD),D,   'go', markersize=4)
 p.plot(n.arange(DA+DD,De-DR),S,'ko', markersize=4)
 p.plot(n.arange(De-DR,De),R,   'ro', markersize=4)
 
-p.text(2*6 ,.7,"A",fontsize=48,color='blue')
-p.text(2*32,.7,"D",fontsize=48,color='green')
-p.text(2*56,.5,"S",fontsize=48,color='black')
-p.text(2*91,.3,"R",fontsize=48,color='red')
+p.text(2*6 ,.7,"A",fontsize=28,color='blue')
+p.text(2*32,.7,"D",fontsize=28,color='green')
+p.text(2*56,.5,"S",fontsize=28,color='black')
+p.text(2*91,.3,"R",fontsize=28,color='red')
 
 som=n.random.random(De)*2-1
 som=n.sin(n.linspace(0,45*2*n.pi,De,endpoint=False))
 som=som*s
-p.plot(som,'c*',markersize=9,label=u"Sampled sound subjected to the ADSL envelope with linear variation")
+p1=p.plot(som,'c*',markersize=9,label=u"Sampled sound subjected to the ADSL envelope with linear variation")
 p.plot(som,'c')
 p.plot((len(som),len(som)),(-.8,0),"k--")
 
-p.legend(loc="upper right",prop={'size':16})
+# p.legend(loc="upper right",prop={'size':16})
 p.xlim(-10,De+10)
-p.ylim(-1.2,1.2)
+p.ylim(-1.2,1.)
 
-p.yticks((-1,0,SS,1),(-1,0,r"$a_S$",1),fontsize=26)
-p.xticks((len(som),),(r"$\Lambda$",),fontsize=26)
+p.yticks((-1,0,SS,1),(-1,0,r"$a_S$",1),fontsize=20)
+p.xticks((len(som),),(r"$\Lambda$",),fontsize=20)
 
 p.plot((-20,7),(SS,SS),'k--')
 ###############################
@@ -95,16 +97,16 @@ p.plot(n.arange(De-DR,De),   R-2.5,   'ro', markersize=4)
 som=n.random.random(De)*2-1
 som=n.sin(n.linspace(0,45*2*n.pi,De,endpoint=False))
 som=som*s
-p.plot(som-2.5,'md',markersize=9,label=u"Sampled sound subjected to the ADSL envelope with logarithmic variation")
+p2=p.plot(som-2.5,'md',markersize=9,label=u"Sampled sound subjected to the ADSL envelope with logarithmic variation")
 p.plot(som-2.5,'m')
 p.plot((len(som),len(som)),(-.8-2.5,0-2.5),"k--")
 
-p.legend(loc="upper right",prop={'size':16})
+# p.legend(loc="upper right",prop={'size':16})
 p.xlim(-10,De+10)
-p.ylim(-3.8,1.8)
+p.ylim(-3.8,1.2)
 
-p.yticks((-1,0,SS,1),(-1,0,r"$a_S$",1),fontsize=26)
-p.xticks((len(som),),(r"$\Lambda$",),fontsize=26)
+p.yticks((-1,0,SS,1),(-1,0,r"$a_S$",1),fontsize=20)
+p.xticks((len(som),),(r"$\Lambda$",),fontsize=20)
 
 
 p.arrow(0,    -1.1-2.5,DA,0,length_includes_head=True,shape='full',head_width=.1,color='cyan'     ,width=0.009)
@@ -114,9 +116,9 @@ p.arrow(DA,   -1.1-2.5,DD,0,length_includes_head=True,shape='full',head_width=.1
 p.arrow(De,   -1.1-2.5,-DR,0,length_includes_head=True,shape='full',head_width=.1,color='red'    ,width=0.009)
 p.arrow(De-DR,-1.1-2.5,DR,0,length_includes_head=True,shape='full',head_width=.1,color='red'  ,width=0.009)
 
-p.text(2*6+3 ,-1-2.5,r"$\Lambda_A$",fontsize=38,color='blue')
-p.text(2*32-9,-1-2.5,r"$\Lambda_D$",fontsize=38,color='green')
-p.text(2*91-7,-1-2.5,r"$\Lambda_R$",fontsize=38,color='red')
+p.text(2*6+3 ,-1-2.5,r"$\Lambda_A$",fontsize=22,color='blue')
+p.text(2*32-9,-1-2.5,r"$\Lambda_D$",fontsize=22,color='green')
+p.text(2*91-7,-1-2.5,r"$\Lambda_R$",fontsize=22,color='red')
 
 p.plot((180,220),(SS-2.5,SS-2.5),'k--')
 
@@ -126,31 +128,13 @@ p.plot((180,220),(SS-2.5,SS-2.5),'k--')
 
 ax2 = ax.twinx()
 #ax2.set_ylabel('Y values for ln(x)');
-p.ylim(-3.8,1.8)
+p.ylim(-3.8,1.2)
 
 
-p.yticks((-1-2.5,0-2.5,SS-2.5,1-2.5),(-1,0,r"$a_S$",1),fontsize=26)
+p.yticks((-1-2.5,0-2.5,SS-2.5,1-2.5),(-1,0,r"$a_S$",1),fontsize=20)
 
 
+fig.legend((*p1,*p2),(u"Sampled sound subjected to the ADSL envelope with linear variation",u"Sampled sound subjected to the ADSL envelope with logarithmic variation"),"upper center",numpoints=3, fontsize=16)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+p.savefig("../figures/adsr_.png")
 p.show()
-

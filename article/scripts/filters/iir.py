@@ -72,6 +72,9 @@ def notch(f,bw,ftype='bs'):
         return m
 fa=44100.
 
+fig=p.figure(figsize=(12.,6.))
+fig.subplots_adjust(left=0.06,bottom=0.15,right=0.97,top=0.95,wspace=0.06, hspace=0.39)
+
 ax=p.subplot(221)
 #ax.set_xscale('log')
 fcs=[0.005,0.05,0.1,0.2,0.3,0.4]
@@ -93,19 +96,21 @@ for fc,pos in zip(fcs,poss):
         p.text(pos[0],pos[1]-.01,r"%s" % (fc,), fontsize=16)
 #    p.plot([fc*len(m),fc*len(m)],[-1000,1000])
 ii=range(1,11)
-p.ylabel(u"amplitude"+r"$\; \rightarrow$", fontsize=16)
-p.xlabel(u"frequency "+r"$  \; \rightarrow$", fontsize=16)
+# p.ylabel(u"amplitude"+r"$\; \rightarrow$", fontsize=16)
+# p.xlabel(u"frequency "+r"$  \; \rightarrow$", fontsize=16)
 p.xticks((0,len(m)/8,len(m)/4,3*len(m)/8,len(m)/2),(r"0",r"$\frac{f_a}{8}$",
-    r"$\frac{f_a}{4}$", r"$\frac{3 . f_a}{8}$",
+    r"$\frac{f_a}{4}$", r"$\frac{3 f_a}{8}$",
     r"$\frac{f_a}{2}$"),fontsize='20')
 p.ylim(0,1.2)
 p.title("(a) First order low-pass filter")
+ax.set_ylabel(r"amplitude $\rightarrow$",
+            {"y": -.1, "fontsize": 20})
 #p.xlim(xvals[0]-1,n.log2(fa/2))
 #p.ylim(-123,3)
 
-p.subplot(222)
+s2=p.subplot(222)
 fcs=[0.005,0.05,0.1,0.2,0.49999]
-poss=[(13,0.92),(89,0.85),(117,0.75),(158,0.67),(200,0.57)]
+poss=[(13,1.035),(39,0.85),(80,0.75),(120,0.67),(200,0.52)]
 i=0
 for fc,pos in zip(fcs,poss):
     m=hp(fc)
@@ -116,14 +121,17 @@ for fc,pos in zip(fcs,poss):
         i=1
     else:
         p.text(pos[0],pos[1]-.009,r"$%s$" % (fc,), fontsize=16)
+p.xticks((0,len(m)/8,len(m)/4,3*len(m)/8,len(m)/2),(r"0",r"$\frac{f_a}{8}$",
+    r"$\frac{f_a}{4}$", r"$\frac{3 f_a}{8}$",
+    r"$\frac{f_a}{2}$"), size=20)
 #    p.plot([fc*len(m),fc*len(m)],[-1000,1000])
 #p.ylim(-30,0)
 p.ylim(0,1.2)
-p.ylabel(u"amplitude "+r"$\; \rightarrow$", fontsize=16)
-p.xlabel(u"frequency "+r"$  \; \rightarrow$", fontsize=16)
-p.xticks((0,len(m)/8,len(m)/4,3*len(m)/8,len(m)/2),(r"0",r"$\frac{f_a}{8}$",
-    r"$\frac{f_a}{4}$", r"$\frac{3 . f_a}{8}$",
-    r"$\frac{f_a}{2}$"),fontsize='20')
+s2.set_yticks((),())
+ax2 = s2.twinx()
+ax2.set_yticks((0,0.2,0.4,0.6,0.8,1.0,1.2))
+# p.ylabel(u"amplitude "+r"$\; \rightarrow$", fontsize=16)
+# p.xlabel(u"frequency "+r"$  \; \rightarrow$", fontsize=16)
 p.title("(b) First order high-pass filter")
 
 
@@ -146,21 +154,24 @@ bw=(0.5 - f)/10;  m=notch(f,bw); p.plot(m[:len(m)/2], 'g')
 bw=(0.5 - f); m=notch(f,bw); p.plot(m[:len(m)/2], 'b')
 
 p.xticks((0,int(0.05*len(m)),int(0.25*len(m)),int(0.45*len(m))),(r"0",r"$f_c=\frac{f_a}{20}$",
-    r"$f_c=\frac{f_a}{4}$", r"$f_c=\frac{9 . f_a}{20}$"),fontsize='20')
+    r"$f_c=\frac{f_a}{4}$", r"$f_c=\frac{9 f_a}{20}$"),fontsize='20')
 p.yticks((0,0.5,1,1.5),(0,0.5,1,1.5))
 p.xlim(0,len(m)/2)
-p.ylim(0,2.5)
+p.ylim(0,4.5)
 p.title("(c) Two pole band-reject filter")
 p.legend(loc="upper left", labelspacing=0,prop={'size':16})
 
-p.ylabel(u"amplitude "+r"$\; \rightarrow$", fontsize=16)
-p.xlabel(u"frequency "+r"$  \; \rightarrow$", fontsize=16)
+ax.set_xlabel(r"frequency $\rightarrow$",
+            {"x": 1.11, "fontsize": 20})
+# p.ylabel(u"amplitude "+r"$\; \rightarrow$", fontsize=16)
+# p.xlabel(u"frequency "+r"$  \; \rightarrow$", fontsize=16)
 
 
 ##########
 # Notch Passa Banda
 
-ax=p.subplot(224)
+s4=fig.add_subplot(224)
+p.ylim(0,4.5)
 f=0.05
 bw=f/(5*150);  m=notch(f,bw, 'bp'); p.plot(m[:len(m)/2],'r', label=r" $ bw=min(f_c,\frac{f_a}{2}-f_c)/750 $ ")
 bw=f/(5*10);   m=notch(f,bw, 'bp'); p.plot(m[:len(m)/2], 'g', label=r" $ bw=min(f_c,\frac{f_a}{2}-f_c)/50 $ ")
@@ -177,25 +188,19 @@ bw=(0.5 - f)/(5*10);   m=notch(f,bw,'bp'); p.plot(m[:len(m)/2], 'g')
 bw=(0.5 - f)/5;      m=notch(f,bw,'bp'); p.plot(m[:len(m)/2], 'b')
 
 p.xticks((0,int(0.05*len(m)),int(0.25*len(m)),int(0.45*len(m))),(r"0",r"$f_c=\frac{f_a}{20}$",
-    r"$f_c=\frac{f_a}{4}$", r"$f_c=\frac{9 . f_a}{20}$"),fontsize='20')
-p.yticks((0,0.5,1,1.5,2),(0,0.5,1,1.5,2))
+    r"$f_c=\frac{f_a}{4}$", r"$f_c=\frac{9 f_a}{20}$"),fontsize='20')
+# p.yticks((0,0.5,1,1.5,2),(0,0.5,1,1.5,2))
+s4.set_yticks((),())
+ax2 = s4.twinx()
+ax2.set_yticks((0,0.5,1,1.5,2))
 p.xlim(0,len(m)/2)
 #p.ylim(0,2.5)
 p.title("(d) Two pole band-pass filter")
-p.legend(loc="upper right", labelspacing=0,prop={'size':16})
+s4.legend(loc="upper right", labelspacing=0,prop={'size':16})
+p.ylim(0,4.5)
 
-p.ylabel(u"amplitude "+r"$\; \rightarrow$", fontsize=16)
-p.xlabel(u"frequency "+r"$  \; \rightarrow$", fontsize=16)
+# p.ylabel(u"amplitude "+r"$\; \rightarrow$", fontsize=16)
+# p.xlabel(u"frequency "+r"$  \; \rightarrow$", fontsize=16)
 
-
-
-
-
-
-
-
-
-
+p.savefig("../../figures/iir__.png")
 p.show()
-
-

@@ -5,6 +5,7 @@ fig=p.figure(figsize=(10.,5.8))
 p.subplots_adjust(left=0.05,bottom=0.065,right=0.96,top=0.59, hspace=0.34)
 sub1=fig.add_subplot(311)
 fa=4410
+dx=7
 
 # Som curto
 sdur=0.003 # segundos
@@ -30,7 +31,7 @@ p.xticks((0,ii-1,xi,xi+ii-1,ii+iii-2, iii-1),(r"0",
     r"$\Lambda+\Lambda_h-2$", r"$\Lambda_h-1$"),fontsize='16')
 p.yticks((),())
 p.ylim(-1.6,7.6)
-p.xlim(-2,ii+iii-2+2)
+p.xlim(-dx,ii+iii-2+dx)
 p.plot([ii-1,ii-1],[-2,9],"y", linewidth=5,alpha=.4)
 p.plot([len(hi)-1,len(hi)-1],[-2,9],"y", linewidth=5,alpha=.4)
 p.plot([xi ,xi ],[-2,9],"y", linewidth=5,alpha=.4)
@@ -73,7 +74,7 @@ p.yticks((),())
 sub2.set_ylabel(r"amplitude $\rightarrow$", fontsize=20)
 sub2.set_yticks((),())
 # p.xlim(-10,ii+iii-2+50+345)
-sub2.set_xlim(-2,ii+iii-2+2)
+sub2.set_xlim(-dx,ii+iii-2+dx)
 # ax2.set_xlim(-2,ii+iii-2+25)
 
 ############## SUB 3
@@ -103,7 +104,7 @@ p.ylim(-2.2,7.)
 
 # p.xticks([0]+list(xis)+[ii+iii-2],[0]+[r"$\delta$"  for i in xis]+[r"$\Lambda+\Lambda_h-2$"],fontsize='16')
 p.xticks((),())
-sub3.set_xlim(-2,ii+iii-2+2)
+sub3.set_xlim(-dx,ii+iii-2+dx)
 sub3.set_yticks((),())
 
 # p.ylabel(u"amalgam", fontsize=16, fontweight='bold')

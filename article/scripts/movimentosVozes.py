@@ -1,6 +1,8 @@
 #-*- coding: utf-8 -*-
 import numpy as n, pylab as p
 
+p.figure(figsize=(10.,5.))
+p.subplots_adjust(left=0.17,bottom=0.15,right=0.97,top=0.97)
 ax = p.subplot(111)
 
 ##### movimentos discernidos no contraponto

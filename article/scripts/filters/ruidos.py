@@ -1,5 +1,5 @@
 #-*- coding: utf8 -*-
-import numpy as n, pylab as p, scikits.audiolab as a
+import numpy as n, pylab as p#, scikits.audiolab as a
 
 N = 100000 # N sempre par
 fa=44100.
@@ -30,6 +30,8 @@ f0=fi[i0]
 ii=1000
 ie=1200
 
+fig=p.figure(figsize=(10.,8.))
+p.subplots_adjust(left=0.09,bottom=0.08,right=0.98,top=0.96, wspace=0.33, hspace=0.6)
 
 ###########
 # Ruido Violeta:
@@ -47,10 +49,10 @@ c[N/2+1:]=n.real(c[1:N/2])[::-1] - 1j*n.imag(c[1:N/2])[::-1]
 ruido=n.fft.ifft(c)
 r=n.real(ruido)
 r=((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r,'violeta.wav',44100)
+# a.wavwrite(r,'violeta.wav',44100)
 
 p.subplot(521)
-p.title(u'ruído violeta')
+p.title(u'violet noise')
 p.ylim(-10,220)
 p.plot(n.log10(fi[i0:len(fi)/2]),20*n.log2(n.abs(c[i0:len(c)/2])))
 p.subplot(522)
@@ -74,10 +76,10 @@ c[N/2+1:]=n.real(c[1:N/2])[::-1] - 1j*n.imag(c[1:N/2])[::-1]
 ruido=n.fft.ifft(c)
 r=n.real(ruido)
 r=((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r,'azul.wav',fa)
+# a.wavwrite(r,'azul.wav',fa)
 
 p.subplot(523)
-p.title(u'ruído azul')
+p.title(u'blue noise')
 p.ylim(-10,220)
 p.plot(n.log10(fi[i0:len(fi)/2]),20*n.log2(n.abs(c[i0:len(c)/2])))
 p.subplot(524)
@@ -92,18 +94,18 @@ p.plot(r[ii:ie])
 ruido=n.fft.ifft(coefs)
 r=n.real(ruido)
 r=((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r,'branco.wav',fa)
+# a.wavwrite(r,'branco.wav',fa)
 
 p.subplot(525)
-p.title(u'ruído branco')
+p.title(u'white noise')
 p.ylim(-10,10)
 #p.ylabel(r"$ 20 \log (\frac{\lVert c_i \rVert }{c_{\text{min}}}) $")
-p.ylabel(r"$ 20 . \log ( \frac{ | c_i |  }{ | c_{min} |   }  ) \rightarrow $", fontsize=20)
+p.ylabel(r"$ 20 \log ( | c_i |  / | c_{min} |    ) \rightarrow $", fontsize=20)
 p.plot(n.log10(fi[i0:len(fi)/2]),20*n.log2(n.abs(coefs[i0:len(coefs)/2])))
 p.subplot(526)
 p.plot(r[ii:ie],'ro', markersize=4)
 p.plot(r[ii:ie])
-p.ylabel(r"amplitude $ \rightarrow $", fontsize=16)
+p.ylabel(r"amplitude $ \rightarrow $", fontsize=20)
 
 
 ################
@@ -122,10 +124,10 @@ c[N/2+1:]=n.real(c[1:N/2])[::-1] - 1j*n.imag(c[1:N/2])[::-1]
 ruido=n.fft.ifft(c)
 r=n.real(ruido)
 r=((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r,'rosa.wav',fa)
+# a.wavwrite(r,'rosa.wav',fa)
 
 p.subplot(527)
-p.title(u'ruído rosa')
+p.title(u'pink noise')
 p.ylim(-220,10)
 p.plot(n.log10(fi[i0:len(fi)/2]),20*n.log2(n.abs(c[i0:len(c)/2])))
 p.subplot(528)
@@ -149,23 +151,16 @@ c[N/2+1:]=n.real(c[1:N/2])[::-1] - 1j*n.imag(c[1:N/2])[::-1]
 ruido=n.fft.ifft(c)
 r=n.real(ruido)
 r=((r-r.min())/(r.max()-r.min()))*2-1
-a.wavwrite(r,'marrom.wav',fa)
+# a.wavwrite(r,'marrom.wav',fa)
 
 p.subplot(529)
-p.title(u'ruído marrom')
+p.title(u'brown noise')
 p.ylim(-220,10)
 p.plot(n.log10(fi[i0:len(fi)/2]),20*n.log2(n.abs(c[i0:len(c)/2])))
-p.xlabel(r"$\log(freq) \rightarrow$", fontsize=16)
+p.xlabel(r"$\log(freq) \rightarrow$", fontsize=18)
 p.subplot(5,2,10)
 p.plot(r[ii:ie],'ro', markersize=4)
 p.plot(r[ii:ie])
-p.xlabel(r"amostras $ \rightarrow$", fontsize=16)
+p.xlabel(r"samples $ \rightarrow$", fontsize=16)
+p.savefig("../../figures/ruidos_.png")
 p.show()
-
-
-
-
-
-
-
-
