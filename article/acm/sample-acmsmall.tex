@@ -14,11 +14,11 @@
 
 % Metadata Information
 \acmJournal{TWEB}
-\acmVolume{9}
-\acmNumber{4}
-\acmArticle{39}
-\acmYear{2010}
-\acmMonth{3}
+\acmVolume{0}
+\acmNumber{0}
+\acmArticle{0}
+\acmYear{0}
+\acmMonth{0}
 \copyrightyear{2009}
 %\acmArticleSeq{9}
 
@@ -50,10 +50,10 @@
 \author{Renato Fabbri}
 % \orcid{1234-5678-9012-3456}
 \affiliation{%
-  \institution{University of São Paulo}
+  \institution{University of S\~ao Paulo}
   \department{Institute of Mathematics and Computer Sciences}
-  \streetaddress{Avenida Trabalhador São Carlense, 400 - Centro}
-  \city{São Carlos}
+  \streetaddress{Avenida Trabalhador S\~ao Carlense, 400 - Centro}
+  \city{S\~ao Carlos}
   \state{SP}
   \postcode{13566-590}
   \country{Brazil}}
@@ -85,33 +85,39 @@
   }
 \author{Osvaldo N. Oliveira Jr.}
 \affiliation{%
-  \institution{University of São Paulo}
-  \department{São Carlos Institute of Physics}
-  \streetaddress{Avenida Trabalhador São Carlense, 400 - Centro}
-  \city{São Carlos}
+  \institution{University of S\~ao Paulo}
+  \department{S\~ao Carlos Institute of Physics}
+  \streetaddress{Avenida Trabalhador S\~ao Carlense, 400 - Centro}
+  \city{S\~ao Carlos}
   \state{SP}
   \postcode{13566-590}
   \country{Brazil}
   }
 
 \begin{abstract}
-Notes, ornaments and intervals are examples of basic musical elements.
-Their representation as discrete-time digital audio plays a central role in software for music creation and design.
-Nevertheless, there is no systematic relation, in analytical terms, of these musical elements to the sonic samples.
-Such a compendium enables scientific experiments in precise and trustful ways, among educational and artistic uses.
-This paper presents a comprehensive description of music in digital audio, within an unified approach.
-Musical elements, like pitch, duration and timbre are expressed by equations on sample level.
-This quantitatively relates characteristics of the discrete-time signal to musical qualities.
-Internal variations, e.g. tremolos, vibratos and spectral fluctuations, are also considered
-to operate within a note. Moreover, the generation of musical structures such as rhythmic meter,
-pitch intervals and cycles, are attained canonically with notes. 
-The availability of these resources in scripts is provided in public domain within the \massa\ toolbox - Music and Audio in Sequences and Samples. Authors observe that the implementation of sample-domain analytical results as open source can encourage concise research.
-As further illustrated in the paper, \massa\ has already been employed by users for diverse purposes, 
-including acoustics experimentation, art and education. The efficacy of these physical descriptions 
-was confirmed by the synthesis of small musical pieces.
-As shown, it is possible to synthesize whole albums through collage of scripts and parametrization.
+The representation of the basic elements of music - such as notes,
+ornaments and intervalar structures - in terms of discrete audio
+signals is often used in software for music creation and design.
+Nevertheless, there is no unified approach that relates these elements to the sound discrete samples.
+In this article, each musical element is related by equations to the discrete-time samples of sounds,
+and each of these relations are implemented in scripts within a software toolbox,
+referred to as \massa\ (Music and Audio in Sequences and Samples).
+The toolbox also includes this article and every script necessary to render the images
+and musical examples, pieces and album, which adds to the educational and artistic uses.
+The fundamental element, the musical note with duration, volume, pitch and timbre,
+is related quantitatively to the characteristics of the digital signal.
+Internal variations, such as tremolos, vibratos and spectral fluctuations,
+are also considered, which enables the synthesis of notes inspired by real instruments and new sonorities.
+With this representation of notes, resources are provided for the generation of further musical structures,
+such as rhythmic meter, pitch intervals and cycles.
+Such a framework enables precise and trustful scientific experiments and is useful for education and art.
+The efficacy of \massa\ is confirmed by the synthesis of small musical pieces using basic notes,
+incremented notes and notes in music, which reflects the organization of the toolbox and of this article.
+It is possible to synthesize whole albums through collage of the scripts and parameterization specified by the user.
+With the paradigm of open source implementation, \massa\ toolbox can be promptly scrutinized, expanded in co-authorship processes and used freely by musicians, engineers and other interested parties.
+In fact, \massa\ has already been employed by external users for diverse purposes which include music production,
+artistic presentations, psychoacoustic experiments and computer language diffusion where the appeal of audiovisual artifacts is exploited for education.
 \end{abstract}
-
 
 %
 % The code below should be generated by the tool at
@@ -153,7 +159,7 @@ As shown, it is possible to synthesize whole albums through collage of scripts a
 %
 
 
-\keywords{digital audio, music, signal processing, acoustics, psychophysics}
+\keywords{music, acoustics, psychophysics, digital audio, signal processing}
 
 
 \thanks{This work is supported by FAPESP (grant number etc ???).}
