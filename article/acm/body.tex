@@ -4,7 +4,7 @@ The definition might also state that the medium includes silences
 and temporal organization of structures, or that music
 is also a cultural activity or product~\cite{}.
 Sound is a physical phenomenon which corresponds to the longitudinal wave of mechanical pressure.
-The human auditory system perceives sounds within the frequency bandwidth between $20Hz$ and $20kHz$,
+The human auditory system perceives sounds in the frequency bandwidth between $20Hz$ and $20kHz$,
 with the actual boundaries depending on the person,
 climate conditions and the sonic characteristics themselves~\cite{Roederer}.
 Since the speed of sound is $\approx 343.2 m/s$,
@@ -16,33 +16,34 @@ and processing by the nervous system~\cite{Roederer}.
 The ear is a dedicated organ for the appreciation of these waves,
 which decomposes them into their sinusoidal spectra and delivers to the nervous system.
 The sinusoidal components are crucial to musical phenomena,
-as one can perceive in the constitution of sounds of musical interest
-(such as harmonic sounds and noises, discussed in sections~\ref{sec:discNote} and~\ref{sec:internalVar}),
-and higher level musical structures (such as tunings, scales and chords, in section~\ref{sec:notesMusic}).
+as one can recognize in the constitution of sounds of musical interest
+(such as harmonic sounds and noises, discussed in Sections~\ref{sec:discNote} and~\ref{sec:internalVar}),
+and higher level musical structures (such as tunings, scales and chords, in Section~\ref{sec:notesMusic}).
 
 The representation of sound can take many forms,
-from musical scores and phonetic texts to electric analog signals and binary data,
-which includes arbitrary sets of features and spectral decompositions such as obtained through wavelets.
-When the representation mimics the mechanical wave directly, it might be referred to as audio,
-although the terms audio and sound are often used without distinction
-and has many definitions that depends on the context and the author~\cite{audioSound}.
-In this definition, which contemplates most common uses of the word,
+from musical scores and texts in a phonetic language to electric analog signals and binary data.
+It includes arbitrary sets of features and spectral decompositions such as obtained through wavelets.
+Although the terms 'audio' and 'sound' are often used without distinction
+and have many definitions that depend on the context and the author~\cite{audioSound},
+audio most often means a representation of sound that
+depicts the amplitude of the mechanical wave through time.
+In this sense,
 audio expresses sonic waves from direct synthesis or input by microphones,
 although these sources are not always neatly distinguishable
 e.g. as captured sounds are processed to generate new sonorities.
-Digital audio protocols that facilitate file
-storage and transfer often implies quality loss and are called \emph{lossy}.
+Digital audio protocols often implies quality loss (to yield smaller files, ease storage and transfer)
+and are called \emph{lossy}.
 This is the case e.g. of MP3 and Ogg Vorbis~\cite{loss}.
-Non-lossy representations of digital audio, called \emph{lossless}, on the other hand,
-assures perfect reconstruction of the analog wave within any convenient precision.
+Non-lossy representations of digital audio, called \emph{lossless} protocols or formats,
+on the other hand, assures perfect reconstruction of the analog wave within any convenient precision.
 The standard paradigm of lossless audio consists of
 representing the sound with samples equally spaced
-by a duration $\lambda_s$, and specifying each sample by a fixed number of bits.
+by a duration $\lambda_s$, and specifying the amplitude of each sample by a fixed number of bits.
 This is the Pulse Code Modulation (PCM) representation of sound.
 A PCM audio format has two essential attributes:
-a sampling frequency $f_s=\frac{1}{\lambda_s}$ (also called the sampling rate),
+a sampling frequency $f_s=\frac{1}{\lambda_s}$ (also called e.g. sampling rate or sample rate),
 which is the number of samples used for representing a second of sound;
-and a bit depth, which is the number of bits used for representing the amplitude of each sample.
+and a bit depth, which is the number of bits for each sample.
 Figure~\ref{fig:PCM} shows $25$ samples of a PCM audio with a bit depth of $4$,
 which yields $2^4=16$ possible values for the amplitude of each sample
 and a total of $4 \times 25= 100$ bits for representing the whole sound.
@@ -50,7 +51,8 @@ and a total of $4 \times 25= 100$ bits for representing the whole sound.
 \begin{figure*}
     \centering
         \includegraphics[width=.7\textwidth]{figures/pcm}
-	\caption{Example of PCM audio: a sound wave is represented by 25 samples where each sample has an amplitude specified with 4 bits.}
+	\caption{Example of PCM audio:
+	a sound wave is represented by 25 samples where each sample has an amplitude specified with 4 bits.}
         \label{fig:PCM}
 \end{figure*}
 
@@ -59,8 +61,8 @@ yields the quantization error or quantization noise.
 This noise diminishes as the bit depth increases
 while greater sampling frequency allows higher frequencies to be represented.
 The Nyquist theorem~\cite{Openheim} asserts that the sampling frequency
-is twice the maximum frequency of the represented signal.
-Thus, for general musical purposes, it is necessary to have samples in a rate
+is twice the maximum frequency that the represented signal can contain.
+Thus, for general musical purposes, it is necessary to use a sample rate of
 at least twice the highest frequency heard by humans,
 that is, $f_s \geq 2\times 20kHz = 40kHz$.
 This is the fundamental reason for the adoption of sampling frequencies
@@ -75,98 +77,82 @@ The note often stands as the 'fundamental unit' of musical structures
 in practice, it can unfold into sounds that uphold other approaches.
 This is of capital importance because science and scholastic artists
 widened the traditional comprehension of music in the twentieth century
-to encompass concepts beyond e.g. rhythm, melody and harmony.
-This is very evident e.g. in the concrete, electronic, electroacoustic,
+to encompass discourse without explicit rhythm, melody or harmony.
+This is very evident in e.g. in the concrete, electronic, electroacoustic,
 and spectral musical styles.
-In the 1990s, it became evident that popular music had also incorporated
-sounds amalgams and abstract discursive arcs,
-to name just a couple of simple characteristics.
+In the 1990s, it became evident that popular
+(commercial) music had also incorporated
+sounds amalgams and abstract discursive arcs~\footnote{There
+are well known incidence of such musical techniques in ethnic music,
+such as in Pygmy music, but western music theory assimilated them
+only in the last century~\cite{Wisnik}.}.
 Notes are also convenient for another reason:
 the average listener -- and a considerable part of the specialists --
 presupposes rhythmic and pitch organization 
-(made explicit in section~\ref{sec:notesMusic})
+(made explicit in Section~\ref{sec:notesMusic})
 as fundamental musical properties,
 and these are developed in traditional musical theory in terms of notes.
-Thereafter, in this article we specify musical notes in PCM audio through equations
+Thereafter, in this article we describe musical notes in PCM audio through equations
 and then indicate mechanisms for deriving higher level musical structures.
 We understand that this is not the unique approach to mathematically express music in
 digital audio, but musical theory and practical issues suggest that
 this is a proper framework for understanding and making computer music,
 as should become evident in the reminder of this text and be verifiable
 by usage of the \massa\ toolbox.
+Hopefully, the interested reader or programmer will be able to use
+this framework to synthesize music beyond traditional conceptualizations when intended.
 
-\subsection{Contributions and paper organization}
-This article aims at representing musical structures by their discrete-time sonic characteristics.
-Results include mathematical relations, usually in terms of musical characteristics and samples,
+% \subsection{Contributions and paper organization}
+This article aims at representing musical structures and artifices
+by their discrete-time sonic characteristics.
+The results include mathematical relations,
+usually in terms of musical characteristics and samples,
 concise musical theory considerations,
 and their implementations as software routines both as
 very raw and direct algorithms and in the context of rendering musical pieces.
 Despite the general interests involved,
-there are some books and computer implementations that tackle the subject.
+there are only a few books and computer implementations that tackle the subject.
 These mainly focus on computer implementations and ways to mimic traditional instruments,
 with scattered mathematical formalisms.
 A compilation of the works and their contributions is in the bibliography~\cite{dissertacao}.
-To the best of the authors' knowledge,
-although current music software
-use the analytical descriptions presented in this study,
-it seems that there has been no concise and mathematical description of them.
+Articles on the topic appear to be lacking, to the best of our knowledge.
+Although current music software use the analytical descriptions presented here,
+there is no concise mathematical description of them, and it is far from trivial
+to achieve the equations by analyzing the available software implementations.
+
 The objectives of this paper are:
 
 \begin{enumerate}
-	\item Present a concise set of relations among musical basic elements and sequences of PCM audio samples. 
-	\item Introduce a framework of sound synthesis with control at sample level and with potential uses in psycho-acoustical experiments and high-fidelity synthesis.
-	\item Provide the accessibility of the developed framework. The analytic relations presented in this article are implemented as public domain scripts, i.e. small computer programs using accessible technologies for better distribution and validation. This constitute the \massa\ toolbox, available in an open Git repository~\cite{gitBook}. These scripts are written in Python and make use of external libraries, such as Numpy that performs calls to Fortran routines for better computational efficiency. Part of the scripts have been transcribed to JavaScript and native Python with readiness, what favors their use in Web browsers such as Firefox and Chromium~\cite{numpy, audiolab, tutpython, python}. Furthermore, these are all open technologies, that is, published using licenses that allow copy, distribution and use of any part for research and derivatives. This way, the work presented here is embedded in recommended practices for availability and eases co-authorship processes~\cite{Raymond,Lessig}.
-	\item To provide a didactic presentation of the content to favor its apprehension and usage. It is worthwhile to mention that this subject comprises diverse topics on signal processing, music, psycho-acoustics and programming.
+	\item Present a concise set of mathematical relations between musical basic elements and sequences of PCM audio samples.
+	\item Introduce a framework of sound and musical synthesis with control at sample level which entails potential uses in psychoacoustic experiments and synthesis with extreme precision (discussed in Section~\ref{highPrecision}).
+	\item Provide a powerful theoretical framework which can be used to synthesize musical pieces and albums.
+	\item Provide approachability to the developed framework~\footnote{All
+		the analytic relations presented in this article are implemented as public domain scripts,
+		i.e. small computer programs using accessible technologies for distribution and validation.
+		This constitutes the \massa\ toolbox, available in an open Git repository~\cite{gitBook}.
+		These scripts are written in Python and make use of Numpy,
+		which performs numerical routines efficiently (e.g. through LAPACK).
+		Part of the scripts have been transcribed to JavaScript and native Python,
+		which favors their use in Web browsers such as Firefox and
+		Chromium~\cite{numpy, audiolab, tutpython, python}.
+		These are all open technologies, published using licenses that allow for copy,
+		distribution and use for research and generating derivatives.
+		Hence, the work presented here aims at being compliant with recommended
+		practices for availability and validation
+		and should ease co-authorship processes~\cite{Raymond,Lessig}.}.
+	\item Provide a didactic presentation of the content, which is highly multidisciplinary,
+		involving signal processing, music, psycho-acoustics and programming.
 \end{enumerate}
 
-The remaining parts of this work are organized as follows: section~\ref{sec:discNote} characterizes the basic musical note; section~\ref{sec:internalVar} further develops internals of the musical note; section~\ref{sec:notesMusic} tackles the organization of musical notes in higher levels of musical structure~\cite{Wisnick,Webern,Lerdahl,Cook,Lacerda}. As these descriptions embody topics such as psycho-acoustics, cultural traditions, formalisms and protocols, the text points to external complements as needed~\cite{Zamacois,Schoenberg,microsound}.
-
-The next section is a minimum text in which musical elements are presented side-by-side with the discrete-time samples they result. In order to account for validation and sharing, implementations on computer code of each one of these relations are gathered in the \massa\ toolbox together with little musical montage resulting from them.
-
-%Representing musical structures and artifices by it's discrete sound characteristics is the purpose of this work. The results include mathematical relations and it's computer program implementations. Next section exposes the theoretical description, which is implemented as scripts in a one-to-one relation to the equations.
-
-%\subsection{Sound and digital audio}
-
-%Sound is a longitudinal wave of mechanical pressure. The frequency bandwidth between $20Hz$ and $20kHz$ is appreciated by human hearing system with boundaries dependent on the person, climate conditions and sonic characteristics itself~\cite{Roederer}. If considered the speed of sound of $\approx 343.2 m/s$, this limits corresponds to $\frac{343.2}{20} = 17.16\,m$ and $\frac{343.2}{20000}=17.16\,mm$.
-
-%Human perception of sound involves captivation by bones, stomach, ears, transfer functions of head and processing torso and nervous system. Besides that, the ear is a dedicated organ to the capture of this waves. Its mechanism decomposes sound into its sinusoidal spectrum and delivers them to the nervous system. This sinusoidal components are crucial to musical phenomena, as one can observe in the composition of sounds with musical interest and in tunings and scales. Subsection~\ref{subsec:dicNote} exposes the presence of sinusoid in discrete-time audio and characterizes a basic musical note.
-
-%The representation of sound is called audio (although these terms are often used without distinction), and this can be provenient from caption by microphones or from synthesis. Often enough, digital audio is specified by protocols that eases file storage and transferring, in cost of a direct representation or even some loss in quality. Standard representation of digital audio, on the other hand, consists of samples equally spaced by $\lambda_s$ durations in time, with each sample specified by a sample number of bits. This is called the Pulse Code Modulation representation of sound (PCM). A PCM digital sound is characterized by it's sampling frequency $f_s=\frac{1}{\lambda_s}$, also called sampling rate, and bit depth, which is the number of bits used of representing the amplitude of each sample. Figure~\ref{fig:PCM} shows $25$ samples of a PCM audio with $4$ bits each. The $2^4=16$ possible steps for each sample, together with the regular spacing $\lambda_s$ between them, introduces a quantization error. This noise, caused by this errors, diminishes as these spacing diminishes.
-
-
-%\begin{figure*}
-%    \centering
-%        \includegraphics[width=\textwidth]{pcm}
-%        \caption{Pulse Code Modulation (PCM) audio: an analogical signal is %represented by 25 samples with 4 bits each.}
-%        \label{fig:PCM}
-%\end{figure*}
-
-
-
-
-%By the Nyquist theorem, it is known that half the sampling frequency is the maximum frequency of the signal. Thus, it is necessary to have a sampling frequency at least twice the highest frequency heard by humans $f_s \geq 2\times 20kHz = 40kHz$. This is the basis for the use of the sampling frequencies $44.1kHz$ and $48kHz$, standards in Compact Disks (CD) and Broadcast systems (Radio and TV), respectively.
-
-%\subsection{Sonic art and musical theory}
-
-%A common definition for music is the art made by sounds and silences. For the average listener -- and a reasonable part of specialists -- the notion of music presupposes rhythmic and pitch organization such as explained in subsection~\ref{subsec:notesMusic}. Music from the twentieth century enlarged this traditional comprehension of music. This occurred in concert music, specially in the concrete, electronic and electroacoustic styles. On the last decade of the century, it was evident that popular music has also incorporated sounds without defined pitch and temporal organization out of simple metrics. Even though, the note stands paradigmatic as a 'fundamental unit' of musical structures and, in practice, it can unfold in sounds that observe this recent developments. The definition and expansion of the musical note as the fundamental unit of music is approached in subsections~\ref{subsec:discNote} and~\ref{subsec:internalVar}, respectively. Subsection~\ref{subsec:notesMusic} tackles the organization of musical notes in a higher level~\cite{Wisnick,Webern,Lerdhal,Cook,Lacerda}.
-
-%Musical theory embody topics as diverse as psycho-acoustics, cultural manifestations and formalisms. The section~\ref{sec:results} point this topics as needed and designate external complements~\cite{Zamacois,Schoenberg,microsound}.
-
-%\subsection{Computational implementation}
-
-%The results presented in this article are implemented as scripts, i.e.\ small computer programs implemented using accessible technologies for better distribution and validation. This constitute the \massa\ toolbox, available in public domain in an open Git repository~\cite{gitBook}. This scripts are written in Python and make use of external libraries Numpy and Scikits/Audiolab that performs calls to Fortran routines for better computational efficiency. Part of this code has been transcribed to JavaScript and native Python with readiness, what points to uses of this contribution in Web browsers such as Firefox and Chromium~\cite{numpy, audiolab, tutpython, python}.
-
-%This are all open technologies, that is, published using licenses that allows copy, distribution and use of any part for research and derivatives. This way, the work here presented is available and eases co-authorship processes~\cite{Raymond,Lessig}. 
-
-%\subsection{Objectives}
-%\label{subsec:objectives}
-%The main goal of this article is to present a concise set of relations among musical basic elements and sequences of PCM audio samples. The next section is a minimum text in which music elements are presented side-by-side with the discrete-time samples they result. As validation and sharing, implementations on computer code of these relations and little musical pieces where gathered the \massa\ toolbox, available online.
-
-%Secondary objectives include presenting a framework of sound synthesis with control at sample level, with potential uses in psychoacoustical experiments and high-fidelity synthesis. The didactic presentation of the content favors use and apprehension on a problem which calls diverse topics to be tackled: signal processing, music and psycho-acoustics, to name just a few.
-
-%\subsection{Related work}
-%Due to the general interest, and number of knowledge areas involved, there is a number of books and computer implementations that are of interest or present similarities to what is presented in this work. A more detailed comparison of them is pointed out in the bibliography~\cite{dissertacao}. There is almost no articles which could be found on the topic. In summary, there are computer implementations that use this analytical descriptions implicitly, but there is no such a concise and mathematical description of the processes implemented, as they aim to be libraries for sound and music. There are books on the topic that cover various aspects of effects and physical modeling, but none of them carry a concise description of musical elements and structures, but focus on aspects of musical sounds and ways to mimic traditional instruments.
-
+The reminder of this article is organized as follows:
+Section~\ref{sec:discNote} characterizes the basic musical note;
+Section~\ref{sec:internalVar} develops internal dynamics of musical notes;
+Section~\ref{sec:notesMusic} tackles the organization of musical notes in
+higher level musical structures~\cite{Wisnick,Webern,Lerdahl,Cook,Lacerda}.
+As these descriptions require topics such as psychoacoustics, cultural traditions,
+and formalisms, the text points to external complements as needed~\cite{Zamacois,Schoenberg,microsound}
+and presents methods, results and discussions altogether.
+Section~\ref{cap:conclusao} holds final considerations and further work.
 
 \section{Characterization of the discrete-time musical note} \label{sec:discNote}\label{sec:notaDisc}
 
