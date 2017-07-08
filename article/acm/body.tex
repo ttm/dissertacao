@@ -444,7 +444,7 @@ T_i^{f,\; \Delta}=\left\{t_i^f\right\}_0^{\lfloor f_a . \Delta \rfloor -1}=\left
 \end{equation}
 
 \subsection{Spatial localization and spatialization}\label{subsec:spac}
-A musical note always has a spatial localization, even though this is not one of its four basic properties in canonical musical theory. The note has a source which has a position at the ordinary physical three dimensional space. The reverberation in the environment in which sound occurs is the matter of \emph{spatialization}. Both concepts, spatialization and spatial localization, are widely valued by audiophiles and the music industry~\cite{floEsp}. 
+A musical note always has a spatial localization, even though this is not one of its four basic properties in canonical musical theory. The note has a source which has a position at the ordinary physical three dimensional space. This position is the spatial localization of the sound and might not be (modeled as) a single point. The reverberation in the environment in which sound occurs is one of the main topics of \emph{spatialization}, i.e. the consideration of the influence the environment has on the sound that reaches a listener. Both concepts, spatialization and spatial localization, are widely valued by audiophiles and the music industry~\cite{floEsp}. 
 
 \subsubsection{Spatial localization}
 It is understood that the perception of sound localization occurs in our nervous system by three pieces of information: the delay of incoming sound between both ears, the difference of sound intensity at each ear and the filtering performed by the human body, specially its chest, head and ears~\cite{Roederer, hrtf, Heeger}. 
@@ -465,7 +465,7 @@ d' & =\sqrt{\left (x+\frac{\zeta}{2} \right )^2 + y^2}
 \end{split}
 \end{equation}
 
-Where $\zeta$ is the distance between ears $\zeta$, known to be $\zeta \approx 21.5cm$ in an adult human. Straightforward calculations result in ITD:
+\noindent where $\zeta$ is the distance between ears $\zeta$, known to be $\zeta \approx 21.5cm$ in an adult human. Straightforward calculations result in ITD:
 
 \begin{equation}\label{eq:dti}
 ITD=\frac{d'-d}{v_{sound\;at\;air}\approx 343.2 }\quad \text{seconds}
@@ -477,7 +477,7 @@ ITD=\frac{d'-d}{v_{sound\;at\;air}\approx 343.2 }\quad \text{seconds}
 IID=20\log_{10}\left (\frac{d}{d'}\right) \quad decibels
 \end{equation}
 
-\noindent which, converted to amplitude, yields $IID_a=\frac{d}{d'}$. $IID_a$ can be used as a multiplicative constant to the right channel of a stereo sound signal: $\{t_i'\}_0^{\Lambda -1}=\{IID_a . t_i\}_0^{\Lambda -1}$, where $\{t_i'\}$ are samples of the wave incident in the left ear. It is possible to use IID together with ITD as a time advance for the right channel. It is a crucial vestige to localization perception of bass sounds and percussive sonorities~\cite{Heeger}. 
+\noindent which, converted to amplitude, yields $IID_a=\frac{d}{d'}$. $IID_a$ can be used as a multiplicative constant to the right channel of a stereo sound signal: $\{t_i'\}_0^{\Lambda -1}=\{IID_a . t_i\}_0^{\Lambda -1}$, where $\{t_i'\}$ are samples of the wave incident in the left ear. It is possible to use IID together with ITD as a time advance for the right channel. It is a crucial clue to localization perception of bass sounds and percussive sonorities~\cite{Heeger}. 
 With $\Lambda_{ITD}=\lfloor ITD . f_a \rfloor$:
 
 \begin{equation}\label{eq:locImpl}
@@ -499,15 +499,14 @@ Spatial localization depends considerably on other cues. By using only ITD and I
 
 \noindent with $x,y$ as presented in Figure~\ref{fig:spac}. Henceforth, there are problems when $\theta$ falls within the so-called "cone of confusion": the same pair of ITD and IID results in a large number of points inside the cone. On those points the inference of the azimuthal angle depends especially on the attenuation filtering for high frequencies, since the head interferes much more in the treble than in bass waves~\cite{Heeger,hrtf}. Also relevant to the hearing of lateral sources is that low frequencies diffract and the wave arrives to the opposite ear with a delay of $\approx 0.7ms$.\cite{floEsp}
 
-Figure~\ref{fig:spac} depicts the acoustic shadow of the cranium, an important phenomenon to perception of source azimuthal angle in the cone of confusion. The cone itself is not shown in Figure~\ref{fig:spac} because it is not exactly a cone and its precise dimensions were not encountered in the literature. Given the filtering and diffraction dependent on the sound spectrum, it is hard, if not impossible, to correctly draw the confusion cone. Even so, the cone of confusion can be understood as a cone with its top placed in the middle of the head and growing out in the direction of each ear~\cite{hrtf}.
+Figure~\ref{fig:spac} depicts the acoustic shadow of the cranium, an important phenomenon to perception of source azimuthal angle in the cone of confusion. The cone itself is not shown in Figure~\ref{fig:spac} because it is not exactly a cone and its precise dimensions were not encountered in the literature. Given the filtering and diffraction dependent on the sound spectrum, it is hard, if not impossible, to correctly draw the confusion cone. Even so, the cone of confusion can be understood as a cone with its apex placed in the middle of the head and growing out in the direction of each ear~\cite{hrtf}.
 
 On the other hand, the complete localization, including height and distance of sound source, is given by the Head Related Transfer Function (HRTF)~\cite{hrtf}. There are well known open databases of HRTF, such as CIPIC, and it is possible to apply those transfer functions in a sonic signal by convolution (see equation~\ref{eq:conv})~\cite{CIPIC}. Each human body has its filtering and there are techniques to generate HRTFs to be universally used~\cite{lazaSPA}. 
 
 \subsubsection{Spatialization}
+Spatialization results from sound reflections and absorption by room/environment surface where the note is played. The sound propagates through the air with a speed of $\approx 343.2m/s$ and can be emitted from a source with any directionality pattern. When a sound pulse encounters a surface there are: 1) inversion of the propagation speed component normal to the surface;  2) energy absorption, especially in trebles. The sonic waves propagate until they reach inaudible levels (and further but then can often be neglected). As a sonic front reaches the human ear, it can be described as the original sound, with the last reflection point as the source, and the absorption filters of each surface it has reached. It is possible to simulate reverberations that are impossible in real systems. For example, it is possible to use asymmetric reflections with relation to the axis perpendicular to the surface, or to increase specific frequency bands (known as 'resonances'); neither of these characteristics are found in real systems.
 
-Spatialization results from sound reflections and absorptions by environment (e.g. room) surface where the note is played. The sound propagates through the air with a speed of $\approx 343.2m/s$ and can be emitted from a source with any directionality pattern. When a sound pulse encounters a surface there is reflection, and there are: 1) inversion of the propagation speed component normal to the surface;  2) energy absorption, especially in trebles. The sonic waves propagate until they reach inaudible levels (and even further). As a sonic front reaches the human ear, it can be described as the original sound, with the last reflection point as the source, and the absorption filters of each surface it has reached. It is possible to simulate reverberations that are impossible in real systems. For example, it is possible to use asymmetric reflections with relation to the axis perpendicular to the surface, or to increase specific frequency bands (known as 'resonances'); neither of these characteristics are found in real systems.
-
-There are reverberation models less related to each independent reflection, exploring valuable information to the auditory system. In fact, reverberation can be modeled with a set of 2 temporal and spectral sections:
+There are reverberation models less related to each independent reflection, exploring valuable information to the auditory system. In fact, reverberation can be modeled with a set of two temporal and two spectral sections~\cite{JOSPhy}:
 
 \begin{itemize}
    \item First period: 'first reflections' are more intense and scattered.
@@ -516,11 +515,10 @@ There are reverberation models less related to each independent reflection, expl
    \item Second band: mid and treble have progressive decay and smooth statistical fluctuations.
 \end{itemize}
 
-Smith III points that reasonable concert rooms have total reverberation time of $\approx 1.9$ seconds, and that the period of first reflections is around $0.1$ seconds. With these values, under the given conditions, there are perceived wave pulses which propagate for $652.08$ m ($83.79k$ samples in $f_a=44.1kHz$) before reaching the ear. In addition, sound reflections made after propagation for $34.32$ m ($4.41k$ samples in $f_a=44.1kHz$) have incidences less distinct by hearing. These first reflections are particularly important to spatial sensation. The first incidence is the direct sound, described by ITD and IID of equations~\ref{eq:dti} and~\ref{eq:dii}. Assuming that each one of the first reflections, before reaching the ear, will propagate at least $3-30m$, depending on the room dimensions, the separation between the first reflections is $8-90ms$ ($\approx 350-4000$ samples in $f_a=44.1kHz$). It is experimentally verifiable that the number of reflections increases with the square of $\approx k.n^2$. A discussion about the use of convolutions and filtering to favor implementation of these phenomena is provided in subsection~\ref{subsec:mus2}, particularly in the paragraphs about reverberation.
+Smith III states that usual concert rooms have total reverberation time of $\approx 1.9$ seconds, and that the period of first reflections is around $0.1s$. With these values, under the given conditions, there are perceived wave pulses which propagate for $652.08m$ ($83.79k$ samples in $f_a=44.1kHz$) before reaching the ear. In addition, sound reflections made after propagation for $34.32$ m ($4.41k$ samples in $f_a=44.1kHz$) have incidences less distinct by hearing. These first reflections are particularly important to spatial sensation. The first incidence is the direct sound, described by ITD and IID of equations~\ref{eq:dti} and~\ref{eq:dii}. Assuming that each one of the first reflections, before reaching the ear, will propagate at least $3-30m$, depending on the room dimensions, the separation between the first reflections is $8-90ms$ ($\approx 350-4000$ samples in $f_a=44.1kHz$). It is experimentally verifiable that the number of reflections increases with the square of $\approx k.n^2$. A discussion about the use of convolutions and filtering to favor implementation of these phenomena is provided in subsection~\ref{subsec:mus2}, particularly in the paragraphs about reverberation.
 
 \subsection{Musical use}\label{subsec:basMus}
-
-Once the basic note is defined, it is convenient to build musical structures with sequences based on these particles. The sum of elements with same index of $N$ sequences $T_{k,i}=\{t_{k,i}\}_{k=0}^{N-1}$ with same size $\Lambda$ results in the overlapped spectral contents of each sequence, in a process referred to as mixing:
+Once the basic note is defined, it is didactically convenient to build musical structures with sequences based on these particles. The sum of elements with same index of $N$ sequences $T_{k,i}=\{t_{k,i}\}_{k=0}^{N-1}$ with same size $\Lambda$ results in the overlapped spectral contents of each sequence, in a process called mixing:
 
 \begin{equation}\label{eq:mixagem}
 \{t_i\}_0^{\Lambda-1}=\left \{ \sum_{k=0}^{N-1}t_{k,i} \right \}_0^{\Lambda-1}
@@ -529,11 +527,11 @@ Once the basic note is defined, it is convenient to build musical structures wit
 \begin{figure}[h!]
     {\centering
         \includegraphics[width=.5\columnwidth]{figures/mixagem__}}
-    \caption{Mixing of three sound sequences. The amplitudes are directly overlapped.}
+    \caption{Mixing of three sound sequences. The amplitudes are directly summed.}
         \label{fig:mixagem}
 \end{figure}
 
-Figure~\ref{fig:mixagem} illustrates this overlapping process of discretized sound waves, each with 100 samples. If $f_a=44.1kHz$, the frequencies of the sawtooth, square and sine wave are, respectively: $\frac{f_a}{100/2}=882Hz$, $\frac{f_a}{100/4}=1764Hz$ and $\frac{f_a}{100/5}=2205Hz$. The samples duration is very short $\frac{f_a=44.1kHz}{100} \approx 2 \text{ milliseconds}$. One can complete the sequence with zeroes to sum (mix) sequences with different sizes.
+Figure~\ref{fig:mixagem} illustrates this overlapping process of discretized sound waves, each with 100 samples. If $f_a=44.1kHz$, the frequencies of the sawtooth, square and sine wave are, respectively: $\frac{f_a}{100/2}=882Hz$, $\frac{f_a}{100/4}=1764Hz$ and $\frac{f_a}{100/5}=2205Hz$. The samples duration is very short $\frac{f_a=44.1kHz}{100} \approx 2ms$. One can complete the sequence with zeroes to sum (mix) sequences with different sizes.
 
 The mixed notes are generally separated by the ear according to the physical laws of resonance and by the nervous system~\cite{Roederer}.  This process of mixing musical notes results in musical harmony whose intervals between frequencies and chords of simultaneous notes guide subjective and abstract aspects of music and its appreciation~\cite{Harmonia}, which is addressed in section~\ref{sec:notesMusic}. 
 
@@ -545,7 +543,7 @@ Sequences can be concatenated in time. If the sequences $\{t_{k,i}\}_0^{\Lambda_
 \end{split}
 \end{equation}
 
-This mechanism is demonstrated in Figure~\ref{fig:concatenacao} with the same sequences of Figure~\ref{fig:mixagem}. Although the sequences are short for the usual sample rates, it is easy to observe the concatenation of sound sequences. In addition, each note has a duration larger than $100ms$ if $f_a<1kHz$.
+This mechanism is demonstrated in Figure~\ref{fig:concatenacao} with the same sequences of Figure~\ref{fig:mixagem}. Although the sequences are short for the usual sample rates, it is easy to visually observe the concatenation of sound sequences. In addition, each note has  a duration larger than $100ms$ if $f_a<1kHz$.
 
 \begin{figure}[h!]
 {    \centering
