@@ -405,13 +405,10 @@ With the basic musical digital note carefully described, the next section develo
 
 
 \section{Variation in the basic musical note}\label{sec:internalVar}\label{sec:varInternas}
-
-
 The basic digital music note defined in section~\ref{sec:notaDisc} has the following parameters: duration, pitch, intensity (volume) and timbre. This is a useful and paradigmatic model, but it does not exhaust all the aspects of a musical note. First of all, characteristics of the note modify along the note itself~\cite{Chowning}. For example, a 3 s piano note has intensity with abrupt rise at the beginning and progressive decay, has spectrum variations with harmonics decaying and some others emerging along time. These variations are not mandatory, but they are used in sound synthesis for music because they reflect how sounds appear in nature. This is considered to be so true that there is a rule of thumb: to make a sound that incites interest by itself, do internal variations on it~\cite{Roederer}.
 To explore all the ways in which variations occur within a note is out of the scope of any work, given the sensibility of the human ear and the complexity of human sound cognition. In the following, primary resources are presented to produce variations in the basic note. It is worthwhile to recall that all the relations in this and other sections are implemented in Python and published as the public domain \massa\ toolbox. The musical pieces \emph{Transita para metro}, \emph{Vibra e treme}, \emph{Tremolos, vibratos e a frequência}, \emph{Trenzinho de caipiras impulsivos}, \emph{Ruidosa faixa}, \emph{Bela rugosi}, \emph{Chorus infantil}, \emph{ADa e SaRa} were made to validate and illustrate concepts of this section. The code that synthesizes these pieces is also part of the toolbox\cite{MASSA}.
  
 \subsection{Lookup Table}\label{subsec:lookup}
-
 The \emph{Lookup Table} (or simply LUT) is an array for indexed operations which substitutes continuous and repetitive calculation. It is used to reduce computational complexity and employ functions without direct calculation, as data sampled from nature.
 In music its usage transcends these applications, as it simplifies many operations and makes it possible to use a single wave period to synthesize sounds in the whole audible spectrum, with any waveform.
 
@@ -419,7 +416,7 @@ In music its usage transcends these applications, as it simplifies many operatio
     \centering
         \includegraphics[width=\textwidth]{figures/lut}
     \caption{Search in the \emph{lookup table} to synthesize sounds at different frequencies using a unique waveform with high resolution.}
-        \label{fig:lut}                                                                                                            
+        \label{fig:lut}
 \end{figure*}
 
 Let $\widetilde{\Lambda}$ be the wave period in samples and $\widetilde{L_i} = \left\{\, \widetilde{l}_i \,\right\}_0^{\widetilde{\Lambda} -1}$ the samples $\widetilde{l_i}$ (refer to Equation~\ref{periodoUnico}), a sequence $T_i^{f,\,\Delta}$ with samples of a sound with frequency $f$ and duration $\Delta$ can be obtained by means of $\widetilde{L_i}$:
@@ -443,7 +440,6 @@ There are important considerations here: it is possible to use practically any f
 LUTs are broadly used in computational implementations for music. A classical usage of LUTs is known as \emph{Wavetable Synthesis}, which consists of many LUTs used together to generate a quasi-periodic music note~\cite{Cook,Wavetable}.
 
 \subsection{Incremental Variations of Frequency and Intensity}\label{subsec:vars}
-
 As stated by the Weber and Fechner~\cite{Weber-Fechner} law, the human perception has a logarithmic relation with the stimulus. That is to say, the exponential progression of a stimulus is perceived as linear.
 For didactic reasons, and given its use in AM and FM synthesis (subsection~\ref{subsec:tvaf}), linear variation is discussed first.
 
@@ -493,7 +489,6 @@ Therefore, $f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
 The term $\frac{i}{\Lambda-1}$ covers the interval $[0,1]$ and it is possible to raise it to a power in such a way that the beginning of the transition will be smoother or steeper. This procedure is useful for energy variations with the purpose of changing the volume\footnote{The volume (psychophysical quality) is a consequence of different sound characteristics, like reverberation and concentration of high harmonics, among which is the wave total energy. Wave energy is easy to modify (see Equation~\ref{eq:potencia}) and can be varied in many ways. The simplest way consists of modifying the amplitude by multiplying the whole sequence by a real number. The increase of energy without amplitude variation is the \emph{sound compression}, quite popular nowadays for music production~\cite{guillaume}}. It is sufficient to multiply the original sequence by the sequence $a_{\Lambda-1}^{\left( \frac{i}{\Lambda-1} \right )^\alpha}$, where $\alpha$ is the given coefficient and $a_{\Lambda-1}$ is a fraction of the original amplitude, which is the value to be reached at the end of the transition.
 
 Thus, for amplitude variations:
-
 \begin{equation}\label{seqAmp}
 \begin{split}
  \{a_i\}_0^{\Lambda-1}= & \left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}= \\ = & \left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ (with } a_0=1 \text{)}
@@ -528,13 +523,10 @@ T_i^{'}=\left\{ t_i 10^{\frac{V_{dB}}{20}\left( \frac{i}{\Lambda-1} \right)^\alp
 
 The linear transitions will be used for AM and FM synthesis, while logarithmic transitions are proper tremolos and vibratos, as developed in subsection~\ref{subsec:tvaf}. A non-oscillatory exploration of these variations is in the music piece \emph{Transita para metro}, whose code is online as part of the \massa\ toolbox\cite{MASSA}.
 
-
 \subsection{Application of Digital Filters}\label{subsec:filtros}
-
 This subsection is limited to a description of sequences processing, by convolution and differential equations, and immediate applications, as its complexity escapes the scope of this study\footnote{The implementation of filters encompasses an area of recognized complexity, with dedicated literature and software implementations. The reader is welcome to visit the bibliography for further discussion~\cite{Openheim,smith}.}. Filter applications can be part of the synthesis process or made subsequently as part of processes commonly referred to as ``sound treatment''.
 
 \subsubsection{Convolution and finite impulse response (FIR) filters}
-
 \begin{figure*}
      \centering
          \includegraphics[width=\textwidth]{figures/convolucao}
@@ -568,7 +560,6 @@ An important property is the time shift caused by convolution with a shifted imp
 \end{figure*}
 
 \subsubsection{Infinite impulse response (IIR) filters}
-
 This class of filters, known by the acronym IIR, is characterized by having an infinite time representation, i.e.\ the impulse response does not converge to zero. Its application is usually made by the following equation:
 
 \begin{equation}\label{eq:diferencas}
@@ -592,10 +583,8 @@ Both alternatives are explored by ~\cite{JOSFM,smith}, and by the collection of 
         \label{fig:iir}
 \end{figure*}
 
-
 \begin{enumerate}
   \item Low-pass with a simple pole, module of the frequency response in the upper left corner of Figure~\ref{fig:iir}. The general equation has the cutoff frequency $f_c \in (0,\frac{1}{2})$, fraction of the sample frequency $f_s$ in which an attenuation of $3dB$ occurs. The coefficients $a_0$ and $b_1$ of the IIR filter are given by the intermediate variable $x \in [e^{-\pi},1]$:
-
 \begin{equation}\label{eq:passa-baixas}
  \begin{split}
  x & =e^{-2\pi f_c} \\
@@ -603,9 +592,7 @@ Both alternatives are explored by ~\cite{JOSFM,smith}, and by the collection of 
  b_1 & =  x
  \end{split}
 \end{equation}
-
   \item High-pass filter with a simple pole, module of its frequency responses at the upper right corner of Figure~\ref{fig:iir}. The general equation with cutoff frequency $f_c \in (0,\frac{1}{2})$ is calculated by means of the intermediate variable $x \in [e^{-\pi},1]$:
-
 \begin{equation}\label{eq:passa-altas}
  \begin{split}
  x & =e^{-2\pi f_c} \\
@@ -614,21 +601,14 @@ Both alternatives are explored by ~\cite{JOSFM,smith}, and by the collection of 
  b_1 & =  x
  \end{split}
 \end{equation}
-
-%\item Passa-banda
-%\item Rejeita-banda
-
 \item Notch filter. This filter is parametrized by a center frequency $f_c$ and bandwidth $bw$, both given as fraction of $f_s$, therefore $f,\; bw \in (0,0.5)$. Both frequencies $f_c \pm bw$ have $\approx 0.707$ of the amplitude, i.e. attenuation of $3dB$. The auxiliary variables $K$ and $R$ are defined as:
-
 \begin{equation}\label{eq:varAux}
  \begin{split}
   R & = 1 - 3bw \\
   K & = \frac{1-2R\cos(2\pi f_c) + R^2}{2 - 2 \cos (2 \pi f_c)}
  \end{split}
 \end{equation}
-
 The band-pass filter in the lower left corner of Figure~\ref{fig:iir} has the following coefficients:
-
 \begin{equation}\label{eq:passa-banda}
  \begin{split}
  a_0 & =  1 - K \\
@@ -638,9 +618,7 @@ The band-pass filter in the lower left corner of Figure~\ref{fig:iir} has the fo
  b_2 & =  -R^2
  \end{split}
 \end{equation}
-
 The coefficients of band-reject filter, depicted in the lower right of Figure~\ref{fig:iir}, are:
-
 \begin{equation}\label{eq:rejeita-banda}
  \begin{split}
  a_0 & =  K \\
@@ -650,17 +628,9 @@ The coefficients of band-reject filter, depicted in the lower right of Figure~\r
  b_2 & =  -R^2
 \end{split}
 \end{equation}
-
-%\item Biquad: pela especificação de uma frequência central, da qualidade
-%e da intensidade do filtro, este filtro é simples e usual para áudio,
-%permitindo ajustes mais finos. Diversas receitas podem ser encontradas
-%na literatura, recomendamos especialmente as diferentes especificações
-%em ~\ref{musicDSP} e ~\ref{dspguide}.
-
 \end{enumerate}
 
 \subsection{Noise}\label{subsec:ruidos}
-
 Sounds without an explicit pitch are generally called noise~\cite{Lacerda}. They are important musical sounds, as noise is present in piano notes, violin, etc. Furthermore, the majority of percussion instruments does not exhibit an unequivocal pitch and their sounds are generally regarded as noise~\cite{Roederer}. In electronic music, including electro-acoustic and dance genres, noise has diverse uses and frequently characterizes the music style~\cite{Cook}. 
 
 The absence of a definite pitch is due to the lack of a perceptible harmonic organization in the sinusoidal components of the sound.
@@ -677,9 +647,7 @@ Some noises with static spectrum are listed below. They are called \emph{colored
 Figure~\ref{fig:ruidos} shows the spectrum profile and the corresponding sonic sequence side-by-side. All five noises were generated with the same phase for each component, making it possible to observe the contributions of different parts of the spectrum.
 
 \begin{itemize}
-
  \item The white note has its name because its energy is distributed equally among all frequencies. It is possible to obtain white noise with the inverse transform of the following coefficients:
-
 \begin{equation}\label{eq:branco}
  \begin{split}
  c_0 & =0 \;\text{,\quad to avoid bias} \\
@@ -692,7 +660,6 @@ Figure~\ref{fig:ruidos} shows the spectrum profile and the corresponding sonic s
 The exponential $e^{j.x}$ is a way to obtain unitary module and random phase for the value of $c_i$. In addition, $c_{\Lambda/2}$ is always real (as discussed in the previous section).
 
  \item The pink noise is characterized by a decrease of $3dB$ per octave. This noise is useful for testing electronic devices, being prominent in nature~\cite{Roederer}. 
-
 \begin{multline}\label{eq:rosa}
  %\begin{split}
  \qquad \qquad \qquad f_{\text{min}}  \approx 15 Hz \\
@@ -704,8 +671,6 @@ The exponential $e^{j.x}$ is a way to obtain unitary module and random phase for
  c_i  = c_{\Lambda - i}^*\;,\;\; \text{for}\;  i \; > \;  \Lambda/2 \qquad \qquad
  %\end{split}
 \end{multline}
- 
-
 The minimum frequency $f_{\text{min}}$ is chosen with regard to the human hearing, since a sound component with frequency below $\approx\; 20Hz$ is virtually inaudible.
 
 Other noises can be made by similar procedures. Simple modifications are needed, especially in the equation that defines $\alpha_i$.
@@ -738,7 +703,6 @@ Other noises can be made by similar procedures. Simple modifications are needed,
 \end{equation}
 
  \item The gray noise is defined as a white noise subject to one of the ISO-audible curves. Those curves are obtained by experiments and are imperative to obtain $\alpha_i$. An implementation of ISO 226, which is the last revision of these curves, is in the \massa\ toolbox~\cite{MASSA}.
-
 \end{itemize}
 
 This subsection discussed only noise with static spectrum. There are also characterizations for noise with dynamic spectrum during the time, and noises which are fundamentally transient, like clicks and chirps. The former are easily modeled by an impulse relatively isolated, while chirps are not in fact a noise, but a fast scan of some given frequency band~\cite{Cook}.
@@ -748,7 +712,6 @@ The noise from equations~\ref{eq:branco}, \ref{eq:rosa}, \ref{eq:marrom},
 
 
 \subsection{Tremolo and vibrato, AM and FM}\label{subsec:tvaf}
-
 Vibrato is a periodic variation in pitch (frequency) and tremolo is a period variation in volume (intensity).\footnote{The jargon may be different in other contexts. For example, in piano, tremolo is a vibrato in the classification used here. The definitions given here are common in contexts regarding music theory and electronic music. In addition, they are based on a broader literature than the one used for a specific instrument, practice or musical tradition~\cite{Lacerda,Harmonia}.}
 For the general case, vibrato is described as:
 
