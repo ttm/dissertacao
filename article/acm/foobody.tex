@@ -817,16 +817,6 @@ For the amplitude modulation (AM): (esta frase está isolada? Deveria ver algo l
 \begin{multicols}{2}%
 }
 
-
-%\begin{widetext}
-%\begin{multline*}\label{eq:amEsp}
-%\begin{split}
-%\{t_i'\}_0^{\Lambda-1} =\{(1+a_i) . t_i\}_0^{\Lambda-1} = \left \{ \left [ 1+M.\sin \left ( f'.2\pi\frac{i}{f_a -1} \right ) \right] .P .\sin \left ( f.2\pi\frac{i}{f_a -1} \right ) \right \}_0^{\Lambda-1} = \\ 
-%                        =  \left\{P.\sin \left( f.2\pi\frac{i}{f_a -1}  \right %) +  \frac{P.M}{2} \left [ \sin \left( (f-f').2\pi\frac{i}{f_a -1}  \right )  + \sin \left( (f+f').2\pi\frac{i}{f_a -1}  \right ) \right ] \right \}_0^{\Lambda-1}
-%\end{split}
-%\end{multline*}
-%\end{widetext}
-
 The resulting sound is the original one together with the
 reproduction of its spectral content below and above the original frequency, with the distance $f'$ from $f$. Again, this is obtained by variations in the linear scale of the amplitude. A discussion of the
 spectrum of an AM performed with oscillations in the logarithmic amplitude scale is available in~\cite{dissertacao}. The sequence $T_i$, with frequency $f$, called `carrier', is modulated by
@@ -868,14 +858,10 @@ a_i=1 + \alpha . t_i'
 T_i^{f,\,AM(f',\,\alpha)}=\left\{ t_i^{f,\,AM(f',\,\alpha)} \right\}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}= \\ \{t_i . (1 + \alpha . t_i')    \}_0^{\Lambda-1}
 \end{multline}
 
-
 \subsection{Musical usages}\label{subsec:mus2}
-
 At this point, the musical possibilities are very wide. All characteristics, like pitch (given by frequency), timbre (given by the waveform, filters and noise), volume (manipulated by intensity) and duration (given by the number of samples), can be considered in an absolute form or treated during duration of sound (clearly, with the exception of duration itself). The following musical usages comprehend a collection of possibilities with the purpose of exemplifying types of sound manipulation that result in musical material. Some of them are discussed in depth in the next section.
 
-
 \subsubsection{Relations between characteristics}
-
 An interesting possibility is to use relations between parameters of
 a tremolo or vibrato, and some parameters of the basic note like frequency. It is possible to have a vibrato frequency proportional
 to note pitch, or a tremolo depth inversely proportional to
@@ -900,11 +886,13 @@ A musical pulse - such as specified by a BPM
 tempo - can be used with an impulse at the start of each beat, with the purpose of establishing metric and rhythms: the convolution with an impulse shifts the sound to impulse position. For example, two impulses equally spaced build a binary division into the
 pulse. Two signals, one with 2 impulses and the other with 3 impulses, both equally spaced in the pulse duration, yields a pulse
 maintenance with a rhythm in which eases both binary or ternary
-divisions of the pulse. This is found in many ethnic and traditional musical styles~\cite{Gramani}. Absolute values of the impulses imply in proportions among the amplitudes of the sonic reincidences. The use of convolution with impulses in this context is explored in the music piece \emph{Trenzinho de caipiras impulsivos}. These features embrace the creation of `sound amalgams' based on granular synthesis; see Figure~\ref{fig:pulsoSubAgl}. This piece is a link to next section contents. The source code of the music piece is online, as part of the \massa\ toolbox\cite{MASSA}.
+divisions of the pulse. This is found in many ethnic and traditional musical styles~\cite{Gramani}. Absolute values of the impulses imply
+proportions among the amplitudes of the sonic reincidences. The use of convolution with impulses in this context is explored in the music piece \emph{Trenzinho de caipiras impulsivos}.
+These features embrace
+the creation of `sound amalgams' based on granular synthesis; see Figure~\ref{fig:pulsoSubAgl}. This piece is a link to next section contents. The source code of the music piece is online, as part of the \massa\ toolbox\cite{MASSA}.
 
 
 \subsubsection{Moving source and receptor, Doppler effect}
-
 According to the description in Subsection~\ref{subsec:spac}, when an audio source or receptor is moving, its characteristics are ideally updated at each sample of the digital signal. Speed components should be found for each ear. Hence, given the audio source speed (or velocity) $v_s$, with positive values if the source moves away from receptor, and receptor speed $v_r$, positive when it gets closer to audio source, the frequency is given by the well-known Doppler shift:
 
 \begin{equation}\label{eq:fDoppler}
@@ -923,7 +911,8 @@ horizontal, having null non-$y$ components. Amplitude changes with the distance 
 \end{equation}
 
 The amplitude change caused by the distance is even, while the change caused by the potency variation is antisymmetric in
-relation to the crossing of source with receptor. The frequency has a symmetric progression in relation to pitch. In other words, the same semitones (or fractions) added during the approach are decreased during the departure. Moreover, the transition is abrupt if source and receptor intersect with zero distance, otherwise, there is a monotonic progression. In the given case, where there is a static height $z_0$, the speed component in the direction given by the observer and source positions, the frequencies $F_i$ at the observer are given by:
+relation to the crossing of source with receptor. The frequency has a symmetric progression in relation to pitch. In other words, the same semitones (or fractions) added during the approach are decreased during the departure. Moreover, the transition is abrupt if source and receptor intersect with zero distance, otherwise, there is a monotonic progression.
+In the given case, where there is a static height $z_0$, the speed component in the direction given by the observer and source positions, the frequencies $F_i$ at the observer are given by:
 
 \begin{equation}\label{eq:ffDoppler}
     F_i=\{f_i\}_0^{\Lambda-1}=\left\{\frac{v_{sound} + v_r\frac{y_i}{\sqrt{z_0^2+y_i^2}}}{v_{sound}+v_s\frac{y_i}{\sqrt{z_0^2+y_i^2}}}f_0\right\}_0^{\Lambda-1}
@@ -931,11 +920,10 @@ relation to the crossing of source with receptor. The frequency has a symmetric 
 
 There is a Python implementation of the Doppler effect, also considering the intersection between audio source and receptor, in \massa\ toolbox~\cite{MASSA}.
 
-
 \subsubsection{Filters and noises (subsections~\ref{subsec:ruidos} and~\ref{subsec:filtros})}
-
 With the use of filters, the possibilities are even wider.
-Convolve a signal to have a reverberated version of it, to remove its noise, to distort or to treat the audio aesthetically in other ways. For example, sounds originated from an old television or telephone can be simulated with a band-pass filter, allowing only frequencies between $1kHz$ and $3kHz$. By rejecting the frequency of electric oscillation (usually $50Hz$ or $60Hz$) and harmonics, one can remove noises caused by audio devices connected to a usual power supply. A more musical application is to perform filtering in specific bands and to use those bands as an additional parameter to the notes.
+Convolve a signal to have a reverberated version of it, to remove its noise, to distort or to treat
+the audio aesthetically in other ways. For example, sounds originated from an old television or telephone can be simulated with a band-pass filter, allowing only frequencies between $1kHz$ and $3kHz$. By rejecting the frequency of electric oscillation (usually $50Hz$ or $60Hz$) and harmonics, one can remove noises caused by audio devices connected to a usual power supply. A more musical application is to perform filtering in specific bands and to use those bands as an additional parameter to the notes.
 
 Inspired by traditional music instruments, it is possible to apply a
 time-dependent filter~\cite{Roederer}. Chains of these filters can perform complex and more accurate filtering routines. The music piece \emph{Ruidosa faixa} explores filters and many kinds and noise synthesis. The source code is available online as part of \massa\ toolbox.
@@ -943,7 +931,6 @@ time-dependent filter~\cite{Roederer}. Chains of these filters can perform compl
 A sound can be altered through different filtering and then mixed to create an effect known as \emph{chorus}. Based on what happens in a choir of singers, the sound is performed using small and potentially arbitrary modifications of parameters like center frequency, presence (or absence) of vibrato or tremolo and its characteristics, equalization, volume, etc. As a final result, those versions of the original sound are mixed together (see equation~\ref{eq:mixagem}). The music piece \emph{Chorus infantil} implements a chorus in many ways with different sounds. Its source code is available in \massa\ toolbox.
 
 \subsubsection{Reverberation}\label{subsubsec:reverb}
-
 Using the same terms of subsection~\ref{subsec:spac}, the
 late reverberation can be achieved by a convolution with a section of pink, brown or black noise, with exponential decay of amplitude along time. Delay lines can be added as a prefix to the noise
 with the decay, and this contemplates both time parts of the reverberation: the first reflections and the late reverberation. Quality can be improved by varying the geometric trajectory and (mainly low-pass, subsection~\ref{subsec:filtros}) filtering by each surface where wavefront reflected before reaching the ear in the first $100-200$ ms. The colored noise can be gradually introduced with a \emph{fade-in}: the initial moment given by direct
