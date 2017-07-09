@@ -1122,7 +1122,7 @@ subsection~\ref{subsec:spac}, reverberation $R_i^1$ of the first period can be d
         \end{array} \right.
 \end{equation}
 
-A reverberated auralization of a sound can be achieved by simple convolution of $R_i$ (called reverberation impulse response) with the sound sequence $T_i$, as described in subsection~\ref{subsec:filtros}. Reverberation is well known for causing great interest in listeners and to provide sonorities that are more enjoyable. Furthermore, modifications in the reverberation space consist in a common resource (almost a \textit{clich\'{e}}) to surprise and attract the listener. An implementation of the reverb recipe described here is in \massa\ toolbox~\cite{MASSA}
+A sound with simulated reverberation can be achieved by a simple convolution of $R_i$ (called reverberation impulse response) with the sound sequence $T_i$, as described in subsection~\ref{subsec:filtros}. Reverberation is well known for causing great interest in listeners and to provide sonorities that are more enjoyable. Furthermore, modifications in the reverberation space consist in a common resource (almost a \textit{clich\'{e}}) to surprise and attract the listener. An implementation of the reverb recipe described here is in \massa\ toolbox~\cite{MASSA}
 
 \subsubsection{ADSR Envelopes}
 The variation of volume along the duration of sound is crucial to our timbre perception. The volume envelope known as ADSR (\emph{Attack-Decay-Sustain-Release}) has many implementations in both hardware and software synthesizers. A pioneering implementation can be found in the Hammond Novachord synthesizer of 1938 and some variants are mentioned below~\cite{ADSR}. The canonical ADSR envelope is characterized by 4 parameters: attack duration (time in which sound reaches its maximum amplitude), decay duration (follows the attack immediately), level of sustained volume (in which the volume remains stable after the decay) and release duration (after sustained section, this is the duration needed for amplitude to reach zero or final value).
@@ -1168,43 +1168,38 @@ in \massa, explores many configurations of the ADSL envelope.
 
 
 \section{Organization of notes in music}\label{notasMusica} \label{sec:notesMusic}
-
-Consider $ S_j=\left\{  s_j=T_i^j=\{t_i^j\}_{i=0}^{\Lambda_j-1} \right\}_{j=0}^{H-1} $, the sequence $S_j$ of $H$ musical events $s_j$. Let $S_j$ be a `musical structure', composed by events $s_j$ which are musical structures themselves, e.g.\ notes. This section is dedicated to techniques that make $S_j$ interesting and enjoyable for audition.
+Consider $S_j=\left\{  s_j=T_i^j=\{t_i^j\}_{i=0}^{\Lambda_j-1} \right\}_{j=0}^{H-1}$, the sequence $S_j$ of $H$ musical events $s_j$. Let $S_j$ be a `musical structure', composed by events $s_j$ which are musical structures themselves, e.g.\ notes. This section is dedicated to techniques that make $S_j$ interesting and enjoyable for audition. More specifically, what follows is a summary of academic music composition theory and praxis.
 
 The elements of $S_j$ can be overlapped by mixing them together, as in
 equation~\ref{eq:mixagem} and Figure~\ref{fig:mixagem}, for building intervals and chords. This reflects the `vertical thought' in music. On the other hand, the concatenation of events
-in $S_j$, as in equation~\ref{eq:concatenacao} and in Figure~\ref{fig:concatenacao}, builds melodic sequences and rhythms, which are associated with the musical `horizontal thought'. The fundamental frequency $f$ and the starting moment
+in $S_j$, as in equation~\ref{eq:concatenacao} and in Figure~\ref{fig:concatenacao}, builds melodic sequences and rhythms, which are associated with the `horizontal thought'. The fundamental frequency $f$ and the starting moment
 (attack) are generally the most important characteristics of the elements $s_j$ in $S_j$. This makes it possible to create music made by pitches (both harmony and melody) and by temporal metrics and rhythms.
+We will start by considering these aspects of musical organization as they are more traditional in music theory and usually easier to understand.
 
 \subsection{Tuning, intervals, scales and chords}\label{subsec:afinacao}
-
 \subsubsection{Tuning}
-
 Doubling the frequency is equivalent to ascending one octave ($f=2f_0$). The octave division in twelve steps is the canon of classical western music. Its usage has also been observed
-outside western tradition, as in ceremonial/religious and ethnic context~\cite{Wisnick}. In this system, ideally the factor given by $\varepsilon=2^{\frac{1}{12}}$ defines a semitone. This constitutes a note grid along the spectrum in which, given the frequency $f$, all the possible fundamental frequencies are separated by intervals which are multiples of $\varepsilon$. Twelve semitones (or half steps), equidistant to the human ear, reach an
-octave, equivalent to the human year. Therefore, if $f=2^{\frac{1}{12}}f_0$, there is a semitone between
+outside western tradition, e.g. in ceremonial/religious and ethnic contexts~\cite{Wisnick}. The semitones need not to be equivalent, as will become clear in the next paragraphs, but, roughly, the factor given by $\varepsilon=2^{\frac{1}{12}}$ defines a semitone. This entails a note grid along the spectrum in which, given the frequency $f$, all the possible fundamental frequencies are separated by intervals which are multiples of $\varepsilon$. Twelve successive semitones (or half steps), equidistants to the human ear, yield an
+octave, equivalent to the human ear. In other words, if $f=2^{\frac{1}{12}}f_0$, there is a semitone between
 $f_0$ and $f$.
 
-This absolute accuracy is common in computational implementations. Real music instruments, however, exhibit deviations in order to make compatible deviations from the harmonics of notes. In addition, the fixed reference $\varepsilon=2^{\frac{1}{12}}$ characterizes an equally tempered tuning. There are tunings in which intervals are ratios of low-order integers, based on observations of physical phenomena. These tunings were first formalized around two thousand years before the arrival of the equal temperament~\cite{Roederer}.
+This absolute accuracy is usual in computational implementations. Real music instruments, however, often present semitones that are not exactly $2^{\frac{1}{12}}$ because the (real) harmonics of the notes are not perfect multiples of the fundamental frequency. The fixed interval $\varepsilon=2^{\frac{1}{12}}$ characterizes an equally tempered tuning but there are other tunings. The first formalizations of tunings (that the scientific tradition has repported) date from around two thousand years before the advent of the equal temperament~\cite{Roederer}.
 ). Two emblematic tunings are:
-
 \begin{itemize}
-    \item The {\bf just intonation}, defined by association of diatonic scale notes with ratios of low-order integers, as found in the harmonic series. Considered the ionian mode (see Section~\ref{subsec:escalas}), we achieve notes correspondent to the white piano keys from C to C, i.e. intervals 1, 2M, 3M, 4J, 5J, 6M, 7M, 8, are considered ratios of frequency: 1, 9/8, 5/4
-    4/3, 3/2, 5/3, 15/8, 2/1. The following intervals are also considered: the semitone 16/15, the 'minor tone' 10/9, and the 'major tone' 9/8. There are many ways to perform the division of the 12 notes in the just intonation.
-
-    \item The {\bf Pythagorean tuning}, based on the interval 3/2 (perfect fifth). The Ionian mode ratios become: 1, 9/8, 81/64, 4/3, 3/2, 27/16, 243/128, 2/1. These intervals are also considered to yield notes in a scale. Besides the intervals in the mode, also used are the minor second 256/243, the minor third 32/27, the augmented fourth 729/512, the diminished fifth 1024/729, the minor sixth 128/81 and the minor seventh 16/9. 
+    \item The {\bf just intonation}, defined by association of intervals with ratios of low-order integers, as found in the harmonic series. E.g. the white piano keys from C to C are achieved by the ratios of frequency: 1, 9/8, 5/4
+    4/3, 3/2, 5/3, 15/8, 2/1. The following intervals are also often considered: the semitone 16/15, the 'minor tone' 10/9, and the 'major tone' 9/8. There are many ways to perform the division of the 12 notes in the just intonation.
+    \item The {\bf Pythagorean tuning}, based on the interval 3/2 (perfect fifth). The 'white piano keys' become: 1, 9/8, 81/64, 4/3, 3/2, 27/16, 243/128, 2/1. Also often used are the 'minor second´ 256/243, the 'minor third' 32/27, the 'augmented fourth' 729/512, the 'diminished fifth' 1024/729, the 'minor sixth' 128/81 and the 'minor seventh' 16/9. 
 \end{itemize}
 
-In order to account for micro-tonality\footnote{Micro-tonality is the use of intervals less
-than one semitone and has ornamental and structuring functionalities in music. The division of the octave in $12$ notes is motivated by physical fundaments but also a \emph{convention} adopted by western classical music. Other tunings are incident. By way of illustration, the traditional Thai music uses an octave division in seven notes equally spaced ($\varepsilon=2^{\frac{1}{7}}$),
-which allows intervals that have little in common with the intervals in the diatonic scale~\cite{Wisnick}}. It is possible to use non-integer real values as factors of $\varepsilon=2^{\frac{1}{12}}$ between frequencies, or to maintain integer values and change $\varepsilon$. For example, a tuning really near the harmonic series
-itself is proposed with the equal division of the octave in $53$ notes:
-$\varepsilon_2=2^{\frac{1}{53}}$.~\cite{microtonalidade}
-In this division, notes are related by means of integers, factors of
-$\varepsilon_2$ relating frequencies by a valid interval. Note that if $S_i$ is a pitch sequence related by means of $\varepsilon_1$, a direct mapping for notes related by $\varepsilon_2$ is 
+In order to account for micro-tonality\footnote{Micro-tonality is the use of intervals smaller
+than one semitone and has ornamental and structuring functionalities in music. The division of the octave in $12$ notes has physical grounds but is still a \emph{convention} adopted by western classical music. Other tunings are incident, e.g. a traditional Thai music style uses an octave division in seven notes equally spaced ($\varepsilon=2^{\frac{1}{7}}$),
+which allows intervals quite different than those found when $\varepsilon=2^{\frac{1}{12}}$~\cite{Wisnick}.} non-integer real values can be used as factors of $\varepsilon=2^{\frac{1}{12}}$ between frequencies, or one can maintain integer values and change $\varepsilon$. For example, a tuning that approximates the harmonic series
+is proposed with the equal division of the octave in $53$ notes:
+$\varepsilon=2^{\frac{1}{53}}$.~\cite{microtonalidade}
+Note that if $S_i$ is a pitch sequence related by means of $\varepsilon_1$, a direct mapping for notes related by $\varepsilon_2$ is 
 a new sequence $S_i'=\left\{s_i'\right\}=\left\{
 s_i \frac{\varepsilon_1}{\varepsilon_2}\right\}$. The music piece \emph{Micro
-tom} uses microtonal features and its code
+tone} uses microtonal features and its code
 is part of \massa\ toolbox.
 
 \subsubsection{Intervals}\label{subsec:intervalos}

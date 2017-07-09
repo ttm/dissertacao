@@ -970,9 +970,7 @@ With
 
 \noindent a reverberated auralization of a sound can be achieved by simple convolution of $R_i$ (called reverberation `impulse response') with the sound sequence $T_i$ as described in subsection~\ref{subsec:filtros}. Reverberation is well known for causing great interest in listeners and to provide sonorities that are more enjoyable. Furthermore, modifications in the reverberation space consist in a common resource (almost a \textit{clich\'{e}}) to surprise and attract the listener. An implementation of the reverb recipe described here is in \massa\ toolbox~\cite{MASSA}
 
-
 \subsubsection{ADSR Envelopes}
-
 The variation of volume along the duration of sound is crucial to our timbre perception. The volume envelope known as ADSR (\emph{Attack-Decay-Sustain-Release}) has many implementations in both hardware and software synthesizers. A pioneering implementation can be found in the Hammond Novachord synthesizer of 1938 and some variants are mentioned below~\cite{ADSR}. The scholastic ADSR envelope is characterized by 4 parameters: attack duration (time in which sound reaches its maximum amplitude), decay duration (follows the attack immediately), level of sustained volume (in which the volume remains stable after the decay) and release duration (after sustained section, this is the duration needed for amplitude to reach zero or final value).
 Note that the sustain duration is not specified because it is the difference between the duration itself and the durations of attack, decay and sustain.
 
@@ -1016,7 +1014,6 @@ in \massa, explores many configurations of the ADSL envelope.
 
 
 \section{Organization of notes in music}\label{notasMusica} \label{sec:notesMusic}
-
 Consider $ S_j=\left\{  s_j=T_i^j=\{t_i^j\}_{i=0}^{\Lambda_j-1} \right\}_{j=0}^{H-1} $, the sequence $S_j$ of $H$ musical events $s_j$. Let $S_j$ be a `musical structure', composed by events $s_j$ which are musical structures themselves, e.g.\ notes. This section is dedicated to techniques that make $S_j$ interesting and enjoyable for audition.
 
 The elements of $S_j$ can be overlapped by mixing them together, as in
@@ -1025,9 +1022,7 @@ in $S_j$, as in equation~\ref{eq:concatenacao} and in Figure~\ref{fig:concatenac
 (attack) are generally the most important characteristics of the elements $s_j$ in $S_j$. This makes it possible to create music made by pitches (both harmony and melody) and by temporal metrics and rhythms.
 
 \subsection{Tuning, intervals, scales and chords}\label{subsec:afinacao}
-
 \subsubsection{Tuning}
-
 Doubling the frequency is equivalent to ascending one octave ($f=2f_0$). The octave division in twelve steps is the canon of classical western music. Its usage has also been observed
 outside western tradition, as in ceremonial/religious and ethnic context~\cite{Wisnick}. In this system, ideally the factor given by $\varepsilon=2^{\frac{1}{12}}$ defines a semitone. This constitutes a note grid along the spectrum in which, given the frequency $f$, all the possible fundamental frequencies are separated by intervals which are multiples of $\varepsilon$. Twelve semitones (or half steps), equidistant to the human ear, reach an
 octave, equivalent to the human ear. Therefore, if $f=2^{\frac{1}{12}}f_0$, there is a semitone between
@@ -1035,11 +1030,9 @@ $f_0$ and $f$.
 
 This absolute accuracy is common in computational implementations. Real music instruments, however, exhibit deviations in order to make compatible departures from the harmonics of notes. In addition, the fixed reference $\varepsilon=2^{\frac{1}{12}}$ characterizes an equally tempered tuning. There are tunings in which intervals are ratios of low-order integers, based on observations of physical phenomena. These tunings were first formalized around two thousand years before the arrival of the equal temperament~\cite{Roederer}.
 Two emblematic tunings are:
-
 \begin{itemize}
     \item The {\bf just intonation}, defined by association of diatonic scale notes with ratios of low-order integers, as found in the harmonic series. In the ionian mode (see Section~\ref{subsec:escalas}), we achieve notes corresponding to the white piano keys from C to C, i.e. intervals 1, 2M, 3M, 4J, 5J, 6M, 7M, 8, are considered ratios of frequency: 1, 9/8, 5/4
     4/3, 3/2, 5/3, 15/8, 2/1. The following intervals are also considered: the semitone 16/15, the 'minor tone' 10/9, and the 'major tone' 9/8. There are many ways to perform the division of the 12 notes in the just intonation.
-
     \item The {\bf Pythagorean tuning}, based on the interval 3/2 (perfect fifth). The Ionian mode ratios become: 1, 9/8, 81/64, 4/3, 3/2, 27/16, 243/128, 2/1. These intervals are also considered to yield notes in a scale. Besides the intervals in the mode, also used are the minor second 256/243, the minor third 32/27, the augmented fourth 729/512, the diminished fifth 1024/729, the minor sixth 128/81 and the minor seventh 16/9. 
 \end{itemize}
 
