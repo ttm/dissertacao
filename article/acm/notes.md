@@ -34,6 +34,7 @@ Therefore, the article contains many adjectives such as "often" "commonly" "freq
 - better account for serial techniques.
 - maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motives right before tunning, etc.
 - Make explicit that one merit of the article is the effort to sum up musical theory, many more discussions can be easelly added but we believe that from the article on, the reader can look into other articles and books.
+- explain what is a measure (and maybe what is a bar) in the rhythm section.
 
 
 ### Vocabulary
