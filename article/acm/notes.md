@@ -35,7 +35,13 @@ Therefore, the article contains many adjectives such as "often" "commonly" "freq
 - maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motives right before tunning, etc.
 - Make explicit that one merit of the article is the effort to sum up musical theory, many more discussions can be easelly added but we believe that from the article on, the reader can look into other articles and books.
 - explain what is a measure (and maybe what is a bar) in the rhythm section.
-
+- make explicit that the notes in music section does not benefit so much by expressions as equations as the other sections, but it is a very condensed presentation of musical theory and each subsection has algorithms and music in the massa toolbox.
+- make music with arcs using some famous sequences.
+- check the red book for the notes for new music (especially the sequences).
+- redo the lucas series calculations (check if in massa).
+- put the right name of the peal in the cyclic arcs section.
+- add license and authorship header in the massa python and latex scripts.
+- see if bibliography is ok.
 
 ### Vocabulary
 - campo harmônico => harmonic field?
