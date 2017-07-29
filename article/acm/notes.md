@@ -24,8 +24,9 @@ Make explicit that there are a lot of discussion among specialists on the impact
 - make a disclaimer in the introduction or the fourth chapter that there are many theoretical framework for music and that most often there is not a single way to express or characterize musical structures.
 Therefore, the article contains many adjectives such as "often" "commonly" "frequently" and they might be even more numerous if we wanted to be very precise.
 - see if bibliography is ok.
-- decide on lambda or delta for inter-sample duration
+- decide on lambda or delta for inter-sample duration.
 - Use mass (music and audio in sample sequences) acronym instead of massa.
+- enhance the conclusions section (maybe remove information that might be considered spurious).
 
 ###### Code (and musical pieces)
 - review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
@@ -33,12 +34,12 @@ Put all the code in a new, better organized repository.
 - give better names to musical pieces and use English.
 - add license and authorship header in the massa python and latex scripts.
 
-###### Notes in music (most of the issues are related to this section)
+###### Notes in music (most of the issues seem related to this section)
 - account for phrases and melody construction (check e.g. Schoenberg's Fundamentals of Musical Composition).
 - account for spectral music composition and other post-serial techniques.
 - better account for serial techniques.
 - account for sonic textures.
-- maybe visit denis smalley (spectromorphology of sound)
+- maybe visit denis smalley (spectromorphology of sound).
 - see music composition in wikipedia.
 - Make explicit that one merit of the article is the effort to sum up musical theory, many more discussions can be easelly added but we believe that from the article on, the reader can look into other articles and books.
 - maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motives right before tunning, etc.
@@ -58,7 +59,7 @@ Put all the code in a new, better organized repository.
 ### Vocabulary
 - campo harmônico => harmonic field?
 - anti-relative => counter-relative? (discussão sobre harmonia funcional)
--    associada relative => associated relative? (ver a discussão para mais...)
+- associada relative => associated relative? (ver a discussão para mais...)
 - medianas cromáticas => cromatic mediant
 - tonalidade => key
 - homônima => homonymous
