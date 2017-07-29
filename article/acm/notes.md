@@ -6,10 +6,11 @@
 - note to other authors that we have many footnotes.
 
 #### Tasks to tackle directly in the article
-- Put references in ??
-- write about the literature (from the appendix of the dissertation)
+- put references in ??
+- write about the literature (from the appendix of the dissertation).
 - place figures in best places.
 - homogenize capitalization in section titles and inline references.
+- choose nice settings for the unpublished document (e.g. journal, year).
 
 ##### Context of the article (mainly reflects in the introduction)
 - write a supporting information file with a table with all the scripts and related equations, musical pieces and figures and important tables.
