@@ -42,6 +42,7 @@ Therefore, the article contains many adjectives such as "often" "commonly" "freq
 - put the right name of the peal in the cyclic arcs section.
 - add license and authorship header in the massa python and latex scripts.
 - see if bibliography is ok.
+- decide on lambda or delta for inter-sample duration
 
 ### Vocabulary
 - campo harmônico => harmonic field?

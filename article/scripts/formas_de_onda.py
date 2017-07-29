@@ -1,7 +1,11 @@
 #-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
-import pylab as p, numpy as n, scikits.audiolab as a, matplotlib as m
+import pylab as p, numpy as n, matplotlib as m
+from scipy.io import wavfile as w
+
+p.figure(figsize=(10.,5.))
+p.subplots_adjust(left=0.12,bottom=0.13,right=0.99,top=0.99, hspace=0.4)
 
 T=100
 #T=1024
@@ -11,9 +15,11 @@ dente=n.linspace (-1,1,T) # dente de serra
 triangular=n.hstack ((n.linspace(-1,1,T/2,endpoint=False),n.linspace(1,-1,T/2,endpoint=False)))
 quadrada=n.hstack ((n.ones(T/2),n.ones(T/2)* -1))
 
-onda=a.wavread("ondaReal.wav")[0] # onda real
+# onda=a.wavread("ondaReal.wav")[0] # onda real
+onda = w.read("../../scripts/ondaReal.wav")[1].astype("float64")
 onda=((onda-onda.min())/(onda.max()-onda.min()))*2-1 # normalizando
-onda2=a.wavread("22686__acclivity__oboe-a-440_periodo.wav")[0] # periodo do oboe
+#onda2=a.wavread("22686__acclivity__oboe-a-440_periodo.wav")[0] # periodo do oboe
+onda2 = w.read("../../scripts/22686__acclivity__oboe-a-440_periodo.wav")[1].astype("float64")
 onda2=((onda2-onda2.min())/(onda2.max()-onda2.min()))*2-1 # normalizando
 
 
@@ -41,7 +47,7 @@ frame.set_facecolor('0.80')
 for ll in l.get_lines():
         ll.set_linewidth(1.5)  # the legend line width
 #p.legend()
-p.ylabel(r'synthesized amplitude',fontsize=19)
+p.ylabel('synthesized\n'+r'amplitude',fontsize=17)
 
 fig=p.subplot(212)
 i=n.arange(len(onda))
@@ -70,10 +76,11 @@ left, width = len(onda)*.37, .5
 bottom, height = 1.44, .5
 right = left + width
 top = bottom + height
-atext=r'time $\Delta$, samples $\Lambda$ or $i$$\rightarrow$'
+atext=r'time $\Delta$, samples $\Lambda$ or sample $i$ $\rightarrow$'
 fig.text(left, bottom, atext, horizontalalignment='left', verticalalignment='top', fontsize=19)
 
-p.ylabel(r'sampled amplitude', fontsize=19)
+p.ylabel('sampled\n'+r'amplitude', fontsize=19)
 #p.ylabel(r'amplitude amostrada', verticalalignment='top')
 #p.xlabel(r'duração $\delta$, amostras $\lambda$ ou $i$ $\rightarrow$')
+p.savefig("../figures/waveForms__.png")
 p.show()

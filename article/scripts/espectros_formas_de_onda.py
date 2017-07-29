@@ -1,7 +1,10 @@
 #-*- coding: utf-8 -*-
 # http://matplotlib.sourceforge.net/examples/api/legend_demo.html
 # 
-import pylab as p, numpy as n, scikits.audiolab as a
+import pylab as p, numpy as n
+
+p.figure(figsize=(10.,5.))
+p.subplots_adjust(left=0.09,bottom=0.15,right=0.96,top=0.96, hspace=0.4)
 
 T=30
 #T=1024
@@ -49,7 +52,7 @@ l=p.legend(loc="upper right")
 for t in l.get_texts():
     t.set_fontsize('x-large')
 
-p.yticks((0,20000),(0,"20k"), fontsize=16)
+p.yticks((0,20000),(0,"20k"), fontsize=17)
 #p.xticks((0,15000),(0,"15k"))
 # pop untill they leave f15 out of the game
 ii.pop()
@@ -66,16 +69,17 @@ ii.pop()
 ii.pop()
 ii.pop()
 ii.pop()
-ticks=[r"$f%i$" % (i,) for i in xrange(len(ii))]
-p.xticks([0] + ii + [16500], [0] + ticks + ["16,5k"], fontsize=16)
+ticks=[r"$f%i$" % (3*i,) for i in range(len(ii[::3]))]
+ticks_=[]
+for i in ticks:
+    ticks_+=[i]+[""]*2
+p.xticks([0] + ii , [0] + ticks_ , fontsize=18)
 
 p.xlim(0,16500)
 #p.xlim(0,T2*.56)
 p.ylim(-300,20000)
 p.ylabel(r'absolute value $\rightarrow$', fontsize=19)
-p.xlabel(r'spectrum component $\rightarrow$', fontsize=19)
+p.xlabel(r'spectral component $\rightarrow$', fontsize=19)
 
-
-
-
+p.savefig("../figures/waveSpectrum_.png")
 p.show()
