@@ -28,6 +28,12 @@ Make explicit that there are a lot of discussion among specialists on the impact
 - account for sonic textures.
 - see music composition in wikipedia.
 - is an octave a simple or compound interval?
+- make a disclaimer in the introduction or the fourth chapter that there are many theoretical framework for music and that most often there is not a single way to express or characterize musical structures.
+Therefore, the article contains many adjectives such as "often" "commonly" "frequently" and they might be even more numerous if we wanted to be very precise.
+- account for spectral music and other post-serial techniques.
+- better account for serial techniques.
+- maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motives right before tunning, etc.
+- Make explicit that one merit of the article is the effort to sum up musical theory, many more discussions can be easelly added but we believe that from the article on, the reader can look into other articles and books.
 
 
 ### Vocabulary
