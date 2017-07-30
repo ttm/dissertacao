@@ -1,0 +1,90 @@
+\documentclass{scrreprt}
+% \documentclass[12pt]{article}
+\usepackage{graphicx}
+
+\usepackage{xr}
+\externaldocument{sample-acmsmall}
+
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+        colorlinks,
+        linkcolor={red!50!black},
+        citecolor={blue!50!black},
+        urlcolor={blue!80!black}
+}
+%
+\usepackage{graphicx} %allows for including images
+\usepackage{biblatex}
+
+\newcommand{\massa}{{\large \textsc{mass}}}
+
+\makeatletter
+\newcommand{\usetocfromothersource}[1]{%
+  \begingroup
+  \IfFileExists{#1}{%
+    \@input{#1}% 
+    \@nobreakfalse
+  }{}%
+  \endgroup
+}
+\makeatother
+
+\def\thesection{SI-\arabic{section}}
+
+\begin{document}
+
+\title{Listings of equations, figures, tables and sections of the
+article '{\it \bf Musical elements in the discrete-time representation of
+sound}' and of the scripts in the MASS toolbox}
+
+\author{\\\\\\ Renato Fabbri (USP),\\
+Vilson Vieira da Silva Junior (The Grid),\\
+Ant\^onio Carlos Silvano Pessotti (Unimep),\\
+D\'ebora Cristina Corr\^ea,\\
+Osvaldo N. Oliveira Jr. (USP)
+}
+
+\maketitle
+
+\begin{abstract}
+The article is the main document of the \massa\ toolbox.
+Being it of considerable length and complexity,
+this document contains listings of its elements to facilitate
+its navigation, apprehension and general usage.
+\end{abstract}
+
+\tableofcontents
+
+\clearpage
+\section{Table of Contents of the article}
+\makeatletter
+\let\Hy@linktoc\Hy@linktoc@none
+\makeatother
+\usetocfromothersource{sample-acmsmall.toc}
+
+\clearpage
+\section{Equations}
+
+\clearpage
+\section{Figures}
+
+\clearpage
+\section{Tables}
+
+\clearpage
+\section{Scripts}
+\subsection{For all equations in each chapter}
+\clearpage
+\subsection{To render musical pieces}
+\clearpage
+\subsection{To render the figures used in the article}
+
+\clearpage
+\section{Other documents}
+Latex files. PDF files.
+MSc Dissertation.
+
+\section{Final considerations}
+
+\end{document}

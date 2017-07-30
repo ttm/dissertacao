@@ -2,15 +2,14 @@
 
 #### Email to other authors:
 - Confirm institutional ties of authors and their names in English.
-- write a section on synonyms and ambiguities?
 - note to other authors that we have many footnotes.
+- ask to other authors if they miss citations in some parts (e.g. first sentences of intro) or is it ok to rely in our own knowledge.
+- write a section on vocabulary, synonyms and ambiguities?
 
 #### Tasks to tackle directly in the article
-- put references in ??
-- write about the literature (from the appendix of the dissertation).
 - place figures in best places.
-- homogenize capitalization in section titles and inline references.
-- choose nice settings for the unpublished document (e.g. journal, year).
+- remove repetition of what has been seen before (recaps).
+- maybe make a PDF with the scripts as another SI document.
 
 ##### Context of the article (mainly reflects in the introduction)
 - write a supporting information file with a table with all the scripts and related equations, musical pieces and figures and important tables.
@@ -56,6 +55,11 @@ Put all the code in a new, better organized repository.
 - Ask Chu not to collapse multiple lines into one. OK
 - Are there boundaries on sound wavelengths in micro or macro scales? OK?
 - enhance first figures. Change espectrum for spectrum and , for . in figure 3. OK
+- write about the literature (from the appendix of the dissertation). OK
+- homogenize capitalization in section titles and inline references and replace Subsection~\ref... by Section~\ref... OK
+- change Musical use to Musical usages. OK
+- put references and citations in ?? OK
+- choose nice settings for the unpublished document (e.g. journal, year). OK
 
 ### Vocabulary
 - campo harmônico => harmonic field?
