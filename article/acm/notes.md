@@ -4,15 +4,17 @@
 - Confirm institutional ties of authors and their names in English.
 - note to other authors that we have many footnotes.
 - ask to other authors if they miss citations in some parts (e.g. first sentences of intro) or is it ok to rely in our own knowledge.
-- write a section on vocabulary, synonyms and ambiguities?
+- write a section on vocabulary, synonyms and ambiguities? (sample/sampling frequency/rate; harmonic vs component; )
 
 #### Tasks to tackle directly in the article
 - place figures in best places.
 - remove repetition of what has been seen before (recaps).
 - maybe make a PDF with the scripts as another SI document.
+- change velocity to speed in the discussion about the Doppler effect.
+- join (or at least enhance their relation) the sections of reverberation.
 
 ##### Context of the article (mainly reflects in the introduction)
-- write a supporting information file with a table with all the scripts and related equations, musical pieces and figures and important tables.
+- write a supporting information file with a table with all the scripts and related equations (search multline), musical pieces and figures and important tables.
 - make an index in the beginning of each section or of the article. E.g. spatial location or spatialization is not even cited until the subsection is reached. Maybe make the index as an appendix or put it in the introduction, relating concepts, equations and implementations (files and line numbers).
 - state in the introduction that, in fact, most pieces in massa are not very traditional in their sonorities and discourse- review equation layouts.
 - write about the extreme quality of massa synthesis which uses 64bits per sample,
