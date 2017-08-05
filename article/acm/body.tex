@@ -225,17 +225,10 @@ The quantity $V_{dB}$ has the decibel unit ($dB$).
 For each $10dB$ a ``doubled volume'' is associated.
 A handy reference is $10dB$ for each step in the musical intensity scale: \emph{pianissimo}, \emph{piano}, \emph{mezzoforte}, \emph{forte} and \emph{fortissimo}. Other useful references are $dB$ values related to double amplitude or potency:
 
-\begin{equation}\label{eq:ampVol}
-\begin{split}
-t_i^{'}=2 . t_i \Rightarrow pot(T^{'}_i)=4 . pot(T_i) \Rightarrow \\ \Rightarrow V^{'}_{dB}=10log_{10} 4 \approx 6 dB
-\end{split}
-\end{equation}
-
-\begin{equation}\label{eq:potVol}
-\begin{split}
-pot(T^{'}_i)=2 pot(T_i) \Rightarrow \\ \Rightarrow V^{'}_{dB}=10log_{10} 2 \approx 3 dB
-\end{split}
-\end{equation}
+\begin{align}
+t_i^{'}=2 t_i \Rightarrow pot(T^{'}_i)=4 pot(T_i) \Rightarrow V^{'}_{dB}=10log_{10} 4 \approx 6 dB \label{eq:ampVol}\\
+t_i^{'}=\sqrt{2} t_i \Rightarrow pot(T^{'}_i)=2 pot(T_i) \Rightarrow V^{'}_{dB}=10log_{10} 2 \approx 3 dB\label{eq:potVol}
+\end{align}
 
 \noindent and the amplitude gain for a sequence whose volume has been doubled ($10dB$):
 
@@ -424,9 +417,11 @@ tg^{-1}\left(\frac{b_k}{a_k}\right)=-tg^{-1}\left(\frac{b_{\Lambda -k}}{a_{\Lamb
 
 To discuss the general case for components combination in each sample $t_i$, one can gather relations in Equation~\ref{moduloEfase} for the real signal reconstruction, relations of modules (Equation~\ref{equivalenciasModulos}) and phase equivalences (Equation~\ref{equivalenciasFases}), the number of paired coefficients (Equation~\ref{coefsPareados}), and equivalence of paired frequencies (Equation~\ref{equivalenciasFreqs}):
 
-\begin{multline}\label{eq:reconsCompleta}
-t_i = \frac{a_0}{\Lambda} + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]+ \\ \frac{ a_{\Lambda/2}}{\Lambda}.(1-\Lambda\% 2)
-\end{multline}
+\begin{equation}\label{eq:reconsCompleta}
+\begin{split}
+	t_i = \frac{a_0}{\Lambda} + \frac{ a_{\Lambda/2}}{\Lambda}(1-\Lambda\% 2) + \frac{2}{\Lambda}\sum_{k=1}^{\tau}\sqrt{a_k^2 + b_k^2} \; cos\left[w_k i - tg^{-1}\left(\frac{b_k}{a_k}\right)\right]
+\end{split}
+\end{equation}
 
 \noindent with $a_{\Lambda/2}=0$ if $\Lambda$ odd.
 
@@ -614,7 +609,7 @@ Let $\widetilde{\Lambda}$ be the wave period in samples and $\widetilde{L_i} = \
 
 \begin{equation}\label{eq:lut}
 \begin{split}
-T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = & \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \\ \text{where} \;\; \gamma_i = & \left \lfloor i . f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
+T_i^{f,\,\Delta}=\left\{t_i^f\right\}_0^{\lfloor \, f_a . \Delta \, \rfloor -1} = \left\{ \, \widetilde{l}_{\gamma_i \% \widetilde{\Lambda} }\, \right\}_{0}^{\Lambda-1}\; , \quad \text{where} \;\; \gamma_i = \left \lfloor i f \frac{ \widetilde{\Lambda}}{f_a} \right \rfloor  
 \end{split}
 \end{equation}
 
@@ -642,8 +637,8 @@ Consider a note with duration $\Delta = \frac{\Lambda}{f_a}$, in which the frequ
 
 \begin{equation}\label{indiceLinear}
 \begin{split}
- \Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow \quad \gamma_i= \left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor \\
-\gamma_i=  \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{j}{\Lambda-1} \right ] \right \rfloor 
+	\Delta_{\gamma_i}=\frac{\widetilde{\Lambda}}{f_a}f_i \quad \Rightarrow \quad \gamma_i & = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f_j \right \rfloor \\
+	\gamma_i & =  \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a} \left [f_0 + (f_{\Lambda-1}-f_0)\frac{j}{\Lambda-1} \right ] \right \rfloor 
 \end{split}
 \end{equation}
 
@@ -662,7 +657,8 @@ Therefore, $f_i=f_0 . 2^{\frac{i}{\Lambda-1}\log_2\frac{f_{\Lambda-1}}{f_0}}=
 
 \begin{equation}\label{indiceExponencial}
 \begin{split}
- \Delta_{\gamma_i}= f_i\frac{\widetilde{\Lambda}}{f_a} \quad \Rightarrow  \quad \gamma_i= & \left \lfloor \sum_{j=0}^{i} f_j\frac{\widetilde{\Lambda}}{f_a} \right \rfloor \\ \gamma_i = & \left \lfloor \sum_{j=0}^{i} f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{j}{\Lambda -1}} \right \rfloor
+ \Delta_{\gamma_i}= \frac{\widetilde{\Lambda}}{f_a}f_i \quad \Rightarrow  \quad \gamma_i= & \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_a}f_j \right \rfloor \\
+	\gamma_i = & \left \lfloor \sum_{j=0}^{i} f_0 \frac{\widetilde{\Lambda}}{f_a} \left ( \frac{f_{\Lambda-1}}{f_0} \right ) ^{\frac{j}{\Lambda -1}} \right \rfloor
 \end{split}
 \end{equation}
 
@@ -682,10 +678,11 @@ The term $\frac{i}{\Lambda-1}$ covers the interval $[0,1]$ and it is possible to
 Thus, for amplitude variations:
 \begin{equation}\label{seqAmp}
 \begin{split}
- \{a_i\}_0^{\Lambda-1}= & \left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}= \\ = & \left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1} \text{ (with } a_0=1 \text{)}
+ \{a_i\}_0^{\Lambda-1}= \left \{ a_0 \left ( \frac{a_{\Lambda-1}}{a_0} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}= \left \{ \left ( {a_{\Lambda-1}} \right )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
 \end{split}
 \end{equation}
-and
+where $a_0=1$. And, therefore:
+
 \begin{equation}\label{transAmp}
 \begin{split}
  T_i^{'}=T_i \odot A_i = & \{t_i . a_i\}_0^{\Lambda-1} \\ = & \left \{ t_i . (a_{\Lambda-1} )^{\left ( \frac{i}{\Lambda-1} \right )^\alpha} \right \}_0^{\Lambda-1}
@@ -851,17 +848,19 @@ Figure~\ref{fig:ruidos} shows the spectrum profile and the corresponding sonic s
 The exponential $e^{j.x}$ is a way to obtain unitary module and random phase for the value of $c_i$. In addition, $c_{\Lambda/2}$ is always real (as discussed in the previous section).
 
  \item The pink noise is characterized by a decrease of $3dB$ per octave. This noise is useful for testing electronic devices, being prominent in nature~\cite{Roederer}. 
-\begin{multline}\label{eq:rosa}
  %\begin{split}
- \qquad \qquad \qquad f_{\text{min}}  \approx 15 Hz \\
- f_i  = i \frac{f_a}{\Lambda} \;, \;\; \quad i \;\leq\; \frac{\Lambda}{2},\;\; i\;\in\;\mathbb{N}  \\
- \alpha_i  = \left(10^{-\frac{3}{20}}\right)^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )}  \\
- c_i  =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \\
- c_i  =e^{j.x} . \alpha_i\;, \; x \; \text{random} \; \in \; [0,2\pi]\;,\;\; \forall \; i \; : f_{\text{min}} \le f_i < f_{\lceil \Lambda/2-1 \rceil}  \\
- c_{\Lambda/2}  = \alpha_{\Lambda/2}\;, \; \text{if $\Lambda$ even} \\ 
- c_i  = c_{\Lambda - i}^*\;,\;\; \text{for}\;  i \; > \;  \Lambda/2 \qquad \qquad
+\begin{equation}\label{eq:rosa}
+\begin{split}
+	f_{\text{min}} & \approx 15 Hz \\
+	f_i  &= i \frac{f_a}{\Lambda} \;, \;\; \quad i \;\leq\; \frac{\Lambda}{2},\;\; i\;\in\;\mathbb{N}  \\
+	\alpha_i & = \left(10^{-\frac{3}{20}}\right)^{\log _2 \left ( \frac{f_i}{f_{\text{min}}} \right )}  \\
+	c_i & =0\;,\;\; \forall \; i \; : f_i<f_{\text{min}} \\
+	c_i & =e^{j.x} \alpha_i\;, \; x \; \text{random} \; \in \; [0,2\pi]\;,\;\; \forall \; i \; : f_{\text{min}} \le f_i < f_{\lceil \Lambda/2-1 \rceil}  \\
+	c_{\Lambda/2} & = \alpha_{\Lambda/2}\;, \; \text{if $\Lambda$ even} \\ 
+	c_i & = c_{\Lambda - i}^*\;,\;\; \text{for}\;  i \; > \;  \Lambda/2 \qquad \qquad
+\end{split}
+\end{equation}
  %\end{split}
-\end{multline}
 The minimum frequency $f_{\text{min}}$ is chosen with regard to the human hearing, since a sound component with frequency below $\approx\; 20Hz$ is virtually inaudible.
 
 Other noises can be made by similar procedures. Simple modifications are needed, especially in the equation that defines $\alpha_i$.
@@ -899,8 +898,8 @@ Other noises can be made by similar procedures. Simple modifications are needed,
 This subsection discussed only noise with static spectrum. There are also characterizations for noise with dynamic spectrum during the time, and noises which are fundamentally transient, like clicks and chirps. The former are easily modeled by an impulse relatively isolated, while chirps are not in fact a noise, but a fast scan of some given frequency band~\cite{Cook}.
 
 \subsection{Tremolo and vibrato, AM and FM}\label{subsec:tvaf}
-Vibrato is a periodic variation in pitch (frequency) and tremolo is a period variation in volume (intensity)\footnote{The jargon may be different in other contexts. For example, in piano, tremolo is a vibrato in the classification used here. The definitions given here are common in contexts regarding music theory and electronic music. In addition, they are based on a broader literature than the one used for a specific instrument, practice or musical tradition~\cite{Lacerda,Harmonia}.}
-For the general case, vibrato is described as:
+Vibrato is a periodic variation in pitch (frequency) and tremolo is a period variation in volume (intensity)\footnote{The jargon may be different in other contexts. For example, in piano, tremolo is a vibrato in the classification used here. The definitions given here are common in contexts regarding music theory and electronic music. In addition, they are based on a broader literature than the one used for a specific instrument, practice or musical tradition~\cite{Lacerda,Harmonia}.}.
+A vibrato can be achieved by:
 
 \begin{equation}\label{vbrGamma}
  \gamma_i'=\left \lfloor i f' \frac{\widetilde{\Lambda}_M}{f_s} \right \rfloor
@@ -914,9 +913,13 @@ For the general case, vibrato is described as:
  f_i=f \left ( \frac{f + \mu }{f} \right )^{t_i'}=f . 2^{t_i'\frac{\nu}{12}}
 \end{equation}
 
-\begin{multline}\label{vbrGamma2}
- \Delta_{\gamma_i}=f_i\frac{\widetilde{\Lambda}}{f_s} \quad \Rightarrow \quad \gamma_i = \left \lfloor \sum_{j=0}^{i} f_j \frac{\widetilde{\Lambda}}{f_s} \right \rfloor = \\ = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_s}f \left ( \frac{f + \mu }{f} \right )^{t_j'}  \right \rfloor= \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_s}f . 2^{t_j'\frac{\nu}{12}}  \right \rfloor
-\end{multline}
+\begin{equation}\label{vbrGamma2}
+\begin{split}
+	\Delta_{\gamma_i}=\frac{\widetilde{\Lambda}}{f_s}f_i \quad \Rightarrow \quad \gamma_i & = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_s}f_j \right \rfloor \\ 
+	& = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_s}f \left ( \frac{f + \mu }{f} \right )^{t_j'}  \right \rfloor \\
+	& = \left \lfloor \sum_{j=0}^{i} \frac{\widetilde{\Lambda}}{f_s}f . 2^{t_j'\frac{\nu}{12}}  \right \rfloor
+\end{split}
+\end{equation}
 
 \begin{equation}\label{vbrT}
  T_i^{f, vbr(f',\,\nu)}=\left\{ t_i^{f,vbr(f',\,\nu)} \right\}_0^{\Lambda-1}=\left\{ \widetilde{l}_{\gamma_i \%\; \widetilde{\Lambda} } \right\}_0^{\Lambda-1}
@@ -925,7 +928,7 @@ For the general case, vibrato is described as:
 \begin{figure}[h!]
      \centering
          \includegraphics[width=\columnwidth]{figures/vibrato_}
-     \caption{Spectrogram of a sound with a sinusoidal vibrato of $3Hz$ and one octave of depth in a $1000Hz$ sawtooth wave, with $f_s=44.1kHz$.}
+     \caption{Spectrogram of a sound with a sinusoidal vibrato of $3Hz$ and one octave of depth in a $1000Hz$ sawtooth wave, with $f_s=44.1kHz$. The color bar is uses decibels.}
          \label{fig:vibrato}
 \end{figure}
 
@@ -946,10 +949,13 @@ The amplitude sequence to be multiplied by the original sequence $t_i$ is:
 \begin{equation}\label{trA}
  a_i=10^{\frac{V_{dB}}{20}t_i' } = a_{\text{max}}^{t_i'}
 \end{equation}
-\noindent and finally: 
-\begin{multline}\label{trT}
- T_i^{tr(f')}=\left \{ t_i^{tr(f')} \right \}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}= \\ =\left \{t_i .10^{t_i' \frac{V_{dB}}{20}}    \right \}_0^{\Lambda-1}=\left\{t_i . a_{\text{max}}^{t_i'} \right\}_0^{\Lambda-1}
-\end{multline}
+\noindent and, finally: 
+
+\begin{equation}\label{trT}
+\begin{split}
+ T_i^{tr(f')}=\left \{ t_i^{tr(f')} \right \}_0^{\Lambda-1}=\{ t_i . a_i \}_0^{\Lambda-1}= \left \{t_i .10^{t_i' \frac{V_{dB}}{20}}    \right \}_0^{\Lambda-1}=\left\{t_i . a_{\text{max}}^{t_i'} \right\}_0^{\Lambda-1}
+\end{split}
+\end{equation}
 
 \noindent where $V_{dB}$ is the oscillation depth in decibels of tremolo and $a_{\text{max}}=10^{\frac{V_{dB}}{20}}$ is the maximum amplitude gain. The measurement in decibels is suitable because the maximum increase in amplitude is not equivalent to the related maximum decrease, while the difference in decibels remains.
 
@@ -983,9 +989,9 @@ case of sines and, when other waveforms are employed, to decompose the signals i
 
 \noindent where
 
-\begin{multline}\label{eq:Bessel}
-J_k(\mu) = \\ = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \\  \overline{k} = k \% 2 \;\;,\;\; k \in \mathbb{N}
-\end{multline}
+\begin{equation}\label{eq:Bessel}
+J_k(\mu) = \frac{2}{\pi} \int_0^{\frac{\pi}{2}}\left [ cos \left (\overline{k}\;\frac{\pi}{2} + \mu . \sin w \right ) . cos \left ( \overline{k}\;\frac{\pi}{2} + k . w \right ) \right ] dw \;,\; \overline{k} = k \% 2 \;,\; k \in \mathbb{N}
+\end{equation}
 
 \noindent is the Bessel function~\cite{BesselCCRMA,JOSFM} which specifies the amplitude of each component in FM synthesis.
 
@@ -1136,8 +1142,8 @@ Section~\ref{subsec:spac}, reverberation $R_i^1$ of the first period can be desc
 
 \begin{equation}\label{eq:p1rev}
 \begin{split}
-    R_i^1=\left\{r_i^1\right\}_0^{\Lambda_1-1}\;:\quad\quad\quad\quad\quad\quad\quad\quad \\ 
-\;r_i^1=\left\{
+	R_i^1  =\left\{r_i^1\right\}_0^{\Lambda_1-1}\;,\; \text{where}\;\;
+	r_i^1  =\left\{
         \begin{array}{l l}
             10^{\frac{V_{dB}}{20}\frac{i}{\Lambda_R-1}}\;  & \text{with probability}\quad p_i=\left(\frac{i}{\Lambda_1}\right)^2 \\
                                      0 \; & \text{with probability}\quad 1-p_i \\
@@ -1154,7 +1160,7 @@ Section~\ref{subsec:spac}, reverberation $R_i^1$ of the first period can be desc
 \noindent with
 
 \begin{equation}\label{eq:rev}
-    R_i=\left\{r_i\right\}_0^{\Lambda_R-1}\;:\;r_i=\left\{
+	R_i=\left\{r_i\right\}_0^{\Lambda_R-1}\;,\; \text{where} \; r_i=\left\{
         \begin{array}{l l}
             1\; & \text{if }\quad i=0 \\
             r_i^1\;  & \text{if }\quad 1\leq i<\Lambda_1-1 \\

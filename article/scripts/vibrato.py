@@ -39,6 +39,6 @@ p.xticks((0,10000,20000,30000,44000),(r"0",10000,20000,30000,44100),
         fontsize=16)
 p.yticks(fontsize=16)
 p.ylabel(u"frequency "+r"$ \in \; [0,\,\frac{f_a=44100}{2}=22050] \, \rightarrow $", fontsize=19)
-p.xlabel(r"samples $\quad \rightarrow$",fontsize=26)
+p.xlabel(r"samples $\quad \rightarrow$",fontsize=21)
 p.savefig("../figures/vibrato_.png")
 p.show()
