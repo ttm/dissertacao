@@ -154,7 +154,9 @@ As these descriptions require knowledge on topics such as psychoacoustics, cultu
 and mathematical formalisms, the text points to external complements as needed
 and presents methods, results and discussions altogether.
 Section~\ref{cap:conclusao} holds final considerations and further work.
-The Supporting Information document~\cite{SI} holds an informative listing of all the equations, figures, tables and sections in this document
+
+\subsection{Additional material}
+The Supporting Information document~\cite{SI} holds commented listings of all the equations, figures, tables and sections in this document
 and the scripts in the \massa\ toolbox\footnote{The toolbox contains a collection of Python scripts which:
 \begin{itemize}
     \item implement each of the equations;
@@ -162,6 +164,29 @@ and the scripts in the \massa\ toolbox\footnote{The toolbox contains a collectio
     \item render each of the figures used in this article.
 \end{itemize}
 Additionally, the documentation of the toolbox consists of this article and the scripts themselves.}.
+The musical pieces are not very traditional which facilitates the understanding of specific techniques
+and the extrapolation of the note concept.
+
+\subsection{Synonymy and polysemy (disclaimer)}
+Given that the main topic of this article (the expression of musical elements
+in PCM audio) is multidisciplinary and involves art,
+the reader should be aware that many of the vocabulary admit different choices of terms and definitions.
+More specifically, it is often often the case where many words can express the same concept
+and where one word can carry different meanings.
+This is a very deep issue which might receive a dedicated manuscript.
+The reader might need to read the rest of this document to understand this
+small selection of synonymy and polysemy in the literature,
+but it is important to illustrate the point before the more dense sections:
+\begin{itemize}
+	\item A ``note'' can mean a pitch or an abstract construct with pitch and duration or a sound emitted from a musical instrument or a specific note in a score or a music.
+	\item The sampling rate (discussed above) is also called the sampling frequency.
+	\item An harmonic in a sound is most often a sinusoidal component which is is the harmonic series of the fundamental frequency. Many times, however, the terms harmonic and component are not distinguished. A harmonic can also be a note performed in a instrument by preventing certain overtones (components).
+	\item Harmony can refer to chords or to note sets related to chords or even to ``harmony'' in a more general sense, as a kind of balance and consistency.
+	\item A ``tremolo'' can mean different things, e.g. in a piano score, a tremolo is a fast alternation of two notes (pitches) while in computer music theory it is (most often) an oscillation of intensity.
+\end{itemize}
+
+We strived to avoid nomenclature clashes and the use of more terms and needed.
+Also, some of these issues are exposed when the context is convenient, such as in the discussion of timbre.
 
 \section{Characterization of the musical note in dicrete-time audio} \label{sec:discNote}\label{sec:notaDisc}
 In diverse artistic and theoretical contexts, music is conceived as comprising fundamental units referred to as notes, ``atoms'' that constitute music itself~\cite{Wisnick, Lovelock, Webern}.
@@ -1062,10 +1087,10 @@ the creation of `sound amalgams' based on granular synthesis; see Figure~\ref{fi
 
 
 \subsubsection{Moving source and receptor, Doppler effect}
-According to the description in Section~\ref{subsec:spac}, when an audio source or receptor is moving, its characteristics are ideally updated at each sample of the digital signal (if fast computational rendering is not at stake). Velocity components should be found for each ear. Hence, given the audio source velocity $v_s$, with positive values if the source moves away from receptor, and receptor velocity $v_r$, positive when it gets closer to audio source, the frequency is given by the well-known shift in the Doppler effect:
+According to the description in Section~\ref{subsec:spac}, when an audio source or receptor is moving, its characteristics are ideally updated at each sample of the digital signal (if fast computational rendering is not at stake). Velocity components should be found for each ear. Hence, given the audio source speed $s_s$, with positive values if the source moves away from receptor, and receptor speed $s_r$, positive when it gets closer to audio source, the frequency is given by the well-known shift in the Doppler effect:
 
 \begin{equation}\label{eq:fDoppler}
-    f=\left(\frac{v_{sound}+v_r}{v_{sound}+v_s}\right)f_0
+    f=\left(\frac{s_{sound}+s_r}{s_{sound}+s_s}\right)f_0
 \end{equation}
 
 With both frequencies $f$ and $f_0$, and the IID from the new source

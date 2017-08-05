@@ -4,19 +4,19 @@
 - Confirm institutional ties of authors and their names in English.
 - note to other authors that we have many footnotes.
 - ask to other authors if they miss citations in some parts (e.g. first sentences of intro) or is it ok to rely in our own knowledge.
-- write a section on vocabulary, synonyms and ambiguities? (sample/sampling frequency/rate; harmonic vs component; )
+- maybe make a PDF with the scripts as another SI document.
 
-#### Tasks to tackle directly in the article
+#### In the last reading
 - place figures in best places.
 - remove repetition of what has been seen before (recaps).
-- maybe make a PDF with the scripts as another SI document.
-- change velocity to speed in the discussion about the Doppler effect.
 - join (or at least enhance their relation) the sections of reverberation.
 
-##### Context of the article (mainly reflects in the introduction)
-- write a supporting information file with a table with all the scripts and related equations (search multline), musical pieces and figures and important tables.
-- make an index in the beginning of each section or of the article. E.g. spatial location or spatialization is not even cited until the subsection is reached. Maybe make the index as an appendix or put it in the introduction, relating concepts, equations and implementations (files and line numbers).
-- state in the introduction that, in fact, most pieces in massa are not very traditional in their sonorities and discourse- review equation layouts.
+#### In the submission
+- in the submission, say that we can write a vocabulary with definitions and alternative terms.
+- say that we can move some of the article to another supporting information, if it is too long
+
+##### Context of the article (mainly reflects in the introduction) 
+- review equation layouts.
 - write about the extreme quality of massa synthesis which uses 64bits per sample,
 updates on the synthesis parameters sample-by-sample, and lookup tables with arbitrary size and sample precision.
 Make explicit that there are a lot of discussion among specialists on the impact of sample rate and bit depth, for example, and that music software often uses 16 or 24bit bit depth and audio chunks to make synthesis lighter.
@@ -27,8 +27,9 @@ Make explicit that there are a lot of discussion among specialists on the impact
 Therefore, the article contains many adjectives such as "often" "commonly" "frequently" and they might be even more numerous if we wanted to be very precise.
 - see if bibliography is ok.
 - decide on lambda or delta for inter-sample duration.
-- Use mass (music and audio in sample sequences) acronym instead of massa.
+- use mass (music and audio in sample sequences) acronym instead of massa.
 - enhance the conclusions section (maybe remove information that might be considered spurious).
+- read listings.pdf again so ensure everithing is ok.
 
 ###### Code (and musical pieces)
 - review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
@@ -36,7 +37,7 @@ Put all the code in a new, better organized repository.
 - give better names to musical pieces and use English.
 - add license and authorship header in the massa python and latex scripts.
 
-###### Notes in music (most of the issues seem related to this section)
+###### Notes in music (most issues seem related to this section)
 - account for phrases and melody construction (check e.g. Schoenberg's Fundamentals of Musical Composition).
 - account for spectral music composition and other post-serial techniques.
 - better account for serial techniques.
@@ -62,6 +63,12 @@ Put all the code in a new, better organized repository.
 - change Musical use to Musical usages. OK
 - put references and citations in ?? OK
 - choose nice settings for the unpublished document (e.g. journal, year). OK
+- write a section on vocabulary, synonyms and ambiguities? Maybe put it as a disclaimer in the conclusions and state that the section could not be at the introduction because rll the terms were not introduced yet. (sample/sampling frequency/rate; harmonic vs component; harmony (field vs chords vs equilibrium of elements); note as pitch as a pitch+duration as pitch+duration+timbre as an specific note of a score, music or instrument; timbre of instrument, of player, of a register, etc; tremolo as vibrato in some instruments (e.g. piano); OK
+- change velocity to speed in the discussion about the Doppler effect.
+- write a supporting information file with a table with all the scripts and related equations (search multline), musical pieces and figures and important tables. OK
+- make an index in the beginning of each section or of the article. E.g. spatial location or spatialization is not even cited until the subsection is reached. Maybe make the index as an appendix or put it in the introduction, relating concepts, equations and implementations (files and line numbers). OK because of listings.pdf
+- state in the introduction that, in fact, most pieces in massa are not very traditional in their sonorities and discourse. OK
+
 
 ### Vocabulary
 - campo harmônico => harmonic field?
