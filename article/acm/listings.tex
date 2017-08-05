@@ -191,32 +191,127 @@ All these equations are implemented in file \texttt{src/sections/4.py}.}
 \end{table*}
 
 
-
-
-\subsection{In Section 4 - Notes in music}
-
-\subsection{In Section 3 - Variations of the basic note}
-\subsection{In Section 4 - Notes in music}
-
 \clearpage
-\section{Figures}
+\section{Figures}\label{sec:lfigures}
+
+\begin{table*}[htp!]
+\centering
+\caption{Figure numbers and their descriptions.
+All these equations are implemented in files \texttt{src/aux/*}.}
+\begin{tabular}{ c | p{12cm} }
+   Number & Description \\\hline
+ \ref{fig:PCM} & PCM PCM audio (discrete and digital) samples \\
+ \ref{fig:formasDeOnda} & synthetic and sampled waveforms \\
+ \ref{fig:espectroDeOndas} & spectrum of basic waveforms \\
+ \ref{fig:espectroOboe} & spectrum of a real note and of one derived from one sampled period \\
+ \ref{fig:amostras2} & sinusoid represented by two samples \\
+ \ref{fig:amostras3} & sinusoid represented by three samples \\
+ \ref{fig:amostras4} & sinusoids in 4 samples \\
+ \ref{fig:formas4} & basic waveforms within 4 samples \\
+ \ref{fig:amostras6} & sinusoids in 6 samples \\
+ \ref{fig:formas6} & basic waveforms withing 6 samples \\
+ \ref{fig:spac} & ITD and IID (spatial localization cues)\\
+ \ref{fig:mixagem} & mixing PCM audio \\
+ \ref{fig:concatenacao} & concatenation/juxtaposition of PCM audio \\
+ \ref{fig:lut} & Lookup table \\
+ \ref{fig:transicao} & transitions of intensity \\
+ \ref{fig:conv} & convolution \\
+ \ref{fig:delays} & convolution yielding time shifting, multiple time delays, sound amalgam \\
+ \ref{fig:iir} & frequency response of useful IIR filters \\
+ \ref{fig:ruidos} & spectrum and waveform of noises \\
+ \ref{fig:vibrato} & spectrogram of a vibrato \\
+ \ref{fig:tremolo} & waveform of a tremolo \\
+ \ref{fig:adsr} & ADSR envelope \\
+ \ref{fig:movContraponto} & counterpoint movements \\
+ \ref{fig:pulsoSubAgl} & musical metric in terms of divisions of temporal units \\
+ \ref{fig:climax} & distinctions of musical climax by localization \\
+\end{tabular}
+\end{table*}
 
 \clearpage
 \section{Tables}
 
+\begin{table*}[htp!]
+\centering
+\caption{Table numbers and their descriptions.}
+\begin{tabular}{ c | p{12cm} }
+   Number & Description \\\hline
+ \ref{eq:intervalos} & musical intervals, their notations and qualities \\
+ \ref{tab:harmonia} & tonal harmonic functions in the major scale \\
+ \ref{tab:duracoes} & duration scales yielding perception of pitch and rhythm \\
+ \ref{tab:change} & music by permutation of units (change ringing) \\
+\end{tabular}
+\end{table*}
+
 \clearpage
 \section{Scripts}
-\subsection{For all equations in each chapter}
+\subsection{For all equations and relations in each section.}
+
+\begin{table*}[htp!]
+\centering
+\caption{Script files and their descriptions.}
+\begin{tabular}{ c | p{12cm} }
+   Filename & Description \\\hline
+  \texttt{src/sections/2.py} & implementation of all the equations for the basic note in PCM audio in Section~\ref{sec:discNote} \\
+  \texttt{src/sections/3.py} & implementation of all the equations for variations within a note described in Section~\ref{sec:varInternas} \\
+  \texttt{src/sections/4.py} & implementation of all the techniques for assembling notes into music described in Section~\ref{sec:notesMusic} \\
+\end{tabular}
+\end{table*}
+
 \clearpage
 \subsection{To render musical pieces}
+
+\begin{table*}[htp!]
+\centering
+\caption{Piece names, script files and the concepts they exemplify from Section~\ref{sec:discNote}. All files are in the directory \texttt{src/pieces2/}.}
+\begin{tabular}{ p{5cm} | p{3.5cm} | p{6.2cm} }
+   Name & Filename & Description \\\hline
+ Reduced-fi & \texttt{reduced-fi.py} & concatenation of simple notes \\
+ Sonic pictures & \texttt{quadrosSonoros.py} & mixing of simple notes  \\
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htp!]
+\centering
+\caption{Piece names, script files and the concepts they exemplify from Section~\ref{sec:internalVar}. All files are in the directory \texttt{src/pieces3/}.}
+\begin{tabular}{ p{5cm} | p{3.5cm} | p{6.2cm} }
+   Name & Filename & Description \\\hline
+ ADa and SaRah & \texttt{ADAandSaRah.py} & ADSR envelope \\
+ Tremolos, Vibratos and Frequency & \texttt{bonds.py} & bonds between tremolos, vibratos and frequency  \\
+ Bella Rugosi & \texttt{bellaRugosi.py} & rugosity achieved through frequencies between 15 adn 30 Hz \\
+ Children Choir & \texttt{childChoir.py} & achieving choir sonorities by small variations of the same basic note \\
+ Noisy Band & \texttt{noisyBanda.py} & using various noises \\
+ ParaMeter Transitions & \texttt{paraMeter.py} & gradual changes of parameters within one note \\
+ Little Train of Impulsive Hillbilies~\footnote{This names translates into ``Trenzinho de Caipiras Impulsivos'' which is a pun with the Villa-Lobos' ``Trenzinho do Capira''.} & \texttt{littleTrain.py} & the use of convolution with impulses to achieve rhythm \\
+ Shakes and Wiggles & \texttt{shakesWiggles.py} &  tremolos and vibratos \\
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htp!]
+\centering
+\caption{Piece names, script files and the concepts they exemplify from Section~\ref{sec:notesMusic}. All files are in the directory \texttt{src/pieces4/}.}
+\begin{tabular}{ p{5cm} | p{3.5cm} | p{6.2cm} }
+   Name & Filename & Description \\\hline
+ Acorde Cedo & \texttt{acordeCedo.py} & chord successions and modulation \\
+ Conta Ponto & \texttt{contaPonto.py} & melodic lines conducted within the rules of counterpoint \\
+ Crystals & \texttt{crystals.py} & symmetric musical scales \\
+ Dirracional & \texttt{dirracional.py} & directional arcs \\
+ Intervals & \texttt{intervals.py} & musical intervals \\
+ MicroTone & \texttt{microTone.py} & microtonality (the use of intervals smaller than the semitone) \\
+ Poly-Hit-My & \texttt{polyHitMy.py} & polyrhythm (multiple metrics at once) \\
+\end{tabular}
+\end{table*}
+
 \clearpage
 \subsection{To render the figures used in the article}
+The files \texttt{src/figures/*} render each of the figures (listed above in Section~\ref{sec:lfigures}.
 
 \clearpage
 \section{Other documents}
-Latex files. PDF files.
-MSc Dissertation.
+The files in \texttt{latex/*} render the article PDF and this Supporting Information file.
 
-\section{Final considerations}
+The script \texttt{src/aux/iso226.py} can generate the Equal Loudness Contour as described in its latest revision~\cite{iso226}.
+
+The article is largely based on the MSc dissertation~\cite{dissertacao}.
 
 \end{document}
