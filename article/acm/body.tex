@@ -39,10 +39,10 @@ Non-lossy representations of digital audio, called \emph{lossless} protocols or 
 on the other hand, assures perfect reconstruction of the analog wave within any convenient precision.
 The standard paradigm of lossless audio consists of
 representing the sound with samples equally spaced
-by a duration $\lambda_s$, and specifying the amplitude of each sample by a fixed number of bits.
+by a duration $\delta_s$, and specifying the amplitude of each sample by a fixed number of bits.
 This is the Pulse Code Modulation (PCM) representation of sound.
 A PCM audio format has two essential attributes:
-a sampling frequency $f_s=\frac{1}{\lambda_s}$ (also called e.g. sampling rate or sample rate),
+a sampling frequency $f_s=\frac{1}{\delta_s}$ (also called e.g. sampling rate or sample rate),
 which is the number of samples used for representing a second of sound;
 and a bit depth, which is the number of bits for each sample.
 Figure~\ref{fig:PCM} shows $25$ samples of a PCM audio with a bit depth of $4$,
@@ -122,7 +122,6 @@ there is no concise mathematical description of them, and it is far from trivial
 to achieve the equations by analyzing the available software implementations.
 
 The objectives of this paper are:
-
 \begin{enumerate}
 	\item Present a concise set of mathematical relations between musical basic elements and sequences of PCM audio samples.
 	\item Introduce a framework of sound and musical synthesis with control at sample level which entails potential uses in psychoacoustic experiments and synthesis with extreme precision (recap in Section~\ref{cap:conclusao}).
@@ -167,7 +166,7 @@ Additionally, the documentation of the toolbox consists of this article and the 
 The musical pieces are not very traditional which facilitates the understanding of specific techniques
 and the extrapolation of the note concept.
 
-\subsection{Synonymy and polysemy (disclaimer)}
+\subsection{Synonymy, polysemy and theoretical frames (disclaimer)}
 Given that the main topic of this article (the expression of musical elements
 in PCM audio) is multidisciplinary and involves art,
 the reader should be aware that many of the vocabulary admit different choices of terms and definitions.
@@ -185,8 +184,11 @@ but it is important to illustrate the point before the more dense sections:
 	\item A ``tremolo'' can mean different things, e.g. in a piano score, a tremolo is a fast alternation of two notes (pitches) while in computer music theory it is (most often) an oscillation of intensity.
 \end{itemize}
 
-We strived to avoid nomenclature clashes and the use of more terms and needed.
-Also, some of these issues are exposed when the context is convenient, such as in the discussion of timbre.
+We strived to avoid nomenclature clashes and the use of more terms than needed.
+Also, there are many theoretical standpoints for the understanding of musical phenomena,
+which is an evidence that most often there is not a single way to express or characterize musical structures.
+Therefore, in this article, adjectives such as "often" "commonly" "frequently" are abundant and they would probably be even more numerous if we wanted to be pedantically precise.
+Some of these issues are exposed when the context is convenient, such as in the first considerations of timbre.
 
 \section{Characterization of the musical note in dicrete-time audio} \label{sec:discNote}\label{sec:notaDisc}
 In diverse artistic and theoretical contexts, music is conceived as comprising fundamental units referred to as notes, ``atoms'' that constitute music itself~\cite{Wisnick, Lovelock, Webern}.
@@ -199,7 +201,7 @@ All the relations described in this section are implemented in the file \emph{eq
 \subsection{Duration}
 The sample frequency $f_s$ is defined as the number of samples in each second of the discrete-time signal. Let $T_i=\{t_i\}$ be an ordered set of real samples separated by $\delta_s=1/f_s$ seconds.
 A musical note of duration $\Delta$ seconds can be expressed as a sequence $T_i^{\Delta}$ of $\lfloor \Delta . f_s \rfloor$ samples.
-That is, the integer part of the multiplication is considered, and an error of at most $\delta_s$ missing seconds is admitted, which is usually fine for musical purposes. As an example, if $f_s=44.1kHz \;\;\Rightarrow\;\;\lambda_s=\frac{1}{44100}\approx 23$ microseconds. Thus:
+That is, the integer part of the multiplication is considered, and an error of at most $\delta_s$ missing seconds is admitted, which is usually fine for musical purposes. As an example, if $f_s=44.1kHz \;\;\Rightarrow\;\;\delta_s=\frac{1}{44100}\approx 23$ microseconds. Thus:
 
 
 \begin{equation}\label{eq:dur}
@@ -267,7 +269,7 @@ The simplest case is the spectrum with only one (fundamental) frequency $f$, whi
      S^f_i=\{ s^f_i \}=\Bigl\{ \sin\bigl(2\pi \frac{i}{\lambda_f} \bigr)  \Bigr\} = \Bigl\{ \sin\bigl(2\pi f \frac{i}{f_s}\bigr)  \Bigr\} 
 \end{equation}
 
-\noindent where $\lambda_f=\frac{f_s}{f}=\frac{\delta_f}{\lambda_s}$ is the number of samples in the period.
+\noindent where $\lambda_f=\frac{f_s}{f}=\frac{\delta_f}{\delta_s}$ is the number of samples in the period.
 
 In a similar fashion, other waveforms are used in music for their spectral qualities and simplicity. While the sinusoid is an isolated node in the spectrum, any other wave present a succession of harmonic components. The most basic waveforms are specified in Equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square}, and are illustrated in Figure~\ref{fig:formasDeOnda}.
 These artificial waveforms are traditionally used in music for synthesis and oscillatory control of variables. They are also useful outside musical contexts\cite{Openheim}.
@@ -1326,14 +1328,13 @@ $f=\varepsilon^{e_i} f_0$,
 where $f_0$ is any fixed frequency.
 The symmetric scales mentioned above can be expressed as:
 \begin{equation}\label{escSim}
-\begin{split}
-\text{chromatic}    & = E_i^c = \{e_i^c\}_0^{11} = \\
-                    & =  \{0,1,2,3,4,5,6,7,8,9,10,11\} = \{i\}_0^{11}\\
-	\text{whole tones}  & = E_i^{wt} = \{e_i^{wt}\}_0^{5} = \{0,2,4,6,8,10\} = \{2.i\}_0^{5} \\
-\text{minor thirds} & = E_i^{mt} = \{e_i^{mt}\}_0^{3} = \{0,3,6,9\} = \{3.i\}_0^3 \\
-\text{major thirds} & = E_i^{Mt} = \{e_i^{Mt}\}_0^{2} = \{0,4,8\} = \{4.i\}_0^2\\
-\text{tritones}     & = E_i^{tt} = \{e_i^{tt}\}_0^{1} = \{ 0, 6 \} = \{6.i\}_0^1
-\end{split}
+\begin{aligned}
+	\text{chromatic}    & = E_i^c    & = \{e_i^c\}_0^{11}   & =  \{0,1,2,3,4,5,6,7,8,9,10,11\} & = \{i\}_0^{11}\\
+	\text{whole tones}  & = E_i^{wt} & = \{e_i^{wt}\}_0^{5} & = \{0,2,4,6,8,10\}               & = \{2.i\}_0^{5} \\
+	\text{minor thirds} & = E_i^{mt} & = \{e_i^{mt}\}_0^{3} & = \{0,3,6,9\}                    & = \{3.i\}_0^3 \\
+	\text{major thirds} & = E_i^{Mt} & = \{e_i^{Mt}\}_0^{2} & = \{0,4,8\}                      & = \{4.i\}_0^2\\
+	\text{tritones}     & = E_i^{tt} & = \{e_i^{tt}\}_0^{1} & = \{ 0, 6 \}                     & = \{6.i\}_0^1
+\end{aligned}
 \end{equation}
 
 For example, the third note of the whole tone scale with $f_0=200Hz$ is $f_3=\varepsilon^{e_2^{wt}}. f_0 = 2^{\frac{4}{12}} . 200 \approxeq 251.98
@@ -1343,17 +1344,17 @@ The music piece \emph{Cristais} uses each one of these scales, in both melodic a
 The \emph{diatonic scales} are scales with seven notes in which the sequence consists of five whole tones and two semitones (in each octave). There are seven of them:
 
 \begin{equation}\label{eq:escalas}
-\begin{split}
-\text{aeolian}    & = \text{natural minor scale} = \\
-                  & = E_i^m = \{e_i^m\}_0^6 = \{0,2,3,5,7,8,10\} \\
-\text{locrian}    & = E_i^{lo} = \{e_i^{lo}\}_0^6 = \{0,1,3,5,6,8,10\} \\ 
-\text{ionian}     & = \text{major scale} =  \\
-                       & = E_i^M = \{e_i^M\}_0^6 = \{0,2,4,5,7,9,11\} \\
-\text{dorian}     & = E_i^{d} = \{e_i^{d}\}_0^6 = \{0,2,3,5,7,9,10\} \\
-\text{phrygian}   & = E_i^{p} = \{e_i^{p}\}_0^6 = \{0,1,3,5,7,8,10\} \\
-\text{lydian}     & = E_i^{l}=\{e_i^{l}\}_0^6 = \{0,2,4,6,7,9,11\} \\
-\text{mixolydian} & = E_i^{mi} = \{e_i^{mi}\}_0^6 = \{0,2,4,5,7,9,10\}
-\end{split}
+\begin{aligned}
+	\text{aeolian}    & = \text{natural minor scale}  & = & \\
+			  & = E_i^m = \{e_i^m\}_0^6       & = & \{0,2,3,5,7,8,10\} \\
+	\text{locrian}    & = E_i^{lo} = \{e_i^{lo}\}_0^6 & = & \{0,1,3,5,6,8,10\} \\ 
+	\text{ionian}     & = \text{major scale}          & = &  \\
+			  & = E_i^M = \{e_i^M\}_0^6       & = & \{0,2,4,5,7,9,11\} \\
+	\text{dorian}     & = E_i^{d} = \{e_i^{d}\}_0^6   & = & \{0,2,3,5,7,9,10\} \\
+	\text{phrygian}   & = E_i^{p} = \{e_i^{p}\}_0^6   & = & \{0,1,3,5,7,8,10\} \\
+	\text{lydian}     & = E_i^{l}=\{e_i^{l}\}_0^6     & = & \{0,2,4,6,7,9,11\} \\
+	\text{mixolydian} & = E_i^{mi} = \{e_i^{mi}\}_0^6 & = & \{0,2,4,5,7,9,10\}
+\end{aligned}
 \end{equation}
 
 \noindent They have only major, minor and perfect intervals.
@@ -1398,11 +1399,11 @@ the separation by one semitone is critical to the polarization of the first degr
 This is not necessary in the descending trajectory, and therefore the scale recovers the standard form.
 The harmonic scale presents the modified seventh degree but does not avoid the augmented second between the sixth and seventh degrees; it does not consider the melodic trajectory and thus does not need to avoid the aug2~\cite{Harmonia}.
 
-Although it is not a traditional scale, the harmonic series is often used as such::
+Although it is not a traditional scale, the harmonic series is often used as such:
 \begin{equation}\label{eq:serieHarmonica}
 \begin{split}
 H_i = & \{h_i\}_0^{19}= \\
-      & \{ 0,12,19+0.02,  24,28-0.14, 31+0.2, 34-0.31, \\
+    =  & \{ 0,12,19+0.02,  24,28-0.14, 31+0.2, 34-0.31, \\
                      & 36, 38+0.04,40-0.14, 42-0.49, 43+0.02, \\
                      & 44+0.41, 46-0.31, 47-0.12, \\
                      & 48, 49+0.05, 50+0.04, 51-0.02, 52-0.14   \}
@@ -1836,10 +1837,10 @@ The properties defining a group $G$ are:
      & \text{(closure property)} \\
 \forall \;\; p_1,p_2,p_3 \in G \Rightarrow \quad & (p_1\bullet p_2)\bullet p_3  = p_1\bullet (p_2\bullet p_3) \\
      & \text{(associativity property)} \\
-\exists \;\; e \in G :                  \quad    & p \bullet e  = e \bullet p \;\;\;\; \forall p \in G  \\ 
-     &  \text{(identity element existence)} \\
+\exists \;\; e \in G :                  \quad    & p \bullet e  = e \bullet p \;,\;\;\; \forall\; p \in G  \\ 
+     &  \text{(existence of the identity element)} \\
 \forall \;\; p \in G, \;\exists\; p^{-1} :\quad  &  p\bullet p^{-1}i =p^{-1}\bullet p = e \\
-     &  \text{(inverse element existence)}
+     &  \text{(existence of the inverse element)}
 \end{split}
 \end{equation}
 
@@ -1973,12 +1974,23 @@ This is valuable since art (e.g. music) can involve many non-trivial processes a
 Moreover, this didactic report and the supplied open source scripts should facilitate the use of the proposed framework.
 
 The possibilities provided by this exposition pour from both the organization of knowledge and the ability to achieve sounds which are extremely true to the models.
-For example, one can produce noises with arbitrary spectrum resolution and a musical note can be synthesized with the parameters (e.g. of a vibrato) updated sample-by-sample.
-These abilities can be crucial e.g. for psychoacoustic experiments or for the development of
+For example, one can produce noises with arbitrary resolution of the spectrum and a musical note can be synthesized with the parameters (e.g. of a vibrato) updated sample-by-sample.
+Furthermore, software for synthesis and processing of sounds for musical purposes
+by standard restrict the bit depth to 16 or 24.
+This is achievable in this presented framework but by standard Python uses more bits per floating point number.
+These ``higher fidelity'' characteristics can be crucial
+e.g. for psychoacoustic experiments or for the development of
 interfaces to generate high quality musical sounds or pieces.
 Simply put, it is compelling
-for many scientific, artistic and didactic purposes.
-A fact evidenced by a number of uses this framework had in courses, in software implementations and in making music~\cite{vimeoLM,vivace,repoDissertacao,dissertacao}.
+for many scientific and artistic purposes.
+The didactic potential of the framework is evident when noticed that:
+\begin{itemize}
+	\item the integrals and derivatives, ubiquitous in continuous signal processing,
+are all replaced by summations in discrete signals,
+which are more intuitive and does not require fluency in calculus.
+	\item The equations and concepts are implemented as software which can be easily assembled and inspected.
+\end{itemize}
+\noindent In fact, this framework was used in a number of contexts, including courses, software implementations and making music~\cite{vimeoLM,vivace,repoDissertacao,dissertacao}.
 
 This work systematically investigates parameterization issues (like for the tremolo, ADSR, etc.) in a sample-by-sample synthesis, which entails high/extreme fidelity and if of significant artistic convenience. Such detailed analytical descriptions, together with the computational implementations, have not been covered before in the literature, as far as the authors know, such as testified in the literature review~\cite{dissertacao}, where the books, articles and open software are related to this framework.
 
