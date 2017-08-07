@@ -1217,6 +1217,9 @@ in \massa, explores many configurations of the ADSL envelope.
 
 \section{Organization of notes in music}\label{notasMusica} \label{sec:notesMusic}
 Consider $S_j=\left\{  s_j=T_i^j=\{t_i^j\}_{i=0}^{\Lambda_j-1} \right\}_{j=0}^{H-1}$, the sequence $S_j$ of $H$ musical events $s_j$. Let $S_j$ be a `musical structure', composed by events $s_j$ which are musical structures themselves, e.g.\ notes. This section is dedicated to techniques that make $S_j$ interesting and enjoyable for audition. More specifically, what follows is a summary of academic music composition theory and praxis.
+This section does not benefit from equations that dictate the amplitude of each sample as deeply as the previous sections.
+Even so, we understand that this content is the missing piece for synthesizing music given all the content above.
+The concepts are given algorithmic implementations in \mass~\cite{SI}.
 
 The elements of $S_j$ can be overlapped by mixing them together, as in
 Equation~\ref{eq:mixagem} and Figure~\ref{fig:mixagem}, for building intervals and chords. This reflects the `vertical thought' in music. On the other hand, the concatenation of events
@@ -1462,7 +1465,7 @@ Omission of basic tonal structures is the key to achieving modal and atonal harm
 harmony is (usually) considered modal if the notes match with some diatonic scale (see Equations~\ref{eq:escalas}) or if there is only a small number of notes. If basic tonal progressions are absent and notes do not match any diatonic scale and are enough diverse and dissonant (between themselves) to avoid reduction of the notes by polarization\footnote{By polarization we mean having some notes that are way more important than others and to which the other notes are ornaments or subordinates.}, the harmony is atonal. In this classification, the modal harmony is not tonal or atonal and is reduced to the incidence of notes within a (most often diatonic) scale and to the absence of tonal structures. Following this concept, one observes that atonal harmony is hard to be realized and, indeed, no matter how dissonant and diverse
 a set of notes is, tonal harmonies arise very easily if not avoided~\cite{harmEXT}.
 
-\subsubsection{Atonal harmony}
+\subsubsection{Atonal harmony}\label{sec:atonal}
 In fact, atonal music techniques avoid that a direct relation of the notes with modes and tonality be established. Manifesting such atonal structures is of such difficulty that the dodecafonism emerged. The purpose of dodecafonism is to use a set of notes (ideally 12 notes), and to perform each note, one by one, in the same
 order. In this context, the tonic becomes difficult to be established. Nevertheless, the western listener automatically searches for tonal elements in music and obstinately finds them by unexpected and tortuous paths. The use of dissonant intervals (especially tritones) without resolution reinforces the absence of tonality. In this context, while creating a musical
 piece, it is possible to:
@@ -1806,16 +1809,22 @@ Henceforth, it is possible for a given sequence to have
 numerous distinct arcs, with different sizes and climax. 
 This is an interesting and useful resource, and the correlation of arcs yields coherence~\cite{Salzer}.
 
-In practice, and historically, there is special incidence and use of the golden ratio. The Lucas sequence allows the generalization of
-Fibonacci sequence, making it easy to follow. Given any two numbers $x_0$
-and $x_1$, the Lucas sequence can be obtained as: $x_n=x_{n-1}+x_{n-2}$. The greater $n$ is, the more $\frac{x_{n}}{x_{n_1}}$ approaches the golden ratio:
-$1.61803398875...$. The sequence converges fast even with high discrepant
-initial values. If $x_0=1$ and $x_1=100$, and $y_n=\frac{x_n}{x_{n+1}}$, the error for the first values with
+In practice, and historically, there is special incidence and use of the golden ratio.
+The Fibonacci sequence might be generalized as follows in order for any two numbers be used
+to approach the golden ratio.
+Given any two numbers $x_0$
+and $x_1$, define the elements of the sequence $\{x_n\}$ as: $x_n=x_{n-1}+x_{n-2}$.
+The greater $n$ is, the more $\frac{x_{n}}{x_{n_1}}$ approaches the golden ratio
+($1.61803398875...$). The sequence converges fast even with discrepant
+initial values.
+E.g. let $x_0=1$, $x_1=100$ and $y_n=\frac{x_n}{x_{n+1}}$, the error for the first values with
 respect to the golden ratio is, approximately, $\{ e_n \}
 =\left\{100\frac{y_n}{1.61803398875}-100 \right\}_1^{10}=\{6080.33, -37.57, 23,
--7.14, 2.937, -1.09, 0.42, -0.1601, \\ 0.06125, -0.02338\}$. The Fibonacci sequence
+-7.14, 2.937, -1.09, 0.42, -0.1601, 0.06125, -0.02338\}$. The Fibonacci sequence
 presents the same error progression, but starts at the second step of a more discrepant initial setting
 ($\frac{1}{1}\approx\frac{100+1 = 101}{100}$).
+One might benefit from the On-Line Encyclopedia of Integer Sequences (OEIS~\cite{oeis})
+for exploring various sequences.
 
 The music piece \emph{Dirracional} uses arcs into directional structures. Its source code is available online as part
 of \massa\ toolbox~\cite{MASSA}.
@@ -1850,12 +1859,12 @@ permutation $p$, successively applied, reaches the initial ordering of its
 elements, and makes a cycle. This cycle, if used for parameters of notes or other musical structures,
 yields a cyclic arc.
 
-These arcs can be established by using a set of different permutations. As a historic
+These arcs can be established by using a set of permutations. As a historic
 example, the \emph{change ringing} tradition conceives music through
 bells played one after another and then played again, but in a different
-order. This process repeats until it reaches the initial ordering. The sequence of
+order. This process is repeated until it reaches the initial ordering. The sequence of
 different orderings is a \emph{peal}. Table~\ref{tab:change}
-presents a traditional \emph{peal}, named ``Hunt'', for 3 bells (\textcolor{red}{1}, \textcolor{blue}{2} and \textcolor{green}{3}), which explores
+presents a traditional \emph{peal}, named ``Plain Change''~\cite{change}, for 3 bells (\textcolor{red}{1}, \textcolor{blue}{2} and \textcolor{green}{3}), which explores
 all possible orderings. Each line indicates one bell ordering to be
 played. Permutations occur between each line. In this case, the musical structure
 consists of permutations and some different permutations add into a
@@ -1911,8 +1920,37 @@ execute the first $n$ notes, the execution of disjoint sets of $S_i$
 is the same as modifying the permutation and executing the first $n$ notes.
 
 The \massa\ toolbox presents a computational implementation that isolates
-permutation aplication to sonic characteristics, in order to deliver
+permutation application to sonic characteristics, in order to deliver
 musical structures~\cite{MASSA,figgusOriginal,figgusEspacializacao}.
+
+\subsection{Serialism and post-serial techniques}
+Expanding the concepts in Section~\ref{sec:atonal},
+sequences of characteristics can be predefined and
+used throughout a musical piece.
+These sequences can be of intensities, timbre, durations,
+density of events, etc.
+The sequences can be used very strictly or loose,
+such as by skipping some elements.
+The sequences can be of different sizes, yielding arcs
+until the initial condition is reached again (i.e. cycles).
+One paradigmatic case is the ``total serialism'' where all
+the musical characteristics are serialized.
+Although the use of sequences is inherent to music (e.g. scales, metric pulses),
+their use with greater emphasis than tonal (or modal) elements
+in western music, as an artistic trend, took place only in the
+first half of the twentieth century and is called ``serialism''.
+Post-serial techniques are numerous, but here is a description of
+important concepts:
+\begin{itemize}
+	\item Spectralism:
+	\item Spectromorphology:
+	\item Stochastic music:
+	\item Textures:
+\end{itemize}
+
+
+
+
 
 \subsection{Musical idiom?}
 In numerous studies, there are models, discussions and exploitation of a `musical language'.

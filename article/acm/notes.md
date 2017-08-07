@@ -15,6 +15,8 @@
 - see if bibliography is ok.
 - read listings.pdf again so ensure everithing is ok.
 - enhance the conclusions section (maybe remove information that might be considered spurious).
+- maybe explain what is a measure (and maybe what is a bar) in the rhythm section.
+- maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motives right before tunning, etc.
 
 #### In the submission
 - in the submission, say that we can write a vocabulary with definitions and alternative terms.
@@ -31,20 +33,14 @@ Put all the code in a new, better organized repository.
 - add license and authorship header in the massa python and latex scripts.
 
 ###### Notes in music (most issues seem related to this section)
-- account for phrases and melody construction (check e.g. Schoenberg's Fundamentals of Musical Composition).
+- account for phrases and melody construction (check e.g. Schoenberg's Fundamentals of Musical Composition). Put in motifs and larger units
 - account for spectral music composition and other post-serial techniques.
 - better account for serial techniques.
 - account for sonic textures.
 - maybe visit denis smalley (spectromorphology of sound).
 - see music composition in wikipedia.
-- Make explicit that one merit of the article is the effort to sum up musical theory, many more discussions can be easily added but we believe that from the article on, the reader can look into other articles and books.
-- maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motives right before tunning, etc.
-- maybe explain what is a measure (and maybe what is a bar) in the rhythm section.
-- make explicit that the notes in music section does not benefit so much by expressions as equations as the other sections, but it is a very condensed presentation of musical theory and each subsection has algorithms and music in the massa toolbox.
-- make music with arcs using some famous sequences.
-- check the red book for the notes for new music (especially the sequences).
-- redo the lucas series calculations (check if in massa, add scripts for it and other sequences).
-- put the right name of the peal in the cyclic arcs section.
+- place dodecafonism outside the discussion about atonal harmony?
+- use of random distributions
 
 ### Already OK
 - Obtain grant numbers (e.g. FAPESP from Chu) OK
@@ -68,6 +64,10 @@ Make explicit that there are a lot of discussion among specialists on the impact
 Therefore, the article contains many adjectives such as "often" "commonly" "frequently" and they might be even more numerous if we wanted to be very precise. OK
 - decide on lambda or delta for inter-sample duration. OK
 - use mass (music and audio in sample sequences) acronym instead of massa. OK
+- put the right name of the peal in the cyclic arcs section. OK
+- redo the lucas series calculations (check if in massa, add scripts for it and other sequences). OK
+- make explicit that the notes in music section does not benefit so much by expressions as equations as the other sections, but it is a very condensed presentation of musical theory and each subsection has algorithms and music in the massa toolbox. OK
+- Make explicit that one merit of the article is the effort to sum up musical theory, many more discussions can be easily added but we believe that from the article on, the reader can look into other articles and books. OK
 
 ### Vocabulary
 - campo harmônico => harmonic field?
@@ -76,3 +76,7 @@ Therefore, the article contains many adjectives such as "often" "commonly" "freq
 - medianas cromáticas => cromatic mediant
 - tonalidade => key
 - homônima => homonymous
+
+
+### Extra or other works
+- check the red book for the notes for new music (especially the sequences). Try to use OEIS for interesting sequences. Make music with arcs using some famous sequences.
