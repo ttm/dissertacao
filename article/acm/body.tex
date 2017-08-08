@@ -1218,8 +1218,9 @@ in \massa, explores many configurations of the ADSL envelope.
 \section{Organization of notes in music}\label{notasMusica} \label{sec:notesMusic}
 Consider $S_j=\left\{  s_j=T_i^j=\{t_i^j\}_{i=0}^{\Lambda_j-1} \right\}_{j=0}^{H-1}$, the sequence $S_j$ of $H$ musical events $s_j$. Let $S_j$ be a `musical structure', composed by events $s_j$ which are musical structures themselves, e.g.\ notes. This section is dedicated to techniques that make $S_j$ interesting and enjoyable for audition. More specifically, what follows is a summary of academic music composition theory and praxis.
 This section does not benefit from equations that dictate the amplitude of each sample as deeply as the previous sections.
-Even so, we understand that this content is the missing piece for synthesizing music given all the content above.
-The concepts are given algorithmic implementations in \mass~\cite{SI}.
+Even so, we understand that this content is very useful for synthesizing music given all the content above.
+The concepts are given algorithmic implementations in \mass~\cite{SI} and can be further formalized~\cite{topos},
+although at a cost of intelligibility which we chose to avoid in this exposition.
 
 The elements of $S_j$ can be overlapped by mixing them together, as in
 Equation~\ref{eq:mixagem} and Figure~\ref{fig:mixagem}, for building intervals and chords. This reflects the `vertical thought' in music. On the other hand, the concatenation of events
@@ -1766,9 +1767,8 @@ for variation.
     \item Accompaniment. Both orchestration and melodic lines present when $S_j$ occurs can suffer modifications and be considered as a variation of $S_j$ itself.
 \end{itemize}
 
-% scramble 
 From these processes, many others are derived, such as the inverted retrograde, the temporal contraction with an external suffix, etc. Variations are often thought about in the terms above but are also often very loose, such as an arbitrary shuffle of the notes in a melody which the composer finds interesting. As a result, a whole process of mental and neurological activity is unleashed for relating the arcs, responsible for feelings, memories and imaginations, typical of a diligent music listening. This cortical activity is critical to
-musical therapy, known by its utility in cases of depression and neurological injury. Also, tt is known that regions of the human brain responsible for sonic processing are also used for other activities, such as for performing verbal discourse and mathematics~\cite{Sacks,Roederer}.
+musical therapy, known by its utility in cases of depression and neurological injury. Also, it is known that regions of the human brain responsible for sonic processing are also used for other activities, such as for performing verbal discourse and mathematics~\cite{Sacks,Roederer}.
 
 Paradigmatic structures guide the creation of new musical material.
 One of the most central is the tension/relaxation dipole. Traditional dipoles are tonic/dominant, repetition/variation,
@@ -1778,6 +1778,9 @@ etc. All these dipoles are often thought of as parallel or even as equivalent. T
 lucid ternary communion, `modus perfectus', opposes to the passionate
 dichotomic, `modus imperfectus'. Hereafter, there is a description dedicated to
 directional and cyclic arcs.
+
+For a scholastic discussion on the composition of motives, phrases, melodies, themes and music form (such as rondo, ternary, theme and variations) see~\cite{Schoenberg}.
+% melody, answer and reply, motives, etc
 
 \subsection{Directional structures}\label{subsec:dir}
 The arcs can be decomposed in two convergent sequences: the first reaches the apex and the second returns from apex to start region.
@@ -1943,14 +1946,29 @@ Post-serial techniques are numerous, but here is a description of
 important concepts:
 \begin{itemize}
 	\item Spectralism:
+		consists on use the (Fourier) spectrum of a sound or the harmonic series for music composition,
+		such as
+		to derive harmonies, sequences of pitches or a temporal evolution of the overall spectrum~\cite{grisey}.
+		In other words, the most prominent frequencies can be used as pitches,
+		real notes can be used to mimic an original spectrum
+		(e.g. use piano notes to mimic the spectrum of a spoken sentence) or portions of the spectrum made to vary~\cite{spectral}.
 	\item Spectromorphology:
+		can be considered a spectral music (spectralism) theoretical framework~\cite{smalley,schaeffer}
+		that examines the relation between sound spectra and their temporal evolution.
+		The theory poses e.g. different onsets, continuations and terminations; characteristics of (sonic) ``motion'';
+		and spectral density.
 	\item Stochastic music:
+		the use of random variables to describe musical elements are largely considered in stochastic music~\cite{formalized}.
+		In summary, one can use probability distributions for the synthesis of sounds and larger scale musical elements.
+		Changes in these distributions or in other characteristics yield the discourse.
 	\item Textures:
+		sounds can be assembled in terms of a ``sonic texture''.
+		Here, a texture is often thought about very abstractly
+		as a sonic counterpart of visual texture.
+		Parameters that can be used for such are: range between highest and lowest note,
+		density of notes, durations of notes, motives, number of voices, etc.
+		If the sounds are small enough (typically < $100ms$) the process can be though of in terms of \emph{granular synthesis}~\cite{microsound}.
 \end{itemize}
-
-
-
-
 
 \subsection{Musical idiom?}
 In numerous studies, there are models, discussions and exploitation of a `musical language'.

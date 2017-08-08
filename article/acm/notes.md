@@ -5,18 +5,20 @@
 - note to other authors that we have many footnotes.
 - ask to other authors if they miss citations in some parts (e.g. first sentences of intro) or is it ok to rely in our own knowledge.
 - maybe make a PDF with the scripts as another SI document.
+- ask to confirm that music meter is used in Am. English.
 
 #### In the last reading
 - place figures in best places.
 - remove repetition of what has been seen before (recaps).
 - join (or at least enhance their relation) the sections of reverberation.
 - remove piece names in the beginning of the third section.
-- move localization and reverberation to the third section or make an explicit account the hybrid aspect off them.
-- see if bibliography is ok.
-- read listings.pdf again so ensure everithing is ok.
+- move localization and reverberation to the third section or make an explicit account of the hybrid aspect off them.
 - enhance the conclusions section (maybe remove information that might be considered spurious).
 - maybe explain what is a measure (and maybe what is a bar) in the rhythm section.
-- maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motives right before tunning, etc.
+- maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motifs right before tuning, etc.
+- place dodecafonism outside the discussion about atonal harmony?
+- read listings.pdf again to ensure everything is ok.
+- see if bibliography is ok.
 
 #### In the submission
 - in the submission, say that we can write a vocabulary with definitions and alternative terms.
@@ -33,14 +35,7 @@ Put all the code in a new, better organized repository.
 - add license and authorship header in the massa python and latex scripts.
 
 ###### Notes in music (most issues seem related to this section)
-- account for phrases and melody construction (check e.g. Schoenberg's Fundamentals of Musical Composition). Put in motifs and larger units
-- account for spectral music composition and other post-serial techniques.
-- better account for serial techniques.
-- account for sonic textures.
-- maybe visit denis smalley (spectromorphology of sound).
-- see music composition in wikipedia.
-- place dodecafonism outside the discussion about atonal harmony?
-- use of random distributions
+FINISHED!
 
 ### Already OK
 - Obtain grant numbers (e.g. FAPESP from Chu) OK
@@ -68,6 +63,17 @@ Therefore, the article contains many adjectives such as "often" "commonly" "freq
 - redo the lucas series calculations (check if in massa, add scripts for it and other sequences). OK
 - make explicit that the notes in music section does not benefit so much by expressions as equations as the other sections, but it is a very condensed presentation of musical theory and each subsection has algorithms and music in the massa toolbox. OK
 - Make explicit that one merit of the article is the effort to sum up musical theory, many more discussions can be easily added but we believe that from the article on, the reader can look into other articles and books. OK
+- account for spectral music composition and other post-serial techniques. OK
+- better account for serial techniques. OK
+- account for sonic textures. OK
+- maybe visit denis smalley (spectromorphology of sound). OK
+- use of random distributions. OK
+- last notes on form after directional and cyclic (ternary, rondo, theme and variations, sonata, etc). OK
+- account for phrases and melody construction (check e.g. Schoenberg's Fundamentals of Musical Composition). Put in motifs and larger units OK
+- see music composition in wikipedia. OK
+- see if meter of metre for metrica musical. OK
+- cite formalized music do xenakis. OK
+- cite topos of music when stating that the section can be further formalized. OK
 
 ### Vocabulary
 - campo harmônico => harmonic field?
