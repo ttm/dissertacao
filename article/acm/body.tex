@@ -9,7 +9,7 @@ The human auditory system perceives sounds in the frequency bandwidth between $2
 with the actual boundaries depending on the person,
 climate conditions and the sonic characteristics themselves~\cite{Roederer}.
 Since the speed of sound is $\approx 343.2 m/s$,
-such frequency limits imply wavelengths of $\frac{343.2}{20} \approx 17.16\,m$ and
+such frequency limits corresponds to  wavelengths of $\frac{343.2}{20} \approx 17.16\,m$ and
 $\frac{343.2}{20000} \approx 17.16\,mm$.
 Hearing involves stimuli in bones, stomach, ears,
 transfer functions of head and torso,
@@ -20,6 +20,14 @@ The sinusoidal components are crucial to musical phenomena,
 as one can recognize in the constitution of sounds of musical interest
 (such as harmonic sounds and noises, discussed in Sections~\ref{sec:discNote} and~\ref{sec:internalVar}),
 and higher level musical structures (such as tunings, scales and chords, in Section~\ref{sec:notesMusic}).
+
+\begin{figure*}[!h]
+    \centering
+        \includegraphics[width=.7\textwidth]{figures/pcm_}
+	\caption{Example of PCM audio:
+	a sound wave is represented by 25 samples equally spaced in time where each sample has an amplitude specified with 4 bits.}
+        \label{fig:PCM}
+\end{figure*}
 
 The representation of sound can take many forms,
 from musical scores and texts in a phonetic language to electric analog signals and binary data.
@@ -44,18 +52,10 @@ This is the Pulse Code Modulation (PCM) representation of sound.
 A PCM audio format has two essential attributes:
 a sampling frequency $f_s=\frac{1}{\delta_s}$ (also called e.g. sampling rate or sample rate),
 which is the number of samples used for representing a second of sound;
-and a bit depth, which is the number of bits for each sample.
+and a bit depth, which is the number of bits for the amplitude of each sample.
 Figure~\ref{fig:PCM} shows $25$ samples of a PCM audio with a bit depth of $4$,
 which yields $2^4=16$ possible values for the amplitude of each sample
 and a total of $4 \times 25= 100$ bits for representing the whole sound.
-
-\begin{figure*}
-    \centering
-        \includegraphics[width=.7\textwidth]{figures/pcm_}
-	\caption{Example of PCM audio:
-	a sound wave is represented by 25 samples equally spaced in time where each sample has an amplitude specified with 4 bits.}
-        \label{fig:PCM}
-\end{figure*}
 
 The fixed sampling frequency and bit depth
 yields the quantization error or quantization noise.
@@ -66,7 +66,7 @@ is twice the maximum frequency that the represented signal can contain.
 Thus, for general musical purposes, it is necessary to use a sample rate of
 at least twice the highest frequency heard by humans,
 that is, $f_s \geq 2\times 20kHz = 40kHz$.
-This is the fundamental reason for the adoption of sampling frequencies
+This is the basic reason for the adoption of sampling frequencies
 such as $44.1kHz$ and $48kHz$,
 which are the standards in Compact Disks (CD)
 and broadcast systems (radio and television), respectively.
@@ -75,7 +75,7 @@ Within this framework for representing sounds,
 musical notes can be characterized.
 The note often stands as the 'fundamental unit' of musical structures
 (such as atoms in matter or cells in macroscopic organisms) and,
-in practice, it can unfold into sounds that uphold other approaches.
+in practice, it can unfold into sounds that uphold other approaches to music.
 This is of capital importance because science and scholastic artists
 widened the traditional comprehension of music in the twentieth century
 to encompass discourse without explicit rhythm, melody or harmony.
@@ -83,9 +83,9 @@ This is very evident in e.g. in the concrete, electronic, electroacoustic,
 and spectral musical styles.
 In the 1990s, it became evident that popular
 (commercial) music had also incorporated
-sounds amalgams and abstract discursive arcs~\footnote{There
-are well known incidence of such musical techniques in ethnic music,
-such as in Pygmy music, but western music theory assimilated them
+sound amalgams and abstract discursive arcs~\footnote{There
+are well known incidence of such characteristics in ethnic music,
+such as in Pygmy music, but western theory assimilated them
 only in the last century~\cite{Wisnick}.}.
 Notes are also convenient for another reason:
 the average listener -- and a considerable part of the specialists --
@@ -105,12 +105,12 @@ this framework to synthesize music beyond traditional conceptualizations when in
 
 % \subsection{Contributions and paper organization}
 This article aims at representing musical structures and artifices
-by their discrete-time sonic characteristics.
+in discrete-time audio.
 The results include mathematical relations,
 usually in terms of musical characteristics and samples,
 concise musical theory considerations,
 and their implementations as software routines both as
-very raw and direct algorithms and in the context of rendering musical pieces.
+very raw algorithms and in the context of rendering musical pieces.
 Despite the general interests involved,
 there are only a few books and computer implementations that tackle the subject.
 These mainly focus on computer implementations and ways to mimic traditional instruments,
@@ -123,25 +123,23 @@ to achieve the equations by analyzing the available software implementations.
 
 The objectives of this paper are:
 \begin{enumerate}
-	\item Present a concise set of mathematical relations between musical basic elements and sequences of PCM audio samples.
+	\item Present a concise set of mathematical and algorithmic relations between musical basic elements and sequences of PCM audio samples.
 	\item Introduce a framework of sound and musical synthesis with control at sample level which entails potential uses in psychoacoustic experiments and synthesis with extreme precision (recap in Section~\ref{cap:conclusao}).
 	\item Provide a powerful theoretical framework which can be used to synthesize musical pieces and albums.
 	\item Provide approachability to the developed framework~\footnote{All
 		the analytic relations presented in this article are implemented as public domain scripts,
-		i.e. small computer programs using accessible technologies for distribution and validation.
-		This constitutes the \massa\ toolbox, available in an open Git repository~\cite{gitBook}.
+		i.e. small computer programs for prompt distribution and validation.
+		This constitutes the \massa\ toolbox, available in an open source Git repository~\cite{gitBook}.
 		These scripts are written in Python and make use of Numpy,
 		which performs numerical routines efficiently (e.g. through LAPACK).
-		Part of the scripts have been transcribed to JavaScript and native Python,
-		which favors their use in Web browsers such as Firefox and
-		Chromium~\cite{numpy, audiolab, tutpython, python}.
+		Part of the scripts have been transcribed to JavaScript (which favors their use in Web browsers such as Firefox and Chromium) and native Python~\cite{numpy, audiolab, tutpython, python}.
 		These are all open technologies, published using licenses that allow for copy,
 		distribution and use for research and generating derivatives.
 		Hence, the work presented here aims at being compliant with recommended
 		practices for availability and validation
 		and should ease co-authorship processes~\cite{Raymond,Lessig}.}.
 	\item Provide a didactic presentation of the content, which is highly multidisciplinary,
-		involving signal processing, music, psycho-acoustics and programming.
+		involving signal processing, music, psychoacoustics and programming.
 \end{enumerate}
 
 The reminder of this article is organized as follows:
@@ -152,7 +150,7 @@ higher level musical structures~\cite{Wisnick,Webern,Lerdahl,Cook,Lacerda,Zamaco
 As these descriptions require knowledge on topics such as psychoacoustics, cultural traditions,
 and mathematical formalisms, the text points to external complements as needed
 and presents methods, results and discussions altogether.
-Section~\ref{cap:conclusao} holds final considerations and further work.
+Section~\ref{cap:conclusao} is dedicated to final considerations and further work.
 
 \subsection{Additional material}
 The Supporting Information document~\cite{SI} holds commented listings of all the equations, figures, tables and sections in this document
@@ -162,15 +160,15 @@ and the scripts in the \massa\ toolbox\footnote{The toolbox contains a collectio
     \item render music and illustrate the concepts;
     \item render each of the figures used in this article.
 \end{itemize}
-Additionally, the documentation of the toolbox consists of this article and the scripts themselves.}.
+The documentation of the toolbox consists of this article, the Supporting Information and the scripts themselves.}.
 The musical pieces are not very traditional which facilitates the understanding of specific techniques
 and the extrapolation of the note concept.
 
 \subsection{Synonymy, polysemy and theoretical frames (disclaimer)}
 Given that the main topic of this article (the expression of musical elements
 in PCM audio) is multidisciplinary and involves art,
-the reader should be aware that many of the vocabulary admit different choices of terms and definitions.
-More specifically, it is often often the case where many words can express the same concept
+the reader should be aware that much of the vocabulary admit different choices of terms and definitions.
+More specifically, it is often the case where many words can express the same concept
 and where one word can carry different meanings.
 This is a very deep issue which might receive a dedicated manuscript.
 The reader might need to read the rest of this document to understand this
@@ -178,8 +176,8 @@ small selection of synonymy and polysemy in the literature,
 but it is important to illustrate the point before the more dense sections:
 \begin{itemize}
 	\item A ``note'' can mean a pitch or an abstract construct with pitch and duration or a sound emitted from a musical instrument or a specific note in a score or a music.
-	\item The sampling rate (discussed above) is also called the sampling frequency.
-	\item An harmonic in a sound is most often a sinusoidal component which is is the harmonic series of the fundamental frequency. Many times, however, the terms harmonic and component are not distinguished. A harmonic can also be a note performed in a instrument by preventing certain overtones (components).
+	\item The sampling rate (discussed above) is also called the sampling frequency or sample rate.
+	\item An harmonic in a sound is most often a sinusoidal component which is in the harmonic series of the fundamental frequency. Many times, however, the terms harmonic and component are not distinguished. A harmonic can also be a note performed in an instrument by preventing certain overtones (components).
 	\item Harmony can refer to chords or to note sets related to chords or even to ``harmony'' in a more general sense, as a kind of balance and consistency.
 	\item A ``tremolo'' can mean different things, e.g. in a piano score, a tremolo is a fast alternation of two notes (pitches) while in computer music theory it is (most often) an oscillation of intensity.
 \end{itemize}
@@ -187,7 +185,7 @@ but it is important to illustrate the point before the more dense sections:
 We strived to avoid nomenclature clashes and the use of more terms than needed.
 Also, there are many theoretical standpoints for the understanding of musical phenomena,
 which is an evidence that most often there is not a single way to express or characterize musical structures.
-Therefore, in this article, adjectives such as "often" "commonly" "frequently" are abundant and they would probably be even more numerous if we wanted to be pedantically precise.
+Therefore, in this article, adjectives such as "often", "commonly" and "frequently" are abundant and they would probably be even more numerous if we wanted to be pedantically precise.
 Some of these issues are exposed when the context is convenient, such as in the first considerations of timbre.
 
 \section{Characterization of the musical note in dicrete-time audio} \label{sec:discNote}\label{sec:notaDisc}
@@ -2022,50 +2020,51 @@ arrangement creates aesthetic possibilities for both sharing and education.
 
 \section{Conclusions and further developments}
 \label{cap:conclusao}
-We believe that this article is effective in relating musical elements to digital audio.
+In our understanding,
+this article is effective in relating musical elements to digital audio.
 We aimed at achieving a concise presentation of the subject because it involves many knowledge fields, and therefore can very easily blast into thousands of pages.
-Some readers might benefit from the text alone, but the \emph{Scripts} in the \massa\ toolbox, where all the relations presented here are directly and simply implemented as software (in Python), are very helpful for one to achieve elaborated implementations and deeper understandings.
-The scripts include routines that render musical pieces that illustrate the concepts.
-This is valuable since art (e.g. music) can involve many non-trivial processes and is often deeply glamurized, which results in a nearly unmanagable terrain for a newcommer.
+Some readers might benefit from the text alone, but the \emph{Scripts} in the \massa\ toolbox, where all the equations and concepts are directly and simply implemented as software (in Python),
+are very helpful for one to achieve elaborated implementations and deeper understandings.
+The scripts include routines that render musical pieces that illustrate the concepts in practical contexts.
+This is valuable since art (music) can involve many non-trivial processes and is often deeply glamorized, which results in a nearly unmanageable terrain for a newcomer.
 Moreover, this didactic report and the supplied open source scripts should facilitate the use of the proposed framework.
+The Supporting Information document holds listings of sections, equations, figures, tables, scripts and other documents.
 
 The possibilities provided by this exposition pour from both the organization of knowledge and the ability to achieve sounds which are extremely true to the models.
 For example, one can produce noises with arbitrary resolution of the spectrum and a musical note can be synthesized with the parameters (e.g. of a vibrato) updated sample-by-sample.
 Furthermore, software for synthesis and processing of sounds for musical purposes
 by standard restrict the bit depth to 16 or 24.
-This is achievable in this presented framework but by standard Python uses more bits per floating point number.
+This is achievable in this framework but by standard Python uses more bits per floating point number.
 These ``higher fidelity'' characteristics can be crucial
-e.g. for psychoacoustic experiments or for the development of
-interfaces to generate high quality musical sounds or pieces.
+e.g. for psychoacoustic experiments or to generate high quality musical sounds or pieces.
 Simply put, it is compelling
 for many scientific and artistic purposes.
 The didactic potential of the framework is evident when noticed that:
 \begin{itemize}
 	\item the integrals and derivatives, ubiquitous in continuous signal processing,
-are all replaced by summations in discrete signals,
+are all replaced, in discrete signals, by summations,
 which are more intuitive and does not require fluency in calculus.
 	\item The equations and concepts are implemented as software which can be easily assembled and inspected.
 \end{itemize}
 \noindent In fact, this framework was used in a number of contexts, including courses, software implementations and making music~\cite{vimeoLM,vivace,repoDissertacao,dissertacao}.
-
-This work systematically investigates parameterization issues (like for the tremolo, ADSR, etc.) in a sample-by-sample synthesis, which entails high/extreme fidelity and if of significant artistic convenience. Such detailed analytical descriptions, together with the computational implementations, have not been covered before in the literature, as far as the authors know, such as testified in the literature review~\cite{dissertacao}, where the books, articles and open software are related to this framework.
+Such detailed analytical descriptions, together with the computational implementations, have not been covered before in the literature, as far as the authors know, such as testified in the literature review (Appendix G of~\cite{dissertacao}), where books, articles and open software are related to this framework.
 
 The free software license and online availability of the content,
-with the respective codes and sonic examples, facilitate future collaborations and the generation of sub-products in a co-authorship fashion.
-As consequence, the expansion of \massa\ is favoured and straightforward, easing new implementations and development of musical pieces.
+with the respective codes and sonic examples, facilitate collaborations and the generation of sub-products in a co-authorship fashion,
+easing new implementations and development of musical pieces.
 The scripts can be divided in three groups: implementation of all the equations and topics of music theory; routines for rendering musical pieces that illustrate the concepts; scripts that render the figures of this article and the article itself.
 
-In addition, this framework permitted the formation of interest groups in topics such as musical creativity and computer music.
+This framework favored the formation of interest groups in topics such as musical creativity and computer music.
 In particular, the project \url{labMacambira.sourceforge.net} groups Brazilian and foreign co-workers
 in diverse areas that range from digital direct democracy and georeferencing to art and education.
-This was only possible because of the audiovisual utility in many contexts, in particular because of the knowledge and mastery condensed in the \massa\ framework.\footnote{There are more than 700 videos, written documentats,
- original software applications and contributions in well-known external softwares such as Firefox, Scilab, LibreOffice, GEM/Puredata, to name a few~\cite{siteLM,wikiLM,vimeoLM}.
+This was only possible because of the usefulness of audiovisual abilities in many contexts, in particular because of the knowledge and mastery condensed in the \massa\ framework.\footnote{There are more than 700 videos, written documents,
+ original software applications and contributions in well-known external software (such as Firefox, Scilab, LibreOffice, GEM/Puredata, to name just a few)~\cite{siteLM,wikiLM,vimeoLM}.
 Some of these efforts are available online~\cite{dissertacao}.
-It is obvious that all these contributions are a consequence of more that just \massa, but it is evident to the authors that \massa\ had a primary role in converging interests and attracting collaborators.}
+It is evident that all these contributions are a consequence of more that just \massa, but it is also evident to the authors that \massa\ had a primary role in converging interests and attracting collaborators.}
 
-Future work should include application of these results in artificial intelligence
-for the generation of appealing artistic materials. Some psychoacoustical effects were detected,
-which needs validation and should be reported, specially with~\cite{quadrosSonoros}.\footnote{The sonic pictures where sent to a public mailing list and the fifth sonic picture was reported by some individuals to induce a state in which noises from the own tongue and teeth of the indidual echoed for some seconds~\cite{quadrosMetarec}.} Other foreseen advances
+Future work might include application of these results in artificial intelligence
+for the generation of appealing artistic materials. Some psychoacoustic effects were detected,
+which needs validation and should be reported, specially with~\cite{quadrosSonoros}.\footnote{The sonic pictures where sent to a public mailing list and the fifth sonic picture was reported by some individuals to induce a state in which noises from the own tongue, teeth and jaw of the individual echoed for some seconds~\cite{quadrosMetarec}.} Other foreseen advances
 are: a JavaScript version of the toolbox, better hypermedia deliverables of this framework, user guides
 for different goals (e.g. musical composition, psychophysical experiments, sound synthesis, education), creation
 of musical pieces and open experiments to be studied with EEG recordings, and further analytical specification of musical

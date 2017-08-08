@@ -1,7 +1,8 @@
 \contentsline {section}{Abstract}{1}{section*.1}
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}
-\contentsline {subsection}{\numberline {1.1}Synonymy and polysemy (disclaimer)}{5}{subsection.1.1}
-\contentsline {section}{\numberline {2}Characterization of the musical note in dicrete-time audio}{5}{section.2}
+\contentsline {subsection}{\numberline {1.1}Additional material}{5}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Synonymy, polysemy and theoretical frames (disclaimer)}{5}{subsection.1.2}
+\contentsline {section}{\numberline {2}Characterization of the musical note in dicrete-time audio}{6}{section.2}
 \contentsline {subsection}{\numberline {2.1}Duration}{6}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Loudness}{6}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Pitch}{7}{subsection.2.3}
@@ -21,7 +22,7 @@
 \contentsline {subsection}{\numberline {3.4}Noise}{27}{subsection.3.4}
 \contentsline {subsection}{\numberline {3.5}Tremolo and vibrato, AM and FM}{29}{subsection.3.5}
 \contentsline {subsection}{\numberline {3.6}Musical usages}{33}{subsection.3.6}
-\contentsline {subsubsection}{\numberline {3.6.1}Relations between characteristics}{34}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.1}Relations between characteristics}{33}{subsubsection.3.6.1}
 \contentsline {subsubsection}{\numberline {3.6.2}Convolution for rhythm and meter}{34}{subsubsection.3.6.2}
 \contentsline {subsubsection}{\numberline {3.6.3}Moving source and receptor, Doppler effect}{34}{subsubsection.3.6.3}
 \contentsline {subsubsection}{\numberline {3.6.4}Filters and noises (Sections\nonbreakingspace \ref {subsec:ruidos} and\nonbreakingspace \ref {subsec:filtros})}{35}{subsubsection.3.6.4}
@@ -43,8 +44,9 @@
 \contentsline {subsection}{\numberline {4.5}Repetition and variation: motifs and larger units}{49}{subsection.4.5}
 \contentsline {subsection}{\numberline {4.6}Directional structures}{51}{subsection.4.6}
 \contentsline {subsection}{\numberline {4.7}Cyclic structures}{52}{subsection.4.7}
-\contentsline {subsection}{\numberline {4.8}Musical idiom?}{53}{subsection.4.8}
-\contentsline {subsection}{\numberline {4.9}Musical usages}{54}{subsection.4.9}
-\contentsline {section}{\numberline {5}Conclusions and further developments}{54}{section.5}
-\contentsline {section}{Acknowledgments}{55}{section*.33}
-\contentsline {section}{References}{55}{section*.35}
+\contentsline {subsection}{\numberline {4.8}Serialism and post-serial techniques}{53}{subsection.4.8}
+\contentsline {subsection}{\numberline {4.9}Musical idiom?}{54}{subsection.4.9}
+\contentsline {subsection}{\numberline {4.10}Musical usages}{54}{subsection.4.10}
+\contentsline {section}{\numberline {5}Conclusions and further developments}{55}{section.5}
+\contentsline {section}{Acknowledgments}{56}{section*.33}
+\contentsline {section}{References}{56}{section*.35}

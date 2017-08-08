@@ -1,4 +1,4 @@
-### ToDo
+j## ToDo
 
 #### Email to other authors:
 - Confirm institutional ties of authors and their names in English.
@@ -11,14 +11,23 @@
 - place figures in best places.
 - remove repetition of what has been seen before (recaps).
 - join (or at least enhance their relation) the sections of reverberation.
-- remove piece names in the beginning of the third section.
+- remove piece names and massa citation (e.g. in the beginning of the third section)
 - move localization and reverberation to the third section or make an explicit account of the hybrid aspect off them.
-- enhance the conclusions section (maybe remove information that might be considered spurious).
 - maybe explain what is a measure (and maybe what is a bar) in the rhythm section.
 - maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motifs right before tuning, etc.
 - place dodecafonism outside the discussion about atonal harmony?
+- enhance the conclusions section (maybe remove information that might be considered spurious).
 - read listings.pdf again to ensure everything is ok.
 - see if bibliography is ok.
+
+###### Code (and musical pieces)
+- review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
+Put all the code in a new, better organized repository.
+- give better names to musical pieces and use English.
+- add license and authorship header in the massa python and latex scripts.
+- migrate code from some pieces of the third section into the sections scripts.
+- maube make an additional pdf with the code.
+- check what really is in JS and native Python (footnote 2).
 
 #### In the submission
 - in the submission, say that we can write a vocabulary with definitions and alternative terms.
@@ -27,12 +36,6 @@
 
 ##### Context of the article (mainly reflects in the introduction) 
 FINISHED!
-
-###### Code (and musical pieces)
-- review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
-Put all the code in a new, better organized repository.
-- give better names to musical pieces and use English.
-- add license and authorship header in the massa python and latex scripts.
 
 ###### Notes in music (most issues seem related to this section)
 FINISHED!
