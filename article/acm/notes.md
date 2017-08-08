@@ -19,6 +19,8 @@ j## ToDo
 - enhance the conclusions section (maybe remove information that might be considered spurious).
 - read listings.pdf again to ensure everything is ok.
 - see if bibliography is ok.
+- check 1-9 markers.
+- double check the captions.
 
 ###### Code (and musical pieces)
 - review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
@@ -33,6 +35,7 @@ Put all the code in a new, better organized repository.
 - in the submission, say that we can write a vocabulary with definitions and alternative terms.
 - say that we can move some of the article to another supporting information, if it is too long
 - state in the cover letter that we can reduce the size of the article if needed, e.g. by describing the musical pieces/usage in an supporting information document.
+- check if figures has to be B&W.
 
 ##### Context of the article (mainly reflects in the introduction) 
 FINISHED!
@@ -77,6 +80,8 @@ Therefore, the article contains many adjectives such as "often" "commonly" "freq
 - see if meter of metre for metrica musical. OK
 - cite formalized music do xenakis. OK
 - cite topos of music when stating that the section can be further formalized. OK
+- drop _i in T_i unless there is a reason not to.
+- replace tan^-1 for arctan
 
 ### Vocabulary
 - campo harmônico => harmonic field?
