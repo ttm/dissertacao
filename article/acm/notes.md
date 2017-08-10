@@ -21,6 +21,11 @@ j## ToDo
 - see if bibliography is ok.
 - check 1-9 markers.
 - double check the captions.
+- check if solely is a good word for only.
+- specially vc especially
+- footnote with ~ or not
+- ith or i-th?
+- better research about reverberation?
 
 ###### Code (and musical pieces)
 - review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
