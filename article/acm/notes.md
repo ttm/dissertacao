@@ -26,6 +26,7 @@ j## ToDo
 - footnote with ~ or not
 - ith or i-th?
 - better research about reverberation?
+- check consistency of filenames (\texttt and listings.pdf)
 
 ###### Code (and musical pieces)
 - review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
@@ -33,8 +34,9 @@ Put all the code in a new, better organized repository.
 - give better names to musical pieces and use English.
 - add license and authorship header in the massa python and latex scripts.
 - migrate code from some pieces of the third section into the sections scripts.
-- maube make an additional pdf with the code.
+- maybe make an additional pdf with the code.
 - check what really is in JS and native Python (footnote 2).
+- Check if little train really uses granular synthesis as posed in the text.
 
 #### In the submission
 - in the submission, say that we can write a vocabulary with definitions and alternative terms.
