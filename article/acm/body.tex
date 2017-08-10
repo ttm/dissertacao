@@ -1288,6 +1288,13 @@ Furthermore, modifications in the reverberation space consist in a common resour
 The variation of loudness along the duration of sound is crucial to our timbre perception. The intensity envelope known as ADSR (\emph{Attack-Decay-Sustain-Release}) has many implementations in both hardware and software synthesizers. A pioneering implementation can be found in the Hammond Novachord synthesizer of 1938 and some variants are mentioned below~\cite{ADSR}. The canonical ADSR envelope is characterized by 4 parameters: attack duration (time in which sound reaches its maximum amplitude), decay duration (follows the attack immediately), level of sustained intensity (in which the intensity remains stable after the decay) and release duration (after the sustained section, this is the duration needed for amplitude to reach zero or final value).
 Note that the sustain duration is not specified because it is the difference between the duration itself and the sum of the attack, decay and sustain durations.
 
+\begin{figure}[htp!]
+    \centering
+        \includegraphics[width=\columnwidth]{figures/adsr_}
+    \caption{An ADSR envelope (\emph{Attack, Decay, Sustain, Release}) applied to an arbitrary sound sequence. The linear variation of the amplitude is above, in blue. Below the amplitude variation is exponential.}
+        \label{fig:adsr}
+\end{figure}
+
 The ADSR envelope with durations $\Delta_A$, $\Delta_D$ and $\Delta_R$, with total duration $\Delta$ and sustain level $a_S$, given by the fraction of the maximum amplitude, to be applied to any sound sequence $T_i=\{t_i\}$, can be expressed as:
 
 \begin{equation}\label{eq:adsr}
@@ -1308,13 +1315,6 @@ To aply the ADSR envelope, simply multiply the amplitudes of Equation~\ref{eq:ad
 \end{equation}
 
 The music piece \emph{ADa and SaRa} explores many configurations of the ADSR envelope.~\cite{MASSA}
-
-\begin{figure}[htp!]
-    \centering
-        \includegraphics[width=\columnwidth]{figures/adsr_}
-    \caption{An ADSR envelope (\emph{Attack, Decay, Sustain, Release}) applied to an arbitrary sound sequence. The linear variation of the amplitude is above, in blue. Below the amplitude variation is exponential.}
-        \label{fig:adsr}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
