@@ -28,6 +28,8 @@ j## ToDo
 - better research about reverberation?
 - check consistency of filenames (\texttt and listings.pdf)
 - add about form (rondó etc)? Melody?
+- Harmonic expansion?
+- meter vs metric
 
 ###### Code (and musical pieces)
 - review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
