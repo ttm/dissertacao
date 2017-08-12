@@ -5,31 +5,16 @@ j## ToDo
 - note to other authors that we have many footnotes.
 - ask to other authors if they miss citations in some parts (e.g. first sentences of intro) or is it ok to rely in our own knowledge.
 - maybe make a PDF with the scripts as another SI document.
-- ask to confirm that music meter is used in Am. English.
 
 #### In the last reading
 - place figures in best places.
-- remove repetition of what has been seen before (recaps).
-- join (or at least enhance their relation) the sections of reverberation.
-- remove piece names and massa citation (e.g. in the beginning of the third section)
-- move localization and reverberation to the third section or make an explicit account of the hybrid aspect off them.
-- maybe explain what is a measure (and maybe what is a bar) in the rhythm section.
-- maybe change the order of some sections. E.g. put tonal harmony before atonal harmony, put motifs right before tuning, etc.
-- place dodecafonism outside the discussion about atonal harmony?
-- enhance the conclusions section (maybe remove information that might be considered spurious).
-- read listings.pdf again to ensure everything is ok.
-- see if bibliography is ok.
+- ensure listings.pdf is ok (files etc).
+- ensure that the bibliography is ok.
 - check 1-9 markers.
 - double check the captions.
-- check if solely is a good word for only.
-- specially vc especially
 - footnote with ~ or not
-- ith or i-th?
 - better research about reverberation?
 - check consistency of filenames (\texttt and listings.pdf)
-- add about form (rondó etc)? Melody?
-- Harmonic expansion?
-- meter vs metric
 
 ###### Code (and musical pieces)
 - review the code from each section, for the figures, aux and that render music. Make an additional EP routine.
