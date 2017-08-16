@@ -1,4 +1,4 @@
-% \tableofcontents % enable to generate .toc file used in listings.tex
+% mi\tableofcontents % enable to generate .toc file used in listings.tex
 \section{Introduction}\label{sec:level1}
 Music is usually defined as the art whose medium is sound.
 The definition might also state that the medium includes silences
@@ -9,7 +9,7 @@ The human auditory system perceives sounds in the frequency bandwidth between $2
 with the actual boundaries depending on the person,
 climate conditions and the sonic characteristics themselves~\cite{Roederer}.
 Since the speed of sound is $\approx 343.2 m/s$,
-such frequency limits corresponds to  wavelengths of $\frac{343.2}{20} \approx 17.16\,m$ and
+such frequency limits correspond to  wavelengths of $\frac{343.2}{20} \approx 17.16\,m$ and
 $\frac{343.2}{20000} \approx 17.16\,mm$.
 Hearing involves stimuli in bones, stomach, ears,
 transfer functions of head and torso,
@@ -40,11 +40,11 @@ In this sense,
 audio expresses sonic waves from direct synthesis or input by microphones,
 although these sources are not always neatly distinguishable
 e.g. as captured sounds are processed to generate new sonorities.
-Digital audio protocols often implies quality loss (to yield smaller files, ease storage and transfer)
+Digital audio protocols often imply quality loss (to yield smaller files, ease storage and transfer)
 and are called \emph{lossy}~\cite{loss}.
 This is the case e.g. of MP3 and Ogg Vorbis.
 Non-lossy representations of digital audio, called \emph{lossless} protocols or formats,
-on the other hand, assures perfect reconstruction of the analog wave within any convenient precision.
+on the other hand, assure perfect reconstruction of the analog wave within any convenient precision.
 The standard paradigm of lossless audio consists of
 representing the sound with samples equally spaced
 by a duration $\delta_s$, and specifying the amplitude of each sample by a fixed number of bits.
@@ -84,7 +84,7 @@ and spectral musical styles.
 In the 1990s, it became evident that popular
 (commercial) music had also incorporated
 sound amalgams and abstract discursive arcs~\footnote{There
-are well known incidence of such characteristics in ethnic music,
+are well known incidences of such characteristics in ethnic music,
 such as in Pygmy music, but western theory assimilated them
 only in the last century~\cite{Wisnick}.}.
 Notes are also convenient for another reason:
@@ -132,7 +132,7 @@ The objectives of this paper are:
 		This constitutes the \massa\ toolbox, available in an open source Git repository~\cite{gitBook}.
 		These scripts are written in Python and make use of Numpy,
 		which performs numerical routines efficiently (e.g. through LAPACK).
-		Part of the scripts have been transcribed to JavaScript (which favors their use in Web browsers such as Firefox and Chromium) and native Python~\cite{numpy, audiolab, tutpython, python}.
+		Part of the scripts has been transcribed to JavaScript (which favors their use in Web browsers such as Firefox and Chromium) and native Python~\cite{numpy, audiolab, tutpython, python}.
 		These are all open technologies, published using licenses that allow for copy,
 		distribution and use for research and generating derivatives.
 		Hence, the work presented here aims at being compliant with recommended
@@ -177,7 +177,7 @@ but it is important to illustrate the point before the more dense sections:
 \begin{itemize}
 	\item A ``note'' can mean a pitch or an abstract construct with pitch and duration or a sound emitted from a musical instrument or a specific note in a score or a music.
 	\item The sampling rate (discussed above) is also called the sampling frequency or sample rate.
-	\item An harmonic in a sound is most often a sinusoidal component which is in the harmonic series of the fundamental frequency. Many times, however, the terms harmonic and component are not distinguished. A harmonic can also be a note performed in an instrument by preventing certain overtones (components).
+	\item A harmonic in a sound is most often a sinusoidal component which is in the harmonic series of the fundamental frequency. Many times, however, the terms harmonic and component are not distinguished. A harmonic can also be a note performed in an instrument by preventing certain overtones (components).
 	\item Harmony can refer to chords or to note sets related to chords or even to ``harmony'' in a more general sense, as a kind of balance and consistency.
 	\item A ``tremolo'' can mean different things, e.g. in a piano score, a tremolo is a fast alternation of two notes (pitches) while in computer music theory it is (most often) an oscillation of intensity.
 \end{itemize}
@@ -256,7 +256,7 @@ A = 10^{\frac{V_{dB}}{20}}
 
 \subsection{Pitch}
 The pitch is specified by the fundamental frequency $f$ whose cycle has duration $\delta=1/f$.
-This duration, multiplied by the sampling frequency $f_s$, yields in the number of samples per cycle: $\lambda=f_s . \delta =f_s/f$.
+This duration, multiplied by the sampling frequency $f_s$, yields the number of samples per cycle: $\lambda=f_s . \delta =f_s/f$.
 For didactic reasons, let $f$ divide $f_s$ and result $\lambda$ integer. If $T^f$ is a sonic sequence with fundamental frequency $f$, then:
 
 \begin{equation}\label{periodicidade}
@@ -280,7 +280,7 @@ Let $S^f$ be a sequence whose samples $s_i^f$ describe a sinusoid with frequency
 \noindent where $\lambda_f=\frac{f_s}{f}=\frac{\delta_f}{\delta_s}$ is the number of samples in the period.
 
 In a similar fashion, other waveforms are used in music for their spectral qualities and simplicity.
-While the sinusoid is an isolated node in the spectrum, any other waveform present a succession of harmonic components.
+While the sinusoid is an isolated node in the spectrum, any other waveform presents a succession of harmonic components.
 The most basic waveforms are specified in Equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square}, and are illustrated in Figure~\ref{fig:formasDeOnda}.
 These artificial waveforms are traditionally used in music for synthesis and oscillatory control of variables. They are also useful outside musical contexts~\cite{Openheim}.
 
@@ -314,7 +314,7 @@ The square wave also has only odd harmonics but falling at $-6dB/octave$:
 
 The square wave can be used in a subtractive synthesis with the purpose of mimicking a clarinet. This instrument has only the odd harmonics and the square wave is convenient with its abundant energy at high frequencies.
 The sawtooth is a common starting point for subtractive synthesis, because it has both odd and even harmonics with high energy. In general, these waveforms are appreciated as excessively rich in sharp harmonics, and attenuation by filtering on treble and middle parts of the spectrum is especially useful for reaching a more natural and pleasant sound. 
-The relatively attenuated harmonics of the triangle wave makes it the more functional - among the listed ones - to be used in the synthesis of musical notes without any further processing. The sinusoid is often a nice choice, but a problematic one. While pleasant if not loud in a very high pitch (above $\approx 500Hz$ it requires careful dosage), the pitch of a pure sinusoid is not accurately detected by the human auditory system, particularly at low frequencies. Also, it requires a great amplitude gain for an increase in loudness of a sinusoid if compared to other waveforms. Both particularities are understood in the scientific literature as a consequence of the nonexistence of pure sinusoidal sounds in nature~\cite{Roederer}.
+The relatively attenuated harmonics of the triangle wave make it the more functional - among the listed ones - to be used in the synthesis of musical notes without any further processing. The sinusoid is often a nice choice, but a problematic one. While pleasant if not loud in a very high pitch (above $\approx 500Hz$ it requires careful dosage), the pitch of a pure sinusoid is not accurately detected by the human auditory system, particularly at low frequencies. Also, it requires a great amplitude gain for an increase in loudness of a sinusoid if compared to other waveforms. Both particularities are understood in the scientific literature as a consequence of the nonexistence of pure sinusoidal sounds in nature~\cite{Roederer}.
 
 Figure~\ref{fig:formasDeOnda} presents the waveforms described in Equations~\ref{sinusoid},~\ref{sawTooth},~\ref{triangular} and~\ref{square} for $\lambda_f=100$ (i.e. period of $100$ samples). If $f_s=44.1kHz$, the PCM standard for Compact Disks, the wave has fundamental frequency $f=\frac{f_s}{\lambda_f}=\frac{44100}{100} = 441 \; Hz$, around A4, just above the central "C", whatever the waveform is.
 
@@ -369,7 +369,7 @@ t_i& = \frac{1}{\Lambda}\sum_{k=0}^{\Lambda-1}\left[a_k cos(w_k i) -b_k sen(w_k 
 \end{split}
 \end{equation}
 
-Equation~\ref{moduloEfase} shows how the imaginary term of $c_k$ adds a phase to the real sinusoid: the terms $b_k$ enable the phase sweep $\left[-\frac{\pi}{2},+\frac{\pi}{2}\right]$ given by $arctan\left(\frac{b_k}{a_k}\right)$ which has this image. The sign of $a_k$ specify the right or left side of the trigonometric circle, which completes the phase domain: $\left[-\frac{\pi}{2},+\frac{\pi}{2}\right] \cup \left[\frac{\pi}{2},\frac{3\pi}{2}\right]\equiv [2\pi]$.
+Equation~\ref{moduloEfase} shows how the imaginary term of $c_k$ adds a phase to the real sinusoid: the terms $b_k$ enable the phase sweep $\left[-\frac{\pi}{2},+\frac{\pi}{2}\right]$ given by $arctan\left(\frac{b_k}{a_k}\right)$ which has this image. The sign of $a_k$ specifies the right or left side of the trigonometric circle, which completes the phase domain: $\left[-\frac{\pi}{2},+\frac{\pi}{2}\right] \cup \left[\frac{\pi}{2},\frac{3\pi}{2}\right]\equiv [2\pi]$.
 
  \begin{figure*}
      \centering
@@ -378,7 +378,7 @@ Equation~\ref{moduloEfase} shows how the imaginary term of $c_k$ adds a phase to
          \label{fig:amostras2}
  \end{figure*}
 
-Figure~\ref{fig:amostras2} shows two samples and their spectral component. When there is only two samples, the Fourier decomposition has only one pair of coefficients $\{c_k=a_k-j.b_k\}_0^{\Lambda-1=1}$ relative to frequencies $\{f_k\}_0^1=\left\{w_k\frac{f_s}{2\pi}\right\}_0^1=\left\{k\frac{f_s}{\Lambda=2}\right\}_0^1=\left\{0,\frac{f_s}{2}=f_{\text{max}}\right\}$
+Figure~\ref{fig:amostras2} shows two samples and their spectral component. When there are only two samples, the Fourier decomposition has only one pair of coefficients $\{c_k=a_k-j.b_k\}_0^{\Lambda-1=1}$ relative to frequencies $\{f_k\}_0^1=\left\{w_k\frac{f_s}{2\pi}\right\}_0^1=\left\{k\frac{f_s}{\Lambda=2}\right\}_0^1=\left\{0,\frac{f_s}{2}=f_{\text{max}}\right\}$
 with energies $e_k=\frac{(c_k)^2}{\Lambda=2}$. The role of amplitudes $a_k$ is clearly observed with $\frac{a_0}{2}$, the fixed offset (also called \emph{bias}), and $\frac{a_1}{2}$ for the oscillation with frequency $f_1=\frac{f_s}{\Lambda=2}$.
 This case has special relevance. At least 2 samples are necessary to represent an oscillation and it yields the Nyquist frequency $f_{\text{max}}=\frac{f_s}{2}$, which is the maximum frequency in a sound sampled with $f_s$ samples per second. In fact, any discrete-time signal has this property, not only digitized sound.
 
@@ -392,7 +392,7 @@ The coefficients $\{c_k\}_0^{\Lambda-1=2}$ are present in 3 frequency components
          \label{fig:amostras3}
  \end{figure*}
 
-$\Lambda$ real samples $t_i$ result in $\Lambda$ complex coefficients $c_k=a_k+j.b_k$. The coefficients $c_k$ are equivalent two by two, corresponding to the same frequencies and with the same contribution to its reconstruction. They are complex conjugates: $a_{k1}=a_{k2}$ and $b_{k1}=-b_{k2}$ and, as a consequence, the modules are equal and phases have opposite signs. Recalling that $f_k = k\frac{f_s}{\Lambda}, \; k \in \left\{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \right\} $. When $k > \frac{\Lambda}{2}$, the frequency $f_k$ is mirrored through $\frac{f_s}{2}$ in this way: $f_k=\frac{f_s}{2} - (f_k-\frac{f_s}{2})=f_s-f_k=f_s - k\frac{f_s}{\Lambda}=(\Lambda-k)\frac{f_s}{\Lambda} \;\;\;\; \Rightarrow \;\;\;\; f_k\equiv f_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda$. 
+$\Lambda$ real samples $t_i$ result in $\Lambda$ complex coefficients $c_k=a_k+j.b_k$. The coefficients $c_k$ are equivalent two by two, corresponding to the same frequencies and with the same contribution to its reconstruction. They are complex conjugates: $a_{k1}=a_{k2}$ and $b_{k1}=-b_{k2}$ and, as a consequence, the moduli are equal and phases have opposite signs. Recalling that $f_k = k\frac{f_s}{\Lambda}, \; k \in \left\{0, ..., \left \lfloor \frac{\Lambda}{2} \right \rfloor \right\} $. When $k > \frac{\Lambda}{2}$, the frequency $f_k$ is mirrored through $\frac{f_s}{2}$ in this way: $f_k=\frac{f_s}{2} - (f_k-\frac{f_s}{2})=f_s-f_k=f_s - k\frac{f_s}{\Lambda}=(\Lambda-k)\frac{f_s}{\Lambda} \;\;\;\; \Rightarrow \;\;\;\; f_k\equiv f_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda$. 
 
 The same applies to $w_k=f_k.\frac{2\pi}{f_s}$ and the periodicity $2\pi$: it follows that $w_k=-w_{\Lambda-k} \; ,\;\; \forall \;\; k<\Lambda$. Given the cosine (an even function) and the inverse tangent (an odd function), the components in $w_k$ and $w_{\Lambda-k}$ contribute with coefficients $c_k$ and $c_{\Lambda-k}$ in the reconstruction of the real samples. In other words, in a decomposition of $\Lambda$ samples, the $\Lambda$ frequency components $\{c_i\}_0^{\Lambda-1}$ are equivalent in pairs,
 except for $f_0$, and, when $\Lambda$ is even, for $f_{\Lambda/2}=f_{\text{max}}=\frac{f_s}{2}$. Both components are isolated, i.e.\ there is one and only one component at frequency $f_0$ or $f_{\Lambda/2}$ (if $\Lambda$ is even). In fact when $k=0$ or $k=\Lambda/2$ the mirror of the frequencies are themselves: $f_{\Lambda/2}=f_{(\Lambda-\Lambda/2) = \Lambda/2}$ and $f_0=f_{(\Lambda-0)=\Lambda}=f_0$.
@@ -427,7 +427,7 @@ tg^{-1}\left(\frac{b_k}{a_k}\right)=-tg^{-1}\left(\frac{b_{\Lambda -k}}{a_{\Lamb
 
 \noindent with $k \in \mathbb{N}$.
 
-To discuss the general case for components combination in each sample $t_i$, one can gather relations in Equation~\ref{moduloEfase} for the real signal reconstruction, equivalences of modules (Equation~\ref{equivalenciasModulos}) and phases(Equation~\ref{equivalenciasFases}), the number of paired coefficients (Equation~\ref{coefsPareados}), and the equivalence of paired frequencies (Equation~\ref{equivalenciasFreqs}):
+To discuss the general case for components combination in each sample $t_i$, one can gather relations in Equation~\ref{moduloEfase} for the real signal reconstruction, equivalences of moduli (Equation~\ref{equivalenciasModulos}) and phases (Equation~\ref{equivalenciasFases}), the number of paired coefficients (Equation~\ref{coefsPareados}), and the equivalence of paired frequencies (Equation~\ref{equivalenciasFreqs}):
 
 \begin{equation}\label{eq:reconsCompleta}
 \begin{split}
@@ -491,7 +491,7 @@ spatialization one might find both:
 1) the consideration of cues in sound that derive from the environment,
 including the localization of the listener and the sound source;
 2) techniques to produce sound through various sources, such as loudspeakers, singers and traditional musical instruments, for musical purposes.
-We focus in the first item although issues of the item are also tackled.}.
+We focus in the first item although issues of the second item are also tackled.}.
 A note is always spatialized
 even though it is not one of its four basic properties in canonical musical theory (duration, loudness, pitch and timbre).
 A note has a source which has a position at the ordinary three dimensional physical space.
@@ -502,7 +502,7 @@ Both concepts, spatial localization and reverberation,
 are widely valued by composers, audiophiles and the music industry~\cite{floEsp}.
 
 \subsubsection{Spatial localization}
-It is understood that the perception of sound localization occurs in our nervous system mainly by three cues: the delay of incoming sound between both ears, the difference of sound intensity at each ear and the filtering performed by the human body, specially its chest, head and ears~\cite{Roederer, hrtf, Heeger}. 
+It is understood that the perception of sound localization occurs in our nervous system mainly by three cues: the delay of incoming sound between both ears, the difference of sound intensity at each ear and the filtering performed by the human body, wspecially the chest, head and ears~\cite{Roederer, hrtf, Heeger}. 
 
 \begin{figure}[h!]
     \centering
@@ -567,7 +567,7 @@ The sonic waves propagate until they reach inaudible levels (and further but the
 As a sonic front reaches the human ear, it can be described as an ordinary sound, with the last reflection point as the source, and the absorption filters of each surface it has reached.
 It is possible to simulate reverberations that are impossible in real systems. For example, one can use asymmetric reflections with relation to the axis perpendicular to the surface, or increase the intensity of the last reflections.
 
-There are reverberation models less based in each independent reflection and that explores valuable cues to the auditory system. In fact, a reverberation can be modeled with a set of two temporal and two spectral regions~\cite{JOSPhy}:
+There are reverberation models less based on each independent reflection and that explore valuable cues to the auditory system. In fact, a reverberation can be modeled with a set of two temporal and two spectral regions~\cite{JOSPhy}:
 \begin{itemize}
    \item First period: 'first reflections' are more intense and scattered.
    \item Second period: 'late reverberation' is practically a dense succession of indistinct delays with exponential decay and statistical occurrences.
@@ -647,7 +647,7 @@ The musical pieces \emph{Transit para meter}, \emph{Vibrates and shakes}, \emph{
  
 \subsection{Lookup table}\label{subsec:lookup}
 The \emph{Lookup Table} (LUT) is an array for indexed operations which substitutes continuous and repetitive calculation. It is used to reduce computational complexity and for employing functions without calculating them directly, e.g. from sampled data or hand picked values.
-In music its usage transcends these applications: it simplifies many operations and enables the use a single wave period to synthesize sounds in the whole audible spectrum, with any waveform.
+In music its usage transcends these applications: it simplifies many operations and enables the use of a single wave period to synthesize sounds in the whole audible spectrum, with any waveform.
 
 \begin{figure*}
     \centering
@@ -770,7 +770,7 @@ The linear transitions will be used for AM and FM synthesis, while logarithmic t
 
 \subsection{Application of digital filters}\label{subsec:filtros}
 This subsection is limited to a description of processing by convolution and difference equations, and immediate applications, as a thorough discussion of filtering is beyond the scope of this study\footnote{The
-design and implementation of filters is field of recognized complexity,
+design and implementation of filters is a field of recognized complexity,
 with dedicated literature and software~\cite{Openheim,smith}.}. Filtering can be part of the sound synthesis or made subsequently as part of processes commonly referred to as ``acoustic/sound treatment''.
 
 \subsubsection{Convolution and finite impulse response (FIR) filters}\label{subsec:conv}
@@ -823,7 +823,7 @@ In most cases the variables may be normalized: $a_j'=\frac{a_j}{b_0}$ and $b_k'=
 Equation~\ref{eq:diferencas} is called `difference equation' because the resulting samples $\left\{t_i'\right\}$ are given by differences between original samples $\{t_i\}$ and previous ones in the resulting signal $\left\{t_{i-k}'\right\}$.
 
 There are many methods and tools to obtain IIR filters. The text below lists a selection for didactic and reference purposes.
-They are well behaved filters whose frequency response are illustrated in Figure~\ref{fig:iir}.
+They are well behaved filters whose frequency responses are illustrated in Figure~\ref{fig:iir}.
 For the low-pass and high-pass filters, the cutoff frequency $f_c$ is where the filter performs an attenuation of $-3dB \approx 0.707 $ of the original amplitude.
 For band-pass and band-reject (or 'notch') filters, this attenuation has two specifications: $f_c$ (in this case, the `center frequency') and bandwidth $bw$. In both frequencies $f_c \pm bw$ there is an attenuation of $-3dB \approx 0.707$ of the original amplitude.
 There is sound amplification in band-pass and band-reject filters when the cutoff frequency is low and the band width is large enough. In trebles, those filters present only a deviation of the expected profile, expanding the envelope to the bass.
@@ -837,19 +837,19 @@ Both alternatives are explored by~\cite{JOSFM,smith}, and by the collection of f
 \begin{figure*}
     \centering
         \includegraphics[width=\textwidth]{figures/iir__}
-    \caption{Modules for the frequency response (a), (b), (c) and (d) for IIR filters of Equations~\ref{eq:passa-baixas},~\ref{eq:passa-altas},~\ref{eq:passa-banda} and~\ref{eq:rejeita-banda} respectively, considering different cutoff frequencies, center frequencies and bandwidths.}
+    \caption{Moduli for the frequency response (a), (b), (c) and (d) for IIR filters of Equations~\ref{eq:passa-baixas},~\ref{eq:passa-altas},~\ref{eq:passa-banda} and~\ref{eq:rejeita-banda} respectively, considering different cutoff frequencies, center frequencies and bandwidths.}
         \label{fig:iir}
 \end{figure*}
 
 \begin{enumerate}
-  \item Low-pass with a simple pole and module of the frequency response in the upper left corner of Figure~\ref{fig:iir}. The general equation has the cutoff frequency $f_c \in (0,\frac{1}{2})$, which is the fraction of the sample frequency $f_s$ in which an attenuation of $3dB$ occurs. The coefficients $a_0$ and $b_1$ of the IIR filter are given by:
+  \item Low-pass with a simple pole and modulus of the frequency response in the upper left corner of Figure~\ref{fig:iir}. The general equation has the cutoff frequency $f_c \in (0,\frac{1}{2})$, which is the fraction of the sample frequency $f_s$ in which an attenuation of $3dB$ occurs. The coefficients $a_0$ and $b_1$ of the IIR filter are given by:
 \begin{equation}\label{eq:passa-baixas}
  \begin{split}
  a_0 & =  1-b_1 \\
  b_1 & = e^{-2\pi f_c}
  \end{split}
 \end{equation}
-  \item High-pass filter with a simple pole and module of the frequency responses at the upper right corner of Figure~\ref{fig:iir}.
+  \item High-pass filter with a simple pole and modulus of the frequency responses at the upper right corner of Figure~\ref{fig:iir}.
 	  The general equation with cutoff frequency $f_c \in (0,\frac{1}{2})$ has coefficients:
 \begin{equation}\label{eq:passa-altas}
  \begin{split}
@@ -888,7 +888,7 @@ The coefficients of band-reject filter, depicted in the lower right of Figure~\r
 \end{enumerate}
 
 \subsection{Noise}\label{subsec:ruidos}
-Sounds without an easily recognizable pitch are generally called noise~\cite{Lacerda}. They are important musical sounds, as noise is present in real notes, e.g. emitted by a violin or a piano. Furthermore, many percussion instruments does not exhibit an unequivocal pitch and their sounds are generally regarded as noise~\cite{Roederer}. In electronic music, including electro-acoustic and dance genres, noise has diverse uses and frequently characterizes the music style~\cite{Cook}. 
+Sounds without an easily recognizable pitch are generally called noise~\cite{Lacerda}. They are important musical sounds, as noise is present in real notes, e.g. emitted by a violin or a piano. Furthermore, many percussion instruments do not exhibit an unequivocal pitch and their sounds are generally regarded as noise~\cite{Roederer}. In electronic music, including electro-acoustic and dance genres, noise has diverse uses and frequently characterizes the music style~\cite{Cook}. 
 
 The absence of a definite pitch is due to the lack of a perceptible harmonic organization in the sinusoidal components of the sound.
 Hence, there are many ways to generate noise. The use of random values to generate the sound sequence $T_i$ is an attractive method but not outstandingly useful because it tends to produce white noise with little or no variations~\cite{Cook}. Another possibility to generate noise is by using the desired spectrum, from which it is possible to perform the inverse Fourier transform. The spectral distribution should be done with care: if phases of components exhibit prominent correlation, the synthesized sound will concentrate energy in some periods of its duration.
@@ -914,7 +914,7 @@ Figure~\ref{fig:ruidos} shows the spectrum profile and the corresponding sonic s
  \end{split}
 \end{equation}
 
-The exponential $e^{j.x}$ is a way to obtain unitary module and random phase for the value of $c_i$. In addition, $c_{\Lambda/2}$ is always real (as discussed in Section~\ref{sec:spectrum}).
+The exponential $e^{j.x}$ is a way to obtain unitary modulus and random phase for the value of $c_i$. In addition, $c_{\Lambda/2}$ is always real (as discussed in Section~\ref{sec:spectrum}).
 
  \item The pink noise is characterized by a decrease of $3dB$ per octave.
 	 This noise is useful for testing electronic devices and are prominent in nature~\cite{Roederer}. 
@@ -1005,7 +1005,7 @@ A vibrato with frequency $f'$ can be achieved by:
          \label{fig:vibrato}
 \end{figure}
 
-It is important correctly distinguish both tables 
+It is important to correctly distinguish both tables 
 ($\widetilde{M}=\{\widetilde{m}\}_0^{\widetilde{\Lambda}_M-1}$ and $\widetilde{L}=\{\widetilde{l}\}_0^{\widetilde{\Lambda}-1}$)
 and sequences ($T'=\{t_i'\}_0^{\Lambda-1}$ and $T=\{t_i\}_0^{\Lambda-1}$).
 Table $\widetilde{M}$ and the indices $\gamma_i'$ yield the sequence $\{t_i'\}$
@@ -1183,11 +1183,11 @@ the convolution with an impulse shifts the sound to the position of the impulse,
 A musical pulse - such as specified by a BPM
 tempo - can be implied by an impulse at the start of each beat.
 For example, two impulses equally spaced build a binary division in the
-pulse. Two signals, one with 2 impulses and the other with 3 impulses, both equally spaced in the pulse duration, yields a pulse
+pulse. Two signals, one with 2 impulses and the other with 3 impulses, both equally spaced in the pulse duration, yield a pulse
 maintenance with a rhythm which eases both binary or ternary
 divisions of the pulse. This is found in many ethnic and traditional musical styles~\cite{Gramani}. Absolute values of the impulses entail
 proportions among the amplitudes of the sonic reincidences. The use of convolution with impulses in this context is explored in the music piece \emph{Little train of impulsive hillbillies}.
-The piece also encompass
+The piece also encompasses
 the creation of `sound amalgams' e.g. by granular synthesis (see Figure~\ref{fig:pulsoSubAgl}).
 This piece is a link to the contents of next section because of the explicit organization of notes in higher level structures.~\cite{MASSA}.
 
@@ -1339,7 +1339,7 @@ extrapolating musical paradigms established on traditional notions of melody, ha
 
 \subsection{Tuning, intervals, scales and chords}\label{subsec:afinacao}
 \subsubsection{Tuning}
-Doubling the frequency is equivalent to ascending one octave\footnote{An pitch
+Doubling the frequency is equivalent to ascending one octave\footnote{A pitch
 is both considered equivalent and different from any of its octaves.
 It is different because one or more octaves higher or lower corresponds to
 a higher or lower pitch.
@@ -1412,7 +1412,7 @@ as follows~\cite{Roederer,Wisnick}:
 \begin{itemize}
 	\item Intervals are inspected first by the number of steps between notes in some scale.
 		As can be noticed in Table~\ref{eq:intervalos}, one step is not one semitone.
-		A step, in this sense, is yield by two consecutive notes in a musical scale.
+		A step, in this sense, is yielded by two consecutive notes in a musical scale.
 		A scale for now can be regarded as any arbitrary monotonic sequence of pitches and will be discussed in the next section.
 		The simple intervals are: first (unison), second, third, fourth, fifth, sixth, seventh and eighth (octave).
 		Each of these intervals are related to one step less then their names suggest: a third is an interval with two steps.
@@ -1425,7 +1425,7 @@ as follows~\cite{Roederer,Wisnick}:
 		As a general rule, it is considered a consonance except when it is followed by a third or a fifth
 		by the movement of one of the notes.
 	\item The tritone is a dissonance in Western music because
-		it characterizes the ``dominant'' chord in the tonal system (see Section~\ref{subsec:harmonia}) and represents (or yields) instability. Some cultures considers the interval a consonance, using it in melodies and chants as a stable interval.
+		it characterizes the ``dominant'' chord in the tonal system (see Section~\ref{subsec:harmonia}) and represents (or yields) instability. Some cultures consider the interval a consonance, using it in melodies and chants as a stable interval.
 	\item A major interval decreased by one semitone results in a minor interval. A minor interval increased by one semitone results in a major interval.
 	\item A perfect interval (P1, P4, P5, or P8), or a major interval (M2, M3, M6 or M7), increased
 by one semitone results in an augmented interval (e.g.\
@@ -1521,7 +1521,7 @@ e_i & =d_{(i+\kappa)\%7}+e_{i-1} \quad for \;\;  i > 0
 For example, a brief inspection reveals that
 $e_i^{l}=d_{(i+2)\%7}+e_{i-1}^{l}$. Then, $\kappa=2$ for the Lydian scale.
 
-The minor scale have two additional forms, named harmonic and melodic:
+The minor scale has two additional forms, named harmonic and melodic:
 
 \begin{equation}\label{eq:escalasMenores}
 \begin{split}
@@ -1585,10 +1585,10 @@ E.g. $\{0,2,4,7\}$ will often be understood as a major chord with a major ninth 
 For general guidance:
 \begin{itemize}
         \item A fifth confirms the root (fundamental).
-		There are theoretical discussion about why this happens, and the most usual arguments are that the fifth is the first (non-octave) harmonic of a note and that the harmonics of the fifth are in the harmonics of the fundamental.
+		There are theoretical discussions about why this happens, and the most usual arguments are that the fifth is the first (non-octave) harmonic of a note and that the harmonics of the fifth are in the harmonics of the fundamental.
 		Important here is to grasp the fact that musical theory and practice assures that the fifth enhances the sensation that
 		the root of a chord is the root.
-        \item Major or minor thirds from the root entails major or minor chord qualities.
+        \item Major or minor thirds from the root entail major or minor chord qualities.
         \item Every tritone, especially if built between a major third and a minor seventh, tends to resolve into a third or a sixth.
         \item Note duplication is avoided. If duplication is needed, the preference is, in descending order: the root, fifth, third and seventh.
         \item Note omission is avoided in the triad. If needed, the fifth is first considered for omission, then third and then the fundamental.
@@ -1629,7 +1629,7 @@ piece, it is possible to:
 The atonal harmony can be observed, paradigmatically, within these presented conditions (which is a simple dodecaphonic model).
 Part of what was written by great dodecafonic composers,
 e.g. Alban Berg and even Schoenberg, had the purpose of mixing tonal and atonal techniques.
-Most frequently, atonal music is not strictly dodecafonic, but "serial", i.e. they use the same kind of techniques as stated above, based in a sequence of pitches (called the series or row), but not within a 12 tone sequence and using sequences of other parameters (e.g. duration, timbre).
+Most frequently, atonal music is not strictly dodecafonic, but "serial", i.e. they use the same kind of techniques as stated above, based on a sequence of pitches (called the series or row), but not within a 12 tone sequence and using sequences of other parameters (e.g. duration, timbre).
 Serialism and pos-serialism is briefly considered in Secion~\ref{sec:ser}.
 
 \subsubsection{Tonal harmony}
@@ -1646,7 +1646,7 @@ To build triads, the third and the fifth notes above the root are taken together
 $\hat{1},\hat{3},\hat{5}$ is the first degree chord,
  built on top of the scale's first degree and central for tonal music. The chords of the fifth degree $\hat{5},\hat{7},\hat{2}$ ($\hat{7}$ sharp when in a minor scale) and of the forth degree $\hat{4},\hat{6},\hat{1}$ are also important. The triads build on the other degrees less important then these and are usually understood in relation to them. The `traditional harmony' comprises conventions and stylistic techniques to create progressions with such chords~\cite{Harmonia}. 
 
-The `functional harmony' ascribes functions to the three main chords and tries to understand their use by means of these functions. The chord built on top of the first degree is the \textbf{tonic} chord (\textit{T} or \textit{t} for a major or minor tonic, respectively) and its function (role) consists on maintaining a center, usually referred to as a ``ground'' for the music. The chord built on the fifth degree is the \textbf{dominant} (\textit{D}, the dominant is always major) and its function is to lean for the tonic
+The `functional harmony' ascribes functions to the three main chords and tries to understand their use by means of these functions. The chord built on top of the first degree is the \textbf{tonic} chord (\textit{T} or \textit{t} for a major or minor tonic, respectively) and its function (role) consists in maintaining a center, usually referred to as a ``ground'' for the music. The chord built on the fifth degree is the \textbf{dominant} (\textit{D}, the dominant is always major) and its function is to lean for the tonic
 (the dominant chord asks for a conclusion and this conclusion is the tonic). Thus, the dominant chord guides the music to the tonic. The triad built under the fourth degree is the \textbf{subdominant} (\textit{S} or \textit{s} for a major or minor
 subdominant, respectively) and its function is to deviate the music from the tonic. The tonal discourse aims at confirming the tonic using tonic-dominant-tonic chains which are expanded by using other chords in numerous ways.
 
@@ -1806,7 +1806,7 @@ are not well defined,
 i.e. the exact duration that is perceived as a
 frequency or a separation between occurrences depends on the
 listener and the sonic characteristics~\cite{microsound,Roederer}.
-The rhythm is commonly based on a basic duration called pulse, whose typical duration range between $0.25$ and $1.5s$ ($240$
+The rhythm is commonly based on a basic duration called pulse, whose typical duration ranges between $0.25$ and $1.5s$ ($240$
 and $40 BPM$, respectively~\footnote{BPM stands for Beats Per Minute and is just a frequency measure like Herz, but is the number of incidences per minute instead of second. BPM is often used as a measure of musical tempo and of heart rate.}). In music education and cognitive studies, this range of frequencies is often associated with the duration of the heart beat, movements of respiration and steps of a walking or running person~\cite{Lacerda,Roederer}.
 
 The pulse is subdivided into equal parts and is also repeated in sequence. These relations (division and concatenation) usually follow relations of small
@@ -1876,7 +1876,7 @@ Temporal arcs, like a melody, a motif, a measure or a note, are also
 prone to variations. Let
 $S=\left\{s_j=T^j=\{t_i^{j}\}_0^{\Lambda_j-1}\right\}_0^{H-1}$ be a sequence
 of $H$ musical events $s_j$, each event with its $\Lambda_j$ samples $t_i^j$
-(refer to the beginning of this Section~\ref{notasMusica} if needed). Bellow is a list of basic techniques
+(refer to the beginning of this Section~\ref{notasMusica} if needed). Below is a list of basic techniques
 for variation.
 \begin{itemize}
         \item Temporal translation is a displacement
@@ -2093,12 +2093,12 @@ allocate those notes to the first four events $s'_i$ of $S'$.
 To each permutation $p_i$ described above, we have to determine:
 1) note characteristics where it operates (frequency, duration, \emph{fades},
 intensity, timbre, etc); and
-2) the period of incidence (how much consults before a permutation is
+2) the period of incidence (how many consults before a permutation is
 applied).
 For a coherent realization of the notes in $S$ is to
 execute the first $n$ notes given that the execution of disjoint sets of $S$
 is the same as modifying the permutation and executing the first $n$ notes.
-The PPEPPS is a set of musical pieces that uses permutations.~\cite{MASSA,figgusOriginal,figgusEspacializacao}.
+PPEPPS is a set of musical pieces that uses permutations.~\cite{MASSA,figgusOriginal,figgusEspacializacao}.
 
 \subsection{Serialism and post-serial techniques}\label{sec:ser}
 Expanding the concepts exposed in Section~\ref{sec:atonal},
@@ -2120,7 +2120,7 @@ Post-serial techniques are numerous, but here is a description of
 important concepts:
 \begin{itemize}
 	\item Spectralism:
-		consists on use the (Fourier) spectrum of a sound or the harmonic series for music composition,
+		consists in using the (Fourier) spectrum of a sound or the harmonic series for music composition,
 		such as
 		to derive harmonies, sequences of pitches or a temporal evolution of the overall spectrum.
 		Examples: the most prominent frequencies of a sound can be used as pitches,
@@ -2161,23 +2161,23 @@ We strived to supply the reader with a very useful collection of
 fundamental concepts to elaborate musical structures
 with the content of Sections~\ref{sec:discNote} and~\ref{sec:internalVar}.
 The numerous resources and consequent infinitude
-of praxis possibilities is typical and highly relevant for artistic contexts~\cite{Harmonia,Webern}.
+of praxis possibilities are typical and highly relevant for artistic contexts~\cite{Harmonia,Webern}.
 For example, it is possible to obtain `dirty' triadic harmonies (with notes out of the triad) by superposition of perfect fourths.
 Another interesting example is the superimposition of rhythms in different metrics, constituting what is
 called \emph{polyrhythm}. The music piece \emph{Poli-hit mia} explores these simultaneous metrics by impulse trains convolved with notes.~\cite{MASSA} 
 Microtonal scales are important for 20th
 century music~\cite{microtonalidade} and yielded diverse remarkable results throughout history.
-E.g.
-fourths of a tone ($\epsilon=2^{\frac{1}{24}}$) is often used in some genres of Indian and Arabic music.
+For instance, 
+fourths of a tone ($\epsilon=2^{\frac{1}{24}}$) are often used in some genres of Indian and Arabic music.
 The musical sequence \emph{MicroTom} explores microtonal melodies and harmonies.~\cite{MASSA}
 As stated in Section~\ref{subsec:mus2}, relations between
 parameters are powerful ways to achieve musical pieces.
 The number of permuted
-notes can vary during the music, revealing relationship with piece
+notes can vary during the music piece, revealing relationship with piece
 duration. Harmonies can be made from triads (Equations~\ref{triades}) with duplicated
 notes at each octave and more numerous duplications entail lower depth and frequency of
 vibratos (Equations~\ref{vbrGamma},~\ref{vbrAux},~\ref{vbrF},~\ref{vbrGamma2},~\ref{vbrT}).
-Incontestably, the possibilities are very wide, which is evidenced in the wide range of musical pieces and styles.
+For sure, the possibilities are very wide, which is evidenced in the wide range of musical pieces and styles.
 
 The symmetries at octave divisions (Equation~\ref{escSim}) and the
 symmetries presented as permutations (Table~\ref{tab:change} and
@@ -2196,38 +2196,37 @@ sharing and education.
 
 \section{Conclusions and further developments}
 \label{cap:conclusao}
-In our understanding,
-this article is effective in relating musical elements to digital audio.
-We aimed at achieving a concise presentation of the subject because it involves many knowledge fields, and therefore can very easily blast into thousands of pages.
+In this article, we hope to have effectively related musical elements to digital audio.
+We aimed at achieving a concise presentation of the subject that involves many knowledge fields.
 Some readers might benefit from the text alone, but the \emph{scripts} in the \massa\ toolbox, where all the equations and concepts are directly and simply implemented as software (in Python),
 are very helpful for one to achieve elaborated implementations and deeper insights.
-The scripts include routines that render musical pieces that illustrate the concepts in practical contexts
+The scripts include routines that render musical pieces to illustrate the concepts in practical contexts
 even when we did not use equations in the descriptions (mainly in Section~\ref{sec:notesMusic}).
 This is valuable since art (music) can involve many non-trivial processes and is often deeply glamorized, which results in a nearly unmanageable terrain for a newcomer.
-Moreover, this didactic report and the supplied open source scripts should facilitate the use of the proposed framework.
+Moreover, this article and the open source scripts supplied should facilitate the use of the proposed framework.
 The Supporting Information document holds listings of sections, equations, figures, tables, scripts and other documents.
 
-The possibilities provided by this exposition pour from both the organization of knowledge and the ability to achieve sounds which are extremely true to the models.
+The possibilities provided stem from both the organization of knowledge and the ability to achieve sounds which are true to the models.
 For example, one can produce noises with arbitrary resolution of the spectrum and a musical note can be synthesized with the parameters (e.g. of a vibrato) updated sample-by-sample.
-Furthermore, software for synthesis and processing of sounds for musical purposes
-by standard restrict the bit depth to 16 or 24.
+Furthermore, standard software for synthesis and processing of sounds for musical purposes
+by restrict the bit depth to 16 or 24.
 This is achievable in this framework but by standard Python uses more bits per floating point number.
 These ``higher fidelity'' characteristics can be crucial
 e.g. for psychoacoustic experiments or to generate high quality musical sounds or pieces.
 Simply put, it is compelling
 for many scientific and artistic purposes.
-The didactic potential of the framework is evident when noticed that:
+The didactic potential of the framework is evident by noticing that:
 \begin{itemize}
 	\item the integrals and derivatives, ubiquitous in continuous signal processing,
 are all replaced, in discrete signals, by summations,
 which are generally more intuitive and do not require fluency in calculus.
 	\item The equations and concepts are implemented as software which can be easily assembled and inspected.
 \end{itemize}
-\noindent In fact, this framework was used in a number of contexts, including courses, software implementations and making music~\cite{vimeoLM,vivace,repoDissertacao,dissertacao}.
-Such detailed analytical descriptions, together with the computational implementations, have not been covered before in the literature, as far as the authors know, such as testified in the literature review (Appendix G of~\cite{dissertacao}), where books, articles and open software are related to this framework.
+\noindent Significantly, this framework was used in a number of contexts, including courses, software implementations and making music~\cite{vimeoLM,vivace,repoDissertacao,dissertacao}.
+Such detailed analytical descriptions, together with the computational implementations, have not been covered before in the literature, as far as the authors know (see the literature review in the Appendix G of~\cite{dissertacao}), where books, articles and open software are related to this framework.
 
 The free software license and online availability of the content,
-with the respective codes and sonic examples, facilitate collaborations and the generation of sub-products in a co-authorship fashion,
+with the respective codes and sonic examples, facilitate collaborations and generation of sub-products in a co-authorship fashion,
 favoring new implementations and musical pieces.
 The scripts can be divided in three groups: implementation of all the equations and topics of music theory; routines for rendering musical pieces that illustrate the concepts; scripts that render the figures of this article and the article itself.
 There are also a few auxiliary scripts which did not fit into these categories.~\cite{SI}
@@ -2242,7 +2241,7 @@ There are also a few auxiliary scripts which did not fit into these categories.~
 
 Future work might include application of these results in artificial intelligence
 for the generation of appealing artistic materials. Some psychoacoustic effects were detected,
-which needs validation and should be reported, especially with~\cite{quadrosSonoros}.\footnote{The sonic portraits where sent to a public mailing list and the fifth piece was reported by some individuals to induce a state in which noises from the own tongue, teeth and jaw of the individual echoed for some seconds~\cite{quadrosMetarec}.} Other foreseen advances
+which need validation and should be reported, especially with~\cite{quadrosSonoros}.\footnote{The sonic portraits were sent to a public mailing list and the fifth piece was reported by some individuals to induce a state in which noises from the own tongue, teeth and jaw of the individual echoed for some seconds~\cite{quadrosMetarec}.} Other foreseen advances
 are: a JavaScript version of the toolbox, better hypermedia deliverables of this framework, user guides
 for different goals (e.g. musical composition, psychophysical experiments, sound synthesis, education), creation
 of musical pieces and open experiments to be studied with EEG recordings, and further analytical specification of musical
