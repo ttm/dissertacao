@@ -1,5 +1,15 @@
 j## ToDo
 
+#### Final tasks
+- Revise the bibliography
+- Revise the Supporting Information
+- put the code into a repository accordingly
+- cite correctly the link to the repo where the mass is
+- put the license header in the files
+- review and translate scripts to English
+- add note about aux/filters in the listings.tex
+- add list of scripts that are not for rendering figures in listings.tex if there are other ones besides iso226
+
 #### Email to other authors:
 - Confirm institutional ties of authors and their names in English.
 - note to other authors that we have many footnotes.
